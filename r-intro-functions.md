@@ -34,7 +34,7 @@ When doing the following exercises, keep in mind that typing `?funcnames` into t
 
 * Read about how to use [`for` loops in R](http://www.r-bloggers.com/how-to-write-the-first-for-loop-in-r/) (just familiarize yourself with the syntax if you already know what `for` loops are). Now use the `paste()` function to make a vector of length 30 that looks like `("label 1", "label 2", ..., "label 30")`.
 
-* The `rnorm()` function is used to sample from a normal distribution. Write code that generates 10 random samples from the normal distribution, loops through them, and for each value `x` prints `x` if `x` is less than 0.5 and prints `"big"` otherwise.
+* The `rnorm()` function is used to sample from a [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution). Write code that generates 10 random samples from the normal distribution, loops through them, and for each value `x` prints `x` if `x` is less than 0.5 and prints `"big"` otherwise.
 
 * Calculate the sums $\sum_{i=10}^{100} \left(i^3 + 4i^2\right)$ and $\sum_{i=1}^{25} \left(\frac{2^i}{i} + \frac{3^i}{i^2}\right)$ using the `sum()` function.
 
