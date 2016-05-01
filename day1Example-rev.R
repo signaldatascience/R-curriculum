@@ -15,18 +15,18 @@
 # Good linear fit
 ggplot(ldf, aes(gdp, infant.mortality)) + geom_point() + geom_smooth(method = "lm")
 
-# Compare simple fit and fit after transforming from log/log scale
-lin.fit = lm(infant.mortality ~ gdp,df)
-df$lin.fit = fitted(lin.fit)
-log.fit = lm(infant.mortality ~ gdp,ldf)
-df$log.fit = exp(fitted(log.fit))
-exp.log.fit = lm(infant.mortality ~ log.fit,df)
+# Calculate linear fit of infant mortality vs. GDP
+linear_fit = lm(infant.mortality ~ gdp, df)
 
-#Predictor vs. residuals for  linear fit
-qplot(df$gdp, lin.fit$residuals)
+# Calculate linear fit of log(infant mortality) vs. log(GDP)
+loglog_fit = lm(infant.mortality ~ gdp, ldf)
 
-#Predictor vs. residuals for  exponential of logarithmic fit
-qplot(df$gdp, exp.log.fit$residuals)
+# Plot of linear fit residuals
+qplot(df$gdp, linear_fit$residuals)
 
+# Plot of linear fit residuals after log transformation of GDP and infant mortality
+qplot(df$gdp, df$infant.mortality - exp(fitted(loglog_fit)))
+
+# Compare simple fit and fit after 
 ### GALTON HEIGHT DATA ###
 

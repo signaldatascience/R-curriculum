@@ -16,9 +16,9 @@ When doing the following exercises, keep in mind that typing `?funcnames` into t
 	}
 	```
 
-	If `if-else` statements are new to you, try changing the values of x and see how the output of this code varies.  Now, change this code so that it distinguishes if `x` is greater than, lesser than, or equal to 10.
+	If `if-else` statements are new to you, change the values of `x` and see how the output of this code varies.  Now, change this code so that it distinguishes if `x` is greater than, lesser than, or equal to 10.
 
-* Try running the following code:
+* Run the following code:
 
 	```r
 	x = runif(1)
