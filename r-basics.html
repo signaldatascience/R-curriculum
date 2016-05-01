@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title>R Basics</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">R Basics</h1>
+</div>
+<h1 id="r-basics">R Basics</h1>
+<p>The basics of programming in R.</p>
+<p>Some of the stuff on this page might not be immediately relevant, but you should skim it anyway just to know that it exists. When the need arises, you&#8217;ll know where to look.</p>
+<h2 id="installing-r">Installing R</h2>
+<p>I recommend using <a href="https://www.rstudio.com/products/rstudio/download/">RStudio</a>, a very full-featured IDE for programming in R&#8212;you can download the binaries on its website if you run Windows, OS X, Ubuntu/Debian, or Fedora/Red Hat/openSUSE. Since RStudio is open source, unofficial binaries exist for other Linux distributions too, like <a href="https://aur.archlinux.org/packages/rstudio-desktop-bin/">Arch Linux</a>.</p>
+<h2 id="running-code-in-rstudio">Running code in RStudio</h2>
+<p>By default, RStudio has four collapsible panels: code files (top left), environment information (bottom left), console (top right), and documentation/plots (bottom right). I like to collapse the bottom left panel with the <code>__</code> icon in the top right so I have more space to see my code.</p>
+<p>It&#8217;s possible to type code directly into the console and to press <code>Enter</code> to evaluate a line of code. However, it&#8217;s usually best to save all of your work in a R script file.</p>
+<p><strong>Exercise.</strong> Create a new script file called <code>test.R</code> in any directory of your choice. Type some arithmetic into it like <code>1+1</code> and <code>2*4^2</code> on different lines and click the <code>Run</code> button in the top right.</p>
+<p>You can press <code>Ctrl+Enter</code> to run just the line that your cursor is on or the code block that you have selected. (Try it out!) When your scripts get large and cumbersome, rerunning just the parts that changed will be much faster than rerunning the entire file (which could take a very long time depending on what computations you&#8217;re doing).</p>
+<p><strong>Remark.</strong> Unless your script is very short, you should <em>almost never</em> be rerunning the entire file every time you make a change to your code. If you are, it might be a sign that your code needs to be structured differently.</p>
+<h2 id="assignment-operators">Assignment operators</h2>
+<p>Let&#8217;s go over variable assignment. In R, you can assign values to variables with both the <code>=</code> and the <code>&lt;-</code> operators, like so:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span>x =<span class="st"> </span><span class="dv">100</span>
+&gt;<span class="st"> </span>x
+[<span class="dv">1</span>] <span class="dv">100</span>
+&gt;<span class="st"> </span>x &lt;-<span class="st"> </span><span class="dv">100</span>
+&gt;<span class="st"> </span>x
+[<span class="dv">1</span>] <span class="dv">100</span></code></pre></div>
+<p>There is a good <a href="http://stackoverflow.com/questions/1741820/assignment-operators-in-r-and">StackOverflow discussion</a> of the differences between the two operators. The main points are:</p>
+<ul>
+<li>The <code>&lt;-</code> operator is generally preferred in the R community for &#8220;compatibility with (very) old versions of S-Plus&#8221;.</li>
+<li>But the <code>&lt;-</code> operator is whitespace dependent, because the syntax is equivalent to the comparison <code>x &lt; -y</code> (<code>x</code> is less than negative <code>y</code>). The <code>=</code> operator doesn&#8217;t have this problem.</li>
+<li>The <a href="http://www.inside-r.org/r-doc/base/assignOps">scoping</a> of the two assignment operators is different. Here, <code>=</code> has (what I consider to be) more intuitive behavior: if you evaluate, say, <code>median(x=1:10)</code>, it doesn&#8217;t change the value of <code>x</code> in the outside environment, but if you evaluate <code>median(x&lt;-1:10)</code>, the value of <code>x</code> outside the function call is also set to <code>1:10</code>.</li>
+<li><strong>Bottom line:</strong> Just use <code>=</code> instead of <code>&lt;-</code>. It&#8217;s faster, clearer, and there are almost no downsides, ever.</li>
+</ul>
+<h2 id="installing-packages">Installing packages</h2>
+<p>To install a package, run <code>install.packages(&quot;packagename&quot;)</code>. If it doesn&#8217;t work, check that you spelled the package name correctly!</p>
+<p>Now, to load a package, run <code>library('packagename')</code>. You&#8217;ll find that in other people&#8217;s R code, they might use <code>library(packagename)</code> or <code>require('packagename')</code>, which are both inferior! Yihui Xie has a <a href="http://yihui.name/en/2014/07/library-vs-require/">very funny post</a> about why <code>library('packagename')</code> is <em>almost always better</em>.</p>
+<h2 id="changing-the-current-directory">Changing the current directory</h2>
+<p>Sometimes, you&#8217;ll want to change the current (working) directory. For example, suppose that you&#8217;re running <code>/tmp/scripts/analysis.R</code> which depends on some functions defined in <code>/tmp/scripts/functions.R</code> and a data file called <code>/tmp/scripts/data.csv</code>. Now, when loading the files, you can type out the full paths, but you might want to be more concise and portable by just calling <code>functions.R</code> and <code>data.csv</code>. If you do that, R has to know where to look for those files; if your current directory is set to, say, <code>/home/andrew/</code>, then it&#8217;ll look for <code>/home/andrew/functions.R</code>, which doesn&#8217;t exist. What you would want to do in this case is to set the current directory to <code>/tmp/scripts/</code>.</p>
+<ul>
+<li>You can use the <code>getwd()</code> (get working directory) command to see what the current directory is set to.</li>
+<li>You can also use the <code>setwd()</code> (set working directory) function to set the working directory to whatever path you pass in to the function.</li>
+</ul>
+</body>
+</html>
