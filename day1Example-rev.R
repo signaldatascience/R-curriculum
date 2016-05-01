@@ -15,7 +15,7 @@
 # Good linear fit
 ggplot(ldf, aes(gdp, infant.mortality)) + geom_point() + geom_smooth(method = "lm")
 
-#Compare simple fit and fit after transforming from log/log scale
+# Compare simple fit and fit after transforming from log/log scale
 lin.fit = lm(infant.mortality ~ gdp,df)
 df$lin.fit = fitted(lin.fit)
 log.fit = lm(infant.mortality ~ gdp,ldf)

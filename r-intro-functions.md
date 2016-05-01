@@ -50,10 +50,10 @@ Read about how to [define functions in R](http://www.ats.ucla.edu/stat/r/library
 
 * For the first 100 integers, calculate the number of iterations of `collatz()` required before the output stops changing and use `hist()` to make a histogram of these results. (For the first part, you might find [while loops](http://www.programiz.com/r-programming/while-loop) useful.)
 
-* **Extra:** Write a function that can make the histogram specified above for any arbitrary input vector of numbers and explore how the distributions of various types of numbers differ (prime numbers, perfect squares, powers of 2/3/5/..., etc.---feel free to play around). Don't spend too much time on this if you can't find anything interesting, but also don't hesitate to pursue any interesting patterns you notice.
-
 * Write a function that takes in a positive integer `n` and calculates the number of ways in which `n` is expressible as the sum of two cubes of positive integers. What is the smallest integer expressible as the sum of two cubes in two different ways?
 
 * Write a function `fib(n)` that returns the `n`th Fibonacci number, with `fib(1) == fib(2) == 1`. Then write a different function `fib_test()` that takes in two parameters, `n` and `k`, and for the first `n` Fibonacci numbers calculates whether or not they're divisible by `k`. (Think about what this function should return!) Play around and see if you can find any patterns (hint: try `k = 3`).
 
-In general, instead of recalculating the same values over and over again, you can store the results of computations the first time you do them and then look for the precomputed results if you need them again. (This is called [memoization](https://en.wikipedia.org/wiki/Memoization), related to the broader method of [dynamic programming](https://en.wikipedia.org/wiki/Dynamic_programming).) Try to speed up of some of the code you've written with this technique, and quantify the improvements in runtime.
+In general, instead of recalculating the same values over and over again, you can store the results of computations the first time you do them and then look for the precomputed results if you need them again. (This is called [memoization](https://en.wikipedia.org/wiki/Memoization), related to the broader method of [dynamic programming](https://en.wikipedia.org/wiki/Dynamic_programming).)
+
+Try to speed up of some of the code you've written with this technique, and quantify the improvements in runtime using the [`tictoc` package](http://stackoverflow.com/a/33375008/3721976). In particular, look at `fib_test()` and `collatz()`.
