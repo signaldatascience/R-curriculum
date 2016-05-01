@@ -30,7 +30,7 @@ When doing the following exercises, keep in mind that typing `?funcnames` into t
 	}
 	```
 
-	What's wrong? Fix it. What does `runif` do? Try to guess before looking it up. (*Hint:* It's `r unif`, not `run if`.) Try to predict the existence of some other `r...` functions.
+	What's wrong? Fix it. What does `runif` do? Try to guess before looking it up. (*Hint:* It's `r unif`, not `run if`.)
 
 * Read about how to use [`for` loops in R](http://www.r-bloggers.com/how-to-write-the-first-for-loop-in-r/) (just familiarize yourself with the syntax if you already know what `for` loops are). Now use the `paste()` function to make a vector of length 30 that looks like `("label 1", "label 2", ..., "label 30")`.
 
@@ -44,11 +44,11 @@ When doing the following exercises, keep in mind that typing `?funcnames` into t
 
 * Using two nested `for` loops, print out all pairs of integers from 1 to 20 without repeats (order doesn't matter). E.g., don't print out both `(1,2)` and `(2,1)`.
 
-Read about how to [define functions in R](http://www.ats.ucla.edu/stat/r/library/intro_function.htm). Refer back to this page as necessary when doing the following exercises.
+Read about how to [define functions in R](http://www.ats.ucla.edu/stat/r/library/intro_function.htm). Refer back to this page as necessary when doing the following exercises. Initially, don't worry too much about the performance of your code---just focus on making it work.
 
 * Make a function `collatz(n)` that takes in a positive integer `n` and returns `n/2` if `n` is even or `3n+1` if `n` is odd. Play around with this---what's the limiting behavior as you apply this function repeatedly, e.g. taking `collatz(collatz(collatz(collatz(collatz(n)))))`?
 
-* For the first 100 integers, calculate the number of iterations of `collatz()` required before the output stops changing and use `hist()` to make a histogram of these results.
+* For the first 100 integers, calculate the number of iterations of `collatz()` required before the output stops changing and use `hist()` to make a histogram of these results. (For the first part, you might find [while loops](http://www.programiz.com/r-programming/while-loop) useful.)
 
 * **Extra:** Write a function that can make the histogram specified above for any arbitrary input vector of numbers and explore how the distributions of various types of numbers differ (prime numbers, perfect squares, powers of 2/3/5/..., etc.---feel free to play around). Don't spend too much time on this if you can't find anything interesting, but also don't hesitate to pursue any interesting patterns you notice.
 
@@ -56,3 +56,4 @@ Read about how to [define functions in R](http://www.ats.ucla.edu/stat/r/library
 
 * Write a function `fib(n)` that returns the `n`th Fibonacci number, with `fib(1) == fib(2) == 1`. Then write a different function `fib_test()` that takes in two parameters, `n` and `k`, and for the first `n` Fibonacci numbers calculates whether or not they're divisible by `k`. (Think about what this function should return!) Play around and see if you can find any patterns (hint: try `k = 3`).
 
+In general, instead of recalculating the same values over and over again, you can store the results of computations the first time you do them and then look for the precomputed results if you need them again. (This is called [memoization](https://en.wikipedia.org/wiki/Memoization), related to the broader method of [dynamic programming](https://en.wikipedia.org/wiki/Dynamic_programming).) Try to speed up of some of the code you've written with this technique, and quantify the improvements in runtime.
