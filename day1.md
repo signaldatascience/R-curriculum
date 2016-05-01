@@ -32,7 +32,7 @@ We'll now start doing some transformations of the data, leading up to statistica
 
 * Run the line starting with `ggplot...` to plot a scatterplot of the data in `ldf` along with a linear fit of infant mortality to GDP. What happens when you remove the `method` argument in `geom_smooth()`? Look at the documentation for `geom_smooth()` and determine what method it defaults to; find the documentation online, read about it, and explicitly call it in the `method` argument instead of `"lm"`. How good of an approximation is a linear model?
 
-A [residual](https://en.wikipedia.org/wiki/Residual_(numerical_analysis)) is a fancy word for an error; it's basically the diffence given by `actual - predicted`.
+A [residual](https://en.wikipedia.org/wiki/Residual_(numerical_analysis)) is a fancy word for an error; it's basically the difference given by `actual - predicted`.
 
 Why is this important? By fitting a model to our data and looking at the residuals, we can visually inspect the results for evidence of [heteroscedasticity](https://en.wikipedia.org/wiki/Heteroscedasticity#Fixes). One of the [assumptions of linear regression](https://en.wikipedia.org/wiki/Linear_regression#Assumptions) is that the variances of the distributions from which the response variables are drawn have the same variance. If that's the case, then we shouldn't really see much structure in the plot of the residuals, so seeing structure in the plot of residuals is a warning sign that our model isn't working. For example, compare the top and bottom plots [here](https://upload.wikimedia.org/wikipedia/en/thumb/5/5d/Hsked_residual_compare.svg/630px-Hsked_residual_compare.svg.png) (top has structure, bottom doesn't).
 
