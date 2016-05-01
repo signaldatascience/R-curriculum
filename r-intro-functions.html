@@ -6,33 +6,81 @@
   <meta name="generator" content="pandoc" />
   <title></title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 </head>
 <body>
 <h1 id="r-exercises">R Exercises</h1>
 <p>When doing the following exercises, keep in mind that typing <code>?funcnames</code> into the console will being up documentation corresponding to the function called <code>funcname()</code>.</p>
 <ul>
-<li><p>Create a vector of the values of <span class="math inline">\(e^x \cos(x)\)</span> at <span class="math inline">\(x = 3, 3.1, 3.2, \ldots, 6\)</span>.</p></li>
+<li><p>Conditionals are very helpful in structuring the logic of your code. It&#8217;s best to just illustrate how it works with a code example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x =<span class="st"> </span><span class="dv">1</span>
+if (x &gt;<span class="st"> </span><span class="dv">0</span>) {
+    <span class="kw">print</span>(<span class="st">&quot;x is positive&quot;</span>)
+} else if (x &lt;<span class="st"> </span><span class="dv">0</span>) {
+    <span class="kw">print</span>(<span class="st">&quot;x is negative&quot;</span>)
+} else {
+    <span class="kw">print</span>(<span class="st">&quot;x is zero&quot;</span>)
+}</code></pre></div>
+<p>Try changing the values of <code>x</code> and seeing how the output of this code changes if you aren&#8217;t familiar with <code>if-else</code> statements. Now, change this code so that it distinguishes if <code>x</code> is greater than, lesser than, or equal to 10.</p></li>
 <li><p>Try running the following code:</p>
-<pre><code>x = rnorm(1)
-if (x &lt; 0.5) {
-  print(x)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x =<span class="st"> </span><span class="kw">runif</span>(<span class="dv">1</span>)
+if (x &lt;<span class="st"> </span><span class="fl">0.5</span>) {
+  <span class="kw">print</span>(x)
 }
 else {
-  print(&#39;big&#39;)
-}</code></pre>
-<p>What&#8217;s wrong? Fix it.</p></li>
+  <span class="kw">print</span>(<span class="st">&#39;big&#39;</span>)
+}</code></pre></div>
+<p>What&#8217;s wrong? Fix it. What does <code>runif</code> do? Try to guess before looking it up. (<em>Hint:</em> It&#8217;s <code>r unif</code>, not <code>run if</code>.) Try to predict the existence of some other <code>r...</code> functions.</p></li>
 <li><p>Read about how to use <a href="http://www.r-bloggers.com/how-to-write-the-first-for-loop-in-r/"><code>for</code> loops in R</a> (just familiarize yourself with the syntax if you already know what <code>for</code> loops are). Now use the <code>paste()</code> function to make a vector of length 30 that looks like <code>(&quot;label 1&quot;, &quot;label 2&quot;, ..., &quot;label 30&quot;)</code>.</p></li>
 <li><p>The <code>rnorm()</code> function is used to sample from a normal distribution. Write code that generates 10 random samples from the normal distribution, loops through them, aod for each value <code>x</code> prints <code>x</code> if <code>x</code> is less than 0.5 and prints <code>&quot;big&quot;</code> otherwise.</p></li>
 <li><p>Calculate the sums <span class="math inline">\(\sum_{i=10}^{100} \left(i^3 + 4i^2\right)\)</span> and <span class="math inline">\(\sum_{i=1}^{25} \left(\frac{2^i}{i} + \frac{3^i}{i^2}\right)\)</span> using the <code>sum()</code> function.</p></li>
 <li><p>Read about how to <a href="http://stackoverflow.com/a/33375008/3721976">time function calls</a> in R. Set <code>x = 1:10</code> and play around with the different ways in which you can access parts of <code>x</code>, like with <code>x[1:10]</code>, <code>x[2:3]</code>, etc. Using the <code>tail()</code>, <code>length()</code>, and <code>seq()</code> functions, come up with as many different ways as you can to access the last 5 elements of <code>x</code>, and time them to figure out which ones are the fastest. <a href="http://stackoverflow.com/a/6136652/3721976">Afterward, check your answers.</a></p></li>
+<li><p>Create a vector of the values of <span class="math inline">\(e^x \cos(x)\)</span> at <span class="math inline">\(x = 3, 3.1, 3.2, \ldots, 6\)</span>.</p></li>
 <li><p>Using two nested <code>for</code> loops, print out all pairs of integers from 1 to 20 without repeats (order doesn&#8217;t matter). E.g., don&#8217;t print out both <code>(1,2)</code> and <code>(2,1)</code>.</p></li>
 </ul>
 <p>Read about how to <a href="http://www.ats.ucla.edu/stat/r/library/intro_function.htm">define functions in R</a>. Refer back to this page as necessary when doing the following exercises.</p>
 <ul>
 <li><p>Make a function <code>collatz(n)</code> that takes in a positive integer <code>n</code> and returns <code>n/2</code> if <code>n</code> is even or <code>3n+1</code> if <code>n</code> is odd. Play around with this&#8212;what&#8217;s the limiting behavior as you apply this function repeatedly, e.g.&#160;taking <code>collatz(collatz(collatz(collatz(collatz(n)))))</code>?</p></li>
-<li><p>For the first 100 integers, calculate the number of iterations of <code>collatz()</code> required before the output stops changing and make a <code>hist</code>ogram of these results. Do you notice any differences if you do this for different sets of integers, e.g.&#160;101 to 200?</p></li>
-<li><p>Write a function that takes in a positive integer <code>n</code> and calculates the number of ways which <code>n</code> is expressible as the sum of two cubes of positive integers. What is the smallest integer expressible as the sum of two cubes in two different ways?</p></li>
+<li><p>For the first 100 integers, calculate the number of iterations of <code>collatz()</code> required before the output stops changing and use <code>hist()</code> to make a histogram of these results.</p></li>
+<li><p><strong>Extra:</strong> Write a function that can make the histogram specified above for any arbitrary input vector of numbers and explore how the distributions of various types of numbers differ (prime numbers, perfect squares, powers of 2/3/5/&#8230;, etc.&#8212;feel free to play around). Don&#8217;t spend too much time on this if you can&#8217;t find anything interesting, but also don&#8217;t hesitate to pursue any interesting patterns you notice.</p></li>
+<li><p>Write a function that takes in a positive integer <code>n</code> and calculates the number of ways in which <code>n</code> is expressible as the sum of two cubes of positive integers. What is the smallest integer expressible as the sum of two cubes in two different ways?</p></li>
 <li><p>Write a function <code>fib(n)</code> that returns the <code>n</code>th Fibonacci number, with <code>fib(1) == fib(2) == 1</code>. Then write a different function <code>fib_test()</code> that takes in two parameters, <code>n</code> and <code>k</code>, and for the first <code>n</code> Fibonacci numbers calculates whether or not they&#8217;re divisible by <code>k</code>. (Think about what this function should return!) Play around and see if you can find any patterns (hint: try <code>k = 3</code>).</p></li>
 </ul>
 </body>

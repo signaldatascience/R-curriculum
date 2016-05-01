@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<h1 id="week-1-day-1-assignment">Week 1 Day 1 Assignment</h1>
+<p>Install the packages <code>car</code>, <code>Ecdat</code>, <code>HistData</code>, <code>ggplot2</code>, and <code>GGally</code>. Load <code>day1Example-rev.R</code> in RStudio.</p>
+<p>You&#8217;ll go through the existing code, alternating between figuring out what it does, answering questions here, and writing your own code to supplement what&#8217;s already there.</p>
+<p>You should strive to <strong>discuss the questions with your partner</strong> and</p>
+<ul>
+<li><p>Load <code>car</code>, <code>ggplot2</code>, and <code>GGally</code>. Set <code>df = UN</code>.</p></li>
+<li><p>You can print out <code>df</code> by just typing <code>df</code> into the console, but you can also get a nice GUI for looking at dataframes by running <code>View(df)</code> (case-sensitive). Does anything stand out to you? Think about three questions you&#8217;d like to answer with this data and write them down for later as comments in the R file.</p></li>
+<li><p>Packages in R are extensively documented online. Figure out where to look for official documentation in the <code>car</code> package to read about what the <code>UN</code> data actually is.</p></li>
+<li><p>We&#8217;d like to know the correlation between GDP and infant mortality, so use the <code>cor()</code> function on the dataframe. What&#8217;s wrong, and why is this happening? Look in the documentation for <code>cor()</code> to figure out how to tell the function to ignore invalid entries.</p></li>
+<li><p>For readability, multiply the correlation matrix by 100 and <code>round</code> it to whole numbers. Consider wrapping all of this (including the above bullet point) into a function, <code>cor2</code>, which outputs a correlation matrix ignoring invalid entries with rounded whole numbers.</p></li>
+<li><p>Instead of making the functions we use all individually handle missing values (<code>NA</code>s), we can try to create a new dataframe with incomplete rows excluded. Type <code>?na.fail</code> and read the documentation on <code>NA</code>-related functions; find one appropriate for the job and use it to make <code>df2</code>, a new dataframe that only has the complete rows of <code>df</code>.</p></li>
+</ul>
+<p>We&#8217;ll now start doing some transformations of the data, leading up to statistical analysis!</p>
+<ul>
+<li><p>Use the <code>ggpairs()</code> function (from the <code>GGally</code> package). What do you notice about the distributions of GDP and infant mortality? Figure out how to take a log transformation of the data and assign it to <code>ldf</code>, and examine it with <code>ggpairs()</code>. Note the differences, and reflect on the appropriateness of a linear model for the untransformed vs.&#160;transformed data.</p></li>
+<li></li>
+</ul>
+</body>
+</html>
