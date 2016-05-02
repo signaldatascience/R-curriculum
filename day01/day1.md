@@ -18,39 +18,59 @@ You should strive to **discuss the questions with your partner** and write down 
 
 * Load the packages `car`, `ggplot2`, and `GGally`. Set `df = UN`.
 
-* You can print out `df` by just typing `df` into the console, but you can also get a nice GUI for looking at data frames by running `View(df)` (case-sensitive). Does anything stand out to you? Think about three questions you'd like to answer with this data and write them down for later as comments in the R file.
+* You can print out `df` by just typing `df` into the console, but you can also get a nice GUI for looking at data frames by running `View(df)` (case-sensitive). Does anything stand out to you? If there are any questions you'd like to answer with this data, write them down as comments in your R file.
 
-* Packages in R are extensively documented online. Figure out where to look for official documentation in the `car` package to read about what the `UN` data actually is.
+* Packages in R are extensively documented online. Look at the [reference manual](https://cran.r-project.org/web/packages/car/) for the `car` package to read about the `UN` data.
 
 ### Viewing correlations and cleaning data ###
 
-* We'd like to know the correlation between GDP and infant mortality, so use the `cor()` function on the data frame. What's wrong, and why is this happening? Look in the documentation for `cor()` to figure out how to tell the function to ignore invalid entries.
+* Use the `cor()` function on the data frame to find the correlation between infant mortality and GDP. What's wrong, and why is this happening? Look in the documentation for `cor()` to figure out how to tell the function to ignore entries with missing values.
 
-* For readability, multiply the correlation matrix by 100 and `round()` it to whole numbers. Wrap all of this (including the above bullet point) into a function, `cor2`, which outputs a correlation matrix ignoring invalid entries with rounded whole numbers.
+* For readability, multiply the correlation matrix by 100 and `round()` it to whole numbers. Wrap all of this (including the above bullet point) into a function, `cor2`, which outputs a correlation matrix (ignoring entries with missing values) with rounded whole numbers.
 
-* Instead of making the functions we use all individually handle missing values (`NA`s), we can create a new data frame with incomplete rows excluded. Type `?na.fail` and read the documentation on `NA`-related functions; find one appropriate for the job and use it to make `df2`, a new data frame that only has the complete rows of `df`.
+Instead of making each function we use handle missing values (`NA`s), we can create a new data frame with incomplete rows excluded.
+
+* Type `?na.fail` and read the documentation on `NA`-related functions; find one appropriate for the job and use it to make `df2`, a new data frame excluding rows containing missing values.
 
 ### Visualizing distributions ###
 
 We'll now start doing some transformations of the data, leading up to statistical analysis!
 
-* Use the `ggpairs()` function (from the `GGally` package). What do you notice about the distributions of GDP and infant mortality? Figure out how to take a log transformation of the data and assign it to `ldf`, and examine it with `ggpairs()`. Note the differences, and reflect on the appropriateness of a linear model for the untransformed vs. transformed data.
+* Use the `ggpairs()` function (from the `GGally` package) on the data frame.
 
-* Run the line starting with `ggplot...` to plot a scatterplot of the data in `ldf` along with a linear fit of infant mortality to GDP. What happens when you remove the `method` argument in `geom_smooth()`? Look at the documentation for `geom_smooth()` and determine what method it defaults to; find the documentation online, read about it, and explicitly call it in the `method` argument instead of `"lm"`. How good of an approximation is a linear model?
+	* What do you notice about the distributions of GDP and infant mortality?
+
+	* Figure out how to take a log transformation of the data and assign it to `ldf`, and examine it with `ggpairs()`.
+
+	* Note the differences, and reflect on the appropriateness of a linear model for the untransformed vs. transformed data.
+
+* Run the line starting with `ggplot...` to plot a scatterplot of the data in `ldf` along with a linear fit of infant mortality to GDP.
+
+	* What happens when you remove the `method` argument in `geom_smooth()`?
+
+	* Look at the documentation for `geom_smooth()` and determine what method it defaults to.
+
+	* Find the documentation online for that method, **briefly** read about it, and explicitly call it in the `method` argument instead of `"lm"`. How good of an approximation is a linear model?
 
 ### Running linear regressions ###
 
-A [residual](https://en.wikipedia.org/wiki/Residual_(numerical_analysis)) is a fancy word for prediction error; it's basically the difference given by `actual - predicted`.
-
-Why is this important? By fitting a model to our data and looking at the residuals, we can visually inspect the results for evidence of [heteroskedasticity](https://en.wikipedia.org/wiki/Heteroscedasticity#Fixes). One of the [assumptions of linear regression](https://en.wikipedia.org/wiki/Linear_regression#Assumptions) is that the variances of the distributions from which the response variables are drawn have the same variance. If that's the case, then we shouldn't really see much structure in the plot of the residuals, so seeing structure in the plot of residuals is a warning sign that our model isn't working. For example, compare the top and bottom plots [here](https://upload.wikimedia.org/wikipedia/en/thumb/5/5d/Hsked_residual_compare.svg/630px-Hsked_residual_compare.svg.png) (top has structure, bottom doesn't).
-
 Take a look at the linked pages---just skim the sections to which I've linked directly.
 
-* Run the lines that use the `lm` command to generate linear fits of infant mortality against GDP. You can type e.g. `linear_fit` and `summary(linear_fit)` in the console to get a summary of the results.
+Run the lines that use the `lm` command to generate linear fits of infant mortality against GDP. You can type `linear_fit` and `summary(linear_fit)` in the console to get summaries of the results.
 
 You'll note that the `summary()` command will print out a statistic denoted **Adjusted R-squared**, which can be interpreted as the *proportion of variance in the target variable explained by the predictors*. Take a look at [StackExchange](http://stats.stackexchange.com/questions/48703/what-is-the-adjusted-r-squared-formula-in-lm-in-r-and-how-should-it-be-interpret) to briefly see how this statistic is calculated. In general, higher is better.
 
-* Run the first `qplot` command, which plots the residuals (`actual - predicted` values) of the simple linear fit. Is there evidence of heteroskedasticity? Run the second `qplot` command, which plots the residuals of the linear fit of the log-transformed data. Is the log-log transformation an improvement? Why or why not?
+### Looking at the residuals ###
+
+A [residual](https://en.wikipedia.org/wiki/Residual_(numerical_analysis)) is a fancy word for prediction error; it's the difference given by `actual - predicted`.
+
+* Run the first `qplot` command, which plots the residuals (`actual - predicted` values) of the simple linear fit. Is there evidence of heteroskedasticity?
+
+* Run the second `qplot` command, which plots the residuals of the linear fit of the log-transformed data. Is the log-log transformation an improvement? Why or why not?
+
+Why is this important? By fitting a model to our data and looking at the residuals, we can visually inspect the results for evidence of [heteroskedasticity](https://en.wikipedia.org/wiki/Heteroscedasticity#Fixes).
+
+One of the [assumptions of linear regression](https://en.wikipedia.org/wiki/Linear_regression#Assumptions) is that the variances of the distributions from which the errors are drawn have the same variance. If that's the case, then we shouldn't really see much structure in the plot of the residuals, so seeing structure in the plot of residuals is a warning sign that our model isn't working. For example, compare the top and bottom plots [here](https://upload.wikimedia.org/wikipedia/en/thumb/5/5d/Hsked_residual_compare.svg/630px-Hsked_residual_compare.svg.png) (top has structure, bottom doesn't).
 
 * Using the documentation and experimenting in the console, make sure you understand what `df$infant.mortality - exp(fitted(loglog_fit))` does.
 
@@ -69,11 +89,13 @@ Don't worry if some of the ways in which R works seem opaque or confusing to you
 
 What variables does `df` include? Check the documentation to figure out what `midparentHeight` is!
 
-* This time, the data frame has a lot of different columns. You can use the `names()` function to show the column names of `df` (you'll note that the output of `names(df)` is the same as the output of `colnames(df)`), and for a specific column `col` you can access it with the `$` operator, like so: `df$childHeight`. You can access and modify columns just like any other variable (with some small exceptions).
+This time, the data frame has a lot of different columns. You can use the `names()` function to show the column names of `df` (you'll note that the output of `names(df)` is the same as the output of `colnames(df)`), and for a specific column `col` you can access it with the `$` operator, like so: `df$childHeight`. You can access and modify columns just like any other variable (with some small exceptions).
 
 * **Interlude:** Go back to the linear fits you made for the infant mortality database. Call `names(summary(linear_fit))` and figure out how to access the adjusted R-squared statistic directly instead of having to print out the entire summary of a linear fit every single time.
 
-* The `gender` variable is encoded as a **factor**, which we'll cover in greater depth later. For now, since we want to run linear regressions including gender, we want to turn it into a *binary numeric variable*, with values 0 and 1. Use a combination of arithmetic and `as.numeric()` to do so, and be sure to keep track of which gender you assign to each of 0 and 1.
+The `gender` variable is encoded as a **factor**, which we'll cover in greater depth later. For now, since we want to run linear regressions including gender, we want to turn it into a *binary numeric variable*, with values 0 and 1.
+
+* Use a combination of arithmetic and `as.numeric()` to do so, and be sure to keep track of which gender you assign to each of 0 and 1.
 
 ### Learning to use `dplyr` ###
 
