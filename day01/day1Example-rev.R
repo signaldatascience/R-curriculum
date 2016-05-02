@@ -12,21 +12,17 @@
 
 # Write code here to examine the distribution of the log-transformed data
 
-# Good linear fit
-ggplot(ldf, aes(gdp, infant.mortality)) + geom_point() + geom_smooth(method = "lm")
-
 # Calculate linear fit of infant mortality vs. GDP
 linear_fit = lm(infant.mortality ~ gdp, df)
 
 # Calculate linear fit of log(infant mortality) vs. log(GDP)
 loglog_fit = lm(infant.mortality ~ gdp, ldf)
 
+# Plot the linear fit of infant mortality vs. GDP
+ggplot(ldf, aes(gdp, infant.mortality)) + geom_point() + geom_smooth(method = "lm")
+
 # Plot of linear fit residuals
 qplot(df$gdp, linear_fit$residuals)
 
 # Plot of linear fit residuals after log transformation of GDP and infant mortality
 qplot(df$gdp, df$infant.mortality - exp(fitted(loglog_fit)))
-
-### GALTON HEIGHT DATA ###
-
-# Your work goes here!
