@@ -54,6 +54,8 @@ Read about how to [define functions in R](http://www.ats.ucla.edu/stat/r/library
 
 * Write a function `fib(n)` that returns the `n`th [Fibonacci number](https://en.wikipedia.org/wiki/Fibonacci_number), with `fib(1) == fib(2) == 1`. Then write a different function `fib_test()` that takes in two parameters, `n` and `k`, and for the first `n` Fibonacci numbers calculates whether or not they're divisible by `k`. (Think about what this function should return!) Play around and see if you can find any patterns (hint: try `k = 3`).
 
+A **hint** that may be useful: if you have a variable defined in an *outer* environment and you want to change its value while you're inside an *inner* environment, you can use the `<<-` operator to do so. (Don't worry if this doesn't make much sense -- this is a relatively advanced topic and you can complete these problems without needing to do this.)
+
 In general, instead of recalculating the same values over and over again, you can store the results of computations the first time you do them and then look for the precomputed results if you need them again. (This is called [memoization](https://en.wikipedia.org/wiki/Memoization), related to the broader method of [dynamic programming](https://en.wikipedia.org/wiki/Dynamic_programming).)
 
 Try to speed up of some of the code you've written with this technique, and quantify the improvements in runtime using the [`tictoc` package](http://stackoverflow.com/a/33375008/3721976). In particular, look at `fib_test()` and `collatz()`.

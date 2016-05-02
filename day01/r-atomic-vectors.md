@@ -47,6 +47,8 @@ Atomic vectors in R are broadly analogous to lists in Python, with the exception
 [1] "test"  "test2"
 ```
 
+You should not think of vectors as being some sort of *enclosing structure* with values within it. Rather, the vector structure is intrinsically associated with every value, such that a single value (say, `4` or `"test"`) are themselves vectors of length 1.
+
 **Remark.** You can make an empty vector with just `c()`.
 
 **Exercise.** Is there any distinction between an atomic vector and a single value of the same type? There's a function you can use to check whether or not something is an atomic vector: look back to previous exercises and try to figure out what it is.[^isatomic]
@@ -98,7 +100,7 @@ c(TRUE, 1L)
 
 [^typelist]: The [R language specification](https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Objects) has a list of possible types.
 
-[^ex-int]: R will automatically assume that a number is supposed to be a double. To make an integer, you have to explicitly specify it as an integer literal by appending `L` to the end, like with `typeof(3L)` (which has output `"integer"`).
+[^ex-int]: R will automatically assume that a number is supposed to be a double. To make an integer, you have to explicitly specify it as an integer literal by appending `L` to the end, like with `typeof(3L)` (which has output `"integer"`). The `L` stands for for a ["long" integer](https://en.wikipedia.org/wiki/Integer_(computer_science)#Long_integer), which is common programming terminology for a 32-bit integer data type.
 
 [^numeric]: The `mode()` function will give you the *mode* of an object as described in [The New S Language](http://smile.amazon.com/New-Language-R-A-Becker/dp/0534091938). Integers and doubles both have the "numeric" mode. If you're wondering how S is relevant to R, it's because R is one of the modern *implementations* of the S language specification. It's open-source and is free software, whereas [S-PLUS](https://en.wikipedia.org/wiki/S-PLUS), the only other modern implementation of S, is proprietary.
 

@@ -16,15 +16,15 @@ You should strive to **discuss the questions with your partner** and write down 
 
 * Load the packages `car`, `ggplot2`, and `GGally`. Set `df = UN`.
 
-* You can print out `df` by just typing `df` into the console, but you can also get a nice GUI for looking at dataframes by running `View(df)` (case-sensitive). Does anything stand out to you? Think about three questions you'd like to answer with this data and write them down for later as comments in the R file.
+* You can print out `df` by just typing `df` into the console, but you can also get a nice GUI for looking at data frames by running `View(df)` (case-sensitive). Does anything stand out to you? Think about three questions you'd like to answer with this data and write them down for later as comments in the R file.
 
 * Packages in R are extensively documented online. Figure out where to look for official documentation in the `car` package to read about what the `UN` data actually is.
 
-* We'd like to know the correlation between GDP and infant mortality, so use the `cor()` function on the dataframe. What's wrong, and why is this happening? Look in the documentation for `cor()` to figure out how to tell the function to ignore invalid entries.
+* We'd like to know the correlation between GDP and infant mortality, so use the `cor()` function on the data frame. What's wrong, and why is this happening? Look in the documentation for `cor()` to figure out how to tell the function to ignore invalid entries.
 
 * For readability, multiply the correlation matrix by 100 and `round()` it to whole numbers. Wrap all of this (including the above bullet point) into a function, `cor2`, which outputs a correlation matrix ignoring invalid entries with rounded whole numbers.
 
-* Instead of making the functions we use all individually handle missing values (`NA`s), we can create a new dataframe with incomplete rows excluded. Type `?na.fail` and read the documentation on `NA`-related functions; find one appropriate for the job and use it to make `df2`, a new dataframe that only has the complete rows of `df`.
+* Instead of making the functions we use all individually handle missing values (`NA`s), we can create a new data frame with incomplete rows excluded. Type `?na.fail` and read the documentation on `NA`-related functions; find one appropriate for the job and use it to make `df2`, a new data frame that only has the complete rows of `df`.
 
 We'll now start doing some transformations of the data, leading up to statistical analysis!
 
@@ -51,7 +51,7 @@ You'll note that the `summary()` command will print out a statistic denoted **Ad
 Exploring the Galton height data
 --------------------------------
 
-With this dataset, you'll be getting more experience with basic operations on dataframes and linear regressions.
+With this dataset, you'll be getting more experience with basic operations on data frames and linear regressions.
 
 Don't worry if some of the ways in which R works seem opaque or confusing to you. R has a steep learning curve, and we don't expect you to be an expert in R after this single assignment. You'll study some important internal details of the language later, but first, it's important to get some intuition for the kind of stuff you can do with R and motivation, in the form of interesting datasets and questions, to learn the language at a deeper level.
 
@@ -59,13 +59,13 @@ Don't worry if some of the ways in which R works seem opaque or confusing to you
 
 What variables does `df` include? Check the documentation to figure out what `midparentHeight` is!
 
-* This time, the dataframe has a lot of different columns. You can use the `names()` function to show the column names of `df` (you'll note that the output of `names(df)` is the same as the output of `colnames(df)`), and for a specific column `col` you can access it with the `$` operator, like so: `df$childHeight`. You can access and modify columns just like any other variable (with some small exceptions).
+* This time, the data frame has a lot of different columns. You can use the `names()` function to show the column names of `df` (you'll note that the output of `names(df)` is the same as the output of `colnames(df)`), and for a specific column `col` you can access it with the `$` operator, like so: `df$childHeight`. You can access and modify columns just like any other variable (with some small exceptions).
 
 * **Interlude:** Go back to the linear fits you made for the infant mortality database. Call `names(summary(linear_fit))` and figure out how to access the adjusted R-squared statistic directly instead of having to print out the entire summary of a linear fit every single time.
 
 * The `gender` variable is encoded as a **factor**, which we'll cover in greater depth later. For now, since we want to run linear regressions including gender, we want to turn it into a *binary numeric variable*, with values 0 and 1. Use a combination of arithmetic and `as.numeric()` to do so, and be sure to keep track of which gender you assign to each of 0 and 1.
 
-The `dplyr` package is one of Hadley Wickham's most commonly used R packages and is particularly useful for the straightforward manipulation of dataframes. Look through Wickham's [`dplyr` tutorial](https://www.dropbox.com/sh/i8qnluwmuieicxc/AACsepZJvULCKkbIxK9KP-6Ea/dplyr-tutorial.pdf?dl=0) and answer the questions with your partner.
+The `dplyr` package is one of Hadley Wickham's most commonly used R packages and is particularly useful for the straightforward manipulation of data frames. Look through Wickham's [`dplyr` tutorial](https://www.dropbox.com/sh/i8qnluwmuieicxc/AACsepZJvULCKkbIxK9KP-6Ea/dplyr-tutorial.pdf?dl=0) and answer the questions with your partner.
 
 Feel free to refer back to the tutorial or to the inbuilt documentation as you use `dplyr` to continue analyzing the `GaltonFamilies` dataset.
 
