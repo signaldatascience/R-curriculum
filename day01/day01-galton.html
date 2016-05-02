@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<h1 id="exploring-the-galton-height-data">Exploring the Galton height data</h1>
+<p>With this dataset, you&#8217;ll be getting more experience with basic operations on data frames and linear regressions.</p>
+<p>Don&#8217;t worry if some of the ways in which R works seem opaque or confusing to you. R has a steep learning curve, and we don&#8217;t expect you to be an expert in R after this single assignment. You&#8217;ll study some important internal details of the language later, but first, it&#8217;s important to get some intuition for the kind of stuff you can do with R and motivation, in the form of interesting datasets and questions, to learn the language at a deeper level.</p>
+<h3 id="getting-started">Getting started</h3>
+<ul>
+<li>Load the <code>HistData</code> and <code>dplyr</code> packages and set <code>df = GaltonFamilies</code>. Take a look at it visually with <code>View(df)</code>.</li>
+</ul>
+<p>What variables does <code>df</code> include? Check the documentation to figure out what <code>midparentHeight</code> is!</p>
+<p>This time, the data frame has a lot of different columns. You can use the <code>names()</code> function to show the column names of <code>df</code> (you&#8217;ll note that the output of <code>names(df)</code> is the same as the output of <code>colnames(df)</code>), and for a specific column <code>col</code> you can access it with the <code>$</code> operator, like so: <code>df$childHeight</code>. You can access and modify columns just like any other variable (with some small exceptions).</p>
+<ul>
+<li><strong>Interlude:</strong> Go back to the linear fits you made for the infant mortality database. Call <code>names(summary(linear_fit))</code> and figure out how to access the adjusted R-squared statistic directly instead of having to print out the entire summary of a linear fit every single time.</li>
+</ul>
+<p>The <code>gender</code> variable is encoded as a <strong>factor</strong>, which we&#8217;ll cover in greater depth later. For now, since we want to run linear regressions including gender, we want to turn it into a <em>binary numeric variable</em>, with values 0 and 1.</p>
+<ul>
+<li>Use a combination of arithmetic and <code>as.numeric()</code> to do so, and be sure to keep track of which gender you assign to each of 0 and 1.</li>
+</ul>
+<h3 id="learning-to-use-dplyr">Learning to use <code>dplyr</code></h3>
+<p>The <code>dplyr</code> package is one of Hadley Wickham&#8217;s most commonly used R packages and is particularly useful for the straightforward manipulation of data frames. Refer to Wickham&#8217;s <a href="https://www.dropbox.com/sh/i8qnluwmuieicxc/AACsepZJvULCKkbIxK9KP-6Ea/dplyr-tutorial.pdf?dl=0"><code>dplyr</code> tutorial</a> if you need a refresher.</p>
+<h3 id="running-linear-regressions">Running linear regressions</h3>
+<p>In the questions below, &#8220;run a regression of A against X, Y and Z&#8221; should be understood as &#8220;first run a regression of A against X, Y and Z individually, perhaps in pairs, then run the regression against all three variables&#8221;.</p>
+<ul>
+<li><p>Aggregate the data by family using the appropriate <code>dplyr</code> function. Before writing any R code to do so, think about what this aggregation actually means and what kinds of variables you want to calculate on a per-family basis.</p></li>
+<li><p>Plot the average heights of children in each family against the mothers&#8217; heights, the fathers&#8217; heights, and the mid-parent heights. Afterward, use <a href="http://www.cookbook-r.com/Graphs/Multiple_graphs_on_one_page_(ggplot2)/">multiplot</a> to display all three graphs at the same time.</p></li>
+<li><p>Compute and visually inspect the correlations between the variables in your aggregated dataset. Make a couple hypotheses about the data that you think you might be able to prove or disprove as you do further analysis and exploration.</p></li>
+<li><p>Compare the results of regressing average child heights against (fathers&#8217; heights and mothers&#8217; heights versus regressing against mid-parent heights. Interpret the results, paying particular attention to the adjusted R-squared statistic.</p></li>
+<li><p>Run a linear regression of the numbers of children in families against fathers&#8217; heights, mothers&#8217; heights, and average child heights. Looking at the summaries of the linear fits, do these regressions capture any statistically significant relationships? If so, with what p-values?</p></li>
+<li><p>Following the example usages of <code>ggplot()</code> that you&#8217;ve already seen along with the official documentation, use <code>ggplot()</code> in conjunction with <code>geom_hist()</code> to make a histogram displaying the distribution of number of children per family.</p></li>
+</ul>
+<h3 id="doing-additional-analysis">Doing additional analysis</h3>
+<p>If you&#8217;ve gotten here, feel free to take a short break! Get up, walk around, drink a glass of water, &#8230;</p>
+<p>Now, let&#8217;s return the original, <em>unaggregated</em> data. When we instruct you to run regressions, you should automatically assume that you should try to do as much interpretation as possible.</p>
+<ul>
+<li><p>Run a regression of child heights against mothers&#8217; heights, fathers&#8217; heights, mid-parent heights, and gender.</p></li>
+<li><p>Use the appropriate functions in <code>dplyr</code> to restrict to children of either gender and run regressions of child heights against mothers&#8217; heights and fathers&#8217; heights.</p></li>
+<li><p>Is it possible for us to analyze the effect of being firstborn vs.&#160;secondborn vs.&#160;thirdborn vs. &#8230; on child heights? Why or why not?</p></li>
+</ul>
+</body>
+</html>

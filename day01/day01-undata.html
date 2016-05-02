@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<h1 id="week-1-day-1-assignment">Week 1 Day 1 Assignment</h1>
+<p>Here&#8217;s the data science-focused assignment for day 1. No worries if you don&#8217;t complete everything &#8211; I&#8217;m front-loading the assignments with the most crucial material; the goal here is for nobody to be left without something to do.</p>
+<p>Remember to switch off typing between your partner(s) every 20 minutes.</p>
+<h2 id="analyzing-infant-mortality-data">Analyzing infant mortality data</h2>
+<p>Install the packages <code>car</code>, <code>Ecdat</code>, <code>HistData</code>, <code>ggplot2</code>, <code>dplyr</code>, and <code>GGally</code>. Load <code>day1Example-rev.R</code> in RStudio.</p>
+<p>You&#8217;ll go through the existing code, alternating between figuring out what it does, answering questions here, and writing your own code to supplement what&#8217;s already there.</p>
+<p>You should strive to <strong>discuss the questions with your partner</strong> and write down answers, either in a separate text file in the same directory or as comments in the R file directly.</p>
+<h3 id="getting-started">Getting started</h3>
+<ul>
+<li><p>Load the packages <code>car</code>, <code>ggplot2</code>, and <code>GGally</code>. Set <code>df = UN</code>.</p></li>
+<li><p>You can print out <code>df</code> by just typing <code>df</code> into the console, but you can also get a nice GUI for looking at data frames by running <code>View(df)</code> (case-sensitive). Does anything stand out to you? If there are any questions you&#8217;d like to answer with this data, write them down as comments in your R file.</p></li>
+<li><p>Packages in R are extensively documented online. Look at the <a href="https://cran.r-project.org/web/packages/car/">reference manual</a> for the <code>car</code> package to read about the <code>UN</code> data.</p></li>
+</ul>
+<h3 id="viewing-correlations-and-cleaning-data">Viewing correlations and cleaning data</h3>
+<ul>
+<li><p>Use the <code>cor()</code> function on the data frame to find the correlation between infant mortality and GDP. What&#8217;s wrong, and why is this happening? Look in the documentation for <code>cor()</code> to figure out how to tell the function to ignore entries with missing values.</p></li>
+<li><p>For readability, multiply the correlation matrix by 100 and <code>round()</code> it to whole numbers. Wrap all of this (including the above bullet point) into a function, <code>cor2</code>, which outputs a correlation matrix (ignoring entries with missing values) with rounded whole numbers.</p></li>
+</ul>
+<p>Instead of making each function we use handle missing values (<code>NA</code>s), we can create a new data frame with incomplete rows excluded.</p>
+<ul>
+<li>Type <code>?na.fail</code> and read the documentation on <code>NA</code>-related functions; find one appropriate for the job and use it to make <code>df2</code>, a new data frame excluding rows containing missing values.</li>
+</ul>
+<h3 id="visualizing-distributions">Visualizing distributions</h3>
+<p>We&#8217;ll now start doing some transformations of the data, leading up to statistical analysis!</p>
+<ul>
+<li><p>Use the <code>ggpairs()</code> function (from the <code>GGally</code> package) on the data frame.</p>
+<ul>
+<li><p>What do you notice about the distributions of GDP and infant mortality?</p></li>
+<li><p>Figure out how to take a log transformation of the data and assign it to <code>ldf</code>, and examine it with <code>ggpairs()</code>.</p></li>
+<li><p>Note the differences, and reflect on the appropriateness of a linear model for the untransformed vs.&#160;transformed data.</p></li>
+</ul></li>
+</ul>
+<h3 id="running-linear-regressions">Running linear regressions</h3>
+<p>If you don&#8217;t remember much about linear regressions, briefly skim the relevant sections in <em>Applied Predictive Modeling</em>.</p>
+<p>Run the lines that use the <code>lm</code> command to generate linear fits of infant mortality against GDP. You can type <code>linear_fit</code> and <code>summary(linear_fit)</code> in the console to get summaries of the results.</p>
+<p>You&#8217;ll note that the <code>summary()</code> command will print out a statistic denoted <strong>Adjusted R-squared</strong>, which can be interpreted as the <em>proportion of variance in the target variable explained by the predictors</em>. Take a look at <a href="http://stats.stackexchange.com/questions/48703/what-is-the-adjusted-r-squared-formula-in-lm-in-r-and-how-should-it-be-interpret">StackExchange</a> to briefly see how this statistic is calculated. In general, higher is better.</p>
+<h3 id="plotting-linear-regressions">Plotting linear regressions</h3>
+<p>To plot the results of a simple linear regression, it&#8217;s actually easier to <a href="http://stackoverflow.com/a/1476280/3721976">let <code>ggplot2</code> fit the model for you</a>.</p>
+<ul>
+<li><p>Run the line starting with <code>ggplot...</code> to plot a scatterplot of the data in <code>ldf</code> along with a linear fit of infant mortality to GDP.</p>
+<ul>
+<li><p>What happens when you remove the <code>method</code> argument in <code>geom_smooth()</code>?</p></li>
+<li><p>Look at the documentation for <code>geom_smooth()</code> and determine what method it defaults to.</p></li>
+<li><p>Find the documentation online for that method, <strong>briefly</strong> read about it, and explicitly call it in the <code>method</code> argument instead of <code>&quot;lm&quot;</code>. How good of an approximation is a linear model?</p></li>
+<li><p>Modify the line to plot the linear fit of log(infant mortality) vs.&#160;log(GDP).</p></li>
+</ul></li>
+</ul>
+<h3 id="looking-at-the-residuals">Looking at the residuals</h3>
+<p>A <a href="https://en.wikipedia.org/wiki/Residual_(numerical_analysis)">residual</a> is a fancy word for prediction error; it&#8217;s the difference given by <code>actual - predicted</code>.</p>
+<ul>
+<li><p>Run the first <code>qplot</code> command, which plots the residuals (<code>actual - predicted</code> values) of the simple linear fit. Is there evidence of heteroskedasticity?</p></li>
+<li><p>Run the second <code>qplot</code> command, which plots the residuals of the linear fit of the log-transformed data. Is the log-log transformation an improvement? Why or why not?</p></li>
+</ul>
+<p>Why is this important? By fitting a model to our data and looking at the residuals, we can visually inspect the results for evidence of <a href="https://en.wikipedia.org/wiki/Heteroscedasticity#Fixes">heteroskedasticity</a>.</p>
+<p>One of the <a href="https://en.wikipedia.org/wiki/Linear_regression#Assumptions">assumptions of linear regression</a> is that the variances of the distributions from which the errors are drawn have the same variance. If that&#8217;s the case, then we shouldn&#8217;t really see much structure in the plot of the residuals, so seeing structure in the plot of residuals is a warning sign that our model isn&#8217;t working. For example, compare the top and bottom plots <a href="https://upload.wikimedia.org/wikipedia/en/thumb/5/5d/Hsked_residual_compare.svg/630px-Hsked_residual_compare.svg.png">here</a> (top has structure, bottom doesn&#8217;t).</p>
+<ul>
+<li><p>Using the documentation and experimenting in the console, make sure you understand what <code>df$infant.mortality - exp(fitted(loglog_fit))</code> does.</p></li>
+<li><p>Generate and analyze a plot of residuals for the linear fit of log(infant mortality) vs.&#160;GDP.</p></li>
+</ul>
+</body>
+</html>
