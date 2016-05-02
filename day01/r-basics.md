@@ -1,7 +1,3 @@
----
-title: R Basics
----
-
 R Basics
 ========
 

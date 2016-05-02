@@ -9,14 +9,14 @@
 </head>
 <body>
 <h1 id="week-1-day-1-assignment">Week 1 Day 1 Assignment</h1>
-<p>Here&#8217;s the data science-focused assignment for day 1.</p>
+<p>Here&#8217;s the data science-focused assignment for day 1. No worries if you don&#8217;t complete everything &#8211; I&#8217;m front-loading the assignments with the most crucial material; the goal here is for nobody to be left without something to do.</p>
 <p>Remember to switch off typing between your partner(s) every 20 minutes.</p>
 <h2 id="analysing-infant-mortality-data">Analysing infant mortality data</h2>
 <p>Install the packages <code>car</code>, <code>Ecdat</code>, <code>HistData</code>, <code>ggplot2</code>, and <code>GGally</code>. Load <code>day1Example-rev.R</code> in RStudio.</p>
 <p>You&#8217;ll go through the existing code, alternating between figuring out what it does, answering questions here, and writing your own code to supplement what&#8217;s already there.</p>
 <p>You should strive to <strong>discuss the questions with your partner</strong> and write down answers, either in a separate text file in the same directory or as comments in the R file directly.</p>
 <ul>
-<li><p>Load <code>car</code>, <code>ggplot2</code>, and <code>GGally</code>. Set <code>df = UN</code>.</p></li>
+<li><p>Load the packages <code>car</code>, <code>ggplot2</code>, and <code>GGally</code>. Set <code>df = UN</code>.</p></li>
 <li><p>You can print out <code>df</code> by just typing <code>df</code> into the console, but you can also get a nice GUI for looking at dataframes by running <code>View(df)</code> (case-sensitive). Does anything stand out to you? Think about three questions you&#8217;d like to answer with this data and write them down for later as comments in the R file.</p></li>
 <li><p>Packages in R are extensively documented online. Figure out where to look for official documentation in the <code>car</code> package to read about what the <code>UN</code> data actually is.</p></li>
 <li><p>We&#8217;d like to know the correlation between GDP and infant mortality, so use the <code>cor()</code> function on the dataframe. What&#8217;s wrong, and why is this happening? Look in the documentation for <code>cor()</code> to figure out how to tell the function to ignore invalid entries.</p></li>
@@ -28,8 +28,9 @@
 <li><p>Use the <code>ggpairs()</code> function (from the <code>GGally</code> package). What do you notice about the distributions of GDP and infant mortality? Figure out how to take a log transformation of the data and assign it to <code>ldf</code>, and examine it with <code>ggpairs()</code>. Note the differences, and reflect on the appropriateness of a linear model for the untransformed vs.&#160;transformed data.</p></li>
 <li><p>Run the line starting with <code>ggplot...</code> to plot a scatterplot of the data in <code>ldf</code> along with a linear fit of infant mortality to GDP. What happens when you remove the <code>method</code> argument in <code>geom_smooth()</code>? Look at the documentation for <code>geom_smooth()</code> and determine what method it defaults to; find the documentation online, read about it, and explicitly call it in the <code>method</code> argument instead of <code>&quot;lm&quot;</code>. How good of an approximation is a linear model?</p></li>
 </ul>
-<p>A <a href="https://en.wikipedia.org/wiki/Residual_(numerical_analysis)">residual</a> is a fancy word for an error; it&#8217;s basically the diffence given by <code>actual - predicted</code>.</p>
+<p>A <a href="https://en.wikipedia.org/wiki/Residual_(numerical_analysis)">residual</a> is a fancy word for an error; it&#8217;s basically the difference given by <code>actual - predicted</code>.</p>
 <p>Why is this important? By fitting a model to our data and looking at the residuals, we can visually inspect the results for evidence of <a href="https://en.wikipedia.org/wiki/Heteroscedasticity#Fixes">heteroscedasticity</a>. One of the <a href="https://en.wikipedia.org/wiki/Linear_regression#Assumptions">assumptions of linear regression</a> is that the variances of the distributions from which the response variables are drawn have the same variance. If that&#8217;s the case, then we shouldn&#8217;t really see much structure in the plot of the residuals, so seeing structure in the plot of residuals is a warning sign that our model isn&#8217;t working. For example, compare the top and bottom plots <a href="https://upload.wikimedia.org/wikipedia/en/thumb/5/5d/Hsked_residual_compare.svg/630px-Hsked_residual_compare.svg.png">here</a> (top has structure, bottom doesn&#8217;t).</p>
+<p>Take a look at the linked pages&#8212;just skim the sections to which I&#8217;ve linked directly.</p>
 <ul>
 <li><p>Run the lines that use the <code>lm</code> command to generate linear fits of infant mortality against GDP. You can type e.g. <code>linear_fit</code> in the console to get a summary of the results.</p></li>
 <li><p>Run the first <code>qplot</code> command, which plots the residuals (<code>actual - predicted</code> values) of the simple linear fit. Is there evidence of heteroskedasticity? Run the second <code>qplot</code> command, which plots the residuals of the linear fit of the log-transformed data. Is the log-log transformation an improvement?</p></li>
@@ -37,5 +38,8 @@
 <li><p>Generate and analyze a plot of residuals for the linear fit of log(infant mortality) vs.&#160;GDP.</p></li>
 </ul>
 <h2 id="exploring-the-galton-height-data">Exploring the Galton height data</h2>
+<ul>
+<li>Load the <code>HistData</code> package and set <code>df = GaltonFamilies</code>.</li>
+</ul>
 </body>
 </html>

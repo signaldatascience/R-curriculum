@@ -1,7 +1,3 @@
----
-title: Atomic Vectors in R
----
-
 Atomic Vectors in R
 ===================
 
@@ -82,7 +78,7 @@ Since `TRUE` and `FALSE` can be automatically coerced to `1` and `0` respectivel
 The length of a vector can be determined with the `length()` function.
 
 Supplemental exercises
----------------------------------
+----------------------
 
 **Advanced R, 2.1.3.3.** Test your knowledge of vector coercion rules by predicting the output of the following uses of `c()`:
 
