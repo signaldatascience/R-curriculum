@@ -14,11 +14,15 @@ You'll go through the existing code, alternating between figuring out what it do
 
 You should strive to **discuss the questions with your partner** and write down answers, either in a separate text file in the same directory or as comments in the R file directly.
 
+### Getting started
+
 * Load the packages `car`, `ggplot2`, and `GGally`. Set `df = UN`.
 
 * You can print out `df` by just typing `df` into the console, but you can also get a nice GUI for looking at data frames by running `View(df)` (case-sensitive). Does anything stand out to you? Think about three questions you'd like to answer with this data and write them down for later as comments in the R file.
 
 * Packages in R are extensively documented online. Figure out where to look for official documentation in the `car` package to read about what the `UN` data actually is.
+
+### Viewing correlations and cleaning data ###
 
 * We'd like to know the correlation between GDP and infant mortality, so use the `cor()` function on the data frame. What's wrong, and why is this happening? Look in the documentation for `cor()` to figure out how to tell the function to ignore invalid entries.
 
@@ -26,11 +30,15 @@ You should strive to **discuss the questions with your partner** and write down 
 
 * Instead of making the functions we use all individually handle missing values (`NA`s), we can create a new data frame with incomplete rows excluded. Type `?na.fail` and read the documentation on `NA`-related functions; find one appropriate for the job and use it to make `df2`, a new data frame that only has the complete rows of `df`.
 
+### Visualizing distributions ###
+
 We'll now start doing some transformations of the data, leading up to statistical analysis!
 
 * Use the `ggpairs()` function (from the `GGally` package). What do you notice about the distributions of GDP and infant mortality? Figure out how to take a log transformation of the data and assign it to `ldf`, and examine it with `ggpairs()`. Note the differences, and reflect on the appropriateness of a linear model for the untransformed vs. transformed data.
 
 * Run the line starting with `ggplot...` to plot a scatterplot of the data in `ldf` along with a linear fit of infant mortality to GDP. What happens when you remove the `method` argument in `geom_smooth()`? Look at the documentation for `geom_smooth()` and determine what method it defaults to; find the documentation online, read about it, and explicitly call it in the `method` argument instead of `"lm"`. How good of an approximation is a linear model?
+
+### Running linear regressions ###
 
 A [residual](https://en.wikipedia.org/wiki/Residual_(numerical_analysis)) is a fancy word for prediction error; it's basically the difference given by `actual - predicted`.
 
@@ -55,6 +63,8 @@ With this dataset, you'll be getting more experience with basic operations on da
 
 Don't worry if some of the ways in which R works seem opaque or confusing to you. R has a steep learning curve, and we don't expect you to be an expert in R after this single assignment. You'll study some important internal details of the language later, but first, it's important to get some intuition for the kind of stuff you can do with R and motivation, in the form of interesting datasets and questions, to learn the language at a deeper level.
 
+### Getting started ###
+
 * Load the `HistData` and `dplyr` packages and set `df = GaltonFamilies`. Take a look at it visually with `View(df)`.
 
 What variables does `df` include? Check the documentation to figure out what `midparentHeight` is!
@@ -65,11 +75,15 @@ What variables does `df` include? Check the documentation to figure out what `mi
 
 * The `gender` variable is encoded as a **factor**, which we'll cover in greater depth later. For now, since we want to run linear regressions including gender, we want to turn it into a *binary numeric variable*, with values 0 and 1. Use a combination of arithmetic and `as.numeric()` to do so, and be sure to keep track of which gender you assign to each of 0 and 1.
 
+### Learning to use `dplyr` ###
+
 The `dplyr` package is one of Hadley Wickham's most commonly used R packages and is particularly useful for the straightforward manipulation of data frames. Look through Wickham's [`dplyr` tutorial](https://www.dropbox.com/sh/i8qnluwmuieicxc/AACsepZJvULCKkbIxK9KP-6Ea/dplyr-tutorial.pdf?dl=0) and answer the questions with your partner.
 
 Feel free to refer back to the tutorial or to the inbuilt documentation as you use `dplyr` to continue analyzing the `GaltonFamilies` dataset.
 
-* **Note:** In the questions below, "run a regression of A against X, Y and Z" should be understood as "first run a regression of A against X, Y and Z individually, perhaps in pairs, then run the regression against all three variables".
+### Running linear regressions ###
+
+In the questions below, "run a regression of A against X, Y and Z" should be understood as "first run a regression of A against X, Y and Z individually, perhaps in pairs, then run the regression against all three variables".
 
 * Aggregate the data by family using the appropriate `dplyr` function. Before writing any R code to do so, think about what this aggregation actually means and what kinds of variables you want to calculate on a per-family basis.
 
@@ -82,6 +96,8 @@ Feel free to refer back to the tutorial or to the inbuilt documentation as you u
 * Run a linear regression of the numbers of children in families against fathers' heights, mothers' heights, and average child heights. Looking at the summaries of the linear fits, do these regressions capture any statistically significant relationships? If so, with what p-values?
 
 * Following the example usages of `ggplot()` that you've already seen along with the official documentation, use `ggplot()` in conjunction with `geom_hist()` to make a histogram displaying the distribution of number of children per family.
+
+### Doing additional analysis ###
 
 If you've gotten here, feel free to take a short break! Get up, walk around, drink a glass of water, ...
 

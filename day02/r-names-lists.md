@@ -64,7 +64,7 @@ List elements can also be named, just like with atomic vectors, and can be acces
 **Exercise.** What happens when you try to combine vectors with lists? Lists inside vectors? Vectors inside lists?
 
 Data frames
--=---------
+-----------
 
 You'll be constantly working with data frames in R; it's a convenient structure to store all kinds of data.
 
