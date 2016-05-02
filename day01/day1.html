@@ -11,8 +11,8 @@
 <h1 id="week-1-day-1-assignment">Week 1 Day 1 Assignment</h1>
 <p>Here&#8217;s the data science-focused assignment for day 1. No worries if you don&#8217;t complete everything &#8211; I&#8217;m front-loading the assignments with the most crucial material; the goal here is for nobody to be left without something to do.</p>
 <p>Remember to switch off typing between your partner(s) every 20 minutes.</p>
-<h2 id="analysing-infant-mortality-data">Analysing infant mortality data</h2>
-<p>Install the packages <code>car</code>, <code>Ecdat</code>, <code>HistData</code>, <code>ggplot2</code>, and <code>GGally</code>. Load <code>day1Example-rev.R</code> in RStudio.</p>
+<h2 id="analyzing-infant-mortality-data">Analyzing infant mortality data</h2>
+<p>Install the packages <code>car</code>, <code>Ecdat</code>, <code>HistData</code>, <code>ggplot2</code>, <code>dplyr</code>, and <code>GGally</code>. Load <code>day1Example-rev.R</code> in RStudio.</p>
 <p>You&#8217;ll go through the existing code, alternating between figuring out what it does, answering questions here, and writing your own code to supplement what&#8217;s already there.</p>
 <p>You should strive to <strong>discuss the questions with your partner</strong> and write down answers, either in a separate text file in the same directory or as comments in the R file directly.</p>
 <ul>
@@ -28,18 +28,47 @@
 <li><p>Use the <code>ggpairs()</code> function (from the <code>GGally</code> package). What do you notice about the distributions of GDP and infant mortality? Figure out how to take a log transformation of the data and assign it to <code>ldf</code>, and examine it with <code>ggpairs()</code>. Note the differences, and reflect on the appropriateness of a linear model for the untransformed vs.&#160;transformed data.</p></li>
 <li><p>Run the line starting with <code>ggplot...</code> to plot a scatterplot of the data in <code>ldf</code> along with a linear fit of infant mortality to GDP. What happens when you remove the <code>method</code> argument in <code>geom_smooth()</code>? Look at the documentation for <code>geom_smooth()</code> and determine what method it defaults to; find the documentation online, read about it, and explicitly call it in the <code>method</code> argument instead of <code>&quot;lm&quot;</code>. How good of an approximation is a linear model?</p></li>
 </ul>
-<p>A <a href="https://en.wikipedia.org/wiki/Residual_(numerical_analysis)">residual</a> is a fancy word for an error; it&#8217;s basically the difference given by <code>actual - predicted</code>.</p>
-<p>Why is this important? By fitting a model to our data and looking at the residuals, we can visually inspect the results for evidence of <a href="https://en.wikipedia.org/wiki/Heteroscedasticity#Fixes">heteroscedasticity</a>. One of the <a href="https://en.wikipedia.org/wiki/Linear_regression#Assumptions">assumptions of linear regression</a> is that the variances of the distributions from which the response variables are drawn have the same variance. If that&#8217;s the case, then we shouldn&#8217;t really see much structure in the plot of the residuals, so seeing structure in the plot of residuals is a warning sign that our model isn&#8217;t working. For example, compare the top and bottom plots <a href="https://upload.wikimedia.org/wikipedia/en/thumb/5/5d/Hsked_residual_compare.svg/630px-Hsked_residual_compare.svg.png">here</a> (top has structure, bottom doesn&#8217;t).</p>
+<p>A <a href="https://en.wikipedia.org/wiki/Residual_(numerical_analysis)">residual</a> is a fancy word for prediction error; it&#8217;s basically the difference given by <code>actual - predicted</code>.</p>
+<p>Why is this important? By fitting a model to our data and looking at the residuals, we can visually inspect the results for evidence of <a href="https://en.wikipedia.org/wiki/Heteroscedasticity#Fixes">heteroskedasticity</a>. One of the <a href="https://en.wikipedia.org/wiki/Linear_regression#Assumptions">assumptions of linear regression</a> is that the variances of the distributions from which the response variables are drawn have the same variance. If that&#8217;s the case, then we shouldn&#8217;t really see much structure in the plot of the residuals, so seeing structure in the plot of residuals is a warning sign that our model isn&#8217;t working. For example, compare the top and bottom plots <a href="https://upload.wikimedia.org/wikipedia/en/thumb/5/5d/Hsked_residual_compare.svg/630px-Hsked_residual_compare.svg.png">here</a> (top has structure, bottom doesn&#8217;t).</p>
 <p>Take a look at the linked pages&#8212;just skim the sections to which I&#8217;ve linked directly.</p>
 <ul>
-<li><p>Run the lines that use the <code>lm</code> command to generate linear fits of infant mortality against GDP. You can type e.g. <code>linear_fit</code> in the console to get a summary of the results.</p></li>
-<li><p>Run the first <code>qplot</code> command, which plots the residuals (<code>actual - predicted</code> values) of the simple linear fit. Is there evidence of heteroskedasticity? Run the second <code>qplot</code> command, which plots the residuals of the linear fit of the log-transformed data. Is the log-log transformation an improvement?</p></li>
+<li>Run the lines that use the <code>lm</code> command to generate linear fits of infant mortality against GDP. You can type e.g. <code>linear_fit</code> and <code>summary(linear_fit)</code> in the console to get a summary of the results.</li>
+</ul>
+<p>You&#8217;ll note that the <code>summary()</code> command will print out a statistic denoted <strong>Adjusted R-squared</strong>, which can be interpreted as the <em>proportion of variance in the target variable explained by the predictors</em>. Take a look at <a href="http://stats.stackexchange.com/questions/48703/what-is-the-adjusted-r-squared-formula-in-lm-in-r-and-how-should-it-be-interpret">StackExchange</a> to briefly see how this statistic is calculated. In general, higher is better.</p>
+<ul>
+<li><p>Run the first <code>qplot</code> command, which plots the residuals (<code>actual - predicted</code> values) of the simple linear fit. Is there evidence of heteroskedasticity? Run the second <code>qplot</code> command, which plots the residuals of the linear fit of the log-transformed data. Is the log-log transformation an improvement? Why or why not?</p></li>
 <li><p>Using the documentation and experimenting in the console, make sure you understand what <code>df$infant.mortality - exp(fitted(loglog_fit))</code> does.</p></li>
 <li><p>Generate and analyze a plot of residuals for the linear fit of log(infant mortality) vs.&#160;GDP.</p></li>
 </ul>
 <h2 id="exploring-the-galton-height-data">Exploring the Galton height data</h2>
+<p>With this dataset, you&#8217;ll be getting more experience with basic operations on dataframes and linear regressions.</p>
+<p>Don&#8217;t worry if some of the ways in which R works seem opaque or confusing to you. R has a steep learning curve, and we don&#8217;t expect you to be an expert in R after this single assignment. You&#8217;ll study some important internal details of the language later, but first, it&#8217;s important to get some intuition for the kind of stuff you can do with R and motivation, in the form of interesting datasets and questions, to learn the language at a deeper level.</p>
 <ul>
-<li>Load the <code>HistData</code> package and set <code>df = GaltonFamilies</code>.</li>
+<li>Load the <code>HistData</code> and <code>dplyr</code> packages and set <code>df = GaltonFamilies</code>. Take a look at it visually with <code>View(df)</code>.</li>
+</ul>
+<p>What variables does <code>df</code> include? Check the documentation to figure out what <code>midparentHeight</code> is!</p>
+<ul>
+<li><p>This time, the dataframe has a lot of different columns. You can use the <code>names()</code> function to show the column names of <code>df</code> (you&#8217;ll note that the output of <code>names(df)</code> is the same as the output of <code>colnames(df)</code>), and for a specific column <code>col</code> you can access it with the <code>$</code> operator, like so: <code>df$childHeight</code>. You can access and modify columns just like any other variable (with some small exceptions).</p></li>
+<li><p><strong>Interlude:</strong> Go back to the linear fits you made for the infant mortality database. Call <code>names(summary(linear_fit))</code> and figure out how to access the adjusted R-squared statistic directly instead of having to print out the entire summary of a linear fit every single time.</p></li>
+<li><p>The <code>gender</code> variable is encoded as a <strong>factor</strong>, which we&#8217;ll cover in greater depth later. For now, since we want to run linear regressions including gender, we want to turn it into a <em>binary numeric variable</em>, with values 0 and 1. Use a combination of arithmetic and <code>as.numeric()</code> to do so, and be sure to keep track of which gender you assign to each of 0 and 1.</p></li>
+</ul>
+<p>The <code>dplyr</code> package is one of Hadley Wickham&#8217;s most commonly used R packages and is particularly useful for the straightforward manipulation of dataframes. Look through Wickham&#8217;s <a href="https://www.dropbox.com/sh/i8qnluwmuieicxc/AACsepZJvULCKkbIxK9KP-6Ea/dplyr-tutorial.pdf?dl=0"><code>dplyr</code> tutorial</a> and answer the questions with your partner.</p>
+<p>Feel free to refer back to the tutorial or to the inbuilt documentation as you use <code>dplyr</code> to continue analyzing the <code>GaltonFamilies</code> dataset.</p>
+<ul>
+<li><p><strong>Note:</strong> In the questions below, &#8220;run a regression of A against X, Y and Z&#8221; should be understood as &#8220;first run a regression of A against X, Y and Z individually, perhaps in pairs, then run the regression against all three variables&#8221;.</p></li>
+<li><p>Aggregate the data by family using the appropriate <code>dplyr</code> function. Before writing any R code to do so, think about what this aggregation actually means and what kinds of variables you want to calculate on a per-family basis.</p></li>
+<li><p>Plot the average heights of children in each family against the mothers&#8217; heights, the fathers&#8217; heights, and the mid-parent heights. Afterward, use <a href="http://www.cookbook-r.com/Graphs/Multiple_graphs_on_one_page_(ggplot2)/">multiplot</a> to display all three graphs at the same time.</p></li>
+<li><p>Compute and visually inspect the correlations between the variables in your aggregated dataset. Make a couple hypotheses about the data that you think you might be able to prove or disprove as you do further analysis and exploration.</p></li>
+<li><p>Compare the results of regressing average child heights against (fathers&#8217; heights and mothers&#8217; heights versus regressing against mid-parent heights. Interpret the results, paying particular attention to the adjusted R-squared statistic.</p></li>
+<li><p>Run a linear regression of the numbers of children in families against fathers&#8217; heights, mothers&#8217; heights, and average child heights. Looking at the summaries of the linear fits, do these regressions capture any statistically significant relationships? If so, with what p-values?</p></li>
+<li><p>Following the example usages of <code>ggplot()</code> that you&#8217;ve already seen along with the official documentation, use <code>ggplot()</code> in conjunction with <code>geom_hist()</code> to make a histogram displaying the distribution of number of children per family.</p></li>
+</ul>
+<p>If you&#8217;ve gotten here, feel free to take a short break! Get up, walk around, drink a glass of water, &#8230;</p>
+<p>Now, let&#8217;s return the original, <em>unaggregated</em> data. When we instruct you to run regressions, you should automatically assume that you should try to do as much interpretation as possible.</p>
+<ul>
+<li><p>Run a regression of child heights against mothers&#8217; heights, fathers&#8217; heights, mid-parent heights, and gender.</p></li>
+<li><p>Use the appropriate functions in <code>dplyr</code> to restrict to children of either gender and run regressions of child heights against mothers&#8217; heights and fathers&#8217; heights.</p></li>
+<li><p>Is it possible for us to analyze the effect of being firstborn vs.&#160;secondborn vs.&#160;thirdborn vs. &#8230; on child heights? Why or why not?</p></li>
 </ul>
 </body>
 </html>

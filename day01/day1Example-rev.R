@@ -27,6 +27,6 @@ qplot(df$gdp, linear_fit$residuals)
 # Plot of linear fit residuals after log transformation of GDP and infant mortality
 qplot(df$gdp, df$infant.mortality - exp(fitted(loglog_fit)))
 
-# Compare simple fit and fit after 
 ### GALTON HEIGHT DATA ###
 
+# Your work goes here!
