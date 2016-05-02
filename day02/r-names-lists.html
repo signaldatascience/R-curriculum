@@ -82,7 +82,7 @@ c b
 <p>List elements can also be named, just like with atomic vectors, and can be accessed similarly. There are, however, <em>nuances</em> to list subsetting that we&#8217;ll cover in depth later.</p>
 <p><strong>Exercise.</strong> You can access a named element in a list with, <em>e.g.</em>, <code>x$a</code>. What&#8217;s the difference between <code>x[&quot;a&quot;]</code> and <code>x$a</code> (if you have, say, <code>x = c(a = 1, b = 2, c = 3)</code>)?<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
 <p><strong>Exercise.</strong> What happens when you try to combine vectors with lists? Lists inside vectors? Vectors inside lists?</p>
-<p>Data frames -=&#8212;&#8212;&#8212;</p>
+<h2 id="data-frames">Data frames</h2>
 <p>You&#8217;ll be constantly working with data frames in R; it&#8217;s a convenient structure to store all kinds of data.</p>
 <p>Here&#8217;s the main thing to take away from this section: <strong>data frames are built on top of lists!</strong> Keep this in mind as you work with data frames. They&#8217;re nothing more than a class built on top of lists, where each list element is a vector constrained to be the same length as the others in the data frame (along with some other bells and whistles). The behavior of data frames can seem opaque and confusing at first, but it becomes less so as you understand how R&#8217;s data structures work internally.</p>
 <p>A data frame is <em>two-dimensional</em>, with both <em>rows</em> and <em>columns</em>, which changes things around. They can be created with <code>data.frame()</code>, <em>e.g.</em>, <code>df = data.frame(x = 1:3, y = c(TRUE, FALSE, TRUE))</code>.</p>

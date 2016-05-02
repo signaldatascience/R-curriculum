@@ -14,7 +14,7 @@ You'll go through the existing code, alternating between figuring out what it do
 
 You should strive to **discuss the questions with your partner** and write down answers, either in a separate text file in the same directory or as comments in the R file directly.
 
-### Getting started
+### Getting started ###
 
 * Load the packages `car`, `ggplot2`, and `GGally`. Set `df = UN`.
 
