@@ -1,7 +1,9 @@
 Week 1 Day 1 Assignment
 =======================
 
-Here's the data science-focused assignment for day 1. No worries if you don't complete everything -- I'm front-loading the assignments with the most crucial material; the goal here is for nobody to be left without something to do. 
+Here's the data science-focused assignment for day 1. No worries if you don't complete everything -- I'm front-loading the assignments with the most crucial material; the goal here is for nobody to be left without something to do.
+
+There's sample code located at the attached file `day1Example-rev.R`.
 
 Remember to switch off typing between your partner(s) every 20 minutes.
 
