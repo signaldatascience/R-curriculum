@@ -10,7 +10,7 @@ After all that work with subsetting, let's do something a bit more enjoyable.
 
 * Write a function `nesting_depth(L)` that takes as input a list `L` and returns the nesting depth of `L`. (For example, `nesting_depth(list(1, list(2, 3), list(4, 5)))` would return `2`.)
 
-Let's call an $n$-domino a list of length 2, where both entries are integers from 0 to $n$ inclusive.
+Let's call an $n$-domino a list with two integers, where both entries are integers from 0 to $n$ inclusive. For example, `list(4,5)` is an $n$-domino (for any $n \ge 4$).
 
 * Write a function to return a list of every unique $n$-domino, given $n$. (Treat `list(a, b)` as being equivalent to `list(b, a)`.)
 
