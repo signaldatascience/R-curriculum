@@ -3,9 +3,10 @@
 import os
 import sys
 import glob
+import shutil
 from subprocess import Popen, PIPE
 
-bad = ['.git']
+bad = ['.git', 'pdfs']
 
 def get_dirs(d):
     return filter(lambda x: os.path.isdir(os.path.join(d, x)), os.listdir(d))
@@ -40,3 +41,13 @@ for directory in r:
                   shell=True, stdout=PIPE, stderr=PIPE)
     (out, err) = p.communicate()
     print(out)
+
+    if '/src/' in directory:
+        pdfs = [os.path.abspath(p) for p in glob.glob('*.pdf')]
+        for pdf in pdfs:
+            new_path = pdf.replace('/src/','/pdfs/')
+            if not os.path.exists(os.path.split(new_path)[0]):
+                os.makedirs(os.path.split(new_path)[0])
+            if os.path.exists(new_path):
+                os.remove(new_path)
+            shutil.copy2(pdf, new_path)

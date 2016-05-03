@@ -1,5 +1,5 @@
-Simple Linear Regression
-========================
+Simple Linear Regressions
+=========================
 
 Next, we'll continue exploring the effects of public education spending.
 

@@ -55,5 +55,3 @@ In the following, pay attention to the incremental changes in model quality (as 
 	v. SAT against pay
 
 * Regress percent against pop, dollars,and pay.
-
-* Which predictors
