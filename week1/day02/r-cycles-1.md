@@ -28,6 +28,8 @@ Hopefully you're beginning to see some interesting patterns. We'd like to explor
 
 	* Is the runtime improvement merely a constant-factor scaling change (is the new runtime a constant multiple of the previous runtimes)? If not, try to determine the change in [algorithmic time complexity](https://en.wikipedia.org/wiki/Time_complexity). (Skip this for now if you aren't familiar with time complexity or if this is taking too long.)
 
+	* You can improve the runtime further by repeatedly squaring the intermediate result (in a sense, decomposing the final exponent into sums of powers of 2). Implement this and quantify the corresponding runtime improvement.
+
 You may have noticed by now the emergence of a cyclic pattern as you increase $n$.
 
 * Now start looking at the *length* of the cycles which emerge. Do you notice any patterns? Pay particular attention to divisibility relations.

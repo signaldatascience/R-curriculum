@@ -1,5 +1,5 @@
-Week 1 Day 1 Assignment
-=======================
+Simple Linear Regression
+========================
 
 Here's the data science-focused assignment for day 1. No worries if you don't complete everything -- I'm front-loading the assignments with the most crucial material; the goal here is for nobody to be left without something to do.
 

@@ -9,6 +9,8 @@ We'll be doing more simple linear regression, with an open-ended focus toward in
 
 * Similarly, changing the model will also affect the adjusted R-squared statistic, which can be thought of as the approximate predictive power of the model.
 
+Write a report about your interpretation of these results in a separate file and upload it to Github along with the R code.
+
 `States` dataset
 ----------------
 
@@ -42,9 +44,9 @@ In the following, pay attention to the incremental changes in model quality (as 
 
 * Run each of the following regressions in sequence, each time using `summary()` to inspect the coefficients, multiple R-squared statistic, and adjusted R-squared statistic. Interpret the results.
 
-	i. SAT against pop, percent, dollars and pay
+	i. SAT against pop, percent, dollars, and pay
 
-	ii. SAT against pop, dollars and pay
+	ii. SAT against pop, dollars, and pay
 
 	iii. SAT against dollars and pay
 
@@ -52,4 +54,6 @@ In the following, pay attention to the incremental changes in model quality (as 
 
 	v. SAT against pay
 
-	vi. percent against pop, dollars and pay
+* Regress percent against pop, dollars,and pay.
+
+* Which predictors

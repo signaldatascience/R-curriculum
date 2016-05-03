@@ -3,6 +3,8 @@ Simple Linear Regression
 
 Next, we'll continue exploring the effects of public education spending.
 
+As before, write a report about your interpretation of these results in a separate file and upload it to Github along with the R code.
+
 Massachusetts Test Score dataset
 --------------------------------
 
@@ -26,7 +28,7 @@ We'll start out with some more simple linear regressions before moving to a slig
 
 	* Remember to select only the numeric columns when passing in the dataset to `cor()`. 
 
-* Form a new data frame `df1` by removing the non-numeric columns (including factors) and `totsc4`.
+* Form a new data frame `df1` by removing the non-numeric columns (including factors) and `totsc4`.[^fact]
 
 * Run a regression of `totsc8` against total expenditure per student, `totday`.
 
@@ -68,6 +70,8 @@ step_reg = step(model_init, model, direction = "forward")
 * Repeat the above with `totsc8` replaced by `totsc4` and compare the results.
 
 [^why]: You might want to consider why the correlations with `totsc8` are larger than the ones with `totsc4`.
+
+[^fact]: If you have time, explore the (bad!) effects of not removing the factors in this dataset before running linear regressions.
 
 [^fwd]: We also have *backward* stepwise linear regression, in which we start with all of the predictors added to the model and successively remove predictors which, when removed, are associated with the smallest incremental drop in model quality. Forward and backward linear regression can be combined for a method where predictors can both be added or removed based on how doing so affects model quality.
 

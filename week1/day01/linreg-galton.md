@@ -1,7 +1,10 @@
-Exploring the Galton height data
-================================
+Simple Linear Regression
+========================
 
-With this dataset, you'll be getting more experience with basic operations on data frames and linear regressions.
+With the Galton height dataset, you'll be getting more experience with basic operations on data frames and linear regressions.
+
+Exploring the Galton height data
+--------------------------------
 
 Don't worry if some of the ways in which R works seem opaque or confusing to you. R has a steep learning curve, and we don't expect you to be an expert in R after this single assignment. You'll study some important internal details of the language later, but first, it's important to get some intuition for the kind of stuff you can do with R and motivation, in the form of interesting datasets and questions, to learn the language at a deeper level.
 

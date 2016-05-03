@@ -20,7 +20,7 @@ Week 1
 
 * R: stylistic tips; factors, attributes, matrices; functional programming (*apply functions)
 
-* Data science: 
+* Data science: test
 
 ### Day 4 ###
 
