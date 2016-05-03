@@ -7,7 +7,7 @@ Don't worry if some of the ways in which R works seem opaque or confusing to you
 
 ### Getting started ###
 
-* Load the `HistData` and `dplyr` packages and set `df = GaltonFamilies`. Take a look at it visually with `View(df)`.
+* Load the `HistData`, `dplyr`, and `Rmisc` packages and set `df = GaltonFamilies`. Take a look at it visually with `View(df)`.
 
 What variables does `df` include? Check the documentation to figure out what `midparentHeight` is!
 

@@ -10,7 +10,7 @@ Remember to switch off typing between your partner(s) every 20 minutes.
 Analyzing infant mortality data
 -------------------------------
 
-Install the packages `car`, `Ecdat`, `HistData`, `ggplot2`, `dplyr`, and `GGally`. Load `day1Example-rev.R` in RStudio.
+Install the packages `car`, `Ecdat`, `HistData`, `ggplot2`, `dplyr`, `Rmisc`, and `GGally`. Load `day1Example-rev.R` in RStudio.
 
 You'll go through the existing code, alternating between figuring out what it does, answering questions here, and writing your own code to supplement what's already there.
 
@@ -58,7 +58,7 @@ You'll note that the `summary()` command will print out a statistic denoted **Ad
 
 To plot the results of a simple linear regression, it's actually easier to [let `ggplot2` fit the model for you](http://stackoverflow.com/a/1476280/3721976).
 
-* Run the line starting with `ggplot...` to plot a scatterplot of the data in `ldf` along with a linear fit of infant mortality to GDP.
+* Run the line starting with `ggplot...` to plot a scatterplot of the data in `df2` along with a linear fit of infant mortality to GDP.
 
 	* What happens when you remove the `method` argument in `geom_smooth()`?
 
@@ -66,7 +66,7 @@ To plot the results of a simple linear regression, it's actually easier to [let 
 
 	* Find the documentation online for that method, **briefly** read about it, and explicitly call it in the `method` argument instead of `"lm"`. How good of an approximation is a linear model?
 
-	* Modify the line to plot the linear fit of log(infant mortality) vs. log(GDP).
+	* Make the same plots for the linear fit of log(infant mortality) vs. log(GDP).
 
 ### Looking at the residuals ###
 

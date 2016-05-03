@@ -19,10 +19,10 @@ linear_fit = lm(infant.mortality ~ gdp, df)
 loglog_fit = lm(infant.mortality ~ gdp, ldf)
 
 # Plot the linear fit of infant mortality vs. GDP
-ggplot(ldf, aes(gdp, infant.mortality)) + geom_point() + geom_smooth(method = "lm")
+ggplot(df2, aes(gdp, infant.mortality)) + geom_point() + geom_smooth(method = "lm")
 
 # Plot of linear fit residuals
-qplot(df$gdp, linear_fit$residuals)
+qplot(df2$gdp, linear_fit$residuals)
 
 # Plot of linear fit residuals after log transformation of GDP and infant mortality
-qplot(df$gdp, df$infant.mortality - exp(fitted(loglog_fit)))
+qplot(df2$gdp, df2$infant.mortality - exp(fitted(loglog_fit)))
