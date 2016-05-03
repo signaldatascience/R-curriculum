@@ -1,68 +1,7 @@
 More Linear Regression
 ======================
 
-We'll be doing more simple linear regression, with an open-ended focus toward interpreting the results. It should be assumed that after every step which produces a new result, you should stop and think about what the results *mean*.
-
-If you need a refresher on what linear regression is, refer to yesterday's email on the theory of least squares and skim the relevant sections in *Applied Predictive Modeling*.
-
-For linear regression results in particular,
-
-* What do the coefficients mean, especially when you take into account their p-values?
-
-* Sometimes, when you add or remove variables from a regression, the magnitudes, signs, and p-values of coefficients change significantly. Be sure to interpret these changes.
-
-* Pay attention to how the adjusted R-squared changes (or doesn't change) as you add or remove variables from a regression. You can consider these changes to represent the associated *change in predictive power* as you adjust the model.
-
-`States` dataset
-----------------
-
-We'll begin by studying the effect of educational expenditures on test scores.
-
-* Load the `States` dataset from the `car` package into a variable `df` and read about it using `help(States)`.
-
-* Try computing the correlations between the columns with `cor()`.
-
-### Visualizing correlations ###
-
-You can display the correlations visually using the library `corrplot`, which you should install and load.
-
-* Set `states_cor = cor[df[-1]]` and pass `states_cor` into `corrplot()`.
-
-* Experiment with different values of the `method` parameter for `corrplot()` until you find one you like. (I like `method="pie"`.)
-
-* Interpret the results.
-
-### Engineering a new feature ###
-
-Sometimes, it's useful to combine existing dataset features in creative ways to form new ones.
-
-* Add an `SAT` column defined as the sum of `SATV` and `SATM`. 
-
-* Run each of the following regressions in sequence, each time using `summary()` to inspect the coefficients, multiple R-squared statistic, and adjusted R-squared statistic.
-
-	i. SAT against pop, percent, dollars and pay
-
-	ii. SAT against pop, dollars and pay 
-
-	iii. SAT against dollars and pay
-
-	iv. SAT against dollars
-
-	v. SAT against pay
-
-	vi. percent against pop, dollars and pay.
-
-* Interpret the results.
-
-### Regional-level analysis ###
-
-We'll also sometimes want to take a step back and group some of our observations together to do data analysis at a different level.
-
-* Aggregate at the level of regions using the `aggregate()` function. (*Hint:* Pass in `FUN=median`.)
-
-* Compute the correlations between the resulting columns.
-
-* How do these compare with the correlations you calculated at the state level? What do you think explains the difference?
+Next, we'll continue exploring the effects of public education spending.
 
 Massachusetts Test Score dataset
 --------------------------------
@@ -136,13 +75,3 @@ step_reg = step(model_init, model, direction = "both")
 	* Reconcile this with your earlier results.
 
 * Repeat the above with `totsc8` replaced by `totsc4` and compare the results.
-
-California Test Score dataset
------------------------------
-
-Explore questions analogous to the ones above for the `Caschool dataset` in the `Ecdat` library, and interpret the results.
-
-Educational effects of smaller class sizes
-------------------------------------------
-
-Open the `Star` dataset from the `Ecdat` library, restricting consideration to those students who were either in regular classes or in small classes. Explore questions analogous to those above, and interpret the results. 

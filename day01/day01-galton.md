@@ -29,7 +29,11 @@ In the questions below, "run a regression of A against X, Y and Z" should be und
 
 * Aggregate the data by family using the appropriate `dplyr` function. Before writing any R code to do so, think about what this aggregation actually means and what kinds of variables you want to calculate on a per-family basis.
 
+	* If the function isn't doing what you expect, check that there isn't a *namespace conflict* between that function and a preexisting function in base R. To call a dplyr function `func()` specifically in such a case, call `dplyr::func()`.
+
 * Plot the average heights of children in each family against the mothers' heights, the fathers' heights, and the mid-parent heights. Afterward, use [multiplot](http://www.cookbook-r.com/Graphs/Multiple_graphs_on_one_page_(ggplot2)/) to display all three graphs at the same time.
+
+	* The linked example uses `geom_line()`; ignore that part and just use it to learn about how to use `multiplot()` to combine plots.
 
 * Compute and visually inspect the correlations between the variables in your aggregated dataset. Make a couple hypotheses about the data that you think you might be able to prove or disprove as you do further analysis and exploration.
 
