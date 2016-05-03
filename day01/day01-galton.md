@@ -41,6 +41,8 @@ In the questions below, "run a regression of A against X, Y and Z" should be und
 
 * Run a linear regression of the numbers of children in families against fathers' heights, mothers' heights, and average child heights. Looking at the summaries of the linear fits, do these regressions capture any statistically significant relationships? If so, with what p-values?
 
+	* Here, "p-values" refers to the p-values associated with each coefficient in the regression, associated with testing for the null hypothesis that the value of each coefficient is equal to zero.
+
 * Following the example usages of `ggplot()` that you've already seen along with the official documentation, use `ggplot()` in conjunction with `geom_hist()` to make a histogram displaying the distribution of number of children per family.
 
 ### Doing additional analysis ###

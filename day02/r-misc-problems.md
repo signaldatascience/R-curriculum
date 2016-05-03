@@ -24,18 +24,6 @@ For example, `list(list(1, 2), list(2, 3), list(3, 1))` is a valid circle of $n$
 
 * Write a function `is_circle(L)` that returns a logical value corresponding to whether or not `L` is a valid circle of $n$-dominoes.
 
-Suppose that you have a single copy of every unique $n$-domino for some value of $n$.
-
-* Write a function `make_circle(n)` that tries to construct a valid circle of $n$-dominoes from a *single copy* of every unique $n$-domino.
-
-	* In the process of doing so, keep track of your various approaches.
-
-	* Are there values of $n$ for which no approach seems to work?
-
-	* If so, can you make an argument about why you can't make a valid circle of $n$-dominoes for those values of $n$ (using a single copy of every $n$-domino)? It may be instructive to look at the intermediate steps of your algorithm and how it fails.
-
-* **Optional:** Give a proof of your heuristic results.
-
 Data frames
 -----------
 
@@ -71,3 +59,17 @@ Miscellaneous
 	* Rewrite your function, incorporating the usage of `rle()`.
 
 * Find a counterexample to the following statement: By changing at most a single digit of any positive integer, we can obtain a prime number. ([Memoization](https://en.wikipedia.org/wiki/Memoization) may be useful to speed up computation.)
+
+The following continuation to the study of $n$-dominoes is **challenging** and purely optional.
+
+Suppose that you have a single copy of every unique $n$-domino for some value of $n$.
+
+* Write a function `make_circle(n)` that tries to construct a valid circle of $n$-dominoes from a *single copy* of every unique $n$-domino.
+
+	* In the process of doing so, keep track of your various approaches.
+
+	* Are there values of $n$ for which no approach seems to work?
+
+	* If so, can you make an argument about why you can't make a valid circle of $n$-dominoes for those values of $n$ (using a single copy of every $n$-domino)? It may be instructive to look at the intermediate steps of your algorithm and how it fails.
+
+	* Give a proof of your heuristic results.

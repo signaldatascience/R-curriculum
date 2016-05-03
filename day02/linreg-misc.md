@@ -1,5 +1,5 @@
-More Linear Regression
-======================
+Simple Linear Regression
+========================
 
 Here are two more datasets to look at if you have time.
 

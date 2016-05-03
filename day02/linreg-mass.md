@@ -1,12 +1,12 @@
-More Linear Regression
-======================
+Simple Linear Regression
+========================
 
 Next, we'll continue exploring the effects of public education spending.
 
 Massachusetts Test Score dataset
 --------------------------------
 
-* Load the `MCAS` dataset from the `car` package into a variable `df` and read about it using `help(MCAS)`.
+* Load the `MCAS` dataset from the `Ecdat` package into a variable `df` and read about it using `help(MCAS)`.
 
 ### Cleaning the dataset ###
 
@@ -16,13 +16,15 @@ Massachusetts Test Score dataset
 
 	* Is the number of rows appreciably smaller?
 
-	* Anticipate some statistical problems that this naive row removal could cause in our analyses.
+Simply removing all the rows with even a single missing value instead of filling in the missing values somehow can lead to statistical problems with our analyses. The process of filling in the missing values is called [imputation](https://en.wikipedia.org/wiki/Imputation_(statistics)), which we'll cover in greater depth in the future.
 
 ### Preliminary analysis ###
 
 We'll start out with some more simple linear regressions before moving to a slightly more advanced technique.
 
-* Compute the correlations of `totsc4` and `totsc8` with the other features in the dataset.
+* Compute the correlations of `totsc4` and `totsc8` with the other numeric features in the dataset.
+
+	* Remember to select only the numeric columns when passing in the dataset to `cor()`.
 
 	* Why do you think the correlations with `totsc8` tend to be larger than the correlations with totsc4?
 
@@ -36,7 +38,7 @@ We'll start out with some more simple linear regressions before moving to a slig
 
 	* Should we be including `code` as a predictor? If not, remove it and see how the results change.
 
-* Run a regression of `totsc8` against the 3 predictors with p-value < 0.01 in the above regression.
+* Run a regression of `totsc8` against the 3 predictors with p-value $<$ 0.01 in the above regression.
 
 	* Is the predictive power appreciably lower? 
 
