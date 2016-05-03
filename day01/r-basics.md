@@ -51,7 +51,7 @@ To install a package, run `install.packages("packagename")`. If it doesn't work,
 
 Now, to load a package, run `library('packagename')`. You'll find that in other people's R code, they might use `library(packagename)` or `require('packagename')`, which are both inferior! Yihui Xie has a [very funny post](http://yihui.name/en/2014/07/library-vs-require/) about why `library('packagename')` is *almost always better*.
 
-If your installation or compilation of R packages is taking an inordinately long time and you're on a Unix/Unix-like system, you can speed up the compilation process by changing your [compilation options](http://www.r-bloggers.com/speeding-up-r-packages-installation-process/).
+If your installation or compilation of R packages is taking an inordinately long time and you're on a Unix/Unix-like system , you can speed up the compilation process by changing your [compilation options](http://www.r-bloggers.com/speeding-up-r-packages-installation-process/).
 
 Changing the current directory
 ------------------------------

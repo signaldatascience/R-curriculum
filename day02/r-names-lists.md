@@ -96,6 +96,8 @@ Sometimes, you'll want to combine two data frames into the same one.
 
 **Remark.** You can have a list as a column of a data frame, or even matrices and arrays, but these occurrences are *very* infrequent. Most functions that accept data frames as input will assume, without checking, that every column is an atomic vector.
 
+**Exercise.** Play around with what happens when you pass in a vector of *characters* when creating a data frame.[^factor]
+
 Supplementary Exercises
 -----------------------
 
@@ -110,3 +112,5 @@ Supplementary Exercises
 [^mat]: Lots of R tutorials introduce matrices early. It's confusing and, in practice, matrices aren't that useful for doing basic data analysis.
 
 [^dist]: You may notice some disturbingly flexible instances of type coercion. This is pretty much an [unavoidable part](http://www.benkuhn.net/ml-bugs) of programming for data science.
+
+[^factor]: By default, `data.frame()` coerces vectors of strings into *factors*. (Those will be covered later.) To disable this behavior, pass in the parameter `stringsAsFactors=FALSE`.

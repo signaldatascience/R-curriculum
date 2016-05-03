@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="miscellaneous-problems-in-r">Miscellaneous Problems in R</h1>
+<p>Here are some miscellaneous problems in R.</p>
+<h2 id="lists">Lists</h2>
+<p>After all that work with subsetting, let&#8217;s do something a bit more enjoyable.</p>
+<ul>
+<li>Write a function <code>nesting_depth(L)</code> that takes as input a list <code>L</code> and returns the nesting depth of <code>L</code>. (For example, <code>nesting_depth(list(1, list(2, 3), list(4, 5)))</code> would return <code>2</code>.)</li>
+</ul>
+<p>Let&#8217;s call an <span class="math inline">\(n\)</span>-domino a list of length 2, where both entries are integers from 0 to <span class="math inline">\(n\)</span> inclusive.</p>
+<ul>
+<li>Write a function to return a list of every unique <span class="math inline">\(n\)</span>-domino, given <span class="math inline">\(n\)</span>. (Treat <code>list(a, b)</code> as being equivalent to <code>list(b, a)</code>.)</li>
+</ul>
+<p>A valid <em>circle</em> of <span class="math inline">\(n\)</span>-dominoes is given by a list of <span class="math inline">\(n\)</span>-dominoes, with the following properties:</p>
+<ul>
+<li><p>Given two consecutive dominoes <code>list(n, m)</code> and <code>list(p, q)</code>, where the latter domino is located immediately after the former domino in the circle of <span class="math inline">\(n\)</span>-dominoes, we require that <code>m == p</code>.</p></li>
+<li><p>The 1st entry of the 1st <span class="math inline">\(n\)</span>-domino is equal to the last entry of the last <span class="math inline">\(n\)</span>-domino.</p></li>
+</ul>
+<p>For example, <code>list(list(1, 2), list(2, 3), list(3, 1))</code> is a valid circle of <span class="math inline">\(n\)</span>-dominoes.</p>
+<ul>
+<li>Write a function <code>is_circle(L)</code> that returns a logical value corresponding to whether or not <code>L</code> is a valid circle of <span class="math inline">\(n\)</span>-dominoes.</li>
+</ul>
+<p>Suppose that you have a single copy of every unique <span class="math inline">\(n\)</span>-domino for some value of <span class="math inline">\(n\)</span>.</p>
+<ul>
+<li><p>Write a function <code>make_circle(n)</code> that tries to construct a valid circle of <span class="math inline">\(n\)</span>-dominoes from a <em>single copy</em> of every unique <span class="math inline">\(n\)</span>-domino.</p>
+<ul>
+<li><p>In the process of doing so, keep track of your various approaches.</p></li>
+<li><p>Are there values of <span class="math inline">\(n\)</span> for which no approach seems to work?</p></li>
+<li><p>If so, can you make an argument about why you can&#8217;t make a valid circle of <span class="math inline">\(n\)</span>-dominoes for those values of <span class="math inline">\(n\)</span> (using a single copy of every <span class="math inline">\(n\)</span>-domino)? It may be instructive to look at the intermediate steps of your algorithm and how it fails.</p></li>
+</ul></li>
+<li><p><strong>Optional:</strong> Give a proof of your heuristic results.</p></li>
+</ul>
+<h2 id="data-frames">Data frames</h2>
+<p>Take a look at the built-in variable <code>letters</code>.</p>
+<ul>
+<li><p>Write a function that uses <code>grep()</code> to count the number of times each letter appears in the column names of an input dataframe. It should return a numeric vector with appropriate names and of length 26 where the <span class="math inline">\(i\)</span>th entry is the determined frequency of letter <span class="math inline">\(i\)</span>.</p></li>
+<li><p>Write a function that uses <code>gsub()</code> to modify the column names of an input dataframe, (1) changing every space (<code>&quot; &quot;</code>) into a dot (<code>&quot;.&quot;</code>) and (2) appending <code>&quot;_mod&quot;</code> to the end of each name.</p></li>
+<li><p>Write a function that <em>removes</em> the last 4 characters of every column name of an input dataframe. (If the name is 4 or fewer characters long, turn it into an empty string.) You may find <code>substr()</code> and <code>nchar()</code> helpful.</p></li>
+<li><p>Write a function that prints all of the row names of an input data frame joined together by an underscore (<code>&quot;_&quot;</code>) between each name. You may find <code>paste()</code> useful.</p></li>
+<li><p>Given a data frame of purely numeric data, write a function that returns the entries of the data frame ordered in a &#8220;spiral&#8221; fashion starting at the top left and proceeding counterclockwise and inward.</p>
+<ul>
+<li><p>For example, the function appplied to <code>data.frame(matrix(1:9, nrow=3))</code> would return <code>c(1, 2, 3, 6, 9, 8, 7, 4, 5)</code>.</p></li>
+<li><p>Add a <code>&quot;clockwise&quot;</code> parameter to your function, defaulting to <code>FALSE</code>, which if set to <code>TRUE</code> returns the entries corresponding to a clockwise traversal of the spiral.</p></li>
+</ul></li>
+<li><p>Think back to the exercise yesterday about the divisibility properties of Fibonacci numbers. Let <span class="math inline">\(F_i\)</span> denote the <span class="math inline">\(i\)</span>th Fibonacci number, starting with <span class="math inline">\(F_1 = F_2 = 1\)</span>.</p>
+<ul>
+<li><p>Make a data frame where the <span class="math inline">\(n\)</span>th column is a logical vector with <code>TRUE</code> in position <span class="math inline">\(m\)</span> if <span class="math inline">\(F_m\)</span> divides <span class="math inline">\(F_n\)</span> and <code>FALSE</code> otherwise. (The data frame can be as large as you want.)</p></li>
+<li><p>Make another data frame in the same way, except look at whether or not <span class="math inline">\(m\)</span> divides <span class="math inline">\(n\)</span> (instead of <span class="math inline">\(F_m\)</span> and <span class="math inline">\(F_n\)</span>).</p></li>
+<li><p>Explain yesterday&#8217;s computational results using the patterns that you notice today.</p></li>
+</ul></li>
+</ul>
+<h2 id="miscellaneous">Miscellaneous</h2>
+<ul>
+<li><p>Write a function that prints out the longest &#8220;run&#8221; (sequence of consecutive identical values) in an input vector. (If there&#8217;s more than one, print out the one that occurs first.)</p>
+<ul>
+<li>Rewrite your function, incorporating the usage of <code>rle()</code>.</li>
+</ul></li>
+<li><p>Find a counterexample to the following statement: By changing at most a single digit of any positive integer, we can obtain a prime number. (<a href="https://en.wikipedia.org/wiki/Memoization">Memoization</a> may be useful to speed up computation.)</p></li>
+</ul>
+</body>
+</html>

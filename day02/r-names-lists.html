@@ -97,8 +97,9 @@ c b
 <p><strong>Exercise.</strong> Using the 10-by-10 data frame defined earlier, use <code>rbind()</code> and <code>cbind()</code> to make 10-by-20 and 40-by-10 data frames, verifying the dimensions with <code>dim()</code>. <em>Hint:</em> You can do this without nesting <code>rbind()</code> calls within <code>rbind()</code> calls or <code>cbind()</code> calls within <code>cbind()</code> calls.</p>
 <p><strong>Exercise.</strong> The <code>do.call(func, args)</code> function is very useful &#8211; suppose that <code>args = c(1,2,3)</code>; then <code>do.call(func, args)</code> is equivalent to calling <code>func(1,2,3)</code>. Combining <code>do.call()</code> with <code>rep()</code> and our previously defined 10-by-10 data frame, write a very short line to create a 10-by-100 data frame.<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a></p>
 <p><strong>Remark.</strong> You can have a list as a column of a data frame, or even matrices and arrays, but these occurrences are <em>very</em> infrequent. Most functions that accept data frames as input will assume, without checking, that every column is an atomic vector.</p>
+<p><strong>Exercise.</strong> Play around with what happens when you pass in a vector of <em>characters</em> when creating a data frame.<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a></p>
 <h2 id="supplementary-exercises">Supplementary Exercises</h2>
-<p><strong>Advanced R, 2.1.3.4.</strong> Why do you need to use <code>unlist()</code> to convert a list to an atomic vector? Why doesn&#8217;t <code>as.vector()</code> work?<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a></p>
+<p><strong>Advanced R, 2.1.3.4.</strong> Why do you need to use <code>unlist()</code> to convert a list to an atomic vector? Why doesn&#8217;t <code>as.vector()</code> work?<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a></p>
 <p><strong>Advanced R, 2.4.5.3.</strong> Can you have a data frame with 0 rows? What about 0 columns?</p>
 <div class="footnotes">
 <hr />
@@ -106,7 +107,8 @@ c b
 <li id="fn1"><p>Suppose that we have <code>x = list(a = 1, b = 2, c = 3)</code>. Then accessing <code>x[&quot;a&quot;]</code> returns a <strong>list</strong> equivalent to <code>list(a = 1)</code>, whereas accessing <code>x$a</code> accesses the <strong>value within</strong>, equal to <code>1</code>. With atomic vectors, this doesn&#8217;t make a difference, because a single value is <em>equivalent</em> to a vector of length 1, but this isn&#8217;t the case with lists!<a href="#fnref1">&#8617;</a></p></li>
 <li id="fn2"><p>Lots of R tutorials introduce matrices early. It&#8217;s confusing and, in practice, matrices aren&#8217;t that useful for doing basic data analysis.<a href="#fnref2">&#8617;</a></p></li>
 <li id="fn3"><p>You may notice some disturbingly flexible instances of type coercion. This is pretty much an <a href="http://www.benkuhn.net/ml-bugs">unavoidable part</a> of programming for data science.<a href="#fnref3">&#8617;</a></p></li>
-<li id="fn4"><p>Technically, <a href="http://stackoverflow.com/a/8595099/3721976">lists <em>are</em> vectors</a>&#8230; but this is just a technicality of the language&#8212;lists are vectors, but not <em>atomic</em> vectors (try <code>is.vector()</code> and <code>is.atomic()</code> on a list). You can&#8217;t use <code>as.atomic()</code> because it doesn&#8217;t exist.<a href="#fnref4">&#8617;</a></p></li>
+<li id="fn4"><p>By default, <code>data.frame()</code> coerces vectors of strings into <em>factors</em>. (Those will be covered later.) To disable this behavior, pass in the parameter <code>stringsAsFactors=FALSE</code>.<a href="#fnref4">&#8617;</a></p></li>
+<li id="fn5"><p>Technically, <a href="http://stackoverflow.com/a/8595099/3721976">lists <em>are</em> vectors</a>&#8230; but this is just a technicality of the language&#8212;lists are vectors, but not <em>atomic</em> vectors (try <code>is.vector()</code> and <code>is.atomic()</code> on a list). You can&#8217;t use <code>as.atomic()</code> because it doesn&#8217;t exist.<a href="#fnref5">&#8617;</a></p></li>
 </ol>
 </div>
 </body>

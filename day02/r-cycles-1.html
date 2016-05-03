@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="exploring-cyclic-relationships">Exploring Cyclic Relationships</h1>
+<p>Let&#8217;s do some fun exploration!</p>
+<!-- Toward Fermat's little theorem -->
+<h2 id="cycles-part-1">Cycles, part 1</h2>
+<p>First, we can do a couple of computations to get a sense of what we might want to study.</p>
+<ul>
+<li><p>Pick a prime <span class="math inline">\(p\)</span> and a number <span class="math inline">\(a\)</span>, <span class="math inline">\(1 \le a \le p-1\)</span>.</p>
+<ul>
+<li><p>In the console, play around with the powers of <span class="math inline">\(a\)</span> modulo <span class="math inline">\(p\)</span>. (The remainder operator in R is <code>%%</code>.)</p></li>
+<li><p>As you increase the power of <span class="math inline">\(a\)</span>, do you see any patterns? To what extent do these patterns hold for other choices of <span class="math inline">\(a\)</span>?</p></li>
+<li><p>If you don&#8217;t choose a prime for <span class="math inline">\(p\)</span>, to what extent do you see the same patterns?</p></li>
+</ul></li>
+</ul>
+<p>Hopefully you&#8217;re beginning to see some interesting patterns. We&#8217;d like to explore this more, but it&#8217;s time-consuming to keep typing out repetitive arithmetic.</p>
+<ul>
+<li><p>Write a function <code>pow(a, n, p)</code> that calculates <span class="math inline">\(a^n\)</span> modulo <span class="math inline">\(p\)</span>.</p>
+<ul>
+<li><p>To improve the runtime of your function, try starting at 1 and repeatedly multiplying an intermediate result by <span class="math inline">\(a\)</span>, calculating the answer mod <span class="math inline">\(p\)</span> each time.</p></li>
+<li><p>Using the <a href="https://cran.r-project.org/web/packages/timeit/index.html"><code>timeit</code></a> package, quantify the resulting improvement in runtime. How does runtime improve as <span class="math inline">\(a\)</span> or <span class="math inline">\(n\)</span> increase in size?</p></li>
+<li><p>Is the runtime improvement merely a constant-factor scaling change (is the new runtime a constant multiple of the previous runtimes)? If not, try to determine the change in <a href="https://en.wikipedia.org/wiki/Time_complexity">algorithmic time complexity</a>. (Skip this for now if you aren&#8217;t familiar with time complexity or if this is taking too long.)</p></li>
+</ul></li>
+</ul>
+<p>You may have noticed by now the emergence of a cyclic pattern as you increase <span class="math inline">\(n\)</span>.</p>
+<ul>
+<li><p>Now start looking at the <em>length</em> of the cycles which emerge. Do you notice any patterns? Pay particular attention to divisibility relations.</p></li>
+<li><p>It&#8217;s still cumbersome to do this with just a single function. Write a function <code>cyclen(a, p)</code> that takes as input a prime <span class="math inline">\(p\)</span> and an integer <span class="math inline">\(a\)</span> (where <span class="math inline">\(1 \le a \le p-1\)</span>) and determines the length of the <em>cycles</em> which emerge as the exponent of <span class="math inline">\(a^n\)</span> mod <span class="math inline">\(p\)</span> increases.</p>
+<ul>
+<li><p>Verify that your function works by reproducing some of the calculations you did earlier.</p></li>
+<li><p>Pick a reasonably low prime <span class="math inline">\(p\)</span> (something under 30 or so) and calculate the corresponding cycle lengths for various values of <span class="math inline">\(a\)</span> (perhaps all possible values, if your prime is small enough).</p></li>
+<li><p>Look for interesting relationships, paying particular attention to (1) what numbers are divisible by all of these cycle lengths and (2) how the aforementioned numbers relate to your prime <span class="math inline">\(p\)</span>.</p></li>
+</ul></li>
+</ul>
+<p>Repeat the above analysis for different primes. Talk to other students and the instructors about any results you get.</p>
+<p>Putting everything together, try to answer the following questions.</p>
+<ul>
+<li><p>Suppose that <span class="math inline">\(p\)</span> is a prime and that we perform all arithmetic modulo <span class="math inline">\(p\)</span>. We&#8217;re wondering if any numbers <span class="math inline">\(a\)</span> correspond to cycles of length <span class="math inline">\(j\)</span> when we repeatedly exponentiate <span class="math inline">\(a\)</span> (modulo <span class="math inline">\(p\)</span>).</p>
+<ul>
+<li><p>Given some <span class="math inline">\(j\)</span>, when does there there exist a cycle of that length for some <span class="math inline">\(a\)</span>?</p></li>
+<li><p>Given some <span class="math inline">\(a\)</span>, what can we say about the relationship between the length of its corresponding exponentiation cycle and <span class="math inline">\(p\)</span>?</p></li>
+</ul></li>
+</ul>
+</body>
+</html>

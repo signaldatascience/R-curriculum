@@ -61,8 +61,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><p>Subsetting with negative integers: <code>x[-c(3,1)]</code>, <code>x[c(-3,-1)]</code></p></li>
 <li><p>Subsetting with logical vectors: <code>x[c(TRUE, FALSE, TRUE, FALSE, TRUE)]</code></p></li>
 </ul>
-<p><strong>Exercise.</strong> What happens when you subset with multiple of the same positive integer?</p>
-<p><strong>Exercise.</strong> What happens when you subset with decimal numbers?</p>
+<p><strong>Exercise.</strong> What happens when you subset with multiple copies of the same positive integer?</p>
+<p><strong>Exercise.</strong> What happens when you subset with numbers that are not whole numbers?</p>
 <p><strong>Exercise.</strong> What happens when you subset with both positive and negative integers?</p>
 <p><strong>Exercise.</strong> What happens when you subset with a logical vector shorter than the vector you&#8217;re subsetting? Try with short logical vectors of length 1 and 2.</p>
 <p><strong>Exercise.</strong> What happens when there are some <code>NA</code> values in the index vector?</p>
@@ -92,8 +92,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p><strong>Exercise.</strong> What happens when you pass in nothing for one of the two vectors, like with <code>df[1:2,]</code> or <code>df[,5:6]</code>?</p>
 <p><strong>Exercise.</strong> When subsetting with two vectors, can you pass in a vector of column names?</p>
 <p><strong>Exercise.</strong> What&#8217;s the difference between (1) subsetting a single column by passing in a single number as the index vector versus (2) subsetting a single column by passing in nothing for the first index vector and a single number for the second index vector?<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
-<p>In certain situations, you might want to subset with a <em>matrix</em>. Again, at this point, don&#8217;t worry too much about what a matrix <em>is</em>.</p>
-<p><strong>Exercise.</strong> With the previously defined 10-by-10 data frame, set <code>df[5, 5] = NA; df[6, 6] = NA</code>. Figure out how <code>df[is.na(df)]</code> works. Write and test a function that takes as input a data frame <code>df</code> of purely numeric data and a number <code>k</code>, returning a vector of every number in <code>df</code> divisible by <code>k</code>.</p>
 <h2 id="advanced-subsetting">Advanced subsetting</h2>
 <p>Wickham writes:</p>
 <blockquote>
@@ -109,7 +107,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </blockquote>
 <blockquote>
 <blockquote>
-<p>&#8212; <span class="citation">@RLangTip</span></p>
+<p>&#8211; <span class="citation">@RLangTip</span></p>
 </blockquote>
 </blockquote>
 <blockquote>
@@ -126,9 +124,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p><strong>Advanced R, 3.1.7.2.</strong> Why does <code>x = 1:5; x[NA]</code> yield five missing values? (<em>Hint:</em> How is it different from <code>NA_real_</code>?)</p>
 <p><strong>Advanced R, 3.1.7.4.</strong> Why does <code>mtcars[1:20]</code> return an error? How does it differ from the similar <code>mtcars[1:20, ]</code>?</p>
 <p><strong>Advanced R, 3.1.7.6.</strong> What does <code>df[is.na(df)] = 0</code> do? How does it work?</p>
-<p><strong>Exercise.</strong> Let <code>x = c(&quot;a&quot;, &quot;b&quot;, &quot;a&quot;, &quot;a&quot;, &quot;b&quot;, &quot;x&quot;, &quot;b&quot;, &quot;a&quot;)</code>. Construct a named vector called <code>convert</code> such that the output of <code>convert[x]</code> is equal to <code>c(&quot;apple&quot;, &quot;banana&quot;, &quot;apple&quot;, &quot;apple&quot;, &quot;banana&quot;, NA, &quot;banana&quot;, &quot;apple&quot;)</code>.</p>
+<p><strong>Exercise.</strong> Let <code>x = c(&quot;a&quot;, &quot;b&quot;, &quot;a&quot;, &quot;a&quot;, &quot;b&quot;, &quot;x&quot;, &quot;b&quot;, &quot;a&quot;)</code>. Construct a named vector called <code>fruits</code> such that the output of <code>fruits[x]</code> is equal to <code>c(&quot;apple&quot;, &quot;banana&quot;, &quot;apple&quot;, &quot;apple&quot;, &quot;banana&quot;, NA, &quot;banana&quot;, &quot;apple&quot;)</code>.</p>
 <p><strong>Exercise.</strong> Using the <code>order()</code> function, write a function to alphabetize the columns of a data frame by their names.</p>
-<p><strong>Exercise.</strong> Using the <code>sample()</code> command, write a function that takes a data frame as input and returns it with the order of its columns randomly permuted. After that, add a logical (boolean) flag to the function&#8217;s parameters called <code>rows</code> defaulting to <code>FALSE</code> that permutes the rows as well if set to <code>TRUE</code>. (<em>I.e.</em>, calling <code>f(df)</code> would be equivalent to calling <code>f(df, rows=FALSE)</code> but <code>f(df, rows=TRUE)</code> would permute rows as well as columns.)</p>
+<p><strong>Exercise.</strong> Using the <code>sample()</code> function, write a function that takes a data frame as input and returns it with the order of its columns randomly permuted. After that, add a logical (boolean) flag to the function&#8217;s parameters called <code>rows</code> defaulting to <code>FALSE</code> that permutes the rows as well if set to <code>TRUE</code>. (<em>I.e.</em>, calling <code>f(df)</code> would be equivalent to calling <code>f(df, rows=FALSE)</code> but <code>f(df, rows=TRUE)</code> would permute rows as well as columns.)</p>
 <p><strong>Exercise.</strong> Write a function that takes a data frame <code>df</code> and an integer <code>k</code> as input and returns <code>k</code> random columns of <code>df</code>, <em>sampled with replacement</em>.</p>
 <p><strong>Exercise.</strong> Write a function that takes a data frame <code>df</code> and an integer <code>m</code> as input and returns a random sample of <code>m</code> continuous rows of <code>df</code> as the output. (By continuous, we mean that you would return row <code>i</code>, row <code>i+1</code>, &#8230; all the way to row <code>i+m-1</code> for some <code>i</code>.)</p>
 <p><strong>Exercise.</strong> Write a function that takes a data frame <code>df</code> and a string <code>colname</code> as input and returns a dataframe without any columns that have name equal to the value of <code>colname</code>. (<em>Hint:</em> Don&#8217;t forget about the edge case where multiple columns have identical names.)</p>

@@ -24,9 +24,9 @@ There are three main ways to subset an unnamed vector---figure out how they work
 
 * Subsetting with logical vectors: `x[c(TRUE, FALSE, TRUE, FALSE, TRUE)]`
 
-**Exercise.** What happens when you subset with multiple of the same positive integer?
+**Exercise.** What happens when you subset with multiple copies of the same positive integer?
 
-**Exercise.** What happens when you subset with decimal numbers?
+**Exercise.** What happens when you subset with numbers that are not whole numbers?
 
 **Exercise.** What happens when you subset with both positive and negative integers?
 
@@ -71,10 +71,6 @@ Recall that data frames are simply complex, two-dimensional lists. If you subset
 
 **Exercise.** What's the difference between (1) subsetting a single column by passing in a single number as the index vector versus (2) subsetting a single column by passing in nothing for the first index vector and a single number for the second index vector?[^learn]
 
-In certain situations, you might want to subset with a *matrix*. Again, at this point, don't worry too much about what a matrix *is*.
-
-**Exercise.** With the previously defined 10-by-10 data frame, set `df[5, 5] = NA; df[6, 6] = NA`. Figure out how `df[is.na(df)]` works. Write and test a function that takes as input a data frame `df` of purely numeric data and a number `k`, returning a vector of every number in `df` divisible by `k`.
-
 Advanced subsetting
 -------------------
 
@@ -86,7 +82,7 @@ Wickham writes:
 
 > > "If list `x` is a train carrying objects, then `x[[5]]` is the object in car 5; `x[4:6]` is a train of cars 4-6."
 
-> > --- @RLangTip
+> > -- @RLangTip
 
 > Because it can return only a single value, you must use `[[` with either a single positive integer or a string.
 
@@ -113,11 +109,11 @@ Finally, columns of a data frame can be removed by assigning `NULL` to them.
 
 **Advanced R, 3.1.7.6.** What does `df[is.na(df)] = 0` do? How does it work?
 
-**Exercise.** Let `x = c("a", "b", "a", "a", "b", "x", "b", "a")`. Construct a named vector called `convert` such that the output of `convert[x]` is equal to `c("apple", "banana", "apple", "apple", "banana", NA, "banana", "apple")`.
+**Exercise.** Let `x = c("a", "b", "a", "a", "b", "x", "b", "a")`. Construct a named vector called `fruits` such that the output of `fruits[x]` is equal to `c("apple", "banana", "apple", "apple", "banana", NA, "banana", "apple")`.
 
 **Exercise.** Using the `order()` function, write a function to alphabetize the columns of a data frame by their names.
 
-**Exercise.** Using the `sample()` command, write a function that takes a data frame as input and returns it with the order of its columns randomly permuted. After that, add a logical (boolean) flag to the function's parameters called `rows` defaulting to `FALSE` that permutes the rows as well if set to `TRUE`. (*I.e.*, calling `f(df)` would be equivalent to calling `f(df, rows=FALSE)` but `f(df, rows=TRUE)` would permute rows as well as columns.)
+**Exercise.** Using the `sample()` function, write a function that takes a data frame as input and returns it with the order of its columns randomly permuted. After that, add a logical (boolean) flag to the function's parameters called `rows` defaulting to `FALSE` that permutes the rows as well if set to `TRUE`. (*I.e.*, calling `f(df)` would be equivalent to calling `f(df, rows=FALSE)` but `f(df, rows=TRUE)` would permute rows as well as columns.)
 
 **Exercise.** Write a function that takes a data frame `df` and an integer `k` as input and returns `k` random columns of `df`, *sampled with replacement*.
 

@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="more-linear-regression">More Linear Regression</h1>
+<p>We&#8217;ll be doing more simple linear regression, with an open-ended focus toward interpreting the results. It should be assumed that after every step which produces a new result, you should stop and think about what the results <em>mean</em>.</p>
+<p>If you need a refresher on what linear regression is, refer to yesterday&#8217;s email on the theory of least squares and skim the relevant sections in <em>Applied Predictive Modeling</em>.</p>
+<p>For linear regression results in particular,</p>
+<ul>
+<li><p>What do the coefficients mean, especially when you take into account their p-values?</p></li>
+<li><p>Sometimes, when you add or remove variables from a regression, the magnitudes, signs, and p-values of coefficients change significantly. Be sure to interpret these changes.</p></li>
+<li><p>Pay attention to how the adjusted R-squared changes (or doesn&#8217;t change) as you add or remove variables from a regression. You can consider these changes to represent the associated <em>change in predictive power</em> as you adjust the model.</p></li>
+</ul>
+<h2 id="states-dataset"><code>States</code> dataset</h2>
+<p>We&#8217;ll begin by studying the effect of educational expenditures on test scores.</p>
+<ul>
+<li><p>Load the <code>States</code> dataset from the <code>car</code> package into a variable <code>df</code> and read about it using <code>help(States)</code>.</p></li>
+<li><p>Try computing the correlations between the columns with <code>cor()</code>.</p></li>
+</ul>
+<h3 id="visualizing-correlations">Visualizing correlations</h3>
+<p>You can display the correlations visually using the library <code>corrplot</code>, which you should install and load.</p>
+<ul>
+<li><p>Set <code>states_cor = cor[df[-1]]</code> and pass <code>states_cor</code> into <code>corrplot()</code>.</p></li>
+<li><p>Experiment with different values of the <code>method</code> parameter for <code>corrplot()</code> until you find one you like. (I like <code>method=&quot;pie&quot;</code>.)</p></li>
+<li><p>Interpret the results.</p></li>
+</ul>
+<h3 id="engineering-a-new-feature">Engineering a new feature</h3>
+<p>Sometimes, it&#8217;s useful to combine existing dataset features in creative ways to form new ones.</p>
+<ul>
+<li><p>Add an <code>SAT</code> column defined as the sum of <code>SATV</code> and <code>SATM</code>.</p></li>
+<li><p>Run each of the following regressions in sequence, each time using <code>summary()</code> to inspect the coefficients, multiple R-squared statistic, and adjusted R-squared statistic.</p>
+<ol style="list-style-type: lower-roman">
+<li><p>SAT against pop, percent, dollars and pay</p></li>
+<li><p>SAT against pop, dollars and pay</p></li>
+<li><p>SAT against dollars and pay</p></li>
+<li><p>SAT against dollars</p></li>
+<li><p>SAT against pay</p></li>
+<li><p>percent against pop, dollars and pay.</p></li>
+</ol></li>
+<li><p>Interpret the results.</p></li>
+</ul>
+<h3 id="regional-level-analysis">Regional-level analysis</h3>
+<p>We&#8217;ll also sometimes want to take a step back and group some of our observations together to do data analysis at a different level.</p>
+<ul>
+<li><p>Aggregate at the level of regions using the <code>aggregate()</code> function. (<em>Hint:</em> Pass in <code>FUN=median</code>.)</p></li>
+<li><p>Compute the correlations between the resulting columns.</p></li>
+<li><p>How do these compare with the correlations you calculated at the state level? What do you think explains the difference?</p></li>
+</ul>
+<h2 id="massachusetts-test-score-dataset">Massachusetts Test Score dataset</h2>
+<ul>
+<li>Load the <code>MCAS</code> dataset from the <code>car</code> package into a variable <code>df</code> and read about it using <code>help(MCAS)</code>.</li>
+</ul>
+<h3 id="cleaning-the-dataset">Cleaning the dataset</h3>
+<ul>
+<li><p>Find the total number of rows.</p></li>
+<li><p>Remove the rows with missing values, and compute the number of rows of the resulting data frame.</p>
+<ul>
+<li><p>Is the number of rows appreciably smaller?</p></li>
+<li><p>Anticipate some statistical problems that this naive row removal could cause in our analyses.</p></li>
+</ul></li>
+</ul>
+<h3 id="preliminary-analysis">Preliminary analysis</h3>
+<p>We&#8217;ll start out with some more simple linear regressions before moving to a slightly more advanced technique.</p>
+<ul>
+<li><p>Compute the correlations of <code>totsc4</code> and <code>totsc8</code> with the other features in the dataset.</p>
+<ul>
+<li>Why do you think the correlations with <code>totsc8</code> tend to be larger than the correlations with totsc4?</li>
+</ul></li>
+<li><p>Run a regression of <code>totsc8</code> against total expenditure per student, <code>totday</code>.</p>
+<ul>
+<li>What does this say about the effect of spending per student on standardized test scores?</li>
+</ul></li>
+<li><p>Form a new data frame <code>df1</code> by removing the non-numeric columns and <code>totsc4</code>.</p></li>
+<li><p>Run a regression of totsc8 against the other features using <code>lm(totsc8 ~ . , df1)</code>.</p>
+<ul>
+<li>Should we be including <code>code</code> as a predictor? If not, remove it and see how the results change.</li>
+</ul></li>
+<li><p>Run a regression of <code>totsc8</code> against the 3 predictors with p-value &lt; 0.01 in the above regression.</p>
+<ul>
+<li>Is the predictive power appreciably lower?</li>
+</ul></li>
+</ul>
+<h3 id="stepwise-linear-regression">Stepwise linear regression</h3>
+<p>In general, the problem of <em>feature selection</em> is a difficult one. We ideally want to maximize predictive power using as few features as possible, because adding redundant features actually works <em>against</em> interpretability and pulls weight away from the less-redundant ones; however, with <span class="math inline">\(n\)</span> features, we have <span class="math inline">\(2^n\)</span> possible combinations of features to regress against.</p>
+<p>The most simplistic way of solving this problem is with <a href="http://people.duke.edu/~rnau/regstep.htm">stepwise linear regression</a>. It works like so:</p>
+<ul>
+<li><p>In <em>forward</em> linear regression, we initialize the linear model with no predictors (so the model is just a constant), and we keep adding predictors which, when added, provide the greatest incremental boost to the model quality.</p></li>
+<li><p>In <em>backward</em> linear regression, we start with all of the predictors added to the model and successively remove predictors which, when removed, are associated with the smallest incremental drop in model quality.</p></li>
+<li><p>Forward and backward linear regression can be combined for a method where predictors can both be added or removed based on how doing so affects model quality.</p></li>
+<li><p>Eventually, according to some statistical criterion, we reach a stopping point.</p></li>
+</ul>
+<p>The evaluation of &#8220;model quality&#8221; is often done via the <a href="https://en.wikipedia.org/wiki/Akaike_information_criterion">Akaike information criterion</a>, which can intuitively be thought of as being analogous to the <em>entropy</em> of a model. (Minimizing the AIC is broadly equivalent to maximizing the entropy in a thermodynamic system.)</p>
+<p>Before learning how to run a stepwise regression in R, briefly read about <a href="https://stat.ethz.ch/R-manual/R-devel/library/stats/html/step.html">its implementation</a>.</p>
+<p>Use stepwise regression by writing:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model_init =<span class="st"> </span><span class="kw">lm</span>(totsc8 ~<span class="st"> </span><span class="dv">1</span>, df1); 
+model =<span class="st"> </span><span class="kw">formula</span>(<span class="kw">lm</span>(totsc8 ~<span class="st"> </span>., df1))
+step_reg =<span class="st"> </span><span class="kw">step</span>(model_init, model, <span class="dt">direction =</span> <span class="st">&quot;both&quot;</span>)</code></pre></div>
+<ul>
+<li><p>How does the resulting model differ from the model above?</p></li>
+<li><p>Interpret the order in which coefficients are added and removed from the stepwise model.</p></li>
+<li><p>What does this say about the effect of educational expenditure on student test scores for schools in the dataset?</p>
+<ul>
+<li>Reconcile this with your earlier results.</li>
+</ul></li>
+<li><p>Repeat the above with <code>totsc8</code> replaced by <code>totsc4</code> and compare the results.</p></li>
+</ul>
+<h2 id="california-test-score-dataset">California Test Score dataset</h2>
+<p>Explore questions analogous to the ones above for the <code>Caschool dataset</code> in the <code>Ecdat</code> library, and interpret the results.</p>
+<h2 id="educational-effects-of-smaller-class-sizes">Educational effects of smaller class sizes</h2>
+<p>Open the <code>Star</code> dataset from the <code>Ecdat</code> library, restricting consideration to those students who were either in regular classes or in small classes. Explore questions analogous to those above, and interpret the results.</p>
+</body>
+</html>

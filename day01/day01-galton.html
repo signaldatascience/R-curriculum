@@ -13,7 +13,7 @@
 <p>Don&#8217;t worry if some of the ways in which R works seem opaque or confusing to you. R has a steep learning curve, and we don&#8217;t expect you to be an expert in R after this single assignment. You&#8217;ll study some important internal details of the language later, but first, it&#8217;s important to get some intuition for the kind of stuff you can do with R and motivation, in the form of interesting datasets and questions, to learn the language at a deeper level.</p>
 <h3 id="getting-started">Getting started</h3>
 <ul>
-<li>Load the <code>HistData</code> and <code>dplyr</code> packages and set <code>df = GaltonFamilies</code>. Take a look at it visually with <code>View(df)</code>.</li>
+<li>Load the <code>HistData</code>, <code>dplyr</code>, and <code>Rmisc</code> packages and set <code>df = GaltonFamilies</code>. Take a look at it visually with <code>View(df)</code>.</li>
 </ul>
 <p>What variables does <code>df</code> include? Check the documentation to figure out what <code>midparentHeight</code> is!</p>
 <p>This time, the data frame has a lot of different columns. You can use the <code>names()</code> function to show the column names of <code>df</code> (you&#8217;ll note that the output of <code>names(df)</code> is the same as the output of <code>colnames(df)</code>), and for a specific column <code>col</code> you can access it with the <code>$</code> operator, like so: <code>df$childHeight</code>. You can access and modify columns just like any other variable (with some small exceptions).</p>
