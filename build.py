@@ -45,9 +45,15 @@ for directory in r:
     if '/src/' in directory:
         pdfs = [os.path.abspath(p) for p in glob.glob('*.pdf')]
         for pdf in pdfs:
-            new_path = pdf.replace('/src/','/pdfs/')
+            new_path = pdf.replace('/src/', '/pdfs/')
             if not os.path.exists(os.path.split(new_path)[0]):
                 os.makedirs(os.path.split(new_path)[0])
             if os.path.exists(new_path):
                 os.remove(new_path)
             shutil.copy2(pdf, new_path)
+    elif '/pdfs/' in directory:
+        fpaths = [os.path.abspath(p) for p in glob.glob('*.*')]
+        for fpath in fpaths:
+            src_path = fpath.replace('/pdfs/', '/src/')
+            if not os.path.exists(src_path):
+                os.remove(fpath)

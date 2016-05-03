@@ -38,20 +38,28 @@ Since we're only provided with subtest scores, we can add them together to form 
 
 * Add an `SAT` column defined as the sum of `SATV` and `SATM`.
 
-	* Based on the correlation between `SATV` and `SATM`, how much would change if we just used a subtest score instead of the total score?
+	* Based on the correlation between `SATV` and `SATM`, how much would you expect our results to change if we just used a subtest score instead of the total score?
+
+### Running linear regressions ###
 
 In the following, pay attention to the incremental changes in model quality (as measured by predictive power, *i.e.*, adjusted R-squared) as you add or remove variables to the set of predictors you're regressing against.
 
 * Run each of the following regressions in sequence, each time using `summary()` to inspect the coefficients, multiple R-squared statistic, and adjusted R-squared statistic. Interpret the results.
 
-	i. SAT against pop, percent, dollars, and pay
+	i. `SAT` against `pop`, `percent`, `dollars`, and `pay`
 
-	ii. SAT against pop, dollars, and pay
+	ii. `SAT` against `pop`, `dollars`, and `pay`
 
-	iii. SAT against dollars and pay
+	iii. `SAT` against `dollars` and `pay`
 
-	iv. SAT against dollars
+	iv. `SAT` against `dollars`
 
-	v. SAT against pay
+	v. `SAT` against `pay`
 
-* Regress percent against pop, dollars,and pay.
+**If you were a state administrator and wanted to increase SAT scores, what would you do?**
+
+* Regress `percent` against `pop`, `dollars`, and `pay`.
+
+	* What makes the `percent` value qualitatively different from the other numeric variables in this dataset?
+
+	* What problems arise with predicting `percent` for extreme values of the predictor variables? (What if one of the regression coefficients were negative?)
