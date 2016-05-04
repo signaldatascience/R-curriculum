@@ -53,7 +53,7 @@ Be sure to pay attention to these details when you load data from external sourc
 
 **Exercise.** Write a function that takes in a data frame and converts every column with at most 5 unique values into a factor. (You may find `unique()` useful.)
 
-**Exercise.** Write a function that takes in a data frame and, for each factor column, replaces every `NA` with the most common non-`NA` value in the column. Generate a toy dataframe to use to demonstrate that your function works.
+**Exercise.** Write a function that takes in a data frame and, for each factor column, replaces every `NA` with the most common non-`NA` value in the column. Generate a toy dataframe to use to demonstrate that your function works. Write a different function that replaces every `NA` value with a random level of the factor, distributed identically to their relative frequencies in the column's non-`NA` values. How can you make this [imputation](https://en.wikipedia.org/wiki/Imputation_(statistics)) method reproducible? (*Hint:* Try `set.seed()`.)
 
 **Exercise.** Write a function that takes in a data frame, with some but not all columns being factors, and expands each factor into a set of *indicator variables* within the data frame. Precisely, for each factor, replace that factor column with a number of *binary indicator variables*, having these properties:
 
@@ -70,10 +70,47 @@ You can assume that there are no `NA`s in the input dataframe. Test your code on
 Matrices
 --------
 
+Arrays are simply atomic vectors with a *dimension attribute*, which must be a vector of integers. (The size of the vector must be compatible with its dimensions.) **A matrix is an array with two dimensions.** Matrices can be created as such:
+
+```r
+> matrix(1:100, nrow=10)
+      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+ [1,]    1   11   21   31   41   51   61   71   81    91
+ [2,]    2   12   22   32   42   52   62   72   82    92
+ [3,]    3   13   23   33   43   53   63   73   83    93
+ [4,]    4   14   24   34   44   54   64   74   84    94
+ [5,]    5   15   25   35   45   55   65   75   85    95
+ [6,]    6   16   26   36   46   56   66   76   86    96
+ [7,]    7   17   27   37   47   57   67   77   87    97
+ [8,]    8   18   28   38   48   58   68   78   88    98
+ [9,]    9   19   29   39   49   59   69   79   89    99
+[10,]   10   20   30   40   50   60   70   80   90   100
+```
+
+**Exercise.** Write a function that takes an $n$-by-$m$ numeric matrix and turns it into a $m$-by-$n$ numeric matrix where both matrices give the same result when `as.numeric()` is applied.[^mod]
+
+Matrices work similarly to data frames: you have access to `colnames()`, `rownames()`, `ncol()`, and `nrow()`, and subsetting (broadly speaking) works the same way.[^matsub]
+
 **Exercise.** Run the following code: `df = data.frame(matrix(1:100, nrow=10)); df[5, 5] = NA; df[6, 6] = NA`. Figure out how `df[is.na(df)]` works. Write and test a function that takes as input a data frame `df` of purely numeric data and a number `k`, returning a vector of every number in `df` divisible by `k`.
+
+You won't work directly with matrices directly very much for most data science applications -- data frames are much more common and important.[^odd] In practice, they mostly show up as *intermediate forms* in the conversion and manipulation of data, and it's helpful to be aware of matrices so you can debug problems when they show up. (Knowing how matrices work in R might be more important if you're doing numerical simulations of some sort, perhaps in the computational science.)
+
+Some more supplementary exercises on matrices:
+
+**Exercise.** Does matrix multiplication work normally with the `*` operator? Why or why not? (Try testing multiplication with the identity matrix.)[^matmult]
+
+**Exercise.** Turn a list into a matrix, forming a list-matrix capable of holding different data types. Speculate on some use cases of list-matrices.
 
 [^global]: Wickham also writes: "A global option, `options(stringsAsFactors = FALSE)`, is available to control this behaviour, but I don't recommend using it. Changing a global option may have unexpected consequences when combined with other code (either from packages, or code that you're `source()`ing), and global options make code harder to understand because they increase the number of lines you need to read to understand how a single line of code will behave."
 
 [^collin]: The reason for not making a binary indicator variable for the first level of the factor is that the state of "factor is equal to its first level" can already be represented by the `length(levels()) - 1` binary indicator variables all being set to 0. As such, if we add in a binary indicator variable for the first level, it will cause problems with collinearity that breaks linear techniques (including regression).
 
 [^time]: You can use string manipulation or R's [inbuilt time classes](https://stat.ethz.ch/R-manual/R-devel/library/base/html/DateTimeClasses.html). Try doing it both ways.
+
+[^mod]: Just modify the attributes.
+
+[^matsub]: There are some nuances -- if you want to learn about them, read Hadley Wickham's *Advanced R*.
+
+[^odd]: Isn't it odd that the majority of expositions of R focus so much on presenting matrices in the very beginning, even though they are far more removed from doing *actual, interesting work* than data frames and even many other R concepts?
+
+[^matmult]: Matrices are vectors, so the multiplication is done element-by-element. Proper matrix multiplication is done with the the `%*%` operator.

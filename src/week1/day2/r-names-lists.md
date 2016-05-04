@@ -88,6 +88,8 @@ You'll notice that by default both the rows *and* the columns of a data frame ha
 
 **Exercise.** Does `names()` return the column or row names of a data frame?
 
+**Remark.** The dimensions of a data frame can also be accessed with `nrow()` and `ncol()`.
+
 **Exercise.** You can use either `data.frame()` or `as.data.frame()` to convert existing data to data frames (the differences between the two are trivial). Try converting vectors and lists into data frames. What behavior do you observe? What happens when the elements of a list are of different lengths?
 
 Sometimes, you'll want to combine two data frames into the same one.
