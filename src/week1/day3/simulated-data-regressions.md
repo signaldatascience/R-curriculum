@@ -21,7 +21,7 @@ Suppose that $y = ax + \mathrm{error}$, where:
 
 * $x$ is normally distributed with mean 0 and standard deviation 1, and
 
-* $\mathrm{error}$ is normally distributed with mean 0 and standard deviation $b$ such that `a^2 + b^2 = 1`.[^var]
+* $\mathrm{error}$ is normally distributed with mean 0 and standard deviation $b$ such that $a^2 + b^2 = 1$.[^var]
 
 Then $a$ is the *correlation* between $x$ and $y$. The *percent variance in* $y$ *explained by $x$* is just $a^2$. This is also referred to as $R^2$.
 
@@ -36,7 +36,6 @@ In this exercise we'll explore the approximations to $a$ that come from applying
 
 	* `y` as defined above.
 
-
 2. Use `ggplot()` to make a scatter plot of `y` against `x` for various values of `a` and `n` to get intuition for what linear relationships between two normally distributed variables looks like.  Graph a linear best fit line along with the points using `geom_smooth()` and the right choice for the `method` parameter.
 
 ### The distributions of slope estimates ###
@@ -49,11 +48,11 @@ In this exercise we'll explore the approximations to $a$ that come from applying
 
 4. Let `a = 0.1`. Determine how the standard deviations of the outputs of `estimateSlopes()` vary with `n`. You'll likely find it useful to make a dataframe `dfSD2` with a larger range of values of `n`, and plot the entries as a function of `n`.
 
-### p-values ###
+### *p*-values ###
 
-1. Modify `estimateSlopes()` to make a function `estimateSlopesWithPVals()` to return a dataframe with estimated slopes and p-values associated with the slopes being nonzero. You'll have to figure out how to extract the latter from the `lm()` object in R.
+1. Modify `estimateSlopes()` to make a function `estimateSlopesWithPVals()` to return a dataframe with estimated slopes and *p*-values associated with the slopes being nonzero. You'll have to figure out how to extract the latter from the `lm()` object in R.
 
-2. Call the function with `a = 0.1, n = 500, numTrials = 10000`. Plot the slopes and the p-values. Compare the median p-value with the fraction of slopes that are less than or equal to zero.
+2. Call the function with `a = 0.1, n = 500, numTrials = 10000`. Plot the slopes and the *p*-values. Compare the median *p*-value with the fraction of slopes that are less than or equal to zero.
 
 [^scale]: Any normally distributed variable can be converted to such a variable using the `scale()` function in R.
 

@@ -53,7 +53,7 @@ We'll first learn about functional programming by using `lapply()`. The other `*
 
 A picture is worth a thousand words:
 
-![lapply picture](lapply.png)
+![A visual illustration of `lapply()`.](lapply.png)
 
 Here's an example of using `lapply()` to double every number in a vector. Run the following code:
 
