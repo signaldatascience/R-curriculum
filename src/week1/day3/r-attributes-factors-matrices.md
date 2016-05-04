@@ -76,29 +76,4 @@ Matrices
 
 [^collin]: The reason for not making a binary indicator variable for the first level of the factor is that the state of "factor is equal to its first level" can already be represented by the `length(levels()) - 1` binary indicator variables all being set to 0. As such, if we add in a binary indicator variable for the first level, it will cause problems with collinearity that breaks linear techniques (including regression).
 
-[^time]: The following code will work (**don't refer to it** unless you can't come up with your own solution):
-
-	```r
-	threshold = 8
-	for (i in 42:43) {
-	  rn = paste("H2GH", as.character(i), sep="")
-	  new_col = sapply(as.character(df[[rn]]), function(x) {
-	    if (substr(x, 6, 6) == "A" & substr(x, 1, 2) == "12") {
-	      x = paste("00", substr(x, 3, 6), sep="")
-	    }
-	    if (substr(x, 6, 6) == "A") {
-	      x = paste(as.character(as.numeric(substr(x, 1, 2)) + 12), substr(x, 3, 6), sep="")
-	    }
-	    if (substr(x, 3, 3) == ":") {
-	      as.numeric(substr(x, 1, 2)) + as.numeric(substr(x, 4, 5)) / 60 - threshold
-	    } else {
-	      NA
-	    }
-	  })
-	  names(new_col) = NULL
-	  df[[rn]] = unlist(new_col)
-	}
-	ggplot(df) + geom_histogram(aes(x=H2GH42), fill="red", alpha=0.2) + geom_histogram(aes(x=H2GH43), fill="blue", alpha=0.2)
-	```
-
-You can also use R's [inbuilt time classes](https://stat.ethz.ch/R-manual/R-devel/library/base/html/DateTimeClasses.html). Try doing it both ways.
+[^time]: You can use string manipulation or R's [inbuilt time classes](https://stat.ethz.ch/R-manual/R-devel/library/base/html/DateTimeClasses.html). Try doing it both ways.
