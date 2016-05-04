@@ -1,4 +1,4 @@
-TEMPLATE = "/home/kironide/Shared/Programming/andrewjho/_inc/pandoc-template.php"
+TEMPLATE = "/home/kironide/Shared/Documents/Signal/curriculum/pandoc-template-latex.latex"
 
 MDS = $(wildcard *.md)
 PDFS = $(patsubst %.md,%.pdf,$(MDS))
@@ -6,8 +6,8 @@ PDFS = $(patsubst %.md,%.pdf,$(MDS))
 all: $(PDFS)
 
 %.pdf: %.md
-	pandoc "$<" -o "$@" -f markdown -t latex --smart -M colorlinks:true
+	pandoc "$<" -o "$@" -f markdown -t latex --template=$(TEMPLATE) --smart -M colorlinks:true -M fontfamily:mathpazo
 
 .PHONY: clean
 clean:
-	rm -f $(PHPS)
+	rm -f $(PDFS)

@@ -119,7 +119,7 @@ Finally, columns of a data frame can be removed by assigning `NULL` to them.
 
 **Exercise.** Write a function that takes a data frame `df` and an integer `m` as input and returns a random sample of `m` continuous rows of `df` as the output. (By continuous, we mean that you would return row `i`, row `i+1`, ... all the way to row `i+m-1` for some `i`.)
 
-**Exercise.** Write a function that takes a data frame `df` and a string `colname` as input and returns a dataframe without any columns that have name equal to the value of `colname`. There are many ways to do this, but you may find the expression `colname %in% names(df)` or the `match()` function useful. Try to do it multiple ways! (*Hint:* Don't forget about the edge case where multiple columns have identical names.)
+**Exercise.** Write a function that takes a data frame `df` and a string `colname` as input and returns a dataframe without any columns that have name equal to the value of `colname`. There are many ways to do this, but you may find the expression `colname %in% names(df)` or the `match()` function useful. Try to do it multiple ways! (*Hint:* Don't forget about the edge case where multiple columns have identical names.)	
 
 [^learn]: You'll very soon learn an easier way of grabbing the vector directly.
 

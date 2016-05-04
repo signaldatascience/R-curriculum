@@ -55,6 +55,8 @@ For instance, we may make a new list with `x = list("a", 1, TRUE)`.
 
 To turn a list into an atomic vector, you can use `unlist()`.
 
+**Exercise.** Write a function `combine(a, b)` that takes lists `a` and `b`, returning a single list with both the elements of `a` and the elements of `b`. *E.g.*, `combine(list(1, 2), list(3, 4)`, would return `list(1, 2, 3, 4). (*Hint:* Try using `c()`.)
+
 **Exercise.** What happens when you `unlist()` a nested list?
 
 List elements can also be named, just like with atomic vectors, and can be accessed similarly. There are, however, *nuances* to list subsetting that we'll cover in depth later.

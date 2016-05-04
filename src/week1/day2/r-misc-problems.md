@@ -37,7 +37,7 @@ Take a look at the built-in variable `letters`.
 
 * Write a function that *removes* the last 4 characters of every column name of an input dataframe. (If the name is 4 or fewer characters long, turn it into an empty string.) You may find `substr()` and `nchar()` helpful.
 
-* Write a function that prints all of the row names of an input data frame joined together by an underscore (`"_"`) between each name. You may find `paste()` useful.
+* Write a function that prints all of the row names of an input data frame joined together by an underscore (`"_"`) between each name. You may find `paste()` useful. (*Hint:* If you're struggling to use `do.call()`, read the documentation closely! You don't have to use `do.call()`, though.)
 
 * Given a data frame of purely numeric data, write a function that returns the entries of the data frame ordered in a "spiral" fashion starting at the top left and proceeding counterclockwise and inward.
 
