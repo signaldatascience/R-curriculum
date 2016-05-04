@@ -1,6 +1,11 @@
 Functional Programming in R
 ===========================
 
+> And he to me: "Remember now your science,
+> which says that when a thing has more perfection,
+> so much the greater is its pain or pleasure.""
+> --- Dante, *Inferno*, 6. 106-109
+
 So far, you've been using *for* and *while* loops in R for iteration. There are, however, benefits to a [functional programming](https://en.wikipedia.org/wiki/Functional_programming) approach.
 
 In an iterative style, we *loop* through values and successively manipulate each value, whereas in a functional style we *apply* some function to every value independently. It's easiest to illustrate with an example.
@@ -146,13 +151,13 @@ Why use `*apply()` instead of loops?
 
 At times, the usage of loops is inevitable and the most natural way to program something. Don't get caught up in trying to code something functionally if a loop seems intuitive. In particular, these three use cases are more suitable for loops than for functional programming:
 
-	* Modifying a data structure in place (changing it without making a new copy)
+* Modifying a data structure in place (changing it without making a new copy)
 
-		* This is because you have to use the `<<-` operator to modify the object while situated in the scope of a function call.
+	* This is because you have to use the `<<-` operator to modify the object while situated in the scope of a function call.
 
-	* Recursive functionality
+* Recursive functionality
 
-	* While loops
+* While loops
 
 Moreover, people will sometimes say say that you should use the `*apply()` functions instead of loops because loops are slow. **This is not true.** 
 
