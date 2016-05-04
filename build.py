@@ -43,7 +43,7 @@ for directory in r:
     print(out)
 
     if '/src/' in directory:
-        pdfs = [os.path.abspath(p) for p in glob.glob('*.pdf')]
+        pdfs = [os.path.abspath(p) for p in glob.glob('*.*') if not p.endswith('.md')]
         for pdf in pdfs:
             new_path = pdf.replace('/src/', '/pdfs/')
             if not os.path.exists(os.path.split(new_path)[0]):
