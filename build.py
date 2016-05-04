@@ -6,7 +6,7 @@ import glob
 import shutil
 from subprocess import Popen, PIPE
 
-bad = ['.git', 'pdfs']
+bad = ['.git']
 
 def get_dirs(d):
     return filter(lambda x: os.path.isdir(os.path.join(d, x)), os.listdir(d))
