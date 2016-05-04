@@ -6,7 +6,7 @@ PDFS = $(patsubst %.md,%.pdf,$(MDS))
 all: $(PDFS)
 
 %.pdf: %.md
-	pandoc "$<" -o "$@" -f markdown -t latex --smart
+	pandoc "$<" -o "$@" -f markdown -t latex --smart -M colorlinks:true
 
 .PHONY: clean
 clean:

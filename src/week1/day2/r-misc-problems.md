@@ -12,7 +12,9 @@ After all that work with subsetting, let's do something a bit more enjoyable.
 
 Let's call an $n$-domino a list with two integers, where both entries are integers from 0 to $n$ inclusive. For example, `list(4,5)` is an $n$-domino (for any $n \ge 4$).
 
-* Write a function to return a list of every unique $n$-domino, given $n$. (Treat `list(a, b)` as being equivalent to `list(b, a)`.)
+* Write a function to return a list of every unique $n$-domino, given $n$. Treat `list(a, b)` as being equivalent to `list(b, a)`. (*Hint:* If you have a list `L`, you can append an item to it by directly assigning something to its `(length(L)+1)`th position.)
+
+	* It's very slow to continually append single items to lists over and over again, because you're copying over the structure with every iteration. If you can precalculate the nmber of list entries you'll need, you can *initialize* a list with `vector("list", list_size)`. (If possible, modify your code to do this and quantify the improvements in runtime using the `timeit` package.)
 
 A valid *circle* of $n$-dominoes is given by a list of $n$-dominoes, with the following properties:
 
