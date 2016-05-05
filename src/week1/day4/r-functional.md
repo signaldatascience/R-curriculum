@@ -148,14 +148,12 @@ However, passing in the named arguments to `sapply()` directly is much easier:
 
 **Exercise.** Write a function using `sapply()` to find the mean of every vector in a list of numeric vectors, ignoring `NA` values. Test your function on the list `L = lapply(1:5, function(x) sample(c(1:4, NA)))`.
 
-**Exercise.** Let `trims = seq(0, 0.5, 0.1)` and `x = rnorm(100)`. Rewrite the expression `lapply(trims, function(trim) mean(x, trim=trim))` to not need an anonymous function.[^trim]
-
 **Remark.** The same syntax works for `lapply()`. For `vapply()`, the named arguments go after the example return value.
 
 Why use `*apply()` instead of loops?
 ------------------------------------
 
-**Exercise.** Write a function that takes a data frame as input and returns it with its column names modified, where the name of the `n`th column has `_n` appended to the end.
+**Exercise.** Write a function that takes a data frame as input and returns it with its column names modified, where the name of the `n`th column has `"_n"` appended to the end.
 
 At times, the usage of loops is inevitable and the most natural way to program something. Don't get caught up in trying to code something functionally if a loop seems intuitive. In particular, these three use cases are more suitable for loops than for functional programming:
 
@@ -176,8 +174,6 @@ As we saw earlier with the $n$-dominoes problem, loops can be [sped up significa
 	* Every time you increase the size of an object within a loop, you actually *copy the whole structure over to a different part of memory* every single time.
 
 * Do not do things in a loop that can be done outside the loop.
-
-* Do not avoid loops simply for the sake of avoiding loops (see the above criteria).
 
 Given that loops don't actually have performance issues in R, why should we use `*apply()` functions at all? For these three reasons:[^why]
 
@@ -212,8 +208,6 @@ Supplemental exercises
 [^difftype]: Functions in R don't have a return type, so we don't know in advance what they'll return. Although the `double()` function only returns numerics, that isn't always the case, so it's best to return results in a `list()`, which allows for multiple types in its entries.
 
 [^bugs]: Since `vapply()` will return the correct type of 0-length vector in the case where the list of arguments is empty, it helps guard against errors from various edge cases.
-
-[^trim]: Try `lapply(trims, mean, x=x)`.
 
 [^redit]: From a 2008 issue of [R News](https://www.r-project.org/doc/Rnews/Rnews_2008-1.pdf).
 
