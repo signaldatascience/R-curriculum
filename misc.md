@@ -1,4 +1,4 @@
-- extend list with another list
+- factor expansion -- needs example of intended behavior
 
 ### Regional-level analysis ###
 

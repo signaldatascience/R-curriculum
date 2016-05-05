@@ -199,7 +199,7 @@ Improving old code
 Supplemental exercises
 ----------------------
 
-
+(coming soon)
 
 [^difftype]: Functions in R don't have a return type, so we don't know in advance what they'll return. Although the `double()` function only returns numerics, that isn't always the case, so it's best to return results in a `list()`, which allows for multiple types in its entries.
 
