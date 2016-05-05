@@ -80,7 +80,7 @@ col      col_2  col_3
 
 The motivation behind this functionality is that linear regressions can't be directly run with factors, which are *categorical* variables, in the predictors; the integer-valued `levels()` of a factor don't encode any meaning. Instead, we separate all but one level out into *binary indicator variables*, which we can regress against. The simplest and most common example of this is encoding a gender variable as 0 or 1.
 
-**Exercise.** Use `load()` to load `time.dat`, a two-column subset of the data from the [National Longitudinal Study of Adolescent Health](http://www.cpc.unc.edu/projects/addhealth). (The function will load it into the variable `df`.) Look at the documentation for [Wave II: In-Home Questionnaire, Public Use Sample](http://www.icpsr.umich.edu/icpsrweb/DSDR/studies/21600) and read about the two questions in the data (check the column names). Write some code to convert each column to numeric values representing "number of hours past 8:00 PM" and plot two histograms, one for each column, [overlaid on top of each other](http://stackoverflow.com/a/6957716/3721976).[^time]
+**Exercise.** Use `load()` to load `time.dat`, a two-column subset of the data from the [National Longitudinal Study of Adolescent Health](http://www.cpc.unc.edu/projects/addhealth). (The function will load it into the variable `df`.) Look at the documentation for [Wave II: In-Home Questionnaire, Public Use Sample](http://www.icpsr.umich.edu/icpsrweb/DSDR/studies/21600) and read about the two questions in the data (check the column names). Write some code to convert each column to numeric values representing "number of hours past 8:00 PM"[^8pm] and plot two histograms, one for each column, overlaid on top of each other using multiple `geom_histogram()` calls with the `fill` and `alpha` parameters. (*Hint:* Move the `aes()` call into the `geom_histogram()` calls.)[^time]
 
 Matrices
 --------
@@ -139,7 +139,9 @@ Feel free to skip these -- they're optional.
 
 [^collin]: The reason for not making a binary indicator variable for the first level of the factor is that the state of "factor is equal to its first level" can already be represented by the `length(levels()) - 1` binary indicator variables all being set to 0. As such, if we add in a binary indicator variable for the first level, it will cause problems with collinearity that breaks linear techniques (including regression).
 
-[^time]: You can use string manipulation or R's [inbuilt time classes](https://stat.ethz.ch/R-manual/R-devel/library/base/html/DateTimeClasses.html). Try doing it both ways.
+[^8pm]: Deciding what the cutoff point is where you stop counting something as "X hours after 8 PM" and start counting it as "24-X hours before 8 PM" is an arbitrary choice in principle, but some choices are more sensible than others -- use your human judgment to optimize for interpretability!
+
+[^time]: You can use string manipulation or R's [inbuilt time classes](https://stat.ethz.ch/R-manual/R-devel/library/base/html/DateTimeClasses.html). Try doing it both ways. For plotting the overlaid histograms, try `ggplot(df) + geom_histogram(aes(x=H2GH42), fill="red", alpha=0.2) + geom_histogram(aes(x=H2GH43), fill="blue", alpha=0.2)`.
 
 [^mod]: Just modify the attributes.
 
