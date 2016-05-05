@@ -113,23 +113,6 @@ The first form of iteration is the simplest, but you don't get the name or index
 
 * `sapply()` is an extension of `lapply()` which will `unlist()` the results. If appropriate, it will also assign dimensions to the output, turning it into a matrix.
 
-Let's look at `vapply()`. It's used as such (run this code):
-
-```r
-vapply(mtcars, class, character(1))
-vapply(list(matrix(1:9, nrow=3), matrix(1:20, nrow=5)), dim, numeric(2))
-```
-
-In general, when calling `vapply(args, func, example)`, *each time `func()` is called on an element of `args`*, the output must have the same type and length as `example`. Otherwise, `vapply()` stops with an error. Also, when returning multiple numeric vectors, `vapply()` will add appropriate dimensions to the output.
-
-**Exercise.** Using any inputs you like, write valid `vapply(args, func, example)` calls which have each of the following values for `example`: `logical(3)`, `numeric(10)`, `character(2)`.
-
-**Exercise.** With a variety of different functions, test the behavior of `vapply()` and `sapply()` when the list of arguments is an empty list (`list()`). How would the behavior of `vapply()` help you write code robust to errors and bugs?[^bugs]
-
-**Exercise.** What happens when `sapply(args, func)` is called in a situation where `func()` returns vectors of different lengths for different elements of `args`? How can `vapply()` be used to detect unexpected instances of this situation?
-
-**Exercise.** Experiment with lists containing `Sys.time()`. In particular, what happens when you use an `*apply()` function to determine the class of every element in a list containing `Sys.time()` for one of its entries?
-
 It's dangerous to use `sapply()` when writing functions you'll use elsewhere, because you won't know if your output is an unexpected type or has an unexpected length until your program exhibits strange behavior elsewhere. It's better to use `vapply()`, which throws an error when the output isn't of the specified type and length and enforces type consistency in various edge cases. However, it's fine to use `sapply()` when working interactively in the console, where you'll be able to visually notice any strange behavior.
 
 Passing in named arguments
@@ -137,11 +120,37 @@ Passing in named arguments
 
 If you have `sapply(df, func)` and want to pass in named arguments to every call of `func()`, you can do so by passing in named arguments into `sapply()` directly, *e.g.*, `sapply(df, func, param=TRUE)` will call `func(c, param=TRUE)` for every column `c` of `df`.
 
-**Remark.** The same syntax works for `lapply()`. For `vapply()`, the named arguments go after the example return value.
+Suppose that we define the `multiply()` function as follows:
+
+```r
+multiply = function(x, k=2) {
+  k*x
+}
+```
+
+Without being able to pass in named arguments as described above, if we wanted to call `multiply()` with `k=5`, we would have to do something ugly with anonymous functions:
+
+```r
+> sapply(1:10, function(x) multiply(x, k=5))
+ [1]  5 10 15 20 25 30 35 40 45 50
+```
+
+However, passing in the named arguments to `sapply()` directly is much easier:
+
+```r
+> sapply(1:10, multiply)
+ [1]  2  4  6  8 10 12 14 16 18 20
+> sapply(1:10, multiply, k=3)
+ [1]  3  6  9 12 15 18 21 24 27 30
+> sapply(1:10, multiply, k=10)
+ [1]  10  20  30  40  50  60  70  80  90 100
+```
 
 **Exercise.** Write a function using `sapply()` to find the mean of every vector in a list of numeric vectors, ignoring `NA` values. Test your function on the list `L = lapply(1:5, function(x) sample(c(1:4, NA)))`.
 
-**Exercise.** Let `trims = seq(0, 0.5, 0.1)` and `x = rnorm(100)`. Rewrite the expression `lapply(trims, function(trim) mean(x, trim=trim))` to not need an anonymous function.
+**Exercise.** Let `trims = seq(0, 0.5, 0.1)` and `x = rnorm(100)`. Rewrite the expression `lapply(trims, function(trim) mean(x, trim=trim))` to not need an anonymous function.[^trim]
+
+**Remark.** The same syntax works for `lapply()`. For `vapply()`, the named arguments go after the example return value.
 
 Why use `*apply()` instead of loops?
 ------------------------------------
@@ -203,6 +212,8 @@ Supplemental exercises
 [^difftype]: Functions in R don't have a return type, so we don't know in advance what they'll return. Although the `double()` function only returns numerics, that isn't always the case, so it's best to return results in a `list()`, which allows for multiple types in its entries.
 
 [^bugs]: Since `vapply()` will return the correct type of 0-length vector in the case where the list of arguments is empty, it helps guard against errors from various edge cases.
+
+[^trim]: Try `lapply(trims, mean, x=x)`.
 
 [^redit]: From a 2008 issue of [R News](https://www.r-project.org/doc/Rnews/Rnews_2008-1.pdf).
 
