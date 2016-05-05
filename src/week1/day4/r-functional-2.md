@@ -55,12 +55,42 @@ Some operations become very easy with `outer()`, so let's return to past assignm
 
 We'll begin with a discussion of `mapply()`, upon which `Map()` is built.
 
-`mapply()` applies a function (which accepts multiple parameters) over multiple vectors of arguments, calling the function on the first element of each list, then the second elements, and so on and so forth. Precisely, it accepts as input a function `func` and `N` equivalently-sized lists of arguments `args1`, .., `argsN`, each of length `k`. It returns as output a list containing `func(args1[1], ..., argsN[1])`, `func(arg1[2], ..., argsN[2])`, ..., `func(args1[k], ..., argsN[k])`. Intuitively, you can think of `mapply()` as walking down multiple parallel vectors of arguments, applying the function to each row in turn and returning the results.
+`mapply()` applies a function (which accepts multiple parameters) over multiple vectors of arguments, calling the function on the first element of each list, then the second elements, and so on and so forth. Precisely, it accepts as input a function `func` and `N` equivalently-sized lists of arguments `args1`, .., `argsN`, each of length `k`. It returns as output a list containing `func(args1[1], ..., argsN[1])`, `func(arg1[2], ..., argsN[2])`, ..., `func(args1[k], ..., argsN[k])`.
+
+Intuitively, you can think of `mapply()` as walking down multiple parallel vectors of arguments, applying the function to each row in turn and returning the results. Alternatively, you can also think of `lapply()` as being a stunted version of `Map()` which can only iterate over one vector of arguments instead of arbitrarily many.
 
 **`Map()` is a wrapper for `mapply()`** that calls it with the parameter `simplify=FALSE`. This is usually good, because the `simplify=TRUE` default can result in odd, unexpected behavior.
+
+**Exercise.** Using `Map()`, write a function that takes two lists of equal size, `values` and `weights`, and applies `weighted.mean()` to calculate the mean of each vector in `values` weighted by the corresponding weights in `weights`. Test your function on the inputs `values = lapply(1:10, function(x) rnorm(10)); weights = lapply(1:10, function(x) rnorm(10))`. Return the output as a vector.
+
+**Exercise.** Modify your previous function for applying `weighted.mean()` over a list of vectors so that the mean of vectors containing `NA`s ignores them.
 
 `Reduce()`
 ----------
 
-`Filter()`
-----------
+The `Reduce(func, vec)` function calls `func()` on the first two elements of `vec`, and then calls `func()` on the output and the third element of `vec`, and so on and so forth. That is, `Reduce(f, 1:4)` is equivalent to `f(f(f(1, 2), 3), 4)`.
+
+**Exercise.** Implement your own version of `sum()` using `Reduce()` and addition. (*Hint:* `"+"` counts as a function.)
+
+**Exercise.** Write `my_union(x, y)` and `my_intersect(x, y)` functions using `Reduce()` and set operations (see `?set`) that take lists of arbitrarily many vectors and calculates, respectively, the union or intersection of all of them.
+
+**Exercise.** There are functions which, when passed into `Reduce()`, give a different overall result depending on whether `Reduce()` starts with the two leftmost or the two rightmost elements of the vector it's operating on. Write a function that runs `Reduce()` in both directions and, if the two results are the same, returns the result, and returns `NA` otherwise.
+
+**Exercise.** Implement your own version of `Reduce()` with all the basic functionality.
+
+`Filter()`, `Find()`, and `Position()`
+--------------------------------------
+
+All three of these functions accept a function `func()` as their first argument and a vector or list `vals` as their second argument, with the restriction that `func()` must return only `TRUE` or `FALSE` when applied to the entries of `vals`.
+
+* `Filter()` returns the elements in `vals` for which `func()` returns `TRUE` when evaluated on each of those elements.
+
+* `Find()` returns the first element in `vals` for which `func()` returns `TRUE` when evaluated on that element.
+
+* `Position()` returns the position of the first element in `vals` for which `func()` returns `TRUE` when evaluated on that element.
+
+Both `Find()` and `Position()` search from the left by default, but they can search starting from the right with the parameter `right=TRUE`.
+
+**Advanced R., 11.4.3.4.** Implement `Any()`, a function that takes a list and a predicate function (a function returning either `TRUE` or `FALSE`), and returns `TRUE` if the predicate function returns `TRUE` for any of the inputs. Implement `All()` similarly.[^anyall]
+
+[^anyall]: *Hint:* The logical operators `"|"` and `"&"` can be passed into `Reduce()`.

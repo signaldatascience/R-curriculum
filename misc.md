@@ -1,4 +1,7 @@
-- factor expansion -- needs example of intended behavior
+- ggplot2
+- dplyr
+- knitr
+- pryr
 
 Let's look at `vapply()`. It's used as such (run this code):
 

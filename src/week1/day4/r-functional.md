@@ -163,9 +163,9 @@ At times, the usage of loops is inevitable and the most natural way to program s
 
 	* This is because you have to use the `<<-` operator to modify the object while situated in the scope of a function call.
 
-* Recursive functionality
+* Recursive functionality, which is self-dependent, contrary to the isolated nature of each function call when using `*apply()`[^solve]
 
-* While loops
+* While loops, because you don't know in advance how many times the loop will iterate
 
 Moreover, people will sometimes say say that you should use the `*apply()` functions instead of loops because loops are slow. **This is not true.** 
 
@@ -205,31 +205,15 @@ Supplemental exercises
 > 
 > Create a vector of the values of $e^x \cos(x)$ at $x = 3, 3.1, 3.2, \ldots, 6$.
 
-
+Answer them again using the `*apply()` functions.
 
 **Exercise.** Return to the exercise yesterday about expanding factors into binary indicator variables and rewrite your function using the `*apply()` functions. You can assume that your data frame contains only factors, because with a more general dataframe you can simply extract the column factors only and operate on those.
-
-**Exercise.** 
-
-**Exercise.** 
-
-**Exercise.** 
-
-**Exercise.** 
-
-**Exercise.** 
-
-**Exercise.** 
-
-**Exercise.** 
-
-**Exercise.** 
-
-**Exercise.** 
 
 [^difftype]: Functions in R don't have a return type, so we don't know in advance what they'll return. Although the `double()` function only returns numerics, that isn't always the case, so it's best to return results in a `list()`, which allows for multiple types in its entries.
 
 [^bugs]: Since `vapply()` will return the correct type of 0-length vector in the case where the list of arguments is empty, it helps guard against errors from various edge cases.
+
+[^solve]: Recurrence relations can sometimes be ["solved"](https://en.wikipedia.org/wiki/Recurrence_relation#Solving) in a sense and transformed into a nonrecursive form that's potentially amenable to functional programming, but this is difficult.
 
 [^redit]: From a 2008 issue of [R News](https://www.r-project.org/doc/Rnews/Rnews_2008-1.pdf).
 
