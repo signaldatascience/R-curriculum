@@ -75,7 +75,7 @@ We can write this more compactly using an *anonymous function*, which is an unna
  [1]  2  4  6  8 10 12 14 16 18 20
 ```
 
-If we anticipate that we won't be using a function often enough to give it a name, we can define it within `sapply()` like we did with `function(x) 2*x`. (Recall that a function doesn't need an explicit `return()` statement -- it returns the last expression evaluated by default -- and that I only need curly braces for a multiline function definition.)
+If we anticipate that we won't be using a function often enough to give it a name, we can define it within `sapply()` like we did with `function(x) 2*x`. (Recall that a function doesn't need an explicit `return()` statement -- it returns the last expression evaluated by default -- and that it only needs curly braces if the body of the function has multiple expressions.)
 
 **Exercise.** Write a function using `lapply()` and `class()` to print out the class of each column in the built-in `mtcars` dataset. Run `unlist()` at the end so it prints in a more human-readable format. (*Hint:* Remember that data frames are built on top of lists.)
 
@@ -96,14 +96,16 @@ In general, there are three main ways to loop through a list-based data structur
 
 * Looping through the names: `for (n in names(df))`
 
-**Exercise.** The `lapply()` equivalent of the first is `lapply(df, function(x) {})`. Write down equivalents for the second and third forms.
+(Remember that a data frame is just a list, so the first loop iterates through each column individually and the second loop iterates from 1 to the number of columns in `df`.)
 
-The first form is the simplest, but you don't get the name or index of each item. The second and the third are more complex, but provide you with more information, so keep them in mind -- they may be helpful for more complex problems.
+**Exercise.** Write a function that takes a data frame as input and modifies each column to be equal to itself minus the *previous* column, with the first column remaining unchanged. Test your function on `df = data.frame(matrix(rnorm(100), nrow=10))` -- aside from 9 entries in the first column, every entry should be equal to 10.
+
+The first form of iteration is the simplest, but you don't get the name or index of each item, just the item itself. The second and the third are more complex, but provide you with more information, so keep them in mind -- they may be helpful for more complex problems.
 
 `vapply()` and `sapply()`
 -------------------------
 
-`sapply()` is in fact not the most basic of the `*apply()` functions; `lapply()` is. Here's a brief description of two more functions to give you a sense for the overall landscape:
+`lapply()` is in fact not the most basic of the `*apply()` functions; `lapply()` is. Here's a brief description of two more functions to give you a sense for the overall landscape:
 
 * `lapply()` maps a function onto a list and *returns a list*.
 
@@ -111,7 +113,7 @@ The first form is the simplest, but you don't get the name or index of each item
 
 * `sapply()` is an extension of `lapply()` which will `unlist()` the results. If appropriate, it will also assign dimensions to the output, turning it into a matrix.
 
-Let's look at `vapply()`. It's called as such (run this code):
+Let's look at `vapply()`. It's used as such (run this code):
 
 ```r
 vapply(mtcars, class, character(1))
@@ -143,6 +145,8 @@ If you have `sapply(df, func)` and want to pass in named arguments to every call
 
 Why use `*apply()` instead of loops?
 ------------------------------------
+
+**Exercise.** Write a function that takes a data frame as input and returns it with its column names modified, where the name of the `n`th column has `_n` appended to the end.
 
 At times, the usage of loops is inevitable and the most natural way to program something. Don't get caught up in trying to code something functionally if a loop seems intuitive. In particular, these three use cases are more suitable for loops than for functional programming:
 
