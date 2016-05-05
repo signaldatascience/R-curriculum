@@ -3,7 +3,7 @@ Functional Programming in R
 
 > And he to me: "Remember now your science,
 > which says that when a thing has more perfection,
-> so much the greater is its pain or pleasure.""
+> so much the greater is its pain or pleasure."
 > --- Dante, *Inferno*, 6. 106-109
 
 So far, you've been using *for* and *while* loops in R for iteration. There are, however, benefits to a [functional programming](https://en.wikipedia.org/wiki/Functional_programming) approach.
