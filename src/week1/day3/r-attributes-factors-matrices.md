@@ -143,7 +143,7 @@ Feel free to skip these -- they're optional.
 
 [^time]: You can use string manipulation or R's [inbuilt time classes](https://stat.ethz.ch/R-manual/R-devel/library/base/html/DateTimeClasses.html). Try doing it both ways. For plotting the overlaid histograms, try `ggplot(df) + geom_histogram(aes(x=H2GH42), fill="red", alpha=0.2) + geom_histogram(aes(x=H2GH43), fill="blue", alpha=0.2)`.
 
-[^mod]: Just modify the attributes.
+[^mod]: Just modify the attributes directly by assigning to `dim(mat)`, `attributes(mat)$dim`, or `attr(mat, "dim")`!
 
 [^matsub]: There are some nuances -- if you want to learn about them, read Hadley Wickham's *Advanced R*.
 
