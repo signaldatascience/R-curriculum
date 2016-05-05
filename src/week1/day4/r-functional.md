@@ -183,15 +183,9 @@ Given that loops don't actually have performance issues in R, why should we use 
 
 * The `*apply()` functions have no unwanted [side effects](https://en.wikipedia.org/wiki/Side_effect_%28computer_science%29).
 
-	* That is to say, their functionality is *isolated* from the rest of your code, so it's harder for you to make accidental modifications to variables you've defined elsewhere.
+	* That is to say, their functionality is *isolated* from the rest of your code, so it's harder for you to make accidental modifications to variables you've defined elsewhere.[^caveat]
 
-	* Two caveats are that this isn't true if you use `assign()` or the `<<-` operator, which are seldom used and only show up in very specific situations.
-
-* Multi-core processing packages for R implement parallelization by overwriting the built-in `*apply()` functions with their own versions. As such, liberal usage of `*apply()` in your code means that you'll be able to easily parallelize it without much rewriting.
-
-	* It's precisely because the `*apply()` functions have no side effects that they're often used for parallelization purposes. Otherwise, it can be very difficult to ensure correct program behavior.
-
-	* More importantly, when calling, say, `sapply(args, func)`, each call of `func()` is completely independent of the other ones. This allows them to easily be dispatched to different processor cores.
+	* Also, when calling, say, `sapply(args, func)`, each call of `func()` is completely independent of the other ones. This allows them to easily be dispatched to different processor cores.[^multi]
 
 Improving old code
 ------------------
@@ -212,3 +206,7 @@ Supplemental exercises
 [^redit]: From a 2008 issue of [R News](https://www.r-project.org/doc/Rnews/Rnews_2008-1.pdf).
 
 [^why]: See the answers to [Is R's apply family more than syntactic sugar](http://stackoverflow.com/a/2276001/3721976), including the comments on the first one.
+
+[^caveat]: Two caveats are that this isn't true if you use `assign()` or the `<<-` operator, which are seldom used and only show up in very specific situations.
+
+[^multi]: Multi-core processing packages for R implement parallelization by overwriting the built-in `*apply()` functions with their own versions. As such, liberal usage of `*apply()` in your code means that you'll be able to easily parallelize it without much rewriting.
