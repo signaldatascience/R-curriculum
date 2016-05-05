@@ -49,7 +49,7 @@ Similar to atomic vectors, lists are another data structure in R. The main diffe
 
 * Lists can contain many different data types, not just a single data type.
 
-For instance, we may make a new list with `x = list("a", 1, TRUE)`.
+For instance, we may make a new list with `x = list("a", 1, TRUE)`. An empty list is constructed with just `list()`.
 
 **Exercise.** What is the data type of a list?
 
@@ -64,6 +64,12 @@ List elements can also be named, just like with atomic vectors, and can be acces
 **Exercise.** You can access a named element in a list with, *e.g.*, `x$a`. What's the difference between `x["a"]` and `x$a` (if you have, say, `x = c(a = 1, b = 2, c = 3)`)?[^diff]
 
 **Exercise.** What happens when you try to combine vectors with lists? Lists inside vectors? Vectors inside lists?
+
+### Subsetting with lists ###
+
+We'll cover this in greater depth in the next lesson. Briefly, when accessing the items of a list with, say, `L[1:5]`, what's returned isn't the underlying items -- because there's no way to guarantee that they're the same type, returning a vector would be very likely to introduce unwanted coercion (especially considering that the use case of a list is when the contents have different types). Rather, a direct single-bracket subset of a list returns the subset of items contained in a smaller list.
+
+Keep this in mind as you progress -- we'll soon learn how to modify the contents of a list directly.
 
 Data frames
 -----------

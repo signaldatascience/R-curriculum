@@ -40,6 +40,12 @@ Moreover, you can pass in *character vectors* as the index vector to subset base
 
 **Exercise.** Use `[]` to play around with subsetting lists. What *type* of object do you get back?
 
+**Exercise.** Write code to replace the 3rd item in `list(1, 2, 3, 4, 5)` with `1:5`, resulting in `list(1, 2, 1:5, 4, 5)`. Use single-bracket subsetting.
+
+A list `L` can be extended by simply assigning items to an index greater than `length(L)`.
+
+**Exercise.** Make a list of length 10. What happens when you assign a value to index 20? In general, is it faster to initialize a list with arbitrary values and iteratively fill in those values with the right ones or to simply iteratively extend a preexisting empty list with the right values? Experiment with lists and the `timeit` package to find out.
+
 Recall that data frames are simply complex, two-dimensional lists. If you subset with a *single vector*, data frames behave identically to lists. However, you can simultaneously subset both dimensions by passing in *two* vectors. It's easiest to demonstrate:
 
 ```r
