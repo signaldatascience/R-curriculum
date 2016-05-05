@@ -1,5 +1,5 @@
-Functional Programming in R
-===========================
+Functional Programming in R, Part I
+===================================
 
 So far, you've been using *for* and *while* loops in R for iteration. There are, however, benefits to a [functional programming](https://en.wikipedia.org/wiki/Functional_programming) approach.
 
@@ -82,6 +82,8 @@ If we anticipate that we won't be using a function often enough to give it a nam
 **Exercise.** Write a function using `lapply()` to standardize each column of `mtcars` by (1) subtracting off its mean and (2) dividing it by its standard deviation (given by `sd()`). Be sure to check that your function returns a data frame.
 
 **Exercise.** Write a function using `lapply()` that standardizes every numeric column of an input data frame and leaves the others unchanged. Test your function on the dataframe defined by `df = data.frame(matrix(1:100, nrow=10)); df[1:5] = lapply(df[1:5], as.character)` (understand what this code is doing as well).
+
+**Exercise.** Implement a basic version of `lapply(args, func)` without using any other `*apply()` functions. Don't worry about complicated functionality like passing in named arguments (discussed below). Make sure to improve runtime by preallocating the needed space.
 
 Looping patterns
 ----------------
@@ -197,7 +199,33 @@ Improving old code
 Supplemental exercises
 ----------------------
 
-(coming soon)
+**Exercise.** Return to these two exercises from the first day's assignments:
+
+> Calculate the sums $\sum_{i=10}^{100} \left(i^3 + 4i^2\right)$ and $\sum_{i=1}^{25} \left(\frac{2^i}{i} + \frac{3^i}{i^2}\right)$ using the `sum()` function.
+> 
+> Create a vector of the values of $e^x \cos(x)$ at $x = 3, 3.1, 3.2, \ldots, 6$.
+
+
+
+**Exercise.** Return to the exercise yesterday about expanding factors into binary indicator variables and rewrite your function using the `*apply()` functions. You can assume that your data frame contains only factors, because with a more general dataframe you can simply extract the column factors only and operate on those.
+
+**Exercise.** 
+
+**Exercise.** 
+
+**Exercise.** 
+
+**Exercise.** 
+
+**Exercise.** 
+
+**Exercise.** 
+
+**Exercise.** 
+
+**Exercise.** 
+
+**Exercise.** 
 
 [^difftype]: Functions in R don't have a return type, so we don't know in advance what they'll return. Although the `double()` function only returns numerics, that isn't always the case, so it's best to return results in a `list()`, which allows for multiple types in its entries.
 
