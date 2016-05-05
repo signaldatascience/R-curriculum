@@ -55,7 +55,7 @@ Be sure to pay attention to these details when you load data from external sourc
 
 **Exercise.** Write a function that takes in a data frame and, for each factor column, replaces every `NA` with the most common non-`NA` value in the column. Generate a toy dataframe to use to demonstrate that your function works. Write a different function that replaces every `NA` value with a random level of the factor, distributed identically to their relative frequencies in the column's non-`NA` values. How can you make this [imputation](https://en.wikipedia.org/wiki/Imputation_(statistics)) method reproducible? (*Hint:* Try `set.seed()`.)
 
-**Exercise.** Write a function that takes in a data frame, with some but not all columns being factors, and expands each factor into a set of *indicator variables* within the data frame. Precisely, for each factor, replace that factor column with a number of *binary indicator variables*, having these properties:
+**Exercise.** Write a function that takes in a data frame, with some but not all columns being factors, and expands each factor into a set of *indicator variables* within the data frame. Precisely, for each factor, *replace* that factor column with a number of *binary indicator variables*, having these properties:
 
 * Every level of the factor, aside from the first level, corresponds to a new binary indicator variable.[^collin]
 
@@ -63,7 +63,22 @@ Be sure to pay attention to these details when you load data from external sourc
 
 * For each binary indicator variable, its name is equal to the following strings concatenated together in order: (1) the name of the original factor, (2) an underscore (`"_"`), and (3) the name of the factor level itself.
 
-You can assume that there are no `NA`s in the input dataframe. Test your code on the data frame `df = mtcars[1:10,]; for (n in c("cyl", "am", "carb")) df[[n]] = factor(df[[n]])`; you should obtain a result with 16 columns.
+You can assume that there are no `NA`s in the input dataframe. Test your code on the data frame `df = mtcars[1:10,]; for (n in c("cyl", "am", "carb")) df[[n]] = factor(df[[n]])`; you should obtain a result with 13 columns.
+
+To illustrate the desired functionality, consider the following diagram:
+
+```
+col      col_2  col_3
+---      -----  -----
+ 1         0      0
+ 2         1      0
+ 1    =>   0      0
+ 2         1      0
+ 2         1      0
+ 3         0      1
+```
+
+The motivation behind this functionality is that linear regressions can't be directly run with factors, which are *categorical* variables, in the predictors; the integer-valued `levels()` of a factor don't encode any meaning. Instead, we separate all but one level out into *binary indicator variables*, which we can regress against. The simplest and most common example of this is encoding a gender variable as 0 or 1.
 
 **Exercise.** Use `load()` to load `time.dat`, a two-column subset of the data from the [National Longitudinal Study of Adolescent Health](http://www.cpc.unc.edu/projects/addhealth). (The function will load it into the variable `df`.) Look at the documentation for [Wave II: In-Home Questionnaire, Public Use Sample](http://www.icpsr.umich.edu/icpsrweb/DSDR/studies/21600) and read about the two questions in the data (check the column names). Write some code to convert each column to numeric values representing "number of hours past 8:00 PM" and plot two histograms, one for each column, [overlaid on top of each other](http://stackoverflow.com/a/6957716/3721976).[^time]
 

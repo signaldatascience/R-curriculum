@@ -1,12 +1,7 @@
 Functional Programming in R
 ===========================
 
-> And he to me: "Remember now your science,
-> which says that when a thing has more perfection,
-> so much the greater is its pain or pleasure."
-> --- Dante, *Inferno*, 6. 106-109
-
-So far, you've been using *for* and *while* loops in R for iteration. There are, however, benefits to a [functional programming](https://en.wikipedia.org/wiki/Functional_programming) approach. Like with the above quote from Dante's *Inferno*, the simplicity and elegance of functional programming paradigms, as manifested in the `*apply()` functions (among others), can be very powerful -- however, there are nuances to understand, and if you don't, you may end up painfully confused by the bugs you encounter.
+So far, you've been using *for* and *while* loops in R for iteration. There are, however, benefits to a [functional programming](https://en.wikipedia.org/wiki/Functional_programming) approach.
 
 In an iterative style, we *loop* through values and successively manipulate each value, whereas in a functional style we *apply* some function to every value independently. It's easiest to illustrate with an example.
 
@@ -69,9 +64,9 @@ double = function(x) {
 lapply(1:10, double)
 ```
 
-We first create a function `double(x)` which returns 2 times its argument, and then we `lapply()` the `double()` function onto the vector `1:10`, with the result of each computation returned in a list. In general, when calling `lapply(values, func)`, each value of `values` is supplied as an unnamed first argument to `func()`.
+We first create a function `double(x)` and then we `lapply()` the `double()` function onto the vector `1:10`, with the result of each computation returned in a list. In general, when calling `lapply(values, func)`, each value of `values` is supplied as an unnamed first argument to `func()`.
 
-**Exercise.** Why might we want to by default return the output of `lapply()` in a *list* instead of just `unlist()`ing the values automatically?[^difftype]
+**Exercise.** Why might we want to return the output of `lapply()` in a *list* by default instead of just `unlist()`ing the values automatically?[^difftype]
 
 We can write this more compactly using an *anonymous function*, which is an unnamed function defined for use in a local context only. Run the following code:
 
