@@ -6,7 +6,7 @@ Functional Programming in R
 > so much the greater is its pain or pleasure."
 > --- Dante, *Inferno*, 6. 106-109
 
-So far, you've been using *for* and *while* loops in R for iteration. There are, however, benefits to a [functional programming](https://en.wikipedia.org/wiki/Functional_programming) approach.
+So far, you've been using *for* and *while* loops in R for iteration. There are, however, benefits to a [functional programming](https://en.wikipedia.org/wiki/Functional_programming) approach. Like with the above quote from Dante's *Inferno*, the simplicity and elegance of functional programming paradigms, as manifested in the `*apply()` functions (among others), can be very powerful -- however, there are nuances to understand, and if you don't, you may end up painfully confused by the bugs you encounter.
 
 In an iterative style, we *loop* through values and successively manipulate each value, whereas in a functional style we *apply* some function to every value independently. It's easiest to illustrate with an example.
 
@@ -51,14 +51,14 @@ However, I can do this in a somewhat more compact fashion by using R's `sapply()
 
 In general, the family of `*apply()` functions in R all facilitate programming in a functional paradigm.
 
-Using `sapply()` with anonymous functions
+Using `lapply()` with anonymous functions
 -----------------------------------------
 
 We'll first learn about functional programming by using `lapply()`. The other `*apply()` functions are mainly extensions of `lapply()`, and we'll cover them later.
 
 A picture is worth a thousand words:
 
-![A visual illustration of `lapply()`.](lapply.png)
+![A visual illustration of `lapply()` from *Advanced R*.](lapply.png)
 
 Here's an example of using `lapply()` to double every number in a vector. Run the following code:
 
@@ -194,7 +194,7 @@ Improving old code
 
 **Exercise.** Go back to your old code for various R exercises. Find five functions which could be written more easily or clearly using functional programming (*e.g.*, using the `*apply()` functions instead of a `for` loop) and rewrite them. Check the difference in runtime.
 
-**Exercise.** If you remember writing any R code in the past for exercises where you kept adding values to a vector or list on every iteration of a loop, rewrite the code here using a preallocated data structure (if possible). CHeck the difference in runtime using the `timeit` package.
+**Exercise.** If you remember writing any R code in the past for exercises where you kept adding values to a vector or list on every iteration of a loop, rewrite the code here using a preallocated data structure (if possible). Check the difference in runtime using the `timeit` package.
 
 Supplemental exercises
 ----------------------
