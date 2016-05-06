@@ -100,14 +100,14 @@ In general, there are three main ways to loop through a list-based data structur
 
 (Remember that a data frame is just a list, so the first loop iterates through each column individually and the second loop iterates from 1 to the number of columns in `df`.)
 
-**Exercise.** Write a function that takes a data frame as input and modifies each column to be equal to itself minus the *previous* column, with the first column remaining unchanged. Test your function on `df = data.frame(matrix(rnorm(100), nrow=10))` -- aside from 9 entries in the first column, every entry should be equal to 10.
+**Exercise.** Write a function that takes a data frame as input and modifies each column to be equal to itself minus the *previous* column, with the first column remaining unchanged. Test your function on `df = data.frame(matrix(1:100, nrow=10))` -- aside from 9 entries in the first column, every entry should be equal to 10.
 
 The first form of iteration is the simplest, but you don't get the name or index of each item, just the item itself. The second and the third are more complex, but provide you with more information, so keep them in mind -- they may be helpful for more complex problems.
 
 `vapply()` and `sapply()`
 -------------------------
 
-`lapply()` is in fact not the most basic of the `*apply()` functions; `lapply()` is. Here's a brief description of two more functions to give you a sense for the overall landscape:
+`Lapply()` is the most basic of the `*apply()` functions, but there are more. Here's a brief description of two more functions to give you a sense for the overall landscape:
 
 * `lapply()` maps a function onto a list and *returns a list*.
 

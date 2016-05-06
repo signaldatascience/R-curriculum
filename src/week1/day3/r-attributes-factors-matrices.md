@@ -129,7 +129,7 @@ Optional challenge exercises
 
 Feel free to skip these -- they're optional.
 
-**Exercise.** Write a function `matrix_mult(A, B)` that implements matrix multiplication, computing `A %*% B` (without using the `%*%` operator, of course). Compare the performance of `matrix_mult()` with the built-in `%*%` operator with the `timeit` function for matrices of different sizes. Can you speed up your code?
+**Exercise.** Write a function `matrix_mult(A, B)` that implements matrix multiplication, computing `A %*% B` (without using the `%*%` operator, of course). Compare the performance of `matrix_mult()` with the built-in `%*%` operator with the `timeit` package for matrices of different sizes. Can you speed up your code?
 
 **Exercise.** On the 2D plane, we can identify the *point* $(x,y)$ with the *column vector* `matrix(c(x,y), nrow=2, ncol=1)`. First, write a function which takes in a list of column vectors, internally adds each one as a row of a two-column dataframe, and then uses `ggplot()` to graph a *scatterplot* of all the points in the input list. Second, modify this function to accept an argument `x` and so that for every column vector `c` in its list of points, instead of putting the data in `c` directly into the data frame, it does so for the product `mystery(x) %*% c` (for the `mystery()` function defined in a previous exercise). Experiment with different values of `x` and come up with a geometric understanding of how the output graph changes as you modify `x`.[^interp]
 
