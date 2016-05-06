@@ -10,23 +10,31 @@ Week 1
 
 * Data science: UN infant mortality data & Galton height data; simple linear regression, plotting results, adjusted R-squared
 
+* Work order: `r-basics.pdf`, `r-atomic-vectors.pdf`, `r-intro-functions.pdf`, `linreg-undata.pdf`, `linreg-galton.pdf`
+
 ### Day 2 ###
 
 * R: names, lists, data frames; subsetting; miscellaneous exercises
 
 * Data science: Galton height data, States data, MCAS data, etc.; more linear regression, stepwise regression, corrplot
 
+* Work order: `r-names-lists.pdf`, `r-subsetting.pdf`, `r-misc-problems.pdf`
+
 ### Day 3 ###
 
-* R: stylistic tips; factors, attributes, matrices; functional programming (*apply functions)
+* R: attributes, factors, matrices
 
-* Data science: test
+* Data science: simulated data about regressions
+
+* Work order: `simulated-data-regressions.pdf`, `r-attributes-factors-matrices.pdf`
 
 ### Day 4 ###
 
-* R: 
+* R: functional programming
 
-* Data science: 
+* Data science: problems from Gelman and Hill
+
+* Work order: `r-functional.pdf`, `r-functional-2.pdf`
 
 ### Day 5 ###
 
