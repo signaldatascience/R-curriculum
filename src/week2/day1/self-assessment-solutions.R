@@ -5,10 +5,10 @@ library(psych)
 ### Part 1 (Andrew's solution) ###
 
 # Simulate X and Y for 10000 trials
-n_trials = 1000000
+n_trials = 10000
 X = runif(n_trials)
 Y = runif(n_trials, max=X)
-#qplot(Y, X)
+qplot(Y, X)
 
 # Do the binning
 bin_width = 0.01
@@ -16,7 +16,7 @@ n_bins = 1/bin_width
 bin_right = 1:n_bins * bin_width
 bin_left = bin_right - bin_width
 X_bins = sapply(1:n_bins, function(n) mean(X[Y > bin_left[n] & Y < bin_right[n]]))
-Y_bins = sapply(1:n_bins, function(n) mean(bin_left[n], bin_right[n]))
+Y_bins = sapply(1:n_bins, function(n) mean(c(bin_left[n], bin_right[n])))
 qplot(Y_bins, X_bins)
 
 # Plot theoretical result
@@ -34,6 +34,7 @@ ldf = data.frame(t(sapply(1:1000000, function(i){x = runif(1); y = runif(1)*x; c
 ldf$X2 = round(ldf$X2 , 3)
 agged = aggregate(ldf, ldf["X2"], FUN = mean)
 agged = agged[1:2]
+
 qplot(agged$X2, agged$X1)
 
 ### Part 2 (Andrew's solution) ###
@@ -44,7 +45,7 @@ df = msq
 
 # Compute fraction of missing values
 frac_missing = sapply(df, function(col) sum(is.na(col)) / length(col))
-frac_missing[order(frac_missing, decreasing=TRUE)]
+frac_missing[order(frac_missing, decreasing=TRUE)][1:10]
 
 # Select subset of columns
 df = select(df, Extraversion, Neuroticism, active:scornful)

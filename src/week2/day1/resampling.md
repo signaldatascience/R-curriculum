@@ -4,7 +4,7 @@ title: Resampling
 
 We'll be covering **resampling** in this lecture using aggregated data from Andrew Gelman's [speed dating dataset](http://andrewgelman.com/2008/01/21/the_speeddating_1/).
 
-Check `speedDatingSimple.csv` for the data and `Speed Dating Data Key.doc` for an explanation of the variables; the data has been aggregated on the level of each person being rated, so each row corresponds to a particular person's average ratings by their partners (on five different scales) as well as their self-ratings of interest in 17 different activities.
+Check `speedDatingSimple.csv` for the data and `speed-dating-info.txt` for an explanation of the variables; the data has been aggregated on the level of each person being rated, so each row corresponds to a particular person's average ratings by their partners (on five different scales) as well as their self-ratings of interest in 17 different activities.
 
 In machine learning in general, we have the problem of [overfitting](http://machinelearning.subwiki.org/wiki/Overfitting), where:
 
@@ -12,7 +12,7 @@ In machine learning in general, we have the problem of [overfitting](http://mach
 
 **Exercise.** Given $n$ data points and a model $a_0 + a_1x + a_2x^2 + \ldots + a_nx^n$ where we fit the coefficients $a_i$ to the data, how large does $n$ need to be before we can come up with a model that goes through every data point precisely? (Think about the linear case, where only $a_0$ and $a_1$ are nonzero.)
 
-Our models run the risk of being *overly biased* toward the structure of the data which we have in a non-generalizable fashion. As such, we want to use *resampling* techniques, most of which involve splitting data into *train* and *test* sets. Instead of training the model on the entire dataset, we'll in general train it on a *subset* of the data and estimate the quality of the model against the data which was fed into the model.
+We run the risk of the parameters of our model being fit to non-generalizable aspects of our data, such as random noise and fluctuations, which may fool us into thinking that our model is better than it really is. We also want a better measure of model quality in general, because estimates of model quality tend to be overly optimistic compared to performance on new data. As such, we want to use *resampling* techniques, most of which involve splitting data into *train* and *test* sets. Instead of training the model on the entire dataset, we'll in general train it on a *subset* of the data and estimate the quality of the model against the data which was not fed into the model.
 
 Random number generation in R
 =============================
@@ -36,7 +36,7 @@ A single test/train split
 
 	* Run the function a large number of times to generate predictions for many different train/test splits.
 
-	* For each prediction, calculate the associated $R^2$ (just square the `cor()`relation).
+	* For each prediction, calculate the associated $R^2$ (just square the `cor()`relation).[^rmse]
 
 	* Plot the distribution of $R^2$ values and calculate their [standard error](https://en.wikipedia.org/wiki/Standard_error) (the standard deviation divided by $sqrt(n)$ for $n$ samples).
 
@@ -111,4 +111,4 @@ We'll finish off by using R's built-in stepwise regression function, `step()`. Y
 
 [^rng]: In some cases, you may want to (1) save the state of the RNG for later, (2) set the seed to something specific and generate a consistent splitting of the data, and (3) change the RNG back to its saved state. This is possible using `.Random.seed` and is described in [Cookbook for R](http://www.cookbook-r.com/Numbers/Saving_the_state_of_the_random_number_generator/) -- we won't need this for this lesson, but it's important to be aware of (as it will eventually surely come up).
 
-[^adjr2]: See [StackExchange](http://stats.stackexchange.com/a/63097); this is the *Wherry Formula$.
+[^rmse]: Technically, the square of the correlation isn't the same as $R^2$, the percentage of variance explained by the predictors -- $r^2$, the correlation squared, is an *imperfect estimate* of $R^2$. In general, it's better to use the root mean squared error, but it's fine to just use $R^2$ for this.
