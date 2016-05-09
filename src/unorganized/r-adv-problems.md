@@ -13,6 +13,5 @@ To that end, here's an assortment of instructive exercises. When solving them, y
 
 * If you begin writing code with one approach, and then decide that a different approach is better, consider quantifying the differences in runtime with the `timeit` package.
 
-* 
-
 ***
+

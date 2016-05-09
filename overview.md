@@ -132,3 +132,17 @@ Week 8
 ### Day 4 ###
 
 ### Day 5 ###
+
+R packages we should eventually cover
+-------------------------------------
+
+(to some extent)
+
+* dplyr
+* ggplot2
+* memoise
+* pryr?
+* evaluate?
+* GGally
+* profvis
+* knitr
