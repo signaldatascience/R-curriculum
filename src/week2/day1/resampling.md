@@ -34,7 +34,7 @@ A single test/train split
 
 	* An easy way to do this is to call `sample()` to shuffle the row indices of the data and then to use the `%%` operator, taking the remainder upon division by 2, to assign each row to 0 or 1.
 
-	* Run the function a large number of times to generate predictions for many different train/test splits.
+	* Run the function 100 times to generate predictions for many different train/test splits.
 
 	* For each prediction, calculate the associated $R^2$ (just square the `cor()`relation).[^rmse]
 
@@ -45,7 +45,13 @@ A single test/train split
 $n$-fold cross validation
 =========================
 
-In $n$-fold cross validation, we try to avoid the randomness of a single train/test split. The process goes as follows:
+$n$-fold cross validation has two advantages over making a single train/test split:
+
+* We can make use of all of our data in fitting the model, not just half of it.
+
+* With a single train/test split, the outcome can depend too much on our choice of RNG seed, which determines whether a particular observation ends up in the train set or the test set. With $n$-fold cross validation, this problem is somewhat reduced -- the outcome is more consistent and stable.
+
+The process goes as follows:
 
 1. We randomly split the data into $n$ different subsets.
 
@@ -61,7 +67,7 @@ We'll be continuing with predicting attractiveness from activities. Now, choose 
 
 Either way,
 
-* Make a large number of predictions using both 2-fold and 10-fold cross validation.
+* Make 100 such predictions, with different folds each time, using both 2-fold and 10-fold cross validation.
 
 * As before, plot the distribution of the associated $R^2$ values and calculate their standard errors.
 
