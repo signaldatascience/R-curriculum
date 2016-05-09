@@ -48,7 +48,7 @@ Some operations become very easy with `outer()`, so let's return to past assignm
 
 * Make a data frame where the $n$th column is a logical vector with `TRUE` in position $m$ if $F_m$ divides $F_n$ and `FALSE` otherwise.
 
-* Write a function `min_matrix(n, m)` with `n` rows and `m` columns where the value in row $i$, column $j$ is equal to $\mathrm{min}(i,j)$.
+* (Ignore this exercise until I fix it.) Write a function `min_matrix(n, m)` with `n` rows and `m` columns where the value in row $i$, column $j$ is equal to $\mathrm{min}(i,j)$.
 
 `Map()`
 -------
@@ -72,7 +72,7 @@ The `Reduce(func, vec)` function calls `func()` on the first two elements of `ve
 
 **Exercise.** Implement your own version of `sum()` using `Reduce()` and addition. (*Hint:* `"+"` counts as a function.)
 
-**Exercise.** Write `my_union(x, y)` and `my_intersect(x, y)` functions using `Reduce()` and set operations (see `?set`) that take lists of arbitrarily many vectors and calculates, respectively, the union or intersection of all of them.
+**Exercise.** Write `my_union(L)` and `my_intersect(L)` functions using `Reduce()` and set operations (see `?sets`) that take lists of arbitrarily many vectors and calculates, respectively, the union or intersection of all of them.
 
 **Exercise.** There are functions which, when passed into `Reduce()`, give a different overall result depending on whether `Reduce()` starts with the two leftmost or the two rightmost elements of the vector it's operating on. Write a function that runs `Reduce()` in both directions and, if the two results are the same, returns the result, and returns `NA` otherwise.
 
