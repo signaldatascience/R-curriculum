@@ -15,6 +15,8 @@ Today, you'll be completing a short assessment so that we can get a sense of whe
 
 * Make your code as clear, compact, and efficient as possible. Use everything that you've learned!
 
+Libraries you will find useful: `ggplot2`, `psych`
+
 Part 1: R and Probability
 -------------------------
 
@@ -26,13 +28,15 @@ Here's an interview question from [*Euclid Analytics*](http://euclidanalytics.co
 
 Now, we don't know the answer yet, but maybe we can get some sense of what it might look like by doing some Monte Carlo simulations. To that end:
 
-* A *single trial* of the process described in the problem will yield a pair of values $(x, y)$, where the probability distribution which $y$ is drawn from depends on the value of $x$. Simulate $k$ trials of this process for some well-chosen value of $k$. (You may find the `runif()` function helpful.)
+* A *single trial* of the process described in the problem will yield a pair of values $(x, y)$, where the probability distribution which $y$ is drawn from depends on the value of $x$. Simulate $k$ trials of this process for $k = 1000000$. (You may find the `runif()` function helpful.)
 
-	* Plot the simulated values with `qplot()` (in the `ggplot2` library).
+	* Plot the simulated values with `qplot()`.
 
-* Since we're interested in the *expected value* of $X$ given some $Y = y$, we can approximate this by separating our values of $Y$ into *bins* and taking the *mean* of $X$ within each bin.
+* Since we're interested in the *expected value* of $X$ given some $Y = y$, we can approximate this by separating our values of $Y$ into *bins* (of equal width) and taking the *mean* of $X$ within each bin.
 
-	* Write code to do so and use `qplot()` to view the results. Do they make sense?
+	* Write code that does so for a bin width of $w$, setting $w = 0.01$ (equivalently, setting the number of bins to 1/0.01 = 100).
+
+	* Use `qplot()` to view the results. Do they make sense?
 
 Now, suppose that a magic fairy whispers into your ear:
 
@@ -55,7 +59,7 @@ We'll be looking at psychological test data.
 
 * Load the `msq` dataset from the `psych` library and call `help()` on it to see what it's about. For convenience, set it equal to the variable `df`.
 
-* Compute the fraction of missing values for each feature, sorted in ascending order. The last of these should be 0.528747 for `"kindly"`.
+* Compute the fraction of missing values for each feature, sorted in descending order. The first of these should be 0.528747 for `"kindly"`.
 
 * Replace each missing value in the data frame with the mean of the column that it's in.
 
@@ -67,4 +71,8 @@ We'll be looking at psychological test data.
 
 	* A scatterplot of Extraversion scores vs. Neuroticism scores, with a smoothed nonlinear fit to the points overlaid on top
 
-* Arrange the five aforementioned plots into a 3-by-2 grid, so they all appear at the same time.
+* Run linear regressions of Extraversion and Neuroticism against the other features. (Neuroticism should *not* be one of the predictors for Extraversion and vice versa.)
+
+* Use the `coef()` function on each of the two linear models to view the coefficients associated with each linear fit.
+
+	* Print out the top 10 coefficients for each of the two linear fits. They should be ordered by absolute value (largest to smallest).

@@ -1,12 +1,14 @@
 library(ggplot2)
+library(Rmisc)
+library(psych)
 
-### Part 1 ###
+### Part 1 (Andrew's solution) ###
 
 # Simulate X and Y for 10000 trials
-n_trials = 10000
+n_trials = 1000000
 X = runif(n_trials)
 Y = runif(n_trials, max=X)
-qplot(Y, X)
+#qplot(Y, X)
 
 # Do the binning
 bin_width = 0.01
@@ -26,4 +28,22 @@ qplot(Y_sim, X_sim)
 df = data.frame(X_bins, Y_bins, X_sim, Y_sim)
 ggplot(df) + geom_point(aes(x=Y_bins, y=X_bins)) + geom_smooth(aes(x=Y_sim, y=X_sim))
 
-### Part 2 ###
+### Part 1 (Jonah's solution for Monte Carlo simulation) ###
+
+ldf = data.frame(t(sapply(1:1000000, function(i){x = runif(1); y = runif(1)*x; c(x,y)})))
+ldf$X2 = round(ldf$X2 , 3)
+agged = aggregate(ldf, ldf["X2"], FUN = mean)
+agged = agged[1:2]
+qplot(agged$X2, agged$X1)
+
+### Part 2 (Andrew's solution) ###
+
+# Load dataset
+help(msq)
+df = msq
+
+# Compute fraction of missing values
+frac_missing = sapply(df, function(col) sum(is.na(col)) / length(col))
+frac_missing[order(frac_missing, decreasing=TRUE)]
+
+# Replace missing values with column means
