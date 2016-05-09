@@ -47,7 +47,7 @@ $n$-fold cross validation
 
 $n$-fold cross validation has two advantages over making a single train/test split:
 
-* We can make use of all of our data in fitting the model, not just half of it.
+* In $n$-fold cross validation, we fit multiple models to multiple train/test splits and then aggregate the results. Between all of these different models, each observation in the dataset ends up in a training set at least once.
 
 * With a single train/test split, the outcome can depend too much on our choice of RNG seed, which determines whether a particular observation ends up in the train set or the test set. With $n$-fold cross validation, this problem is somewhat reduced -- the outcome is more consistent and stable.
 
