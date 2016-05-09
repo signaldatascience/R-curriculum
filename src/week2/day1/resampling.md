@@ -25,10 +25,12 @@ The RNG can be *seeded* with `set.seed(n)` for any integer `n`. The values that 
 
 This is important because we may want, *e.g.*, to generate the same random partitioning of our data consistently, in which case we would put a `set.seed(1)` call before our shuffling of the indices with `sample()`.[^rng] Or, alternatively, you may want a sequence of reproducibly different calls of `sample()`, etc.
 
-A single test/train split
+A single train/test split
 =========================
 
 * Load the speed dating dataset (using `read.csv()`) and restrict to a gender of your choice.
+
+* Run a linear regression of attractiveness against the 17 activities. Interpret the coefficients.
 
 * Write a function that splits the data randomly into a train set and a test set (of equal sizes), trains a linear model on the train set to predict *attractiveness* from the 17 *activities*, and uses `predict(model, newdata)` to generate predictions for the test set.
 
