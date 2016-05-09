@@ -1,5 +1,5 @@
 library(ggplot2)
-library(Rmisc)
+library(dplyr)
 library(psych)
 
 ### Part 1 (Andrew's solution) ###
@@ -46,4 +46,26 @@ df = msq
 frac_missing = sapply(df, function(col) sum(is.na(col)) / length(col))
 frac_missing[order(frac_missing, decreasing=TRUE)]
 
+# Select subset of columns
+df = select(df, Extraversion, Neuroticism, active:scornful)
+
 # Replace missing values with column means
+for (i in 1:ncol(df)) {
+  df[[i]][is.na(df[[i]])] = mean(df[[i]], na.rm=TRUE)
+}
+
+# Plots
+ggplot(df, aes(x=Extraversion)) + geom_histogram()
+ggplot(df, aes(x=Neuroticism)) + geom_histogram()
+ggplot(df, aes(x=Extraversion)) + geom_density()
+ggplot(df, aes(x=Neuroticism)) + geom_density()
+ggplot(df, aes(x=Neuroticism, y=Extraversion)) + geom_point() + geom_smooth()
+
+# Linear fits
+fit_neuro = lm(Neuroticism ~ .-Extraversion, df)
+fit_extra = lm(Extraversion ~ .-Neuroticism, df)
+
+# Coefficients
+top_ten = function(coefs) coefs[order(abs(coefs), decreasing=TRUE)][1:10]
+top_ten(coef(fit_neuro))
+top_ten(coef(fit_extra))

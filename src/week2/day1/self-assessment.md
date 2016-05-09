@@ -15,7 +15,9 @@ Today, you'll be completing a short assessment so that we can get a sense of whe
 
 * Make your code as clear, compact, and efficient as possible. Use everything that you've learned!
 
-Libraries you will find useful: `ggplot2`, `psych`
+Libraries you will find useful: `ggplot2`, `psych`, `dplyr`.
+
+Don't worry if you can't figure out some of the questions or if it seems like you'll need more than 90 minutes to finish the self-assessment. Just put in your best effort!
 
 Part 1: R and Probability
 -------------------------
@@ -61,7 +63,9 @@ We'll be looking at psychological test data.
 
 * Compute the fraction of missing values for each feature, sorted in descending order. The first of these should be 0.528747 for `"kindly"`.
 
-* Replace each missing value in the data frame with the mean of the column that it's in.
+* Make a new dataframe with columns `"active"` through `"scornful"` as well as Extraversion and Neuroticism.
+
+* Replace each missing value with the mean of the column which the missing value is in.
 
 * Create each of the following plots:
 
