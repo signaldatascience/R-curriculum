@@ -2,6 +2,8 @@
 title: Regularized Linear Regression
 ---
 
+Some helpful notes on the `glmnet` package are at the end of this document. Look there if you have problems.
+
 Exploring regularization with simulated data
 ============================================
 
@@ -78,7 +80,7 @@ Here are some points to keep in mind:
 
 * If you have a string, say, `"attr_o"`, and you want to pass that into `lm()` as part of the regression formula, you can paste together the formula's components (*e.g.*, `paste("attr_o", "~.")`), call `formula()` on the string to turn it into a *formula*, and then passing the formula into `lm()`.
 
-Use your function to explore the difference in model quality between backward stepwise regression, $L^1$ regularized regression, and $L^2$ regularized regression when predicting each of the five different ratings.
+Use your function to explore the difference in model quality between backward stepwise regression, $L^1$ regularized regression, and $L^2$ regularized regression when predicting attractiveness ratings.
 
 Elastic net regression
 ======================
@@ -105,7 +107,11 @@ Write a function according to the following specifications:
 
 * Use the `caret` package, following the above example, to find the optimal values for $(\alpha, \lambda)$ when predicting attractiveness ratings.
 
+Finally:
+
 * Calculate the corresponding RMSE and compare the different RMSEs for all combinations of (gender, rating).
+
+* Now that you've gotten some experience with `glmnet()` and `cv.glmnet()`, go back and modify your cross-validation function so that you can pass in (1) any of the five rating variables and (2) a gender variable to filter by instead of restricting solely to attractiveness ratings for males.
 
 A note on `glmnet`
 ==================
@@ -115,12 +121,12 @@ Here, I'll cover two important points about the behavior of the `glmnet` package
 Passing in data
 ---------------
 
-For `lm()`, you passed in the entire data frame, including both target variable and predictors. `glmnet(features, target, ...) and `cv.glmnet(features, target, ...)` expect a *scaled matrix of predictors* for `features` and a numeric vector for `target. The `scale()` function returns a matrix, so you can just call `scale()` on a data frame of predictors and pass that in as `features`.
+For `lm()`, you passed in the entire data frame, including both target variable and predictors. `glmnet(features, target, ...)` and `cv.glmnet(features, target, ...)` expect a *scaled matrix of predictors* for `features` and a numeric vector for `target. The `scale()` function returns a matrix, so you can just call `scale()` on a data frame of predictors and pass that in as `features`.
 
 Picking values of $\lambda$
 ---------------------------
 
-"Ordinarily", one might expect that, for every different value of $\lambda$ we want to try using with regularized linear regression, we would have to recompute the entire model from scratch. However, the [`glmnet`](https://web.stanford.edu/~hastie/glmnet/glmnet_alpha.html) package, through which we'll be using regularized linear regression, will automatically compute the regression coefficients for *a wide range of $\lambda$ values$ simultaneously.[^glmnet]
+"Ordinarily", one might expect that, for every different value of $\lambda$ we want to try using with regularized linear regression, we would have to recompute the entire model from scratch. However, the [`glmnet`](https://web.stanford.edu/~hastie/glmnet/glmnet_alpha.html) package, through which we'll be using regularized linear regression, will automatically compute the regression coefficients for *a wide range of $\lambda$ values simultaneously.[^glmnet]
 
 When you call `glmnet()` -- or, later, `cv.glmnet()` -- you'll get out an object, `fit`. (You should generally not be specifying *which* $\lambda$ values the algorithm should use at this point -- it'll try to determine that on its own.) By printing out `fit` in the console, you can see which values of $\lambda$ were used by `glmnet`.
 
