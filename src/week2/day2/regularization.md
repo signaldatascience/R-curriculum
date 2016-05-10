@@ -27,13 +27,13 @@ Write a function `cost(x, y, aEst, lambda, p)` which takes
 
 and returns the $L^p$ regularized cost function associated with the estimate `y = aEst*x`.
 
-Create a dataframe with two columns, one corresponding to the values of $\lambda$ $2^{-8}, 2^{-7}, \ldots, 2^{-1}, 2^0, 2^1$, and for each of these values of $\lambda$, values of a from -0.1 to 0.3, in equally spaced increments of 0.001. Use `expand.grid()` to fill in the grid.
+Create a dataframe with two columns, one corresponding to the values of $\lambda$ $2^{-8}, 2^{-7}, \ldots, 2^{-1}, 2^0, 2^1$, and for each of these values of $\lambda$, values of `a` from -0.1 to 0.3, in equally spaced increments of 0.001. Use `expand.grid()` to fill in the grid.
 
 Add `"costL1"` and `"costL2"` columns, where we'll store the cost of associated with each pair `(lambda, a)`, for each of `p = 1` and `p = 2`.
 
 For each of `p = 1` and `p = 2`,
 
-* Use lapply to make a `plots` list with 10 `ggplot()` objects, one for each value of lambda from $2^{-8}$ to $2^{-1}$, graphing values of `a` on the [abscissa](https://en.wikipedia.org/wiki/Abscissa) (x-axis) and values of the cost function on the [ordinate](https://en.wikipedia.org/wiki/Ordinate) (y-axis). Then use multiplot with `plotlist = "plots"`  to display these graphs in 2 columns of 5.
+* Use lapply to make a `plots` list with 10 `ggplot()` objects, one for each value of lambda from $2^{-8}$ to $2^1$, graphing values of `a` on the [abscissa](https://en.wikipedia.org/wiki/Abscissa) (x-axis) and values of the cost function on the [ordinate](https://en.wikipedia.org/wiki/Ordinate) (y-axis). Then use multiplot with `plotlist = "plots"`  to display these graphs in 2 columns of 5.
 
 * Pay special attention to the values on the y-axis, which vary from plot to plot. 
 
@@ -79,6 +79,8 @@ Here are some points to keep in mind:
 * Within each cross-validation fold, you'll want to `scale()` the features which you pass into `cv.glmnet()`. When generating predictions on the *held-out* data, you want to scale the features in the same way (*i.e.*, by applying the same linear transformation). The output of `scale()` will contain *attributes* which can be accessed and passed into successive calls of `scale()` to perform the same transformation.
 
 * If you have a string, say, `"attr_o"`, and you want to pass that into `lm()` as part of the regression formula, you can paste together the formula's components (*e.g.*, `paste("attr_o", "~.")`), call `formula()` on the string to turn it into a *formula*, and then passing the formula into `lm()`.
+
+* You should be running stepwise regression for each training fold separately, for an apples-to-apples comparison with regularization.
 
 Use your function to explore the difference in model quality between backward stepwise regression, $L^1$ regularized regression, and $L^2$ regularized regression when predicting attractiveness ratings.
 
