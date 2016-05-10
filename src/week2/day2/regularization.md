@@ -5,44 +5,47 @@ title: Regularized Linear Regression
 Exploring regularization with simulated data
 ============================================
 
-A note on `glmnet`
-==================
+Define `x` and `y` using:
 
-Here, I'll cover two important points about the behavior of the `glmnet` package.
+```r
+set.seed(1); j = 50; a = 0.25
+x = rnorm(j)
+error = sqrt(1 - a^2)*rnorm(j)
+y = a*x + error
+```
 
-Passing in data
----------------
+If you run `summary(lm(y ~ x - 1))`, corresponding to a linear model with no constant coefficient, you should get an estimated value of 0.2231 for `a`.
 
-For `lm()`, you passed in the entire data frame, including both target variable and predictors. `glmnet(features, target, ...) and `cv.glmnet(features, target, ...)` expect a *scaled matrix of predictors* for `features` and a numeric vector for `target. The `scale()` function returns a matrix, so you can just call `scale()` on a data frame of predictors and pass that in as `features`.
+Write a function `cost(x, y, aEst, lambda, p)` which takes 
 
-Picking values of $\lambda$
----------------------------
+* Two vectors `x` and `y` of equal length
+* An estimate of the value of `a`, `aEst`
+* A regularization parameter `lambda`
+* A number `p = 1` or `2`, indicating whether $L^1$ or $L^2$ regularization is being performed
 
-"Ordinarily", one might expect that, for every different value of $\lambda$ we want to try using with regularized linear regression, we would have to recompute the entire model from scratch. However, the [`glmnet`](https://web.stanford.edu/~hastie/glmnet/glmnet_alpha.html) package, through which we'll be using regularized linear regression, will automatically compute the regression coefficients for *a wide range of $\lambda$ values$ simultaneously:
+and returns the $L^p$ regularized cost function associated with the estimate `y = aEst*x`.
 
-> The `glmnet` algorithms use cyclical coordinate descent, which successively optimizes the objective function over each parameter with others fixed, and cycles repeatedly until convergence. The package also makes use of the strong rules for efficient restriction of the active set. Due to highly efficient updates and techniques such as warm starts and active-set convergence, our algorithms can compute the solution path very fast.
+Create a dataframe with two columns, one corresponding to the values of $\lambda$ $2^{-8}, 2^{-7}, \ldots, 2^{-1}, 2^0, 2^1$, and for each of these values of $\lambda$, values of a from -0.1 to 0.3, in equally spaced increments of 0.001. Use `expand.grid()` to fill in the grid.
 
-When you call `glmnet()` -- or, later, `cv.glmnet()` -- you'll get out an object, `fit`. (You should generally not be specifying *which* $\lambda$ values the algorithm should use at this point -- it'll try to determine that on its own.) By printing out `fit` in the console, you can see which values of $\lambda$ were used by `glmnet`.
+Add `"costL1"` and `"costL2"` columns, where we'll store the cost of associated with each pair `(lambda, a)`, for each of `p = 1` and `p = 2`.
 
-When you want to make predictions with this `fit` object, you'll have to specify *which* value of $\lambda$ to use -- instead of calling `predict(fit, new_data)`, you'll want to call `predict(fit, new_data, s=lambda)` for some particular $\lambda$ = `lambda`. Similarly, when extracting coefficients, you'll want to call `coef(fit, s=lambda)`.
+For each of `p = 1` and `p = 2`,
 
-Finally, `cv.glmnet()` will use *cross-validation* to determine `fit$lambda.min` and `fit$lambda.1se`. The former is the value of $\lambda$ (out of all those the algorithm evaluated) which minimizes the cross-validated mean squared error (MSE), and the latter is the greatest value of $\lambda$ (again, of those evaluated by `glmnet`) such that the MSE corresponding to `fit$lambda.1se` is within 1 standard error of the MSE corresponding to `fit$lambda.min`.
+* Use lapply to make a `plots` list with 10 `ggplot()` objects, one for each value of lambda from $2^{-8}$ to $2^{-1}$, graphing values of `a` on the [abscissa](https://en.wikipedia.org/wiki/Abscissa) (x-axis) and values of the cost function on the [ordinate](https://en.wikipedia.org/wiki/Ordinate) (y-axis). Then use multiplot with `plotlist = "plots"`  to display these graphs in 2 columns of 5.
 
-If it turns out that the optimal value of $\lambda$ lies at either end of the range of $\lambda$ values used by `glmnet`, then you'll want to modify the range of $\lambda$. However, never pass in just a single value for the `lambda` parameter of `glmnet()` and `cv.glmnet()`, instead modifying `nlambda` and `lambda.min.ratio`:
-
-> Typical usage is to have the program compute its own `lambda` sequence based on `nlambda` and `lambda.min.ratio`. Supplying a value of `lambda` overrides this. WARNING: use with care. Do not supply a single value for `lambda` (for predictions after CV use `predict()` instead). Supply instead a decreasing sequence of `lambda` values. `glmnet` relies on its warms starts for speed, and it's often faster to fit a whole path than compute a single fit.
+* Pay special attention to the values on the y-axis, which vary from plot to plot. 
 
 Comparing regularization and stepwise regression
 ================================================
 
-We'll continue using the simplified speed dating dataset from yesterday. You can restrict to a particular gender or use the whole dataset as you prefer.
+We'll continue using the simplified speed dating dataset from yesterday. For now, please restrict analyzing *attractiveness ratings* (`"attr_o"`) for *males*.
 
 Using the entire dataset
 ------------------------
 
 The `glmnet()` and `cv.glmnet()` functions can perform both $L^1$ and $L^2$ regularized linear regression as well as a mix of the two (which we'll be exploring later). This behavior can be tuned via the `alpha` parameter; read the [official documentation](https://cran.r-project.org/web/packages/glmnet/glmnet.pdf) to figure out it works.
 
-* Pick one of the five rating variables and use backward stepwise regression to generate predictions for the whole dataset. (Don't use cross-validation at this point.)
+* Use backward stepwise regression to generate attractiveness predictions for the whole dataset. (Don't use cross-validation at this point.)
 
 * Use `glmnet()` to generate similar predictions with both $L^1$ and $L^2$ regularized linear regression.
 
@@ -63,9 +66,7 @@ As you saw in the assignment on resampling, we want to use *cross-validation* to
 
 Write a function following these specifications:
 
-* Take as input one of the five ratings (`"attr_o"`, `"intel_o"`, ...), for which you will generate predictions. Also, take as input a `gender` parameter and filter the data for the selected gender.
-
-* Use 10-fold cross validation to generate predictions for the selected rating with stepwise regression, $L^1$ regularized linear regression, and $L^2$ regularized linear regression.
+* Use 10-fold cross validation to generate predictions for attractiveness with (1) stepwise regression, (2) $L^1$ regularized linear regression, and (3) $L^2$ regularized linear regression.
 
 * For regularized linear regression, use `cv.glmnet()` to get cross-validated estimates of the optimal value of $\lambda$. As such, when generating predictions for an regularized linear model `fit`, use the value of $\lambda$ stored in `fit$lambda.min`.
 
@@ -102,8 +103,33 @@ Whereas `cv.glmnet()` picks an appropriate sequence of $\lambda$ values, [the `c
 
 Write a function according to the following specifications:
 
-* Take as input one of the five rating variables to make predictions for. Also, take as input a gender parameter to filter by.
-
-* Use the `caret` package, following the above example, to find the optimal values for $(\alpha, \lambda)$.
+* Use the `caret` package, following the above example, to find the optimal values for $(\alpha, \lambda)$ when predicting attractiveness ratings.
 
 * Calculate the corresponding RMSE and compare the different RMSEs for all combinations of (gender, rating).
+
+A note on `glmnet`
+==================
+
+Here, I'll cover two important points about the behavior of the `glmnet` package.
+
+Passing in data
+---------------
+
+For `lm()`, you passed in the entire data frame, including both target variable and predictors. `glmnet(features, target, ...) and `cv.glmnet(features, target, ...)` expect a *scaled matrix of predictors* for `features` and a numeric vector for `target. The `scale()` function returns a matrix, so you can just call `scale()` on a data frame of predictors and pass that in as `features`.
+
+Picking values of $\lambda$
+---------------------------
+
+"Ordinarily", one might expect that, for every different value of $\lambda$ we want to try using with regularized linear regression, we would have to recompute the entire model from scratch. However, the [`glmnet`](https://web.stanford.edu/~hastie/glmnet/glmnet_alpha.html) package, through which we'll be using regularized linear regression, will automatically compute the regression coefficients for *a wide range of $\lambda$ values$ simultaneously.[^glmnet]
+
+When you call `glmnet()` -- or, later, `cv.glmnet()` -- you'll get out an object, `fit`. (You should generally not be specifying *which* $\lambda$ values the algorithm should use at this point -- it'll try to determine that on its own.) By printing out `fit` in the console, you can see which values of $\lambda$ were used by `glmnet`.
+
+When you want to make predictions with this `fit` object, you'll have to specify *which* value of $\lambda$ to use -- instead of calling `predict(fit, new_data)`, you'll want to call `predict(fit, new_data, s=lambda)` for some particular $\lambda$ = `lambda`. Similarly, when extracting coefficients, you'll want to call `coef(fit, s=lambda)`.
+
+Finally, `cv.glmnet()` will use *cross-validation* to determine `fit$lambda.min` and `fit$lambda.1se`. The former is the value of $\lambda$ (out of all those the algorithm evaluated) which minimizes the cross-validated mean squared error (MSE), and the latter is the greatest value of $\lambda$ (again, of those evaluated by `glmnet`) such that the MSE corresponding to `fit$lambda.1se` is within 1 standard error of the MSE corresponding to `fit$lambda.min`.
+
+If it turns out that the optimal value of $\lambda$ lies at either end of the range of $\lambda$ values used by `glmnet`, then you'll want to modify the range of $\lambda$. However, the documentation advises against passing in just a single value for the `lambda` parameter of `glmnet()` and `cv.glmnet()`, instead suggesting modifying `nlambda` and `lambda.min.ratio`.[^glmnet2] Nevertheless, there are times when passing in a single value makes sense, like when you've previously determined the optimal $\lambda$ and want to just use that instead of a range of different $\lambda$ values.
+
+[^glmnet]: "The `glmnet` algorithms use cyclical coordinate descent, which successively optimizes the objective function over each parameter with others fixed, and cycles repeatedly until convergence. The package also makes use of the strong rules for efficient restriction of the active set. Due to highly efficient updates and techniques such as warm starts and active-set convergence, our algorithms can compute the solution path very fast."
+
+[^glmnet2]: "Typical usage is to have the program compute its own `lambda` sequence based on `nlambda` and `lambda.min.ratio`. Supplying a value of `lambda` overrides this. WARNING: use with care. Do not supply a single value for `lambda` (for predictions after CV use `predict()` instead). Supply instead a decreasing sequence of `lambda` values. `glmnet` relies on its warms starts for speed, and it's often faster to fit a whole path than compute a single fit.""
