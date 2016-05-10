@@ -111,6 +111,14 @@ Using R's `step()`
 
 We'll finish off by using R's built-in stepwise regression function, `step()`. You can more-or-less treat its functionality as a black box, but spend a minute or two skimming [the official documentation](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/step.html). It uses the [Akaike information criterion](https://en.wikipedia.org/wiki/Akaike_information_criterion) as a measure of model quality -- both for determining which variable to add or remove and for determining when to stop -- which you can also treat as a black box. (Just know that *a lower AIC is better*.)
 
+Here's an example of backward stepwise regression:
+
+```r
+model_init = lm(col ~ ., df)
+model = formula(lm(col ~ ., df))
+step_reg = step(model_init, model, direction="direction")
+```
+
 * For *each of the five rating variables* (attractiveness, sincerity, intelligence, fun, ambition), use `step()` to run backward stepwise regression (with the `direction="backward"` parameter).
 
 * Store the coefficients of the final linear model into a data frame. Interpret the results.
