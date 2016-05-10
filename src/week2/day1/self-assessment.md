@@ -42,7 +42,7 @@ Now, we don't know the answer yet, but maybe we can get some sense of what it mi
 
 Now, suppose that a magic fairy whispers into your ear:
 
-> Here's the answer, my friend! It just so happens that $\mathbb{E}(X|Y = y) = \dfrac{y - 1}{\ln y}$!
+> Here's the answer, my friend! It just so happens that $\mathbb{E}(X|Y = y) = \dfrac{y - 1}{\ln y}$.
 
 In light of this revelation, you want to verify your computational results from earlier. To that end:
 
@@ -52,7 +52,7 @@ In light of this revelation, you want to verify your computational results from 
 
 * Make a *single* dataframe with both your Monte Carlo-simulated results *and* your direct calculation of the theoretical result.
 
-	* Make a single graph with (1) a scatterplot of the Monte Carlo-simulated results and (2) a smooth line connecting the points corresponding to the theoretical values.
+	* Make a single graph with (1) a scatterplot of the Monte Carlo-simulated results and (2) a smooth line connecting the points corresponding to the theoretical values. This should just basically be both of your previous graphs plotted at the same time.
 
 Part 2: Data Analysis
 ---------------------
@@ -75,7 +75,7 @@ We'll be looking at psychological test data.
 
 	* A scatterplot of Extraversion scores vs. Neuroticism scores, with a smoothed nonlinear fit to the points overlaid on top
 
-* Run linear regressions of Extraversion and Neuroticism against the other features. (Neuroticism should *not* be one of the predictors for Extraversion and vice versa.)
+* Run linear regressions of Extraversion and Neuroticism against all the other features. Neuroticism should *not* be one of the predictors for Extraversion and vice versa, but `"active"` through `"scornful"` should be included simultaneously.
 
 * Use the `coef()` function on each of the two linear models to view the coefficients associated with each linear fit.
 
