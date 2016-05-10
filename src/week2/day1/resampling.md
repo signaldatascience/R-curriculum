@@ -116,7 +116,7 @@ Here's an example of backward stepwise regression:
 ```r
 model_init = lm(col ~ ., df)
 model = formula(lm(col ~ ., df))
-step_reg = step(model_init, model, direction="direction")
+step_reg = step(model_init, model, direction="backward")
 ```
 
 * For *each of the five rating variables* (attractiveness, sincerity, intelligence, fun, ambition), use `step()` to run backward stepwise regression (with the `direction="backward"` parameter).

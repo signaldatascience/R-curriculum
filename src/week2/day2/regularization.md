@@ -10,3 +10,9 @@ title: Regularized Linear Regression
 - look at L1/L2 coefficients; interpret
 - read about elastic net regression and use caret package to do grid search
 	- in later assignment, can implement grid/random search & do fancier stuff for, say, boosting
+
+
+A note on `glmnet`
+==================
+
+"Ordinarily", one might expect that, for every different value of $\lambda$ we want to try using with regularized linear regression, we would have to recompute the entire model from scratch. However, the [`glmnet`](https://web.stanford.edu/~hastie/glmnet/glmnet_alpha.html) package, through which we'll be using regularized linear regression, 
