@@ -92,9 +92,12 @@ Thankfully, we won't have to implement that ourselves (for now)! Instead, we can
 Here's an example of how to use the `caret` package's `train()` function:
 
 ```r
-param_grid = expand.grid(.alpha = 1:10 * 0.1, .lambda = 10^seq(-3, 0, length.out=10))
-control = trainControl(method="repeatedcv", number=10, repeats=3, verboseIter=TRUE)
-caret_fit = train(x=features, y=target, method="glmnet", tuneGrid=param_grid, trControl=control)
+param_grid = expand.grid(.alpha = 1:10 * 0.1,
+                         .lambda = 10^seq(-3, 0, length.out=10))
+control = trainControl(method="repeatedcv", number=10,
+                       repeats=3, verboseIter=TRUE)
+caret_fit = train(x=features, y=target, method="glmnet",
+                  tuneGrid=param_grid, trControl=control)
 ```
 
 In the above example, we perform *10-fold cross-validation* repeated *3 times*.
