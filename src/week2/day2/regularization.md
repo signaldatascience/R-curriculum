@@ -64,8 +64,6 @@ Making cross-validated RMSE predictions
 
 As you saw in the assignment on resampling, we want to use *cross-validation* to get more accurate estimates of model quality. In particular, stepwise regression tends to *overfit*, because of problems with multiple hypothesis testing, so non-cross-validated estimates of a stepwise regression model's quality are often overly optimistic. (However, it's easy to understand and, pedagogically, a good stepping stone to regularization, which is why we include it in our curriculum.)
 
-* Briefly skim [Stopping stepwise: Why stepwise and similar selection methods are bad ...](http://www.lexjansen.com/pnwsug/2008/DavidCassell-StoppingStepwise.pdf) for an introduction to some of the problems with stepwise linear regression.
-
 Write a function following these specifications:
 
 * Use 10-fold cross validation to generate predictions for attractiveness with (1) stepwise regression, (2) $L^1$ regularized linear regression, and (3) $L^2$ regularized linear regression.
