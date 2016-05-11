@@ -21,37 +21,6 @@ get_min_rmse = function(fit) {
   c(lambda=fit$lambda[arg_min(rmses)], rmse=min(rmses))
 }
 
-### EXPLORING REGULARIZATION WITH SIMULATED DATA ###############################
-
-set.seed(1); j = 50; a = 0.25
-x = rnorm(j); y = a*x + sqrt(1 - a^2)*rnorm(j)
-x = scale(x)[,1]; y = scale(y)
-summary(lm(y ~ x - 1))
-qplot(x, y) + geom_smooth(method = "lm")
-
-cost =  function(x, y, aEst, lambda){
-  sqrt(mean((y - aEst*x)^2)) + lambda*abs(aEst)^1
-}
-lambdas = 2^(seq(-8, 5, 1))
-as = seq(-0.1, 0.3, by= 0.001)
-expanded = expand.grid(lambda = lambdas,a = as)
-expanded$error = 0
-for(a in as){
-  for(lam in lambdas){
-    expanded[expanded$lambda == lam & expanded$a == a,"error"] = cost(x, y, a, lam)
-  }
-}
-
-expanded = round(expanded, 3)
-l = lapply(1:10, function(k){
-  lambdas = round(lambdas, 3)
-  aEst = expanded[expanded$lambda == lambdas[k],"a"]
-  error = expanded[expanded$lambda == lambdas[k],"error"]
-  qplot(aEst, error)
-})
-
-multiplot(plotlist = l, cols = 2)
-
 ### COMPARING REGULARIZATION AND STEPWISE REGRESSION ###########################
 
 set.seed(1)
