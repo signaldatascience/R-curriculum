@@ -78,7 +78,7 @@ Here are some points to keep in mind:
 
 * If you have a string, say, `"attr_o"`, and you want to pass that into `lm()` as part of the regression formula, you can paste together the formula's components (*e.g.*, `paste("attr_o", "~.")`), call `formula()` on the string to turn it into a *formula*, and then passing the formula into `lm()`.
 
-* You should be running stepwise regression for each training fold separately, for an apples-to-apples comparison with regularization.
+* You should be running stepwise regression for each training fold separately.
 
 Use your function to explore the difference in model quality between backward stepwise regression, $L^1$ regularized regression, and $L^2$ regularized regression when predicting attractiveness ratings.
 
