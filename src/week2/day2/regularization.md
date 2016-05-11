@@ -33,9 +33,7 @@ Add `"costL1"` and `"costL2"` columns, where we'll store the cost of associated 
 
 For each of `p = 1` and `p = 2`,
 
-* Use lapply to make a `plots` list with 10 `ggplot()` objects, one for each value of lambda from $2^{-8}$ to $2^1$, graphing values of `a` on the [abscissa](https://en.wikipedia.org/wiki/Abscissa) (x-axis) and values of the cost function on the [ordinate](https://en.wikipedia.org/wiki/Ordinate) (y-axis). Then use multiplot with `plotlist = "plots"`  to display these graphs in 2 columns of 5.
-
-* Pay special attention to the values on the y-axis, which vary from plot to plot. 
+* Use lapply to make a `plots` list with 10 `ggplot()` objects, one for each value of lambda from $2^{-8}$ to $2^1$, graphing values of `a` on the [abscissa](https://en.wikipedia.org/wiki/Abscissa) (x-axis) and values of the cost function on the [ordinate](https://en.wikipedia.org/wiki/Ordinate) (y-axis). Then use multiplot with `plotlist = "plots"`  to display these graphs in 2 columns of 5. Pay special attention to the values on the y-axis, which vary from plot to plot. 
 
 Comparing regularization and stepwise regression
 ================================================
