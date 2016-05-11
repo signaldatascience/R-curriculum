@@ -115,7 +115,6 @@ preds_l2 = numeric(nrow(df))
 n_folds = 10
 folds = sample(nrow(df)) %% n_folds + 1
 for (i in 1:n_folds) {
-  set.seed(1)
   print(paste0("Running fold: ", as.character(i)))
 
   # L1/L2 regressions
