@@ -25,7 +25,7 @@ Write a function `cost(x, y, aEst, lambda, p)` which takes
 * A regularization parameter `lambda`
 * A number `p = 1` or `2`, indicating whether $L^1$ or $L^2$ regularization is being performed
 
-and returns the $L^p$ regularized cost function associated with the estimate `y = aEst*x`.
+and returns the value of the $L^p$ regularized cost function at `y = aEst*x`.
 
 Create a dataframe with two columns, one corresponding to the values of $\lambda$ $2^{-8}, 2^{-7}, \ldots, 2^{-1}, 2^0, 2^1$, and for each of these values of $\lambda$, values of `a` from -0.1 to 0.3, in equally spaced increments of 0.001. Use `expand.grid()` to fill in the grid.
 
