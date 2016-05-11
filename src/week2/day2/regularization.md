@@ -43,7 +43,7 @@ We'll continue using the simplified speed dating dataset from yesterday. For now
 Using the entire dataset
 ------------------------
 
-The `glmnet()` and `cv.glmnet()` functions can perform both $L^1$ and $L^2$ regularized linear regression as well as a mix of the two (which we'll be exploring later). Set `alpha=1` for $L^1$ regularization and set $alpha=0$ for $L^2$ regularization.
+The `glmnet()` and `cv.glmnet()` functions can perform both $L^1$ and $L^2$ regularized linear regression as well as a mix of the two (which we'll be exploring later). Set `alpha=1` for $L^1$ regularization and set `alpha=0` for $L^2$ regularization.
 
 * Use backward stepwise regression to generate attractiveness predictions for the whole dataset. (Don't use cross-validation at this point.)
 
