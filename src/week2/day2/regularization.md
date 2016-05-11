@@ -43,7 +43,7 @@ We'll continue using the simplified speed dating dataset from yesterday. For now
 Using the entire dataset
 ------------------------
 
-The `glmnet()` and `cv.glmnet()` functions can perform both $L^1$ and $L^2$ regularized linear regression as well as a mix of the two (which we'll be exploring later). This behavior can be tuned via the `alpha` parameter; read the [official documentation](https://cran.r-project.org/web/packages/glmnet/glmnet.pdf) to figure out it works.
+The `glmnet()` and `cv.glmnet()` functions can perform both $L^1$ and $L^2$ regularized linear regression as well as a mix of the two (which we'll be exploring later). Set `alpha=1` for $L^1$ regularization and set $alpha=0$ for $L^2$ regularization.
 
 * Use backward stepwise regression to generate attractiveness predictions for the whole dataset. (Don't use cross-validation at this point.)
 
@@ -83,7 +83,7 @@ Use your function to explore the difference in model quality between backward st
 Elastic net regression
 ======================
 
-Instead of penalizing the sum of squared residuals by the $L^1$ or $L^2$ norm of the regression coefficients, we can penalize with a combination of the two, corresponding to setting the `alpha` parameter in `glmnet()` to a value between 0 and 1. We can use cross-validation to find the optimal *pair* of *hyperparameters* $(\alpha, \lambda)$.
+Instead of penalizing the sum of squared residuals by the $L^1$ or $L^2$ norm of the regression coefficients, we can penalize with a combination of the two, corresponding to setting the `alpha` parameter in `glmnet()` to a value between 0 and 1.[^alpha] We can use cross-validation to find the optimal *pair* of *hyperparameters* $(\alpha, \lambda)$.
 
 Thankfully, we won't have to implement that ourselves (for now)! Instead, we can use the `caret` package to get a cross-validated estimate of the optimal $(\alpha, \lambda)$.
 
@@ -136,6 +136,8 @@ When you want to make predictions with this `fit` object, you'll have to specify
 Finally, `cv.glmnet()` will use *cross-validation* to determine `fit$lambda.min` and `fit$lambda.1se`. The former is the value of $\lambda$ (out of all those the algorithm evaluated) which minimizes the cross-validated mean squared error (MSE), and the latter is the greatest value of $\lambda$ (again, of those evaluated by `glmnet`) such that the MSE corresponding to `fit$lambda.1se` is within 1 standard error of the MSE corresponding to `fit$lambda.min`.
 
 If it turns out that the optimal value of $\lambda$ lies at either end of the range of $\lambda$ values used by `glmnet`, then you'll want to modify the range of $\lambda$. However, the documentation advises against passing in just a single value for the `lambda` parameter of `glmnet()` and `cv.glmnet()`, instead suggesting modifying `nlambda` and `lambda.min.ratio`.[^glmnet2] Nevertheless, there are times when passing in a single value makes sense, like when you've previously determined the optimal $\lambda$ and want to just use that instead of a range of different $\lambda$ values.
+
+[^alpha]: Read the [official documentation](https://cran.r-project.org/web/packages/glmnet/glmnet.pdf) to figure out it works.
 
 [^glmnet]: "Due to highly efficient updates and techniques such as warm starts and active-set convergence, our algorithms can compute the solution path very fast."
 
