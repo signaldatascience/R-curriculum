@@ -38,12 +38,14 @@ For each of `p = 1` and `p = 2`,
 Comparing regularization and stepwise regression
 ================================================
 
+Install the `glmnet` package.
+
 We'll continue using the simplified speed dating dataset from yesterday. For now, please restrict analyzing *attractiveness ratings* (`"attr_o"`) for *males*.
 
-Using the entire dataset
-------------------------
+Getting acquainted with `glmnet`
+--------------------------------
 
-The `glmnet()` and `cv.glmnet()` functions can perform both $L^1$ and $L^2$ regularized linear regression as well as a mix of the two (which we'll be exploring later). Set `alpha=1` for $L^1$ regularization and set `alpha=0` for $L^2$ regularization.
+The `glmnet()` function can perform both $L^1$ and $L^2$ regularized linear regression as well as a mix of the two (which we'll be exploring later). Set `alpha=1` for $L^1$ regularization and set `alpha=0` for $L^2$ regularization.
 
 * Use backward stepwise regression to generate attractiveness predictions for the whole dataset. (Don't use cross-validation at this point.)
 
@@ -55,7 +57,13 @@ The `glmnet()` and `cv.glmnet()` functions can perform both $L^1$ and $L^2$ regu
 
 * Compare the minimum RMSE for both regularized fits with the RMSE for backward stepwise regression.
 
-* Compare and interpret the coefficients for $L^1$ and $L^2$ regularized linear regression using the optimal values of $\lambda$ determined earlier.
+* Compare and interpret the coefficients for $L^1$ and $L^2$ regularized linear regression using various values of $\lambda$.
+
+* For both $L^1$ and $L^2$ regularized linear regression, plot the RMSE as a function of $\lambda$.
+
+The `cv.glmnet()` function uses cross-validation to determine the optimal value of $\lambda$; after getting a model `fit = cv.glmnet(...)`, the best $\lambda$ can be accessed with `fit$lambda.min`. (See the notes on `glmnet` below.)
+
+* Use `cv.glmnet()` and compare its determination of the optimal $\lambda$ values with your own choices of $\lambda$.
 
 Making cross-validated RMSE predictions
 ---------------------------------------
@@ -66,7 +74,7 @@ Write a function following these specifications:
 
 * Use 10-fold cross validation to generate predictions for attractiveness with (1) stepwise regression, (2) $L^1$ regularized linear regression, and (3) $L^2$ regularized linear regression.
 
-* For regularized linear regression, use `cv.glmnet()` to get cross-validated estimates of the optimal value of $\lambda$. As such, when generating predictions for an regularized linear model `fit`, use the value of $\lambda$ stored in `fit$lambda.min`.
+* For regularized linear regression, use `cv.glmnet()` to get cross-validated estimates of the optimal value of $\lambda$, and use that to make predictions with `predict(fit, test_data, s=fit$lambda.min)`.
 
 * Return the RMSE associated with each of the three sets of predictions.
 
