@@ -60,8 +60,8 @@ coef(fit_l1, s=0.1)
 coef(fit_l2, s=0.2)
 
 # Plot the RMSE for L1/L2 regularization as function of lambda
-qplot(fit_l1$lambda, rmse_l1)
-qplot(fit_l2$lambda, rmse_l2)
+qplot(fit_l1$lambda, sapply(fit_l1$lambda, get_rmses, fit=fit_l1))
+qplot(fit_l2$lambda, sapply(fit_l2$lambda, get_rmses, fit=fit_l2))
 
 # Use cv.glmnet() to determine optimal cross-validated lambda
 fit_l1_cv = cv.glmnet(activities_scaled, attr_o, alpha=1)
