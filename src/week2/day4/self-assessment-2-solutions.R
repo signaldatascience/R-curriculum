@@ -37,7 +37,7 @@ train_extra = vector("list", n_folds)
 train_neuro = vector("list", n_folds)
 for (i in 1:n_folds) {
   train_splits[[i]] = scale(features[i != folds, ])
-  test_splits[[i]] = scale(features[i == folds, ])
+  test_splits[[i]] = scale(features[i == folds, ], center=attr(train_splits[[i]], "scaled:center"), scale=attr(train_splits[[i]], "scaled:scale"))
   train_extra[[i]] = target_extra[i != folds]
   train_neuro[[i]] = target_neuro[i != folds]
 }
