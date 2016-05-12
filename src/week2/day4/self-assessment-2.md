@@ -129,7 +129,7 @@ From "120 Interview Questions", we have the following:
 
 > Your hash function assigns each object to a number between 1:10, each with equal probability. With 10 objects, what is the probability of a hash collision? What is the expected number of hash collisions? What is the expected number of hashes that are unused?
 
-Use `sample(..., replace=FALSE)` to give estimates of all three.
+Use `sample(..., replace=TRUE)` to give estimates of all three.
 
 (*Clarification:* If $n$ objects are assigned to the same hash, that counts as $n - 1$ hash collisions.)
 
