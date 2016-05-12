@@ -103,6 +103,8 @@ This is *more involved than it sounds*, so we'll give you a detailed outline of 
 
 	* Remove the top row (corresponding to the intercept term).
 
+	* Remove rows where both coefficients are 0.
+
 	* For each column, call `quantile()` on its absolute values to get some statistics about the distribution of coefficient magnitudes.
 
 	* Remove every row from the matrix where *both* of the magnitudes of the coefficients fall under the 75th pecentile for their respective columns.

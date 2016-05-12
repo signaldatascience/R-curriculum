@@ -88,7 +88,7 @@ for (i in 1:n_folds) {
 
   # L1/L2 regressions
   features_train = scale(activities[folds != i, ])
-  features_test = scale(activities[folds == i, ])
+  features_test = scale(activities[folds == i, ], center=attr(features_train, "scaled:center"), scale=attr(features_train, "scaled:scale"))
   attr_o_train = attr_o[folds != i]
   cv_fit_l1 = cv.glmnet(features_train, attr_o_train, alpha=1)
   cv_fit_l2 = cv.glmnet(features_train, attr_o_train, alpha=0)

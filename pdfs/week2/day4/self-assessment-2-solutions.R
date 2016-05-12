@@ -106,23 +106,28 @@ fit_neuro = glmnet(scaled_features, target_neuro, alpha=optima_neuro[[1]], lambd
 coef_extra = coef(fit_extra, s=fit_extra$lambda)
 coef_neuro = coef(fit_neuro, s=fit_neuro$lambda)
 
-# corrplot()!!!!
+# Add row/column names to coefficients
 coefs = cbind(as.numeric(coef_extra), as.numeric(coef_neuro))
 rownames(coefs) = rownames(coef_extra)
 colnames(coefs) = c("Extraversion", "Neuroticism")
 
-# Remove below 75th percentile
+# Remove rows that are 0,0 and intercept
 coefs = coefs[2:nrow(coefs), ]
-threshold_extra = quantile(coefs[, 1])[4]
-threshold_neuro = quantile(coefs[, 2])[4]
+coefs = coefs[rowSums(abs(coefs)) > 0, ]
+
+# Remove below 75th percentile
+threshold_extra = quantile(abs(coefs[, 1]))[4]
+threshold_neuro = quantile(abs(coefs[, 2]))[4]
 rows_keep = c()
 for (i in 1:nrow(coefs)) {
-  if (abs(coefs[i, 1]) > threshold_extra-0.01 | abs(coefs[i, 2]) > threshold_neuro-0.01) {
+  if (abs(coefs[i, 1]) >= threshold_extra | abs(coefs[i, 2]) >= threshold_neuro) {
     rows_keep = c(rows_keep, i)
   }
 }
 coefs = coefs[rows_keep, ]
-corrplot(coefs, method="circle", is.corr=FALSE)
+
+# corrplot() !!!
+corrplot(coefs, method="circle", is.corr=FALSE, cl.pos="n")
 
 ### PROBABILITY QUESTIONS ######################################################
 
