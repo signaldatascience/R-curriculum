@@ -110,10 +110,14 @@ coef_neuro = coef(fit_neuro, s=fit_neuro$lambda)
 coefs = cbind(as.numeric(coef_extra), as.numeric(coef_neuro))
 rownames(coefs) = rownames(coef_extra)
 colnames(coefs) = c("Extraversion", "Neuroticism")
+
+# Remove below 75th percentile
 coefs = coefs[2:nrow(coefs), ]
+threshold_extra = quantile(coefs[, 1])[4]
+threshold_neuro = quantile(coefs[, 2])[4]
 rows_keep = c()
 for (i in 1:nrow(coefs)) {
-  if (abs(coefs[i, 1]) > 0.19 | abs(coefs[i, 2]) > 0.19) {
+  if (abs(coefs[i, 1]) > threshold_extra-0.01 | abs(coefs[i, 2]) > threshold_neuro-0.01) {
     rows_keep = c(rows_keep, i)
   }
 }
