@@ -6,9 +6,15 @@ Brief answers to the probability questions on Self Assessment #2.
 
 > Your hash function assigns each object to a number between 1:10, each with equal probability. With 10 objects, what is the probability of a hash collision? What is the expected number of hash collisions? What is the expected number of hashes that are unused?
 
-First, calculate the probability of not having a hash collision. There are $10^10$ hash assignments, occurring with equal probability, and there are $10!$ ways to permute ${1, 2, \ldots, 10}$ corresponding to $10!$ no-collision outcomes. Then the probability of having a hash collision is $1 - \frac{10!}{10^10} = 0.9996371$.
+First, calculate the probability of not having a hash collision. There are $10^{10}$ hash assignments, occurring with equal probability, and there are $10!$ ways to permute ${1, 2, \ldots, 10}$ corresponding to $10!$ no-collision outcomes. Then the probability of having a hash collision is $1 - \frac{10!}{10^{10}} = 0.9996371$.
 
-Suppose t
+Let's consider a more general problem first, which will be illuminating. Suppose that we have a set $S$ of $|S|$ elements, and that we draw $n$ elements from $S$ into a collection of elements $C$. Let $I_k$ be 1 if the $k$th object in $S$ is in $C$ at least once and 0 otherwise. Then the expected value of $I_k$, $\mathbb{E}(I_k)$, is equal to $p_k$, the probability that the $k$th object in $S$ is repesented in $C$. This probability is $1 - \left(\frac{|S| - 1}{|S|}\right)^n$, which is *independent of $k$*.
+
+Now, we would like to find the expected number of distinct elements of $S$ represented in $C$. Since all the elements are identical, this amounts to finding $\mathbb{E}(|S| \times I_k)$. Then we have
+
+$$\mathbb{E}(|S| \times I_k) = |S| \times \mathbb{E}(I_k) = |S| \times p_k = |S| \times \left(1 - \frac{|S| - 1}{|S|}\right)^n$$.
+
+Now, specifying to the case of our hash maps, we have $|S| = n = 10$, so then the corresponding expectation is 6.513216. This is the expected number of unique hashes, so the expected number of collisisions is $10 - 6.513216 = 3.486784$.
 
 Every unused hash corresponds to one more hash collision, and zero unused hashes means zero hash collisions, so the two expected values are identical.
 
