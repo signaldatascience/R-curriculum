@@ -43,7 +43,18 @@ Refer back to the assignment on factors if you need a refresher on how factors w
 
 * You'll want to expand each factor out into *indicator variables*. You can use the function you previously wrote in the assignment on factors to do so. Alternatively, you can learn how to use the [`dummies` package](https://cran.r-project.org/web/packages/dummies/index.html) or how to use [`model.matrix`](http://stackoverflow.com/a/2082278/3721976) to do so.
 
-Things to explore
+Exploring the data
+------------------
+
+Before you do any data analysis, it's typically a good idea to do some basic visualizations and get a sense of what you're working with.
+
+Use R's `mosaicplot()` function to make a couple mosaic plots from the cleaned and simplified dataset. For example, try:
+
+```r
+mosaicplot(table(df$income, df$presvote))
+```
+
+Things to predict
 -----------------
 
 * Predict support for George H. W. Bush in the 1992 election.
