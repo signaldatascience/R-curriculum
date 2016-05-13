@@ -18,11 +18,15 @@ Now, specifying to the case of our hash maps, we have $|S| = n = 10$, so then th
 
 Every unused hash corresponds to one more hash collision, and zero unused hashes means zero hash collisions, so the two expected values are identical.
 
+***
+
 > Given a fair, 6-sided dice, what's the *expected number of rolls* you have to make before each number (1, 2, ..., 6) shows up at least once?
  
 In the following, time = number of rolls.
 
 The expected time it takes to get the 1st unique number is 1. Conditional on having gotten one unique number, the probability of getting a second unique number is $\frac{5}{6}$, so the corresponding expected time is $\frac{6}{5}$. Similarly, the expected time of getting a third unique number, conditional on having gotten two unique numbers, is $\frac{6}{4}$. Continuing the pattern, the total expected time for 6 unique numbers is $\sum_{i=1}^6 \frac{6}{i} = 14.7$.
+
+***
 
 > Bobo the amoeba can divide into 0, 1, 2, or 3 amoebas with equal probability. (Dividing into 0 means that Bobo dies.) Each of Bobo's descendants have the same probabilities. What's the probability that Bobo's lineage eventually dies out?
 
