@@ -35,7 +35,7 @@ Refer back to the assignment on factors if you need a refresher on how factors w
 
 * Use the `read.dta()` function from the `foreign` library to load `elections.dta`.
 
-* Select the columns `year`, `age` through `religion`, `vote`, and `presvote`.
+* Select the columns `year`, `age` through `religion`, `vote`, and `presvote`. Restrict to years with a presidential election.
 
 * If you check the levels of the dataframe's factors (with `lapply(df[sapply(df, is.factor)], levels)`), you'll see that the data needs some cleaning. Modify the `levels()` of each factor so the descriptive text is more concise. You can replace missing values with `NA`s (using `addNA()`), but note that a missing survey response often carries its own information and corresponds to its own category, and as such should not by default be replaced with a `NA` and subsequently imputed.
 
