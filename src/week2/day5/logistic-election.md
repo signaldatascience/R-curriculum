@@ -29,13 +29,15 @@ For the tasks described below:
 Feel free to play around with the data and find interesting relationships.
 
 Getting started
-----------------
+---------------
+
+Refer back to the assignment on factors if you need a refresher on how factors work.
 
 * Use the `read.dta()` function from the `foreign` library to load `elections.dta`.
 
 * Select the columns `year`, `age` through `religion`, `vote`, and `presvote`.
 
-* If you check the levels of the dataframe's factors (with `lapply(df[sapply(df, is.factor)], levels)`), you'll see that the data needs some cleaning. Modify the `levels()` of each factor so the descriptive text is more concise, replacing levels corresponding to missing entries with `NA`s.
+* If you check the levels of the dataframe's factors (with `lapply(df[sapply(df, is.factor)], levels)`), you'll see that the data needs some cleaning. Modify the `levels()` of each factor so the descriptive text is more concise. You can replace missing values with `NA`s (using `addNA()`), but note that a missing survey response often carries its own information and corresponds to its own category, and as such should not by default be replaced with a `NA` and subsequently imputed.
 
 * Replace `NA`s with column means if the column they're in is numeric. If the column is a factor, instead replace each `NA` with a randomly chosen level of the factor such that the proportion of each factor level to the number of entries stays unchanged after replacement.
 
@@ -63,6 +65,10 @@ You'll be looking at the data from the [CSDMC2010 SPAM Corpus](http://csmining.o
 
 Some things to keep in mind (read these before you begin):
 
+* For a reference about text preprocessing with `tm`, look [here](http://www.unt.edu/rss/class/Jon/R_SC/Module12/BasicTextMining.R) or [here](https://rstudio-pubs-static.s3.amazonaws.com/31867_8236987cf0a8444e962ccd2aec46d9c3.html).
+
 * Not every single email in the dataset successfully made it into `spam-emails.csv`. You'll want to do an `inner_join()` (from `dplyr`) on the dataset and the classification key, retaining only the rows which are successfully matched.
 
 * Remove columns corresponding to words that show up fewer than 10 times in total throughout the entire corpus.
+
+* The matrix of documents and word frequencies is very sparse -- don't scale it! If you do so, it will make it non-sparse, which is bad!
