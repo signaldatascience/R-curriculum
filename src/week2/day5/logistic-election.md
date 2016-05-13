@@ -9,7 +9,7 @@ A note on `caret`
 
 In the following, use the `caret` package to obtain cross-validated estimates of $\alpha$ and $\lambda$ for regularized logistic regression. You can simply do 5-fold cross-validation without any repeats (instead of 10-fold with 3 repeats). (If you want better predictive power, then do a *second* run of `train()` where you look more finely at values of $(\alpha, \lambda)$ close to the optimal values you found with a coarser search. However, it's not that important.)
 
-When calling `train()`, you should set `classProbs=TRUE`. Also, set `summaryFunction=twoClassSummary` or `summaryFunction=multiClassSummary` depending on whether you want your metric of model quality to be area under the ROC or log loss.
+When calling `train()`, you should set `classProbs=TRUE`. Also, set `summaryFunction` to either `twoClassSummary` or `multiClassSummary` depending on whether you want your metric of model quality to be area under the ROC or log loss.
 
 National Election Study Analysis
 ================================
