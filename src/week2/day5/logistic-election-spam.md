@@ -57,11 +57,11 @@ mosaicplot(table(df$income, df$presvote))
 Things to predict
 -----------------
 
-* Predict support for George H. W. Bush in the 1992 election.
+* Predict support for George H. W. Bush in the 1992 election. (Restrict consideration to people who actually voted!)
 
 * Predict party support for different years and look at how the coefficients of the predictors change over time.
 
-* For voters who didn't vote, predict how they *would have* voted. 
+* For voters who didn't vote, predict how they *would have* voted. If you aggregate these predictions by election year, how do they appear to change over time?
 
 The CSDMC2010 SPAM Corpus
 =========================
