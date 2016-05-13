@@ -12,7 +12,7 @@ Let's consider a more general problem first, which will be illuminating. Suppose
 
 Now, we would like to find the expected number of distinct elements of $S$ represented in $C$. Since all the elements are identical, this amounts to finding $\mathbb{E}(|S| \times I_k)$. Then we have
 
-$$\mathbb{E}(|S| \times I_k) = |S| \times \mathbb{E}(I_k) = |S| \times p_k = |S| \times \left(1 - \frac{|S| - 1}{|S|}\right)^n$$.
+$$\mathbb{E}(|S| \times I_k) = |S| \times \mathbb{E}(I_k) = |S| \times p_k = |S| \times \left(1 - \frac{|S| - 1}{|S|}\right)^n.$$
 
 Now, specifying to the case of our hash maps, we have $|S| = n = 10$, so then the corresponding expectation is 6.513216. This is the expected number of unique hashes, so the expected number of collisisions is $10 - 6.513216 = 3.486784$.
 
