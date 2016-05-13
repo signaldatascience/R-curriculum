@@ -4,7 +4,7 @@ title: Logistic Regression
 
 This assignment will focus on the aggregated speed dating data, containing information about gender, race, activity participation, and career.
 
-* Use logistic regression with the `glm()` functions. In order for it to work, you need to either have a binary variable (taking on values 0 or 1) as the target variable, or convert the thing that you want to predict into a factor variable, *e.g.*,
+* Use logistic regression with the `glm()` function. In order for it to work, you need to either have a binary variable (taking on values 0 or 1) as the target variable, or convert the thing that you want to predict into a factor variable, *e.g.*,
 
 	```r
 	df$gender = factor(gender)
