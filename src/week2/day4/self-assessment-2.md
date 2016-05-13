@@ -124,8 +124,8 @@ We **won't** be going over the theoretical solutions to these questions during c
 
 * **After 7 PM**, we'll give a short (30-minute) explanation of all three probability questions to anyone who sticks around
 
-Hashmap collision
------------------
+Hashmap collisions
+------------------
 
 From "120 Interview Questions", we have the following:
 
