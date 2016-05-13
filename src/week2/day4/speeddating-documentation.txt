@@ -1,10 +1,12 @@
-The following columns correspond to average ratings of a participant by others on a 1-10 scale:
+In the unaggregated data, the iid column has a unique value for each participant.
 
-attr_o: Average attractiveness rating
-sinc_o: Average sincerity rating
-intel_o: Average intelligence rating
-fun_o: Average fun rating
-amb_o: Average ambitiousness rating
+The following columns correspond to ratings of a participant by others on a 1-10 scale:
+
+attr_o: Attractiveness
+sinc_o: Sincerity
+intel_o: Intelligence
+fun_o: Fun
+amb_o: Ambitiousness
 
 For ethnicities, we have:
 
