@@ -1,0 +1,1019 @@
+
+Structure of data set:
+
+'data.frame':	41498 obs. of  62 variables:
+ $ year           : num  1948 1948 1948 1948 1948 ...
+ $ resid          : num  1001 1002 1003 1004 1005 ...
+ $ weight1        : num  1 1 1 1 1 1 1 1 1 1 ...
+ $ weight2        : num  1 1 1 1 1 1 1 1 1 1 ...
+ $ weight3        : num  1 1 1 1 1 1 1 1 1 1 ...
+ $ age            : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ gender         : Factor w/ 3 levels "0. na/ no pre iw (1948, 1952)",..: 2 3 3 3 2 3 2 3 2 2 ...
+ $ race           : Factor w/ 7 levels "1. white","2. black",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ educ1          : Factor w/ 5 levels "0. dk/ na/ no pre iw (1952)/ short-form",..: 2 3 3 4 4 3 2 2 3 3 ...
+ $ urban          : Factor w/ 4 levels "0. na (1948)/ telephone (rdd) sample (20",..: NA NA NA NA NA NA NA NA NA NA ...
+ $ region         : Factor w/ 5 levels "0. na(1948)",..: NA NA NA NA NA NA NA NA NA NA ...
+ $ income         : Factor w/ 6 levels "0. dk/ na/ refused to answer/ inap, no p",..: 4 6 5 6 5 6 5 2 5 5 ...
+ $ occup1         : Factor w/ 7 levels "0. na/member of armed forces/inap,no pre",..: NA NA NA NA NA NA NA NA NA NA ...
+ $ union          : Factor w/ 3 levels "0. dk/na/inap, question not used (1962)/",..: 2 3 3 3 3 3 3 3 2 2 ...
+ $ religion       : Factor w/ 5 levels "0. dk/na/refused to answer/ no post (196",..: 2 2 3 2 3 2 2 2 2 3 ...
+ $ educ2          : Factor w/ 9 levels "0. inap, question not used",..: NA NA NA NA NA NA NA NA NA NA ...
+ $ educ3          : Factor w/ 10 levels "0. inap, question not used",..: NA NA NA NA NA NA NA NA NA NA ...
+ $ martial_status : Factor w/ 9 levels "0. inap, question not used",..: NA NA NA NA NA NA NA NA NA NA ...
+ $ occup2         : Factor w/ 7 levels "0. na/ member of armed forces/ no pre (1",..: NA NA NA NA NA NA NA NA NA NA ...
+ $ icpsr_cty      : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ fips_cty       : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ partyid7       : Factor w/ 9 levels "0. dk/ na/ other/ refused to answer/ inap",..: NA NA NA NA NA NA NA NA NA NA ...
+ $ partyid3       : Factor w/ 5 levels "0. dk/ na/ other/ refused to answer/ no",..: NA NA NA NA NA NA NA NA NA NA ...
+ $ partyid3_b     : Factor w/ 4 levels "0. dk/ na/ other/ refused to answer/ no",..: NA NA NA NA NA NA NA NA NA NA ...
+ $ str_partyid    : Factor w/ 5 levels "0. dk/ na/ other/ refused to answerl no",..: NA NA NA NA NA NA NA NA NA NA ...
+ $ father_party   : Factor w/ 6 levels "0. na/inap/no pre iw(1952)/ no father/ n",..: NA NA NA NA NA NA NA NA NA NA ...
+ $ mother_party   : Factor w/ 6 levels "0. na/ inap/ no pre iw(1952)/ no mother/",..: NA NA NA NA NA NA NA NA NA NA ...
+ $ dlikes         : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ rlikes         : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ dem_therm      : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ rep_therm      : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ regis          : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ vote           : Factor w/ 3 levels "0. dk/na/inap, no post iw(1952,60,64...)",..: 3 3 3 3 3 3 3 3 3 3 ...
+ $ regisvote      : Factor w/ 4 levels "0. dk/na if voted/dk/na if registered/in",..: NA NA NA NA NA NA NA NA NA NA ...
+ $ presvote       : Factor w/ 4 levels "0. dk/na if voted/didn't vote for pres/i",..: 2 3 2 3 2 3 3 2 3 2 ...
+ $ presvote_2party: Factor w/ 3 levels "0. dk/na if voted/didn't vote for pres/i",..: 2 3 2 3 2 3 3 2 3 2 ...
+ $ presvote_intent: Factor w/ 6 levels "0. dk(1964 only)/na/inap/no pre iw(1948,",..: 2 3 4 3 2 3 3 2 3 2 ...
+ $ ideo_feel      : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ ideo7          : Factor w/ 9 levels "0. na/inap,no post iw(1972)/form iii,iv(",..: NA NA NA NA NA NA NA NA NA NA ...
+ $ ideo           : Factor w/ 7 levels "0. na to follow-up/inap, r not admin 7pt",..: NA NA NA NA NA NA NA NA NA NA ...
+ $ cd             : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ state          : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ inter_pre      : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ inter_post     : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ black          : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ female         : num  0 1 1 1 0 1 0 1 0 0 ...
+ $ age_sq         : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ rep_presvote   : num  0 1 0 1 0 1 1 0 1 0 ...
+ $ rep_pres_intent: num  0 1 NA 1 0 1 1 0 1 0 ...
+ $ south          : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ real_ideo      : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ presapprov     : Factor w/ 3 levels "0. dk/na/inap, form ii(1972)/ question n",..: NA NA NA NA NA NA NA NA NA NA ...
+ $ perfin1        : Factor w/ 5 levels "0. na/inap,no post(1968,72)/form ii,iii,",..: NA NA NA NA NA NA NA NA NA NA ...
+ $ perfin2        : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ perfin         : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ presadm        : num  -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 ...
+ $ age_10         : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ age_sq_10      : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ newfathe       : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ newmoth        : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ parent_party   : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ white          : num  1 1 1 1 1 1 1 1 1 1 ...
+ - attr(*, "datalabel")= chr ""
+ - attr(*, "time.stamp")= chr "21 Nov 2004 22:13"
+ - attr(*, "formats")= chr  "%9.0g" "%9.0g" "%9.0g" "%9.0g" ...
+ - attr(*, "types")= int  254 254 254 254 254 254 254 254 254 254 ...
+ - attr(*, "val.labels")= chr  "" "" "" "" ...
+ - attr(*, "var.labels")= chr  "year of study" "respondent number" "post-stratified pre - type 0 weight" "post-stratified pre - type 1 weight" ...
+ - attr(*, "version")= int 8
+ - attr(*, "label.table")=List of 42
+  ..$ vcf1016 : Named num 99
+  .. ..- attr(*, "names")= chr "99. na/inap,no post(all pres yrs exc.195"
+  ..$ vcf1015 : Named num 99
+  .. ..- attr(*, "names")= chr "99. na/inap, no pre(1952,60)/abbr.pre(19"
+  ..$ vcf0901 : Named num  0 99
+  .. ..- attr(*, "names")= chr  "00. inap, wrong distrcit id(2000)/questi" "99. na"
+  ..$ vcf0900 : Named num  0 98 99
+  .. ..- attr(*, "names")= chr  "00. na/wrong district id(2000)/question" "98. at large district" "99. district of columbia"
+  ..$ vcf0880b: Named num  0 1 3 5 8 9
+  .. ..- attr(*, "names")= chr  "0. inap, question not used" "1. getting better" "3. stayed the same" "5. getting worse" ...
+  ..$ vcf0880 : Named num  0 1 2 3 9
+  .. ..- attr(*, "names")= chr  "0. na/inap,no post(1968,72)/form ii,iii," "1. better now" "2. same" "3. worse now" ...
+  ..$ vcf0849 : Named num  0 1 3 5 7 8 9
+  .. ..- attr(*, "names")= chr  "0. na to follow-up/inap, r not admin 7pt" "1. liberal" "3. moderate ('middle of the road')" "5. conservative" ...
+  ..$ vcf0803 : Named num  0 1 2 3 4 5 6 7 9
+  .. ..- attr(*, "names")= chr  "0. na/inap,no post iw(1972)/form iii,iv(" "1. extremely liberal" "2. liberal" "3. slightly liberal" ...
+  ..$ vcf0801 : Named num  0 49 97 98 99
+  .. ..- attr(*, "names")= chr  "00. most liberal" "49. neutral" "97. most conservative" "98. dk in vcf0211 or vcf0212/don't recog" ...
+  ..$ vcf0713 : Named num  0 1 2 3 4 9
+  .. ..- attr(*, "names")= chr  "0. dk(1964 only)/na/inap/no pre iw(1948," "1. democratic candidate (with or without" "2. republican candidate (with or without" "3. undecided/ dk (exc.1964)" ...
+  ..$ vcf0704a: Named num  0 1 2
+  .. ..- attr(*, "names")= chr  "0. dk/na if voted/didn't vote for pres/i" "1. democrat" "2. republican"
+  ..$ vcf0704 : Named num  0 1 2 3
+  .. ..- attr(*, "names")= chr  "0. dk/na if voted/didn't vote for pres/i" "1. democrat" "2. republican" "3. major third party cand (wallace 1968/"
+  ..$ vcf0703 : Named num  0 1 2 3
+  .. ..- attr(*, "names")= chr  "0. dk/na if voted/dk/na if registered/in" "1. not registed, and did not vote" "2. registered, but did not vote" "3. voted (registered)"
+  ..$ vcf0702 : Named num  0 1 2
+  .. ..- attr(*, "names")= chr  "0. dk/na/inap, no post iw(1952,60,64...)" "1. no, did not vote" "2. yes, voted"
+  ..$ vcf0701 : Named num  0 1 2
+  .. ..- attr(*, "names")= chr  "0. dk/na/inap, no pre iw(1952,60)/form i" "1. no" "2. yes"
+  ..$ vcf0450 : Named num  0 1 2
+  .. ..- attr(*, "names")= chr  "0. dk/na/inap, form ii(1972)/ question n" "1. approve" "2. disapprove"
+  ..$ vcf0426 : Named num  97 98 99
+  .. ..- attr(*, "names")= chr  "97. 97-100 degrees" "98. dk rating (exc. 1968)/ don't recogni" "99. na/ inap, no post iw(1968)/ question"
+  ..$ vcf0424 : Named num  97 98 99
+  .. ..- attr(*, "names")= chr  "97. 97-100 degrees" "98. dk rating (exc. 1968)/ don't recogni" "99. na/ inap, no post iw(1968)/ question"
+  ..$ vcf0407 : Named num  -5 0 5 99
+  .. ..- attr(*, "names")= chr  "-5. maximum negative" "0. neutral" "5. maximum positive" "99. inap,no pre iw(1952,60)/form ii(1972"
+  ..$ vcf0403 : Named num  -5 0 5 99
+  .. ..- attr(*, "names")= chr  "-5. maximum negative" "0. neutral" "5. maximum positive" "99. inap, no pre iw(1952,60)/form ii(197"
+  ..$ vcf0307 : Named num  0 1 2 3 4 9
+  .. ..- attr(*, "names")= chr  "0. na/ inap/ no pre iw(1952)/ no mother/" "1. democrat" "2. independent" "3. republican" ...
+  ..$ vcf0306 : Named num  0 1 2 3 4 9
+  .. ..- attr(*, "names")= chr  "0. na/inap/no pre iw(1952)/ no father/ n" "1. democrat" "2. independent (some years also: shifter" "3. republican" ...
+  ..$ vcf0305 : Named num  0 1 2 3 4
+  .. ..- attr(*, "names")= chr  "0. dk/ na/ other/ refused to answerl no" "1. independent or apolitical" "2. leaning independent" "3. weak partisan" ...
+  ..$ vcf0303a: Named num  0 1 2 3
+  .. ..- attr(*, "names")= chr  "0. dk/ na/ other/ refused to answer/ no" "1. democrats (including leaners)" "2. indpendents and apolitical (1966 only" "3. republicans (including leaners)"
+  ..$ vcf0303 : Named num  0 1 2 3 9
+  .. ..- attr(*, "names")= chr  "0. dk/ na/ other/ refused to answer/ no" "1. democrats (including leaners)" "2. independents" "3. republicans (including leaners)" ...
+  ..$ vcf0301 : Named num  0 1 2 3 4 5 6 7 9
+  .. ..- attr(*, "names")= chr  "0. dk/ na/ other/ refused to answer/ inap" "1. strong democrat" "2. weak democrat" "3. independent-democrat" ...
+  ..$ vcf0170d: Named num 0
+  .. ..- attr(*, "names")= chr "0. inap, question not used"
+  ..$ vcf0170c: Named num 0
+  .. ..- attr(*, "names")= chr "0. inap, question not used"
+  ..$ vcf0151 : Named num  0 1 2 3 4 5 6
+  .. ..- attr(*, "names")= chr  "0. na/ member of armed forces/ no pre (1" "1. professional and managerial" "2. clerical and sales workers" "3. skilled, semi-skilled and service wor" ...
+  ..$ vcf0147 : Named num  0 1 2 3 4 5 7 8 9
+  .. ..- attr(*, "names")= chr  "0. inap, question not used" "1. married and living with spouse (or sp" "2. never married" "3. divorced" ...
+  ..$ vcf0140a: Named num  0 1 2 3 4 5 6 7 8 9
+  .. ..- attr(*, "names")= chr  "0. inap, question not used" "1. 8 grades or less ('grade school')" "2. 9-12 grades ('high school'), no diplo" "3. 12 grades, diploma or equivalency" ...
+  ..$ vcf0140 : Named num  0 1 2 3 4 5 6 8 9
+  .. ..- attr(*, "names")= chr  "0. inap, question not used" "1. 8 grades or less ('grade school')" "2. 9-12 grades ('high school'), no diplo" "3. 12 grades, diploma or equivalency" ...
+  ..$ vcf0128 : Named num  0 1 2 3 4
+  .. ..- attr(*, "names")= chr  "0. dk/na/refused to answer/ no post (196" "1. protestant" "2. catholic (roman catholic)" "3. jewish" ...
+  ..$ vcf0127 : Named num  0 1 2
+  .. ..- attr(*, "names")= chr  "0. dk/na/inap, question not used (1962)/" "1. yes, someone (1948: head) in househol" "2. no, no one in the household belongs t"
+  ..$ vcf0115 : Named num  0 1 2 3 4 5 6
+  .. ..- attr(*, "names")= chr  "0. na/member of armed forces/inap,no pre" "1. professional and managerial" "2. clerical and sales workers" "3. skilled, semi-skilled and service wor" ...
+  ..$ vcf0114 : Named num  0 1 2 3 4 5
+  .. ..- attr(*, "names")= chr  "0. dk/ na/ refused to answer/ inap, no p" "1. 0 to 16 percentile" "2. 17 to 33 percentile" "3. 34 to 67 percentile" ...
+  ..$ vcf0112 : Named num  0 1 2 3 4
+  .. ..- attr(*, "names")= chr  "0. na(1948)" "1. northeast (ct,me,ma,nh,nj,ny,pa,ri,vt" "2. north central(il,in,ia,ks,mi,mn,mo,ne" "3. south (al,ar,de,d.c.,fl,ga,ky,la,md,m" ...
+  ..$ vcf0111 : Named num  0 1 2 3
+  .. ..- attr(*, "names")= chr  "0. na (1948)/ telephone (rdd) sample (20" "1. central cities" "2. suburban areas" "3. rural, small towns, outlying and adja"
+  ..$ vcf0110 : Named num  0 1 2 3 4
+  .. ..- attr(*, "names")= chr  "0. dk/ na/ no pre iw (1952)/ short-form" "1. grade school of less (0-8 grades)" "2. high school (12 grades or fewer, incl" "3. some college(13 grades or more,but no" ...
+  ..$ vcf0106a: Named num  1 2 3 4 5 7 9
+  .. ..- attr(*, "names")= chr  "1. white" "2. black" "3. asian" "4. native american" ...
+  ..$ vcf0104 : Named num  0 1 2
+  .. ..- attr(*, "names")= chr  "0. na/ no pre iw (1948, 1952)" "1. male" "2. female"
+  ..$ vcf0101 : Named num  0 97 98 99
+  .. ..- attr(*, "names")= chr  "00. na/ dk/ rf/ inap, no pre iw (1952)/" "97. 97 years old (1952, 1974, 1996 and l" "98. 98 years old (1958-1962, 1966, 1968:" "99. 99 years old (1976-1990, 1994: or ol"
+
+Variable names and meanings:
+
+      [,1]              [,2]                                      
+ [1,] "year"            "year of study"                           
+ [2,] "resid"           "respondent number"                       
+ [3,] "weight1"         "post-stratified pre - type 0 weight"     
+ [4,] "weight2"         "post-stratified pre - type 1 weight"     
+ [5,] "weight3"         "post-stratified pre - type 2 weight"     
+ [6,] "age"             "respondent age"                          
+ [7,] "gender"          "respondent gender"                       
+ [8,] "race"            "respondent race (3)"                     
+ [9,] "educ1"           "r education (1)"                         
+[10,] "urban"           "urbanism"                                
+[11,] "region"          "census region"                           
+[12,] "income"          "family income"                           
+[13,] "occup1"          "respondent  occupation (1)"              
+[14,] "union"           "household union membership"              
+[15,] "religion"        "religion of r (1)"                       
+[16,] "educ2"           "r education (2)"                         
+[17,] "educ3"           "r education (3)"                         
+[18,] "martial_status"  "marital status of r"                     
+[19,] "occup2"          "respondent occupation (2)"               
+[20,] "icpsr_cty"       "county of iw 1968-1982"                  
+[21,] "fips_cty"        "county of iw 1970,1978-1998"             
+[22,] "partyid7"        "7-pt scale party identification"         
+[23,] "partyid3"        "party id collapsed (1)"                  
+[24,] "partyid3_b"      "party id collapsed (2)"                  
+[25,] "str_partyid"     "strength of r partisanship"              
+[26,] "father_party"    "r father party id"                       
+[27,] "mother_party"    "r mother party id"                       
+[28,] "dlikes"          "democratic pres candidate affect"        
+[29,] "rlikes"          "republican pres candidate affect"        
+[30,] "dem_therm"       "dem presidential candidate thermometer"  
+[31,] "rep_therm"       "rep presidential candidate thermometer"  
+[32,] "regis"           "is r registered to vote (pre)"           
+[33,] "vote"            "did r vote in election"                  
+[34,] "regisvote"       "did r register and vote"                 
+[35,] "presvote"        "party of pres vote- all major candidates"
+[36,] "presvote_2party" "party of pres vote- 2 major parties"     
+[37,] "presvote_intent" "r intent for presidential vote (pre)"    
+[38,] "ideo_feel"       "liberal-conservative thermometer index"  
+[39,] "ideo7"           "liberal-conservative 7pt scale"          
+[40,] "ideo"            "r position lib/cons 3-category summary"  
+[41,] "cd"              "congressional district of residence"     
+[42,] "state"           "state of residence"                      
+[43,] "inter_pre"       "interview no. days before election (pre)"
+[44,] "inter_post"      "interview no. days after election (post)"
+[45,] "black"           ""                                        
+[46,] "female"          ""                                        
+[47,] "age_sq"          ""                                        
+[48,] "rep_presvote"    ""                                        
+[49,] "rep_pres_intent" ""                                        
+[50,] "south"           ""                                        
+[51,] "real_ideo"       ""                                        
+[52,] "presapprov"      "approve presidential performance"        
+[53,] "perfin1"         "personal financial situation in past yr" 
+[54,] "perfin2"         "r fin situation last few yrs 1956-1964"  
+[55,] "perfin"          ""                                        
+[56,] "presadm"         ""                                        
+[57,] "age_10"          ""                                        
+[58,] "age_sq_10"       ""                                        
+[59,] "newfathe"        ""                                        
+[60,] "newmoth"         ""                                        
+[61,] "parent_party"    ""                                        
+[62,] "white"           ""                                        
+
+Table or summary of variables:
+
+
+
+==============================================================
+
+year: (year of study)
+
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   1948    1966    1978    1978    1990    2002 
+
+
+==============================================================
+
+resid: (respondent number)
+
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+      1     511    1125    1326    1806    6009 
+
+
+==============================================================
+
+weight1: (post-stratified pre - type 0 weight)
+
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.2417  1.0000  1.0000  1.0570  1.0000  4.0000 
+
+
+==============================================================
+
+weight2: (post-stratified pre - type 1 weight)
+
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   0.00    1.00    1.00    1.04    1.00    4.00 
+
+
+==============================================================
+
+weight3: (post-stratified pre - type 2 weight)
+
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   0.00    1.00    1.00    1.04    1.00    4.00 
+
+
+==============================================================
+
+age: (respondent age)
+
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+  17.00   32.00   44.00   46.14   59.00   99.00 1966.00 
+
+
+==============================================================
+
+gender: (respondent gender)
+
+col
+0. na/ no pre iw (1948, 1952)                       1. male 
+                            0                         18529 
+                    2. female 
+                        22866 
+
+
+==============================================================
+
+race: (respondent race (3))
+
+col
+                                1. white 
+                                   34563 
+                                2. black 
+                                    4349 
+                                3. asian 
+                                     300 
+                      4. native american 
+                                     631 
+                             5. hispanic 
+                                    1223 
+                                7. other 
+                                     119 
+9. dk/na/no pre iw(1948,52)/sht-form new 
+                                       0 
+
+
+==============================================================
+
+educ1: (r education (1))
+
+col
+ 0. dk/ na/ no pre iw (1952)/ short-form 
+                                       0 
+    1. grade school of less (0-8 grades) 
+                                    6576 
+2. high school (12 grades or fewer, incl 
+                                   19021 
+3. some college(13 grades or more,but no 
+                                    8113 
+ 4. college or advanced degree (no cases 
+                                    7349 
+
+
+==============================================================
+
+urban: (urbanism)
+
+col
+0. na (1948)/ telephone (rdd) sample (20 
+                                       0 
+                       1. central cities 
+                                   10366 
+                       2. suburban areas 
+                                   14100 
+3. rural, small towns, outlying and adja 
+                                   14328 
+
+
+==============================================================
+
+region: (census region)
+
+col
+                             0. na(1948) 
+                                       0 
+1. northeast (ct,me,ma,nh,nj,ny,pa,ri,vt 
+                                    8305 
+2. north central(il,in,ia,ks,mi,mn,mo,ne 
+                                   11454 
+3. south (al,ar,de,d.c.,fl,ga,ky,la,md,m 
+                                   13134 
+4. west (ak,az,ca,co,hi,id,mt,nv,nm,or,u 
+                                    6931 
+
+
+==============================================================
+
+income: (family income)
+
+col
+0. dk/ na/ refused to answer/ inap, no p 
+                                       0 
+                   1. 0 to 16 percentile 
+                                    5881 
+                  2. 17 to 33 percentile 
+                                    5941 
+                  3. 34 to 67 percentile 
+                                   12034 
+                  4. 68 to 95 percentile 
+                                   11043 
+                 5. 96 to 100 percentile 
+                                    2121 
+
+
+==============================================================
+
+occup1: (respondent  occupation (1))
+
+col
+0. na/member of armed forces/inap,no pre 
+                                       0 
+          1. professional and managerial 
+                                    8715 
+           2. clerical and sales workers 
+                                    6251 
+3. skilled, semi-skilled and service wor 
+                                   10733 
+                4. laborers, except farm 
+                                     909 
+5. farmers,farm managers,farm laborers & 
+                                    1162 
+6. homemkrs(1972-92:7 in vcf0116,4 in vc 
+                                    6648 
+
+
+==============================================================
+
+union: (household union membership)
+
+col
+0. dk/na/inap, question not used (1962)/ 
+                                       0 
+1. yes, someone (1948: head) in househol 
+                                    8843 
+2. no, no one in the household belongs t 
+                                   30953 
+
+
+==============================================================
+
+religion: (religion of r (1))
+
+col
+0. dk/na/refused to answer/ no post (196 
+                                       0 
+                           1. protestant 
+                                   26809 
+            2. catholic (roman catholic) 
+                                    9795 
+                               3. jewish 
+                                    1088 
+4. other and none (also includes dk pref 
+                                    3361 
+
+
+==============================================================
+
+educ2: (r education (2))
+
+col
+              0. inap, question not used 
+                                       0 
+    1. 8 grades or less ('grade school') 
+                                    6363 
+2. 9-12 grades ('high school'), no diplo 
+                                    5665 
+    3. 12 grades, diploma or equivalency 
+                                    9896 
+4. 12 grades, diploma or equivalency, pl 
+                                    3235 
+5. some college, no degree/ junior/commu 
+                                    8020 
+6. ba level degrees/ advanced degrees in 
+                                    7349 
+                                   8. dk 
+                                       0 
+ 9. na/ no pre iw (1952)/ short-form new 
+                                       0 
+
+
+==============================================================
+
+educ3: (r education (3))
+
+col
+              0. inap, question not used 
+                                       0 
+    1. 8 grades or less ('grade school') 
+                                    6363 
+2. 9-12 grades ('high school'), no diplo 
+                                    5665 
+    3. 12 grades, diploma or equivalency 
+                                    9896 
+4. 12 grades, diploma or equivalency, pl 
+                                    3544 
+5. some college, no degree/ junior/commu 
+                                    7711 
+                      6. ba level degree 
+                                    5197 
+           7. advanced degrees incl. llb 
+                                    2153 
+                                   8. dk 
+                                       0 
+ 9. na/ no pre iw (1952)/ short-form new 
+                                       0 
+
+
+==============================================================
+
+martial_status: (marital status of r)
+
+col
+              0. inap, question not used 
+                                       0 
+1. married and living with spouse (or sp 
+                                   25527 
+                        2. never married 
+                                    4970 
+                             3. divorced 
+                                    3055 
+                            4. separated 
+                                    1094 
+                              5. widowed 
+                                    4206 
+7. partners/ not married (volunteered [e 
+                                     459 
+8. r not married/partnered,refused to sa 
+                                       0 
+9. na/ no pre iw (1952)/ unmarried at ti 
+                                       0 
+
+
+==============================================================
+
+occup2: (respondent occupation (2))
+
+col
+0. na/ member of armed forces/ no pre (1 
+                                       0 
+          1. professional and managerial 
+                                    8970 
+           2. clerical and sales workers 
+                                    6602 
+3. skilled, semi-skilled and service wor 
+                                   11152 
+                4. laborers, except farm 
+                                     943 
+5. farmers, farm managers, farm laborers 
+                                    1200 
+6. homemakers (1980-later: no other occu 
+                                    5959 
+
+
+==============================================================
+
+icpsr_cty: (county of iw 1968-1982)
+
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+   1001   21050   37050   36710   49220   73040   28242 
+
+
+==============================================================
+
+fips_cty: (county of iw 1970,1978-1998)
+
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+   1033   13070   27100   28620   42040   56010   20897 
+
+
+==============================================================
+
+partyid7: (7-pt scale party identification)
+
+col
+0. dk/ na/ other/ refused to answer/ inap 
+                                        0 
+                       1. strong democrat 
+                                     8098 
+                         2. weak democrat 
+                                     8872 
+                  3. independent-democrat 
+                                     4379 
+               4. independent-independent 
+                                     3915 
+                5. independent-republican 
+                                     3911 
+                       6. weak republican 
+                                     5949 
+                     7. strong republican 
+                                     4985 
+        9. apolitical (1966 only: and dk) 
+                                        0 
+
+
+==============================================================
+
+partyid3: (party id collapsed (1))
+
+col
+0. dk/ na/ other/ refused to answer/ no        1. democrats (including leaners) 
+                                      0                                   21349 
+                        2. independents      3. republicans (including leaners) 
+                                   3915                                   14845 
+      9. apolitical (1966 only: and dk) 
+                                    485 
+
+
+==============================================================
+
+partyid3_b: (party id collapsed (2))
+
+col
+ 0. dk/ na/ other/ refused to answer/ no 
+                                       0 
+        1. democrats (including leaners) 
+                                   21349 
+2. indpendents and apolitical (1966 only 
+                                    4409 
+      3. republicans (including leaners) 
+                                   14845 
+
+
+==============================================================
+
+str_partyid: (strength of r partisanship)
+
+col
+0. dk/ na/ other/ refused to answerl no            1. independent or apolitical 
+                                      0                                    4409 
+                 2. leaning independent                        3. weak partisan 
+                                   8290                                   14821 
+                     4. strong partisan 
+                                  13083 
+
+
+==============================================================
+
+father_party: (r father party id)
+
+col
+0. na/inap/no pre iw(1952)/ no father/ n 
+                                       0 
+                             1. democrat 
+                                    8459 
+2. independent (some years also: shifter 
+                                    1099 
+                           3. republican 
+                                    4735 
+4. other/ minor party/ apolitical/ never 
+                                       0 
+                        9. dk (exc.1988) 
+                                       0 
+
+
+==============================================================
+
+mother_party: (r mother party id)
+
+col
+0. na/ inap/ no pre iw(1952)/ no mother/ 
+                                       0 
+                             1. democrat 
+                                    8080 
+                          2. independent 
+                                    1177 
+                           3. republican 
+                                    4455 
+4. other/ minor party/ apolitical/ never 
+                                       0 
+                       9. dk (excl.1988) 
+                                       0 
+
+
+==============================================================
+
+dlikes: (democratic pres candidate affect)
+
+col
+  -5   -4   -3   -2   -1    0    1    2    3    4    5 
+ 454  614 1240 1951 2570 4101 2736 2202 1560  901  649 
+
+
+==============================================================
+
+rlikes: (republican pres candidate affect)
+
+col
+  -5   -4   -3   -2   -1    0    1    2    3    4    5 
+ 618  633 1227 1909 2569 4021 2538 2203 1580  914  766 
+
+
+==============================================================
+
+dem_therm: (dem presidential candidate thermometer)
+
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max.     NA's 
+    0.00    40.00    60.00    57.48    85.00    97.00 27174.00 
+
+
+==============================================================
+
+rep_therm: (rep presidential candidate thermometer)
+
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max.     NA's 
+    0.00    40.00    60.00    60.07    85.00    97.00 27111.00 
+
+
+==============================================================
+
+regis: (is r registered to vote (pre))
+
+col
+    1     2     9 
+ 1090 10526  1511 
+
+
+==============================================================
+
+vote: (did r vote in election)
+
+col
+0. dk/na/inap, no post iw(1952,60,64...) 
+                                       0 
+                     1. no, did not vote 
+                                   10769 
+                           2. yes, voted 
+                                   27319 
+
+
+==============================================================
+
+regisvote: (did r register and vote)
+
+col
+0. dk/na if voted/dk/na if registered/in 
+                                       0 
+       1. not registed, and did not vote 
+                                    3885 
+         2. registered, but did not vote 
+                                    3903 
+                   3. voted (registered) 
+                                   22511 
+
+
+==============================================================
+
+presvote: (party of pres vote- all major candidates)
+
+col
+0. dk/na if voted/didn't vote for pres/i 
+                                       0 
+                             1. democrat 
+                                    7387 
+                           2. republican 
+                                    7853 
+3. major third party cand (wallace 1968/ 
+                                     299 
+
+
+==============================================================
+
+presvote_2party: (party of pres vote- 2 major parties)
+
+col
+0. dk/na if voted/didn't vote for pres/i 
+                                       0 
+                             1. democrat 
+                                    7387 
+                           2. republican 
+                                    7853 
+
+
+==============================================================
+
+presvote_intent: (r intent for presidential vote (pre))
+
+col
+0. dk(1964 only)/na/inap/no pre iw(1948, 
+                                       0 
+1. democratic candidate (with or without 
+                                    8669 
+2. republican candidate (with or without 
+                                    8882 
+             3. undecided/ dk (exc.1964) 
+                                    1734 
+4. r does not intend to vote(incl. no, q 
+                                       0 
+                      9. other candidate 
+                                       0 
+
+
+==============================================================
+
+ideo_feel: (liberal-conservative thermometer index)
+
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+    0.0    44.0    49.0    52.3    59.0    97.0 15636.0 
+
+
+==============================================================
+
+ideo7: (liberal-conservative 7pt scale)
+
+col
+0. na/inap,no post iw(1972)/form iii,iv( 
+                                       0 
+                    1. extremely liberal 
+                                     408 
+                              2. liberal 
+                                    2713 
+                     3. slightly liberal 
+                                    2445 
+         4. moderate, middle of the road 
+                                    7140 
+                5. slightly conservative 
+                                    3834 
+                         6. conservative 
+                                    5120 
+               7. extremely conservative 
+                                     633 
+    9. dk/ haven't thought much about it 
+                                       0 
+
+
+==============================================================
+
+ideo: (r position lib/cons 3-category summary)
+
+col
+0. na to follow-up/inap, r not admin 7pt 
+                                       0 
+                              1. liberal 
+                                    4489 
+      3. moderate ('middle of the road') 
+                                    3024 
+                         5. conservative 
+                                    7619 
+ 7. refuses to choose (in follow-up[exc. 
+                                       0 
+                                   8. dk 
+                                       0 
+                9. na to entire question 
+                                       0 
+
+
+==============================================================
+
+cd: (congressional district of residence)
+
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max.     NA's 
+   1.000    3.000    6.000    9.053   12.000   52.000 4931.000 
+
+
+==============================================================
+
+state: (state of residence)
+
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+   1.00   22.00   40.00   37.14   49.00   82.00 1678.00 
+
+
+==============================================================
+
+inter_pre: (interview no. days before election (pre))
+
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max.     NA's 
+    0.00    18.00    29.00    29.94    42.00    67.00 19934.00 
+
+
+==============================================================
+
+inter_post: (interview no. days after election (post))
+
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+   0.00    8.00   17.00   20.21   29.00   98.00 6695.00 
+
+
+==============================================================
+
+black: ()
+
+col
+    0     1 
+36836  4349 
+
+
+==============================================================
+
+female: ()
+
+col
+    0     1 
+18529 22866 
+
+
+==============================================================
+
+age_sq: ()
+
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+    289    1024    1936    2418    3481    9801    1966 
+
+
+==============================================================
+
+rep_presvote: ()
+
+col
+   0    1 
+7387 7853 
+
+
+==============================================================
+
+rep_pres_intent: ()
+
+col
+   0    1 
+8669 8882 
+
+
+==============================================================
+
+south: ()
+
+col
+    0     1 
+29687 10133 
+
+
+==============================================================
+
+real_ideo: ()
+
+col
+   1    2    3    4    5    6    7 
+ 408 2007 2445 6603 3834 3646  633 
+
+
+==============================================================
+
+presapprov: (approve presidential performance)
+
+col
+0. dk/na/inap, form ii(1972)/ question n 
+                                       0 
+                              1. approve 
+                                   15192 
+                           2. disapprove 
+                                    9597 
+
+
+==============================================================
+
+perfin1: (personal financial situation in past yr)
+
+col
+0. na/inap,no post(1968,72)/form ii,iii, 
+                                       0 
+                           1. better now 
+                                   10785 
+                                 2. same 
+                                   10795 
+                            3. worse now 
+                                    8731 
+               9. dk/ uncertain/ depends 
+                                       0 
+
+
+==============================================================
+
+perfin2: (r fin situation last few yrs 1956-1964)
+
+col
+   1    2    3 
+1983 2281  986 
+
+
+==============================================================
+
+perfin: ()
+
+col
+    1     2     3 
+12768 13076  9717 
+
+
+==============================================================
+
+presadm: ()
+
+col
+   -1     1 
+17802 23696 
+
+
+==============================================================
+
+age_10: ()
+
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max.     NA's 
+   1.700    3.200    4.400    4.614    5.900    9.900 1966.000 
+
+
+==============================================================
+
+age_sq_10: ()
+
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+   2.89   10.24   19.36   24.18   34.81   98.01 1966.00 
+
+
+==============================================================
+
+newfathe: ()
+
+col
+  -1    0    1 
+8459 1099 4735 
+
+
+==============================================================
+
+newmoth: ()
+
+col
+  -1    0    1 
+8080 1177 4455 
+
+
+==============================================================
+
+parent_party: ()
+
+col
+  -2   -1    0    1    2 
+6940  323 1685  247 3584 
+
+
+==============================================================
+
+white: ()
+
+col
+    0     1 
+ 6935 34563 
