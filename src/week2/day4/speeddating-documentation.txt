@@ -1,0 +1,65 @@
+The following columns correspond to average ratings of a participant by others on a 1-10 scale:
+
+attr_o: Average attractiveness rating
+sinc_o: Average sincerity rating
+intel_o: Average intelligence rating
+fun_o: Average fun rating
+amb_o: Average ambitiousness rating
+
+For ethnicities, we have:
+
+race_o: The race of the person who rated the participant
+race: The race of the participant
+
+where
+
+1 = Black/African-American
+2 = European/Caucasian-American
+3 = Latino/Hispanic-American
+4 = Asian/Pacific Islander/Asian-American
+5 = Native American
+6 = Other
+
+We also have
+
+career_c: The career of the participant
+
+where
+
+1 = Lawyer 
+2 = Academic/Research 
+3 = Psychologist 
+4 = Doctor/Medicine 
+5 = Engineer 
+6 = Creative Arts/Entertainment 
+7 = Banking/Consulting/Finance/Marketing/Business/CEO/Entrepreneur/Admin 
+8 = Real Estate 
+9 = International/Humanitarian Affairs 
+10 = Undecided 
+11 =Social Work
+12 = Speech Pathology
+13 = Politics
+14 = Pro sports/Athletics
+15 = Other
+16 = Journalism
+17 = Architecture
+
+The following columns correspond to self-rated interest in activities on a 1-10 scale:
+
+sports: Playing sports/ athletics
+tvsports: Watching sports
+excersice: Body building/exercising
+dining: Dining out
+museums: Museums/galleries
+art: Art
+hiking:  Hiking/camping
+gaming: Gaming
+clubbing: Dancing/clubbing
+reading: Reading
+tv: Watching TV
+theater: Theater
+movies: Movies
+concerts: Going to concerts
+music: Music
+shopping: Shopping
+yoga: Yoga/meditation
