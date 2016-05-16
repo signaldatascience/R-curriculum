@@ -33,7 +33,7 @@ Afterward, run PCA on the remaining variables.
 
 * Suppose that we use the first $n$th principal components to predict Extraversion and Neuroticism using a simple, unregularized linear model. Calculate a cross-validated RMSE for $n = 1, 2, \ldots$, plot them against $n$, and compare to the cross-validated RMSE which you got in the self-assessment when using regularized linear regression with all of the original variables. Interpret the results. (You can either calculate the RMSE by implementing cross-validation yourself, like you did in the self-assessment but simpler, or use `CVlm` from the `DAAG` package.)
 
-* Read about the [history of trait theories](http://webspace.ship.edu/cgboer/eysenck.html). Can you assign any hierarchical interpretation to the principal components obtained for this dataset? How do they relate to Extraversion and Neuroticism?
+* Read about the [history of trait theories](http://webspace.ship.edu/cgboer/eysenck.html). How do the principal components relate to Extraversion and Neuroticism?
 
 PCA on the speed dating dataset
 ===============================
