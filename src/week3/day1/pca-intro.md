@@ -31,9 +31,9 @@ Afterward, run PCA on the remaining variables.
 
 * Plot the eigenvalues obtained via `prcomp(...)$sdev`. How do their relative magnitudes relate to the interpretability of each principal component?
 
-* Suppose that we use the first $n$th principal components to predict Extraversion and Neuroticism using a simple, unregularized linear model. Calculate a cross-validated RMSE for $n = 1, 2, \ldots$, plot them against $n$, and compare to the cross-validated RMSE which you got in the self-assessment when using regularized linear regression with all of the original variables. Interpret the results.
+* Suppose that we use the first $n$th principal components to predict Extraversion and Neuroticism using a simple, unregularized linear model. Calculate a cross-validated RMSE for $n = 1, 2, \ldots$, plot them against $n$, and compare to the cross-validated RMSE which you got in the self-assessment when using regularized linear regression with all of the original variables. Interpret the results. (You can either calculate the RMSE by implementing cross-validation yourself, like you did in the self-assessment but simpler, or use `CVlm` from the `DAAG` package.)
 
-* Spend a couple minutes reading about the [history of trait theories](http://webspace.ship.edu/cgboer/eysenck.html). Can you assign any hierarchical interpretation to the principal components obtained for this dataset? How do they relate to Extraversion and Neuroticism?
+* Read about the [history of trait theories](http://webspace.ship.edu/cgboer/eysenck.html). Can you assign any hierarchical interpretation to the principal components obtained for this dataset? How do they relate to Extraversion and Neuroticism?
 
 PCA on the speed dating dataset
 ===============================
@@ -46,6 +46,6 @@ Run PCA on the columns corresponding to the activity questions.
 
 * Perform the same analysis which you didd with the `msq` dataset: looking at and interpreting the loadings of each principal component, visualizing them with `corrplot()`, and looking at the associated eigenvalues. Since there aren't very many variables, you can `cbind()` the activities to the principal component scores and then use `cor()` $\to$ `corrplot()` for easy visualization. As before, assign appropriate names to the principal components which seem to have a coherent meaning or interpretation.
 
-* Predict gender, race (restricting to whites and Asians), and career code (restricting to academia and business / finance) in terms of varying numbers of the principal components with regularized logistic regression. (You can just use $L^2$ regularization with `cv.glmnet()` and `family="binomial"`.) Interpret the coefficients.
+* Predict gender, race (restricting to whites and Asians), and career code (restricting to academia and business / finance) using the principal components with logistic regression. Do so with the 1st principal component, the 1st and the 2nd, the 1st, 2nd, and 3rd, ... all the way up to every principal component. (You can just use `glm()` so you get the $p$-values too.) Interpret the coefficients.
 
 * For the above regressions, use the `pROC` package to calculate the associated areas under the ROC curve. Compare to the results of using stepwise or regularized regression on all of the activities for the same predictions.
