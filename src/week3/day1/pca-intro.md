@@ -12,6 +12,8 @@ A couple things to keep in mind: Let `p = prcomp(df, scale=TRUE)` be the result 
 
 * `p$sdev` gives the *eigenvalues of the covariance matrix* of the data. One can interpret the `n`th value in `p$sdev` as corresponding to the relative proportion of the variance in the data explained by the `n`th principal component. Put another way, `p$sdev[n] / sum(p$sdev)` is the proportion of the variance in the data explained by the `n`th principal component.
 
+For supplementary reading on the theory behind PCA, consult *Introduction to Statistical Learning* or *Applied Predictive Modeling*.
+
 PCA on the `msq` dataset
 ========================
 
@@ -21,7 +23,7 @@ Prepare the data in this fashion:
 
 * Look at the number of `NAs` in each column (hint: use `colSums()` in conjunction with `is.na()`). For simplicity's sake, throw out the columns with a huge number of missing values and subsequently remove all the rows with any `NA`s.
 
-Afterward, run a PCA on the remaining variables.
+Afterward, run PCA on the remaining variables.
 
 * Write a function `top(n)` that prints out the top 10 *loadings* of the `n`th principal component, ordered by absolute value.
 
@@ -36,3 +38,14 @@ Afterward, run a PCA on the remaining variables.
 PCA on the speed dating dataset
 ===============================
 
+Return to the aggregated speed dating dataset from last week, which you used for logistic regression.
+
+* Drop the rows corresponding to people who didn't answer the activities questions.
+
+Run PCA on the columns corresponding to the activity questions.
+
+* Perform the same analysis which you didd with the `msq` dataset: looking at and interpreting the loadings of each principal component, visualizing them with `corrplot()`, and looking at the associated eigenvalues. Since there aren't very many variables, you can `cbind()` the activities to the principal component scores and then use `cor()` $\to$ `corrplot()` for easy visualization. As before, assign appropriate names to the principal components which seem to have a coherent meaning or interpretation.
+
+* Predict gender, race (restricting to whites and Asians), and career code (restricting to academia and business / finance) in terms of varying numbers of the principal components with regularized logistic regression. (You can just use $L^2$ regularization with `cv.glmnet()` and `family="binomial"`.) Interpret the coefficients.
+
+* For the above regressions, use the `pROC` package to calculate the associated areas under the ROC curve. Compare to the results of using stepwise or regularized regression on all of the activities for the same predictions.
