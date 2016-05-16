@@ -2,9 +2,9 @@
 title: Principal Components Analysis
 ---
 
-Use the `prcomp(..., scale=TRUE)` function to explore the principal components of various datasets.
+Use the `prcomp(..., scale.=TRUE)` function to explore the principal components of various datasets.
 
-A couple things to keep in mind: Let `p = prcomp(df, scale=TRUE)` be the result of PCA run on a data frame `df`. Then:
+A couple things to keep in mind: Let `p = prcomp(df, scale.=TRUE)` be the result of PCA run on a data frame `df`. Then:
 
 * `p$rotation` gives a matrix with rows corresponding to columns of `df`, columns corresponding to principal components, and entries corresponding to the *loadings* of a particular column of `df` on a particular principal component. Put another way, each principal component is formed out of a linear combination of the variables of `df`, and the column corresponding to each principal column corresponds to the *coefficients* of that linear combination.
 
@@ -14,7 +14,7 @@ A couple things to keep in mind: Let `p = prcomp(df, scale=TRUE)` be the result 
 
 For supplementary reading on the theory behind PCA, consult *Introduction to Statistical Learning* or *Applied Predictive Modeling*.
 
-Write up your findings in an "R Markdown" file. (It's one of the options in RStudio when you go to make new files.) At the end, click on the "Knit HTML" button in RStudio, select "Knit PDF", and generate a PDF which you can upload to Github! (Now you can share your findings with friends and family in a more accessible form!) It's pretty intuitive how this works, but for additional guidance check out [Yihui Xie's blog](http://yihui.name/en/2012/06/enjoyable-reproducible-research/) (he's the guy who developed `knitr`, the package that makes this all work in the background.)
+Write up your findings in an "R Markdown" file. (It's one of the options in RStudio when you go to make new files.) At the end, click on the "Knit HTML" button in RStudio, select "Knit HTML", and generate a HTML file which you can upload to Github! (Now you can share your findings with friends and family in a more accessible form!) It's pretty intuitive how this works, but for additional guidance check out [Yihui Xie's blog](http://yihui.name/en/2012/06/enjoyable-reproducible-research/) and other posts on the same blog, all written by the author of the `knitr` package (which is what makes this work). You can also compile to PDF if you have a $\TeX$ distribution installed, but you don't have to bother if it's too much trouble (if you don't have one and you select the option, it'll give you instructions on how to proceed).
 
 PCA on the `msq` dataset
 ========================
@@ -27,7 +27,7 @@ Prepare the data in this fashion:
 
 Afterward, run PCA on the remaining variables.
 
-* Write a function `top(n)` that prints out the top 10 *loadings* of the `n`th principal component, ordered by absolute value.
+* Write a function `top(n)` that prints out the top 10 *loadings* of the `n`th principal component, ordered by absolute value. This function is useful for interactively exploring the loadings of principal components and subsequently interpreting their meaning.
 
 * Look at the PCA loadings for the first 5-10 principal components. Use `corrplot()` on the loadings (with the `is.corr=FALSE` option) to visually explore these relationships. After doing so, interpret and assign concise names to the principal components which seem to represent something coherent.
 
