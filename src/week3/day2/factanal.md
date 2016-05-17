@@ -22,11 +22,11 @@ For reproducibility, place `set.seed(1)` at the top of your code.
 Part 1: PCA
 -----------
 
-* Make a `factors` data frame with 100 observations of 3 normally distributed variables `X`, `Y`, and `X`. Each variable should be drawn from the standard normal distribution. The "factors" here have nothing to do with factors in R, instead representing latent variables.  
+* Make a `factors` data frame with 100 observations of 3 normally distributed variables `X`, `Y`, and `Z`. Each variable should be drawn from the standard normal distribution. The "factors" here have nothing to do with factors in R, instead representing latent variables.  
 
 * Write a function `noisyIndicators(feature, k, correlation)` that takes a vector `feature` and returns a data frame with `k` noisy proxies to the feature which are (1) correlated with the feature at the level of `correlation` and (2) differ from the feature by an error term drawn from the standard normal distribution.
 
-* Make a dataframe `noisies` with 4 noisy proxies to `X` and 3 noisy proxies to `Y`. 
+* Make a dataframe `noisies` with 4 noisy proxies to `X` and 3 noisy proxies to `Y` with `correlation = 0.9`.
 
 * Plot the correlation matrix.
 
