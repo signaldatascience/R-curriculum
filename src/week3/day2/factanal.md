@@ -88,4 +88,4 @@ Big Five personality data
 
 * Create a logistic regression predictive model of gender in terms of the 50 questions, then in terms of the 5 factors derived from them. Compare the coefficients of the two models. You can use regular `glm()` because there are so many examples that it's not necessary to worry about regularization. 
 
-* By focusing on the 10 questions corresponding to a trait, for each trait, can you replicate the subfactors of the Big 5 personality inventory traits given in The Items in the Big Five Aspects Scales? See also the original paper Between Facets and Domains: 10 Aspects of the Big Five?
+* By focusing on the 10 questions corresponding to a trait, for each trait, can you replicate the subfactors of the Big 5 personality inventory traits given in [The Items in the Big Five Aspects Scales](http://ipip.ori.org/BFASKeys.htm)? See also the original paper [Between Facets and Domains: 10 Aspects of the Big Five](http://jordanbpeterson.com/Psy230H/docs/2014/15DeYoung.pdf)?
