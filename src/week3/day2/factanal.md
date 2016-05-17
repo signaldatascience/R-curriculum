@@ -12,7 +12,7 @@ Keep the following in mind while you work:
 
 * The two dataset analysis questions are *intentionally* unstructured and open-ended. Feel free to spend time exploring the data from multiple angles, reading about related material, and in general just trying any of the tools you've learned about.
 
-* Write up your analysis in an R Markdown file, including your interpretation of any results.
+Write up your analysis in an R Markdown file, including your interpretation of any results.
 
 PCA vs. factor analysis with simulated data
 ===========================================
@@ -77,7 +77,7 @@ In the last factor analysis exercise, we were using a type of factor analysis wh
 Speed dating data
 =================
 
-* Do factor analysis on the speed dating data activities. Try `nfactor = 1`, `2`, `3`, and `4`, both with `rotate = "varimax"` and with `rotate = "oblimin"`. Use `corrplot()` to visualize the factor loadings (which you can get with `$loadings`).
+* Do factor analysis on the speed dating data activities. Try `nfactor = 1`, `2`, `3`, and `4`, both with `rotate = "varimax"` and with `rotate = "oblimin"`. Use `corrplot()` to visualize the factor loadings (which you can get with `$loadings`). Read the documentation and try to determine how `"varimax"` and `"oblimin"` differ.
 
 Big Five personality data
 =========================
