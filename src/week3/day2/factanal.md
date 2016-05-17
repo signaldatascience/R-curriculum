@@ -2,7 +2,7 @@
 title: Factor Analysis
 ---
 
-In this assignment, you'll be learning about the technique of *factor analysis*. Put concisely, in PCA, one tries to explain all of the variance in $p$-dimensional data with the $p$ principal components, whereas in factor analysis, one picks a *number of factors* $k < p$ and calculates those factors such that they explain as much of the *shared variance* in the data as they possibly can. Don't worry if this definition seems a little opaque to you right now -- you'll first get some computational intuition by empirically comparing the results of PCA to factor analysis, and afterward we'll have a lecture covering some of the theoretical details.
+In this assignment, you'll be learning about the technique of *factor analysis*. Put concisely, in PCA, one tries to explain *all* of the variance in $p$-dimensional data with the $p$ principal components, whereas in factor analysis, one picks a *number of factors* $k < p$ and calculates those factors such that they explain as much of the *shared variance* in the data as they possibly can. Don't worry if this definition seems a little opaque to you right now -- you'll first get some computational intuition by empirically comparing the results of PCA to factor analysis, and afterward we'll have a lecture covering some of the theoretical details.
 
 Keep the following in mind while you work:
 
@@ -40,11 +40,11 @@ Factor analysis is an alternative to principal component analysis for dimensiona
 
 $$V_i = a_1F_1 + a_2F_2 + \cdots + a_kF_k + \mathrm{error}_i$$
 
-where each $a_j$ is a constant that depends on V_i. Goodness of fit is measured by taking the correlation matrix of the errors $\mathrm{error}_i$ and measuring how far it is from being the identity matrix with 1s down the diagonal (as usual) and 0s off of the diagonal. 
+where each $a_j$ is a constant that depends on $V_i$. Goodness of fit is measured by taking the correlation matrix of the errors $\mathrm{error}_i$ and measuring how far it is from being the identity matrix with 1s down the diagonal (as usual) and 0s off of the diagonal. 
 
 The key difference from PCA here here is that the factors are supposed to explain as much of the correlations *between* the variables as possible, rather than as much *total* variance as possible: we don't try to pick up on the variables to the extent that they're not correlated with one another.
 
-* Factor analysis is implemented in the R library `psych` as `fa()`. Run factor analysis on the above data with `nfactors = 2` and `rotate = "varimax"`, and compare the correlations between the modeled factors and the true factors `X` and `Y`.  The modeled factors should be closer to the true factors than the principal components were.
+* Factor analysis is implemented in the R library `psych` as `fa()`. Run factor analysis on the data from the previous section with `nfactors = 2` and `rotate = "varimax"`, and compare the correlations between the modeled factors and the true factors `X` and `Y`.  The modeled factors should be closer to the true factors than the principal components were.
 
 * Generate 50 variables given by
 	
@@ -77,7 +77,7 @@ In the last factor analysis exercise, we were using a type of factor analysis wh
 Speed dating data
 =================
 
-* Do factor analysis on the speed dating data activities. Try `nfactor = 1`, `2`, `3`, and `4`, both with `rotate = "varimax"` and with `rotate = "oblimin"`. Use `corrplot()` to visualize the factor loadings (which you can get with `$loadings`). Read the documentation and try to determine how `"varimax"` and `"oblimin"` differ.
+* Do factor analysis on the speed dating data activities. Try `nfactor = 1`, `2`, `3`, and `4`, both with `rotate = "varimax"` and with `rotate = "oblimin"`. Use `corrplot()` to visualize the factor loadings (which you can get with `$loadings`).
 
 Big Five personality data
 =========================
