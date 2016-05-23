@@ -37,7 +37,7 @@ Return to the aggregated OkCupid dataset from Week 2.
 
 * Write a function `probabilities(preds, rownum)` that takes in a matrix `preds` of predictions generated from multinomial logistic regression (*i.e.*, a matrix of log-odds ratios) and a row number `rownum`, returning row `rownum` converted into *probabilities*.
 
-* Repeat the analysis, including each person's average ratings as a predictor.
+* Repeat the analysis, including each person's average ratings as a predictor. Again, interpret the results.
 
 OkCupid dataset
 ===============
