@@ -25,7 +25,7 @@ To resolve this, we divide each $\exp(L_i)$ by the proper *normalization factor*
 Speed dating dataset
 ====================
 
-Return to the aggregated OkCupid dataset from Week 2.
+Return to the aggregated speed dating dataset from Week 2.
 
 * Use `table()` on the career code column to find the four most common listed careers in the dataset.
 
