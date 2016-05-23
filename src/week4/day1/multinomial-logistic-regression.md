@@ -29,15 +29,13 @@ Return to the aggregated OkCupid dataset from Week 2.
 
 * Use `table()` on the career code column to find the four most common listed careers in the dataset.
 
-* Restricting to those four careers, predict career in terms of self-rated activity participation. Interpret the coefficients of the resulting linear model. Visualize them with `corrplot()`.
+* Restricting to those four careers, predict career in terms of self-rated activity participation and average ratings by other participants. Interpret the coefficients of the resulting linear model. Visualize them with `corrplot()`.
 
 	* You can combine the output of `coef()` with `cbind()`, `do.call()`, and `as.matrix()` as input into `corrplot()`. Be sure to plot just the coefficients, not the intercepts of the linear models.
 
 * Use your model to make predictions on the entire dataset and look at the principal components of the resulting log-odds ratios. Interpret the results.
 
 * Write a function `probabilities(preds, rownum)` that takes in a matrix `preds` of predictions generated from multinomial logistic regression (*i.e.*, a matrix of log-odds ratios) and a row number `rownum`, returning row `rownum` converted into *probabilities*.
-
-* Repeat the analysis, including each person's average ratings as a predictor. Again, interpret the results.
 
 OkCupid dataset
 ===============
