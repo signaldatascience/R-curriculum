@@ -13,6 +13,8 @@ Using multinomial logistic regression
 
 You can use multinomial logistic regression with `glmnet(x, y, family="multinomial")`, where `x` is a scaled matrix of predictors and `y` is a numeric vector representing a categorical variable. In the following, you can just set `lambda=0`, because we aren't using very many predictors relative to the number of rows (so overfitting isn't a big problem).
 
+The coefficients for the model can be accessed with `coef(fit, s=lambda)` as usual.
+
 Speed dating dataset
 ====================
 
