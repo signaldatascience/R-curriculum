@@ -4,7 +4,7 @@ title: Multinomial Logistic Regression
 
 You'll be formally learning about [multinomial logistic regression](https://en.wikipedia.org/wiki/Multinomial_logistic_regression#As_a_log-linear_model) today.
 
-Previously, you used binomial logistic regression to do *two-class classification*, where you modeled the probability of a binary outcome as being linearly related to a number of predictor variables. The technique of *multinomial logistic regression* is a straightforward extension of this: our outcome variable has more than two categories, and we model the probability of falling into each category as being linearly related to our predictor variables.
+Previously, you used binomial logistic regression to do *two-class classification*, where you modeled the probability of a binary outcome as being linearly related to a number of predictor variables. The technique of *multinomial logistic regression* is a straightforward extension of this: our outcome variable has more than two categories, and we model the log probability of falling into each category as being linearly related to our predictor variables.
 
 Multinomial logistic regression is sometimes called *softmax regression*.[^softmax]
 
@@ -24,7 +24,11 @@ Return to the aggregated OkCupid dataset from Week 2.
 
 * Restricting to those four careers, predict career in terms of self-rated activity participation. Interpret the coefficients of the resulting linear model. Visualize them with `corrplot()`.
 
+	* You can combine the output of `coef()` with `cbind()`, `do.call()`, and `as.matrix()` as input into `corrplot()`. Be sure to plot just the coefficients, not the intercepts of the linear models.
+
 * Use your model to make predictions on the entire dataset and look at the principal components of the resulting log-odds ratios. Interpret the results.
+
+* Repeat the analysis, including each person's average ratings as a predictor.
 
 OkCupid dataset
 ===============
