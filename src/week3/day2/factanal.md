@@ -68,7 +68,7 @@ In the last factor analysis exercise, we were using a type of factor analysis wh
 
 * Examine the correlation between `W` and `Y`.
 
-* Use `noisyIndicators()` to generate 10 noisy indicators associated with `X` and 4 noisy indicators associated with W, with correlations 0.8 in both cases.
+* Use `noisyIndicators()` to generate 10   indicators associated with `X` and 4 noisy indicators associated with W, with correlations 0.8 in both cases.
 
 * Plot the associated correlation matrix. 
 

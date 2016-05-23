@@ -10,7 +10,6 @@ amb_o: Ambitiousness
 
 For ethnicities, we have:
 
-race_o: The race of the person who rated the participant
 race: The race of the participant
 
 where
@@ -38,7 +37,7 @@ where
 8 = Real Estate 
 9 = International/Humanitarian Affairs 
 10 = Undecided 
-11 =Social Work
+11 = Social Work
 12 = Speech Pathology
 13 = Politics
 14 = Pro sports/Athletics
