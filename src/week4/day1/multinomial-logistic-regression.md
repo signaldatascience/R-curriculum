@@ -4,7 +4,7 @@ title: Multinomial Logistic Regression
 
 You'll be formally learning about [multinomial logistic regression](https://en.wikipedia.org/wiki/Multinomial_logistic_regression#As_a_log-linear_model) today.
 
-Previously, you used binomial logistic regression to do *two-class classification*, where you modeled the probability of a binary outcome as being linearly related to a number of predictor variables. The technique of *multinomial logistic regression* is a straightforward extension of this: our outcome variable has more than two categories, and we model the log probability of falling into each category as being linearly related to our predictor variables.
+Previously, you used binomial logistic regression to do *two-class classification*, where you modeled the log probability of a binary outcome as being linearly related to a number of predictor variables. The technique of *multinomial logistic regression* is a straightforward extension of this: our outcome variable has more than two categories, and we model the log probability of falling into each category as being linearly related to our predictor variables.
 
 Multinomial logistic regression is sometimes called *softmax regression*.[^softmax]
 
@@ -14,6 +14,13 @@ Using multinomial logistic regression
 You can use multinomial logistic regression with `glmnet(x, y, family="multinomial")`, where `x` is a scaled matrix of predictors and `y` is a numeric vector representing a categorical variable. In the following, you can just set `lambda=0`, because we aren't using very many predictors relative to the number of rows (so overfitting isn't a big problem).
 
 The coefficients for the model can be accessed with `coef(fit, s=lambda)` as usual.
+
+Converting to probabilities
+---------------------------
+
+Suppose that we've fit a multinomial logistic regression model to some data and made predictions on the dataset. Now, for each particular row, we have a log-odds ratio $L_i$ associated to each outcome $i$. We sometimes want to convert to *probabilities* $P_i$. We can just exponentiate and obtain $\exp(L_i)$, but those values might not necessarily sum to 1: $\sum_i \exp(L_i) \ne 1$. This is a problem, because probabilities have to sum to 1, that is, $\sum_i P_i = 1$.
+
+To resolve this, we divide each $\exp(L_i)$ by the proper *normalization factor*. That is, $P_i = \exp(L_i) / \sum_i \exp(L_i)$.
 
 Speed dating dataset
 ====================
@@ -27,6 +34,8 @@ Return to the aggregated OkCupid dataset from Week 2.
 	* You can combine the output of `coef()` with `cbind()`, `do.call()`, and `as.matrix()` as input into `corrplot()`. Be sure to plot just the coefficients, not the intercepts of the linear models.
 
 * Use your model to make predictions on the entire dataset and look at the principal components of the resulting log-odds ratios. Interpret the results.
+
+* Write a function `probabilities(preds, rownum)` that takes in a matrix `preds` of predictions generated from multinomial logistic regression (*i.e.*, a matrix of log-odds ratios) and a row number `rownum`, returning row `rownum` converted into *probabilities*.
 
 * Repeat the analysis, including each person's average ratings as a predictor.
 
