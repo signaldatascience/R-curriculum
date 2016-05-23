@@ -4,7 +4,7 @@ title: Multinomial Logistic Regression
 
 You'll be formally learning about [multinomial logistic regression](https://en.wikipedia.org/wiki/Multinomial_logistic_regression#As_a_log-linear_model) today.
 
-Previously, you used binomial logistic regression to do *two-class classification*, where you modeled the log probability of a binary outcome as being linearly related to a number of predictor variables. The technique of *multinomial logistic regression* is a straightforward extension of this: our outcome variable has more than two categories, and we model the log probability of falling into each category as being linearly related to our predictor variables.
+Previously, you used binomial logistic regression to do *two-class classification*, where you modeled the log-odds ratio associated with a binary outcome as being linearly related to a number of predictor variables. The technique of *multinomial logistic regression* is a straightforward extension of this: our outcome variable has more than two categories, and we model the log-odds ratio associated with falling into each category as being linearly related to our predictor variables.
 
 Multinomial logistic regression is sometimes called *softmax regression*.[^softmax]
 
@@ -41,5 +41,11 @@ OkCupid dataset
 ===============
 
 Think of one or two aspects of the OkCupid data to explore using multinomial logistic regression. Do so, incorporating your findings into your writeup of your results.
+
+Here are some examples of things to model (but feel free to explore as you desire):
+
+* Race in terms of extracted factors
+
+* 
 
 [^softmax]: This comes from the usage of the *softmax function*, which is a continuous approximation of the indicator function.
