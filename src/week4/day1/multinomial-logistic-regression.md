@@ -18,7 +18,7 @@ The coefficients for the model can be accessed with `coef(fit, s=lambda)` as usu
 Converting to probabilities
 ---------------------------
 
-Suppose that we've fit a multinomial logistic regression model to some data and made predictions on the dataset. Now, for each particular row, we have a log-odds ratio $L_i$ associated to each outcome $i$. We sometimes want to convert to *probabilities* $P_i$. We can just exponentiate and obtain $\exp(L_i)$, but those values might not necessarily sum to 1: $\sum_i \exp(L_i) \ne 1$. This is a problem, because probabilities have to sum to 1, that is, $\sum_i P_i = 1$.
+Suppose that we've fit a multinomial logistic regression model to some data and made predictions on the dataset. Now, for each particular row, we have a log-odds ratio $L_i$ associated to each outcome $i$. We sometimes want to convert to *probabilities* $P_i$, which ought to be proportional to the exponentiated log-odds ratios $\exp(L_i)$. We can exponentiate and obtain just $\exp(L_i)$, but those values might not necessarily sum to 1: $\sum_i \exp(L_i) \ne 1$. This is a problem, because probabilities have to sum to 1, that is, $\sum_i P_i = 1$.
 
 To resolve this, we divide each $\exp(L_i)$ by the proper *normalization factor*. That is, we can compute $P_i = \exp(L_i) / \sum_i \exp(L_i)$, which makes all the values of $P_i$ sum to 1 as desired while still being proportional to $\exp(L_i)$.
 
