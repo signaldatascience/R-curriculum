@@ -58,7 +58,8 @@ We'll first have to specify which methods we're using and the control parameters
 ```r
 ensemble_methods = c('glmnet', 'kknn', 'rpart')
 ensemble_control = trainControl(method="repeatedcv", repeats=1,
-                     number=3, verboseIter=TRUE, savePredictions="final")
+                                number=3, verboseIter=TRUE,
+                                savePredictions="final")
 ```
 
 Next, we have to specify the tuning parameters for all three methods:
