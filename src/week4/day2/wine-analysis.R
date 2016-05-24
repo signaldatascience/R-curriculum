@@ -70,12 +70,18 @@ rf_white = randomForest(quality ~ ., df_white, mtry=floor(sqrt(11)))
 rmse(predict(rf_white), df_white$quality)
 rf_white2 = randomForest(quality ~ ., df_white, mtry=11)
 rmse(predict(rf_white2), df_white$quality)
+rf_white3 = randomForest(quality ~ ., df_white, mtry=5)
+rmse(predict(rf_white3), df_white$quality)
+
+rf_grid = expand.grid(mtry=c(2, 3, 5, 11))
+fit_rf = train(quality ~ ., data=df_white, method='rf', metric="RMSE", trControl=control, tuneGrid=rf_grid)
+caretmin(fit_rf)
 
 grid = expand.grid(n.trees=500, shrinkage=10^seq(-3, 0, length.out=10), interaction.depth=c(1, 2, 3), n.minobsinnode=seq(10, 100, length.out=10))
 fit_gbm = train(quality ~ ., data=df_white, method="gbm", metric="RMSE", trControl=control, tuneGrid=grid)
 caretmin(fit_gbm)
 
-grid2 = expand.grid(n.trees=5000, shrinkage=0.1, interaction.depth=3, n.minobsinnode=20)
+grid2 = expand.grid(n.trees=2500, shrinkage=0.1, interaction.depth=3, n.minobsinnode=20)
 fit_gbm2 = train(quality ~ ., data=df_white, method="gbm", metric="RMSE", trControl=control, tuneGrid=grid2)
 caretmin(fit_gbm2)
 
@@ -83,7 +89,7 @@ cufit_gbm3 = gbm(formula=formula(quality ~ .), data=df_white, n.trees=5000, shri
 
 library(earth)
 
-earth_grid = expand.grid(degree=1:5, nprune=10:20)
+earth_grid = expand.grid(degree=3, nprune=10:20)
 fit_mda = train(quality ~ ., data=df_white, method="earth", tuneGrid=earth_grid, metric="RMSE", trControl=control)
 caretmin(fit_mda)
 
@@ -94,3 +100,23 @@ caretmin(fit_cubist)
 nnet_grid = expand.grid(size=1:3, dec)
 fit_nnet = train(quality ~ ., data=df_white, method="nnet", tuneLength=10, metric="RMSE", trControl=control)
 caretmin(fit_nnet)
+
+library(caretEnsemble)
+
+methods = c('glmnet', 'kknn', 'rpart')
+tunes = list(
+  #earth=caretModelSpec(method='earth', tuneGrid=earth_grid),
+  #cubist=caretModelSpec(method='cubist', tuneGrid=cubist_grid),
+  glmnet=caretModelSpec(method='glmnet', tuneLength=10),
+  kknn=caretModelSpec(method='kknn', tuneLength=10),
+  rpart=caretModelSpec(method='rpart', tuneLength=10)
+  #gbm=caretModelSpec(method='gbm', tuneGrid=grid2)
+)
+fits = caretList(quality ~ ., df_white, trControl=control, methodList=methods, tuneList=tunes)
+ens = caretEnsemble(fits)
+ens
+summary(ens)
+
+stack = caretStack(fits, method="gbm", metric="RMSE", trControl=trainControl(method="repeatedcv", repeats=1, number=3, savePredictions="final", verboseIter=TRUE), tuneLength=10)
+stack
+summary(stack)

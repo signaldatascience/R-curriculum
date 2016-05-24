@@ -46,6 +46,54 @@ As such, there are two hyperparameters to tune, called `committees` and `neighbo
 
 Note that Cubist can only be used for *regression*, not for *classification*. Quinlan also developed the [C5.0 algorithm](https://cran.r-project.org/web/packages/C50/C50.pdf), which is for classification instead of regression.
 
+Stacking
+========
+
+[Stacking](https://en.wikipedia.org/wiki/Ensemble_learning#Stacking) is a technique in which multiple different learning algorithms are trained and then *combined* together into an ensemble. The final 'stack' is very computationally expensive to compute, but usually performs better than any of the individual models used to create it.
+
+Ensemble stacking using a `caret`-based interface is implemented in the [`caretEnsemble` package](https://cran.r-project.org/web/packages/caretEnsemble/index.html). We'll start off by illustrating how to combine (1) MARS, (2) K-Nearest Neighbors, and (3) regression trees into a stack.
+
+We'll first have to specify which methods we're using and the control parameters:
+
+```r
+ensemble_methods = c('glmnet', 'kknn', 'rpart')
+ensemble_control = trainControl(method="repeatedcv", repeats=1, number=3, verboseIter=TRUE,
+                                savePredictions="final")
+```
+
+Next, we have to specify the tuning parameters for all three methods:
+
+```r
+ensemble_tunes = list(
+  glmnet=caretModelSpec(method='glmnet', tuneLength=10),
+  kknn=caretModelSpec(method='kknn', tuneLength=10),
+  rpart=caretModelSpec(method='rpart', tuneLength=10)
+)
+```
+
+We then create a list of `train()` fits using the `caretList()` function:
+
+```r
+ensemble_fits = caretList(quality ~ ., df_whitewine, trControl=ensemble_control,
+                          methodList=ensemble_methods, tuneList=ensemble_tunes)
+```
+
+Finally, we can find the best *linear combination* of our many models by calling `caretEnsemble()` on our list of models:
+
+```r
+fit_ensemble = caretEnsemble(ensemble_fits)
+print(fit_ensemble)
+summary(fit_ensemble)
+```
+
+By combining three simple methods, we've managed to get a cross-validated RMSE lower than the RMSE for any of the three individual models!
+
+* How much lower does the RMSE get if you add in gradient boosted trees to the ensemble model? (The `caretModelSpec()` function can take a `tuneGrid` parameter instead of `tuneLength`.)
+
+In the [`caretEnsemble` documentation](https://cran.r-project.org/web/packages/caretEnsemble/vignettes/caretEnsemble-intro.html), read about how to use `caretStack()` to make a more sophisticated *nonlinear ensemble* from `ensemble_fits`.
+
+* If you use a gradient boosted tree for `caretStack()`, is it any better than the simple linear combination?
+
 Closing notes
 =============
 
@@ -56,9 +104,11 @@ By now, you've tried a fairly wide variety of nonlinear fitting techniques and g
 Hyperparameter optimization
 ---------------------------
 
-You may have noticed that tuning hyperparameters is a very big part of fitting nonlinear methods well! As the techniques become more complex, the number of hyperparameters to tune can grow significantly. Grid search is fine for ordinary usage, but in very complicated situations (10-20+ hyperparameters) it's better to use [random search](http://www.jmlr.org/papers/volume13/bergstra12a/bergstra12a.pdf) -- otherwise there would just be far too many hyperparameter combinations to evaluate! The `caret` package is very well-designed, and grid search will usually suffice for your purposes.
+You may have noticed that tuning hyperparameters is a very big part of fitting nonlinear methods well! As the techniques become more complex, the number of hyperparameters to tune can grow significantly. Grid search is fine for ordinary usage, but in very complicated situations (10-20+ hyperparameters) it's better to use [random search](http://www.jmlr.org/papers/volume13/bergstra12a/bergstra12a.pdf) -- otherwise there would just be far too many hyperparameter combinations to evaluate!
 
 * Read the first 4 paragraphs of the `caret` package's documentation on [random hyperparameter search](http://topepo.github.io/caret/random.html).
+
+The `caret` package is very well-designed, and grid search will usually suffice for your purposes, especially because of its internal optimizations. It's good to be aware that alternatives to grid search exist.
 
 Kaggle Bike Sharing Demand competition
 ======================================
