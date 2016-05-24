@@ -3,6 +3,7 @@ library(rpart)
 library(randomForest)
 library(caret)
 librar(dplyr)
+library(kknn)
 setwd('C:/Users/Andrew/Documents/Signal/curriculum/src/week4/day2/')
 df_red = read_delim('winequality-red.csv', ';')
 df_white = read_delim('winequality-white.csv', ';')
@@ -57,6 +58,9 @@ fit_glmnet = train(quality ~ ., data=df_white, method="glmnet", tuneLength=11, m
 caretmin(fit_glmnet)
 
 #fit_rf = train(quality ~ ., data=df_white, method="rf", tuneLength=3, metric="RMSE", trControl=control)
+
+fit_knn = train(quality ~ ., data=df_white, method="kknn", tuneLength=10, metric="RMSE", trControl=control)
+caretmin(fit_knn)
 
 fit_rpart = train(quality ~ ., data=df_white, method="rpart", tuneLength=10, metric="RMSE", trControl=control)
 caretmin(fit_rpart)
