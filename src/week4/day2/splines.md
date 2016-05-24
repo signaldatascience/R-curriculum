@@ -96,12 +96,16 @@ In the [`caretEnsemble` documentation](https://cran.r-project.org/web/packages/c
 
 * If you use a gradient boosted tree for `caretStack()`, is it any better than the simple linear combination?
 
+* If you use all of the techniques you've just learned about in a big ensemble, how low can the RMSE get? (This might take a lot of computation time, so it's **optional**, but is fun to look at.)
+
 Closing notes
 =============
 
 By now, you've tried a fairly wide variety of nonlinear fitting techniques and gotten some sense for how each of them works.
 
 *In practice*, people usually use tree-based methods, especially random forests and gradient boosted trees -- they tend to be fairly easily tuned and robust to overfitting. However, it's useful to have a broader overview of the field as a whole.
+
+Also, there are a lot of peculiarities to the interfaces of different nonlinear techniques -- when comparing them, `caret` offers a very well-designed interface for all of them, so it's nice to stick to using `train()` and other `caret` methods when possible.
 
 Hyperparameter optimization
 ---------------------------

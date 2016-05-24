@@ -106,6 +106,8 @@ Anyway, let's get some practice with random forests:
 
 * Make out-of-bag predictions with both of the random forest models and calculate the associated RMSE values. Compare the RMSEs to previously obtained RMSEs.
 
+* Use `caret`'s `train()` function with `method="rf"` to tune over `mtry=c(3, 5, 7, 11)`. Compare the minimum cross-validated RMSE with the out-of-bag RMSE estimate.
+
 Using gradient boosted trees
 ----------------------------
 
@@ -121,11 +123,7 @@ Gradient boosted trees are implemented in R's `gbm` package as the `gbm()` funct
 
 	* Instead of passing in the `tuneLength` parameter like earlier, use `expand.grid()` to create a grid with `n.trees` set to 500, `shrinkage` set to `10^seq(-3, 0, 1)`, `interaction.depth` set to `1:3`, and `n.minobsinnode` set to `seq(10, 50, 10)`.
 
-* With the optimal values of the hyperparameters determined with `train()`, call `gbm()` on the data directly with 5000 trees instead of 500 and with `cv.folds=3`. (The `gbm()` algorithm will automatically use 3-fold cross-validation to estimate the test error.)
-
-* The `$cv.error` variable of the `gbm()` fit is a vector of cross-validated RMSE estimates after each incremental improvement to the ensemble of regression trees. Find the minimum cross-validated RMSE and plot the cross-validated RMSEs as a function of number of trees added to the model. Compare the minimum RMSE to previously obtained RMSEs for other models.
-
-* Determine the degree of overfitting by using `predict()` to generate predictions on the entire dataset and calculating the RMSE from those predictions. (Running `predict()` on a `gbm()` model will automatically default to using the optimal number of trees in the ensemble model as determined by the RMSE estimates in `$cv.error`.)
+* With the optimal values of the hyperparameters determined with `train()`, call `gbm()` on the data directly with 5000 trees instead of 500 and with `cv.folds=3`. (The `gbm()` algorithm will automatically use 3-fold cross-validation to estimate the test error.) Compare the minimum RMSE to previously obtained RMSEs for other models.
 
 [^kuhn]: See Ben Kuhn's [comments](http://www.benkuhn.net/gbm) on gradient boosting.
 
