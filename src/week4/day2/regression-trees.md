@@ -7,7 +7,8 @@ Today, you'll look at nonlinear regression techniques with a [wine quality datas
 You'll also be using the `caret` package to easily get cross-validated estimates of RMSE as well as to easily tune the parameters of these nonlinear models. Since there aren't very many predictors relative to the number of rows in the data, we can use 3-fold cross validation for simplicity, with:
 
 ```r
-control = trainControl(method="repeatedcv", repeats=1, number=3, verboseIter=TRUE)
+control = trainControl(method="repeatedcv", repeats=1, number=3, 
+                       verboseIter=TRUE)
 caret_fit = train(..., trControl=control)
 ```
 
@@ -38,11 +39,15 @@ Before using nonlinear methods to predict white wine quality, let's use regulari
 K-Nearest Neighbors
 ===================
 
-K-Nearest Neighbors (KNN) is one of the simplest possible nonlinear regression techniques. First, we pick a value of $k$. Next, suppose that we have a dataset of points
+K-Nearest Neighbors (KNN) is one of the simplest possible nonlinear regression techniques.
 
-We're effectively imposing a Bayesian prior saying that the value of the target variable at any point is entirely determined purely by the values of the target variable close to that point.
+First, we pick a value of $k$. Next, suppose that we have a dataset of $n$ points, where each $\textbf{x}_i$ is associated with a target variable taking on value $y_i$. Finally, suppose that we have a new point $\textbf{x}^\star$ and we want to predict the associated value of the target variable. To do so, we find the $k$ points $\textbf{x}_i$ which are closest to $\textbf{x}^\star$, look at the associated values of $y_i$, and take their average. That's all!
 
-KNN is implemented in R as `kknn()` in the `kknn` package.
+Another way to think about it is as such: We're effectively imposing a Bayesian prior saying that the value of the target variable at any point is entirely determined purely by the values of the target variable close to that point. Of course, the simplicity of KNN is simultaneously its greatest weakness -- there are datasets for which this prior holds true, but there are also many datasets for which it doesn't!
+
+KNN is implemented in R as `kknn()` in the `kknn` package. It can be used with `caret`'s `train()` by setting `method="kknn"`. There's just a single hyperparameter to tune -- the value of $k$.
+
+* Use `caret` to train a KNN model for white wine quality using `tuneLength=10`. Compare the minimum RMSE obtained to the RMSE for a regularized linear model.
 
 Regression tree models
 ======================
@@ -79,11 +84,13 @@ In short, a *random forest* trains a lot of different regression trees and avera
 
 As a bonus, we can fit each data point in the training data to the trees that *weren't* trained on that data point (and average the subsequent predictions) to obtain an *out-of-bag error*, which is an estimate for the generalizable error of our model. With this, we don't really have to use cross-validation to estimate the generalizable error of our model.
 
+* Read [Edwin Chen's Quora answer](https://www.quora.com/How-does-randomization-in-a-random-forest-work/answer/Edwin-Chen-1) on how random forests work.
+
 ### Random forests in R
 
 In general, the `randomForest()` function is used in a manner analogous to `rpart()` and `lm()`. There are two details to pay attention to:
 
-First, it's important to pay some attention to the choice of the `mtry` hyperparameter. It's usually advised to try either `mtry = floor(sqrt(p))` or `mtry = floor(p/3)` (for a dataset with `p` predictors); the former should be used when `p/3` rounds to 1-2 or when we don't have very many predictors relative to the number of data points ($p << n$), and the latter should be used otherwise. Also, it's *always* wise to try `mtry = p`.
+First, it's important to pay some attention to the choice of the `mtry` hyperparameter. It's usually advised to try either `mtry = floor(sqrt(p))` or `mtry = floor(p/3)` (for a dataset with `p` predictors); the former should be used when `p/3` rounds to 1-2 or when we don't have very many predictors relative to the number of data points ($p \ll n$), and the latter should be used otherwise. Also, it's *always* wise to try `mtry = p`.
 
 Second, when using the `predict()` function on a random forest model, there is an [important point](http://stats.stackexchange.com/a/66546/115666) to keep in mind. Suppose that we've run `rf = randomForest(y ~ x, df)` and we want to evaluate the RMSE associated with that fit. To that end, we'd like to generate predictions on the original dataset. We can run one of two commands:
 
