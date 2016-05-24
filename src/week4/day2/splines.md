@@ -11,9 +11,9 @@ Multivariate adaptive regression splines (MARS) is an extension of linear models
 
 * Look at the pictures on the [Wikipedia page for MARS](https://en.wikipedia.org/wiki/Multivariate_adaptive_regression_splines) to get some intuition for how MARS works.
 
-By increasing the *degree* of a MARS model, one can allow for *products* of multiple hinge functions (*e.g.*, $\max(0, x_1 - 10) \max(0, 2 - x_3)$), which can model nonlinearity efficiently.
+By increasing the *degree* of a MARS model, one can allow for *products* of multiple hinge functions (*e.g.*, $\max(0, x_1 - 10) \max(0, 2 - x_3)$), which models interactions between the predictor variables.
 
-Intuitively, one can think of a degree 1 MARS model with $p$ predictor variables as being a piecewise linear combination of hyperplanes -- with 1 predictor variable pyou're [pasting different lines together](https://upload.wikimedia.org/wikipedia/commons/a/a7/Friedmans_mars_simple_model.png), with 2 predictor variables you're [pasting planes together](https://upload.wikimedia.org/wikipedia/commons/9/9e/Friedmans_mars_ozone_model.png), and so on and so forth. Raising the degree then allows for more complicated nonlinear functions to show up.
+Intuitively, one can think of a degree 1 MARS model with $p$ predictor variables as being a piecewise linear combination of hyperplanes -- with 1 predictor variable you're [pasting different lines together](https://upload.wikimedia.org/wikipedia/commons/a/a7/Friedmans_mars_simple_model.png), with 2 predictor variables you're [pasting planes together](https://upload.wikimedia.org/wikipedia/commons/9/9e/Friedmans_mars_ozone_model.png), and so on and so forth. Raising the degree then allows for more complicated nonlinear functions to show up.
 
 MARS is implemented as `earth()` in the `earth` package and can be used with `train()` by setting `method="earth"`. It has two hyperparameters to tune, `degree` and `nprune`; the `nprune` parameter is the maximum number of additive terms allowed in the final model (so it controls model complexity).
 
@@ -56,7 +56,9 @@ By now, you've tried a fairly wide variety of nonlinear fitting techniques and g
 Hyperparameter optimization
 ---------------------------
 
-You may have noticed that tuning hyperparameters is a very big part of fitting nonlinear methods well! As the techniques become more complex, the number of hyperparameters to tune can grow significantly. Grid search is fine for simpler techniques and smaller datasets, but in more complicated situations it's better to use [random search](http://www.jmlr.org/papers/volume13/bergstra12a/bergstra12a.pdf).
+You may have noticed that tuning hyperparameters is a very big part of fitting nonlinear methods well! As the techniques become more complex, the number of hyperparameters to tune can grow significantly. Grid search is fine for simpler techniques and smaller datasets, but in very complicated situations it's better to use [random search](http://www.jmlr.org/papers/volume13/bergstra12a/bergstra12a.pdf). Nevertheless, the `caret` package is very well-designed, and grid search will usually suffice for your purposes.
+
+* Read the first 4 paragraphs of the `caret` package's documentation on [random hyperparameter search](http://topepo.github.io/caret/random.html).
 
 Kaggle Bike Sharing Demand competition
 ======================================
