@@ -2,7 +2,7 @@ library(readr)
 library(dplyr)
 library(glmnet)
 setwd('C:/Users/Andrew/Documents/Signal/curriculum/src/week2/day4')
-df = read_csv('speeddating-aggregated.csv')[-1]
+df = read_csv('speeddating-aggregated.csv')
 
 subset1 = filter(df2, career_c %in% c(1, 2, 6, 7))
 subset1_act = select(subset1, sports:yoga)
