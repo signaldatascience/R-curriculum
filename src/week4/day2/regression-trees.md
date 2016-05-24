@@ -4,7 +4,7 @@ title: Nonlinear Techniques
 
 Today, you'll look at nonlinear regression techniques with a [wine quality dataset](http://archive.ics.uci.edu/ml/datasets/Wine+Quality) dataset, which pairs up chemical characteristics of wines with their quality ratings. The dataset is split into a red wine dataset and a white wine dataset. You'll mainly be looking at the white wine dataset, which has three times as much data as the red wine dataset and so has more fine-grained nonlinear structure. Our goal will be to use the chemical properties of white wines to predict their associated quality ratings.
 
-You'll also be using the `caret` package to easily get cross-validated estimates of RMSE as well as to easily tune the parameters of these nonlinear models. Since there aren't very many predictors relative to the number of rows in the data, we can use 3-fold cross validation for simplicity, with:
+You'll also be using the `caret` package to easily get cross-validated estimates of RMSE as well as to easily tune the parameters of these nonlinear models. Since there aren't very many predictors relative to the number of rows in the data, we can use 3-fold cross-validation for simplicity, with:
 
 ```r
 control = trainControl(method="repeatedcv", repeats=1, number=3, 
@@ -15,7 +15,7 @@ caret_fit = train(..., trControl=control)
 Getting started
 ===============
 
-The data can be downloaded either on Github or on the [UCI Datasets page](http://archive.ics.uci.edu/ml/datasets/Wine+Quality).
+The data can be downloaded on the [UCI Datasets page](http://archive.ics.uci.edu/ml/datasets/Wine+Quality).
 
 * Load the data for both the red and white wines. (If you use `read_delim()` for the red wine CSV, it might output a couple warning messages; just remove the two rows with `NA`s in that case.)
 
@@ -43,11 +43,11 @@ K-Nearest Neighbors (KNN) is one of the simplest possible nonlinear regression t
 
 First, we pick a value of $k$. Next, suppose that we have a dataset of $n$ points, where each $\textbf{x}_i$ is associated with a target variable taking on value $y_i$. Finally, suppose that we have a new point $\textbf{x}^\star$ and we want to predict the associated value of the target variable. To do so, we find the $k$ points $\textbf{x}_i$ which are closest to $\textbf{x}^\star$, look at the associated values of $y_i$, and take their average. That's all!
 
-Another way to think about it is as such: We're effectively imposing a Bayesian prior saying that the value of the target variable at any point is entirely determined purely by the values of the target variable close to that point. Of course, the simplicity of KNN is simultaneously its greatest weakness -- there are datasets for which this prior holds true, but there are also many datasets for which it doesn't!
-
-KNN is implemented in R as `kknn()` in the `kknn` package. It can be used with `caret`'s `train()` by setting `method="kknn"`. There's just a single hyperparameter to tune -- the value of $k$.
+KNN is implemented in R as `kknn()` in the `kknn` package. It can be used with `caret`'s `train()` by setting `method="kknn"`. There's just a single hyperparameter to tune -- the value of $k$. A larger value of $k$ helps guard against overfitting, but will make the model less sensitive to fine-grained structure in the data.
 
 * Use `caret` to train a KNN model for white wine quality using `tuneLength=10`. Compare the minimum RMSE obtained to the RMSE for a regularized linear model.
+
+In general, we can get better predictions by using information about what happens at a greater distance from the point of interest.
 
 Regression tree models
 ======================
@@ -94,7 +94,7 @@ First, it's important to pay some attention to the choice of the `mtry` hyperpar
 
 Second, when using the `predict()` function on a random forest model, there is an [important point](http://stats.stackexchange.com/a/66546/115666) to keep in mind. Suppose that we've run `rf = randomForest(y ~ x, df)` and we want to evaluate the RMSE associated with that fit. To that end, we'd like to generate predictions on the original dataset. We can run one of two commands:
 
-1. `predict(rf)`, which will make redictions for each data point only with trees which weren't trained on that data point, thereby allowing us to calculate a generalizable *out-of-bag error*, and
+1. `predict(rf)`, which will make predictions for each data point only with trees which weren't trained on that data point, thereby allowing us to calculate a generalizable *out-of-bag error*, and
 
 2. `predict(rf, df)`, which will use the *entire tree* and seem to indicate severe problems with overfitting if we calculate the associated RMSE.
 
@@ -109,9 +109,22 @@ Anyway, let's get some practice with random forests:
 Using gradient boosted trees
 ----------------------------
 
-Splines
-=======
+*Gradient boosting* is a very powerful nonlinear technique which is one of the best "off-the-shelf" machine learning models.[^kuhn] They train relatively quickly, they can pick up on fairly complicated nonlinear interactions, you can guard against overfitting by increasing the shrinkage parameter, and their performance is difficult to beat.
 
-Kaggle's Bike Sharing Demand challenge
-======================================
+However, they're a little more complicated than random forests; there are more hyperparameters to tune, and it's much more difficult to parallelize gradient boosted trees.
 
+Intuitively, one can think of boosting as iteratively improving a regression tree ensemble by repeatedly training a new regression tree on the *residuals* of the ensemble (when making predictions on the dataset) and then incorporating that regression tree into the ensemble.
+
+Gradient boosted trees are implemented in R's `gbm` package as the `gbm()` function. They're also compatible with `caret`'s `train()` -- just set `method="gbm"`.
+
+* Use `train()` to perform a *grid search* to optimize the hyperparameters for a gradient boosted tree model (predicting white wine quality from chemical properties).
+
+	* Instead of passing in the `tuneLength` parameter like earlier, use `expand.grid()` to create a grid with `n.trees` set to 500, `shrinkage` set to `10^seq(-3, 0, 1)`, `interaction.depth` set to `1:3`, and `n.minobsinnode` set to `seq(10, 50, 10)`.
+
+* With the optimal values of the hyperparameters determined with `train()`, call `gbm()` on the data directly with 5000 trees instead of 500 and with `cv.folds=3`. (The `gbm()` algorithm will automatically use 3-fold cross-validation to estimate the test error.)
+
+* The `$cv.error` variable of the `gbm()` fit is a vector of cross-validated RMSE estimates after each incremental improvement to the ensemble of regression trees. Find the minimum cross-validated RMSE and plot the cross-validated RMSEs as a function of number of trees added to the model.
+
+* Determine the degree of overfitting by using `predict()` to generate predictions on the entire dataset and calculating the RMSE from those predictions. (Running `predict()` on a `glm()` model will automatically default to using the optimal number of trees in the ensemble model as determined by the RMSE estimates in `$cv.error`.)
+
+[^kuhn]: See Ben Kuhn's [comments](http://www.benkuhn.net/gbm) on gradient boosting.
