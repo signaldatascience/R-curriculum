@@ -79,4 +79,18 @@ grid2 = expand.grid(n.trees=5000, shrinkage=0.1, interaction.depth=3, n.minobsin
 fit_gbm2 = train(quality ~ ., data=df_white, method="gbm", metric="RMSE", trControl=control, tuneGrid=grid2)
 caretmin(fit_gbm2)
 
-fit_gbm3 = gbm(formula=formula(quality ~ .), data=df_white, n.trees=5000, shrinkage=0.1, interaction.depth=3, n.minobsinnode=20, cv.folds=3)
+cufit_gbm3 = gbm(formula=formula(quality ~ .), data=df_white, n.trees=5000, shrinkage=0.1, interaction.depth=3, n.minobsinnode=20, cv.folds=3)
+
+library(earth)
+
+earth_grid = expand.grid(degree=1:5, nprune=10:20)
+fit_mda = train(quality ~ ., data=df_white, method="earth", tuneGrid=earth_grid, metric="RMSE", trControl=control)
+caretmin(fit_mda)
+
+cubist_grid = expand.grid(committees=c(10, 15, 20, 25, 30), neighbors=0:9)
+fit_cubist = train(quality ~ ., data=df_white, method="cubist", tuneGrid=cubist_grid, metric="RMSE", trControl=control)
+caretmin(fit_cubist)
+
+nnet_grid = expand.grid(size=1:3, dec)
+fit_nnet = train(quality ~ ., data=df_white, method="nnet", tuneLength=10, metric="RMSE", trControl=control)
+caretmin(fit_nnet)
