@@ -57,8 +57,8 @@ We'll first have to specify which methods we're using and the control parameters
 
 ```r
 ensemble_methods = c('glmnet', 'kknn', 'rpart')
-ensemble_control = trainControl(method="repeatedcv", repeats=1, number=3, verboseIter=TRUE,
-                                savePredictions="final")
+ensemble_control = trainControl(method="repeatedcv", repeats=1,
+                     number=3, verboseIter=TRUE, savePredictions="final")
 ```
 
 Next, we have to specify the tuning parameters for all three methods:
@@ -74,8 +74,10 @@ ensemble_tunes = list(
 We then create a list of `train()` fits using the `caretList()` function:
 
 ```r
-ensemble_fits = caretList(quality ~ ., df_whitewine, trControl=ensemble_control,
-                          methodList=ensemble_methods, tuneList=ensemble_tunes)
+ensemble_fits = caretList(quality ~ ., df_whitewine,
+                          trControl=ensemble_control,
+                          methodList=ensemble_methods,
+                          tuneList=ensemble_tunes)
 ```
 
 Finally, we can find the best *linear combination* of our many models by calling `caretEnsemble()` on our list of models:
