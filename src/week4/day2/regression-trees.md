@@ -111,7 +111,7 @@ Using gradient boosted trees
 
 *Gradient boosting* is a very powerful nonlinear technique which is one of the best "off-the-shelf" machine learning models.[^kuhn] They train relatively quickly, they can pick up on fairly complicated nonlinear interactions, you can guard against overfitting by increasing the shrinkage parameter, and their performance is difficult to beat.
 
-However, they're a little more complicated than random forests; there are more hyperparameters to tune, and it's much more difficult to parallelize gradient boosted trees.
+However, they're a little more complicated than random forests; there are more hyperparameters to tune, and it's much more difficult to parallelize gradient boosted trees.[^hyp]
 
 Intuitively, one can think of boosting as iteratively improving a regression tree ensemble by repeatedly training a new regression tree on the *residuals* of the ensemble (when making predictions on the dataset) and then incorporating that regression tree into the ensemble.
 
@@ -123,8 +123,10 @@ Gradient boosted trees are implemented in R's `gbm` package as the `gbm()` funct
 
 * With the optimal values of the hyperparameters determined with `train()`, call `gbm()` on the data directly with 5000 trees instead of 500 and with `cv.folds=3`. (The `gbm()` algorithm will automatically use 3-fold cross-validation to estimate the test error.)
 
-* The `$cv.error` variable of the `gbm()` fit is a vector of cross-validated RMSE estimates after each incremental improvement to the ensemble of regression trees. Find the minimum cross-validated RMSE and plot the cross-validated RMSEs as a function of number of trees added to the model.
+* The `$cv.error` variable of the `gbm()` fit is a vector of cross-validated RMSE estimates after each incremental improvement to the ensemble of regression trees. Find the minimum cross-validated RMSE and plot the cross-validated RMSEs as a function of number of trees added to the model. Compare the minimum RMSE to previously obtained RMSEs for other models.
 
-* Determine the degree of overfitting by using `predict()` to generate predictions on the entire dataset and calculating the RMSE from those predictions. (Running `predict()` on a `glm()` model will automatically default to using the optimal number of trees in the ensemble model as determined by the RMSE estimates in `$cv.error`.)
+* Determine the degree of overfitting by using `predict()` to generate predictions on the entire dataset and calculating the RMSE from those predictions. (Running `predict()` on a `gbm()` model will automatically default to using the optimal number of trees in the ensemble model as determined by the RMSE estimates in `$cv.error`.)
 
 [^kuhn]: See Ben Kuhn's [comments](http://www.benkuhn.net/gbm) on gradient boosting.
+
+[^hyp]: See [StackExchange](http://stats.stackexchange.com/questions/25748/what-are-some-useful-guidelines-for-gbm-parameters) for a brief overview of tuning `gbm()` hyperparameters.
