@@ -38,16 +38,41 @@ Before using nonlinear methods to predict white wine quality, let's use regulari
 
 * Examine the coefficients associated with the best linear fit and interpret the results. Based on the graphs you viewed earlier, which nonlinear relationships (between wine quality and chemical properties) are the regularized linear model not successfully modeling?
 
-K-Nearest Neighbors
+Multivariate adaptive regression splines
+========================================
+
+Multivariate adaptive regression splines (MARS) is an extension of linear models that uses *hinge functions*. It models a target variable as being linear in functions of the form $\max(0, \pm (x_i-c))$ where $x_i$ can be any of the predictors in the dataset.
+
+* Look at the pictures on the [Wikipedia page for MARS](https://en.wikipedia.org/wiki/Multivariate_adaptive_regression_splines) to get some intuition for how MARS works.
+
+By increasing the *degree* of a MARS model, one can allow for *products* of multiple hinge functions (*e.g.*, $\max(0, x_1 - 10) \max(0, 2 - x_3)$), which models interactions between the predictor variables.
+
+Intuitively, one can think of a degree 1 MARS model with $p$ predictor variables as being a piecewise linear combination of hyperplanes -- with 1 predictor variable you're [pasting different lines together](https://upload.wikimedia.org/wikipedia/commons/a/a7/Friedmans_mars_simple_model.png), with 2 predictor variables you're [pasting planes together](https://upload.wikimedia.org/wikipedia/commons/9/9e/Friedmans_mars_ozone_model.png), and so on and so forth. Raising the degree then allows more complicated nonlinear interactions to show up.
+
+MARS is implemented as `earth()` in the `earth` package and can be used with `train()` by setting `method="earth"`. It has two hyperparameters to tune, `degree` and `nprune`; the `nprune` parameter is the maximum number of additive terms allowed in the final model (so it controls model complexity).
+
+* Use `caret`'s `train()` to fit a MARS model for white wine quality. Use a grid search to find the optimal hyperparameters, trying `degree=1:5` and `nprune=10:20`.
+
+* Compare the RMSE of the optimal MARS model with the previously obtained RMSEs for white wine quality.
+
+* Pass the optimal hyperparameters into `earth()` directly and examine the resulting model (with `print()` and `summary()`). Interpret the results, comparing the model with the output of a simple regression tree model for white wine quality.
+
+	* When looking at the model, `h(...)` represents a term of the form $\max(0, \ldots)$.
+
+Although MARS doesn't usually give results as good as those of more complicated techniques, MARS models are easy to fit and interpret while being more flexible than just a simple linear regression. Degree 1 models can also be built *very* rapidly even for large datasets.
+
+$K$-Nearest Neighbors
 ===================
 
-K-Nearest Neighbors (KNN) is one of the simplest possible nonlinear regression techniques.
+$K$-Nearest Neighbors (KNN) is one of the simplest possible nonlinear regression techniques.
 
 First, we pick a value of $k$. Next, suppose that we have a dataset of $n$ points, where each $\textbf{x}_i$ is associated with a target variable taking on value $y_i$. Finally, suppose that we have a new point $\textbf{x}^\star$ and we want to predict the associated value of the target variable. To do so, we find the $k$ points $\textbf{x}_i$ which are closest to $\textbf{x}^\star$, look at the associated values of $y_i$, and take their average. That's all!
 
-KNN is implemented in R as `kknn()` in the `kknn` package. It can be used with `caret`'s `train()` by setting `method="kknn"`. There's just a single hyperparameter to tune -- the value of $k$. A larger value of $k$ helps guard against overfitting, but will make the model less sensitive to fine-grained structure in the data.
+KNN is implemented in R as `kknn()` in the `kknn` package. It can be used with `caret`'s `train()` by setting `method="kknn"`. There's just a single hyperparameter to tune -- the value of $k$. A larger value of $k$ helps guard against overfitting, but will make the model less sensitive to fine-grained structure in the data.[^prior]
 
-* Use `caret` to train a KNN model for white wine quality using `tuneLength=10`. Compare the minimum RMSE obtained to the RMSE for a regularized linear model.
+[^prior]: One way to interpret $k$-NN is that it's equivalent to the imposition of a Bayesian prior saying that your dataset is sufficiently fine-grained enough that the value of the target variable at any given point is completely determined by the value of the target variable at nearby points. Given enough granularity, this is in some sense guaranteed to be true (assuming your target variable is a reasonably smooth function of the feature space), but often it's not *perfectly* true. Later on, we'll be looking at support vector machines with a Gaussian basis / radial kernel function, which can be interpreted as a sort of "regularized $k$-nearest neighbors model" and performs very well in practice for classification.
+
+* Use `caret` to train a $k$-NN model for white wine quality using `tuneLength=10`. Compare the minimum RMSE obtained to the RMSE for a regularized linear model.
 
 In general, we can get better predictions by using information about what happens at a greater distance from the point of interest.
 
@@ -69,7 +94,7 @@ There is a single hyperparameter involved in the fitting of a regression tree: t
 
 As before, we can use `caret`'s `train()` to test different values of `cp`. Since there's only a single hyperparameter to optimize, we can again use the `tuneLength=10` parameter.
 
-* Use the `caret` package to fit a regression tree for the prediction of white wine quality with its chemical characteristics. Compare the RMSE value for the best fit with the RMSE from regularized linear regression and KNN.
+* Use the `caret` package to fit a regression tree for the prediction of white wine quality with its chemical characteristics. Compare the RMSE value for the best fit with the RMSE from regularized linear regression and $k$-NN.
 
 Using random forests
 --------------------
@@ -80,7 +105,7 @@ Next, you'll be using `randomForest()` from the [`randomForest`](https://cran.r-
 
 In short, a *random forest* trains a lot of different regression trees and averages them together, with these two conditions on the regression trees:
 
-1. Each regression is trained on a subset of the original data, sampled *with replacement*. This technique is known as *bagging* and helps combat overfitting.
+1. Each regression is trained on a subset of the original data which is sampled *with replacement*. This technique is known as *bagging* and helps combat overfitting. (Usually as many samples are drawn as there are data points in the original dataset.)
 
 2. At each split of each regression tree, only a random subset of the original predictors are considered as candidate variables for the split (usually $\sqrt{p}$ candidate predictors for $p$ total predictors). This prevents very strong predictors from dominating certain splits and thereby *decorrelates* the regression trees from each other. The size of this random subset, denoted as `mtry`, is the sole hyperparameter needed to fit a random forest model.
 
@@ -115,7 +140,9 @@ Anyway, let's get some practice with random forests:
 Using gradient boosted trees
 ----------------------------
 
-*Gradient boosting* is a very powerful nonlinear technique which is one of the best "off-the-shelf" machine learning models.[^kuhn] They train relatively quickly, they can pick up on fairly complicated nonlinear interactions, you can guard against overfitting by increasing the shrinkage parameter, and their performance is difficult to beat.
+*Boosting* is a technique that iteratively improves a decision tree ensemble with more and more decision trees.[^ada] Specifically, *gradient boosting* is a very powerful nonlinear technique and is one of the best "off-the-shelf" machine learning models.[^kuhn] They train relatively quickly, they can pick up on fairly complicated nonlinear interactions, you can guard against overfitting by increasing the shrinkage parameter, and their performance is difficult to beat.
+
+[^ada]: The first implementation of boosting -- or at least the most famous -- is [AdaBoost](https://en.wikipedia.org/wiki/AdaBoost), which can be considered to be like a [special case of gradient boosting](http://stats.stackexchange.com/a/164262/115666), a more modern form of boosting.
 
 [^kuhn]: See Ben Kuhn's [comments](http://www.benkuhn.net/gbm) on gradient boosting.
 
@@ -133,27 +160,6 @@ Gradient boosted trees are implemented in R's `gbm` package as the `gbm()` funct
 
 * With the optimal values of the hyperparameters determined with `train()`, run `train()` again and tune only the value of `n.tree`, trying values from 500 to 5000 in steps of 5000. Compare the minimum RMSE to previously obtained RMSEs for other models.
 
-Multivariate adaptive regression splines
-========================================
-
-Multivariate adaptive regression splines (MARS) is an extension of linear models that uses *hinge functions*. It models a target variable as being linear in functions of the form $\max(0, \pm (x_i-c))$ where $x_i$ can be any of the predictors in the dataset.
-
-* Look at the pictures on the [Wikipedia page for MARS](https://en.wikipedia.org/wiki/Multivariate_adaptive_regression_splines) to get some intuition for how MARS works.
-
-By increasing the *degree* of a MARS model, one can allow for *products* of multiple hinge functions (*e.g.*, $\max(0, x_1 - 10) \max(0, 2 - x_3)$), which models interactions between the predictor variables.
-
-Intuitively, one can think of a degree 1 MARS model with $p$ predictor variables as being a piecewise linear combination of hyperplanes -- with 1 predictor variable you're [pasting different lines together](https://upload.wikimedia.org/wikipedia/commons/a/a7/Friedmans_mars_simple_model.png), with 2 predictor variables you're [pasting planes together](https://upload.wikimedia.org/wikipedia/commons/9/9e/Friedmans_mars_ozone_model.png), and so on and so forth. Raising the degree then allows more complicated nonlinear interactions to show up.
-
-MARS is implemented as `earth()` in the `earth` package and can be used with `train()` by setting `method="earth"`. It has two hyperparameters to tune, `degree` and `nprune`; the `nprune` parameter is the maximum number of additive terms allowed in the final model (so it controls model complexity).
-
-* Use `caret`'s `train()` to fit a MARS model for white wine quality. Use a grid search to find the optimal hyperparameters, trying `degree=1:5` and `nprune=10:20`.
-
-* Compare the RMSE of the optimal MARS model with the previously obtained RMSEs for white wine quality.
-
-* Pass the optimal hyperparameters into `earth()` directly and examine the resulting model (with `print()` and `summary()`). Interpret the results, comparing the model with the output of a simple regression tree model for white wine quality.
-
-Although MARS doesn't usually give results as good as those of a random forest or a boosted tree, MARS models are easy to fit and interpret while being more flexible than just a simple linear regression. Degree 1 models can also be built *very* rapidly even for large datasets.
-
 Cubist
 ======
 
@@ -167,9 +173,9 @@ Broadly speaking, Cubist works by creating a *tree of linear models*, where the 
 
 * Cubist incorporates a *boosting-like scheme* of iterative model improvement where the residuals of the ensemble model are taken into account when training a new tree. Cubist calls its trees *committees*, and the number of committees is a hyperparameter which must be tuned.
 
-* Cubist can also adjust its final predictions using a more complex version of KNN. When Cubist is finished building a rule-based model, Cubist can make predictions on the training set; subsequently, when trying to make a prediction for a new point, it can incorporate the predictions of the $K$ nearest points in the training set into the new prediction.
+* Cubist can also adjust its final predictions using a more complex version of $k$-NN. When Cubist is finished building a rule-based model, Cubist can make predictions on the training set; subsequently, when trying to make a prediction for a new point, it can incorporate the predictions of the $K$ nearest points in the training set into the new prediction.
 
-As such, there are two hyperparameters to tune, called `committees` and `neighbors`. `committees` is the number of boosting iterations, and the functionality of `neighbors` is easily intuitively understandable as a more complex version of KNN. The Cubist algorithm is available as `cubist()` in the `Cubist` package and can be used with `train()` by setting `method="cubist"`.
+As such, there are two hyperparameters to tune, called `committees` and `neighbors`. `committees` is the number of boosting iterations, and the functionality of `neighbors` is easily intuitively understandable as a more complex version of $k$-NN. The Cubist algorithm is available as `cubist()` in the `Cubist` package and can be used with `train()` by setting `method="cubist"`.
 
 * Use `caret`'s `train()` to fit a Cubist model for white wine quality. Use a grid search to find the optimal hyperparameter combination, searching over `committees=seq(10, 30, 5)` and `neighbors=0:9`.
 
@@ -180,7 +186,9 @@ Note that Cubist can only be used for *regression*, not for *classification*. Qu
 Stacking
 ========
 
-[Stacking](https://en.wikipedia.org/wiki/Ensemble_learning#Stacking) is a technique in which multiple different learning algorithms are trained and then *combined* together into an ensemble. The final 'stack' is very computationally expensive to compute, but usually performs better than any of the individual models used to create it.
+[Stacking](https://en.wikipedia.org/wiki/Ensemble_learning#Stacking) is a technique in which multiple different learning algorithms are trained and then *combined* together into an ensemble.[^stack] The final 'stack' is very computationally expensive to compute, but usually performs better than any of the individual models used to create it.
+
+[^stack]: The canonical paper on stacking is [Stacked Generalization](http://machine-learning.martinsewell.com/ensembles/stacking/Wolpert1992.pdf) by Wolpert (1992).
 
 Ensemble stacking using a `caret`-based interface is implemented in the [`caretEnsemble` package](https://cran.r-project.org/web/packages/caretEnsemble/index.html). We'll start off by illustrating how to combine (1) MARS, (2) K-Nearest Neighbors, and (3) regression trees into a stack.
 
