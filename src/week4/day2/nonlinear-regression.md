@@ -1,5 +1,5 @@
 ---
-title: Nonlinear Techniques
+title: Nonlinear Regression
 ---
 
 Today, you'll look at nonlinear regression techniques with a [wine quality dataset](http://archive.ics.uci.edu/ml/datasets/Wine+Quality) dataset, which pairs up chemical characteristics of wines with their quality ratings. The dataset is split into a red wine dataset and a white wine dataset. You'll mainly be looking at the white wine dataset, which has three times as much data as the red wine dataset and so has more fine-grained nonlinear structure. Our goal will be to use the chemical properties of white wines to predict their associated quality ratings.
@@ -11,6 +11,8 @@ control = trainControl(method="repeatedcv", repeats=1, number=3,
                        verboseIter=TRUE)
 caret_fit = train(..., trControl=control)
 ```
+
+After learning about a variety of nonlinear methods, you'll see how to *combine* them all into a large ensemble!
 
 Getting started
 ===============
@@ -90,7 +92,9 @@ As a bonus, we can fit each data point in the training data to the trees that *w
 
 In general, the `randomForest()` function is used in a manner analogous to `rpart()` and `lm()`. There are two details to pay attention to:
 
-First, it's important to pay some attention to the choice of the `mtry` hyperparameter. It's usually advised to try either `mtry = floor(sqrt(p))` or `mtry = floor(p/3)` (for a dataset with `p` predictors); the former should be used when `p/3` rounds to 1-2 or when we don't have very many predictors relative to the number of data points ($p \ll n$), and the latter should be used otherwise. Also, it's *always* wise to try `mtry = p`.
+First, it's important to pay some attention to the choice of the `mtry` hyperparameter. It's usually advised to try either `mtry = floor(sqrt(p))` or `mtry = floor(p/3)` (for a dataset with `p` predictors); the former should be used when `p/3` rounds to 1-2 or when we don't have very many predictors relative to the number of data points ($p \ll n$), and the latter should be used otherwise. Also, it's *always* wise to try `mtry = p`.[^mtry]
+
+[^mtry]: Setting the value of `mtry` carefully is of [debatable importance](http://code.env.duke.edu/projects/mget/export/HEAD/MGET/Trunk/PythonPackage/dist/TracOnlineDocumentation/Documentation/ArcGISReference/RandomForestModel.FitToArcGISTable.html). [Random Forests for Classification in Ecology](http://depts.washington.edu/landecol/PDFS/RF.pdf) by Cutler *et al.* (2007) reports that performance isn't very sensitive to `mtry`, whereas [Conditional variable importance for random forests](http://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-9-307) by Strobl *et al.* (2008) reports the opposite. Finally, [Random Forests: some metholodological insights](http://www.math.u-psud.fr/~genuer/genuer-poggi-tuleau.rf-insights.pdf) by Genuer *et al.* (2008) finds varying importance for `mtry` depending on properties of the dataset. **All considered**, I think it's fine to initially just try $p/3$, $\sqrt{p}$, and $p$, and to decide if further tuning is warranted based on those results.
 
 Second, when using the `predict()` function on a random forest model, there is an [important point](http://stats.stackexchange.com/a/66546/115666) to keep in mind. Suppose that we've run `rf = randomForest(y ~ x, df)` and we want to evaluate the RMSE associated with that fit. To that end, we'd like to generate predictions on the original dataset. We can run one of two commands:
 
@@ -106,14 +110,18 @@ Anyway, let's get some practice with random forests:
 
 * Make out-of-bag predictions with both of the random forest models and calculate the associated RMSE values. Compare the RMSEs to previously obtained RMSEs.
 
-* Use `caret`'s `train()` function with `method="rf"` to tune over `mtry=c(3, 5, 7, 11)`. Compare the minimum cross-validated RMSE with the out-of-bag RMSE estimate.
+* Use `caret`'s `train()` function with `method="parRF"` to tune over `mtry=c(3, 5, 7, 11)`. Compare the minimum cross-validated RMSE with the out-of-bag RMSE estimate. (The `parRF` method is a parallelized version of `randomForest()`.)
 
 Using gradient boosted trees
 ----------------------------
 
 *Gradient boosting* is a very powerful nonlinear technique which is one of the best "off-the-shelf" machine learning models.[^kuhn] They train relatively quickly, they can pick up on fairly complicated nonlinear interactions, you can guard against overfitting by increasing the shrinkage parameter, and their performance is difficult to beat.
 
+[^kuhn]: See Ben Kuhn's [comments](http://www.benkuhn.net/gbm) on gradient boosting.
+
 However, they're a little more complicated than random forests; there are more hyperparameters to tune, and it's much more difficult to parallelize gradient boosted trees.[^hyp]
+
+[^hyp]: See [StackExchange](http://stats.stackexchange.com/questions/25748/what-are-some-useful-guidelines-for-gbm-parameters) for a brief overview of tuning `gbm()` hyperparameters.
 
 Intuitively, one can think of boosting as iteratively improving a regression tree ensemble by repeatedly training a new regression tree on the *residuals* of the ensemble (when making predictions on the dataset) and then incorporating that regression tree into the ensemble.
 
@@ -123,11 +131,7 @@ Gradient boosted trees are implemented in R's `gbm` package as the `gbm()` funct
 
 	* Instead of passing in the `tuneLength` parameter like earlier, use `expand.grid()` to create a grid with `n.trees` set to 500, `shrinkage` set to `10^seq(-3, 0, 1)`, `interaction.depth` set to `1:3`, and `n.minobsinnode` set to `seq(10, 50, 10)`.
 
-* With the optimal values of the hyperparameters determined with `train()`, call `gbm()` on the data directly with 5000 trees instead of 500 and with `cv.folds=3`. (The `gbm()` algorithm will automatically use 3-fold cross-validation to estimate the test error.) Compare the minimum RMSE to previously obtained RMSEs for other models.
-
-[^kuhn]: See Ben Kuhn's [comments](http://www.benkuhn.net/gbm) on gradient boosting.
-
-[^hyp]: See [StackExchange](http://stats.stackexchange.com/questions/25748/what-are-some-useful-guidelines-for-gbm-parameters) for a brief overview of tuning `gbm()` hyperparameters.
+* With the optimal values of the hyperparameters determined with `train()`, run `train()` again and tune only the value of `n.tree`, trying values from 500 to 5000 in steps of 5000. Compare the minimum RMSE to previously obtained RMSEs for other models.
 
 Multivariate adaptive regression splines
 ========================================
@@ -155,7 +159,9 @@ Cubist
 
 *Cubist* is a nonlinear *regression* algorithm developed by Ross Quinlan with a [proprietary implementation](https://www.rulequest.com/cubist-info.html). (The single-threaded code is open source and has been [ported to R](https://cran.r-project.org/web/packages/Cubist/vignettes/cubist.pdf.)
 
-In practice, Cubist performs approximately as well as a boosted tree (as far as predictive power is concerned). Having only two hyperparameters to tune, Cubist is a little simpler to use, and the hyperparameters themselves are very easily interpretable.
+In practice, Cubist performs approximately as well as a gradient boosted tree (as far as predictive power is concerned).[^subpixel] Having only two hyperparameters to tune, Cubist is a little simpler to use, and the hyperparameters themselves are very easily interpretable.
+
+[^subpixel]: In [Subpixel Urban Land Cover Estimation](http://www.nrs.fs.fed.us/pubs/jrnl/2008/nrs_2008_walton_003.pdf) by Walton (2008), Cubist, random forests, and support vector regression are compared for a prediction task, and Cubist is found to be superior to gradient boosted trees. A [comment on a Ben Kuhn post](http://www.benkuhn.net/gbm#comment-1175) reports the same result.
 
 Broadly speaking, Cubist works by creating a *tree of linear models*, where the final linear models are *smoothed* by the intermediate models earlier in the tree. It's usually referred to as a *rule-based model*.
 
@@ -241,6 +247,17 @@ You may have noticed that tuning hyperparameters is a very big part of fitting n
 * Read the first 4 paragraphs of the `caret` package's documentation on [random hyperparameter search](http://topepo.github.io/caret/random.html).
 
 The `caret` package is very well-designed, and grid search will usually suffice for your purposes, especially because of its internal optimizations. It's good to be aware that alternatives to grid search exist.
+
+Which model to use?
+-------------------
+
+When trying to do predictive regression modeling, it's usually advised to start out with random forests or gradient boosted trees because they're fairly well understood and perform well out of the box with fairly straightforward tuning.[^comp] Random forests are simpler than gradient boosted trees, but both are much simpler than, say, a deeps neural net.
+
+[^comp]: One of the only good comparison of nonlinear regression techniques is in [BART: Bayesian Additive Regression Trees](https://arxiv.org/pdf/0806.3286.pdf) by Chipman *et al.* (2010), which gives the following ordering (from better to worse): BART, 1-layer neural nets, gradient boosted trees, random forests. Cubist isn't used very much, mostly because almost nobody really knows what it does, even if its results are pretty good in practice. See also [Performance ANalysis of Some Machine Learning Algorithms for Regression Under Varying Spatial Autocorrelation](https://agile-online.org/Conference_Paper/cds/agile_2015/shortpapers/100/100_Paper_in_PDF.pdf) by Santibanez *et al.* (2015).
+
+For fast parallelized gradient boosted trees in R, use the [`xgboost` package](https://cran.r-project.org/web/packages/xgboost/vignettes/xgboostPresentation.html) -- it's currently the state of the art. For random trees, the currently best implementation can be used by setting `method="parRF"` in `caret`'s `train()`, which is a parallelized combination of the `randomForest`, `e1071`, and `foreach` packages.
+
+In the future, you'll learn about more complex nonlinear regression techniques, which can either be used on their own or be combined with the techniques you've already learned in a larger ensemble. However, defaulting to either random forests or gradient boosted trees works quite well in practice if you want to get a sense of how much predictive improvement you can get from using a nonlinear method.
 
 Kaggle Bike Sharing Demand competition
 ======================================
