@@ -8,6 +8,8 @@ Previously, you used binomial logistic regression to do *two-class classificatio
 
 Multinomial logistic regression is sometimes called *softmax regression*.[^softmax]
 
+[^softmax]: This comes from the usage of the *softmax function*, which is a continuous approximation of the indicator function.
+
 Using multinomial logistic regression
 =====================================
 
@@ -47,5 +49,3 @@ Here are some examples of things to model (but feel free to explore as you desir
 * Race in terms of extracted factors
 
 * Income bracket in terms of extracted factors
-
-[^softmax]: This comes from the usage of the *softmax function*, which is a continuous approximation of the indicator function.
