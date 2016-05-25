@@ -106,7 +106,7 @@ caretmin(fit_nnet)
 
 library(caretEnsemble)
 
-methods = c('earth', 'cubist', 'glmnet', 'kknn', 'rpart', 'gbm', 'rf')
+methods = c('earth', 'cubist', 'glmnet', 'kknn', 'rpart', 'gbm', 'rf', 'nnet')
 tunes = list(
   earth=caretModelSpec(method='earth', tuneGrid=earth_grid),
   cubist=caretModelSpec(method='cubist', tuneGrid=cubist_grid),
@@ -114,7 +114,8 @@ tunes = list(
   kknn=caretModelSpec(method='kknn', tuneLength=10),
   rpart=caretModelSpec(method='rpart', tuneLength=10),
   gbm=caretModelSpec(method='gbm', tuneGrid=grid2),
-  rf=caretModelSpec(method='rf', tuneGrid=rf_grid)
+  rf=caretModelSpec(method='rf', tuneGrid=rf_grid),
+  nnet=caretModelSpec(method='nnet', tuneLength=10, trace=FALSE)
 )
 fits = caretList(quality ~ ., df_white, trControl=control, methodList=methods, tuneList=tunes)
 ens = caretEnsemble(fits)
@@ -124,3 +125,6 @@ summary(ens)
 stack = caretStack(fits, method="gbm", metric="RMSE", trControl=trainControl(method="repeatedcv", repeats=1, number=3, savePredictions="final", verboseIter=TRUE), tuneLength=10)
 stack
 summary(stack)
+
+fit_svm = train(quality ~ ., data=df_white, method="svmRadialCost", tuneLength=10, metric="RMSE", trControl=control)
+caretmin(fit_svm)
