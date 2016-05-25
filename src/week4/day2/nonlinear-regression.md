@@ -41,7 +41,7 @@ Before using nonlinear methods to predict white wine quality, let's use regulari
 Multivariate adaptive regression splines
 ========================================
 
-Multivariate adaptive regression splines (MARS) is an extension of linear models that uses *hinge functions*. It models a target variable as being linear in functions of the form $\max(0, \pm (x_i-c))$ where $x_i$ can be any of the predictors in the dataset.
+Multivariate adaptive regression splines (MARS) is an extension of linear models that uses *hinge functions*. It models a target variable as being a linear combination of functions of the form $\max(0, \pm (x_i-c))$ where $x_i$ can be any of the predictors in the dataset.
 
 * Look at the pictures on the [Wikipedia page for MARS](https://en.wikipedia.org/wiki/Multivariate_adaptive_regression_splines) to get some intuition for how MARS works.
 
@@ -241,16 +241,16 @@ In the [`caretEnsemble` documentation](https://cran.r-project.org/web/packages/c
 Closing notes
 =============
 
-By now, you've tried a fairly wide variety of nonlinear fitting techniques and gotten some sense for how each of them works.
-
-*In practice*, people usually use tree-based methods, especially random forests and gradient boosted trees -- they tend to be fairly easily tuned and robust to overfitting. However, it's useful to have a broader overview of the field as a whole.
+By now, you've tried a fairly wide variety of nonlinear fitting techniques and gotten some sense for how each of them works. *In practice*, people usually use tree-based methods, especially random forests and gradient boosted trees -- they tend to be fairly easily tuned and robust to overfitting. However, it's useful to have a broader overview of the field as a whole.
 
 Also, there are a lot of peculiarities to the interfaces of different nonlinear techniques -- when comparing them, `caret` offers a very well-designed interface for all of them, so it's nice to stick to using `train()` and other `caret` methods when possible.
 
 Hyperparameter optimization
 ---------------------------
 
-You may have noticed that tuning hyperparameters is a very big part of fitting nonlinear methods well! As the techniques become more complex, the number of hyperparameters to tune can grow significantly. Grid search is fine for ordinary usage, but in very complicated situations (10-20+ hyperparameters) it's better to use [random search](http://www.jmlr.org/papers/volume13/bergstra12a/bergstra12a.pdf) -- otherwise there would just be far too many hyperparameter combinations to evaluate!
+You may have noticed that tuning hyperparameters is a very big part of fitting nonlinear methods well! As the techniques become more complex, the number of hyperparameters to tune can grow significantly. Grid search is fine for ordinary usage, but in very complicated situations (10-20+ hyperparameters) it's better to use [random search](http://www.jmlr.org/papers/volume13/bergstra12a/bergstra12a.pdf) -- otherwise there would just be far too many hyperparameter combinations to evaluate![^comb]
+
+[^comb]: If you have, say, 15 hyperparameters, even the simplest possible grid search that selects one of two possible values for each hyperparameter still has $2^{15}$ configurations to iterate over. That will almost assuredly take far too long.
 
 * Read the first 4 paragraphs of the `caret` package's documentation on [random hyperparameter search](http://topepo.github.io/caret/random.html).
 
