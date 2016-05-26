@@ -223,6 +223,8 @@ We can use the `spEMsymloc()` function in `mixtools` to do semiparametric fittin
 
 * Use `spEMsymloc()` to create mixture models of the waiting time between Old Faithful eruptions. Experiment with different values of `mu0` and `bw`, plotting them as you go. Interpret the results.
 
+* Artificially add one or two outliers to the waiting times data. Setting the number of models in the mixture to 2, compare the robustness of Gaussian mixture models vs. semiparametric mixture models against the presence of outliers.
+
 Fitting the protein consumption data
 ------------------------------------
 
