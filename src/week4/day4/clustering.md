@@ -230,7 +230,19 @@ Multivariate mixture models
 
 Continuing with the Old Faithful dataset, we would like to be able to fit *both* the waiting times and the eruption time to a mixture of *multivariate* models.
 
-* Look at a scatterplot of waiting time against eruption time. How many clusters do there seem to be in the data? 
+* Look at a scatterplot of waiting time against eruption time. How many clusters do there seem to be in the data?
+
+For fitting a mixture of *multivariate normal distributions* specifically, the [`mclust` package](http://www.stat.washington.edu/mclust/) is *extremely* useful.
+
+* Load the `mclust` library and run `Mclust()` on the scaled Old Faithful data. (Pay attention to the capitalization!) Run `plot()` on the output, view the associated graphs, and interpret the results.
+
+The `Mclust()` function (1) chose initialization parameters for fitting a mixture of Gaussians by using hierarchical clustering, (2) ran the EM algorithm to fit a mixture of $k$ Gaussians for $1 <= k <= 9$, calculates a metric of model quality for each one called the BIC,[^bic] and (4) picks the best value of $k$! Very convenient.
+
+[^bic]: Bayesian Information Criterion of Schwarz (1978).
+
+Although we previously saw that it was difficult visualizing the results of higher-dimensional clustering, it is even *more* difficult for mixture models.
+
+* Run `Mclust()` on the scaled protein consumption dataset and view the resulting plots. Interpret the results (to the best of your ability).
 
 Closing notes
 =============
