@@ -55,7 +55,7 @@ MARS is implemented as `earth()` in the `earth` package and can be used with `tr
 
 * Compare the RMSE of the optimal MARS model with the previously obtained RMSEs for white wine quality.
 
-* Pass the optimal hyperparameters into `earth()` directly and examine the resulting model (with `print()` and `summary()`). Interpret the results, comparing the model with the output of a simple regression tree model for white wine quality.
+* Pass the optimal hyperparameters into `earth()` directly and examine the resulting model (with `print()` and `summary()`). Interpret the results.
 
 	* When looking at the model, `h(...)` represents a term of the form $\max(0, \ldots)$.
 
@@ -89,6 +89,8 @@ Using regression trees
 You'll need the `rpart()` function in the [`rpart`](https://cran.r-project.org/web/packages/rpart/) package to construct regression tree models. It's used in the same way as `lm()`, both in how the model is constructed and in how predictions are made using the model.
 
 * For both red and white wines, create regression tree models predicting wine quality with the other features in the dataset. View them (by just calling `print()` on the models) and interpret the differences between the two models.
+
+* Compare the regression tree model for white wine quality with the previously obtained MARS model for white wine quality.
 
 There is a single hyperparameter involved in the fitting of a regression tree: the *complexity parameter*, usually denoted `cp`. (It defaults to `0.01` if not explicitly specified in the call to `rpart()`.) As we grow a regression tree, we only make another 'split' in the tree if the associated incremental increase in the overall R-squared is greater than the value of `cp`. A higher value of `cp` helps us guard against overfitting to the data, but it can also stop us from growing the tree to a sufficient depth.
 

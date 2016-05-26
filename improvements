@@ -1,0 +1,34 @@
+things to improve about the curriculum
+
+Incorporate into R curriculum:
+- http://www.win-vector.com/blog/2016/03/for-loops-in-r-can-lose-class-information/
+- http://www.win-vector.com/blog/2016/03/sample-monkeys-paw-style-programming-in-r/
+- http://www.win-vector.com/blog/2016/03/bend-or-break-strings-in-r/
+- http://www.win-vector.com/blog/2016/01/some-programming-language-theory-in-r/
+- http://www.win-vector.com/blog/2015/12/an-r-function-return-and-assignment-puzzle/
+- http://www.win-vector.com/blog/2015/10/dont-use-statsaggregate/ (?)
+- http://www.win-vector.com/blog/2015/07/efficient-accumulation-in-r/
+- http://www.win-vector.com/blog/2015/06/r-in-a-64-bit-world/
+- http://www.win-vector.com/blog/2015/05/my-favorite-r-bug/
+- http://www.win-vector.com/blog/2015/04/what-can-be-in-an-r-data-frame-column/
+- http://www.win-vector.com/blog/2015/04/how-and-why-to-return-functions-in-r/
+- http://www.win-vector.com/blog/2015/03/using-closures-as-objects-in-r/
+- http://www.win-vector.com/blog/2015/01/check-your-return-types-when-modeling-in-r/
+- http://www.win-vector.com/blog/2015/01/r-bracket-is-a-bit-irregular/
+- http://www.win-vector.com/blog/2014/09/factors-are-not-first-class-citizens-in-r/
+- add exposition about defining functions, for loops, while loops instead of linking elsewhere
+- http://www.win-vector.com/blog/2013/04/prefer-for-assignment-in-r/
+- http://www.win-vector.com/blog/2012/10/error-handling-in-r/
+- http://www.win-vector.com/blog/2012/06/selection-in-r/
+- http://www.win-vector.com/blog/2011/02/the-cranky-guide-to-trying-r-packages/
+- http://www.win-vector.com/blog/2010/03/r-annoyances/
+- http://www.win-vector.com/blog/2009/11/r-examine-objects-tutorial/
+- http://www.win-vector.com/blog/2009/09/survive-r/
+- http://www.win-vector.com/blog/2009/01/exciting-technique-1-the-r-language/
+- R inferno: ch 1-6, parts of 8
+- match(), model.matrix()
+- http://www.win-vector.com/blog/2014/05/r-has-some-sharp-corners/#more-2668
+
+Parallelization:
+- http://www.win-vector.com/blog/2016/01/parallel-computing-in-r/
+- http://www.win-vector.com/blog/2016/01/running-r-jobs-quickly-on-many-machines/
