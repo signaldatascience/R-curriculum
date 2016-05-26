@@ -172,6 +172,8 @@ $K$-means clustering is implemented in R as the `kmeans()` function.
 
 * Run `kmeans_plot()` multiple times with `k=5`. How stable are the results? What about with `k=2`?
 
+* Add a single artificial outlier to the dataset with extreme values. How resilient are the results of $K$-means clustering to the presence of outliers?
+
 Validating a choice of $K$
 --------------------------
 
@@ -189,6 +191,10 @@ Mixture models
 With a mixture model, one asks the following question: Suppose that our data is *generated* via some process. Indeed, suppose that we have a variety of different underlying *distributions*, and the data we observe is sampled from those distributions. If so, what parameters of those underlying distributions maximize the probability of observing the observed data?
 
 If we are able to answer this question, we can then treat those distributions as different *clusters* of data. Since these distributions will usually decay continuously and smoothly from their center, they *mix* together (think of two overlapping normal distributions).
+
+In the following, we will make a distinction between parametric, semiparametric, and nonparametric models. A parametric model is fully specified by a number of *parameters*, like how a normal distribution is fully specified given its mean and variance. In contrast, a *nonparametric* model does not have some analytic expression given in advance -- the form of the model will depend greatly on the data upon which it is fit. A *semiparametric* model is in some sense a compromise between the two.[^param]
+
+[^param]: Technically, "all models are parametric", because you can approximate any (sufficiently well-behaved function) by just adding more and more parameters to your parametric model... See [What is the difference between the parametric and the nonparametric model?](https://www.quora.com/What-is-the-difference-between-the-parametric-model-and-the-non-parametric-model) on Quora.
 
 Univariate mixture models
 -------------------------
@@ -215,7 +221,7 @@ For this reason, it's important to visualize your data to get a sense of what in
 
 * The `k` parameter of `normalmixEM()` controls the number of Gaussians it tries to fit to your data. What happens if you set `k=3`? Try it a couple times, plotting the results each time. (You can pass `which=2` into `plot()` to show just the second plot.)
 
-However, the assumption that our data points are all generated from normal distributions is quite strong. We would like to relax our assumptions if possible, and we can fit our data to a mixture of *semiparametric* models, where we assume only that the underlying distributions have densities symmetric around their center. We must also specify a desired *bandwidth*, which controls the degree of complexity allowed in our semiparametric models.
+However, the assumption that our data points are all generated from normal distributions is quite strong. We might in some cases like to relax our assumptions; indeed, we can fit our data to a mixture of *semiparametric* models, where we assume only that the underlying distributions have densities symmetric around their center. We must also specify a desired *bandwidth*, which controls the degree of complexity allowed in our semiparametric models. (In general, tuning the bandwidth properly helps us combat overfitting with semiparametric or nonparametric models.)
 
 We can use the `spEMsymloc()` function in `mixtools` to do semiparametric fitting of univariate symmetric density functions to our mixture.[^leb] The `mu0` parameter controls the *number* of models to fit and the `bw` parameter controls the *bandwidth* of our method.
 
@@ -236,13 +242,19 @@ For fitting a mixture of *multivariate normal distributions* specifically, the [
 
 * Load the `mclust` library and run `Mclust()` on the scaled Old Faithful data. (Pay attention to the capitalization!) Run `plot()` on the output, view the associated graphs, and interpret the results.
 
-The `Mclust()` function (1) chose initialization parameters for fitting a mixture of Gaussians by using hierarchical clustering, (2) ran the EM algorithm to fit a mixture of $k$ Gaussians for $1 <= k <= 9$, calculates a metric of model quality for each one called the BIC,[^bic] and (4) picks the best value of $k$! Very convenient.
+The `Mclust()` function (1) chose initialization parameters for fitting a mixture of Gaussians by using hierarchical clustering, (2) ran the EM algorithm to fit a mixture of $k$ Gaussians for $1 \le k \le 9$, calculates a metric of model quality for each one called the BIC,[^bic] and (4) picks the best value of $k$! Very convenient.
 
 [^bic]: Bayesian Information Criterion of Schwarz (1978).
 
 Although we previously saw that it was difficult visualizing the results of higher-dimensional clustering, it is even *more* difficult for mixture models.
 
 * Run `Mclust()` on the scaled protein consumption dataset and view the resulting plots. Interpret the results (to the best of your ability).
+
+* **Challenge:** Figure out how to get `mixtools`'s `mvnormalmixEM()` to work on the protein consumption data. (I don't know why it's failing!)
+
+Finally, we have *nonparametric* methods we can use! Using them properly is too complex of a discussion for this document, but you can try them out while you're here.
+
+* Fitting nonparametric mixture models are implemented in `mixtools` with `npEM()`. Try `npEM()` on both the Old Faithful dataset and the protein consumption dataset. (You can set the bandwidth manually or let the algorithm select one automatically.) Interpret the results (to whatever extent is possible).
 
 Closing notes
 =============
@@ -256,6 +268,8 @@ Here are some final takeaways about clustering:
 * Complicated graphical manipulation of dendrograms can be done using the [`dendextend` package](https://cran.r-project.org/web/packages/dendextend/vignettes/introduction.html).
 
 * There are a variety of ways to evaluate the quality of a particular clustering of the data. It may be generally helpful to consider the output of multiple different clustering methods and to see how they agree.
+
+* Bootstrapping is helpful for evaluating the "stability" of clusters. Also, if a specific number $k$ must be chosen for the number of clusters, $k$ can be selected with the help of various numerical criteria (depending on the clustering method used).
 
 Problems with high dimensionality
 ---------------------------------

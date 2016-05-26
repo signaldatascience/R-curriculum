@@ -38,8 +38,11 @@ plot(g, which=2)
 lines(density(df$waiting))
 
 of = faithful
-g = spEMsymloc(of$waiting, mu0=c(55,80), bw=1)
+g = spEMsymloc(of$waiting, mu0=4, bw=1)
 plot(g)
 
 g = mvnormalmixEM(s, k=2)
 plot(g, which=2)
+
+g = mvnormalmixEM(scale(faithful), k=2)
+plot(g, density=TRUE)
