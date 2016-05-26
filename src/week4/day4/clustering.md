@@ -76,7 +76,7 @@ The `dist()` function in R will compute a matrix of distances between data point
 Agglomerative hierarchical clustering
 =====================================
 
-The `hclust()` function in R provides access to hierarchical clustering. Specifically, it provides access to algorithms for *agglomerative* hierarchical clustering, in which each data point initially represents a single cluster and the clusters are successively merged.[^agglom]
+The `hclust()` function in R provides access to hierarchical clustering. Specifically, it provides access to algorithms for *agglomerative* hierarchical clustering, in which each data point initially represents a single cluster and the clusters are successively merged based on how close they are to each other.[^agglom]
 
 [^agglom]: This is in contrast to *divisive* hierarchical clustering, in which objects initially all belong to a single cluster which is then successively divided into sub-clusters.
 
@@ -137,7 +137,7 @@ This method is implemented in the [`pvclust` package](http://www.sigmath.es.osak
 
 * Call `pvrect()` on the output of `pvclust()`, which defaults to highlighting the largest clusters with $p$-value $\le 0.05$. Read the [What is `pvclust`? section](http://www.sigmath.es.osaka-u.ac.jp/shimo-lab/prog/pvclust/) on its official page (and scroll down for some examples of nice dendrograms).
 
-* Experiment with different values of the `alpha` parameter in `pvrect()`. (There are some graphical bugs with `pvrect()` -- you may need to plot something else in between every call of `pvrect()` with different parameters.) Interpret the results.
+* Experiment with different values of the `alpha` parameter in `pvrect()`. (There are some graphical bugs with `pvrect()`; you may need to plot something else in between every call of `pvrect()` with different parameters.) Interpret the results.
 
 *K*-means clustering
 ====================
