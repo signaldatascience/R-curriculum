@@ -39,7 +39,7 @@ Partitioning methods
 
 The second major type of clustering methods consists of **partitioning methods** where we specify the number of clusters *in advance* and iteratively reallocate points between clusters until the algorithm converges. (Ideally, we would like to consider every possible partitioning of points and pick the best one, but this is impossible because of the enormous number of possible partitionings -- which is why we must turn to approximate, iterative methods.)
 
-The typical representative of this class is the $K$-means algorithm, which randomly starts with cluster centers and moves those cluster centers around in a particular way until their locations stop changing. Although the $K$-means algorithm is very fast, it is also sensitive to its initial configuration and cannot be used for all types of data. Finally, since every observation must be
+The typical representative of this class is the $K$-means algorithm, which randomly starts with cluster centers and moves those cluster centers around in a particular way until their locations stop changing. Although the $K$-means algorithm is very fast, it is also sensitive to its initial configuration and cannot be used for all types of data. Finally, since every observation must be continuous, it cannot be used on every dataset (for, say, binary data, the centroids of subsets of the data points will be located oddly relative to the data points themselves).
 
 Mixture models
 --------------
