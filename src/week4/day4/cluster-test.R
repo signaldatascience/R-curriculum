@@ -46,3 +46,11 @@ plot(g, which=2)
 
 g = mvnormalmixEM(scale(faithful), k=2)
 plot(g, density=TRUE)
+
+g = npEM(scale(faithful), mu0=2, bw=1)
+plot(g)
+
+g = npEM(s, mu0=4)
+plot(g)
+
+c = clusterboot(s, clustermethod=kmeansCBI, runs=100, iter.max=100, krange=2:9)

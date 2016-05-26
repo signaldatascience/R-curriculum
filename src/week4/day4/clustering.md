@@ -157,9 +157,11 @@ Here is a visual illustration of the algorithm:
 
 Although only two iterations of the process are shown, the positions of the cluster centers will eventually converge.
 
-*K*-means clustering is a method which implicitly minimizes within-cluster variance, which is defined using the Euclidean distance! As such, if non-Euclidean distance functions are used for computing cluster assignments and centroids in $K$-means clustering, the algorithm is not guaranteed to converge. As such, it is almost always used on continuous data.[^con] Thankfully, our protein consumption data is continuous!
+*K*-means clustering is a method which implicitly minimizes within-cluster variance, which is defined using the Euclidean distance! As such, if non-Euclidean distance functions are used for computing cluster assignments and centroids in $K$-means clustering, the algorithm is not guaranteed to converge.[^bad] As such, it is almost always used on continuous data.[^con] Thankfully, our protein consumption data is continuous!
 
-[^con]: You can however [transform cosine distances into Euclidean distances](http://stats.stackexchange.com/a/81494/115666); in general, you can *sometimes* make other distance metrics work with $K$-means clustering.
+[^bad]: For some intuition into why this is the case, consider, say, binary data: if your data points are all located at $(\pm 1, \pm 1, \pm 1)$, your centroids are probably going to be in strange positions relative to your data.
+
+[^con]: You can however [transform cosine distances into Euclidean distances](http://stats.stackexchange.com/a/81494/115666); in general, you can *sometimes* make other distance metrics work with $K$-means clustering. However, you might not necessarily *want* to!
 
 Using `kmeans()`
 ----------------
@@ -184,6 +186,16 @@ The `fpc` package has a function called `kmeansruns()`, which will run $K$-means
 * Plot the two clustering quality critera, stored in the output of `kmeansruns()` as `$crit`, against $K$. What is the optimal value of $K$? (A higher value on either criterion corresponds to higher clustering quality.)[^kval]
 
 [^kval]: The position of the global maximum in both plots suggests that $K = 2$ is ideal, but the local maximum in the graph of average silhouette width is suggestive of $K = 5$ being a viable candidate as well.
+
+We can also use `clusterboot()` from the `fpc` package to repeatedly resample our data with replacement, run $K$-means clustering on each bootstrapped sample, and test how often clusters are "dissolved" in the bootstrapped clusters.[^diss] Clusters which show up consistently are probably real, whereas we should be more suspect of clusters who end up dissolved very often.
+
+[^diss]: Suppose we have a clustering for the original data as well as a clustering for the bootstrapped data. Now, for each cluster in the original data, we find the most similar cluster in the bootstrapped data by looking at the [Jaccard coefficient](https://en.wikipedia.org/wiki/Jaccard_index) between them. If the largest Jaccard coefficient observed is less than 0.5, we consider the original cluster to have "dissolved".
+
+* Run `clusterboot()` on the protein consumption data, passing in `clustermethod=kmeansCBI`,[^meth] `runs=100`, `iter.max=100`, and `krange=5`. The original clusters are stored in `$result$partition`, the stability of clusters is stored in `$bootmean` (the closer to 1, the better), and the number of times each cluster was dissolved is stored in `$bootbrd`. Interpret the results.
+
+[^meth]: The `clusterboot()` method also works for other clustering methods! However, it seems like `pvclust()` is nicer for bootstrapped evaluation of hierarchical clustering, so that's why we don't use `clusterboot()` in combination with `hclust()`.
+
+How can we interpret clusters which are dissolved relatively often but still seem to be reasonably distinct from the rest of the dataset? Due to the small size of our dataset, the dissolution of those clusters is likely picking up on *relatively lower inter-cluster similarity*, even if they're somewhat distinct from the rest of the dataset. In contrast, highly stable clusters have relatively higher internal similarity compared to the other clusters.
 
 Mixture models
 ==============
@@ -264,8 +276,6 @@ Here are some final takeaways about clustering:
 * Clustering is an unsupervised technique which is very iterative and interactive. It's not as easily automatable as doing predictive modeling with a suite of different algorithms.
 
 * Distance metrics matter, and so distance matters as well -- don't forget to `scale()` your data.
-
-* Complicated graphical manipulation of dendrograms can be done using the [`dendextend` package](https://cran.r-project.org/web/packages/dendextend/vignettes/introduction.html).
 
 * There are a variety of ways to evaluate the quality of a particular clustering of the data. It may be generally helpful to consider the output of multiple different clustering methods and to see how they agree.
 
