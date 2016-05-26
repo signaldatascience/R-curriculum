@@ -78,11 +78,11 @@ fit_rf = train(quality ~ ., data=df_white, method='rf', metric="RMSE", trControl
 caretmin(fit_rf)
 rmse(df_white$quality, predict(fit_rf$finalModel))
 
-grid = expand.grid(n.trees=500, shrinkage=10^seq(-3, 0, length.out=10), interaction.depth=c(1, 2, 3), n.minobsinnode=seq(10, 100, length.out=10))
+grid = expand.grid(n.trees=seq(500, 3000, 500), shrinkage=10^seq(-3, 0, length.out=10), interaction.depth=c(1, 2, 3), n.minobsinnode=seq(10, 100, length.out=10))
 fit_gbm = train(quality ~ ., data=df_white, method="gbm", metric="RMSE", trControl=control, tuneGrid=grid)
 caretmin(fit_gbm)
 
-grid2 = expand.grid(n.trees=2500, shrinkage=0.1, interaction.depth=3, n.minobsinnode=30)
+grid2 = expand.grid(n.trees=seq(500, 3000, 500), shrinkage=0.1, interaction.depth=3, n.minobsinnode=30)
 fit_gbm2 = train(quality ~ ., data=df_white, method="gbm", metric="RMSE", trControl=control, tuneGrid=grid2)
 caretmin(fit_gbm2)
 

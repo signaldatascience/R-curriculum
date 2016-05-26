@@ -28,4 +28,10 @@ sk2 = silhouette(k$cluster, dE2)
 plot(sk2)
 
 plotcluster(s, k$cluster)
-clusplot(s, k$cluster, color=TRUE, shade=TRUE, labels=2, lines=0)
+clusplot(s, kmeans(s,4)$cluster, color=TRUE, shade=TRUE, labels=2, lines=0)
+
+library(mixtools)
+m = Mclust(s)
+
+g = normalmixEM(df$waiting)
+plot(g, which=2)
