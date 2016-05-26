@@ -33,5 +33,13 @@ clusplot(s, kmeans(s,4)$cluster, color=TRUE, shade=TRUE, labels=2, lines=0)
 library(mixtools)
 m = Mclust(s)
 
-g = normalmixEM(df$waiting)
+g = normalmixEM(df$waiting, k=3)
+plot(g, which=2)
+lines(density(df$waiting))
+
+of = faithful
+g = spEMsymloc(of$waiting, mu0=c(55,80), bw=1)
+plot(g)
+
+g = mvnormalmixEM(s, k=2)
 plot(g, which=2)
