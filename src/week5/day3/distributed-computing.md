@@ -191,4 +191,123 @@ You can now use the `rstudio-server` command to start and stop RStudio Server.
 
 * Try accessing port 8787 again through your web browser. Oops -- we have to log in, but how? Create a new user with `sudo adduser <username>` and set its password with `sudo passwd <username>`, and then try logging into RStudio Server.
 
-* Play around with the web interface a little bit and compare its performance to the speed of RStudio on your own computer!
+* Play around with the web interface a little bit and compare its performance to the speed of RStudio on your own computer.
+
+Shutting off your AWS server
+============================
+
+In order to avoid any costs, stop the instance which you created ("Instances" $\to$ "Actions"$\to$ "Instance State" $\to$ "Stop") and release the Elastic IP you allocated for that instance ("Elastic IPs" $\to$ "Actions" $\to$ "Disassociate Address" $\to$ "Release Addresses").
+
+If you don't think you'll use it again, delete the EC2 instance ("Instances" $\to$ "Actions" $\to$ "Instance State" $\to$ "Terminate") as well as any EBS volumes which you created ("Volumes" $\to$ "Actions" $\to$ "Delete Volume"). You may need to detach EBS volumes before deleting them.
+
+Parallel decision trees
+=======================
+
+You should have received elsewhere a document with information about how to log in to a more powerful AWS instance's RStudio Server. Follow the instructions!
+
+We'll explore the Wine Quality Dataset which we looked at earlier, using random forests to illustrate how parallelization works in R. Since each constituent tree of a random forest is independent of the other ones, we can train lots of different trees on different processor cores and then combine them all together at the end.
+
+* SSH into the server and download the [Wine Quality Dataset](http://archive.ics.uci.edu/ml/datasets/Wine+Quality) CSVs.
+
+* Install and load the `doMC`, `foreach`, and `tictoc` packages.
+
+* Load the CSVs for the red and white wine data with `read.delim()` (don't forget `header=TRUE`). Consolidate them into a single dataframe with which you'll be making predictions for wine quality.
+
+* Using a random forest, regress wine quality against the other variables with `ntree=2000`. Measure and record the elapsed time with `tic()` and `toc()`.
+
+* Run `detectCores()` to check the number of processing cores on the server, and then run `registerDoMC(detectCores())` to tell the parallelization package to use all 8 cores. Call `getDoParWorkers()` to verify that all 8 cores have been successfully registered.
+
+Here is an example of using `foreach()` for parallelization:
+
+```r
+foreach(i = 1:3) %dopar% {
+  sqrt(i)
+}
+```
+
+Of course, this example is too simplistic to be worth parallelizing, but it illustrates how to properly structure the function calls. Each iteration of the code block after `%dopar%` is given a different value of `i` and forked off to its own processor core. By default, each of the individual results is returned, but the parameters of `foreach()` can be set so that it automatically combines the individual results into a single finalr esult.
+
+* Read the documentation for `foreach()`. The random forests algorithm can be parallelized by calling `foreach()` as follows:
+
+	* `ntree` should be a vector where each entry corresponds to the number of trees for that specific core. In order to properly compare timing results, set `ntree` so that we end up fitting the same total number of trees as we did earlier.
+
+	* `.combine` should be set to `combine`, because the `combine()` function is used to combine different random forests together.
+
+	* Read the documentation for `combine()` and set the `.multicombine` parameter appropriately.
+
+* Run your code for parallelized random forests, measuring the total elapsed time with `tic()` and `toc()`. Compare the elapsed time with the time required for unparallelized random forests.
+
+Some packages will automatically handle the parallelization for you. In particular, the `xgboost` package is a very popular and well-designed package for parallelized gradient boosted trees.[^how]
+
+[^how]: You may ask: since gradient boosted trees are *sequential*, how can they be parallelized? Well, they aren't parallelized in the same way as random forests; the parallelization takes place *within* each tree, with different branches being dealt with by different processor cores.
+
+* Read through the [vignette for `xgboost`](https://cran.r-project.org/web/packages/xgboost/vignettes/xgboost.pdf).
+
+* Using the optimal hyperparameters for `gbm()` which you found in the nonlinear techniques assignment, compare the time it takes to use `gbm()` versus `xgboost` for the task of training a gradient boosted tree to predict wine quality.
+
+Dealing directly with big datasets in R
+=======================================
+
+We will be considering a dataset of all commercial flights within the USA from 1987 to 2008. You will not actually be downloading or directly working with the entire data, which takes up 12 GB when uncompressed.
+
+* Read [Hadley Wickham's description of the ASA 2009 expo](http://vita.had.co.nz/papers/data-expo-09.pdf) and look at the [top three posters](http://stat-computing.org/dataexpo/2009/posters/) made about the flights dataset. The dataset itself is located on the [data expo's website](http://stat-computing.org/dataexpo/2009/); take a look at its description.
+
+* Pick a year and download the associated data.
+
+* Work through the [vignette for the `bigmemory` package](https://cran.r-project.org/web/packages/bigmemory/vignettes/Overview.pdf) on your laptop, typing out the code as you go and using the subset of the data which you downloaded.
+
+Advanced topics
+===============
+
+There are many things you can do with AWS, and we can only hope to cover but the minutest fraction of them. Here, I'll point you to the right place to look for certain relatively common things for which you might want to use AWS.
+
+Even if you don't have immediate need for this information, skim through it regardless so you have a better sense of what's possible with AWS.
+
+Storing large amounts of data
+-----------------------------
+
+It's the world of *big data*, after all!
+
+* You can create dedicated data storage drives with Amazon's [Elastic Block Storage](https://aws.amazon.com/ebs/) system for data that you're using on a day-to-day basis. EBS volumes cost the same amount of money no matter how much of the preallocated space you're using, so you don't want to make volumes that are too large or retain too much old data on EBS drives.
+
+* [This StackOverflow question](http://stackoverflow.com/questions/29575877/aws-efs-vs-ebs-vs-s3-differences-when-to-use) has a broad overview and comparison of Amazon's data storage methods. S3 is a good choice for a very large amount of data which you need to access, and Glacier is good for very long-term storage.
+
+* Amazon's AWS blog has a [detailed blog post](https://blogs.aws.amazon.com/bigdata/post/Tx3IJSB6BMHWZE5/Running-R-on-AWS) with instructions on how to read data from Amazon S3 into R.
+
+Scraping the web with multiple IPs
+----------------------------------
+
+Very often, web scraping is limited by the number of IPs you have access to: APIs may have a restriction on the total number of requests you can make per IP per day, web servers may limit the amount of download speed available to each IP, and so on and so forth.
+
+Amazon's [Virtual Private Cloud](https://aws.amazon.com/vpc/) can be combined with Elastic IPs in order to easily access multiple public IPs from the same EC2 instance. Amazon has [instructions](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/MultipleIP.html) on how to do this.
+
+In practice, what this means is:
+
+* You go to the "Network Interfaces" tab and add lots of private IPs to your instance, and then assign an Elastic IP to each one. (There is, unfortunately, a [preset limit](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html#AvailableIpPerENI) on the number of private IP addresses you can have for each instance.)
+
+* Refresh the network with `sudo service network restart` and view the list of IP addresses associated with the instance with `ip addr li`.
+
+* Test whether or not the multiple IP address setup works by running `curl --interface <private-ip> http://checkip.amazonaws.com`, which should return the (public) Elastic IP associated with that specific private IP address.
+
+* If you are scraping data with a Python library (`urllib`, `requests`, etc.), you can run the following code[^cite] to make all subsequent outbound network connections go through the network interface associated with the private IP `sourceIP`:
+
+	```python
+	import socket
+	true_socket = socket.socket
+	def bound_socket(*a, **k):
+	    sock = true_socket(*a, **k)
+	    sock.bind((sourceIP, 0))
+	    return sock
+	socket.socket = bound_socket
+	```
+
+	For ease of usage, you can also configure a script so that it accepts the private interface IP as a command-line argument.
+
+[^cite]: From [this StackOverflow answer](http://stackoverflow.com/a/1150423/3721976)
+
+Tangentially: Michael Nielsen's post on [How to crawl a quarter billion webpages in 40 hours](http://www.michaelnielsen.org/ddi/how-to-crawl-a-quarter-billion-webpages-in-40-hours/) is fairly illustrative.
+
+Parallelizing more operations in R
+----------------------------------
+
+Refer to [CRAN Task View: High-Performance and Parallel Computing with R](https://cran.r-project.org/web/views/HighPerformanceComputing.html).
