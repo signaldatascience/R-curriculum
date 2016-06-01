@@ -14,7 +14,7 @@ A couple things to keep in mind: Let `p = prcomp(df, scale.=TRUE)` be the result
 
 For supplementary reading on the theory behind PCA, consult *Introduction to Statistical Learning* or *Applied Predictive Modeling*.
 
-Write up your findings in an "R Markdown" file. (It's one of the options in RStudio when you go to make new files.) At the end, click on the "Knit HTML" button in RStudio, select "Knit HTML", and generate a HTML file which you can upload to Github! (Now you can share your findings with friends and family in a more accessible form!) It's pretty intuitive how this works, but for additional guidance check out [Yihui Xie's blog](http://yihui.name/en/2012/06/enjoyable-reproducible-research/) and other posts on the same blog, all written by the author of the `knitr` package (which is what makes this work). You can also compile to PDF if you have a $\TeX$ distribution installed, but you don't have to bother if it's too much trouble (if you don't have one and you select the option, it'll give you instructions on how to proceed).
+Write up your findings in an "R Markdown" file. (It's one of the options in RStudio when you go to make new files.) At the end, click on the "Knit HTML" button in RStudio, select "Knit HTML", and generate a HTML file which you can upload to Github! (Now you can share your findings with friends and family in a more accessible form!) It's pretty intuitive how this works, but for additional guidance check out [Yihui Xie's blog](http://yihui.name/en/2012/06/enjoyable-reproducible-research/) and other posts on the same blog, all written by the author of the `knitr` package (which is what makes this work).
 
 PCA on the `msq` dataset
 ========================

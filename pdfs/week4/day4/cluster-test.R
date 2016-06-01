@@ -28,7 +28,7 @@ sk2 = silhouette(k$cluster, dE2)
 plot(sk2)
 
 plotcluster(s, k$cluster)
-clusplot(s, kmeans(s,4)$cluster, color=TRUE, shade=TRUE, labels=2, lines=0)
+clusplot(s, kmeans(s,5)$cluster, color=TRUE, shade=TRUE, labels=2, lines=0)
 
 library(mixtools)
 m = Mclust(s)
@@ -53,4 +53,18 @@ plot(g)
 g = npEM(s, mu0=4)
 plot(g)
 
-c = clusterboot(s, clustermethod=kmeansCBI, runs=100, iter.max=100, krange=2:9)
+c = clusterboot(s, clustermethod=kmeansCBI, runs=100, iter.max=100, krange=5)
+c$result$partition
+clusplot(s, c$result$partition, color=TRUE, shade=TRUE, labels=2, lines=0)
+c$bootmean
+c$bootbrd
+
+library(tsne)
+t = tsne(s, k=6)
+qplot(t[, 1], t[, 2])
+
+library(Rtsne)
+set.seed(1)
+t = Rtsne(s, dims=2, perplexity=5)
+plot(t$Y)
+text(t$Y, labels=rownames(s))

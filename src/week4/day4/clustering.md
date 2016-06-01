@@ -204,7 +204,7 @@ With a mixture model, one asks the following question: Suppose that our data is 
 
 If we are able to answer this question, we can then treat those distributions as different *clusters* of data. Since these distributions will usually decay continuously and smoothly from their center, they *mix* together (think of two overlapping normal distributions).
 
-In the following, we will make a distinction between parametric, semiparametric, and nonparametric models. A parametric model is fully specified by a number of *parameters*, like how a normal distribution is fully specified given its mean and variance. In contrast, a *nonparametric* model does not have some analytic expression given in advance -- the form of the model will depend greatly on the data upon which it is fit. A *semiparametric* model is in some sense a compromise between the two.[^param]
+In the following, we will make a distinction between parametric, semiparametric, and nonparametric models. A parametric model is fully specified by a number of *parameters*, like how a normal distribution is fully specified given its mean and variance or how a linear regression model is fully specified by the weights it gives to each variable (plus the intercept). In contrast, a *nonparametric* model learns relationships between training datums and their locations in the underlying space. A *semiparametric* model is in some sense a compromise between the two.[^param] For semiparametric or nonparametric models, we must specify a desired *bandwidth*, which controls the degree of complexity allowed. (This is in general a very difficult problem.)
 
 [^param]: Technically, "all models are parametric", because you can approximate any (sufficiently well-behaved function) by just adding more and more parameters to your parametric model... See [What is the difference between the parametric and the nonparametric model?](https://www.quora.com/What-is-the-difference-between-the-parametric-model-and-the-non-parametric-model) on Quora.
 
@@ -233,7 +233,7 @@ For this reason, it's important to visualize your data to get a sense of what in
 
 * The `k` parameter of `normalmixEM()` controls the number of Gaussians it tries to fit to your data. What happens if you set `k=3`? Try it a couple times, plotting the results each time. (You can pass `which=2` into `plot()` to show just the second plot.)
 
-However, the assumption that our data points are all generated from normal distributions is quite strong. We might in some cases like to relax our assumptions; indeed, we can fit our data to a mixture of *semiparametric* models, where we assume only that the underlying distributions have densities symmetric around their center. We must also specify a desired *bandwidth*, which controls the degree of complexity allowed in our semiparametric models. (In general, tuning the bandwidth properly helps us combat overfitting with semiparametric or nonparametric models.)
+However, the assumption that our data points are all generated from normal distributions is quite strong. We might in some cases like to relax our assumptions; indeed, we can fit our data to a mixture of *semiparametric* models, where we assume only that the underlying distributions have densities symmetric around their center with the allowed complexity controlled by their bandwidth.
 
 We can use the `spEMsymloc()` function in `mixtools` to do semiparametric fitting of univariate symmetric density functions to our mixture.[^leb] The `mu0` parameter controls the *number* of models to fit and the `bw` parameter controls the *bandwidth* of our method.
 
@@ -280,6 +280,10 @@ Here are some final takeaways about clustering:
 * There are a variety of ways to evaluate the quality of a particular clustering of the data. It may be generally helpful to consider the output of multiple different clustering methods and to see how they agree.
 
 * Bootstrapping is helpful for evaluating the "stability" of clusters. Also, if a specific number $k$ must be chosen for the number of clusters, $k$ can be selected with the help of various numerical criteria (depending on the clustering method used).
+
+The **assumptions** we make about each dataset are implicit in the clustering methods which we apply. As such, it is *crucial* to use human judgment properly when selecting which clustering method to use.
+
+* Read the following article about clustering: [$K$-means clustering is not a free lunch](http://web.archive.org/web/20160304132229/http://www.r-bloggers.com/k-means-clustering-is-not-a-free-lunch/)
 
 Problems with high dimensionality
 ---------------------------------
