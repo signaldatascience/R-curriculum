@@ -225,7 +225,7 @@ foreach(i = 1:3) %dopar% {
 }
 ```
 
-Of course, this example is too simplistic to be worth parallelizing, but it illustrates how to properly structure the function calls. Each iteration of the code block after `%dopar%` is given a different value of `i` and forked off to its own processor core. By default, each of the individual results is returned, but the parameters of `foreach()` can be set so that it automatically combines the individual results into a single finalr esult.
+Of course, this example is too simplistic to be worth parallelizing, but it illustrates how to properly structure the function calls. Each iteration of the code block after `%dopar%` is given a different value of `i` and forked off to its own processor core. By default, each of the individual results is returned, but the parameters of `foreach()` can be set so that it automatically combines the individual results into a single final result.
 
 * Read the documentation for `foreach()`. The random forests algorithm can be parallelized by calling `foreach()` as follows:
 
@@ -235,7 +235,7 @@ Of course, this example is too simplistic to be worth parallelizing, but it illu
 
 	* Read the documentation for `combine()` and set the `.multicombine` parameter appropriately.
 
-* Run your code for parallelized random forests, measuring the total elapsed time with `tic()` and `toc()`. Compare the elapsed time with the time required for unparallelized random forests.
+* Run your code for parallelized random forests, measuring the total elapsed time with `tic()` and `toc()`. Compare the elapsed time with the time required for unparallelized random forests. (If you need more clarification on how to use `foreach()`, refer to the [vignette for `doMC`](https://cran.r-project.org/web/packages/doMC/vignettes/gettingstartedMC.pdf).)
 
 Some packages will automatically handle the parallelization for you. In particular, the `xgboost` package is a very popular and well-designed package for parallelized gradient boosted trees.[^how]
 

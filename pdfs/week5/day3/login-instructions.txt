@@ -1,5 +1,7 @@
 Group 1 should use the login for student1, etc.
 
+Server location: http://52.39.156.207:8787/
+
 If you would like to use the server outside of this assignment, let me know personally.
 
 Logins (username password):
