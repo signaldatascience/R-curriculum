@@ -1,0 +1,9 @@
+Group 1 should use the login for student1, etc.
+
+If you would like to use the server outside of this assignment, let me know personally.
+
+Logins (username password):
+student1 kkyUCv3Ujc5gOWFnV3c0
+student2 5BGnYopdBcVaiD14xIaY
+student3 GcicGJgEn9QY3ftnL8Rh
+student4 PMWl62MdPsUmspbpnRY0
