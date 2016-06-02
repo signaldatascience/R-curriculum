@@ -347,7 +347,25 @@ Guaranteed linear separation
 
 Interestingly, the method of logistic regression is guaranteed to return a hyperplane which perfectly separates the two classes in the training data if indeed it is possible to do so.
 
+Indeed, suppose that $g(\textbf{x}) = \textbf{x}^\mathbf{\intercal} \textbf{c} + d$ be an arbitrary linear classification function, and assume without loss of generality that $g(\textbf{x})$ classifies $\textbf{x}$ as belonging to class $+1$ if and only if $g(\textbf{x}) > 0$. Now, the corresponding reduced likelihood function is given by
 
+$$\mathcal{L}_\mathrm{red}(g(\textbf{x})) = \prod_{\textbf{x} \in T_{+1}} \frac{\exp g(\textbf{x})}{1 + \exp g(\textbf{x})} \prod_{\textbf{x} \in T_{-1}} \frac{\exp -g(\textbf{x})}{1 + \exp -g(\textbf{x})},$$
+
+since
+
+$$\frac{\exp -g(\textbf{x})}{1 + \exp -g(\textbf{x})} = \frac{1}{1 + \exp g(\textbf{x})}.$$
+
+From the form of the product, we may see that each term takes on a value in $[1/2, 1]$ if the corresopnding point $\textbf{x}$ is correctly classified and a value in $[0, 1/2]$ otherwise.
+
+Now, assume that $g^\star(\textbf{x})$ is a linear classification function which correctly classifies all $\textbf{x} \in T$, that is to say, $g^\star(\textbf{x}) > 0$ if $\textbf{x} \in T_{+1}$ and $g^\star(\textbf{x}) < 0$ if $\textbf{x} \in T_{-1}$. If $g^\star(\textbf{x})$ is a perfect classification function, then so is $k g^\star(\textbf{x})$ for any constant $k > 0$, so
+
+$$\lim_{k \to \infty} \mathcal{L}_\mathrm{red}(k g^\star(\textbf{x})) = 1.$$
+
+Since the function $\mathcal{L}_\mathrm{red}(k g^\star(\textbf{x}))$ is continuous with respect to $k$, it must be the case that there exists some value $k = k^\star$ such that
+
+$$\mathcal{L}_\mathrm{red}(k^\star g^\star(\textbf{x})) > \frac{1}{2}.$$
+
+In other words, there exists a function $g'(\textbf{x}) = k^\star g^\star(\textbf{x})$ such that $\mathcal{L}_\mathrm{red}(g'(\textbf{x})) > 1/2$. Therefore, as we maximize $\mathcal{L}_\mathrm{red}$, we will eventually arrive at values of the parameters $\textbf{c}$ and $d$ which correspond to the function $g'(\textbf{x})$, which by construction fully separates the two classes. (Indeed, if $g'(\textbf{x})$ were *not* fully separating, then one of the terms in the product $\mathcal{L}_\mathrm{red}(g'(\textbf{x}))$ would be below $1/2$, and so the entire product would also be below $1/2$.)
 
 Closing notes
 -------------
