@@ -240,7 +240,7 @@ Next, we'll run our discriminant analysis methods on some real datasets, startin
 
 The theoretical framework of LDA and QDA can easily be extended to *multiclass classification*.
 
-* Install the `rattle` package, run `data(wine, package='rattle')`, and set `df_wine = wine`. This dataset conists of chemical measurements of wine from three different cultivars, with the cultivar reported in the Type column. Run LDA to predict wine type from the other variables, look at the group means and coefficients of the linear discriminants, and interpret.
+* Install the `rattle` package, run `data(wine, package='rattle')`, and set `df_wine = wine`. This dataset conists of chemical measurements of wine from three different cultivars, with the cultivar reported in the Type column. Run LDA to predict wine type from the other variables, look at the group means and coefficients of the linear discriminants, and interpret the results.
 
 * To see how each of the two linear discriminant separates the groups, call `predict()` on the LDA fit itself to generate values of the discriminant functions for the training data. Read the `predict.lda()` documentation to figure out how to access the values of the discriminant functions and pass either of the two sets of discriminant values in to `ldahist()` along with the column of group assignments.
 
@@ -253,7 +253,7 @@ Read the following post about visualizing the results of LDA:
 Extensions of discriminant analysis
 -----------------------------------
 
-LDA and QDA can be extended for usage in multiclass analysis. In addition, a variant of LDA is occasionally used for dimensionality reduction.
+A variant of LDA is occasionally used for dimensionality reduction.
 
 Logistic regression
 ===================
