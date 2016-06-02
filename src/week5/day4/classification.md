@@ -652,6 +652,8 @@ Moreover, one can choose some very interesting kernel functions as well. For exa
 
 * [Graph kernels](https://en.wikipedia.org/wiki/Graph_kernel) let you compute inner products on graphs, with application in chemiinformatics, bioinformatics, and social network analysis.
 
+* Kernels can even be [*learned from the data*](http://web2.cs.columbia.edu/~jebara/6772/papers/sde.pdf)!
+
 That being said, outside of kernels which have domain-specific use cases, people tend to stick to the linear and radial kernels in practice for standard classification tasks.
 
 Decision trees for classification
