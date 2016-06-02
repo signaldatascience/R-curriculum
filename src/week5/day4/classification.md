@@ -36,14 +36,14 @@ Instead of just being two equivalent formulations of the same underlying problem
 > 
 > The two types of approximations defined by classical discriminant analysis (using the generative model of data) and by statistical learning theory (using the function that explains the data best) reflect the positions of realists and instrumentalists in our simple model of the philosophy of generalization, the pattern recognition model. Later we will see that the position of philosophical instrumentalism played a crucial role in the success that pattern recognition technology has achieved.
 
-Considering classification alone, we can state this in a more precise fashion. Suppose that we have a black box, $\mathcal{B}$, which when given an input vector $\textbf{x}_i$ returns an output $y_i = {-1,+1}$. Given the training data $(y_i, \textbf{x}_i)$, $i = 1, \ldots, n$, the task of *binary classification* is to find a function which best approximates whatever rule the black box $\mathcal{B}$ is internally using to perform the operation $\textbf{x}_i \mapsto y_i$.
+Considering classification alone, we can state this in a more precise fashion. Suppose that we have a black box, $\mathcal{B}$, which when given an input vector $\textbf{x}_i$ returns an output $y_i = \{-1,+1\}$. Given the training data $(y_i, \textbf{x}_i)$, $i = 1, \ldots, n$, the task of *binary classification* is to find a function which best approximates whatever rule the black box $\mathcal{B}$ is internally using to perform the operation $\textbf{x}_i \mapsto y_i$.
 
 There are two different ideas of what a *good approximation* means:
 
 1. A good approximation of $\mathcal{B}$ is a function that is *similar in function space*, like how $\sin 2x$ is similar to $\sin 2.1x$, to the function which $\mathcal{B}$ uses to map $\textbf{x}_i \mapsto y_i$.
 2. A good approximation of $\mathcal{B}$ is a function that is *numerically similar* to the function which $\mathcal{B}$ uses, giving approximately the same error rate of classification as $\mathcal{B}$ itself.
 
-![The linear line is a good approximation in the first sense; the curvy polynomial is a good approximation in the second sense.](linpoly.png)
+![The linear line is a good approximation in the first sense; the curvy polynomial is a good approximation in the second sense. (It does admittedly misclassify a single point.)](linpoly.png){width=65%}
 
 The first definition is concerned with approximating the *true function*. The second definition is only concerned with *minimizing the error rate*.
 
@@ -90,7 +90,7 @@ You can think of the function `lin_pair(m, b, label)` as picking a point in the 
 
 * Plot the points you get from running `lin_pair()` many times with the same input parameters to visually verify that your function works correctly.
 
-* Write a function `quad_pair(a, b, label)` which does the same thing except for the quadratic parabola $y = (x - a)^2 + b$. Verify that it works by plotting the results.
+* Write a function `quad_pair(a, b, c, label)` which does the same thing except for the quadratic parabola $y = a(x - b)^2 + c$. Verify that it works by plotting the results.
 
 * Write a function `mvnorm_pair(mu, cov)` which returns a point sampled from a multivariate normal distribution. `mu` should be a vector containing the mean for each dimension and `cov` should be a 2-by-2 covariance matrix (where `cov[1, 1]` is the variance in dimension 1, `cov[2, 2]` is the variance in dimension 2, and `cov[1, 2] = cov[2, 1]` are the covariance of the two dimensions). You may find `mvrnorm()` from the `MASS` package useful.
 
@@ -100,6 +100,12 @@ In the exercises to follow, we will restrict consideration almost entirely to th
 
 $k$-Nearest Neighbors
 =====================
+
+We will only briefly mention that $k$-Nearest Neighbors classification works in precisely the way one would expect it to work: for any given point, the algorithm looks at the nearest $k$ points and finds the most common class among those $k$ points. That class is the classification result.
+
+Although $k$-NN works well when there is "enough" data, prediction is slow and there are problems with high-dimensional data. In practice, one can improve predictive performance by considering points farther away.
+
+$k$-NN can be used in R for classification via the `knn()` function in the `class` library.
 
 Discriminant methods
 ====================
@@ -138,7 +144,7 @@ Feel free to skip the following section on the mathematical derivation of QDA an
 Mathematical derivation
 -----------------------
 
-Suppose that we have $p$-dimensional data points $\textbf{x}_i$, each with a binary class label $y_i \in {-1, +1}$. We make the assumption that the probability distribution for each class, $P(\textbf{x} \mid y = -1)$ and $P(\textbf{x} \mid y = +1)$, are both normally distributed with means and covariances $(\boldsymbol{\mu}_{-1}, \Sigma_{-1})$ and $(\boldsymbol{\mu}_{-1}, \Sigma_{+1})$ respectively.
+Suppose that we have $p$-dimensional data points $\textbf{x}_i$, each with a binary class label $y_i \in \{-1, +1\}$. We make the assumption that the probability distribution for each class, $P(\textbf{x} \mid y = -1)$ and $P(\textbf{x} \mid y = +1)$, are both normally distributed with means and covariances $(\boldsymbol{\mu}_{-1}, \Sigma_{-1})$ and $(\boldsymbol{\mu}_{-1}, \Sigma_{+1})$ respectively.
 
 With this assumption alone, we are ready to look at the the *log-likelihood* of class membership. Specifically, we can predict class membership to be $+1$ if the log of the ratio of the likelihoods is above some threshold $T$, that is,
 
@@ -258,7 +264,7 @@ I had the pleasure of learning this derivation from [*Statistical Methods for Ph
 
 The motivation behind the following derivation of logistic regression is the consideration of instances where the two classes in binary classification are *not* sampled from multivariate normal distributions with equal covariances. That is, we would like to relax the assumptions of LDA to allow for probability densities that are not normal.
 
-In particular, instead of assuming that $P(\textbf{x} \mid y = i) \propto \mathcal{N}(\boldsymbol{\mu}_i, \Sigma)$ for $i \in {-1, +1}$, where $\mathcal{N}(\boldsymbol{\mu}_i, \Sigma)$ denotes a multivariate normal distribution with mean $\boldsymbol{\mu}_i$ and covariance matrix $\Sigma_i$, we posit that
+In particular, instead of assuming that $P(\textbf{x} \mid y = i) \propto \mathcal{N}(\boldsymbol{\mu}_i, \Sigma)$ for $i \in \{-1, +1\}$, where $\mathcal{N}(\boldsymbol{\mu}_i, \Sigma)$ denotes a multivariate normal distribution with mean $\boldsymbol{\mu}_i$ and covariance matrix $\Sigma_i$, we posit that
 
 $$P(\textbf{x} \mid y = i) \propto \mathcal{N}(\boldsymbol{\mu}_i, \Sigma) \phi(\textbf{x}).$$
 
@@ -385,10 +391,12 @@ Perceptrons
 
 For labeled training data in $n$-dimensional space, the perceptron algorithm will attempt to construct an $(n-1)$-dimensional hyperplane which separates the two classes.
 
+![The first (hardware) implementation of the perceptron algorithm, called the [Mark I Perceptron](https://en.wikipedia.org/wiki/Perceptron#/media/File:Mark_I_perceptron.jpeg).](perceptron.jpeg){height=70%}
+
 Getting started
 ---------------
 
-First, we will generate linearly separable data.
+First, we will generate linearly separable data to use with a perceptron.
 
 * Generate 1000 data points falling above the line $1.5x + 0.2$ and 1000 data points falling below the line $1.5x + 0.05$, binding them into the same matrix.
 
@@ -439,6 +447,10 @@ Regarding the perceptron's advantages, Vapnik writes:
 
 Unfortunately, despite its advantages, the standard perceptron cannot classify data which is not linearly separable, because the algorithm will simply not converge.
 
+* Verify the above statement by generating a dataset that is *not* linearly separable with `quad_pair()`.
+
+Thankfully, the weights will eventually *cycle* in the case of nonseparability, but detecting a cycle can take a long time if the sample size is large.
+
 Also, as you have seen, when it *does* converge, the perceptron's solution is highly dependent upon choice of random seed. When the training data are linearly separable *and* there exists a "gap" or "margin" between them, there are infinitely many possible choices of a valid decision boundary. We will see later how to resolve these problems.
 
 * Read more about the fascinating history of perceptrons in the Wikipedia article for Minsky and Papert's [book about perceptrons](https://en.wikipedia.org/wiki/Perceptrons_(book)).
@@ -446,11 +458,211 @@ Also, as you have seen, when it *does* converge, the perceptron's solution is hi
 Support vector machines
 =======================
 
+Support vector machines (SVMs) were developed by [Vladimir Vapnik](https://en.wikipedia.org/wiki/Vladimir_Vapnik) in the late 20th century. During a lull in neural net research due to lack of computation power, SVMs emerged as a very powerful method for both classification (initially) and regression (later). Even now, they remain very competitive with other popular machine learning methods.
+
+Overview
+--------
+
+Support vector machines are based on the idea of **margin**. Recall that with a perceptron, we have infinitely many choices of separating hyperplane. It is with the idea of *margin* that we can define what it means for a particular separating hyperplane to be the best choice.
+
+Intuitively, we don't really care about the points which are far away from the decision boundary -- they're easy to classify. However, with the points quite close to the decision boundary, we would like to have the most "leeway for error" possible with them. If our decision boundary is very close to one side of the "corridor" which separates the two classes, then a little bit of extra error in newly generated data could end up causing the data to be misclassified!
+
+As such, we can find *two* parallel hyperplanes which separate the two classes of data perfectly such that the distance between them, the *margin*, is as large as possible. The *maximum-margin hyperplane*, which we can use for classification, is the hyperplane exactly between the two parallel hyperplanes.
+
+![Two parallel hyperplanes and the maximum-margin hyperplane in between.](margin.png){width=65%}
+
+One may notice that the boundaries of the two classes are completely determined by the data points lying at the very edge at the margin, which are called **support vectors**. The maximum-margin hyperplane can be expressed as a linear function of the support vectors $S$:
+
+$$\sum_{i=1}^{|S|} y_i \alpha_i \langle \textbf{x} , \textbf{x}_i \rangle + b = 0,$$
+
+where $y_i \in \{-1, +1\}$ as usual and the $\alpha_i$s are positive constants. (If you are unfamiliar with the $\langle$ and $\rangle$ brackets, which represent the [inner product](https://en.wikipedia.org/wiki/Inner_product_space), you can just imagine in its place $\textbf{x} \cdot \textbf{x}_i$ or $\textbf{x}^\mathbf{\intercal} \textbf{x}_i$.) The non-support vectors contribute *nothing* to the final description of the hyperplane.
+
+The version of SVMs described above, which is linear and finds a hyperplane between linearly separable classes, is called **hard-margin SVM**, because we refuse to allow any points to be misclassified.
+
+In contrast, **soft-margin SVM** maximizes the margin with one modification: the algorithm is allowed to misclassify points at a particular cost $C$. Hard-margin SVMs have some problems with overfitting to the data, so $C$ is like a regularization parameter. (In the limit of $C \to \infty$, the soft-margin SVM becomes a hard-margin SVM.) For soft-margin SVM, the margin is in fact allowed to be *negative*; the more negative it becomes, the larger the number of support vectors.
+
+In practice, soft-margin SVMs are superior to hard-margin SVMs even when the data are linearly separable. Hard-margin SVMs are sensitive to noise and outliers, as shown in the diagram below.
+
+![Here, the single red outlier is greatly affecting the angle of the boundary of the blue points, so the boundary has overfit to the training data.](overfit.png){width=50%}
+
+The cost parameter $C$ can be intuitively understood by appealing to the optimization problem of maximizing the margin. In this optimization problem, the resulting [*Lagrange multipliers*](https://en.wikipedia.org/wiki/Lagrange_multiplier) are the $\alpha_i$ constants mentioned previously, and $C$ imposes an upper bound on the size of each $\alpha_i$. As such, the smaller the cost $C$, the less each individual point can influence the position of the maximum-margin hyperplane.
+
+Consider, for instance, the diagram below, where the support vectors for each separating hyperplane are circled:
+
+![Increasing $C$ trades off stability in return for linear separability.](svmcost.png)
+
+With $C = 1000$, the soft-margin solution is very similar to what one would obtain with a hard-margin SVM. In contrast, for $C = 0.1$, the hyperplane does a poorer job of separating the training data but is more robust to changes in the position of any one of its (many) support vectors.
+
+SVMs in R
+---------
+
+Support vector machines are implemented in R as `svm()` in the `e1071` package.
+
+When you call `svm()` in the following exercises, you should always specify `kernel="linear"`, because `svm()` defaults to using a *radial* kernel. We will discuss kernel methods later.
+
+* Return to the linearly separable data with 2000 points which you initially used for the perceptron. Convert the matrix into a dataframe, add on a column with the class labels (which should be either $+1$ or $-1$), and convert the class label column into a factor. Name the columns of your dataframe appropriately.
+
+* Run `svm()` on your data to predict class label from $x$ and $y$ coordinates. Visualize the resulting model with `plot(fit, df)`. The points marked with an "X" are the support vectors of the soft-margin hyperplane.
+
+* Vary the `cost` parameter of `svm()` from 0.1 all the way to much higher values. Each time, plot the resulting SVM fit. Interpret the results.
+
+* Generate 40 data points, where 20 of them fall above $y = 3(x - 0.5)^2 + 0.55$ and the other 20 fall below $y = 3(x - 0.5)^2 + 0.4$. Plot the data. (If you want a better visualization of what the class boundaries are like, plot the result with 2000 points.) Turn your matrix of data into a dataframe and add a column with class labels; turn the class label column into a factor.
+
+* Try classifying the data with a linear SVM. How well does it work? How does the hyperplane change as you vary $C$?
+
+* How well can a linear SVM separate data when each class is drawn from a different multivariate normal distribution? Try it for both distributions which have means close to each other and distributions with have means far away from each other.
+
+* Return to the aggregated speed dating dataset and use a linear SVM to separate males from females in terms of their self-rated activity participation. Use cross-validation to select the best value of $C$. Read the documentation for `plot.svm()` to figure out how to plot the SVM results for two specific dimensions. Visually explore and interpret the results.
+
+Closing notes
+-------------	
+
+Having used SVMs to classify some data, it may not yet be entirely clear why support vector machines receive so much attention. Is the support vector machine not simply a slightly better version of the perceptron? Is it not almost entirely reliant upon the data being approximately linearly separable?
+
+In the next section, you will see how we can cleverly overcome these challenges.
+
+Note that SVms can be used to perform regression, not just classification. However, the formulation of SVM regression is not as elegant, and it is an uncommonly used technique. Nevertheless, be aware that it exists.
+
 Kernel methods
 ==============
+
+It is through the ingenious theory of *kernel methods* with which we are able to turn linear methods (such as the linear SVM) into very complex nonlinear methods. Note that **kernel methods are not intrinsically tied to SVMs**; one can apply kernel methods to other linear techniques as well, hence the existence of kernel logistic regression, kernel Fisher discriminant analysis, and so on and so forth. People often confuse kernel methods with SVMs themselves, which is a terrible, terrible error; the two were developed hand-in-hand and kernel methods work particularly well with SVMs, but they are *separate ideas*.
+
+We will only briefly touch upon kernel methods in the context of SVMs, giving particular attention to the *radial (Gaussian) kernel* Nevertheless, you should be aware that the field of kernel methods is immensely rich and deep, with many far-reaching applications.
+
+Overview
+--------
+
+The general idea behind a kernel method is that if your data are not linearly separable, you can use a *kernel function* to map them into a higher-dimensional space where they *are* separable.
+
+Consider, for example, the following 2-dimensional data, for which the two classes are not linearly separable.
+
+![Data in original coordinates.](map1.png){width=50%}
+
+No line you draw through that graph will separate all the red dots from the blue crosses.
+
+However, we can map the data into a 3-dimensional space as follows: for each point $(x_1, x_2)$ we map it into the point $(x_1^2, \sqrt{2}x_1x_2, x_2^2)$. By making this mapping, we have successfully made our data linearly separable with a hyperplane in 3-dimensional space.
+
+![Data mapped into a higher-dimensional space.](map2.png){width=50%}
+
+Although this is a simplistic depiction of mapping into higher-dimensional spaces, the intuition remains valid for kernel methods.
+
+Kernels, aside from being intrinsically useful, serve as a superior alternative to manually mapping features to more complex nonlinear terms, like in the above example. Doing so can massively increase the number of features and take an enormous amount of computation time. Kernels allow us to avoid this problem by not actually explicitly computing the mapping into a high-dimensional space with the *kernel trick*. The specific form of this mapping is adapted so as to compel the data to take on a linearly separable form in the higher-dimensional space, even if the two classes are hopelessly intertwined together in 2-dimensional space.
+
+There are two essential mathematical facts which underlie the usage of kernel methods.
+
+### Fact 1: The VC dimension of hyperplanes
+
+In connection with SVMs, Vapnik developed the theory of the [Vapnik-Chervonenkis dimension](https://en.wikipedia.org/wiki/VC_dimension), which measures the flexibility of a classification algorithm, allowing him to obtain hard bounds on the generalizable error of SVMs and perform very powerful analysis of machine learning algorithms in general. The higher the VC dimension of a particular classifier, the more flexible the algorithm is.
+
+Precisely, consider a set of classification algorithms $H$. Now, consider the largest possible dataset such that for any arbitrary labeling of that dataset into one of two classes, there exists some $h \in H$ capable of perfectly classifying the data. The size of that dataset is precisely the VC dimension of $H$, and we say that all such datasets are *shattered* by $H$.
+
+For example, methods which use $(p-1)$-dimensional hyperplanes in $\mathbb{R}^p$ to classify points have VC dimension $p+1$, because one can construct an example of $p+1$ points in $\mathbb{R}^p$ that are shattered by the set of separating hyperplanes in $\mathbb{R}^p$. These methods include linear discriminant analysis, logistic regression, the perceptron algorithm, and linear support vector machines.
+
+In general, we would like the VC dimension of the algorithm which we use to be high enough to classify the training data very well. However, if the VC dimension is *too* high, then the classification algorithm will be unnecessarily flexible and may overfit to our training data. Due to this, Vapnik articulated the principle of [structural risk minimization](https://en.wikipedia.org/wiki/Structural_risk_minimization). Broadly speaking, we should choose an algorithm with as low of a VC dimension as possible which still manages to fully separate the two classes in our data.
+
+The importance of VC dimension is given by the following theorem. Let the vectors $\textbf{x} \in \mathbb{R}^p$ belong to the sphere of radius 1. Then the VC dimension $h$ of the set of hyperplanes with margin $\rho = \langle \textbf{w}, \textbf{w} \rangle^{-1}$ is bounded by
+
+$$h \le \min \left\{ \langle \textbf{w}, \textbf{w} \rangle, p \right\} + 1.$$
+
+Now, suppose that we work in an infinite dimensional Hilbert space, where $p = \infty$. Then the VC dimensions of the set of separating hyperplanes with some given margin $\rho$ is entirely dependent on $\rho^{-1}$. The larger we make the margin, the smaller the VC dimension of the corresopnding hyperplanes.
+
+We can then follow the principle of structural risk minimization by simply using this strategy:
+
+> Map input vectors $\textbf{x} \in X$ into (a rich) Hilbert space $\textbf{z} \in Z$, and construct the maximal margin hyperplane in this space.
+
+Moreover, VC dimension theory can be applied to obtain a bound on the generalization error of a classification algorithm as a function of the VC dimension! As such, simply by controlling the margin of the separating hyperplanes that we look for, we can control the ability of our classification model to generalize to new data generated in the same way as our training data (as magical as it may sound, it's true).
+
+However, we have a problem: we don't really know what it means to map $X \to Z$. If we had a way to map our vectors into a very high-dimensional space, we could find separating hyperplanes in that space; however, we don't immediately have any ways to do so. Indeed, for an infinite-dimensional Hilbert space, we would need to compute vectors of infinite length, which would likely be difficult to work with in practice.
+
+Wait! Do we really need to map $X \to Z$? Recall that the separating hyperplane for a linear, hard-margin SVM is given by 
+
+$$\sum_{i=1}^{|S|} y_i \alpha_i \langle \textbf{x} , \textbf{x}_i \rangle + b = 0.$$
+
+The only place where vectors from the space $X$ show up are within the inner product. As such, our problem is not really to find a mapping from $X \to Z$; rather, it is to *find a way to compute the inner product of $X$ vectors in $Z$*. This is a subtly different and slightly less challenging problem, which Mercer's theorem allows us to attack.
+
+### Fact 2: Mercer's theorem
+
+Mercer's theorem states the following:	
+
+> Let vectors $\textbf{x} \in X$ be mapped into vectors $\textbf{z} \in Z$ of some Hilbert space.
+> 
+> 1. Then there exists in $X$ space a symmetric positive definite function $K(\textbf{x}_i, \textbf{x}_j)$ that defines the corresponding inner product in $Z$ space:
+> $$\langle \textbf{z}_i, \textbf{z}_j \rangle = K(\textbf{x}_i, \textbf{x}_j).$$
+> 2. Also, for any symmetric positive definite function $K(\textbf{x}_i, \textbf{x}_j)$ in $X$ space there exists a mapping from $X$ to $Z$ such that this function defines an inner product in $Z$ space.
+
+This means that our separating hyperplane calculated in $Z$ space has the form
+
+$$\sum_{i=1}^{|S|} y_i \alpha_i K( \textbf{x} , \textbf{x}_i ) + b = 0.$$
+
+Mercer's theorem says that instead of having to directly find some function $\phi : X \to Z$ and to then calculate $\langle \phi(\textbf{x}), \phi(\textbf{x}_i) \rangle$, *all we need* is an appropriate *kernel function* $K(\cdot, \cdot)$! The computation of the inner product in Hilbert space directly instead of having to explicitly evaluate the infinitely long vectors $\phi(\cdot)$ is known as the **kernel trick**.
+
+### Summary
+
+Here are the main takeaways about what the *kernel trick* allows us to do:
+
+1. With an appropriately chosen kernel, we can get perfect separation of *any* training data. (We might not want to, because of overfitting, but we certainly *can*.)
+2. This separation is done by finding *hyperplanes* in a high-dimensional space to which our data is mapped. It does not look like a linear process in the original space, but is linear in that high-dimensional space.
+3. The mapping from the data space to the high-dimensional space, $\phi : X \to Z$, is *not* explicitly computed. Rather, it is *implicitly induced* by our choice of kernel function $K : X \times X \to \mathbb{R}$.
+4. The space to which we map our features is infinite-dimensional. It is because of the kernel trick that we can do any sort of work with these infinite-dimensional vectors: instead of having to directly compute them, which would be impossible, the kernel function calculates the inner product which we need.
+
+The radial kernel
+-----------------
+
+Aside from the linear kernel, the most commonly used kernel is the radial kernel, also known as the Gaussian kernel or the RBF (radial basis function) kernel. It is given by
+
+$$K(\textbf{x}, \textbf{x}') = \exp \left( - \frac{\lVert \textbf{x} - \textbf{x}' \rVert^2}{2\sigma^2} \right).$$
+
+When this kernel is used in a machine learning algorithm, it has one associated hyperparameter, namely $\sigma$. In practice, when used for classification with a support vector machine, the radial kernel works *extremely* well. Intuitively, it is because Gaussian functions are very smooth, and the usage of a radial kernel can be thought of as a sort of "regularized $k$-Nearest Neighbors".
+
+[More precisely](http://stats.stackexchange.com/a/133037/115666), it is because the particular Hilbert space corresponding to the Gaussian kernel represents functions which are very smooth. Because of this smoothness, the functions learned by your SVM are themselves very smooth, and the assumption that decision boundaries vary in a sensible and smooth manner is usually very reasonable.
+
+Kernelized SVMs in R
+--------------------
+
+The `svm()` function supports `"radial"`, `"polynomial"`, and `"sigmoid"` as arguments for its `kernel` parameter. The documentation describes how to set the hyperparameters corresponding to each type of kernel.
+
+* Try using a radial kernel SVM with different costs and values for $\sigma$ on both the linearly separable and the quadratically separable data, plotting the results of each fit. How does the best value of $\sigma$ vary with the sample size?
+
+* Are there sample sizes for which a linear kernel can do better than a radial kernel?
+
+* Write better versions of `lin_pair()` and `quad_pair()` that return points in $p$-dimensional space for a specified value of $p$. (You will need to pass in parameters which define a $(p-1)$ dimensional hyperplane or quadric surface and then check which side of the surface a generated point is on.) When $p$ is much greater than the number of data points, how does the performance of a linear kernel compare to the performance of a radial kernel?
+
+* Just for fun, try to use the polynomial and sigmoid kernels to classify the data and see how well they do.
+
+* Use a radial kernel SVM to classify speed dating participants' gender with their self-rated activity performance. If you use cross-validation to select the best values of $C$ and $\sigma$, how much better can you do over a linear SVM?
+
+Advanced kernel methods
+-----------------------
+
+*Any* machine learning algorithm in which data points only appear as part of inner products can be kernelized. For example, we have the [kernel perceptron](https://en.wikipedia.org/wiki/Kernel_perceptron), [kernel logistic regression](http://stats.stackexchange.com/questions/43996/kernel-logistic-regression-vs-svm), [kernel ridge regression](http://www.ics.uci.edu/~welling/classnotes/papers_class/Kernel-Ridge.pdf), [kernel nearest-neighbors](http://mi.eng.cam.ac.uk/~ky219/papers/yu-npl02.pdf), and many others. In fact, even unsupervised learning techniques (clustering and dimensionality reduction) can be kernelized to add nonlinearity! We have [kernel principal components analysis](https://en.wikipedia.org/wiki/Kernel_principal_component_analysis), [kernel factor analysis](http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=4777581&url=http%3A%2F%2Fieeexplore.ieee.org%2Fxpls%2Fabs_all.jsp%3Farnumber%3D4777581), [kernel $K$-means](http://lasa.epfl.ch/teaching/lectures/ML_Phd/Notes/Welling-kKmeans.pdf), and much, much more...
+
+Moreover, one can choose some very interesting kernel functions as well. For example:
+
+* The [string kernel](https://en.wikipedia.org/wiki/String_kernel) measures string similarity and has applications in natural language processing, allowing algorithms to work much better on text.
+
+* [Graph kernels](https://en.wikipedia.org/wiki/Graph_kernel) let you compute inner products on graphs, with application in chemiinformatics, bioinformatics, and social network analysis.
+
+That being said, outside of kernels which have domain-specific use cases, people tend to stick to the linear and radial kernels in practice for standard classification tasks.
 
 Decision trees for classification
 =================================
 
-Closing notes
-=============
+It is also possible to use random forests and gradient boosted trees for classification.
+
+* Using the `caret` package for hyperparameter tuning, compare the performance of both random forests and gradient boosted trees for classification on a variety of different datasets: simulated and linearly separable, simulated and quadratically separable, simulated as multivariate normal distributions, perhaps a mixture of multiple datasets, and so on and so forth.
+
+The usage of random forests and gradient boosted trees is more or less the same as with regression, so there are not many new insights to add here. They are part of the predictive class of models, not the generative class, but being decision tree-based algorithms are inherently nonlinear and are not greatly related to the other algorithms discussed in this lesson.
+
+Which classifier should you use?
+================================
+
+These three papers perform various empirical comparisons of classifier methods:
+
+1. Caruana and Niculescu-Mizil (2008): [An Empirical Comparison of Supervised Learning Algorithms](http://www.niculescu-mizil.org/papers/comparison.tr.pdf)
+2. Caruana *et al.* (2008): [An Empirical Evaluation of Supervised Learning in High Dimensions](http://cms.brookes.ac.uk/research/visiongroup/talks/rg_august_09_normalized_cuts/eval_of_supervised_learning_in_high_dimensions.pdf)
+3. Fernández-Delgado (2014): [Do we Need Hundreds of Classifiers to Solve Real World Classification Problems?](http://jmlr.org/papers/volume15/delgado14a/delgado14a.pdf)
+
+The third paper is particularly informative, being a comparison of 179 different classifiers from 17 families. There is also a [follow-up](http://fastml.com/what-is-better-gradient-boosted-trees-or-random-forest/) from the authors about the performance of gradient boosted trees.
+
+* Read through their abstracts. If any details interest you, look within the papers to answer your questions.
