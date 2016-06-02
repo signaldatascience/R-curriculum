@@ -234,7 +234,7 @@ Next, we'll run our discriminant analysis methods on some real datasets, startin
 
 * For each gender, compute the means and covariance matrices of the associated subset of the dataset. Compare them and predict the relative performance of LDA and QDA on this dataset.
 
-* Create random subsets of the data that are 1%, 2%, 5%, 10%, 25%, 50%, 75%, and 100% of the size of the original dataset.
+* Create random subsets of the data that are 10%, 15%, 25%, 50%, 75%, and 100% of the size of the original dataset.
 
 * Run LDA and QDA on each of the variably sized subsets of data, classifying gender with respect to self-rated activity participation. Plot their classification accuracy on the training data as a function of the proportion of the dataset used. Interpret the results.
 
@@ -244,7 +244,7 @@ The theoretical framework of LDA and QDA can easily be extended to *multiclass c
 
 * To see how each of the two linear discriminant separates the groups, call `predict()` on the LDA fit itself to generate values of the discriminant functions for the training data. Read the `predict.lda()` documentation to figure out how to access the values of the discriminant functions and pass either of the two sets of discriminant values in to `ldahist()` along with the column of group assignments.
 
-* Plot the values of the two discriminant functions against each other. Interpret the results.
+* Plot the values of the two discriminant functions against each other, passing in the true group assignments as labels for the points (*e.g.* with `color=df_wine$Type` in `qplot()`. Interpret the results. Does the accuracy of the LDA classification make sense?
 
 Read the following post about visualizing the results of LDA:
 
