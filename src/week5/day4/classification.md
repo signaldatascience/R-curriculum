@@ -372,7 +372,9 @@ Closing notes
 
 Given the popularity of logistic regression today, it is amusing that Bergman and Gittins say:
 
-> Apparently, this model has yet to receive attention in the pharmaceutical literature. In view of its promise, it certainly warrants some consideration
+> Apparently, this model has yet to receive attention in the pharmaceutical literature. In view of its promise, it certainly warrants some consideration.
+
+20+ years later, it is part of the standard repertoire of any data scientist. Sadly, the connection between linear discriminant analysis and logistic regression is known to very few of them. It is only after learning this derivation that I myself began to feel much more comfortable with classification as a whole, because it allowed me to view the varied techniques as part of the same cohesive whole, like one single flowing stream.
 
 Perceptrons
 ===========
