@@ -60,6 +60,9 @@ w = perceptron(df2, labels, w, 1)
 w = perceptron(df2, labels, w, 1)
 qplot(df[,1], df[,2], color=labels) + xlim(0, 1) + ylim(0, 1) + geom_abline(intercept=-w[3]/w[2], slope=-w[1]/w[2])
 
+fit_lda = lda(df, labels)
+qplot(df[,1], df[,2], color=labels) + xlim(0, 1) + ylim(0, 1) + geom_abline(intercept=0, slope=0)
+
 assign = sign(sapply(1:n, function(i) dot(w, df2[i, ])))
 
 df2 = as.data.frame(df)

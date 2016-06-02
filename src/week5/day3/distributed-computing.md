@@ -256,6 +256,8 @@ We will be considering a dataset of all commercial flights within the USA from 1
 
 * Work through the [vignette for the `bigmemory` package](https://cran.r-project.org/web/packages/bigmemory/vignettes/Overview.pdf) on your laptop, typing out the code as you go and using the subset of the data which you downloaded.
 
+	* If you run into problems, feel free to move on. It's more important to have an idea of what you can do with `bigmemory` than to work through the vignette in excruciating detail.
+
 Advanced topics
 ===============
 
