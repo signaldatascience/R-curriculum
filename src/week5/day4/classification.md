@@ -216,7 +216,7 @@ We'll first look at simulated data, where we know what the underlying distributi
 
 * Generate 100 data points in the unit square. 50 of them should be drawn from a multivariate normal distribution centered at $(0.25, 0.25)$, and 50 of them should be drawn from a multivariate normal distribution centered at $(0.75, 0.75)$. Their covariance matrices should be identical, with the variance in each direction equal to 0.2 and the covariance between the dimensions equal to 0.1. Plot the data.
 
-* Generate a vector with class labels for the data (-1 or +1 depending on which distribution a point is drawn from). Run both LDA and QDA on the data. Look at the estimates of the sample means and covariances and evaluate the accuracy of the predictions.
+* Generate a vector with class labels for the data (-1 or +1 depending on which distribution a point is drawn from). Run both LDA and QDA on the data. Look at the estimates of the sample mean and evaluate the accuracy of the predictions.
 
 * Generate equal amounts of data from two multivariate normal distributions in the unit square with extremely different covariance matrices. Run both LDA and QDA on the data. How does the performance of each algorithm in classifying the training data vary as you change the size of the dataset?
 
@@ -224,7 +224,11 @@ We'll first look at simulated data, where we know what the underlying distributi
 
 * Run both LDA and QDA on the generated data and evaluate their performance. Do the same for smaller and larger datasets generated identically.
 
-Next, we'll run our discriminant analysis methods on the aggregated speed dating dataset.
+The `partimat()` function from the `klaR` library can be used to graph the decision boundary for LDA or QDA in a 2-dimensional setting.
+
+* Use `partimat()` to view the results of LDA or QDA on each of your simulated datasets. Interpret the differences.
+
+Next, we'll run our discriminant analysis methods on some real datasets, starting with the aggregated speed dating dataset.
 
 * Load the aggregated speed dating dataset and restrict to self-rated activity participation and the gender of the person rated.
 
@@ -234,12 +238,17 @@ Next, we'll run our discriminant analysis methods on the aggregated speed dating
 
 * Run LDA and QDA on each of the variably sized subsets of data, classifying gender with respect to self-rated activity participation. Plot their classification accuracy on the training data as a function of the proportion of the dataset used. Interpret the results.
 
-Visualizing the results
------------------------
+The theoretical framework of LDA and QDA can easily be extended to *multiclass classification*.
 
-Visualizing the results of LDA is a little troublesome. We will not attempt it here, but:
+* Install the `rattle` package, run `data(wine, package='rattle')`, and set `df_wine = wine`. This dataset conists of chemical measurements of wine from three different cultivars, with the cultivar reported in the Type column. Run LDA to predict wine type from the other variables, look at the group means and coefficients of the linear discriminants, and interpret.
 
-* Read [this StackExchange answer by "amoeba"](http://stats.stackexchange.com/a/103552/115666) about visualizing the decision boundaries for *multiclass* LDA (briefly discussed below).
+* To see how each of the two linear discriminant separates the groups, call `predict()` on the LDA fit itself to generate values of the discriminant functions for the training data. Read the `predict.lda()` documentation to figure out how to access the values of the discriminant functions and pass either of the two sets of discriminant values in to `ldahist()` along with the column of group assignments.
+
+* Plot the values of the two discriminant functions against each other. Interpret the results.
+
+Read the following post about visualizing the results of LDA:
+
+* [Compute and graph the LDA decision boundary](http://stats.stackexchange.com/a/103552/115666)
 
 Extensions of discriminant analysis
 -----------------------------------
