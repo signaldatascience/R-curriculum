@@ -20,8 +20,6 @@ Email spam classification
 
 Using a naive Bayes classifier for the task of filtering spam is one of the classic applications of machine learning, going [all the way back to 1998](http://robotics.stanford.edu/users/sahami/papers-dir/spam.pdf). Essentially, the idea is to classify spam probabilistically based on which words appear or don't appear in the email (without taking into account word frequency).
 
-* Read Paul Graham's essay [A Plan for Spam](http://www.paulgraham.com/spam.html), where he describes his improvements to the simplest naive Bayes spam filtration technique which substantially decreased the false positive rate, as well as [Better Bayesian Filtering](http://www.paulgraham.com/better.html), where he elaborates further on why his filtration method works better and on some additional improvements he made to it.
-
 Naive Bayes classification
 --------------------------
 
@@ -71,6 +69,8 @@ Writing a naive Bayes spam classifier
 * Modify your classifier so that it converts all uppercase characters to lowercase. Does this improve the performance of your classifier on the training data?
 
 * Find examples of both spam and non-spam emails from your personal email accounts. See if your classifer classifies them correctly.
+
+* Read Paul Graham's essay [A Plan for Spam](http://www.paulgraham.com/spam.html), where he describes his improvements to the simplest naive Bayes spam filtration technique which substantially decreased the false positive rate, as well as [Better Bayesian Filtering](http://www.paulgraham.com/better.html), where he elaborates further on why his filtration method works better and on some additional improvements he made to it.
 
 Using $n$-grams with logistic regression
 ----------------------------------------
