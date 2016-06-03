@@ -4,6 +4,8 @@ title: Web Scraping and NLP
 
 In this lesson, we will focus on natural language processing. Beginning with some classical NLP tasks, we will slowly work our way up to the most complex methods used on text that we scrape directly from the Internet.
 
+As you progress through this assignment, write up your findings. At the end, email us with your writeup of your results.
+
 Writing a simple spellcheck function
 ====================================
 
@@ -11,8 +13,8 @@ Spelling correction is one of the most natural and oldest natural language proce
 
 * Read Peter Norvig's [How to Write a Spelling Corrector](http://norvig.com/spell-correct.html). Recreate it in R and reproduce his results. **After** doing so yourself, read about [this 2-line R implementation](http://www.sumsar.net/blog/2014/12/peter-norvigs-spell-checker-in-two-lines-of-r/) of Norvig's spellchecker.
 
-Spam classification with naive Bayes
-====================================
+Email spam classification
+=========================
 
 Using a naive Bayes classifier for the task of filtering spam is one of the classic applications of machine learning, going [all the way back to 1998](http://robotics.stanford.edu/users/sahami/papers-dir/spam.pdf). Essentially, the idea is to classify spam probabilistically based on which words appear or don't appear in the email (without taking into account word frequency).
 
@@ -25,7 +27,7 @@ For any given word and email, suppose that $W$, $S$, and $H$ are respectively ev
 
 $$P(S \mid W) = \frac{P(W \mid S) P(S)}{P(W \mid S) P(S) + P(W \mid H) P(H)}.$$
 
-[Recent statistics](http://eval.symantec.com/mktginfo/enterprise/other_resources/b-state_of_spam_report_09-2009.en-us.pdf) that the probability of any given email being spam is around 80%. However, the simplest Bayesian spam filters assume that there is no *a priori* reason to assume that an incoming email is more likely to be spam and not, and consequently set $P(S) = P(H) = 1/2$. We may then simplify the above expression to
+[Recent statistics](http://eval.symantec.com/mktginfo/enterprise/other_resources/b-state_of_spam_report_09-2009.en-us.pdf) that the probability of any given email being spam is around 80%. However, the simplest Bayesian spam filters assume that there is no *a priori* reason to assume that an incoming email is more likely to be spam and not, and consequently set $P(S) = P(H) = \frac{1}{2}$. We may then simplify the above expression to
 
 $$P(S \mid W) = \frac{P(W \mid S)}{P(W \mid S) + P(W \mid H)}.$$
 
@@ -41,14 +43,16 @@ $$P(S) = \frac{p_1 p_2 \cdots p_n}{p_1 p_2 \cdots p_n + (1 - p_1) (1 - p_2) \cdo
 
 where $p_i = P(S \mid W_i)$, the probability that a message is spam given that it contains the $i$th word in our dictionary of words.
 
-Writing a classifier
---------------------
+Writing a naive Bayes spam classifier
+-------------------------------------
 
 * In R, write a naive Bayes spam classifier using the [CSDMC2010 SPAM corpus](http://csmining.org/index.php/spam-email-datasets-.html) training data. The `.eml` files can just be read in as plaintext files. Use the entirety of each message, including the HTML tags and the email headers.
 
-	* For reading the text files, you may find [list.files()](http://www.inside-r.org/r-doc/base/list.files) and [`scan()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/scan.html) useful.
+	* For reading the text files, you may find [`list.files()`](http://www.inside-r.org/r-doc/base/list.files) and [`scan()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/scan.html) useful.
 
 	* You may find R's string manipulation functions to be very useful, such as [`strsplit()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/strsplit.html).
+
+	* You can classify a message as spam if $P(S) > \frac{1}{2}$.
 
 * Look at the words with the highest and lowest $p_i$s. Interpret the results.
 
@@ -58,15 +62,62 @@ Writing a classifier
 
 * Find examples of both spam and non-spam emails from your personal email accounts. See if your classifer classifies them correctly.
 
-Analysis of US politicians' Tweets
-==================================
+Using $n$-grams with logistic regression
+----------------------------------------
 
-Latent Dirichlet allocation on Wikipedia pages
-==============================================
+We can compare our naive Bayes classifier with logistic regression. For our logistic regression, we will use as features the frequency counts of individual words, *i.e.*, the number of time each word we know appears in an email. Additionally, we will also use [$n$-grams](https://en.wikipedia.org/wiki/N-gram), which are sequences of $n$ consecutive words.
+
+* Use the [`ngram`](https://cran.r-project.org/web/packages/ngram/ngram.pdf) package to create a dataframe of 1-grams and 2-grams from the training data with the `ngram()` and `get.phrasetable()` functions. Each row should represent a particular email and each column should be one of the 1-grams or 2-grams.
+
+* Use regularized elastic net logistic regression to predict spam vs. not-spam, selecting the hyperparameters $\alpha$ and $\lambda$ with the `caret` package.
+
+* Compute the true positive, true negative, false positive, and false negative rates for you logistic regression spam classifier. Compare its performance to that of your naive Bayes spam classifier.
+
+Analysis of Github commit logs
+==============================
+
+We will use the Github API to scrape the commit logs for [Linus Torvalds](https://github.com/torvalds), creator of the [Linux](https://en.wikipedia.org/wiki/Linux) kernel, and [Bram Moolenaar](https://github.com/brammool?tab=activity), creator, maintainer, and [benevolent dictator for life](https://en.wikipedia.org/wiki/Benevolent_dictator_for_life) of the [Vim](https://en.wikipedia.org/wiki/Vim_(text_editor)) text editor. Afterward, we will perform [sentiment analysis](https://en.wikipedia.org/wiki/Sentiment_analysis) on their commit messages.
+
+Using the Github API
+--------------------
+
+Since Linus and Bram make most of their commits to Linux and Vim respectively, we can use the API to (1) get some of the latest commits to Linux and Vim and (2) strip out all of the commits which don't come from either of them.
+
+The Github API can be accessed directly via your browser. In general, you begin with the url `https://api.github.com/` and then successively append text to it, *e.g.*, `https://api.github.com/users/JonahSinick`.
+
+* Referencing the [API documentation on commits](https://developer.github.com/v3/repos/commits/), figure out which API queries will return the latest commits for [Linux](https://github.com/torvalds/linux) and for [Vim](https://github.com/vim/vim). (A parameter beginning with a colon (`:`) is a *variable* which you should fill in with the appropriate value.)
+
+* Write a Python script to access the Github API and download our desired data. Follow these specifications:
+
+	* Use [`urllib.request`](https://docs.python.org/3/library/urllib.request.html#module-urllib.request) to download the results of API calls. Use the [`json`](https://docs.python.org/3/library/json.html) module, particularly the `loads()` function, to strip out all the commit messages which don't come from Linus or Brad.
+
+	* Write the commit messages to two files, `linus.txt` and `brad.txt`, with one message per line.
+
+Performing sentiment analysis
+-----------------------------
+
+* Load the files containing the commit messages for Linus and Brad. Process them, creating one vector for Linus's messages and another vector for Brad's messages.
+
+* Install and load the `qdap` package, which has functions for both cleaning text and performing sentiment analysis.
+
+* Following the [Cleaning Text & Debugging](http://cran.us.r-project.org/web/packages/qdap/vignettes/cleaning_and_debugging.pdf) vignette, use `qdap` to clean the commit messages in preparation for sentiment analysis. In particular, `check_text()` should suggest the usage of some text-cleaning functions to use.
+
+* Combine all of the commit messages into a character vector with many entries. In addition, create a vector of labels (integers 0 or 1) which indicate whether the corresponding entry in the aforementioned character vector is from Linus or Brad.
+
+* Use `polarity()` with its default settings to perform sentiment analysis, passing in both the character vector of every commit message as well as the grouping vector.
+
+The results of the analysis are stored in `$all`, a data frame with a column `polarity` for the sentiment polarity score of each message.
+
+* Plot two histograms of the polarity scores for Linus and Brad overlaid on top of each other. Interpret the results.
+
+* Look at the commit messages which had the lowest and highest polarity scores.
+
+Latent Dirichlet allocation on Wikipedia articles
+=================================================
 
 The technique of Latent Dirichlet allocation (LDA) is analogous to performing factor analysis on text. Intuitively, it reads a large collection of documents -- a *corpus* -- and tries to find what the "topics" of the documents are.
 
-You will be scraping every page on Wikipedia that falls into the [machine learning category](https://en.wikipedia.org/wiki/Latent_variable_model) and processing the text using Python and then running LDA on the generated corpus of text in R.
+In Python, you will scrape every article on Wikipedia which falls into the [machine learning category](https://en.wikipedia.org/wiki/Latent_variable_model) and process the text. Afterward, you will run LDA on the corpus of text using R.
 
 Overview of LDA
 ---------------
@@ -177,3 +228,8 @@ Some interesting applications of LDA include:
 * Hu and Saul (2003), [A Probabilistic Topic Model for Unsupervised Learning of Musical Key-Profiles](http://cseweb.ucsd.edu/~saul/papers/ismir09_lda.pdf)
 
 * Pritchard *et al.* (2000), [Inference of Population Structure Using Multilocus Genotype Data](http://pritchardlab.stanford.edu/publications/structure.pdf), which was written before the development of LDA as it is now but proposes essentially the same generative model
+
+*Extra:* Sentiment analysis on Donald Trump
+===========================================
+
+If you have some free time, work through [Sentiment Analysis on Donald Trump using R and Tableau](http://www.r-bloggers.com/sentiment-analysis-on-donald-trump-using-r-and-tableau/), typing out all the code yourself and ensuring that you understand every line. (This is strictly optional.)
