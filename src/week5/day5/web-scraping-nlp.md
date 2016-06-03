@@ -60,6 +60,8 @@ Writing a naive Bayes spam classifier
 
 	* You can classify a message as spam if $P(S) > \frac{1}{2}$.
 
+	* Your end goal here should be to end up with some function `detect_spam()` which can take in a string as input and decide whether or not that string is a spam email.
+
 * Look at the words with the highest and lowest $p_i$s. Interpret the results.
 
 * Calculate the true positive, true negative, false positive, and false negative rates for your classifier.
