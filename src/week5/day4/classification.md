@@ -436,7 +436,7 @@ The weights of the perceptron parametrize a *line* given by `w[1]*x + w[2]*y + w
 
 * What are the slope and $y$-intercept of this line in terms of the components of `w`?
 
-* Set the seed for consistency and try `perceptron()` on your generated data with `rate=1` and the default value for `niter`. You should initialize the weights vector to a vector of zeroes and then pass in the output of the first `perceptron()` call to the initial weights of the next. After each call to `perceptron()`, plot the *decision boundary* corresponding to your results overlaid on top of the scatterplot of data points by adding a `geom_abline()` call with the `intercept` and `slope` parameters.
+* Set the seed for consistency and try `perceptron()` on your generated data with `rate=1` and the default value for `niter`. You should initialize the weights vector to a vector of 3 zeroes and then pass in the output of the first `perceptron()` call to the initial weights of the next. After each call to `perceptron()`, plot the *decision boundary* corresponding to your results overlaid on top of the scatterplot of data points by adding a `geom_abline()` call with the `intercept` and `slope` parameters.
 
 A perceptron is *guaranteed to converge* to a line which fully separates two class *if* the two classes are linearly separable. If a perceptron converges to a solution, that means that it will correctly classify all of the training data.
 
@@ -476,6 +476,8 @@ Overview
 
 Support vector machines are based on the idea of **margin**. Recall that with a perceptron, we have infinitely many choices of separating hyperplane. It is with the idea of *margin* that we can define what it means for a particular separating hyperplane to be the best choice.
 
+### Hard-margin SVMs
+
 Intuitively, we don't really care about the points which are far away from the decision boundary -- they're easy to classify. However, with the points quite close to the decision boundary, we would like to have the most "leeway for error" possible with them. If our decision boundary is very close to one side of the "corridor" which separates the two classes, then a little bit of extra error in newly generated data could end up causing the data to be misclassified!
 
 As such, we can find *two* parallel hyperplanes which separate the two classes of data perfectly such that the distance between them, the *margin*, is as large as possible. The *maximum-margin hyperplane*, which we can use for classification, is the hyperplane exactly between the two parallel hyperplanes.
@@ -488,9 +490,15 @@ $$\sum_{i=1}^{|S|} y_i \alpha_i \langle \textbf{x} , \textbf{x}_i \rangle + b = 
 
 where $y_i \in \{-1, +1\}$ as usual and the $\alpha_i$s are positive constants. (If you are unfamiliar with the $\langle$ and $\rangle$ brackets, which represent the [inner product](https://en.wikipedia.org/wiki/Inner_product_space), you can just imagine in its place $\textbf{x} \cdot \textbf{x}_i$ or $\textbf{x}^\mathbf{\intercal} \textbf{x}_i$.) The non-support vectors contribute *nothing* to the final description of the hyperplane.
 
-The version of SVMs described above, which is linear and finds a hyperplane between linearly separable classes, is called **hard-margin SVM**, because we refuse to allow any points to be misclassified.
+In the above image, the bolded points are the support vectors of the maximum-margin hyperplane. Since we do not allow for the misclassification of *any* points, the support vectors are precisely the data points which fall exactly on the margin. This version of SVMs, which finds maximum-margin hyperplane between linearly separable classes, is called **hard-margin SVM**, because we allow no leeway for any misclassification; the margin is an *inviolable boundary* which *must* fully separate the two classes.
 
-In contrast, **soft-margin SVM** maximizes the margin with one modification: the algorithm is allowed to misclassify points at a particular cost $C$. Hard-margin SVMs have some problems with overfitting to the data, so $C$ is like a regularization parameter. (In the limit of $C \to \infty$, the soft-margin SVM becomes a hard-margin SVM.) For soft-margin SVM, the margin is in fact allowed to be *negative*; the more negative it becomes, the larger the number of support vectors.
+### Soft-margin SVMs
+
+In contrast, **soft-margin SVM** maximizes the margin with one modification: the algorithm is allowed to misclassify points at a particular cost, where the cost increases with the distance through which a point would have to be "moved" for it to be classified correctly.
+
+The cost is controlled by a hyperparameter $C$. Hard-margin SVMs have some problems with overfitting to the data, so $C$ acts like a regularization parameter. (In the limit of $C \to \infty$, the soft-margin SVM becomes a hard-margin SVM.) As such, the resulting margin is necessarily larger than the margin for a hard-margin SVM, because the margin is allowed to expand at the cost of misclassifying some of the training data.
+
+Consequently, the number of support vectors for the margin will typically be greater, with misclassified points all counting as support vectors. For some intuition into why misclassified points count as support vectors, imagine the soft-margin SVM actually "moving" them to the correct edge of the margin so that they're classified correctly (and not any further, because that would increase the cost of doing so unnecessarily). Since they are at the margin after being "moved", they properly count as support vectors for the maximum-margin hyperplane.
 
 In practice, soft-margin SVMs are superior to hard-margin SVMs even when the data are linearly separable. Hard-margin SVMs are sensitive to noise and outliers, as shown in the diagram below.
 
@@ -513,7 +521,7 @@ When you call `svm()` in the following exercises, you should always specify `ker
 
 * Return to the linearly separable data with 2000 points which you initially used for the perceptron. Convert the matrix into a dataframe, add on a column with the class labels (which should be either $+1$ or $-1$), and convert the class label column into a factor. Name the columns of your dataframe appropriately.
 
-* Run `svm()` on your data to predict class label from $x$ and $y$ coordinates. Visualize the resulting model with `plot(fit, df)`. The points marked with an "X" are the support vectors of the soft-margin hyperplane.
+* Run `svm()` on your data to predict class label from $x$ and $y$ coordinates. Visualize the resulting model with `plot(fit, df)`. The points marked with an "X" are the support vectors of the corresponding soft-margin hyperplane.
 
 * Vary the `cost` parameter of `svm()` from 0.1 all the way to much higher values. Each time, plot the resulting SVM fit. Interpret the results.
 
@@ -523,7 +531,7 @@ When you call `svm()` in the following exercises, you should always specify `ker
 
 * How well can a linear SVM separate data when each class is drawn from a different multivariate normal distribution? Try it for both distributions which have means close to each other and distributions with have means far away from each other.
 
-* Return to the aggregated speed dating dataset and use a linear SVM to separate males from females in terms of their self-rated activity participation. Use cross-validation to select the best value of $C$. Read the documentation for `plot.svm()` to figure out how to plot the SVM results for two specific dimensions. Visually explore and interpret the results.
+* Return to the aggregated speed dating dataset and use a linear SVM to separate males from females in terms of their self-rated activity participation. Use cross-validation to select the best value of $C$ and evaluate the accuracy of the linear SVM.
 
 Closing notes
 -------------	
@@ -532,7 +540,9 @@ Having used SVMs to classify some data, it may not yet be entirely clear why sup
 
 In the next section, you will see how we can cleverly overcome these challenges.
 
-Note that SVms can be used to perform regression, not just classification. However, the formulation of SVM regression is not as elegant, and it is an uncommonly used technique. Nevertheless, be aware that it exists.
+Note that SVMs can be used to perform regression, not just classification. However, the formulation of SVM regression is not as elegant, and it is an uncommonly used technique. Nevertheless, be aware that it exists.
+
+* Our current formulation of support vector machines only supports binary classification. In general, if you have a binary classifier (of any type), how can you use it for multiclass classification? Come up with at least one potentially viable method.
 
 Kernel methods
 ==============
