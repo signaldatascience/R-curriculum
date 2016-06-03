@@ -484,7 +484,7 @@ As such, we can find *two* parallel hyperplanes which separate the two classes o
 
 ![Two parallel hyperplanes and the maximum-margin hyperplane in between.](margin.png){width=65%}
 
-One may notice that the boundaries of the two classes are completely determined by the data points lying at the very edge at the margin, which are called **support vectors**. The maximum-margin hyperplane can be expressed as a linear function of the support vectors $S$:
+Notice that the boundaries of the two classes are completely determined by the data points lying at the very edge at the margin, which are called **support vectors**. The maximum-margin hyperplane can be expressed as a linear function of the support vectors $S$:
 
 $$\sum_{i=1}^{|S|} y_i \alpha_i \langle \textbf{x} , \textbf{x}_i \rangle + b = 0,$$
 
@@ -521,7 +521,7 @@ When you call `svm()` in the following exercises, you should always specify `ker
 
 * Return to the linearly separable data with 2000 points which you initially used for the perceptron. Convert the matrix into a dataframe, add on a column with the class labels (which should be either $+1$ or $-1$), and convert the class label column into a factor. Name the columns of your dataframe appropriately.
 
-* Run `svm()` on your data to predict class label from $x$ and $y$ coordinates. Visualize the resulting model with `plot(fit, df)`. The points marked with an "X" are the support vectors of the corresponding soft-margin hyperplane.
+* Run `svm()` on your data to predict class label from $x$ and $y$ coordinates. Visualize the resulting model with `plot(fit, df)`. The points marked with an "X" are the support vectors of the corresponding maximum-margin hyperplane.
 
 * Vary the `cost` parameter of `svm()` from 0.1 all the way to much higher values. Each time, plot the resulting SVM fit. Interpret the results.
 
