@@ -47,7 +47,7 @@ where $p_i = P(S \mid W_i)$, the probability that a message is spam given that i
 
 Due to [floating-point underflow](https://en.wikipedia.org/wiki/Arithmetic_underflow), instead of calculating $P(S)$ directly, it is better to calculate
 
-$$\log \left( \frac{1}{P(S)} - 1 \right) \sum_{i=1}^N \left( \log (1 - p_i) - \log p_i \right)$$
+$$\log \left( \frac{1}{P(S)} - 1 \right) = \sum_{i=1}^N \left( \log (1 - p_i) - \log p_i \right)$$
 
 because the summation doesn't have problems with underflow due to multiplying many small numbers together, and to then calculate $P(S)$ after a numeric expression for the right side of the above equation has been obtained.
 
