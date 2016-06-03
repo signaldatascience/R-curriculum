@@ -4,6 +4,8 @@ title: Web Scraping and NLP
 
 In this lesson, we will focus on natural language processing. Beginning with some classical NLP tasks, we will slowly work our way up to the most complex methods used on text that we scrape directly from the Internet.
 
+All of these methods will use the [*bag-of-words*](https://en.wikipedia.org/wiki/Bag-of-words_model) assumption, where we assume that within each document the *order* of words isn't important.
+
 As you progress through this assignment, write up your findings. At the end, email us with your writeup of your results.
 
 Writing a simple spellcheck function
@@ -230,6 +232,8 @@ Closing notes
 LDA is most useful for learning structure for corpora which are too large for humans to immediately fully understand. It has many extensions, such as *correlated topic models* which allow for greater correlations between topics or *dynamic topic models* which track the evolution of topics over time, with a huge amount of the work in this field being done by [David Blei](http://www.cs.columbia.edu/~blei/).
 
 Some interesting applications of LDA include:
+
+* Mimno (blog post), [Using phrases in Mallet topic models](http://www.mimno.org/articles/phrases/)
 
 * Mimno and McCallum (2007), [Organizing the OCA: Learning Faceted Subjects from a Library of Digital Books](http://mimno.infosci.cornell.edu/papers/f129-mimno.pdf)
 
