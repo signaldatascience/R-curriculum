@@ -275,7 +275,7 @@ I had the pleasure of learning this derivation from [*Statistical Methods for Ph
 
 The motivation behind the following derivation of logistic regression is the consideration of instances where the two classes in binary classification are *not* sampled from multivariate normal distributions with equal covariances. That is, we would like to relax the assumptions of LDA to allow for probability densities that are not normal.
 
-In particular, instead of assuming that $P(\textbf{x} \mid y = i) \propto \mathcal{N}(\boldsymbol{\mu}_i, \Sigma)$ for $i \in \{-1, +1\}$, where $\mathcal{N}(\boldsymbol{\mu}_i, \Sigma)$ denotes a multivariate normal distribution with mean $\boldsymbol{\mu}_i$ and covariance matrix $\Sigma_i$, we posit that
+In particular, instead of assuming that $P(\textbf{x} \mid y = i) \propto \mathcal{N}(\boldsymbol{\mu}_i, \Sigma)$ for $i \in \{-1, +1\}$, where $\mathcal{N}(\boldsymbol{\mu}_i, \Sigma)$ denotes a multivariate normal distribution with mean $\boldsymbol{\mu}_i$ and covariance matrix $\Sigma$, we posit that
 
 $$P(\textbf{x} \mid y = i) \propto \mathcal{N}(\boldsymbol{\mu}_i, \Sigma) \phi(\textbf{x}).$$
 
@@ -285,7 +285,7 @@ The *discriminant functions* -- that is, the essential inequalities which define
 
 We will pause for a brief interlude in order to consider the [likelihood function](https://en.wikipedia.org/wiki/Likelihood_function) $\mathcal{L}$ directly. The function $\mathcal{L}(\textbf{x}, \boldsymbol{\theta})$ with respect to a collection of parameters $\boldsymbol{\theta}$ is equal to *the probability of observing the data $\textbf{x}$ given the parameter values $\boldsymbol{\theta}$ for the underlying distributions from which the data are generated*. To do *maximum likelihood estimation* of the parameters, we find the combination of parameters which maximizes $\mathcal{L}$.
 
-Now, let us take write the training data as $T = T_{-1} \cup T_{+1}$, that is, the union of the classes $-1$ and $+1$. The likelihood function for the generative model we are considering is given by
+Now, let us represent the training data as $T = T_{-1} \cup T_{+1}$, where $T_{-1}$ and $T_{+1}$ respectively represent the subsets of the training data labeled as class $-1$ and $+1$. The likelihood function for the generative model we are considering is given by
 
 $$\mathcal{L} = \prod_{\textbf{x} \in T_{-1}} \left[ P(\textbf{x} \mid y = -1) P(y = -1) \right] \prod_{\textbf{x} \in T_{+1}} \left[ P(\textbf{x} \mid y = +1) P(y = +1) \right].$$
 
