@@ -41,3 +41,5 @@ http://www.cs.columbia.edu/~blei/seminar/2016_discrete_data/index.html
 http://www.cs.columbia.edu/~blei/fogm/2015F/
 
 - move spellcheck to end of R curriculum as a sort of "final project" for that part of the curriculum
+- add historical notes to EVERYTHING
+- add profiler to R curriculum, *maybe* debugger
