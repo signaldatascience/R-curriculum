@@ -12,7 +12,7 @@ def get_dirs(d):
     return filter(lambda x: os.path.isdir(os.path.join(d, x)), os.listdir(d))
 
 
-def recurse(d='.'):
+def recurse(d='assignments/'):
     l = []
     dirs = get_dirs(d)
     for subdir in dirs:
@@ -28,7 +28,6 @@ os.chdir(initpath)
 
 # Run make on subdirectories
 rec = recurse()
-rec.append('.')
 r = [os.path.abspath(p) for p in rec]
 mpath = os.path.abspath('Makefile')
 for directory in r:
@@ -41,19 +40,3 @@ for directory in r:
                   shell=True, stdout=PIPE, stderr=PIPE)
     (out, err) = p.communicate()
     print(out)
-
-    if '/src/' in directory:
-        pdfs = [os.path.abspath(p) for p in glob.glob('*.*') if not p.endswith('.md')]
-        for pdf in pdfs:
-            new_path = pdf.replace('/src/', '/pdfs/')
-            if not os.path.exists(os.path.split(new_path)[0]):
-                os.makedirs(os.path.split(new_path)[0])
-            if os.path.exists(new_path):
-                os.remove(new_path)
-            shutil.copy2(pdf, new_path)
-    elif '/pdfs/' in directory:
-        fpaths = [os.path.abspath(p) for p in glob.glob('*.*')]
-        for fpath in fpaths:
-            src_path = fpath.replace('/pdfs/', '/src/')
-            if not os.path.exists(src_path):
-                os.remove(fpath)
