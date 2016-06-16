@@ -40,6 +40,11 @@ SVMs:
 http://www.cs.columbia.edu/~blei/seminar/2016_discrete_data/index.html
 http://www.cs.columbia.edu/~blei/fogm/2015F/
 
-- move spellcheck to end of R curriculum as a sort of "final project" for that part of the curriculum
 - add historical notes to EVERYTHING
 - add profiler to R curriculum, *maybe* debugger
+- standardize assignment format
+- add more about Github API to scraping+nlp (for time argument)
+
+done:
+
+- move spellcheck to end of R curriculum as a sort of "final project" for that part of the curriculum
