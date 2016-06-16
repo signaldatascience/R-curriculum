@@ -12,9 +12,9 @@ Now that you're acquainted with the basics of R's functional programming toolkit
 Run length encoding
 ===================
 
-* Write a function that prints out the longest "run" (sequence of consecutive identical values) in an input vector. (If there's more than one, print out the one that occurs first.)
+* Write a function `longest_run(v)` that prints out the longest "run" (sequence of consecutive identical values) in `v`. (If there's more than one, print out the one that occurs first.)
 
-	* Rewrite your function, incorporating the usage of [`rle()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/rle.html).
+* Write a function `longest_run2(v)` which does the same thing as `longest_run()`, incorporating the usage of [`rle()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/rle.html).
 
 Fast primality testing
 ======================
@@ -60,7 +60,7 @@ With `decompose()`, `decompose_even()`, and `pow3()`, we are now ready to implem
 A small primality problem
 -------------------------
 
-* Find a counterexample to the following statement: By changing at most a single digit of any positive integer, we can obtain a prime number. Use the [`memoise`](https://cran.r-project.org/web/packages/memoise/index.html) package to easily perform [memoization](https://en.wikipedia.org/wiki/Memoization) for the output of `miller_rabin()`.
+* Find a counterexample to the following statement: By changing at most a single digit of any positive integer, we can obtain a prime number. Use the [`memoise`](https://cran.r-project.org/web/packages/memoise/index.html) package to easily perform [memoization](https://en.wikipedia.org/wiki/Memoization) for the output of `miller_rabin()`. How much faster is your code with memoization compared to without memoization?
 
 Saving and loading the RNG
 ==========================
