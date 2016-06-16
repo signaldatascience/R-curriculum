@@ -60,7 +60,7 @@ With `decompose()`, `decompose_even()`, and `pow3()`, we are now ready to implem
 A small primality problem
 -------------------------
 
-* Find a counterexample to the following statement: By changing at most a single digit of any positive integer, we can obtain a prime number. ([Memoization](https://en.wikipedia.org/wiki/Memoization) may be useful to speed up computation.)
+* Find a counterexample to the following statement: By changing at most a single digit of any positive integer, we can obtain a prime number. Use the [`memoise`](https://cran.r-project.org/web/packages/memoise/index.html) package to easily perform [memoization](https://en.wikipedia.org/wiki/Memoization) for the output of `miller_rabin()`.
 
 Saving and loading the RNG
 ==========================
