@@ -12,7 +12,7 @@ The concept of *data types* is fundamental to programming.[^types] Every "basic 
 
 [^types]: See [Wikipedia: Data type](https://en.wikipedia.org/wiki/Data_type).
 
-To determine the type of a variable, you can use `typeof()`. Although `typeof()` can in fact return any of 24 different types, in practice we'll only concern ourselves with a couple of them.[^typelist] In particular, we'll begin by focusing on the "integer", "double" (floating-point number),[^double] "character" (string), and "logical" (boolean) types.
+To determine the type of a variable, you can use [`typeof()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/typeof.html). Although [`typeof()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/typeof.html) can in fact return any of 24 different types, in practice we'll only concern ourselves with a couple of them.[^typelist] In particular, we'll begin by focusing on the "integer", "double" (floating-point number),[^double] "character" (string), and "logical" (boolean) types.
 
 [^typelist]: The [R language specification](https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Objects) has a list of possible types.
 
@@ -31,7 +31,7 @@ The first two of those allow you to do simple arithmetic in R, *e.g.* you can ty
 
 In practice, you don't actually care about the difference between how R handles integers and how R handles doubles. In a certain precise sense, "numeric" objects are a generalized structure which encapsulates all sorts of real numbers (integers, doubles, and more). What we really want to think about are numerics, characters, and logicals.[^numeric]
 
-[^numeric]: `mode()` will give you the *mode* of an object as described in [The New S Language](http://smile.amazon.com/New-Language-R-A-Becker/dp/0534091938). Integers and doubles both have the "numeric" mode. If you're wondering how S is relevant to R, it's because R is one of the modern *implementations* of the S language specification. It's open-source and is free software, whereas [S-PLUS](https://en.wikipedia.org/wiki/S-PLUS), the only other modern implementation of S, is proprietary.
+[^numeric]: [`mode()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/mode.html) will give you the *mode* of an object as described in [The New S Language](http://smile.amazon.com/New-Language-R-A-Becker/dp/0534091938). Integers and doubles both have the "numeric" mode. If you're wondering how S is relevant to R, it's because R is one of the modern *implementations* of the S language specification. It's open-source and is free software, whereas [S-PLUS](https://en.wikipedia.org/wiki/S-PLUS), the only other modern implementation of S, is proprietary.
 
 * We can test if something is numeric with [`is.numeric()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/numeric.html). Verify that `3`, `3.1`, and `5L` are all numeric.
 
@@ -90,15 +90,7 @@ Of course, you can also explicitly coerce vectors into different types with, say
 
 The `NA` is a special value that automatically takes on the type of the enclosing vector as needed. By default, `NA` is of type "logical", but you can access other `NA` types with `NA_real_` and `NA_character_`.
 
-Tips and tricks
----------------
-
-Since `TRUE` and `FALSE` can be automatically coerced to `1` and `0` respectively, you can use `sum()` and `mean()` (among other functions) on logical vectors to easily calculate the number and proportion of `TRUE` entries.
-
-The length of a vector can be determined with `length()`.
-
-Supplemental exercises
-----------------------
+* Using [`sum()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/sum.html) and [`mean()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/mean.html), how can you easily calculate the number and proportion of `TRUE` values in a logical vector? With *only* [`mean()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/mean.html) and [`length()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/length.html), how can you calculate the number of `TRUE`s?
 
 * Test your knowledge of vector coercion rules by predicting the output of the following uses of `c()`:
 
@@ -164,7 +156,7 @@ Read about how to use [`for` loops in R](http://www.r-bloggers.com/how-to-write-
 Writing custom functions
 ========================
 
-Read about how to [define functions in R](http://www.ats.ucla.edu/stat/r/library/intro_function.htm). Refer back to this page as necessary when doing the following exercises. Initially, don't worry too much about the performance of your code---just focus on making it work.
+Read about how to [define functions in R](http://www.r-bloggers.com/how-to-write-and-debug-an-r-function/). Refer back to this page as necessary when doing the following exercises. Initially, don't worry too much about the performance of your code---just focus on making it work.
 
 * Make a function `collatz(n)` that takes in a positive integer `n` and returns `n/2` if `n` is even or `3n+1` if `n` is odd. Play around with this---what's the limiting behavior as you apply this function repeatedly, e.g. taking `collatz(collatz(collatz(collatz(collatz(n)))))`?
 
@@ -174,8 +166,8 @@ Read about how to [define functions in R](http://www.ats.ucla.edu/stat/r/library
 
 * Write a function `fib(n)` that returns the `n`th [Fibonacci number](https://en.wikipedia.org/wiki/Fibonacci_number), with `fib(1) == fib(2) == 1`. Then write a different function `fib_test()` that takes in two parameters, `n` and `k`, and for the first `n` Fibonacci numbers calculates whether or not they're divisible by `k`. (Think about what this function should return!) Play around and see if you can find any patterns (hint: try `k = 3`).
 
-A **hint** that may be useful: if you have a variable defined in an *outer* environment and you want to change its value while you're inside an *inner* environment, you can use the `<<-` operator to do so. (Don't worry if this doesn't make much sense -- this is a relatively advanced topic and you can complete these problems without needing to use `<<-`.)
+If you have a variable defined in an *outer* environment and you want to change its value while you're inside an *inner* environment, you can use the `<<-` operator to do so. (Don't worry if this doesn't make much sense -- this is a relatively advanced topic and you can complete these problems without needing to use `<<-`.)
 
-In general, instead of recalculating the same values over and over again, you can store the results of computations the first time you do them and then look for the precomputed results if you need them again. (This is called [memoization](https://en.wikipedia.org/wiki/Memoization), related to the broader method of [dynamic programming](https://en.wikipedia.org/wiki/Dynamic_programming).)
+In general, instead of recalculating the same values over and over again, you can store the results of computations the first time you do them and then look for the precomputed results if you need them again. (This is called [memoization](https://en.wikipedia.org/wiki/Memoization), related to the method of [dynamic programming](https://en.wikipedia.org/wiki/Dynamic_programming).)
 
 * Try to speed up of some of the code you've written with this technique, and quantify the improvements in runtime using the [`tictoc`](http://stackoverflow.com/a/33375008/3721976) package. In particular, look at `fib_test()` and `collatz()`.

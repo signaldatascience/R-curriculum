@@ -23,7 +23,7 @@ It's possible to type code directly into the console and to press `Enter` to eva
 
 You can press `Ctrl+Enter` to run just the line that your cursor is on or the code block that you have selected. When your scripts get large and cumbersome, rerunning just the parts that changed will be much faster than rerunning the entire file (which could take a very long time depending on what computations you're doing).	
 
-*Note:* Unless your script is very short, you should *almost never* be rerunning the entire file every time you make a change to your code. If you are, it might be a sign that your code needs to be structured differently.
+Unless your script is very short, you should *almost never* be rerunning the entire file every time you make a change to your code. If you are, it might be a sign that your code needs to be structured differently.
 
 Assignment operators
 ====================
@@ -60,4 +60,4 @@ Changing the current directory
 
 Sometimes, you'll want to change the current (working) directory. For example, suppose that you're running `/tmp/scripts/analysis.R` which depends on some functions defined in `/tmp/scripts/functions.R` and a data file called `/tmp/scripts/data.csv`. Now, when loading the files, you can type out the full paths, but you might want to be more concise and portable by just calling `functions.R` and `data.csv`. If you do that, R has to know where to look for those files; if your current directory is set to, say, `/home/andrew/`, then it'll look for `/home/andrew/functions.R`, which doesn't exist. What you would want to do in this case is to set the current directory to `/tmp/scripts/`.
 
-You can use the `getwd()` (get working directory) command to see what the current directory is set to. You can also use the `setwd()` (set working directory) function to set the working directory to whatever path you pass in to the function.
+You can use the [`getwd()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/getwd.html) (**get** **w**orking **d**irectory) command to see what the current directory is set to. You can also use the [`getwd()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/getwd.html) (**set** **w**orking **d**irectory) function to set the working directory to whatever path you pass in to the function.

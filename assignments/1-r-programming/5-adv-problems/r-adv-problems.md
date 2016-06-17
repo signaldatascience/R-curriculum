@@ -22,7 +22,7 @@ Run-length encoding
 Quicksort and quickselect
 =========================
 
-One of the most straightforward sorting algorithms is *quicksort*, which sorts a list of length $n$ in $O(n \log n)$ time. It was developed by [Tony Hoare](https://en.wikipedia.org/wiki/Tony_Hoare) at Moscow State University as part of a translation project for the [National Physical Laboratory](https://en.wikipedia.org/wiki/National_Physical_Laboratory,_UK) requiring the alphabetical sorting of Russian words.
+One of the most straightforward sorting algorithms is [*quicksort*](https://en.wikipedia.org/wiki/Quicksort), which sorts a list of length $n$ in $O(n \log n)$ time. It was developed by [Tony Hoare](https://en.wikipedia.org/wiki/Tony_Hoare) at Moscow State University as part of a translation project for the [National Physical Laboratory](https://en.wikipedia.org/wiki/National_Physical_Laboratory,_UK) requiring the alphabetical sorting of Russian words.
 
 The steps of a simplified[^simp] form of the algorithm are as follows:
 
@@ -36,7 +36,7 @@ Now it's your turn:
 
 * Implement a `quicksort(L)` function that sorts a vector of numbers `L` from least to greatest. Verify that your function works by writing a loop which generates 100 vectors of 10 random integers and compares the output of `quicksort()` to the built-in [`sort()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/sort.html). Compare the performance of `quicksort()` to that of [`sort()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/sort.html).
 
-The *quickselect* algorithm, which is similar to quicksort, allows you to find the $k$th largest (or smallest) element of a list of $n$ elements in $O(n)$ time. The difference in the algorithms is that in each iteration, we only have to recurse into *one* of the two subdivisions of the vector, because we can tell which one holds our desired value based on the value of $k$ and the sizes of `lesser` and `greater`.
+The [*quickselect*](https://en.wikipedia.org/wiki/Quickselect) algorithm, which is similar to quicksort, allows you to find the $k$th largest (or smallest) element of a list of $n$ elements in $O(n)$ time. The difference in the algorithms is that in each iteration, we only have to recurse into *one* of the two subdivisions of the vector, because we can tell which one holds our desired value based on the value of $k$ and the sizes of `lesser` and `greater`.
 
 * Implement a `quickselect(L, k)` function which finds the $k$th smallest element of $L$.
 
@@ -77,12 +77,17 @@ Stochastic gradient descent
 The Newton--Raphson method
 --------------------------
 
+The Nelder--Mead method
+-----------------------
+
 Writing a simple spellcheck function
 ====================================
 
 Spelling correction is one of the most natural and oldest natural language processing tasks. It may seem like a difficult task to you at the moment, but it's surprisingly easy to write a spellchecker that does fairly well. (Of course, companies like Google spend millions of dollars making their spellcheckers better and better, but we'll start with something simpler for now.)
 
-* Read Peter Norvig's [How to Write a Spelling Corrector](http://norvig.com/spell-correct.html). Recreate it in R and reproduce his results. **After** doing so yourself, read about [this 2-line R implementation](http://www.sumsar.net/blog/2014/12/peter-norvigs-spell-checker-in-two-lines-of-r/) of Norvig's spellchecker.
+* Read Peter Norvig's [How to Write a Spelling Corrector](http://norvig.com/spell-correct.html), paying particular attention to the probabilistic reasoning (which is similar to the ideas behind a [naive Bayes classifier](https://en.wikipedia.org/wiki/Naive_Bayes_classifier)). Recreate it in R and reproduce his results.
+
+* **After** implementing your own spellchecker, read about [this 2-line R implementation](http://www.sumsar.net/blog/2014/12/peter-norvigs-spell-checker-in-two-lines-of-r/) of Norvig's spellchecker.
 
 Random number generation
 ========================
