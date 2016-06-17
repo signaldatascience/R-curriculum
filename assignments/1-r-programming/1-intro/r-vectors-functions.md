@@ -25,7 +25,7 @@ The first two of those allow you to do simple arithmetic in R, *e.g.* you can ty
 [1] "double"
 ```
 
-*  First, pick an integer and try running `typeof()` on it. Next, try running `5.5L` and `typeof(5.5L)`. Observe both the *output* and the *warning message* of both commands. Can you figure out how to pass in an integer into `typeof()` so that it returns `"integer"` for the type?[^ex-int]
+*  First, pick an integer and try running [`typeof()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/typeof.html) on it. Next, try running `5.5L` and `typeof(5.5L)`. Observe both the *output* and the *warning message* of both commands. Can you figure out how to pass in an integer into [`typeof()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/typeof.html) so that it returns `"integer"` for the type?[^ex-int]
 
 [^ex-int]: R will automatically assume that a number is supposed to be a double. To make an integer, you have to explicitly specify it as an integer literal by appending `L` to the end, like with `typeof(3L)` (which has output `"integer"`). The `L` stands for for a ["long" integer](https://en.wikipedia.org/wiki/Integer_(computer_science)#Long_integer), which is common programming terminology for a 32-bit integer data type.
 
@@ -33,7 +33,7 @@ In practice, you don't actually care about the difference between how R handles 
 
 [^numeric]: `mode()` will give you the *mode* of an object as described in [The New S Language](http://smile.amazon.com/New-Language-R-A-Becker/dp/0534091938). Integers and doubles both have the "numeric" mode. If you're wondering how S is relevant to R, it's because R is one of the modern *implementations* of the S language specification. It's open-source and is free software, whereas [S-PLUS](https://en.wikipedia.org/wiki/S-PLUS), the only other modern implementation of S, is proprietary.
 
-* We can test if something is numeric with `is.numeric()`. Verify that `3`, `3.1`, and `5L` are all numeric.
+* We can test if something is numeric with [`is.numeric()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/numeric.html). Verify that `3`, `3.1`, and `5L` are all numeric.
 
 All strings have type "character" and are defined by wrapping text in between single or double quotes (there's no difference). For example, we have `typeof("qwerty") = typeof('qwerty') = "character"`.
 
@@ -48,7 +48,7 @@ In your code, *always* use `TRUE` and `FALSE` instead of `T` and `F` to avoid po
 Atomic vectors
 ==============
 
-Atomic vectors in R are broadly analogous to lists in Python, with the exception that *they can only contain a single type*. Vectors are formed with `c()`, which stands for *combine*. For example:
+Atomic vectors in R are broadly analogous to lists in Python, with the exception that *they can only contain a single type*. Vectors are formed with [`c()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/c.html), which stands for *combine*. For example:
 
 ```r
 > c(1,2)
@@ -65,7 +65,7 @@ You should not think of vectors as being some sort of *enclosing structure* with
 
 * Is there any distinction between an atomic vector and a single value of the same type? There's a function you can use to check whether or not something is an atomic vector: look back to previous exercises and try to figure out what it is.[^isatomic]
 
-[^isatomic]: Similar to `is.numeric()`, we can use `is.atomic()` to check if something is an atomic vector. You'll find that single values also count as being atomic vectors.
+[^isatomic]: Similar to [`is.numeric()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/numeric.html), we can use [`is.atomic()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/is.recursive.html) to check if something is an atomic vector. You'll find that single values also count as being atomic vectors.
 
 * Determine how vectors behave when you nest them inside each other.
 
@@ -79,7 +79,7 @@ You should not think of vectors as being some sort of *enclosing structure* with
 
 [^vcoerce]: Vectors are automatically converted to the most general type necessary to accommodate all of the information inside. In order of increasing generality, we have the types logical, numeric, and character (with integer < double within the numeric category).
 
-Of course, you can also explicitly coerce vectors into different types with, say, `as.character()` and `as.numeric()`. (Try this out!) But in general, coercing a more general type to a more specific type will result in an error.[^backcoerce] In particular, you will introduce `NA` values into a vector when type coercion is not possible:
+Of course, you can also explicitly coerce vectors into different types with, say, [`as.character()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/character.html) and [`as.numeric()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/numeric.html). (Try this out!) But in general, coercing a more general type to a more specific type will result in an error.[^backcoerce] In particular, you will introduce `NA` values into a vector when type coercion is not possible:
 
 ```r
 > as.logical(c('TRUE', 'str1', 'str2'))

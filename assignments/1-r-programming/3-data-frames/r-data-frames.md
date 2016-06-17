@@ -305,3 +305,18 @@ Next, take a look at the built-in variable `letters`.
 	* Make another data frame in the same way, except look at whether or not $m$ divides $n$ (instead of $F_m$ and $F_n$).
 
 	* Explain yesterday's computational results using the patterns that you notice today.
+
+More $n$-dominoes
+-----------------
+
+Suppose that you have a single copy of every unique $n$-domino for some value of $n$.
+
+* Write a function `make_circle(n)` that tries to construct a valid circle of $n$-dominoes from a *single copy* of every unique $n$-domino.
+
+	* In the process of doing so, keep track of your various approaches.
+
+	* Are there values of $n$ for which no approach seems to work?
+
+	* If so, can you make an argument about why you can't make a valid circle of $n$-dominoes for those values of $n$ (using a single copy of every $n$-domino)? It may be instructive to look at the intermediate steps of your algorithm and how it fails.
+
+	* Give a proof of your heuristic results.

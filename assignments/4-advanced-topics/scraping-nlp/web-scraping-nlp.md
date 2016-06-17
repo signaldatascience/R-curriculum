@@ -1,5 +1,6 @@
 ---
 title: Web Scraping and NLP
+author: Signal Data Science
 ---
 
 In this lesson, we will focus on natural language processing. Beginning with some classical NLP tasks, we will slowly work our way up to the most complex methods used on text that we scrape directly from the Internet.
@@ -154,7 +155,7 @@ In the following, I break down the tasks which you will perform in Python into a
 
 	* Using `download_page()`, download the Wikipedia page [Category:Machine_learning](https://en.wikipedia.org/wiki/Category:Machine_learning). Write a function `get_urls(html)` which takes in the HTML of a Wikipedia category page and returns a dictionary with two entries: `pages`, a list of URLs to articles listed in the category page, and `subcategories`, a list of URLs to subcategories listed in the category page. Use [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) to parse raw HTML. You can test your function on [Category:Machine_learning](https://en.wikipedia.org/wiki/Category:Machine_learning) to verify that it works.
 
-	* Using `get_html()`, get a list of the links on [Category:Machine_learning](https://en.wikipedia.org/wiki/Category:Machine_learning), and then add to the list the links on the *subcategories* of [Category:Machine_learning](https://en.wikipedia.org/wiki/Category:Machine_learning), and then add to the list the links on the subcategories of the subcategories of [Category:Machine_learning](https://en.wikipedia.org/wiki/Category:Machine_learning), and so on and so forth until there are no more subcategories to traverse.
+	* Using `get_html()`, get a list of the links on [Category:Machine_learning](https://en.wikipedia.org/wiki/Category:Machine_learning), and then add to the list the links on the *subcategories* of [Category:Machine_learning](https://en.wikipedia.org/wiki/Category:Machine_learning), and then add to the list the links on the subcategories of the subcategories of [Category:Machine_learning](https://en.wikipedia.org/wiki/Category:Machine_learning), and so on and so forth until there are no more subcategories to traverse. Watch out for infinite loops as well as pages which branch out into overly general categories; both can be dealt with manually.
 
 	* Write the list of article URLs to a text file, `wp_ml_urls.txt`, with one URL per line.
 
