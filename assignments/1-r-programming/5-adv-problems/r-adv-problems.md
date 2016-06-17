@@ -34,7 +34,7 @@ The steps of a simplified[^simp] form of the algorithm are as follows:
 
 Now it's your turn:
 
-* Implement a `quicksort(L)` function that sorts a vector of numbers `L` from least to greatest. Verify that your function works by writing a loop which generates 100 vectors of 10 random integers and compares the output of `quicksort()` to the built-in `sort()`. Compare the performance of `quicksort()` to that of `sort()`.
+* Implement a `quicksort(L)` function that sorts a vector of numbers `L` from least to greatest. Verify that your function works by writing a loop which generates 100 vectors of 10 random integers and compares the output of `quicksort()` to the built-in [`sort()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/sort.html). Compare the performance of `quicksort()` to that of [`sort()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/sort.html).
 
 The *quickselect* algorithm, which is similar to quicksort, allows you to find the $k$th largest (or smallest) element of a list of $n$ elements in $O(n)$ time. The difference in the algorithms is that in each iteration, we only have to recurse into *one* of the two subdivisions of the vector, because we can tell which one holds our desired value based on the value of $k$ and the sizes of `lesser` and `greater`.
 
@@ -102,7 +102,7 @@ In order to do so, we need functions which allow us to convert between [decimal]
 
 * Write a function `to_decimal(b)` which takes a binary representation `b` and returns the corresponding decimal integer.
 
-The bitwise XOR operation takes two binary numbers of equal length and outputs another number of the same length, where the $i$th position in the output is 1 if the $i$th positions in the two input numbers are different and 0 if they are the same. For example, $0101 \mathrm{\ XOR\ } 0011 = 0110$ and $0010 \mathrm{\ XOR\ } 1010 = 1000$.
+The bitwise XOR operation takes two binary numbers of equal length and outputs another number of the same length, where the $i$th position in the output is 1 if the $i$th positions in the two input numbers are different and 0 if they are the same. For example, $0101 \oplus 0011 = 0110$ and $0010 \oplus 1010 = 1000$.
 
 * Implement bitwise XOR as `bitwise_xor(a, b)`. If the inputs are of different lengths, remember to pad the shorter binary number with zeroes on the left.
 
@@ -117,8 +117,44 @@ These operations are called *shifts* because of how they are carried out in the 
 Implementing a xorshift pRNG
 ----------------------------
 
+We can implement an algorithm to generate a random positive 32-bit integer. In order for logical left shifting to work properly, our binary numbers must be long enough to encode 32 bits of information:
+
+* Write a function `to_binary_len(n, k)` which converts an integer `n` to a binary representation and then pads it with 0s on the left until the length of the string is equal to `k`.
+
+Finally, we are ready to implement a simple xorshift algorithm. It will take as input 4 *seed* values $x$, $y$, $z$, and $w$ which determine its initial state. In the following, let $x \ll n$ represent $x$ left logical shifted by $n$ bits, let $x \gg n$ represent $x$ right logical shifted by $n$ bits, and let $\oplus$ represent the bitwise XOR operation. The algorithm is as follows:
+
+1. Set $t = x$.
+2. Set $t = t \oplus (t \ll 11)$.
+3. Set $t = t \oplus (t \gg 8)$.
+4. Set $x = y$, $y = z$, and $z = w$.
+5. Set $w = w \oplus (w \gg 19)$.
+6. Set $w = w \oplus t$.
+7. Return $w$.
+
+Now you have everything you need to write a custom implementation of a xorshift pRNG!
+
+* Fill in the following code template for a `xorshift()` function:
+
+	```r
+	xorshift = function(x, y, z, w) {
+	  # Convert x, y, z, w to 32-bit binary representations.
+	  function() {
+	    # Implement the xorshift algorithm, using <<- for
+	    # assignment to x, y, z, w.
+
+	    # Call return() here on the output.
+	  }
+	}
+	```
+
+	`xorshift()` will return a xorshift pRNG seeded with the specified values which can then be repeatedly called to generate random values, *e.g.*, `r = xorshift(0, 3, 93, 59); r();`. Verify that with $(x, y, z, w) = (1, 2, 3, 4)$ as the seed, the first three generated numbers are 2061, 6175, and 4. Visualize 10,000 randomly generated numbers with a histogram of their values.
+
 Saving and loading pRNG state in R
 ----------------------------------
+
+It is occasionally important to be able to [save and load the pRNG state](http://www.cookbook-r.com/Numbers/Saving_the_state_of_the_random_number_generator/) in R. For example, you may want to be able to reproduce the output of two "interwoven" random sequences beginning from different seeds.
+
+The state of R's built-in pRNG is simply saved in the `.Random.seed` variable in the global environment. It can be written to a different variable and restored via simple assignment. There is one caveat: attempting to set `.Random.seed` within a function call will *create a local variable* called `.Random.seed` instead of changing the value of the *global* `.Random.seed` variable. Thankfully, the seed variable corresponding to R's pRNG can always be accessed with `.GlobalEnv$.Random.seed`.
 
 Fast primality testing
 ======================

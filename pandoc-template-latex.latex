@@ -2,6 +2,7 @@
 \frenchspacing
 \usepackage[scaled]{beramono}
 \interfootnotelinepenalty=10000
+\usepackage[dvipsnames]{xcolor}
 
 % Overwrite \begin{figure}[htbp] with \begin{figure}[H]
 \usepackage{float}
