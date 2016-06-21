@@ -19,8 +19,10 @@ General data analysis
 
 	* Algorithms break down in high dimensions. The standard Euclidean distance metric doesn't work as well; distances between pairs of data points all become very similar.
 
-* Is more data always better?
+	* See [The Challenges of Clusternig High Dimensional Data](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.99.7799&rep=rep1&type=pdf) by Steinbach, Ertoz, and Kumar.
 
+* Is more data always better?
+gm
 	* Yes from the perspective of pure prediction, but you may not always want to work with all the data you have (at least immediately); it's expensive to store a large amount of data, training models takes longer, the dataset may not fit in memory, etc.
 
 * What are advantages of plotting your data before performing analysis?
@@ -29,7 +31,7 @@ General data analysis
 
 * How can you make sure that you don't analyze something that ends up meaningless?
 
-	* https://www.quora.com/How-can-you-make-sure-that-you-dont-analyze-something-that-ends-up-meaningless
+	* [Answer on Quora](https://www.quora.com/How-can-you-make-sure-that-you-dont-analyze-something-that-ends-up-meaningless)
 
 	* Proper exploratory data analysis -- graphing, looking at summary statistics, doing sanity checks on a lot of different hypotheses.
 
@@ -62,13 +64,13 @@ Predictive modeling
 
 	* [Answer on Quora](https://www.quora.com/How-would-a-model-change-if-we-minimized-absolute-error-instead-of-squared-error-What-about-the-other-way-around)
 
-	* Minimizing squared error finds the "mean" whereas minimizing absolute error finds the "median". The former is easier to compute and the latter is more resistant to outliers.
+	* Minimizing squared error finds the mean whereas minimizing absolute error finds the median. The former is easier to compute and the latter is more resistant to outliers.
 
 * What are the differences between the following pairs of terms: Type I error and Type II error, sensitivity and specificity, precision and recall?
 
 * What error metric would you use to evaluate how good a binary classifier is? What if the classes are imbalanced? What if there are more than 2 groups?
 
-	* (Multinomial) log loss, which is equivalent to the cross entropy. You can also use sensitivity / specificity for a binary classifier; due to class imbalance you can't just look at a single loss metric. Finally, one can use area under the ROC curve for a binary classifier.
+	* The standard cost function is the log loss. You can also use sensitivity / specificity for a binary classifier; due to class imbalance you can't just look at a single loss metric. If you have to, however, area under the ROC is a good single metric to use. Finally, the multinomial log loss (= cross entropy) can be used to evaluate the performance of >2 group classification.
 
 * What are various ways to predict a binary response variable? Can you compare two of them and tell me when one would be more appropriate? What's the difference between these? (SVM, Logistic Regression, Naive Bayes, Decision Tree, etc.)
 
@@ -125,7 +127,9 @@ Statistical inference
 
 * How would you explain an A/B test to an engineer with no statistics background?
 
-* How would you explain a confidence interval to an engineer with no statistics background? What about the meaning of 95% confidence?
+* How would you explain the meaning of a X% confidence interval to an engineer with no statistics background?
+
+	* Repeat process over and over again; X% of the measurements will fall within the confidence interval.
 
 * In an A/B test, how can you check if assignment to the various buckets was truly random?
 
@@ -297,9 +301,15 @@ Probability
 
 * Let's say we play a game where I keep flipping a coin until I get heads. If the first time I get heads is on the $n$th coin, then I pay you $2n-1$ dollars. How much would you pay me to play this game?
 
+	* Expected payoff is $1 (1/2) + 3 (1/2)^2 + 5 (1/2)^3 + \cdots$. This is an arithmetic-geometric sum (see previous question); sum comes out to be 3, so you shouldn't pay more than $3.
+
 * You have two coins, one of which is fair and comes up heads with a probability 1/2, and the other which is biased and comes up heads with probability 3/4. You randomly pick coin and flip it twice, and get heads both times. What is the probability that you picked the fair coin?
 
-* You have a 0.1% chance of picking up a coin with both heads, and a 99.9% chance that you pick up a fair coin. You flip your coin and it comes up heads 10 times. What’s the chance that you picked up the fair coin, given the information that you observed?
+	* Probability of HH and fair coin is $(1/2) (1/2)^2$ and probability of HH and biased coin is $(1/2) (3/4)^2$. Divide the former by their sum for $4/13 \approx 0.30769$.
+
+* You have a 0.1% chance of picking up a coin with both heads and a 99.9% chance of picking up a fair coin. You flip your coin and it comes up heads 10 times. What's the probability that you picked the fair coin?
+
+	* Similar to previous question. Probability of picking fair coin and getting 10 heads is $0.999 (1/2)^{10}$ and probability of picking double-head coin and getting 10 heads is 0.001; divide former by their sum for approximately 49%.
 
 * What's the expected number of times you need to roll a 6-sided die until each number comes up at least once?
 
@@ -345,7 +355,7 @@ Algorithms
 
 * Given a list of integers, find the *continuous subsequence* with the largest sum.
 
-	* This is the [maximum subarray problem](https://en.wikipedia.org/wiki/Maximum_subarray_problem) and can be solved in $O(n)$ time. At each position simply compute the m
+	* This is the [maximum subarray problem](https://en.wikipedia.org/wiki/Maximum_subarray_problem) and can be solved in $O(n)$ time. Iterate through the list of integers, storing a partial sum as you go along; if the partial sum gets to 0 or below, start summing again with the next integer.
 
 SQL
 ---
