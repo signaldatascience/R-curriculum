@@ -35,8 +35,6 @@ gm
 
 	* Proper exploratory data analysis -- graphing, looking at summary statistics, doing sanity checks on a lot of different hypotheses.
 
-* What is the role of trial and error in data analysis? What is the the role of making a hypothesis before diving in?
-
 * How can you deal with missing values in your data?
 
 	* Replace with mean/median/mode or use linear regression for multiple imputation. (Linearly regress each variable against the others).
@@ -131,6 +129,10 @@ Statistical inference
 
 	* Repeat process over and over again; X% of the measurements will fall within the confidence interval.
 
+* What is a $p$-value?
+
+	* Probability of observing the data if the null hypothesis were true.
+
 * In an A/B test, how can you check if assignment to the various buckets was truly random?
 
 * What might be the benefits of running an A/A test, where you have two buckets who are exposed to the exact same product?
@@ -148,8 +150,6 @@ Statistical inference
 * How would you run an A/B test if the observations are extremely right-skewed?
 
 * I have two different experiments that both change the sign-up button to my website. I want to test them at the same time. What kinds of things should I keep in mind?
-
-* What is a $p$-value? What is the difference between type-1 and type-2 error?
 
 * You are AirBnB and you want to test the hypothesis that a greater number of photographs increases the chances that a buyer selects the listing. How would you test this hypothesis?
 
@@ -186,22 +186,12 @@ Product-based questions
 
 * You're Uber and you want to design a heatmap to recommend to drivers where to wait for a passenger. How would you approach this?
 
-* You want to run a regression to predict the probability of a flight delay, but there are flights with delays of up to 12 hours that are really messing up your model. How can you address this?
-
 * How could you use GPS data from a car to determine the quality of a driver?
-
-* Given accelerometer, altitude, and fuel usage data from a car, how would you determine the optimum acceleration pattern to drive over hills?
 
 * How would you quantify the influence of a Twitter user?
 
 * You have 100 mathletes and 100 math problems. Each mathlete gets to choose 10 problems to solve. Given data
 on who got what problem correct, how would you rank the problems in terms of difficulty?
-
-* You have 5000 people that rank 10 sushi plates in terms of saltiness. How would you aggregate this data to estimate the true saltiness rank in each sushi?
-
-* Given data on congressional bills and which congressional representatives co-sponsored the bills, how would you determine which other representatives are most similar to yours in voting behavior? How would you evaluate who is the most Democratic? Most Republican? Most bipartisan?
-
-* How would you come up with an algorithm to detect plagiarism in online content?
 
 * You have data on all purchases of customers at a grocery store. Describe to me how you would program an algorithm that would cluster the customers into groups. How would you determine the appropriate number of clusters to include?
 
@@ -218,8 +208,6 @@ tion? (Snapchat, Pinterest, Facebook, etc.) A messaging product? (GroupMe, Hango
 
 * What would be good metrics of success for a product that offered in-app purchases? (Zynga, Angry Birds, other gaming apps)
 
-* A certain metric is violating your expectations by going down or up more than you expect. How would you try to identify the cause of the change?
-
 * Growth for total number of tweets sent has been slow this month. What data would you look at to determine the cause of the problem?
 
 * You're a restaurant and are approached by Groupon to run a deal. What data would you ask from them in order to determine whether or not to do the deal?
@@ -233,10 +221,6 @@ tion? (Snapchat, Pinterest, Facebook, etc.) A messaging product? (GroupMe, Hango
 * You are on the data science team at Uber and you are asked to start thinking about surge pricing. What would be the objectives of such a product and how would you start looking into this?
 
 * Say that you are Netflix. How would you determine what original series you should invest in and create?
-
-* What kind of services would find churn (metric that tracks how many customers leave the service) helpful? How would you calculate churn?
-
-* Let's say that you're are scheduling content for a content provider on television. How would you determine the best times to schedule content?
 
 * You're a data scientist at Khan Academy. How would you use machine learning to predict a student's success on a subsequent question, based on knowing their performance on past questions they have answered?
 
