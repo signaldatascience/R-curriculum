@@ -1,22 +1,20 @@
-Simple Linear Regression
-========================
+---
+title: Simple Linear Regression
+author: Signal Data Science
+---
 
-Here's the data science-focused assignment for day 1. No worries if you don't complete everything -- I'm front-loading the assignments with the most crucial material; the goal here is for nobody to be left without something to do.
+In this assignment, you'll learn how to do a linear regression, the simplest of all machine learning techniques! We'll use data from the United Nations about infant mortality in different countries for this analysis.
 
-There's sample code located at the attached file `day1Example-rev.R`.
+There's sample code located in `day1Example.R`.
 
-Remember to switch off typing between your partner(s) every 20 minutes.
-
-Analyzing infant mortality data
--------------------------------
-
-Install the packages `car`, `Ecdat`, `HistData`, `ggplot2`, `dplyr`, `Rmisc`, and `GGally`. Load `day1Example-rev.R` in RStudio.
+* Install the packages `car`, `Ecdat`, `HistData`, `ggplot2`, `dplyr`, `Rmisc`, and `GGally`. Load `day1Example.R` in RStudio.
 
 You'll go through the existing code, alternating between figuring out what it does, answering questions here, and writing your own code to supplement what's already there.
 
-You should strive to **discuss the questions with your partner** and write down answers, either in a separate text file in the same directory or as comments in the R file directly.
+Getting started
+===============
 
-### Getting started ###
+First, we have some preliminaries to take care of.
 
 * Load the packages `car`, `ggplot2`, and `GGally`. Set `df = UN`.
 
@@ -24,7 +22,8 @@ You should strive to **discuss the questions with your partner** and write down 
 
 * Packages in R are extensively documented online. Look at the [reference manual](https://cran.r-project.org/web/packages/car/) for the `car` package to read about the `UN` data.
 
-### Viewing correlations and cleaning data ###
+Viewing correlations and cleaning the data
+==========================================
 
 * Use the `cor()` function on the data frame to find the correlation between infant mortality and GDP. What's wrong, and why is this happening? Look in the documentation for `cor()` to figure out how to tell the function to ignore entries with missing values.
 
@@ -34,7 +33,8 @@ Instead of making each function we use handle missing values (`NA`s), we can cre
 
 * Type `?na.fail` and read the documentation on `NA`-related functions; find one appropriate for the job and use it to make `df2`, a new data frame excluding rows containing missing values.
 
-### Visualizing distributions ###
+Visualizing distributions
+=========================
 
 We'll now start doing some transformations of the data, leading up to statistical analysis!
 
@@ -46,15 +46,17 @@ We'll now start doing some transformations of the data, leading up to statistica
 
 	* Note the differences, and reflect on the appropriateness of a linear model for the untransformed vs. transformed data.
 
-### Running linear regressions ###
+Running linear regressions
+==========================
 
 If you don't remember much about linear regressions, briefly skim the relevant sections in *Applied Predictive Modeling*.
 
-Run the lines that use the `lm` command to generate linear fits of infant mortality against GDP. You can type `linear_fit` and `summary(linear_fit)` in the console to get summaries of the results.
+* Run the lines that use the `lm` command to generate linear fits of infant mortality against GDP. You can type `linear_fit` and `summary(linear_fit)` in the console to get summaries of the results.
 
 You'll note that the `summary()` command will print out a statistic denoted **Adjusted R-squared**, which can be interpreted as the *proportion of variance in the target variable explained by the predictors*. Take a look at [StackExchange](http://stats.stackexchange.com/questions/48703/what-is-the-adjusted-r-squared-formula-in-lm-in-r-and-how-should-it-be-interpret) to briefly see how this statistic is calculated. In general, higher is better.
 
-### Plotting linear regressions ###
+Plotting linear regressions
+===========================
 
 To plot the results of a simple linear regression, it's actually easier to [let `ggplot2` fit the model for you](http://stackoverflow.com/a/1476280/3721976).
 
@@ -68,7 +70,8 @@ To plot the results of a simple linear regression, it's actually easier to [let 
 
 	* Make the same plots for the linear fit of log(infant mortality) vs. log(GDP). (*Hint:* To access column `c` of a dataframe `df`, use the syntax `df$c`.)
 
-### Looking at the residuals ###
+Looking at the residuals
+========================
 
 A [residual](https://en.wikipedia.org/wiki/Residual_(numerical_analysis)) is a fancy word for prediction error; it's the difference given by `actual - predicted`.
 

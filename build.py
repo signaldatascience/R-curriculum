@@ -28,6 +28,7 @@ os.chdir(initpath)
 
 # Run make on subdirectories
 rec = recurse()
+rec.append('interview-prep/')
 r = [os.path.abspath(p) for p in rec]
 mpath = os.path.abspath('Makefile')
 for directory in r:

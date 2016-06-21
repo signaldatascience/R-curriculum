@@ -43,3 +43,20 @@ We can add *interaction terms* to a linear regression very easily: in the list o
 * What's the difference between including `var1:var2` or `var1*var2`? (*Hint:* Try regressing against nothing aside from the interaction term.)
 
 * How much additional predictive power can you get by including well-chosen interaction terms in your regression? Which interaction terms help the most?
+
+More $n$-dominoes
+-----------------
+
+Suppose that you have a single copy of every unique $n$-domino for some value of $n$.
+
+* Write a function `make_circle(n)` that tries to construct a valid circle of $n$-dominoes from a *single copy* of every unique $n$-domino.
+
+	* In the process of doing so, keep track of your various approaches.
+
+	* Are there values of $n$ for which no approach seems to work?
+
+	* If so, can you make an argument about why you can't make a valid circle of $n$-dominoes for those values of $n$ (using a single copy of every $n$-domino)? It may be instructive to look at the intermediate steps of your algorithm and how it fails.
+
+	* Give a proof of your heuristic results.
+
+* Construct several arbitrary square matrices of identical size but differing contents (try to make them interesting, with lots of nonzero numbers), and consider the trace of their *product*. If you change the order in which they're multiplied, does the trace necessarily stay the same? Characterize the permutations of the order of matrices in the product which leave the trace of the product unchanged. (It may be instructive to consider all permutations of 3 different matrices.) What about the case where the matrices are symmetric?

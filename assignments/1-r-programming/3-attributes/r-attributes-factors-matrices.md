@@ -55,6 +55,8 @@ Be sure to pay attention to these details when you load data from external sourc
 
 * Write a function that takes in a data frame and, for each factor column, replaces every `NA` with the most common non-`NA` value in the column. Generate a toy dataframe to use to demonstrate that your function works. Write a different function that replaces every `NA` value with a random level of the factor, distributed identically to their relative frequencies in the column's non-`NA` values. How can you make this [imputation](https://en.wikipedia.org/wiki/Imputation_(statistics)) method reproducible? (*Hint:* Try `set.seed()`.)
 
+The motivation behind the functionality in the next exercise is that linear regressions can't be directly run with factors, which are *categorical* variables, in the predictors; the integer-valued [`levels()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/levels.html) of a factor don't encode any meaning. Instead, we separate all but one level out into *binary indicator variables*, which we can regress against. The simplest and most common example of this is encoding a gender variable as 0 or 1.
+
 * Write a function that takes in a data frame, with some but not all columns being factors, and expands each factor into a set of *indicator variables* within the data frame. Precisely, for each factor, *replace* that factor column with a number of *binary indicator variables*, having these properties:
 
 	* Every level of the factor, aside from the first level, corresponds to a new binary indicator variable.[^collin]
@@ -78,11 +80,11 @@ Be sure to pay attention to these details when you load data from external sourc
 	 3         0      1
 	```
 
-	The motivation behind this functionality is that linear regressions can't be directly run with factors, which are *categorical* variables, in the predictors; the integer-valued `levels()` of a factor don't encode any meaning. Instead, we separate all but one level out into *binary indicator variables*, which we can regress against. The simplest and most common example of this is encoding a gender variable as 0 or 1.
-
 [^collin]: The reason for not making a binary indicator variable for the first level of the factor is that the state of "factor is equal to its first level" can already be represented by the `length(levels()) - 1` binary indicator variables all being set to 0. As such, if we add in a binary indicator variable for the first level, it will cause problems with collinearity that breaks linear techniques (including regression).
 
-* Use `load()` to load `time.dat`, a two-column subset of the data from the [National Longitudinal Study of Adolescent Health](http://www.cpc.unc.edu/projects/addhealth). (The function will load it into the variable `df`.) Look at the documentation for [Wave II: In-Home Questionnaire, Public Use Sample](http://www.icpsr.umich.edu/icpsrweb/DSDR/studies/21600) and read about the two questions in the data (check the column names). Write some code to convert each column to numeric values representing "number of hours past 8:00 PM"[^8pm] and plot two histograms, one for each column, overlaid on top of each other using multiple `geom_histogram()` calls with the `fill` and `alpha` parameters. (*Hint:* Move the `aes()` call into the `geom_histogram()` calls.)[^time]
+Finally, you'll look at some real (and messy!) data from a multi-decade study of adolescent health.
+
+* Use [`load()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/load.html) to load `time.dat`, a two-column subset of the data from the [National Longitudinal Study of Adolescent Health](http://www.cpc.unc.edu/projects/addhealth). (The function will load it into the variable `df`.) Look at the documentation for [Wave II: In-Home Questionnaire, Public Use Sample](http://www.icpsr.umich.edu/icpsrweb/DSDR/studies/21600) and read about the two questions in the data (check the column names). Write some code to convert each column to numeric values representing "number of hours past 8:00 PM"[^8pm] and plot two histograms, one for each column, overlaid on top of each other using multiple [`geom_histogram()`](http://docs.ggplot2.org/0.9.3.1/geom_histogram.html) calls with the `fill` and `alpha` parameters. (*Hint:* Move the [`aes()`](http://docs.ggplot2.org/0.9.3/aes.html) call into the [`geom_histogram()`](http://docs.ggplot2.org/0.9.3.1/geom_histogram.html) calls.)[^time]
 
 [^8pm]: Deciding what the cutoff point is where you stop counting something as "X hours after 8 PM" and start counting it as "24-X hours before 8 PM" is an arbitrary choice in principle, but some choices are more sensible than others -- use your human judgment to optimize for interpretability!
 
@@ -108,43 +110,49 @@ Arrays are simply atomic vectors with a *dimension attribute*, which must be a v
 [10,]   10   20   30   40   50   60   70   80   90   100
 ```
 
-* Write a function that takes an $n$-by-$m$ numeric matrix and turns it into a $m$-by-$n$ numeric matrix where both matrices give the same result when `as.numeric()` is applied.[^mod]
+Now, some exercises:
+
+* Write a function that takes an $n$-by-$m$ numeric matrix and turns it into a $m$-by-$n$ numeric matrix where both matrices give the same result when [`as.numeric()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/numeric.html) is applied.[^mod]
 
 [^mod]: Just modify the attributes directly by assigning to `dim(mat)`, `attributes(mat)$dim`, or `attr(mat, "dim")`!
 
-Matrices work similarly to data frames: you have access to `colnames()`, `rownames()`, `ncol()`, and `nrow()`, and subsetting (broadly speaking) works the same way.[^matsub]
+Matrices work similarly to data frames: you have access to [`colnames()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/colnames.html), [`rownames()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/colnames.html), [`ncol()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/nrow.html), and [`nrow()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/nrow.html), and subsetting (broadly speaking) works the same way.[^matsub]
 
 [^matsub]: There are some nuances -- if you want to learn about them, read Hadley Wickham's *Advanced R*.
 
 * Run the following code: `df = data.frame(matrix(1:100, nrow=10)); df[5, 5] = NA; df[6, 6] = NA`. Figure out how `df[is.na(df)]` works. Write and test a function that takes as input a data frame `df` of purely numeric data and a number `k`, returning a vector of every number in `df` divisible by `k`.
 
-You won't work directly with matrices directly very much for most data science applications -- data frames are much more common and important.[^odd] In practice, they mostly show up as *intermediate forms* in the conversion and manipulation of data, and it's helpful to be aware of matrices so you can debug problems when they show up. (Knowing how matrices work in R might be more important if you're doing numerical simulations of some sort, perhaps in the computational science.)
-
-[^odd]: Isn't it odd that the majority of expositions of R focus so much on presenting matrices in the very beginning, even though they are far more removed from doing *actual, interesting work* than data frames and even many other R concepts?
-
-* If you aren't familiar with the operation of *matrix multiplication*, read about it briefly on [Wikipedia](https://en.wikipedia.org/wiki/Matrix_multiplication#Illustration). Does matrix multiplication work normally with the `*` operator? Why or why not? (Try testing multiplication with the identity matrix.)[^matmult]
-
-[^matmult]: Matrices are vectors, so the multiplication is done element-by-element. Proper matrix multiplication is done with the the `%*%` operator. It's not immediately useful to know this, but it's good to keep it in mind because for more complex matrices, it may not be immediately obvious that `*` doesn't correspond to ordinary matrix multiplication.
+You won't work directly with matrices directly very much for most data science applications -- data frames are much more common and important. In practice, they mostly show up as *intermediate forms* in the conversion and manipulation of data, and it's helpful to be aware of matrices so you can debug problems when they show up. (Knowing how matrices work in R might be more important if you're doing numerical simulations of some sort, perhaps in the computational science.)
 
 * Write a function `min_matrix(n, m)` with `n` rows and `m` columns where the value in row $i$, column $j$ is equal to $\mathrm{min}(i,j)$.
 
-* Write a function to determine if an input matrix is symmetric across its main diagonal (so the element in row $i$, column $j$ is equal to the element in row $j$, column $i$). Only square matrices can be symmetric; you may find `t()` helpful.
+* Write a function to determine if an input matrix is symmetric across its main diagonal (so the element in row $i$, column $j$ is equal to the element in row $j$, column $i$). Only square matrices can be symmetric; you may find [`t()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/t.html) helpful.
 
-* Write a function `trace(mat)` to calculate the trace of an input matrix, *i.e.*, the sum of its diagonal elements. (You may find `diag()` helpful.) Check whether or not the `trace()` function is *linear*, that is, whether it's true that `trace(A + B) = trace(A) + trace(B)` and `trace(c*A) = c*trace(A)` for some constant `c`.
+* Write a function `trace(mat)` to calculate the [trace](https://en.wikipedia.org/wiki/Trace_(linear_algebra)) of an input matrix, *i.e.*, the sum of its diagonal elements. (You may find [`diag()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/diag.html) helpful.) Check whether or not the `trace()` function is *linear*, that is, whether it's true that `trace(A + B) = trace(A) + trace(B)` and `trace(c*A) = c*trace(A)` for some constant `c`.
 
-* Consider the matrices given by `mystery = function(x) matrix(c(cos(x), -sin(x), sin(x), cos(x)), nrow=2)`. Is the output of `mystery()` *periodic* in some sense with respect to its inputs? Check if this holds in practice; if there's a discrepancy, explain it. (*Hint:* If you aren't familiar with the behavior of the `sin()` and `cos()` functions, graph a scatterplot of their values against `seq(0, 10, 0.01)`.)[^rot]
+Matrices can be multiplied together in [a special way](https://en.wikipedia.org/wiki/Matrix_multiplication) which produces another matrix. Such operations are *very* common, arising all over the sciences and in many numerical algorithms.[^matmech]
+
+[^matmech]: Indeed, quantum mechanics was originally formulated as the theory of [matrix mechanics](https://en.wikipedia.org/wiki/Matrix_mechanics) owing to the useful properties of matrix multiplication.
+
+* If you aren't familiar with the operation of matrix multiplication, read about it briefly on [Wikipedia](https://en.wikipedia.org/wiki/Matrix_multiplication#Illustration). Does matrix multiplication work normally with the `*` operator? Why or why not? (Try testing multiplication with the identity matrix.)[^matmult]
+
+[^matmult]: Matrices are vectors, so the multiplication is done element-by-element. Proper matrix multiplication is done with the the [`%*%`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/matmult.html) operator.
+
+* Write a function `matrix_mult(A, B)` that implements matrix multiplication, computing `A %*% B` (without using the [`%*%`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/matmult.html) operator, of course). Using the [`timeit`](https://cran.r-project.org/web/packages/timeit/index.html) package, compare the performance of `matrix_mult()` with the built-in [`%*%`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/matmult.html) operator for matrices of different sizes. Can you speed up your code?
+
+In the following exercises, you will analyze the output of the mystery function `mystery = function(x) matrix(c(cos(x), -sin(x), sin(x), cos(x)), nrow=2)`.
+
+* Is the output of `mystery()` *periodic* in some sense with respect to its inputs? Check if this holds in practice; if there's a discrepancy, explain it. (*Hint:* If you aren't familiar with the behavior of the `sin()` and `cos()` functions, graph a scatterplot of their values against `seq(0, 10, 0.01)`.)[^rot]
 
 [^rot]: We have `mystery(0) != mystery(2*pi)` because of floating-point imprecision.
 
-* Write a function to turn lists of length 4 into 2-by-2 matrices, forming a list-matrix capable of holding different data types. (*Hint:* Use `dim()`.) Speculate on some use cases of list-matrices.
+* Write a function to turn lists of length 4 into 2-by-2 matrices, forming a list-matrix capable of holding different data types. (*Hint:* Use [`dim()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/dim.html).) Speculate on some use cases of list-matrices.
 
-More challenging exercises
-==========================
-
-* Write a function `matrix_mult(A, B)` that implements matrix multiplication, computing `A %*% B` (without using the `%*%` operator, of course). Compare the performance of `matrix_mult()` with the built-in `%*%` operator with the `timeit` package for matrices of different sizes. Can you speed up your code?
-
-* On the 2D plane, we can identify the *point* $(x,y)$ with the *column vector* `matrix(c(x,y), nrow=2, ncol=1)`. First, write a function which takes in a list of column vectors, internally adds each one as a row of a two-column dataframe, and then uses `ggplot()` to graph a *scatterplot* of all the points in the input list. Second, modify this function to accept an argument `x` and so that for every column vector `c` in its list of points, instead of putting the data in `c` directly into the data frame, it does so for the product `mystery(x) %*% c` (for the `mystery()` function defined in a previous exercise). Experiment with different values of `x` and come up with a geometric understanding of how the output graph changes as you modify `x`.[^interp]
+* On the 2D plane, we can identify the *point* $(x,y)$ with the *column vector* `matrix(c(x,y), nrow=2, ncol=1)`. First, write a function which takes in a list of column vectors, internally adds each one as a row of a two-column dataframe, and then uses [`ggplot()`](http://ggplot2.org/) to graph a *scatterplot* of all the points in the input list. Second, modify this function to accept an argument `x` and so that for every column vector `c` in its list of points, instead of putting the data in `c` directly into the data frame, it does so for the product `mystery(x) %*% c` (for the `mystery()` function defined in a previous exercise). Experiment with different values of `x` and come up with a geometric understanding of how the output graph changes as you modify `x`.[^interp]
 
 [^interp]: Calling `mystery(x)` returns a 2-dimensional rotation matrix corresponding to rotation through the angle `x` (given in radians).
 
-* Construct several arbitrary square matrices of identical size but differing contents (try to make them interesting, with lots of nonzero numbers), and consider the trace of their *product*. If you change the order in which they're multiplied, does the trace necessarily stay the same? Characterize the permutations of the order of matrices in the product which leave the trace of the product unchanged. (It may be instructive to consider all permutations of 3 different matrices.) What about the case where the matrices are symmetric?
+Singular value decomposition
+----------------------------
+
+todo

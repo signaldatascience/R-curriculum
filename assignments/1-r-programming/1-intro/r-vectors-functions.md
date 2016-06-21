@@ -48,7 +48,7 @@ In your code, *always* use `TRUE` and `FALSE` instead of `T` and `F` to avoid po
 Atomic vectors
 ==============
 
-Atomic vectors in R are broadly analogous to lists in Python, with the exception that *they can only contain a single type*. Vectors are formed with [`c()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/c.html), which stands for *combine*. For example:
+Atomic vectors in R are analogous to lists in Python, with the exception that *they can only contain a single type*. Vectors are formed with [`c()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/c.html), which stands for *combine*. For example:
 
 ```r
 > c(1,2)
@@ -79,7 +79,7 @@ You should not think of vectors as being some sort of *enclosing structure* with
 
 [^vcoerce]: Vectors are automatically converted to the most general type necessary to accommodate all of the information inside. In order of increasing generality, we have the types logical, numeric, and character (with integer < double within the numeric category).
 
-Of course, you can also explicitly coerce vectors into different types with, say, [`as.character()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/character.html) and [`as.numeric()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/numeric.html). (Try this out!) But in general, coercing a more general type to a more specific type will result in an error.[^backcoerce] In particular, you will introduce `NA` values into a vector when type coercion is not possible:
+Of course, you can also explicitly coerce vectors into different types with functions like [`as.character()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/character.html) and [`as.numeric()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/numeric.html). (Try this out!) However, in general, coercing a more general type to a more specific type will result in an error.[^backcoerce] In particular, you will introduce `NA` values into a vector when type coercion is not possible:
 
 ```r
 > as.logical(c('TRUE', 'str1', 'str2'))
@@ -139,7 +139,7 @@ Now, for practice:
 
 	Determine the source of the error and fix it. What does `runif()` do? Try to guess before looking it up in the documentation. (*Hint:* It's `r unif`, not `run if`.)
 
-Read about how to use [`for` loops in R](http://www.r-bloggers.com/how-to-write-the-first-for-loop-in-r/).
+Next, read about how to use [`for` loops in R](http://www.r-bloggers.com/how-to-write-the-first-for-loop-in-r/).
 
 * Use [`paste()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/paste.html) to make a vector of length 30 that looks like `("label 1", "label 2", ..., "label 30")`.
 
@@ -151,23 +151,47 @@ Read about how to use [`for` loops in R](http://www.r-bloggers.com/how-to-write-
 
 * Create a vector of the values of $e^x \cos(x)$ at $x = 3, 3.1, 3.2, \ldots, 6$.
 
-* Using two nested `for` loops, print out all pairs of integers from 1 to 20 without repeats (order doesn't matter). E.g., don't print out both `(1,2)` and `(2,1)`.
+* Using two nested `for` loops, print out all pairs of integers from 1 to 20 without repeats (order doesn't matter). *E.g.*, don't print out both `(1,2)` and `(2,1)`.
 
 Writing custom functions
 ========================
 
-Read about how to [define functions in R](http://www.r-bloggers.com/how-to-write-and-debug-an-r-function/). Refer back to this page as necessary when doing the following exercises. Initially, don't worry too much about the performance of your code---just focus on making it work.
+In the following section, you'll be doing a bit of [experimental mathematics](https://en.wikipedia.org/wiki/Experimental_mathematics[^arnold] to learn about using and writing simple functions in R.
+
+[^arnold]: V.I. Arnold was an ardent supporter and practitioner of experimental mathematics, with a [book](https://smile.amazon.com/Experimental-Mathematics-Mathematical-Circles-Library/dp/0821894161) on the subject posthumously published in 2015.
+
+* Read about how to [define functions in R](http://www.r-bloggers.com/how-to-write-and-debug-an-r-function/).
+
+We'll first use custom functions to look at the unproven [Collatz conjecture](https://en.wikipedia.org/wiki/Collatz_conjecture), proposed in 1937 by the German mathematician [Lothar Collatz](https://en.wikipedia.org/wiki/Lothar_Collatz). Although the problem is easy to state, it has been notoriously difficult to prove.
 
 * Make a function `collatz(n)` that takes in a positive integer `n` and returns `n/2` if `n` is even or `3n+1` if `n` is odd. Play around with this---what's the limiting behavior as you apply this function repeatedly, e.g. taking `collatz(collatz(collatz(collatz(collatz(n)))))`?
 
 * For the first 100 integers, calculate the number of iterations of `collatz()` required before the output stops changing and use `hist()` to make a histogram of these results. (For the first part, you might find [while loops](http://www.programiz.com/r-programming/while-loop) useful.)
 
+Next, let's verify the identity of the [Hardy--Ramanujan number](http://mathworld.wolfram.com/Hardy-RamanujanNumber.html), the most well known of the [taxicab numbers](https://en.wikipedia.org/wiki/Taxicab_number), with some computations.
+
 * Write a function that takes in a positive integer `n` and calculates the number of ways in which `n` is expressible as the sum of two cubes of positive integers. What is the smallest integer expressible as the sum of two cubes in two different ways?
 
-* Write a function `fib(n)` that returns the `n`th [Fibonacci number](https://en.wikipedia.org/wiki/Fibonacci_number), with `fib(1) == fib(2) == 1`. Then write a different function `fib_test()` that takes in two parameters, `n` and `k`, and for the first `n` Fibonacci numbers calculates whether or not they're divisible by `k`. (Think about what this function should return!) Play around and see if you can find any patterns (hint: try `k = 3`).
+Computational techniques are also very useful for studying the properties of [Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number). Playing around with numerical examples can often shed light on the intuition behind relatively abstract mathematical concepts.
 
-If you have a variable defined in an *outer* environment and you want to change its value while you're inside an *inner* environment, you can use the `<<-` operator to do so. (Don't worry if this doesn't make much sense -- this is a relatively advanced topic and you can complete these problems without needing to use `<<-`.)
+* Write a function `fib(n)` that returns the `n`th Fibonacci number, with `fib(1) == fib(2) == 1`. Then write a different function `fib_test()` that takes in two parameters, `n` and `k`, and for the first `n` Fibonacci numbers calculates whether or not they're divisible by `k`. (Think about what this function should return!) Play around and see if you can find any patterns (hint: try `k = 3`).
 
-In general, instead of recalculating the same values over and over again, you can store the results of computations the first time you do them and then look for the precomputed results if you need them again. (This is called [memoization](https://en.wikipedia.org/wiki/Memoization), related to the method of [dynamic programming](https://en.wikipedia.org/wiki/Dynamic_programming).)
+In general, instead of recalculating the output of the same subroutine repeatedly, you can store the results of computations the first time you do them and then reuse the precomputed results if you need them again. (This is called [memoization](https://en.wikipedia.org/wiki/Memoization), related to the method of [dynamic programming](https://en.wikipedia.org/wiki/Dynamic_programming).)
 
-* Try to speed up of some of the code you've written with this technique, and quantify the improvements in runtime using the [`tictoc`](http://stackoverflow.com/a/33375008/3721976) package. In particular, look at `fib_test()` and `collatz()`.
+* Use memoization to speed up some of the code you've just written and quantify the improvements in runtime using the [`tictoc`](http://stackoverflow.com/a/33375008/3721976) package. In particular, improve `fib_test()` and `collatz()`.
+
+Reservoir sampling
+------------------
+
+A classic task in data analysis is the problem of reading in $n$ data items one by one for a very large and *unknown* $n$ and choosing a random sample of $k$ items. This can be done with [reservoir sampling](https://en.wikipedia.org/wiki/Reservoir_sampling), introduced in 1985 by [Jeffrey Vitter](https://en.wikipedia.org/wiki/Jeffrey_Vitter) as "Algorithm R".
+
+The algorithm consists of the following:
+
+1. Initialize a "reservoir" of size $k$ populated with the first $k$ data items.
+2. Continue reading in the data items. For the $i$th data element, generate a random integer $j$ between 1 and $i$ inclusive. If $j \le k$, then the $j$th item in the reservoir is replaced with the $i$th data item.
+
+Now, following the above description:
+
+* Write a function `reservoir(v, k)` which iterates over the elements of `v` a *single time* and randomly chooses $k$ of them with reservoir sampling. (For the random integer generation, combine [`floor()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Round.html) with [`runif()`](http://www.inside-r.org/r-doc/stats/runif).)
+
+* Run `reservoir()` repeatedly, choosing 5 elements randomly from a vector of 20 elements. For each item, calculate the probability of it being chosen for the sample.

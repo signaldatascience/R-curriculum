@@ -75,7 +75,7 @@ We can compare our naive Bayes classifier with logistic regression. For our logi
 
 * Use regularized elastic net logistic regression to predict spam vs. not-spam, selecting the hyperparameters $\alpha$ and $\lambda$ with the `caret` package.
 
-	* To deal with overfitting to rare or uncommon words, restrict consideration to the 1000 most common $n$-grams with respect to the proportion of emails in which they email.
+	* To reduce computational demands, restrict consideration to the 1000 most common $n$-grams.
 
 * Compute the true positive, true negative, false positive, and false negative rates for you logistic regression spam classifier. Compare its performance to that of your naive Bayes spam classifier.
 

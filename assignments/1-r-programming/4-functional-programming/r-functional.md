@@ -3,7 +3,7 @@ title: "R: Functional Programming"
 author: Signal Data Science
 ---
 
-So far, you've been using *for* and *while* loops in R for iteration. There are, however, benefits to a [functional programming](https://en.wikipedia.org/wiki/Functional_programming) approach.
+So far, you've been using `for` and `while` loops in R for iteration. There are, however, benefits to a [functional programming](https://en.wikipedia.org/wiki/Functional_programming) approach.
 
 In an iterative style, we *loop* through values and successively manipulate each value, whereas in a functional style we *apply* some function to every value independently. It's easiest to illustrate with an example.
 
@@ -187,15 +187,12 @@ Given that loops don't actually have performance issues in R, why should we use 
 
 	* Also, when calling, say, `sapply(args, func)`, each call of `func()` is completely independent of the other ones. This allows them to easily be dispatched to different processor cores.[^multi]
 
-Improving old code
-==================
+Supplemental exercises
+======================
 
 * Go back to your old code for various R exercises. Find five functions which could be written more easily or clearly using functional programming (*e.g.*, using the `*apply()` functions instead of a `for` loop) and rewrite them. Check the difference in runtime.
 
 * If you remember writing any R code in the past for exercises where you kept adding values to a vector or list on every iteration of a loop, rewrite the code here using a preallocated data structure (if possible). Check the difference in runtime using the `timeit` package.
-
-Supplemental exercises
-======================
 
 * Return to these two exercises from the first day's assignments:
 
@@ -308,3 +305,12 @@ Both `Find()` and `Position()` search from the left by default, but they can sea
 [^multi]: Multi-core processing packages for R implement parallelization by overwriting the built-in `*apply()` functions with their own versions. As such, liberal usage of `*apply()` in your code means that you'll be able to easily parallelize it without much rewriting.
 
 [^anyall]: *Hint:* The logical operators `"|"` and `"&"` can be passed into `Reduce()`.
+
+Writing a simple spellcheck function
+====================================
+
+Spelling correction is one of the most natural and oldest natural language processing tasks. It may seem like a difficult task to you at the moment, but it's surprisingly easy to write a spellchecker that does fairly well. (Of course, companies like Google spend millions of dollars making their spellcheckers better and better, but we'll start with something simpler for now.)
+
+* Read Peter Norvig's [How to Write a Spelling Corrector](http://norvig.com/spell-correct.html), paying particular attention to the probabilistic reasoning (which is similar to the ideas behind a [naive Bayes classifier](https://en.wikipedia.org/wiki/Naive_Bayes_classifier)). Recreate it in R and reproduce his results.
+
+* **After** implementing your own spellchecker, read about [this 2-line R implementation](http://www.sumsar.net/blog/2014/12/peter-norvigs-spell-checker-in-two-lines-of-r/) of Norvig's spellchecker.
