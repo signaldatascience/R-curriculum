@@ -55,7 +55,7 @@ For instance, we may make a new list with `x = list("a", 1, TRUE)`. An empty lis
 
 To turn a list into an atomic vector, you can use [`unlist()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/unlist.html).
 
-* Write a function `combine(a, b)` that takes lists `a` and `b`, returning a single list with both the elements of `a` and the elements of `b`. *E.g.*, `combine(list(1, 2), list(3, 4)`, would return `list(1, 2, 3, 4). (*Hint:* Try using [`c()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/c.html).)
+* Write a function `combine(a, b)` that takes lists `a` and `b`, returning a single list with both the elements of `a` and the elements of `b`. *E.g.*, `combine(list(1, 2), list(3, 4)`, would return `list(1, 2, 3, 4)`. (*Hint:* Try using [`c()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/c.html).)
 
 * What happens when you [`unlist()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/unlist.html) a nested list?
 
