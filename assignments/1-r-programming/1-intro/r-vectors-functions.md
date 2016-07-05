@@ -103,7 +103,9 @@ The `NA` is a special value that automatically takes on the type of the enclosin
 
 * Why does `1 == "1"` evaluate to `TRUE`? Why does `-1 < FALSE` evaluate to `TRUE`?
 
-* Why is the default missing value, `NA`, a logical vector? What's special about logical vectors? (Hint: think about `c(FALSE, NA_character_)`.)
+* Why is the default missing value, `NA`, a logical vector? What's special about logical vectors? (Hint: think about `c(FALSE, NA_character_)`.)[^special]
+
+[^special]: You don't want `NA`s to coerce other values in a vector to more general types; rather, you want the `NA` to be the most *specific* type, a logical, so that the presence of missing values doesn't coerce the rest of your data into an unexpected type.
 
 Conditionals and loops
 ======================
@@ -162,7 +164,7 @@ In the following section, you'll be doing a bit of [experimental mathematics](ht
 
 * Read about how to [define functions in R](http://www.r-bloggers.com/how-to-write-and-debug-an-r-function/).
 
-We'll first use custom functions to look at the unproven [Collatz conjecture](https://en.wikipedia.org/wiki/Collatz_conjecture), proposed in 1937 by the German mathematician [Lothar Collatz](https://en.wikipedia.org/wiki/Lothar_Collatz). Although the problem is easy to state, it has been notoriously difficult to prove.
+We'll first use custom functions to look at the unproven [Collatz conjecture](https://en.wikipedia.org/wiki/Collatz_conjecture), proposed in 1937 by the German mathematician [Lothar Collatz](https://en.wikipedia.org/wiki/Lothar_Collatz). Although the problem is easy to state, it has been notoriously difficult to prove. The conjecture has [deep connections](http://math.stackexchange.com/a/10608/131036) to the structure of the natural numbers and their prime factorizations.
 
 * Make a function `collatz(n)` that takes in a positive integer `n` and returns `n/2` if `n` is even or `3n+1` if `n` is odd. Play around with this---what's the limiting behavior as you apply this function repeatedly, e.g. taking `collatz(collatz(collatz(collatz(collatz(n)))))`?
 

@@ -155,4 +155,4 @@ In the following exercises, you will analyze the output of the mystery function 
 Singular value decomposition
 ----------------------------
 
-todo
+The [singular value decomposition](https://en.wikipedia.org/wiki/Singular_value_decomposition) is a procedure which can be intuitively interpreted as the decomposition of a matrix, representing an arbitrary linear transformation, into a rotation, a rescaling, and another rotation.
