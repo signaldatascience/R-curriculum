@@ -1,5 +1,5 @@
 ---
-title: Simple Linear Regression
+title: "Simple Linear Regression: Infant Mortality"
 author: Signal Data Science
 ---
 

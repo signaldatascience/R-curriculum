@@ -101,7 +101,7 @@ The `NA` is a special value that automatically takes on the type of the enclosin
 	c(TRUE, 1L)
 	```
 
-* Why is `1 == "1"` true? Why is `-1 < FALSE` true?
+* Why is `1 == "1"` evaluate to `TRUE`? Why is `-1 < FALSE` evaluate to `FALSE`?
 
 * Why is the default missing value, `NA`, a logical vector? What's special about logical vectors? (Hint: think about `c(FALSE, NA_character_)`.)
 
@@ -179,19 +179,3 @@ Computational techniques are also very useful for studying the properties of [Fi
 In general, instead of recalculating the output of the same subroutine repeatedly, you can store the results of computations the first time you do them and then reuse the precomputed results if you need them again. (This is called [memoization](https://en.wikipedia.org/wiki/Memoization), related to the method of [dynamic programming](https://en.wikipedia.org/wiki/Dynamic_programming).)
 
 * Use memoization to speed up some of the code you've just written and quantify the improvements in runtime using the [`tictoc`](http://stackoverflow.com/a/33375008/3721976) package. In particular, improve `fib_test()` and `collatz()`.
-
-Reservoir sampling
-------------------
-
-A classic task in data analysis is the problem of reading in $n$ data items one by one for a very large and *unknown* $n$ and choosing a random sample of $k$ items. This can be done with [reservoir sampling](https://en.wikipedia.org/wiki/Reservoir_sampling), introduced in 1985 by [Jeffrey Vitter](https://en.wikipedia.org/wiki/Jeffrey_Vitter) as "Algorithm R".
-
-The algorithm consists of the following:
-
-1. Initialize a "reservoir" of size $k$ populated with the first $k$ data items.
-2. Continue reading in the data items. For the $i$th data element, generate a random integer $j$ between 1 and $i$ inclusive. If $j \le k$, then the $j$th item in the reservoir is replaced with the $i$th data item.
-
-Now, following the above description:
-
-* Write a function `reservoir(v, k)` which iterates over the elements of `v` a *single time* and randomly chooses $k$ of them with reservoir sampling. (For the random integer generation, combine [`floor()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Round.html) with [`runif()`](http://www.inside-r.org/r-doc/stats/runif).)
-
-* Run `reservoir()` repeatedly, choosing 5 elements randomly from a vector of 20 elements. For each item, calculate the probability of it being chosen for the sample.
