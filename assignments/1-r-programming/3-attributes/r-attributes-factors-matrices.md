@@ -152,7 +152,12 @@ In the following exercises, you will analyze the output of the mystery function 
 
 [^interp]: Calling `mystery(x)` returns a 2-dimensional rotation matrix corresponding to rotation through the angle `x` (given in radians).
 
-Singular value decomposition
+Principal component analysis
 ----------------------------
 
-The [singular value decomposition](https://en.wikipedia.org/wiki/Singular_value_decomposition) is a procedure which can be intuitively interpreted as the decomposition of a matrix, representing an arbitrary linear transformation, into a rotation, a rescaling, and another rotation.
+The technique of [principal component analysis](https://en.wikipedia.org/wiki/Principal_component_analysis) (PCA) can be conceptualized in the following manner: First, we find the direction along which the data varies the most (analogous to the [semi-major axis of an ellipse](https://en.wikipedia.org/wiki/Semi-major_and_semi-minor_axes)). That is the first principal component. We then 'subtract off' that dimension of variation from the data and, in the reduced data, find the direction along which the data varies the most. This is the second principal component. Repeating this process, we end up with $p$ principal components for a dataset of dimension $p$ (containing $p$ variables).
+
+PCA is actually ordinarily calculated through the computation of the [singular value decomposition](https://en.wikipedia.org/wiki/Singular_value_decomposition) of the [covariance matrix](https://en.wikipedia.org/wiki/Covariance_matrix) of the data, but the above procedure better illustrates the intuition behind PCA. The first principal component (PC1) is the dimension which accounts for as much variation as possible, PC2 accounts for as much variation as possible after PC1, PC3 accounts for as much variation as possible after PC1 and PC2, and so on and so forth. PCA can also be thought of as a rotation of the coordinate axes.
+
+* Read [this](http://stats.stackexchange.com/a/140579/115666) StackExchange answer explaining the intuition behind PCA.
+

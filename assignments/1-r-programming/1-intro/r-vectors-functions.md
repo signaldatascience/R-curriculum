@@ -168,7 +168,7 @@ We'll first use custom functions to look at the unproven [Collatz conjecture](ht
 
 * Make a function `collatz(n)` that takes in a positive integer `n` and returns `n/2` if `n` is even or `3n+1` if `n` is odd. Play around with this---what's the limiting behavior as you apply this function repeatedly, e.g. taking `collatz(collatz(collatz(collatz(collatz(n)))))`?
 
-* For the first 100 integers, calculate the number of iterations of `collatz()` required before the output stops changing and use `hist()` to make a histogram of these results. (For the first part, you might find [while loops](http://www.programiz.com/r-programming/while-loop) useful.)
+* For the first 100 integers, calculate the number of iterations of `collatz()` required before the output reaches 1 and use `hist()` to make a histogram of these results. (For the first part, you might find [while loops](http://www.programiz.com/r-programming/while-loop) useful.)
 
 Next, let's verify the identity of the [Hardy--Ramanujan number](http://mathworld.wolfram.com/Hardy-RamanujanNumber.html), the most well known of the [taxicab numbers](https://en.wikipedia.org/wiki/Taxicab_number), with some computations.
 
