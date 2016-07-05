@@ -1,5 +1,5 @@
 ---
-title: "Simple Linear Regression: Galton's Height Data"
+title: "Linear Regression: Galton's Height Data"
 author: Signal Data Science
 ---
 
@@ -46,9 +46,9 @@ In the questions below, "run a regression of A against X, Y and Z" should be und
 
 * Compare the results of regressing average child heights against (fathers' heights and mothers' heights versus regressing against mid-parent heights. Interpret the results, paying particular attention to the adjusted R-squared statistic.
 
-* Run a linear regression of the numbers of children in families against fathers' heights, mothers' heights, and average child heights. Looking at the summaries of the linear fits, do these regressions capture any statistically significant relationships? If so, with what p-values?
+* Run a linear regression of the numbers of children in families against fathers' heights, mothers' heights, and average child heights. Looking at the summaries of the linear fits, do these regressions capture any statistically significant relationships? If so, with what $p$-values?
 
-	* Here, "p-values" refers to the p-values associated with each coefficient in the regression, associated with testing for the null hypothesis that the value of each coefficient is equal to zero.
+	* Here, "$p$-values" refers to the $p$-values associated with each coefficient in the regression, associated with testing for the null hypothesis that the value of each coefficient is equal to zero.
 
 * Following the example usages of `ggplot()` that you've already seen along with the official documentation, use `ggplot()` in conjunction with [`geom_hist()`](http://docs.ggplot2.org/current/geom_histogram.html) to make a histogram displaying the distribution of number of children per family.
 

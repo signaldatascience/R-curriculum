@@ -1,5 +1,5 @@
 ---
-title: "R: Data frames"
+title: "R: Data Frames"
 author: Signal Data Science
 ---
 
@@ -341,7 +341,15 @@ Now, following the above description:
 Permutation generation
 ----------------------
 
+Given a finite set of items in a given order, a [permutation](https://en.wikipedia.org/wiki/Permutation) of those items is a distinct reordering of them. For example, a permutation of $\{A, B, C\}$ is $\{B, A, C\}$. The generation of permutations is yet another classic algorithms problem.
 
+Suppose we wish to generate all permutations of the integers from 1 to $n$. The easiest way to do so is as follows: Begin with the set of all permutations of the integers from 1 to $n-1$. For each of those permutations, insert $n$ in every possible position to form a permutation of the integers from 1 to $n$. Discard the repeats. To get the permutations of 1 to $n-1$, use the permutations of 1 to $n-2$; for those, use the permutations of 1 to $n-3$, and so on and so forth ...
+
+* Following the above strategy, write a function `perm_naive(n)` to print all permutations of the integers from 1 to $n$. Test your function on small values of $n$ like 2, 4, and 6.
+
+The above method is very slow, but there are much faster algorithms. Indeed, it is not even necessary to generate the permutations of 1 to $n-1$ in order to generate all permutations of 1 to $n$.
+
+* We can generate permutations in [lexicographic order](https://en.wikipedia.org/wiki/Lexicographical_order). Follow the [Wikipedia description of the algorithm](https://en.wikipedia.org/wiki/Permutation#Generation_in_lexicographic_order) to write a function `perm_lexico(n)` which prints all the permutations of 1 to $n$ in lexicographic order.
 
 Quicksort and quickselect
 -------------------------

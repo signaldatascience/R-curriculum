@@ -250,6 +250,8 @@ For *creating* matrices and arrays, we have `outer(A, B, func)`, which iterates 
 
 Some operations become very easy with [`outer()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/outer.html).
 
+
+
 `Map()`
 -------
 

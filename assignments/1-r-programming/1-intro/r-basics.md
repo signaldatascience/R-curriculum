@@ -5,7 +5,7 @@ author: Signal Data Science
 
 This presents the basics of programming in R.
 
-Some of the stuff on this page might not be immediately relevant, but you should at least skim all the content regardless just to know that it exists. When the need arises, you'll know where to look.
+Some of the information on this page might not be immediately relevant, but you should at least skim all the content regardless just to know that it exists. When the need arises, you'll know where to look.
 
 Installing R
 ============
