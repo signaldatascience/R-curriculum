@@ -101,7 +101,7 @@ The `NA` is a special value that automatically takes on the type of the enclosin
 	c(TRUE, 1L)
 	```
 
-* Why is `1 == "1"` evaluate to `TRUE`? Why is `-1 < FALSE` evaluate to `FALSE`?
+* Why does `1 == "1"` evaluate to `TRUE`? Why does `-1 < FALSE` evaluate to `TRUE`?
 
 * Why is the default missing value, `NA`, a logical vector? What's special about logical vectors? (Hint: think about `c(FALSE, NA_character_)`.)
 
