@@ -44,7 +44,7 @@ Next, we'll do some visualizations and transformations of the data as a prelude 
 
 	* What do you notice about the distributions of GDP and infant mortality?
 
-	* Use [`log()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Log.html) on `df to take the [natural logarithm](https://en.wikipedia.org/wiki/Natural_logarithm) of every value in the data frame; assign the resulting data frame to `ldf`. Examine `ldf` with [`ggpairs()`](https://cran.r-project.org/web/packages/GGally/vignettes/ggpairs.html).
+	* Use [`log()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Log.html) on `df` to take the [natural logarithm](https://en.wikipedia.org/wiki/Natural_logarithm) of every value in the data frame; assign the resulting data frame to `ldf`. Examine `ldf` with [`ggpairs()`](https://cran.r-project.org/web/packages/GGally/vignettes/ggpairs.html).
 
 	* Note the differences and reflect on the appropriateness of a linear model for the untransformed vs. transformed data.
 
