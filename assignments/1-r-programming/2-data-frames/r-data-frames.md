@@ -3,7 +3,7 @@ title: "R: Data Frames"
 author: Signal Data Science
 ---
 
-This lesson will cover the details of some more advanced data structures in R.
+This lesson will cover the details of some more advanced data structures in R. We'll begin with some more fundamental parts of R (names and lists) in order to work our way up to data frames. We'll also go over the details of subsetting in R, *i.e.*, grabbing specific parts of vectors, lists, and data frames which you want.
 
 Names
 =====
