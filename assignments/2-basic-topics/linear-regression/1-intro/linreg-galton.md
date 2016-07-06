@@ -36,7 +36,7 @@ In the questions below, "run a regression of A against X, Y and Z" should be und
 
 * Aggregate the data by family using the appropriate `dplyr` function. Before writing any R code to do so, think about what this aggregation actually means and what kinds of variables you want to calculate on a per-family basis.
 
-	* If the function isn't doing what you expect, check that there isn't a *namespace conflict* between that function and a preexisting function in base R. To call a dplyr function `func()` specifically in such a case, call `dplyr::func()`.
+	* The `Rmisc` package loads the `plyr` package as a dependency, which loads its own [`summarise()`](http://www.inside-r.org/packages/cran/plyr/docs/summarise) function and consequently overrides `dplyr`'s `summarize()`. To access the `summarize()` of dplyr, call `dplyr::summarise()`.
 
 * Plot the average heights of children in each family against the mothers' heights, the fathers' heights, and the mid-parent heights. Afterward, use [multiplot](http://www.cookbook-r.com/Graphs/Multiple_graphs_on_one_page_(ggplot2)/) to display all three graphs at the same time.
 
@@ -50,7 +50,7 @@ In the questions below, "run a regression of A against X, Y and Z" should be und
 
 	* Here, "$p$-values" refers to the $p$-values associated with each coefficient in the regression, associated with testing for the null hypothesis that the value of each coefficient is equal to zero.
 
-* Following the example usages of `ggplot()` that you've already seen along with the official documentation, use `ggplot()` in conjunction with [`geom_hist()`](http://docs.ggplot2.org/current/geom_histogram.html) to make a histogram displaying the distribution of number of children per family.
+* Following the example usages of `ggplot()` that you've already seen along with the official documentation, use `ggplot()` in conjunction with [`geom_histogram()`](http://docs.ggplot2.org/current/geom_histogram.html) to make a histogram displaying the distribution of number of children per family.
 
 Doing additional analysis
 =========================

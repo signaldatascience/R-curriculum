@@ -36,7 +36,7 @@ Suppose we would like to calculate the mean of each column. One way to do this i
  [1]  5.5 15.5 25.5 35.5 45.5 55.5 65.5 75.5 85.5 95.5
 ```
 
-However, I can do this in a somewhat more compact fashion by using R's [[`sapply()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/lapply.html)](https://stat.ethz.ch/R-manual/R-devel/library/base/html/lapply.html):
+However, I can do this in a somewhat more compact fashion by using R's [`sapply()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/lapply.html)](https://stat.ethz.ch/R-manual/R-devel/library/base/html/lapply.html):
 
 ```r
 > means = sapply(1:ncol(df), function(i) mean(df[[i]]))

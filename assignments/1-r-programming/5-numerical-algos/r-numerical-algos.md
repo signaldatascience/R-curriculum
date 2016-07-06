@@ -71,7 +71,7 @@ Before we can even think of operating on bitwise representations of integers, we
 
 * Write a function `to_binary(n)` which takes an integer `n` and returns its binary representation in a string with no leading zeroes (*e.g.*, "10100" instead of "0010100").
 
-* Write a function `to_decimal(b)` which takes a binary representation `b` and returns the corresponding decimal integer.
+* Write a function `to_decimal(b)` which takes a binary representation `b` and returns the corresponding decimal integer. To handle large integers, return 
 
 The bitwise XOR operation takes two binary numbers of equal length and outputs another number of the same length, where the $i$th position in the output is 1 if the $i$th positions in the two input numbers are different and 0 if they are the same. For example, $0101 \oplus 0011 = 0110$ and $0010 \oplus 1010 = 1000$.
 
