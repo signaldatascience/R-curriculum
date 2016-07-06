@@ -37,7 +37,7 @@ Given a finite set of items in a given order, a [permutation](https://en.wikiped
 
 Suppose we wish to generate all permutations of the integers from 1 to $n$. The easiest way to do so is as follows: Begin with the set of all permutations of the integers from 1 to $n-1$. For each of those permutations, insert $n$ in every possible position to form a permutation of the integers from 1 to $n$. Discard the repeats. To get the permutations of 1 to $n-1$, use the permutations of 1 to $n-2$; for those, use the permutations of 1 to $n-3$, and so on and so forth ...
 
-* Following the above strategy, write a function `perm_naive(n)` to return a list of all permutations of the integers from 1 to $n$. Test your function on small values of $n$ like 2, 4, and 6.
+* Following the above strategy, write a function `perm_naive(n)` to return a list of all permutations of the integers from 1 to $n$. You may find [`unique()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/unique.html) helpful. Test your function on small values of $n$ like 2, 4, and 6.
 
 The above method is very slow, but there are much faster algorithms. Indeed, it is not even necessary to generate the permutations of 1 to $n-1$ in order to generate all permutations of 1 to $n$.
 
