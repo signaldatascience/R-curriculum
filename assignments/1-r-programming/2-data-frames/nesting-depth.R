@@ -1,3 +1,5 @@
+# Two different implementations of a nesting depth function
+
 # Checks if any of the elements of L are themselves a list
 contains_list = function(L) {
   if (length(L) == 0) {
