@@ -56,3 +56,71 @@ perm_naive = function(n) {
 }
 perm_naive(4)
 
+# Quicksort implemented with for loops
+quicksort = function(L) {
+  if (length(L) <= 1) {
+    return(L)
+  }
+
+  pivot_idx = sample(1:length(L), 1)
+  pivot = L[pivot_idx]
+
+  small = c()
+  large = c()
+
+  for (i in 1:length(L)) {
+    if (i != pivot_idx) {
+      if (L[i] <= pivot) {
+        small = c(small, L[i])
+      } else {
+        large = c(large, L[i])
+      }
+    }
+  }
+
+  return(c(quicksort(small), pivot, quicksort(large)))
+}
+
+# Quicksort implemented with direct subsetting
+quicksort2 = function(L) {
+  if (length(L) <= 1) {
+    return(L)
+  }
+
+  pivot_idx = sample(1:length(L), 1)
+  pivot = L[pivot_idx]
+
+  L = L[-pivot_idx]
+  small = L[L <= pivot]
+  large = L[L > pivot]
+
+  return(c(quicksort(small), pivot, quicksort(large)))
+}
+
+x = c(sample(1:5), sample(1:5), sample(1:5))
+x
+quicksort(x)
+quicksort2(x)
+
+# Quickselect for kth smallest element of L
+quickselect = function(L, k) {
+  pivot_idx = sample(1:length(L), 1)
+  pivot = L[pivot_idx]
+
+  L = L[-pivot_idx]
+  small = L[L <= pivot]
+  large = L[L > pivot]
+
+  if (length(small) == k-1) {
+    return(pivot)
+  } else if (length(small) >= k) {
+    return(quickselect(small, k))
+  } else {
+    return(quickselect(large, k-length(small)-1))
+  }
+}
+
+x = sample(1:10)
+x
+quickselect(x, 3)
+quickselect(x, 10)
