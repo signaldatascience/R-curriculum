@@ -1,31 +1,14 @@
 ---
-title: "R: Numerical Algorithms"
+title: "R: Advanced Algorithms"
 author: Signal Data Science
 ---
 
 things to cover:
 
 * profvis
+* <<- operator
 
 Now that you're acquainted with the basics of R's functional programming toolkit and have a strong grasp of the most important aspects of R's internals, we'll wrap up our R curriculum with some materials on a variety of useful and interesting numerical algorithms.
-
-Numerical optimization
-======================
-
-Gradient descent
-----------------
-
-Backpropagation
----------------
-
-Stochastic gradient descent
----------------------------
-
-The Newton--Raphson method
---------------------------
-
-The Nelder--Mead method
------------------------
 
 Fast modular exponentiation
 ===========================

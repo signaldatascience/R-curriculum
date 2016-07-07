@@ -257,7 +257,7 @@ Intuitively, you can think of `mapply()` as walking down multiple parallel vecto
 
 * Implement your own version of [`sum()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/sum.html) using [`Reduce()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/funprog.html) and addition. (*Hint:* `"+"` counts as a function.)
 
-* Write `my_union(L)` and `my_intersect(L)` functions using [`Reduce()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/funprog.html) and set operations (see `?sets`) that take lists of arbitrarily many vectors and calculates, respectively, the union or intersection of all of them.
+* Write `my_union(L)` and `my_intersect(L)` functions using [`Reduce()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/funprog.html) and set operations (see `?union`) that take lists of arbitrarily many vectors and calculates, respectively, the union or intersection of all of them.
 
 * There are functions which, when passed into [`Reduce()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/funprog.html), give a different overall result depending on whether [`Reduce()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/funprog.html) starts with the two leftmost or the two rightmost elements of the vector it's operating on. Write a function that runs [`Reduce()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/funprog.html) in both directions and, if the two results are the same, returns the result, and returns `NA` otherwise.
 
@@ -276,7 +276,7 @@ All three of these functions accept a function `func()` as their first argument 
 
 Both [`Find()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/funprog.html) and [`Position()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/funprog.html) search from the left by default, but they can search starting from the right with the parameter `right=TRUE`.
 
-* Implement `Any()`, a function that takes a list and a predicate function (a function returning either `TRUE` or `FALSE`), and returns `TRUE` if the predicate function returns `TRUE` for any of the inputs. Implement `All()` similarly.[^anyall]
+* Implement `Any()`, a function that takes a list and a predicate function (a function returning either `TRUE` or `FALSE`), and returns `TRUE` if the predicate function returns `TRUE` for any of the inputs. Implement `All()` similarly -- return `TRUE` if and only if the predicate function returns `TRUE` for all inputs.[^anyall]
 
 [^bugs]: Since [`vapply()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/lapply.html) will return the correct type of 0-length vector in the case where the list of arguments is empty, it helps guard against errors from various edge cases.
 
