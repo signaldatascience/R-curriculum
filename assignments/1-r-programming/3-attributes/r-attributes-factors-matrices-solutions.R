@@ -34,6 +34,17 @@ for (i in 42:43) {
   df[[rn]] = unlist(new_col)
 }
 
+# min_matrix
+min_matrix = function(n, m) {
+  ret = matrix(rep(0, n*m), nrow=n)
+  for (i in 1:n) {
+    for (j in 1:m) {
+      ret[i, j] = min(i, j)
+    }
+  }
+  ret
+}
+
 # Implementation of matrix multiplication
 dot_prod = function(x, y) {
   sum(x*y)
@@ -42,6 +53,16 @@ matrix_mult = function(A, B) {
   dim_x = dim(A)[1]
   dim_y = dim(B)[2]
   ret = matrix(rep(0, dim_x * dim_y), nrow=dim_y)
-  ret
+  for (i in 1:nrow(A)) {
+    for (j in 1:ncol(B)) {
+      row = A[i, ]
+      col = B[, j]
+      ret[i, j] = dot_prod(row, col)
+    }
+  }
   return(ret)
 }
+
+A = matrix(1:6, nrow=2)
+B = matrix(1:6, nrow=3)
+matrix_mult(A, B)

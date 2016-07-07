@@ -235,23 +235,6 @@ Since we passed in a dimension of `1` to [`apply()`](https://stat.ethz.ch/R-manu
 
 `apply()` is mostly useful for running functions over every row of a data frame.
 
-`outer()`
----------
-
-For *creating* matrices and arrays, we have `outer(A, B, func)`, which iterates over *every combination of values in `A` and `B`* and applies `func()` to both values. The `func` argument defaults to normal multiplication, so the functionality of [`outer()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/outer.html) can be easily demonstrated in the creation of a times table:
-
-```r
-> outer(1:3, 1:4)
-     [,1] [,2] [,3] [,4]
-[1,]    1    2    3    4
-[2,]    2    4    6    8
-[3,]    3    6    9   12
-```
-
-Some operations become very easy with [`outer()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/outer.html).
-
-
-
 `Map()`
 -------
 
@@ -308,14 +291,3 @@ Both [`Find()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/funprog.
 [^multi]: Multi-core processing packages for R implement parallelization by overwriting the built-in `*apply()` functions with their own versions. As such, liberal usage of `*apply()` in your code means that you'll be able to easily parallelize it without much rewriting.
 
 [^anyall]: *Hint:* The logical operators `"|"` and `"&"` can be passed into [`Reduce()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/funprog.html).
-
-Writing a simple spellcheck function
-====================================
-
-We'll wrap up the lesson on functional programming with a short project in natural language processing which will draw on all of the concepts in R which you've learned so far.
-
-Spelling correction is one of the most natural and oldest natural language processing tasks. It may seem like a difficult task to you at the moment, but it's surprisingly easy to write a spellchecker that does fairly well. (Of course, companies like Google spend millions of dollars making their spellcheckers better and better, but we'll start with something simpler for now.)
-
-* Read Peter Norvig's [How to Write a Spelling Corrector](http://norvig.com/spell-correct.html), paying particular attention to the probabilistic reasoning (which is similar to the ideas behind a [naive Bayes classifier](https://en.wikipedia.org/wiki/Naive_Bayes_classifier)). Recreate it in R and reproduce his results.
-
-* **After** implementing your own spellchecker, read about [this 2-line R implementation](http://www.sumsar.net/blog/2014/12/peter-norvigs-spell-checker-in-two-lines-of-r/) of Norvig's spellchecker.

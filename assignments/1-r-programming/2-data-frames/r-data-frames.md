@@ -268,11 +268,13 @@ In the following, `mtcars` refers to a dataset that's [loaded by default](http:/
 
 * Why does `mtcars[1:20]` return an error? How does it differ from the similar `mtcars[1:20, ]`?
 
-* What does `df[is.na(df)] = 0` do? How does it work?
+* What does `df[is.na(df)] = 0` do? How does it work? You can test it on the data frame `df = data.frame(matrix(1:4, nrow=2)); df[2, 2] = NA`.
 
-* Let `x = c("a", "b", "a", "a", "b", "x", "b", "a")`. Construct a named vector called `fruits` such that the output of `fruits[x]` is equal to `c("apple", "banana", "apple", "apple", "banana", NA, "banana", "apple")`.
+* Let `x = c("a", "b", "a", "a", "b", "x", "b", "a")`. Construct a named vector called `fruits` such that the output of `fruits[x]` is equal to `c("apple", "banana", "apple", "apple", "banana", NA, "banana", "apple")`.[^fruits]
 
-* Using [`order()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/order.html), write a function to alphabetize the columns of a data frame by their names.
+[^fruits]: The intended solution is `fruits = c(a="apple", b="banana", x=NA)`. Make sure you understand how this works.
+
+* Using [`order()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/order.html), write a function to alphabetize the columns of a data frame by their names. If you get stuck, try subsetting with the output of [`order()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/order.html).
 
 * Using [`sample()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/sample.html), write a function that takes a data frame as input and returns it with the order of its columns randomly permuted. After that, add a logical (boolean) flag to the function's parameters called `rows` defaulting to `FALSE` that permutes the rows as well if set to `TRUE`. (*I.e.*, calling `f(df)` would be equivalent to calling `f(df, rows=FALSE)` but `f(df, rows=TRUE)` would permute rows as well as columns.)
 
@@ -284,7 +286,7 @@ In the following, `mtcars` refers to a dataset that's [loaded by default](http:/
 
 Next, take a look at the built-in variable `letters`. We'll use `letters` to begin an exploration of R's string manipulation functions.
 
-* Write a function that uses [`grep()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/grep.html) to count the number of times each letter appears in the column names of an input data frame. It should return a numeric vector with appropriate names and of length 26 where the $i$th entry is the determined frequency of letter $i$.
+* Write a function that uses [`grep()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/grep.html) and [`strsplit()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/strsplit.html) to count the number of times each letter appears in the column names of an input data frame. It should return a numeric vector with appropriate names and of length 26 where the $i$th entry is the determined frequency of letter $i$.
 
 * Write a function that uses [`gsub()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/grep.html) to modify the column names of an input data frame by (1) changing every space (`" "`) into a dot (`"."`) and (2) appending `"_mod"` to the end of each name.
 

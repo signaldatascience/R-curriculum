@@ -1,5 +1,5 @@
 ---
-title: Simulated Data Regressions
+title: "Linear Regression: Simulated Data"
 author: Signal Data Science
 ---
 
