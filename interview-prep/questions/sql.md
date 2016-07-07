@@ -3,6 +3,8 @@ title: "Interview Questions: SQL"
 author: Signal Data Science
 ---
 
+See [here](https://www.quora.com/What-are-the-frequently-asked-basic-and-complex-queries-SQL-during-a-tech-interview/answer/Greg-Kemnitz) for some stuff.
+
 * What are the different types of joins? What are the differences between them?
 
 * Why might a join on a subquery be slow? How might you speed it up?
@@ -17,7 +19,7 @@ author: Signal Data Science
 
 * Given a `COURSES` table with columns `course_id` and `course_name`, a `FACULTY` table with columns `faculty_id` and `faculty_name`, and a `COURSE_FACULTY` table with columns `faculty_id` and `course_id`, how would you return a list of faculty who teach a course given the name of a course?
 
-	* SELECT faculty_name WHERE course_name = "whatever" FROM COURSES INNER JOIN COURSE_FACULTY ON course_id INNER JOIN FACULTY ON faculty_id
+	* SELECT faculty_name FROM COURSES INNER JOIN COURSE_FACULTY ON course_id INNER JOIN FACULTY ON faculty_id WHERE course_name = "whatever"
 
 * Given an `IMPRESSIONS` table with `ad_id`, `click` (an indicator that the ad was clicked), and `date`, write a SQL query that will tell me the clickthrough rate of each ad by month.
 
@@ -28,3 +30,9 @@ author: Signal Data Science
 	`EMPLOYEE_DEPT` containing: `Emp_ID` (Foreign key) and `Dept_ID` (Foreign key)
 
 	`DEPTS` containing: `Dept_ID` (Primary key) and `Dept_Name`
+
+* What's the difference between `WHERE` and `HAVING`?
+
+	* See [here](http://stackoverflow.com/questions/287474/whats-the-difference-between-having-and-where). The `HAVING` clause specifies a search condition if we use some grouping or aggregation clause like `GROUP BY`.
+
+* What's the difference between `LEFT JOIN`, `RIGHT JOIN`, and `INNER JOIN`?
