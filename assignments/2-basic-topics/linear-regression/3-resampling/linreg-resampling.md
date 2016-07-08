@@ -31,7 +31,7 @@ In the problems below, we'll be splitting the data into random subsets. This ent
 A single train/test split
 =========================
 
-We'll begin by using a *single* train/test split on the data to evaluate the quality of a linear model.
+We'll begin by using a *single* train/test split on the data to evaluate the quality of a linear model. It is the simplest method of resampling and consequently the most straightforward one to implement.
 
 * Load the speed dating dataset (using [`read.csv()`](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/read.table.html)) and filter the dataset for the gender of your choice.
 
@@ -71,12 +71,12 @@ You'll be implementing the above process in the following problems and comparing
 
 * Compare the results of a single train/test split, 2-fold cross validation, and 10-fold cross validation with regard to getting an accurate measure of model quality.
 
-Stepwise regression
-===================
+Stepwise linear regression
+==========================
 
-Now that we have a way to evaluate model quality -- with the cross-validated RMSE -- we can use this metric of model quality to choose between *different models*. After all, we need not include *every* available variable into our linear model; well-chosen omissions can improve model performance on a test set.
+Now that we have a way to evaluate model quality -- with the cross-validated RMSE -- we can use this metric of model quality to choose between *different models*. After all, we need not include *every* available variable into our linear model; well-chosen omissions can substantially improve model performance on a test set. Stepwise regression is one of many ways to choose which variables to include (a task called [feature selection](https://en.wikipedia.org/wiki/Feature_selection)).
 
-In [*backward stepwise regression*](https://en.wikipedia.org/wiki/Stepwise_regression), we do the following:
+In [*backward stepwise regression*](https://en.wikipedia.org/wiki/Stepwise_regression) (one type of normal stepwise regression), we do the following:
 
 1. We start with every predictor variable added to the model.
 2. Then, we iterate, at each step removing the variable which adds the least to the model.
@@ -85,7 +85,7 @@ In [*backward stepwise regression*](https://en.wikipedia.org/wiki/Stepwise_regre
 Implementing backward stepwise regression
 -----------------------------------------
 
-Let's find out how much improvement we can get in our model by using this method.
+Let's find out how much we can improve on a linear regression which includes every variable by using backward stepwise regression.
 
 * Write your own implementation of backward stepwise regression as a function `backward_step(df)` which follows these criteria:
 
@@ -106,13 +106,11 @@ Let's find out how much improvement we can get in our model by using this method
 Using R's `step()`
 ------------------
 
-We'll finish off by using R's built-in stepwise regression function, [`step()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/step.html). You can treat its functionality as a black box, but:
+We'll finish off by using R's built-in stepwise regression function, [`step()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/step.html), to run backward stepwise regression on all five average ratings. Instead of using a cross-validated RMSE as a metric of model quality, it uses the [Akaike information criterion](https://en.wikipedia.org/wiki/Akaike_information_criterion) (AIC). You can treat the AIC as a black box -- just know that a lower AIC indicates a better model.
 
 * Spend a minute or two skimming [the official documentation for `step()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/step.html), especially the *Details* section.
 
-By default, [`step()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/step.html) uses the [Akaike information criterion](https://en.wikipedia.org/wiki/Akaike_information_criterion) as a measure of model quality -- both for determining which variable to add or remove and for determining when to stop -- which you can also treat as a black box. (Just know that *a lower AIC is better*.)
-
-Here's an example of backward stepwise regression:
+Here's an example of how to use backward stepwise regression with [`step()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/step.html):
 
 ```r
 model_init = lm(col ~ ., df)
