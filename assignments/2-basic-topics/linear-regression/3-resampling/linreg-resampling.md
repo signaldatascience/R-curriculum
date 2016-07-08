@@ -3,7 +3,27 @@ title: "Linear Regression: Resampling"
 author: Signal Data Science
 ---
 
-We'll be covering **resampling** in this lecture using aggregated data from a famous [speed dating dataset](http://andrewgelman.com/2008/01/21/the_speeddating_1/). The dataset is described by the authors as such:
+In this assignment, we will be covering basic *resampling* methods in order to combat the problem of *overfitting*.
+
+Overfitting and resampling
+==========================
+
+[*Overfitting*](http://machinelearning.subwiki.org/wiki/Overfitting) is defined as:
+
+> a problem where a functional form or algorithm performs substantially better on the data used to train it than on new data drawn from the same distribution. It occurs when the parameters used to describe the functional form end up fitting the noise or random fluctuations in the training data rather than the attributes that are common between the training data and test data.
+
+To illustrate a straightforward example of overfitting, consider the following problem:
+
+* Given $n$ data points and a model $a_0 + a_1x + a_2x^2 + \ldots + a_nx^n$ where we fit the coefficients $a_i$ to the data, how large does $n$ need to be before we can come up with a model that perfectly goes through every data point? (Think about the linear case, where only $a_0$ and $a_1$ are nonzero.)
+
+In general, with an excess of parameters, we run the risk of them being fit to non-generalizable aspects of our data, such as random noise and fluctuations, which may fool us into thinking that our model is better than it really is. However, if we simply train a model on all of our data and evaluate the quality of its fit on the *same* data, we won't be able to detect such problems.
+
+As such, we want to use [*resampling*](https://en.wikipedia.org/wiki/Resampling_(statistics)) techniques, most of which involve splitting data into *train* and *test* sets. Instead of training the model on the entire dataset, we'll in general train it on a *subset* of the data and estimate the quality of the model against the data which was *not* fed into the model, in order to approximate how well the model would perform on *new* data.
+
+Speed dating dataset
+====================
+
+We'll be exploring several different methods of resampling in this lesson using aggregated data from a famous [speed dating dataset](http://andrewgelman.com/2008/01/21/the_speeddating_1/). The dataset is described by the authors as such:
 
 > *Subjects*---Our subjects were drawn from students in graduate and professional schools at Columbia University. Participants were recruited through a combination of mass e-mail and fliers posted throughout the campus and handed out by research assistants. [...]
 > 
@@ -12,19 +32,6 @@ We'll be covering **resampling** in this lecture using aggregated data from a fa
 > *Procedure*---The events were conducted over weekday evenings during 2002–2004; data from fourteen of these sessions are utilized in this study. In general, two sessions were run in a given evening, with participants randomly distributed between them. Participants were not aware of the number of partners they would be meeting at the Speed Dating event. [...] Upon checking in, each participant was given a clipboard, a pen, and a nametag on which only his or her ID number was written. Each clipboard included a scorecard with a cover over it so that participants' responses would remain confidential. The scorecard was divided into columns in which participants indicated the ID number of each person they met. Participants would then circle "yes" or "no" under the ID number to indicate whether they would like to see the other person again. Beneath the Yes/No decision was a listing of the six attributes on which the participant was to rate his or her partner: Attractive, Sincere; Intelligent; Fun; Ambitious; Shared Interests.
 
 In the `speed-dating-simple` dataset, `speed-dating-simple.csv` has the data and `speed-dating-info.txt` has an explanation of the variables; the data has been aggregated on the level of each person being rated, so each row corresponds to a unique participant in the speed dating event and contains information about (1) the average ratings they received from others on 5 different scales and (2) their own self-ratings of interest in 17 different activities.
-
-Overfitting
-===========
-
-We will be using the speed dating dataset to explore the problem of [overfitting](http://machinelearning.subwiki.org/wiki/Overfitting), which is:
-
-> a problem where a functional form or algorithm performs substantially better on the data used to train it than on new data drawn from the same distribution. It occurs when the parameters used to describe the functional form end up fitting the noise or random fluctuations in the training data rather than the attributes that are common between the training data and test data.
-
-To illustrate a straightforward example of overfitting, consider the following problem:
-
-* Given $n$ data points and a model $a_0 + a_1x + a_2x^2 + \ldots + a_nx^n$ where we fit the coefficients $a_i$ to the data, how large does $n$ need to be before we can come up with a model that perfectly goes through every data point? (Think about the linear case, where only $a_0$ and $a_1$ are nonzero.)
-
-In general, with an excess of parameters, we run the risk of them being fit to non-generalizable aspects of our data, such as random noise and fluctuations, which may fool us into thinking that our model is better than it really is. However, if we simply train a model on all of our data and evaluate the quality of its fit on the *same* data, we won't be able to detect such problems. As such, we want to use *resampling* techniques, most of which involve splitting data into *train* and *test* sets. Instead of training the model on the entire dataset, we'll in general train it on a *subset* of the data and estimate the quality of the model against the data which was *not* fed into the model, in order to approximate how well the model would perform on *new* data.
 
 Random number generation in R
 =============================
