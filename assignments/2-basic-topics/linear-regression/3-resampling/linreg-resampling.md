@@ -26,37 +26,33 @@ In general, with an excess of parameters, we run the risk of them being fit to n
 Random number generation in R
 =============================
 
-We'll begin with a brief discussion of the random number generator (RNG) in R.
-
-The RNG can be *seeded* with [`set.seed(n)`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Random.html) for any integer `n`. The values that the RNG outputs will depend on its seed, and setting the seed "resets" it to the initial state corresponding to that particular seed.
-
-* Try using [`set.seed()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Random.html) in conjunction with `runif(5)` to get a sense of how this works.
-
-This is important because we may want, *e.g.*, to generate the same random partitioning of our data consistently, in which case we would put a `set.seed(1)` call before our shuffling of the indices with [`sample()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/sample.html).[^rng] Or, alternatively, you may want a sequence of reproducibly different calls of [`sample()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/sample.html), etc.
-
-[^rng]: In some cases, you may want to (1) save the state of the RNG for later, (2) set the seed to something specific and generate a consistent splitting of the data, and (3) change the RNG back to its saved state. This is possible using `.Random.seed` and is described in [Cookbook for R](http://www.cookbook-r.com/Numbers/Saving_the_state_of_the_random_number_generator/) -- we won't need this for this lesson, but it's important to be aware of (as it will eventually surely come up).
+In the problems below, we'll be splitting the data into random subsets. This entails using R's [`sample()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/sample.html) which uses a R's random number generator. At any given time, R's random number generator has a state. If you want your results to be reproducible, before using a function that depends on random number generation, you can reset the state using [`set.seed(n)`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Random.html) (the new state depends on `n`). To see how this works, tryusing set.seed() in conjunction with `runif(5)`.
 
 A single train/test split
 =========================
 
-We'll begin by using a *single* train/test split on the data.
+We'll begin by using a *single* train/test split on the data to evaluate the quality of a linear model.
 
 * Load the speed dating dataset (using [`read.csv()`](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/read.table.html)) and filter the dataset for the gender of your choice.
 
 * Run a linear regression of attractiveness against the 17 self-ratings of activity participation. Interpret the coefficients.
 
-* Write a function `split_data(df)` that splits the data randomly into a train set and a test set of equal size. (An easy way to do this is to call [`sample()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/sample.html) to shuffle the row indices of the data and then to use the `%%` operator, taking the remainder upon division by 2, to assign each row to 0 or 1.) Your function should return a *named list* so that `split_data(df)$train` yields the train set and `split_data(df)$test` yields the test set.
+Next, we will split the task before us into three different functions. As you write each function, test it to ensure that it works correctly. In general, splitting up large tasks into multiple different functions and testing each function individually before combining all of them together is a good strategy for easily catching bugs in your code.
+
+* Write a function `split_data(df)` that splits the data randomly into a train set and a test set of equal size. (One way to do this is to call [`sample()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/sample.html) to shuffle the row indices of the data and then to use the `%%` operator, taking the remainder upon division by 2, to assign each row to 0 or 1.) Your function should return a *named list* so that `split_data(df)$train` yields the train set and `split_data(df)$test` yields the test set.
 
 * Write a function `split_predict(train, test)` that trains a linear model on the train set to predict *attractiveness* from the 17 *activities*, and uses `predict(model, data)` to generate predictions for both the train set and the test set. Your function should return a *named list* so that `split_predict(df)$train` yields the predictions on the train set and `split_predict(df)$test` yields the predictions on the test set.
 
-* Write a function `rmse(x, y)` to calculate the [root-mean-square error](https://en.wikipedia.org/wiki/Root-mean-square_deviation) between `x` and `y`.
+* Write a function `rmse(x, y)` to calculate the [root-mean-square error](https://en.wikipedia.org/wiki/Root-mean-square_deviation) between `x` and `y`. We can use the RMSE to evaluate the quality of our predictions on the test set.
 
-* Run `split_data()` and `split_predict()` 100 times to generate predictions for 100 different train/test splits. For each prediction, calculate the associated RMSE against the true values. Plot the distribution of RMSEs for both the train set and the test set. Calculate their mean and [standard error](https://en.wikipedia.org/wiki/Standard_error) (the standard deviation divided by $sqrt(n)$ for $n$ samples). In general, how does the performance on the train set compare to the performance on the test set?
+Finally, we're ready to see how a linear model performs on the train set versus the test set.
+
+* Run `split_data()` and `split_predict()` 100 times to generate predictions for 100 different train/test splits. For each prediction, calculate the associated RMSE against the true values. Plot the distribution of RMSEs for both the train set and the test set. Calculate their mean and [standard error](https://en.wikipedia.org/wiki/Standard_error) (the standard deviation divided by $sqrt(n)$ for $n$ samples). How does the performance on the train set compare to the performance on the test set?
 
 $n$-fold cross validation
 =========================
 
-$n$-fold cross validation has two advantages over making a single train/test split:
+Although a single train/test split is *one* way of estimating how well our model would perform on new data, it is not the only or the best way. Indeed, $n$-fold cross validation has two advantages over making a single train/test split:
 
 1. In $n$-fold cross validation, we fit multiple models to multiple train/test splits and then aggregate the results. Between all of these different models, each observation in the dataset ends up in a training set at least once.
 2. With a single train/test split, the outcome can depend too much on our choice of RNG seed, which determines whether a particular observation ends up in the train set or the test set. With $n$-fold cross validation, this problem is somewhat reduced -- the outcome is more consistent and stable.
@@ -67,7 +63,7 @@ The process is as follows:
 2. For each of the $n$ subsets, we train the model against *all the other subsets* and use that model to make predictions on our held-out subset.
 3. We combine all of the predictions and calculate a measure of model quality such as the RMSE.
 
-We'll be continuing with predicting attractiveness from activities. Now, choose one of two different approaches:
+You'll be implementing the above process in the following problems and comparing the results of $n$-fold cross validation (for various values of $n$) with the results of a single train/test split.
 
 * Write a function `nfold_cv(df, n_folds)` that splits `df` into `n_folds` folds, generates predictions in the fashion described above, and calculates the RMSE on the whole dataset with those predictions. It should return the RMSE at the end.
 
@@ -78,13 +74,16 @@ We'll be continuing with predicting attractiveness from activities. Now, choose 
 Stepwise regression
 ===================
 
-Now that we have a way to evaluate model quality -- with cross-validated RMSE -- we can use this metric of model quality to choose between *different models*. After all, we need not include *every* available variable into our linear model; well-chosen omissions can improve model performance on a test set.
+Now that we have a way to evaluate model quality -- with the cross-validated RMSE -- we can use this metric of model quality to choose between *different models*. After all, we need not include *every* available variable into our linear model; well-chosen omissions can improve model performance on a test set.
 
 In [*backward stepwise regression*](https://en.wikipedia.org/wiki/Stepwise_regression), we do the following:
 
 1. We start with every predictor variable added to the model.
 2. Then, we iterate, at each step removing the variable which adds the least to the model.
 3. We eventually reach a stopping point based on some statistical criteria.
+
+Implementing backward stepwise regression
+-----------------------------------------
 
 Let's find out how much improvement we can get in our model by using this method.
 
