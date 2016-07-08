@@ -1,5 +1,6 @@
 ---
-title: Regularized Linear Regression
+title: "Linear Regresson: Regularization"
+author: Signal Data Science
 ---
 
 Some helpful notes on the `glmnet` package are at the end of this document. Look there if you have problems.

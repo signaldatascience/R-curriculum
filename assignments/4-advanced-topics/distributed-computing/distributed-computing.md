@@ -1,5 +1,5 @@
 ---
-title: Distributed Computing
+title: Distributed Computing with AWS
 ---
 
 This brief tutorial is designed to get you up-to-speed with regard to handling large datasets in Python and R. We'll be using Amazon Web Services for this tutorial.

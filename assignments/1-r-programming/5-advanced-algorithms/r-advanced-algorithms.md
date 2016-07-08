@@ -5,21 +5,6 @@ author: Signal Data Science
 
 Now that you're acquainted with the basics of R's functional programming toolkit and have a strong grasp of the most important aspects of R's internals, we'll wrap up our R curriculum with some materials on a variety of useful and interesting numerical algorithms.
 
-A mysterious matrix
-===================
-
-In the following exercises, you will analyze the output of the mystery function `mystery = function(x) matrix(c(cos(x), -sin(x), sin(x), cos(x)), nrow=2)`.
-
-* Is the output of `mystery()` *periodic* in some sense with respect to its inputs? Check if this holds in practice; if there's a discrepancy, explain it. (*Hint:* If you aren't familiar with the behavior of the `sin()` and `cos()` functions, graph a scatterplot of their values against `seq(0, 10, 0.01)`.)[^rot]
-
-[^rot]: We have `mystery(0) != mystery(2*pi)` because of floating-point imprecision.
-
-* Write a function to turn lists of length 4 into 2-by-2 matrices, forming a list-matrix capable of holding different data types. (*Hint:* Use [`dim()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/dim.html).) Speculate on some use cases of list-matrices.
-
-* On the 2D plane, we can identify the *point* $(x,y)$ with the *column vector* `matrix(c(x,y), nrow=2, ncol=1)`. First, write a function which takes in a list of column vectors, internally adds each one as a row of a two-column dataframe, and then uses [`ggplot()`](http://ggplot2.org/) to graph a *scatterplot* of all the points in the input list. Second, modify this function to accept an argument `x` and so that for every column vector `c` in its list of points, instead of putting the data in `c` directly into the data frame, it does so for the product `mystery(x) %*% c` (for the `mystery()` function defined in a previous exercise). Experiment with different values of `x` and come up with a geometric understanding of how the output graph changes as you modify `x`.[^interp]
-
-[^interp]: Calling `mystery(x)` returns a 2-dimensional rotation matrix corresponding to rotation through the angle `x` (given in radians).
-
 Fast modular exponentiation
 ===========================
 
@@ -39,17 +24,58 @@ Now, we can implement a quite rapid algorithm for modular exponentiation with th
 
 * You can improve the runtime of `pow()` further by decomposing $b$ into a sum of powers of 2, starting with $a$ and repeatedly squaring modulo $c$ (to calculate $a^1, a^2, a^4, a^8, \ldots \mathrm{\ mod\ } c$), and then forming the final answer as a *product* of those intermediate calculations. (For example, for $6^{17} \mathrm{\ mod\ } 7$, you are essentially calculating $17 = 2^0 + 2^4$ and $6^{17} \mathrm{\ mod\ } 7 = 6^{2^0} \cdot 6^{2^4} \mathrm{\ mod\ } 7$.) Using `decompose(n)`, implement this improvement as `pow3()`, making sure to calculate every intermediate result modulo $c$. Verify that `pow3()` is faster than `pow2()`.
 
-Random number generation
-========================
+Pseudorandom number generators
+==============================
 
-Random number generators are not truly random (unless you use quantum techniques!) and are in fact [pseudorandom](https://en.wikipedia.org/wiki/Pseudorandom_number_generator), meaning that their output only *approximates* true randomness. A pseudorandom number generator (pRNG) can take a starting point, known as a *seed*, as input; a pRNG, given the same seed twice, will produce the exact same output in the exact same order both times. R uses [inversion transform sampling](https://en.wikipedia.org/wiki/Inverse_transform_sampling) by default to generate random numbers.
+Being able to generate random numbers is very useful!
 
-First, we will
+Unfortunately, random number generators are not truly random (unless you use expensive quantum hardware!) and are in fact [pseudorandom](https://en.wikipedia.org/wiki/Pseudorandom_number_generator), meaning that their output only *approximates* true randomness. A pseudorandom number generator (pRNG) takes a starting point, known as a *seed*, as input; a pRNG, given the same seed twice, will produce the exact same output in the exact same order both times. (R uses [inversion transform sampling](https://en.wikipedia.org/wiki/Inverse_transform_sampling) by default to generate random numbers.)
+
+First, we will implement two [linear congruential generators](https://en.wikipedia.org/wiki/Linear_congruential_generator) (LCGs) in R. LCGs are one of simplest and fastest classes of pRNGs, but their results are also not very random -- we'll briefly take a look at one of their many weaknesses. In practice, they are useful in very specialized situations when only a very small amount of RAM is available, but perform *extremely* poorly when used for [Monte Carlo simulations](https://en.wikipedia.org/wiki/Monte_Carlo_method) because of the aforementioned weaknesses.
 
 Afterward, we will undertake the implementation of a [xorshift](https://en.wikipedia.org/wiki/Xorshift) pRNG, one of the simplest and fastest classes of pRNGs which work by repeatedly taking the [bitwise XOR](https://en.wikipedia.org/wiki/Xorshift) of a number with [bit-shifted](https://en.wikipedia.org/wiki/Logical_shift) versions of itself. The speed of xorshift pRNGs results from the fact that the numerical operations involved are directly implemented by the CPU. (Regrettably, they do fail certain statistical tests for randomness because they are fundamentally based on [linear recurrences](https://en.wikipedia.org/wiki/Linear-feedback_shift_register).)
 
 Linear congruential generators
 ------------------------------
+
+A LCG is given by the sequence of numbers defined by $X_{n+1} = (a X_n + c) \mathrm{\ mod\ } m$ with the initial value $X_1$ as the seed. The following code implements LCGs in R:
+
+```r
+lcg = function(a, c, m, s) {
+  function() {
+    s <<- (a*s + c) %% m
+    return(s)
+  }
+}
+```
+
+We can initialize a LCG for given values of $a$, $c$, and $m$ and an initial value $X_1 = s$ by calling `my_lcg = lcg(a, c, m, s)`. Afterward, we can generate random numbers by repeatedly calling `my_lcg()`.
+
+* Read [Hadley Wickham's answer](http://stackoverflow.com/questions/2628621/how-do-you-use-scoping-assignment-in-r) about the `<<-` operator. Referring to that answer as necessary, read and understand the above code for `lcg()`, particularly (1) how `lcg()` is a function which *returns another function* and (2) how the `<<-` operator is used to maintain a consistent *state* for each instantiation of the pRNG for given values of $a$, $c$, $m$, and $X_1$.
+
+* Initialize two different LCGs with $(a, c, m, s) = (53, 0, 127, 1)$ and $(a, c, m, s) = (85, 0, 127, 1)$. These two LCGs will generate random numbers from 0 to 126. For each one, generate 10,000 random numbers and plot a histogram of the values to verify that the output is uniformly distributed.
+
+Checking for a uniform distribution is the simplest statistical test, but it is by no means the *only* statistical test we can apply to evaluate the quality of a pRNG. For example, we want the $i$th value of the pRNG to be completely independent of the $(i-1)$th value of the pRNG.
+
+* Write a function `plotlag(v)` which takes as input a vector of random values $\textbf{v}$ and plots every pair of points $(\textbf{v}_{i-1}, \textbf{v}_i)$. (For a vector of length $n$, there are $n-1$ such pairs: $(\textbf{v}_1, \textbf{v}_2), (\textbf{v}_2, \textbf{v}_3), \ldots, (\textbf{v}_{n-1}, \textbf{v}_n)$).
+
+* Use `plotlag()` on the outputs of the two LCGs you previously created. Which one seems better? (The less structure in the output of `plotlag()`, the better.)
+
+Next, we'll implement the [RANDU](https://en.wikipedia.org/wiki/RANDU) pRNG, which is a linear congruential generator with the parameters $(a, c, m) = (65539, 0, 2^{31})$. It is notoriously bad. First, however, we have to figure out how to get around a problem: R can't natively work with integers larger than $2^{31}$, as can be seen from the evaluation of `log(.Machine$integer.max, 2)`. Although the *results* of RANDU are guaranteed to not be greater than $2^{31}$ (because they are taken modulo $2^{31}$), the *intermediate results* are multiplied by $65539 \approx 2^{16}$ and may be as large as $2^{16} \times 2^{31} = 2^{47}$.
+
+Thankfully, we can use the [`Rmpfr`](https://cran.r-project.org/web/packages/Rmpfr/index.html) package to handle very large numbers. We can call `mpfr(x, precBits=k)` to turn `x` into a special type of number with precision up to `k` bits. Any further computations on the output of `mpfr()` can be carried out with extra-high precision; if the extra-high precision is no longer necessary, it can be converted back into a normal integer with [`as.numeric()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/numeric.html).
+
+* Write a function `lcg_mpfr()` which is identical to `lcg()` with the exception of converting the seed, `s`, into a number with 50 bits of precision before returning the inner function.
+
+* Create the RANDU LCG with `lcg_mpfr()`, seeded with an initial value of 1. Test its functionality by verifying that the 20th number generated is 1559239569. Generate 10,000 values with RANDU and check the results of `plotlag()`.
+
+For a vector of random values $\textbf{v}$, instead of just looking at *pairs* of consecutive numbers $(\textbf{v}_{i-1}, \textbf{v})$ we can look at *triples* of consecutive numbers $(\textbf{v}_{i-2}, \textbf{v}_{i-1}, \textbf{v}_i)$.
+
+* Use the `scatterplot3d()` function from the [`scatterplot3d`](https://cran.r-project.org/web/packages/scatterplot3d/index.html) package to plot all triples of consecutive values for the 10,000 numbers generated with RANDU. Pass in the argument `angle=150` when doing so.
+
+Although there is no structure in the 2-dimensional plot of consecutive values, there is very clearly structure in the 3-dimensional plot of consecutive values. Checking for structure in such plots (for higher dimensions as well) is the basis of the [spectral test](https://en.wikipedia.org/wiki/Spectral_test), a test of the quality of pseudorandom number generators. RANDU passes the spectral test for 2 dimensions but fails the spectral test for dimensions 3 and higher.
+
+In the next two sections, we'll consider the *xorshift* class of pRNGs, which is slower but substantially better than LCGs.
 
 Bitwise operations in R
 -----------------------
@@ -95,13 +121,13 @@ Finally, we are ready to implement a simple xorshift algorithm. It will take as 
 6. Set $w = w \oplus t$.
 7. Return $w$.
 
-At this point, you have everything you need to write a custom implementation of a xorshift pRNG!
+At this point, you have everything you need to write a custom implementation of a xorshift pRNG! We'll restrict ourselves to 31-bit integers so that we don't have to use [`Rmpfr`](https://cran.r-project.org/web/packages/Rmpfr/index.html).
 
 * Fill in the following code template for a `xorshift()` function:
 
 	```r
 	xorshift = function(x, y, z, w) {
-	  # Convert x, y, z, w to 32-bit binary representations.
+	  # Convert x, y, z, w to 31-bit binary representations.
 	  function() {
 	    # Implement the xorshift algorithm, using <<- for
 	    # assignment to x, y, z, w.
@@ -111,7 +137,7 @@ At this point, you have everything you need to write a custom implementation of 
 	}
 	```
 
-	`xorshift()` will return a xorshift pRNG seeded with the specified values which can then be repeatedly called to generate random values, *e.g.*, `r = xorshift(0, 3, 93, 59); r();`. Verify that with $(x, y, z, w) = (1, 2, 3, 4)$ as the seed, the first three generated numbers are 2061, 6175, and 4. Visualize 10,000 randomly generated numbers with a histogram of their values.
+	`xorshift()` will return a xorshift pRNG seeded with the specified values which can then be repeatedly called to generate random values, *e.g.*, `r = xorshift(0, 3, 93, 59); r();`. Verify that with $(x, y, z, w) = (1, 2, 3, 4)$ as the seed, the first three generated numbers are 2061, 6175, and 4. Generate 10,000 random numbers with xorshift and plot a histogram of their values. Apply the 2- and 3-dimensional spectral test to the generated values.
 
 Saving and loading pRNG state in R
 ----------------------------------
@@ -123,10 +149,25 @@ The state of R's built-in pRNG is simply saved in the `.Random.seed` variable in
 Fast primality testing
 ======================
 
-Checking whether a number is [prime](https://en.wikipedia.org/wiki/Prime_number) or [composite](https://en.wikipedia.org/wiki/Composite_number) is a classic algorithmic task, stretching all the way back to 200 BC with the [Sieve of Erastosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes) developed by [Erastosthenes of Cyrene](https://en.wikipedia.org/wiki/Eratosthenes). We will first implement the Sieve and then work toward writing an implementation of the [Miller--Rabin primality test](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test), a modern test for primality known to be [very fast in practice](http://stackoverflow.com/questions/2586596/fastest-algorithm-for-primality-test) for reasonably small numbers.
+Prime numbers are mathematically important because they form the "backbone" of the natural numbers, and hence have [many interesting and mysterious properties](http://math.stackexchange.com/questions/136450/why-do-we-consider-prime-numbers-important-and-what-are-their-applications-oth) which, if understood, give us deep insights into questions involving integers. Number theory was considered in the past to be the purest of the fields of mathematics, with no possible application to practical problems; however, in the modern era, primality testing (checking if a number is [prime](https://en.wikipedia.org/wiki/Prime_number) or [composite](https://en.wikipedia.org/wiki/Composite_number)) is of crucial importance because of its role in cryptography (which keeps your bank account, medical information, etc. safe).
+
+Primality testing is in fact a classic algorithmic task, stretching all the way back to 200 BC with the [Sieve of Erastosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes) developed by [Erastosthenes of Cyrene](https://en.wikipedia.org/wiki/Eratosthenes). We will first implement the Sieve and then work toward writing an implementation of the [Miller--Rabin primality test](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test), a modern test for primality known to be [very fast in practice](http://stackoverflow.com/questions/2586596/fastest-algorithm-for-primality-test) for reasonably small numbers.
 
 The Sieve of Erastosthenes
 --------------------------
+
+Instead of directly being a test for primality, the Sieve of Erastosthenes is an algorithm for finding all prime numbers up to some prespecified limit $N$. It works as follows:
+
+1. List all the integers from 2 to $N$.
+2. We begin with the first and smallest prime number $p = 2$.
+3. Remove all the multiples of $p$ ($2p, 3p, \ldots$) aside from $p$ itself from the list.
+4. Find the first number greater than $p$ in the list and set $p$ equal to that number. Repeat step 3 or terminate if no such number exists.
+
+The numbers in the list constitute the primes between 2 and $N$.
+
+* Write a function `sieve(N)` which uses the Sieve of Erastosthenes to find and return a vector of all prime numbers from 2 to `N`. Check your function by evaluating `sieve(100)`, which should return 25 prime numbers from 2 to 97.
+
+The Sieve is useful for generating primes, but not so much for *testing primality* -- to know whether or not $n$ is prime, one would have to generate all the prime numbers from 1 to $n$. There are much faster ways to check whether or not a *specific* number is prime, one of which we will implement below.
 
 The Miller--Rabin primality test
 --------------------------------
@@ -141,13 +182,27 @@ We have one more utility function to write:
 
 With `decompose()`, `decompose_even()`, and `pow3()`, we are now ready to implement the entire primality test.
 
-* Following the above description, implement the deterministic Miller--Rabin test as `miller_rabin(n)` for $n < 4,759,123,141$, returning `TRUE` for a prime number and `FALSE` otherwise. (Note that checking if $x \equiv -1 (\text{mod}\ n)$ is equivalent to checking if $x \equiv n-1 (\text{mod}\ n-1)$.)
+* Following the above description, implement the deterministic Miller--Rabin test as `miller_rabin(n)` for $n < 4,759,123,141$, returning `TRUE` for a prime number and `FALSE` otherwise. Keep the following points in mind:
 
-* Write a function `simple_check(n)` that checks if `n` is a prime by checking if `n` is divisible by any integers from 2 up to `floor(sqrt(b))`. Verify that `miller_rabin()` and `simple_check()` produce the same output for the first 100 integers. Use `timeit` to compare the performance of the two functions as `n` grows.
+	* Checking if $x \equiv -1 (\text{mod}\ n)$ is equivalent to checking if $x \equiv n-1 (\text{mod}\ n-1)$.
+
+	* The values of $a$ used are themselves prime but will not be evaluated as such by the algorithm, so they must be handled specially if passed in as input.
+
+	* Make sure that the special case of 1 (which is a composite number) is handled properly.
+
+	* You can verify that your implementation works correctly by combining it with [`Filter()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/funprog.html) to find the prime numbers from 1 to 100 and checking the output against that of the Sieve of Erastosthenes.
+
+* Write a function `simple_check(n)` that checks if `n` is a prime by checking if `n` is divisible by any integers from 2 up to `floor(sqrt(b))`. Verify that `miller_rabin()` and `simple_check()` produce the same output for the first 100 integers. Use the [`tictoc`](https://cran.r-project.org/web/packages/tictoc/index.html) to compare the performance of the two functions as `n` grows.
 
 A small primality problem
 -------------------------
 
 We can apply the Miller--Rabin primality test to solve a simple problem in computational number theory.
 
-* Find a counterexample to the following statement: By changing at most a single digit of any positive integer, we can obtain a prime number. Use the [`memoise`](https://cran.r-project.org/web/packages/memoise/index.html) package to easily perform [memoization](https://en.wikipedia.org/wiki/Memoization) for the output of `miller_rabin()`. How much faster is your code with memoization compared to without memoization?
+* Write a function `variations(n)` which takes in an integer `n` and returns a vector containing every number which can be obtained by changing a single digit of `n`.
+
+* With `variations()` and the Miller--Rabin primality test, find a counterexample to the following statement: By changing at most a single digit of any positive integer, we can obtain a prime number.
+
+
+
+Use the [`memoise`](https://cran.r-project.org/web/packages/memoise/index.html) package to easily perform [memoization](https://en.wikipedia.org/wiki/Memoization) for the output of `miller_rabin()`. How much faster is your code with memoization compared to without memoization?

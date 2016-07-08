@@ -1,5 +1,5 @@
 ---
-title: Logistic Regression
+title: "Logistic Regression: Elections and Spam Emails"
 ---
 
 To get some practice with logistic regression, we'll first be looking at American election data from the National Election Study from 1948 through 2002. Afterward, we'll be taking a look at a classic classification task: email spam filtering.

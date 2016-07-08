@@ -1,5 +1,5 @@
 ---
-title: Logistic Regression
+title: "Logistic Regression: Speed Dating"
 ---
 
 This assignment will focus on the aggregated speed dating data, containing information about gender, race, activity participation, and career.

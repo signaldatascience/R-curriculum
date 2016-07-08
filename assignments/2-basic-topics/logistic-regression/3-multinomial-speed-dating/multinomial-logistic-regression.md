@@ -1,5 +1,6 @@
 ---
-title: Multinomial Logistic Regression
+title: "Multinomial Logistic Regression: Speed Dating"
+author: Signal Data Science
 ---
 
 You'll be formally learning about [multinomial logistic regression](https://en.wikipedia.org/wiki/Multinomial_logistic_regression#As_a_log-linear_model) today.
