@@ -13,20 +13,23 @@ We'll be covering **resampling** in this lecture using aggregated data from a fa
 
 In the `speed-dating-simple` dataset, `speed-dating-simple.csv` has the data and `speed-dating-info.txt` has an explanation of the variables; the data has been aggregated on the level of each person being rated, so each row corresponds to a unique participant in the speed dating event and contains information about (1) the average ratings they received from others on 5 different scales and (2) their own self-ratings of interest in 17 different activities.
 
+Overfitting
+===========
+
 We will be using the speed dating dataset to explore the problem of [overfitting](http://machinelearning.subwiki.org/wiki/Overfitting), which is:
 
 > a problem where a functional form or algorithm performs substantially better on the data used to train it than on new data drawn from the same distribution. It occurs when the parameters used to describe the functional form end up fitting the noise or random fluctuations in the training data rather than the attributes that are common between the training data and test data.
 
 To illustrate a straightforward example of overfitting, consider the following problem:
 
-* Given $n$ data points and a model $a_0 + a_1x + a_2x^2 + \ldots + a_nx^n$ where we fit the coefficients $a_i$ to the data, how large does $n$ need to be before we can come up with a model that goes through every data point precisely? (Think about the linear case, where only $a_0$ and $a_1$ are nonzero.)
+* Given $n$ data points and a model $a_0 + a_1x + a_2x^2 + \ldots + a_nx^n$ where we fit the coefficients $a_i$ to the data, how large does $n$ need to be before we can come up with a model that perfectly goes through every data point? (Think about the linear case, where only $a_0$ and $a_1$ are nonzero.)
 
 In general, with an excess of parameters, we run the risk of them being fit to non-generalizable aspects of our data, such as random noise and fluctuations, which may fool us into thinking that our model is better than it really is. However, if we simply train a model on all of our data and evaluate the quality of its fit on the *same* data, we won't be able to detect such problems. As such, we want to use *resampling* techniques, most of which involve splitting data into *train* and *test* sets. Instead of training the model on the entire dataset, we'll in general train it on a *subset* of the data and estimate the quality of the model against the data which was *not* fed into the model, in order to approximate how well the model would perform on *new* data.
 
 Random number generation in R
 =============================
 
-In the problems below, we'll be splitting the data into random subsets. This entails using R's [`sample()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/sample.html) which uses a R's random number generator. At any given time, R's random number generator has a state. If you want your results to be reproducible, before using a function that depends on random number generation, you can reset the state using [`set.seed(n)`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Random.html) (the new state depends on `n`). To see how this works, tryusing set.seed() in conjunction with `runif(5)`.
+In the problems below, we'll be splitting the data into random subsets. This entails using R's [`sample()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/sample.html) which uses a R's random number generator. At any given time, R's random number generator has a state. If you want your results to be reproducible, before using a function that depends on random number generation, you can reset the state using [`set.seed(n)`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Random.html) (the new state depends on `n`). To see how this works, try using [set.seed()](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Random.html) in conjunction with [`runif(5)`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Uniform.html).
 
 A single train/test split
 =========================
@@ -37,7 +40,9 @@ We'll begin by using a *single* train/test split on the data to evaluate the qua
 
 * Run a linear regression of attractiveness against the 17 self-ratings of activity participation. Interpret the coefficients.
 
-Next, we will split the task before us into three different functions. As you write each function, test it to ensure that it works correctly. In general, splitting up large tasks into multiple different functions and testing each function individually before combining all of them together is a good strategy for easily catching bugs in your code.
+Next, we will split the task before us into three different functions. As you write each function, test it to ensure that it works correctly.[^general]
+
+[^general]: In general, splitting up large tasks into multiple different functions and testing each function individually before combining all of them together is a good strategy for easily catching bugs in your code.
 
 * Write a function `split_data(df)` that splits the data randomly into a train set and a test set of equal size. (One way to do this is to call [`sample()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/sample.html) to shuffle the row indices of the data and then to use the `%%` operator, taking the remainder upon division by 2, to assign each row to 0 or 1.) Your function should return a *named list* so that `split_data(df)$train` yields the train set and `split_data(df)$test` yields the test set.
 
