@@ -43,7 +43,7 @@ A single train/test split
 
 We'll begin by using a *single* train/test split on the data to evaluate the quality of a linear model. It is the simplest method of resampling and consequently the most straightforward one to implement.
 
-* Load the speed dating dataset (using [`read.csv()`](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/read.table.html)) and filter the dataset for the gender of your choice.
+* Load the speed dating dataset (using [`read.csv()`](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/read.table.html)) and filter the dataset for males only.
 
 * Run a linear regression of attractiveness against the 17 self-ratings of activity participation. Interpret the coefficients.
 
@@ -135,5 +135,3 @@ Now, your turn:
 * For *each of the five rating variables* (attractiveness, sincerity, intelligence, fun, ambition), use `step()` to run backward stepwise regression (with the `direction="backward"` parameter).
 
 * Store the coefficients of the final linear model into a data frame. Interpret the results.
-
-* Repeat the above for the other gender (the opposite of the one you selected at the beginning). Interpret the differences.
