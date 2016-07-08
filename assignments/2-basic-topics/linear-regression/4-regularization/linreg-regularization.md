@@ -8,6 +8,8 @@ Some helpful notes on the `glmnet` package are at the end of this document. Look
 Exploring regularization with simulated data
 ============================================
 
+Before using regularized linear regression on real data, we'll explore it in a simpler context with some simulated data.
+
 Define `x` and `y` using:
 
 ```r
@@ -19,22 +21,22 @@ y = a*x + error
 
 If you run `summary(lm(y ~ x - 1))`, corresponding to a linear model with no constant coefficient, you should get an estimated value of 0.2231 for `a`.
 
-Write a function `cost(x, y, aEst, lambda, p)` which takes 
+* Write a function `cost(x, y, aEst, lambda, p)` which takes 
 
-* Two vectors `x` and `y` of equal length
-* An estimate of the value of `a`, `aEst`
-* A regularization parameter `lambda`
-* A number `p = 1` or `2`, indicating whether $L^1$ or $L^2$ regularization is being performed
+	* Two vectors `x` and `y` of equal length
+	* An estimate of the value of `a`, `aEst`
+	* A regularization parameter `lambda`
+	* A number `p = 1` or `2`, indicating whether $L^1$ or $L^2$ regularization is being performed
 
-and returns the value of the $L^p$ regularized cost function at `y = aEst*x`.
+	and returns the value of the $L^p$ regularized cost function at `y = aEst*x`.
 
-Create a dataframe with two columns, one corresponding to the values of $\lambda$ $2^{-8}, 2^{-7}, \ldots, 2^{-1}, 2^0, 2^1$, and for each of these values of $\lambda$, values of `a` from -0.1 to 0.3, in equally spaced increments of 0.001. Use `expand.grid()` to fill in the grid.
+* Create a dataframe with two columns, one corresponding to the values of $\lambda$ $2^{-8}, 2^{-7}, \ldots, 2^{-1}, 2^0, 2^1$, and for each of these values of $\lambda$, values of `a` from -0.1 to 0.3, in equally spaced increments of 0.001. Use [`expand.grid()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/expand.grid.html) to fill in the grid.
 
-Add `"costL1"` and `"costL2"` columns, where we'll store the cost of associated with each pair `(lambda, a)`, for each of `p = 1` and `p = 2`.
+* Add `"costL1"` and `"costL2"` columns, where we'll store the cost of associated with each pair `(lambda, a)`, for each of `p = 1` and `p = 2`.
 
 For each of `p = 1` and `p = 2`,
 
-* Use lapply to make a `plots` list with 10 `ggplot()` objects, one for each value of lambda from $2^{-8}$ to $2^1$, graphing values of `a` on the [abscissa](https://en.wikipedia.org/wiki/Abscissa) (x-axis) and values of the cost function on the [ordinate](https://en.wikipedia.org/wiki/Ordinate) (y-axis). Then use multiplot with `plotlist = "plots"`  to display these graphs in 2 columns of 5. Pay special attention to the values on the y-axis, which vary from plot to plot. 
+* Use [`lapply()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/lapply.html) to make a `plots` list with 10 `ggplot()` objects, one for each value of lambda from $2^{-8}$ to $2^1$, graphing values of `a` on the [abscissa](https://en.wikipedia.org/wiki/Abscissa) (x-axis) and values of the cost function on the [ordinate](https://en.wikipedia.org/wiki/Ordinate) (y-axis). Then use multiplot with `plotlist = "plots"`  to display these graphs in 2 columns of 5. Pay special attention to the values on the y-axis, which vary from plot to plot. 
 
 Comparing regularization and stepwise regression
 ================================================
@@ -94,6 +96,8 @@ Elastic net regression
 
 Instead of penalizing the sum of squared residuals by the $L^1$ or $L^2$ norm of the regression coefficients, we can penalize with a combination of the two, corresponding to setting the `alpha` parameter in `glmnet()` to a value between 0 and 1.[^alpha] We can use cross-validation to find the optimal *pair* of *hyperparameters* $(\alpha, \lambda)$.
 
+[^alpha]: Read the [official documentation](https://cran.r-project.org/web/packages/glmnet/glmnet.pdf) to figure out it works.
+
 Thankfully, we won't have to implement that ourselves (for now)! Instead, we can use the `caret` package to get a cross-validated estimate of the optimal $(\alpha, \lambda)$.
 
 Here's an example of how to use the `caret` package's `train()` function:
@@ -131,14 +135,16 @@ Here, I'll cover two important points about the behavior of the `glmnet` package
 Passing in data
 ---------------
 
-For `lm()`, you passed in the entire data frame, including both target variable and predictors. `glmnet(features, target, ...)` and `cv.glmnet(features, target, ...)` expect a *scaled matrix of predictors* for `features` and a numeric vector for `target. The `scale()` function returns a matrix, so you can just call `scale()` on a data frame of predictors and pass that in as `features`.
+For [`lm()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/lm.html), you passed in the entire data frame, including both target variable and predictors. `glmnet(features, target, ...)` and `cv.glmnet(features, target, ...)` expect a *scaled matrix of predictors* for `features` and a numeric vector for `target`. Since [`scale()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/scale.html) returns a matrix, you can just call [`scale()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/scale.html) on a data frame of predictors and pass that in as `features`.
 
 Picking values of $\lambda$
 ---------------------------
 
-"Ordinarily", one might expect that, for every different value of $\lambda$ we want to try using with regularized linear regression, we would have to recompute the entire model from scratch. However, the [`glmnet`](https://web.stanford.edu/~hastie/glmnet/glmnet_alpha.html) package, through which we'll be using regularized linear regression, will automatically compute the regression coefficients for *a wide range of $\lambda$ values simultaneously.[^glmnet]
+Ordinarily, one might expect that, for every different value of $\lambda$ we want to try using with regularized linear regression, we would have to recompute the entire model from scratch. However, the [`glmnet`](https://web.stanford.edu/~hastie/glmnet/glmnet_alpha.html) package, through which we'll be using regularized linear regression, will automatically compute the regression coefficients for *a wide range of $\lambda$ values simultaneously.[^glmnet]
 
-When you call `glmnet()` -- or, later, `cv.glmnet()` -- you'll get out an object, `fit`. (You should generally not be specifying *which* $\lambda$ values the algorithm should use at this point -- it'll try to determine that on its own.) By printing out `fit` in the console, you can see which values of $\lambda$ were used by `glmnet`.
+[^glmnet]: "Due to highly efficient updates and techniques such as warm starts and active-set convergence, our algorithms can compute the solution path very fast."
+
+When you call `glmnet()` -- or, later, `cv.glmnet()` -- you'll get out an object, which we'll call `fit`. (You should generally not be specifying *which* $\lambda$ values the algorithm should use at this point -- it'll try to determine that on its own.) By printing out `fit` in the console, you can see which values of $\lambda$ were used by `glmnet`.
 
 When you want to make predictions with this `fit` object, you'll have to specify *which* value of $\lambda$ to use -- instead of calling `predict(fit, new_data)`, you'll want to call `predict(fit, new_data, s=lambda)` for some particular $\lambda$ = `lambda`. Similarly, when extracting coefficients, you'll want to call `coef(fit, s=lambda)`.
 
@@ -146,8 +152,4 @@ Finally, `cv.glmnet()` will use *cross-validation* to determine `fit$lambda.min`
 
 If it turns out that the optimal value of $\lambda$ lies at either end of the range of $\lambda$ values used by `glmnet`, then you'll want to modify the range of $\lambda$. However, the documentation advises against passing in just a single value for the `lambda` parameter of `glmnet()` and `cv.glmnet()`, instead suggesting modifying `nlambda` and `lambda.min.ratio`.[^glmnet2] Nevertheless, there are times when passing in a single value makes sense, like when you've previously determined the optimal $\lambda$ and want to just use that instead of a range of different $\lambda$ values.
 
-[^alpha]: Read the [official documentation](https://cran.r-project.org/web/packages/glmnet/glmnet.pdf) to figure out it works.
-
-[^glmnet]: "Due to highly efficient updates and techniques such as warm starts and active-set convergence, our algorithms can compute the solution path very fast."
-
-[^glmnet2]: "Typical usage is to have the program compute its own `lambda` sequence based on `nlambda` and `lambda.min.ratio`. Supplying a value of `lambda` overrides this. WARNING: use with care. Do not supply a single value for `lambda` (for predictions after CV use `predict()` instead). Supply instead a decreasing sequence of `lambda` values. `glmnet` relies on its warms starts for speed, and it's often faster to fit a whole path than compute a single fit.""
+[^glmnet2]: "Typical usage is to have the program compute its own `lambda` sequence based on `nlambda` and `lambda.min.ratio`. Supplying a value of `lambda` overrides this. WARNING: use with care. Do not supply a single value for `lambda` (for predictions after CV use `predict()` instead). Supply instead a decreasing sequence of `lambda` values. `glmnet` relies on its warms starts for speed, and it's often faster to fit a whole path than compute a single fit."
