@@ -100,7 +100,7 @@ In general, there are three main ways to loop through a list-based data structur
 
 (Remember that a data frame is just a list, so the first loop iterates through each column individually and the second loop iterates from 1 to the number of columns in `df`.)
 
-* Write a function that takes a data frame as input and modifies each column to be equal to itself minus the *previous* column, with the first column remaining unchanged. Test your function on `df = data.frame(matrix(1:100, nrow=10))` -- aside from 9 entries in the first column, every entry should be equal to 10.
+* Write a function that takes a data frame as input and modifies each column to be equal to itself minus the *previous* column, with the first column remaining unchanged. The changes should not propagate, *i.e.*, starting from the second column and finishing with the rightmost column should not yield a different result from starting with the rightmost column and finishing with the second column. Test your function on `df = data.frame(matrix(1:100, nrow=10))` -- aside from 9 entries in the first column, every entry should be equal to 10.
 
 The first form of iteration is the simplest, but you don't get the name or index of each item, just the item itself. The second and the third are more complex, but provide you with more information, so keep them in mind -- they may be helpful for more complex problems.
 
