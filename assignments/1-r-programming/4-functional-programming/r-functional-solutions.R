@@ -5,7 +5,7 @@ df_class(mtcars)
 df_standardize = function(df) data.frame(lapply(df, function(x) (x-mean(x))/sd(x)))
 df_standardize(mtcars)
 
-df_standardize_numeric = function(df) data.frame(lapply(df, function(x) ifelse(is.numeric(x), (x-mean(x))/sd(x), x)))
+df_standardize_numeric = function(df) data.frame(lapply(df, function(x) ifelse(sapply(x, is.numeric), (x-mean(x))/sd(x), x)))
 df = data.frame(matrix(1:100, nrow=10))
 df[1:5] = lapply(df[1:5], as.character)
 df_standardize_numeric(df)

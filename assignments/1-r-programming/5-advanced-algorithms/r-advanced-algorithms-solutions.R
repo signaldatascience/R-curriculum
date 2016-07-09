@@ -264,6 +264,15 @@ for (i in 1:nlim) {
   time_simp[i] = t_simp
 }
 
+for (i in 100000:1000000) {
+  res_mr = miller_rabin(i)
+  res_simp = simple_check(i)
+  if (res_mr != res_simp) {
+    print(i)
+    break
+  }
+}
+
 # Variations function
 variations = function(n) {
   n = as.character(n)
