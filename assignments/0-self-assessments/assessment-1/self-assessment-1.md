@@ -73,7 +73,7 @@ In the next part, we'll be looking at psychological test data.
 
 	* density plots for Extraversion and Neuroticism ([`geom_density()`](http://docs.ggplot2.org/current/geom_density.html)), and
 
-	* a scatterplot of Extraversion scores vs. Neuroticism scores, with a smoothed nonlinear fit to the points overlaid on top.
+	* a scatterplot of Extraversion scores vs. Neuroticism scores, with a smoothed nonlinear fit to the points overlaid on top ([`geom_smooth()`](http://docs.ggplot2.org/current/geom_smooth.html)).
 
 * Run linear regressions of Extraversion and Neuroticism against all the other features. Neuroticism should *not* be one of the predictors for Extraversion and vice versa, but `"active"` through `"scornful"` should be included simultaneously.
 
