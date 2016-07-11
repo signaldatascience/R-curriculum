@@ -29,14 +29,14 @@ qplot(agged$Y, agged$X)
 
 
 # Plot theoretical result
-Y_sim = seq(0, 1, length.out=n_bins)
-X_sim = (Y_sim - 1) / log(Y_sim)
-qplot(Y_sim, X_sim)
+Y_theory = seq(0, 1, length.out=n_bins)
+X_theory = (Y_theory - 1) / log(Y_theory)
+qplot(Y_theory, X_theory)
 
 
 # Plot simulated + theoretical result
-agged = data.frame(agged, Y_sim, X_sim)
-ggplot(agged) + geom_point(aes(x=Y, y=X)) + geom_smooth(aes(x=Y_sim, y=X_sim))
+agged = data.frame(agged, Y_theory, X_theory)
+ggplot(agged) + geom_point(aes(x=Y, y=X)) + geom_smooth(aes(x=Y_theory, y=X_theory))
 
 
 ### Part 2###
