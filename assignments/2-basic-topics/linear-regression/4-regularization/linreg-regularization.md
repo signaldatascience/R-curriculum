@@ -36,19 +36,19 @@ If you run `summary(lm(y ~ x - 1))`, corresponding to a linear model with no con
 
 For each of `p = 1` and `p = 2`,
 
-* Use [`lapply()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/lapply.html) to make a `plots` list with 10 `ggplot()` objects, one for each value of lambda from $2^{-8}$ to $2^1$, graphing values of `a` on the [abscissa](https://en.wikipedia.org/wiki/Abscissa) (x-axis) and values of the cost function on the [ordinate](https://en.wikipedia.org/wiki/Ordinate) (y-axis). Then use multiplot with `plotlist = "plots"`  to display these graphs in 2 columns of 5. Pay special attention to the values on the y-axis, which vary from plot to plot. 
+* Use [`lapply()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/lapply.html) to make a `plots` list with 10 `ggplot()` objects, one for each value of lambda from $2^{-8}$ to $2^1$, graphing values of `a` on the [abscissa](https://en.wikipedia.org/wiki/Abscissa) ($x$-axis) and values of the cost function on the [ordinate](https://en.wikipedia.org/wiki/Ordinate) ($y$-axis). Then use multiplot with `plotlist = "plots"`  to display these graphs in 2 columns of 5. Pay special attention to the values on the $y$-axis, which vary from plot to plot. 
 
 Comparing regularization and stepwise regression
 ================================================
 
 Install the `glmnet` package.
 
-We'll continue using the simplified speed dating dataset from yesterday. For now, please restrict analyzing *attractiveness ratings* (`"attr_o"`) for *males*.
+We'll continue using the aggregated speed dating dataset (`speed-dating-simple`) from yesterday. For simplicity, we'll restrict to analyzing *attractiveness ratings* (`"attr_o"`) for *males*.
 
 Getting acquainted with `glmnet`
 --------------------------------
 
-The `glmnet()` function can perform both $L^1$ and $L^2$ regularized linear regression as well as a mix of the two (which we'll be exploring later). Set `alpha=1` for $L^1$ regularization and set `alpha=0` for $L^2$ regularization.
+`glmnet()` can perform both $L^1$ and $L^2$ regularized linear regression as well as a mix of the two (which we'll be exploring later). Set `alpha=1` for $L^1$ regularization and set `alpha=0` for $L^2$ regularization.
 
 * Use backward stepwise regression to generate attractiveness predictions for the whole dataset. (Don't use cross-validation at this point.)
 
