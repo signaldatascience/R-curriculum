@@ -57,6 +57,8 @@ Part 2: Data Analysis
 
 In the next part, we'll be looking at psychological test data.
 
+*Note:* When running a linear regression, you can pass into `lm()` the formula `y ~ .` to regress against all other variables (instead of, *e.g.*, `y ~ a + b + c + ...`).
+
 * Load the `msq` dataset from the `psych` library and call `help()` on it to see what it's about. For convenience, set it equal to the variable `df`.
 
 * Compute the fraction of missing values for each feature, sorted in descending order. The first of these should be 0.528747 for `"kindly"`.
