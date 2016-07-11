@@ -28,7 +28,7 @@ Here's an interview question from [*Euclid Analytics*](http://euclidanalytics.co
 
 Now, we don't know the answer yet, but maybe we can get some sense of what it might look like by doing some Monte Carlo simulations. To that end:
 
-* A *single trial* of the process described in the problem will yield a pair of values $(x, y)$, where the probability distribution which $y$ is drawn from depends on the value of $x$. Simulate $k$ trials of this process for $k = 1000000$. (You may find the `runif()` function helpful.)
+* A *single trial* of the process described in the problem will yield a pair of values $(x, y)$, where the probability distribution which $y$ is drawn from depends on the value of $x$. Simulate $k$ trials of this process for $k = 10000$. (You may find the `runif()` function helpful.)
 
 	* Plot the simulated values with `qplot()`.
 
