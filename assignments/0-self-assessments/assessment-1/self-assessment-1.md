@@ -86,7 +86,7 @@ Part 3: SQL Queries
 
 Finally, we'll finish with three SQL questions!
 
-* Given a `COURSES` table with columns `course_id` and `course_name`, a `FACULTY` table with columns `faculty_id` and `faculty_name`, and a `COURSE_FACULTY` table with columns `faculty_id` and `course_id`, how would you return a list of faculty who teach a course given the name of a course?
+* Given a `COURSES` table with columns `course_id` and `course_name`, a `FACULTY` table with columns `faculty_id` and `faculty_name`, and a `COURSE_FACULTY` table with columns `faculty_id` and `course_id`, how would you return a list of the names of faculty members who teach a course given the name of a course?
 
 * What's the difference between `WHERE` and `HAVING`? (Just write 1-2 sentences.)
 
