@@ -38,11 +38,11 @@ Now, we don't know the answer yet, but maybe we can get some sense of what it mi
 
 	* Use `qplot()` to view the results. Do they make sense?
 
-Now, suppose that a magic fairy whispers into your ear:
+The correct theoretical answer is in fact
 
-> Here's the answer, my friend! It just so happens that $\mathbb{E}(X|Y = y) = \dfrac{y - 1}{\ln y}$.
+$$\mathbb{E}(X|Y = y) = \dfrac{y - 1}{\ln y}.$$
 
-In light of this revelation, you want to verify your computational results from earlier. To that end:
+In light of this new knowledge, you want to verify your computational results from earlier. To that end:
 
 * Generate a lot of different values of $Y$ and calculate the corresponding values of $\mathbb{E}(X|Y = y)$ according to the equation above.
 
