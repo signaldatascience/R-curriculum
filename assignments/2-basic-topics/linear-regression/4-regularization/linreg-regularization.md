@@ -3,12 +3,12 @@ title: "Linear Regresson: Regularization"
 author: Signal Data Science
 ---
 
-Some helpful notes on the `glmnet` package are at the end of this document. Look there if you have problems.
+Some helpful notes on the `glmnet` package are in a section at the end of this document. If you have problems using functions from `glmnet`, read that section to see if it answers your questions.
 
 Exploring regularization with simulated data
 ============================================
 
-Before using regularized linear regression on real data, we'll explore it in a simpler context with some simulated data.
+Before using regularized linear regression on real data, we'll explore regularization in a simpler context with some simulated data.
 
 Define `x` and `y` using:
 

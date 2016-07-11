@@ -22,7 +22,7 @@ Part 1: R and Probability
 
 Here's an interview question from [*Euclid Analytics*](http://euclidanalytics.com/):
 
-> Suppose that $X$ is uniformly distributed over $[0,1]$. Now choose $X = x$ and let $Y$ be uniformly distributed over $[0,x]$. Is it possible for us to calculate the "expected value of $X$ given $Y = y$", *i.e.*, $\mathbb{E}(X|Y = y)$?
+> Suppose that $X$ is uniformly distributed over $[0,1]$. Now choose $X = x$ and let $Y$ be uniformly distributed over $[0,x]$. Is it possible for us to calculate the "expected value of $X$ given $Y = y$", *i.e.*, $\mathbb{E}(X \mid Y = y)$?
 
 (If you don't know what [*expected value*](https://en.wikipedia.org/wiki/Expected_value) is, you can think of it as the mean of each possible outcome weighted by its probability.)
 
@@ -40,11 +40,11 @@ Now, we don't know the answer yet, but maybe we can get some sense of what it mi
 
 The correct theoretical answer is in fact
 
-$$\mathbb{E}(X|Y = y) = \dfrac{y - 1}{\ln y}.$$
+$$\mathbb{E}(X \mid Y = y) = \dfrac{y - 1}{\ln y}.$$
 
 In light of this new knowledge, you want to verify your computational results from earlier. To that end:
 
-* Generate a lot of different values of $Y$ and calculate the corresponding values of $\mathbb{E}(X|Y = y)$ according to the equation above.
+* Generate a lot of different values of $Y$ and calculate the corresponding values of $\mathbb{E}(X \mid Y = y)$ according to the equation above.
 
 	* Graph them using [`qplot()`](http://docs.ggplot2.org/current/qplot.html). Does this graph match your simulated results?
 
