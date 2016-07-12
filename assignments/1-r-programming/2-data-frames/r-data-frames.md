@@ -298,7 +298,7 @@ The following problem is a common programming interview question. Remember it we
 
 * Given a data frame of purely numeric data, write a function that returns the entries of the data frame ordered in a "spiral" fashion starting at the top left and proceeding counterclockwise and inward.
 
-	* For example, the function appplied to `data.frame(matrix(1:9, nrow=3))` would return `c(1, 2, 3, 6, 9, 8, 7, 4, 5)`.
+	* For example, the function appplied to `data.frame(matrix(1:9, nrow=3))` would return `c(1, 2, 3, 6, 9, 8, 7, 4, 5)` and applied to `data.frame(matrix(1:6, nrow=2))` would return `c(1, 2, 4, 6, 5, 3)`.
 
 	* Add a `"clockwise"` parameter to your function, defaulting to `FALSE`, which if set to `TRUE` returns the entries corresponding to a clockwise traversal of the spiral.
 

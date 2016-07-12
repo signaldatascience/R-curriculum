@@ -21,13 +21,69 @@ get_min_rmse = function(fit) {
   c(lambda=fit$lambda[arg_min(rmses)], rmse=min(rmses))
 }
 
+### SIMULATED DATA FOR REGULARIZATION ##########################################
+
+# Define x and y
+set.seed(1); j = 50; a = 0.25
+x = rnorm(j)
+error = sqrt(1 - a^2)*rnorm(j)
+y = a*x + error
+
+# Look at lm() coefficient estimate
+summary(lm(y ~ x - 1))
+qplot(x, y) + geom_smooth(method = "lm")
+
+# Define cost function
+cost =  function(x, y, aEst, lambda, p){
+  sum((y - aEst*x)^2) + lambda*abs(aEst)^p
+}
+cost(1, 2, 3, 4, 2)
+
+# Create vectors
+lambdas = 2^(seq(-2, 7, 1))
+as = seq(-0.1, 0.3, by=0.001)
+
+# Create grid
+grid = expand.grid(lambda=lambdas, aEst=as)
+
+# Add empty costL1 and costL2 columns
+grid$costL1 = 0
+grid$costL2 = 0
+
+# Fill in empty columns
+for (i in 1:nrow(grid)) {
+  aEst = grid[i, "aEst"]
+  lambda = grid[i, "lambda"]
+  grid[i, "costL1"] = cost(x, y, aEst, lambda, 1)
+  grid[i, "costL2"] = cost(x, y, aEst, lambda, 2)
+}
+
+# get_plot() function
+get_plot = function(lambda, p) {
+  aEst = grid[grid$lambda == lambda, "aEst"]
+  if (p == 1) {
+    cost = grid[grid$lambda == lambda, "costL1"]
+  } else {
+    cost = grid[grid$lambda == lambda, "costL2"]
+  }
+  qplot(aEst, cost)
+}
+
+# Make the lists of plots
+plotsL1 = lapply(1:10, function(k) get_plot(lambdas[k], 1))
+plotsL2 = lapply(1:10, function(k) get_plot(lambdas[k], 2))
+
+# Calls to multiplot()
+multiplot(plotlist=plotsL1, cols=2)
+multiplot(plotlist=plotsL2, cols=2)
+
 ### COMPARING REGULARIZATION AND STEPWISE REGRESSION ###########################
 
 set.seed(1)
 
 # Load data
-setwd('C:/Users/Andrew/Documents/Signal/curriculum/src/week2/day1/')
-df = read.csv('speedDatingSimple.csv')
+setwd('C:/Users/Andrew/Documents/Signal/curriculum/datasets/speed-dating-simple')
+df = read.csv('speed-dating-simple.csv')
 
 # Filter for gender == 1
 df = filter(df, gender==1)
@@ -72,7 +128,6 @@ c(l1=fit_l1_cv$lambda.min, l2=fit_l2_cv$lambda.min)
 
 ### MAKING CROSS-VALIDATED RMSE PREDICTIONS ####################################
 
-# I won't write a function -- instead I'll just do it directly
 set.seed(2)
 
 # Initialize predictions vectors
@@ -119,10 +174,14 @@ c(step=cv_rmse_step, l1=cv_rmse_l1, l2=cv_rmse_l2)
 set.seed(3)
 
 # Set parameters
-param_grid = expand.grid(.alpha=1:10*0.1, .lambda=10^seq(-4, -1, length.out=10))
+param_grid = expand.grid(.alpha=1:10*0.1, .lambda=10^seq(-4, 0, length.out=10))
 control = trainControl(method="repeatedcv", number=10, repeats=3, verboseIter=TRUE)
 
-# As before, I won't wrap it in a function, I'll just do it directly
+# Search
 caret_fit = train(x=activities_scaled, y=attr_o, method="glmnet", tuneGrid=param_grid, trControl=control)
 
-caret_fit
+# View minimum RMSE
+min(caret_fit$results$RMSE)
+
+# View hyperparameters
+caret_fit$bestTune

@@ -20,6 +20,7 @@ http://www.cs.columbia.edu/~blei/fogm/2015F/
 - add more about Github API to scraping+nlp (for time argument)
 - find good place for <<- operator
 - more sorting algorithms
+- memoisation in 1st assignment -- need <<- or something else
 - softimpute
 
 https://www.kaggle.com/benhamner/2016-us-election

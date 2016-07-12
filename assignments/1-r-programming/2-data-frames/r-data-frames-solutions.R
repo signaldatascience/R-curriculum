@@ -56,3 +56,70 @@ nesting_depth(test3)
 nesting_depth2(test)
 nesting_depth2(test2)
 nesting_depth2(test3)
+
+# Traverses data frame in counterclockwise spiral
+
+# dir = 1 2 3 or 4 <=> left bottom right or up
+get_slice = function(df, dir, clockwise=FALSE) {
+  if (is.null(df)) {
+    return(NULL)
+  }
+
+  if (dir == 1) {
+    slice = df[, 1]
+    df = df[, -1, drop=FALSE]
+  } else if (dir == 2) {
+    slice = df[nrow(df), ]
+    df = df[-nrow(df), , drop=FALSE]
+  } else if (dir == 3) {
+    slice = df[, ncol(df)]
+    df = df[, -ncol(df), drop=FALSE]
+  } else {
+    slice = df[1, ]
+    df = df[-1, , drop=FALSE]
+  }
+
+  if (!clockwise & (dir == 3 | dir == 4)) {
+    slice = rev(slice)
+  } else if (clockwise & (dir == 1 | dir == 2)) {
+    slice = rev(slice)
+  }
+
+  names(slice) = NULL
+  list(slice=slice, df=df)
+}
+
+spiral = function(df, clockwise=FALSE) {
+  stop = FALSE
+  nums = c()
+  iter = 1:4
+  if (clockwise) {
+    iter = rev(iter)
+  }
+  while (!stop) {
+    for (dir in iter) {
+      tmp = get_slice(df, dir, clockwise)
+      slice = tmp$slice
+      df = tmp$df
+
+      if (length(slice) == 0) {
+        stop = TRUE
+        break
+      } else {
+        nums = c(nums, slice)
+      }
+    }
+  }
+  unlist(nums)
+}
+
+testdf1 = data.frame(matrix(1:9, nrow=3))
+testdf2 = data.frame(matrix(1:6, nrow=2))
+
+testdf1
+spiral(testdf1)
+spiral(testdf1, clockwise=TRUE)
+
+testdf2
+spiral(testdf2)
+spiral(testdf2, clockwise=TRUE)
