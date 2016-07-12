@@ -1,5 +1,6 @@
 ---
-title: Self-Assessment
+title: Self Assessment 2
+author: Signal Data Science
 ---
 
 We'll be having another self-assessment. As before,
@@ -10,11 +11,7 @@ We'll be having another self-assessment. As before,
 
 * Work individually. You can however consult R documentation, look at old assignments, use the Internet, etc., but don't copy and paste code verbatim.
 
-* Make your code as clear, compact, and efficient as possible. Use everything that you've learned! **Please comment your code and write it cleanly so I know what each part of your script is supposed to do.**
-
-* If it's 12:30 and you haven't finished: go eat lunch, come back, and keep working after a break!
-
-We expect this to take up to 3 hours, but we may be wrong -- we don't have any calibration data, after all! We'll determine the stopping point based on people's progress through the self-assessment at lunchtime.
+* Make your code as clear, compact, and efficient as possible. Use everything that you've learned! **Please comment and organize your code so we can easily tell how parts of your R script correspond to specific problems.**
 
 Packages you may find useful: `dplyr`, `ggplot2`, `glmnet`, `psych`, and `corrplot`.
 

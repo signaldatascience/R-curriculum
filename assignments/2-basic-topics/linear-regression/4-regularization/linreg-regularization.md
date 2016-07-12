@@ -94,7 +94,7 @@ Explore the difference in model quality between backward stepwise regression, $L
 Elastic net regression
 ======================
 
-Instead of penalizing the sum of squared errors by the $L^1$ or $L^2$ norm of the regression coefficients, we can penalize with a *combination* of the two, corresponding to setting the `alpha` parameter in `glmnet()` to a value *between* 0 and 1.[^alpha] This is known as [elastic net regularization](https://en.wikipedia.org/wiki/Elastic_net_regularization). We can use cross-validation to find the optimal *pair* of hyperparameters $(\alpha, \lambda)$.
+Instead of penalizing the sum of squared errors by the $L^1$ or $L^2$ norm of the regression coefficients, we can penalize with a *combination* of the two, corresponding to setting the `alpha` parameter in `glmnet()` to a value *between* 0 and 1.[^alpha] This is known as [elastic net regularization](https://en.wikipedia.org/wiki/Elastic_net_regularization) and usually performs better than pure $L^1$ or $L^2$ regularization alone. However, instead of simply finding a *single* hyperparameter $\lambda$, we now must find the optimal *pair* of hyperparameters $(\alpha, \lambda)$ (by testing a large number of such pairs and calculating the cross-validated RMSE corresponding to each one).
 
 [^alpha]: Read the [official documentation for `glmnet`](https://cran.r-project.org/web/packages/glmnet/glmnet.pdf) to figure out how the $\alpha$ parameter works..
 

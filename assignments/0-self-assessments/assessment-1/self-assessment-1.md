@@ -7,7 +7,7 @@ Today, you'll be completing a short assessment so that we can get a sense of whe
 
 * Type your answers in a new R script file with comments indicating where the answer to each question begins.
 
-* Write down the current time. Please email us (at `signaldatascience@gmail.com`) with your R script attached at lunchtime.
+* Write down the current time. Please email us (at `signaldatascience@gmail.com`) with your R script attached when you're finished.
 
 * Work individually. You can however consult R documentation, look at old assignments, use the Internet, etc., but don't copy and paste code verbatim.
 
