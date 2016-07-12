@@ -11,8 +11,22 @@ R curriculum
 R: Basics
 ---------
 
+* Need to emphasize that people should read this. Don't want people using `<-` instead of `=`.
+
 R: Atomic Vectors and Functions
 -------------------------------
+
+R: Data Frames
+--------------
+
+R: Basic Algorithms
+-------------------
+
+R: Attributes, Factors, and Matrices
+------------------------------------
+
+R: Functional Programming
+-------------------------
 
 Linear regression
 =================

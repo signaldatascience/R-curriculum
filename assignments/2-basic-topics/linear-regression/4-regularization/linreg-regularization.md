@@ -52,7 +52,7 @@ Getting acquainted with `glmnet`
 
 * Use backward stepwise regression to generate attractiveness predictions for the whole dataset. (Don't use cross-validation at this point.)
 
-* Use `glmnet()` to generate similar predictions with both $L^1$ and $L^2$ regularized linear regression.
+* Similarly, use `glmnet()` to generate attractiveness predictions with both $L^1$ and $L^2$ regularized linear regression.
 
 	* Look at which values of $\lambda$ were used by `glmnet()`.
 

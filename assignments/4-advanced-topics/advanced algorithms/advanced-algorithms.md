@@ -1,9 +1,9 @@
 ---
-title: "R: Advanced Algorithms"
+title: Advanced Algorithms
 author: Signal Data Science
 ---
 
-Now that you're acquainted with the basics of R's functional programming toolkit and have a strong grasp of the most important aspects of R's internals, we'll wrap up our R curriculum with some materials on a variety of useful and interesting numerical algorithms.
+Here's a collection of problems about advanced algorithms. These are designed to reinforce your R programming skills while teaching you useful and applicable material.
 
 Fast modular exponentiation
 ===========================
