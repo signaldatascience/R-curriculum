@@ -23,7 +23,7 @@ For buffer, use *R: Basic Algorithms*, which can be completed directly after *R:
 
 On the first weekend, assign the completion of old work along with [SQLZoo](http://sqlzoo.net/) tutorials. If there will be a self-assessment after the weekend, give students advance notice of this.
 
-Give students *Self Assessment 1* (SA1) after all the R basics have been introduced. SA1 will take 3--5 hours based on student strength, so allocate 4 hours for its completion with a lunch break in between. Afterward, go over solutions and give students a half-hour break. Time after completing SA1 can be used for catching up on old work. There is a theoretical solution to Part 1, which can be mentioned in the presentation of R code solutions and presented *only* to those students who are interested. **Important:** Depending on how many days occur before the weekend, students or may not have had a chance to learn SQL, so the SQL questions on SA1 may have to be removed.
+Give students *Self-Assessment 1* (SA1) after all the R basics have been introduced. SA1 will take 3--5 hours based on student strength, so allocate 4 hours for its completion with a lunch break in between. Afterward, go over solutions and give students a half-hour break. Time after completing SA1 can be used for catching up on old work. There is a theoretical solution to Part 1, which can be mentioned in the presentation of R code solutions and presented *only* to those students who are interested. **Important:** Depending on how many days occur before the weekend, students or may not have had a chance to learn SQL, so the SQL questions on SA1 may have to be removed.
 
 It should be emphasized to students that they should make extra effort to wrap up any loose ends in the core R curriculum after SA1, as they will be moving on to more substantive data science material afterward.
 
@@ -37,4 +37,4 @@ This portion of the curriculum takes approximately 1 week. The assignments in th
 3. *Linear Regression: Kaggle Africa Soil Challenge*
 4. *Logistic Regression: Speed Dating*
 
-A day or two after *Linear Regression: Kaggle Africa Soil Challenge*, give students *Self Assessment 2* (SA2). SA2 will take students 3--5 hours depending on student strength. Present both code (for the whole assessment) and theoretical solutions (for the probability questions)
+A day or two after *Linear Regression: Kaggle Africa Soil Challenge*, give students *Self-Assessment 2* (SA2). SA2 will take students 3--5 hours depending on student strength. Present both code (for the whole assessment) and theoretical solutions (for the probability questions)
