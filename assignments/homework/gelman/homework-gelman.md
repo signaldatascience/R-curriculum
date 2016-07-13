@@ -11,3 +11,13 @@ The reading assignments are given below (one per night):
 * **Assignment 3:** Sections 5.1--5.2 and 4.4--4.6.
 
 As you read, follow through the text and work through the examples in an R script of your own. Include your interpretation of the results as comments. Gelman uses `display()` from his own custom package, but you can just use `summary()` if you want.
+
+Look on [Gelman's website](http://www.stat.columbia.edu/~gelman/arm/software/) for the datasets used in his book. Download both
+
+> [Zip file with R/Bugs code](http://www.stat.columbia.edu/~gelman/arm/examples/Book_Codes.zip) for most of the examples from the book.
+
+and
+
+> [Zip file with data](http://www.stat.columbia.edu/~gelman/arm/examples/ARM_Data.zip) for most of the examples and exercises from the book.
+
+referring to the former to see which datasets to load from the latter.

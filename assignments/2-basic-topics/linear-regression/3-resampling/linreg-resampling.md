@@ -59,7 +59,7 @@ Next, we will split the task before us into three different functions. As you wr
 
 Finally, we're ready to see how a linear model performs on the train set versus the test set.
 
-* Run `split_data()` and `split_predict()` 100 times to generate predictions for 100 different train/test splits. For each prediction, calculate the associated RMSE against the true values. Plot the distribution of RMSEs for both the train set and the test set. Calculate their mean and [standard error](https://en.wikipedia.org/wiki/Standard_error) (the standard deviation divided by $sqrt(n)$ for $n$ samples). How does the performance on the train set compare to the performance on the test set?
+* Run `split_data()` and `split_predict()` 100 times to generate predictions for 100 different train/test splits. For each prediction, calculate the associated RMSE against the true values. Plot the distribution of RMSEs for both the train set and the test set. Calculate their mean and standard deviation. How does the performance on the train set compare to the performance on the test set?
 
 $n$-fold cross validation
 =========================
@@ -79,9 +79,7 @@ You'll be implementing the above process in the following problems and comparing
 
 * Write a function `nfold_cv(df, n_folds)` that splits `df` into `n_folds` folds, generates predictions in the fashion described above, and calculates the RMSE on the whole dataset with those predictions. It should return the RMSE at the end.
 
-* Run `nfold_cv()` 100 times for both 2-fold and 10-fold cross-validation. Plot the distribution of the associated RMSEs. Also, calculate their means and standard errors.
-
-* Compare the results of a single train/test split, 2-fold cross validation, and 10-fold cross validation with regard to getting an accurate measure of model quality.
+* Run `nfold_cv()` 100 times for both 2-fold and 10-fold cross-validation. Plot the distributions of the RMSE values for 2-fold and 10-fold cross-validation on the same graph. Calculate the means and standard deviations of the distributions and compare the results to those for the distribution of RMSE values for the test set when doing a single train/test split.
 
 Stepwise linear regression
 ==========================
@@ -101,7 +99,7 @@ Let's find out how much we can improve on a linear regression which includes eve
 
 * Write your own implementation of backward stepwise regression as a function `backward_step(df)` which follows these criteria:
 
-	* It begins with the full dataset -- the attractiveness ratings, which we're trying to predict, as well as the 17 activity scores.
+	* It begins with the full dataset -- the attractiveness ratings, which we're trying to predict, as well as the 17 activity scores. As before, *don't* include gender or the other 4 ratings.
 
 	* The function should repeatedly iterate. On each iteration, it should:
 
@@ -130,8 +128,8 @@ model = formula(lm(col ~ ., df))
 step_reg = step(model_init, model, direction="backward")
 ```
 
-Now, your turn:
+In the following, you will use stepwise regression on *all five* of the average rating variables.
 
-* For *each of the five rating variables* (attractiveness, sincerity, intelligence, fun, ambition), use `step()` to run backward stepwise regression (with the `direction="backward"` parameter).
+* For *each of the five rating variables* (attractiveness, sincerity, intelligence, fun, and ambition), use `step()` to run backward stepwise regression (with the `direction="backward"` parameter) to predict that rating in terms of the 17 activity ratings. Store the coefficients of the final model for each of the rating variables in a list. Interpret the differences between them.
 
-* Store the coefficients of the final linear model into a data frame. Interpret the results.
+Note that if you have a column name stored in a *variable*, *e.g.* `var = col_name`, and you would like to regress `col_name` against every other variable in `df`, the call `lm(var ~ ., df)` will *not* work, because [`lm()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/lm.html) will look for a column called `var`. Instead, use [`paste()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/paste.html) to create a *string* `s = "col_name ~ ."` from `var` and then pass `s` in as the first argument of [`lm()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/lm.html).
