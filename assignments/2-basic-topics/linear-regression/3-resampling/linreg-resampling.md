@@ -150,7 +150,9 @@ Comparing models
 
 Suppose that we want to use bootstrapping in order to measure model quality. The two simplest ways to do so are to generate a large number of bootstrapped samples and to either (1) train a model on each bootstrapped sample and make predictions on the original dataset or (2) train a model on the original dataset and make predictions on each bootstrapped sample. For each (train, test) pair, we calculate a RMSE; at the end, we take the average of all the calculated RMSE values.
 
-Both of the above methods are fundamentally broken as described. Approach (1) will severely underestimate the RMSE (and consequently the degree of overfitting) because of the high overlap between train and test sets -- on average, two-thirds of the rows in the original dataset will show up at least once in each bootstrapped sample. Approach (2) is even worse: if we train a model on the original dataset, it will already have "seen" one copy of every data point, so none of the data in *any* of the test sets will be "new" to the model. This makes approach (2) completely incapable of detecting overfitting.
+Both of the above methods are fundamentally broken as described. Approach (1) will severely underestimate the RMSE (and consequently the degree of overfitting) because of the high overlap between train and test sets -- on average, two-thirds of the rows in the original dataset will show up at least once in each bootstrapped sample. Approach (2) is even worse: if we train a model on the original dataset, it will already have "seen" one copy of every data point, so none of the data in *any* of the test sets will be "new" to the model. This makes approach (2) completely incapable of detecting overfitting.[^subset]
+
+[^subset]: Mathematically speaking, in approach (1) every train set is a subset of the test set and in approach (2) every test set is a subset of the train set.
 
 It is often illustrative and helpful in building intuition to computationally look at the results of methods which we already know are flawed. To that end:
 
@@ -176,7 +178,7 @@ There is, however, a way to get around these problems. Indeed, we can use approa
 
 Although the modified version of approach (1) certainly works, we can see that it [tends to slightly overestimate the RMSE](http://stats.stackexchange.com/a/18355/115666). However, it also has a minor advantage over $n$-fold cross validation in that its RMSE estimates tend to have lower variance (when compared against commonly used values of $n$). Bootstrapped estimates can be corrected for the RMSE overestimation, and we can use repeated cross-validation to reduce the variance of cross-validated RMSE estimates, so in practice the differences are quite minor -- it's more important to just pick one and use it consistently.
 
-Moving forward, we'll stick to using $n$-fold cross-validation for comparing models against each other. It's conceptually simpler than bootstrapping and is encountered more often.
+Moving forward, we'll stick to using $n$-fold cross-validation for measuring model quality. It's conceptually simpler than bootstrapping and is encountered more often.
 
 Estimating parameter distributions
 ----------------------------------
