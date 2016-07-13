@@ -49,8 +49,8 @@ We will now begin to use the `glmnet` package, which provides the functions `glm
 
 Continue using the aggregated speed dating dataset (`speed-dating-simple`) from yesterday. For simplicity, we'll restrict to analyzing average *attractiveness ratings* (`attr_o`) for *males*, making predictions for that specific rating in terms of the 17 self-rated activity variables.
 
-Getting acquainted with `glmnet`
---------------------------------
+Getting started with `glmnet()`
+-------------------------------
 
 `glmnet()` can perform both $L^1$ and $L^2$ regularized linear regression as well as a mix of the two (which we'll be exploring later). When calling `glmnet()`, you can set `alpha=1` for $L^1$ regularization and `alpha=0` for $L^2$ regularization.
 
@@ -62,6 +62,9 @@ Getting acquainted with `glmnet`
 
 * For both the $L^1$ and $L^2$ regularized linear fits, use `get_rmses()` to plot the RMSE corresponding to each value of $\lambda$ against $\lambda$ itself.
 
+Making cross-validated RMSE estimates
+-------------------------------------
+
 We can see that the non-cross-validated RMSE is minimized at $lambda = 0$! This is not surprising, because *on the whole dataset* the linear fit which minimizes the RMSE is precisely (and almost tautologically) the one obtained by minimizing the sum of squared errors, without adding on any regularization term. However, the same cannot be said for the *cross-validated* RMSE estimates. Typically, adding in some regularization will reduce the amount of overfitting sufficiently well that the optimal value of $\lambda$ is greater than 0.
 
 We can automatically generate cross-validated error estimates for a range of different $\lambda$ values with `cv.glmnet()`. For each value of $\lambda$ tested, `cv.glmnet()` uses $n$-fold cross-validation ($n = 10$ by default) to calculate an error estimate.[^mse] After running `fit = cv.glmnet(...)`, the value of $\lambda$ (out of those tested) corresponding to the lowest error estimate can be accessed with `fit$lambda.min`. Similarly, the entire range of $\lambda$ values tested can be accessed with `fit$lambda` and the cross-validated error estimates can be accessed with `fit$cvm`. (See the notes on `glmnet` below for additional clarification.)
@@ -70,26 +73,20 @@ We can automatically generate cross-validated error estimates for a range of dif
 
 * Use `cv.glmnet()` to fit $L^1$ and $L^2$ regularized linear models for attractiveness ratings in terms of the 17 activity variables. For each one, plot the cross-validated error estimates against the values of $\lambda$ tested. Interpret the results.
 
-Making cross-validated RMSE predictions
----------------------------------------
+Stepwise regression vs. regularization
+--------------------------------------
 
-As you saw in the assignment on resampling, we want to use *cross-validation* to get more accurate estimates of model quality. In particular, stepwise regression tends to *overfit*, because of problems with [multiple hypothesis testing](https://en.wikipedia.org/wiki/Multiple_comparisons_problem), so non-cross-validated estimates of a stepwise regression model's quality are often overly optimistic. (However, stepwise regression is easy to understand and, pedagogically, a good stepping stone to regularization, which is why we include it in our curriculum.)
+Stepwise regression tends to *overfit* because of problems with [multiple hypothesis testing](https://en.wikipedia.org/wiki/Multiple_comparisons_problem). It's easy to understand as an introduction to model comparison and serve as a good stepping stone to regularization, which is why we include it in our curriculum. However, *in practice*, regularizing a linear model is typically strictly superior to selecting a subset of the predictors with a stepwise method.
 
-* Use 10-fold cross validation to generate predictions for attractiveness with (1) stepwise regression, (2) $L^1$ regularized linear regression, and (3) $L^2$ regularized linear regression.
+**Read the entirety of this section before writing any code.**
 
-* For regularized linear regression, use `cv.glmnet()` to get cross-validated estimates of the optimal value of $\lambda$, and use that to make predictions with `predict(fit, test_data, s=fit$lambda.min)`.
+* Implement 10-fold cross-validation. Within each fold, you should fit a model predicting attractiveness in terms of the 17 activities (1) with [`step()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/step.html) for backward stepwise regression and (2) with `cv.glmnet()` for both $L^1$ and $L^2$ regularized linear regression. Use the fitted model to make predictions on the held-out fold for all three methods. At the end of the 10 iterations, calculate and return the RMSE corresponding to each method. Interpret the results.
 
-* Calculate and view the RMSE associated with each of the three sets of predictions.
+Keep the following in mind while you work:
 
-Here are some points to keep in mind:
+	* After fitting a model with `cv.glmnet()`, be sure to pass `s=fit$lambda.min` to `predict()`, because by default `predict()` does *not* use the value of $\lambda$ which minimizes the cross-validated error.
 
-* Within each cross-validation fold, you'll want to `scale()` the features which you pass into `cv.glmnet()`. When generating predictions on the *held-out* data, you want to scale the features in the same way (*i.e.*, by applying the same linear transformation). The output of `scale()` will contain *attributes* which can be accessed and passed into successive calls of `scale()` to perform the same transformation.
-
-* If you have a string, say, `"attr_o"`, and you want to pass that into `lm()` as part of the regression formula, you can paste together the formula's components (*e.g.*, `paste("attr_o", "~.")`) and then pass that into the first argument of `lm()`.
-
-* You should be running stepwise regression for each training fold separately.
-
-Explore the difference in model quality between backward stepwise regression, $L^1$ regularized regression, and $L^2$ regularized regression when predicting attractiveness ratings.
+	* Within each cross-validation fold, you'll want to [`scale()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/scale.html) the features which you pass into `cv.glmnet()`. However, when making predictions on the *held-out* data, you don't want to simply call [`scale()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/scale.html) on that data directly; instead, you want to apply the *same transformations* which were applied to the training set. To do so, (1) extract the scaling parameters from the scaled training data (stored as attributes) and (2) pass them in as additional parameters to [`scale()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/scale.html) when calling it on the test set.
 
 Elastic net regression
 ======================

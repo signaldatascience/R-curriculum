@@ -4,14 +4,6 @@ library(glmnet)
 library(caret)
 library(Rmisc)
 
-### UTILITY FUNCTIONS ##########################################################
-
-# Find leftmost index in vector corresponding to min value
-arg_min = function(v) match(min(v), v)[1]
-
-# RMSE for (actual, predicted)
-rmse = function(x, y) sqrt(mean((x-y)^2))
-
 ### SIMULATED DATA FOR REGULARIZATION ##########################################
 
 # Define x and y
@@ -72,6 +64,9 @@ multiplot(plotlist=plotsL2, cols=2)
 
 set.seed(1)
 
+# RMSE function
+rmse = function(x, y) sqrt(mean((x-y)^2))
+
 # Load data
 setwd('C:/Users/Andrew/Documents/Signal/curriculum/datasets/speed-dating-simple')
 df = read.csv('speed-dating-simple.csv')
@@ -116,9 +111,7 @@ fit_l2_cv = cv.glmnet(activities_scaled, attr_o, alpha=0)
 qplot(fit_l1_cv$lambda, fit_l1_cv$cvm)
 qplot(fit_l2_cv$lambda, fit_l2_cv$cvm)
 
-### MAKING CROSS-VALIDATED RMSE PREDICTIONS ####################################
-
-set.seed(2)
+# Comparing stepwise regression vs. regularization
 
 # Initialize predictions vectors
 preds_step = numeric(nrow(df))
@@ -160,8 +153,6 @@ cv_rmse_l2 = rmse(preds_l2, attr_o)
 c(step=cv_rmse_step, l1=cv_rmse_l1, l2=cv_rmse_l2)
 
 ### ELASTIC NET REGRESSION #####################################################
-
-set.seed(3)
 
 # Set parameters
 param_grid = expand.grid(.alpha=1:10*0.1, .lambda=10^seq(-4, 0, length.out=10))
