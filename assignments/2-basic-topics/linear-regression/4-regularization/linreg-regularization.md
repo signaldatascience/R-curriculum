@@ -3,7 +3,7 @@ title: "Linear Regresson: Regularization"
 author: Signal Data Science
 ---
 
-Some helpful notes on the `glmnet` package are in a section at the end of this document. As you work through this assignment, you should refer to those notes to understand how `glmnet()` and `cv.glmnet()` work.
+Some helpful notes on the `glmnet` package are in a section at the end of this document. As you work through this assignment, you should **refer to those notes** to understand how `glmnet()` and `cv.glmnet()` work.
 
 Exploring regularization with simulated data
 ============================================
@@ -94,7 +94,7 @@ Explore the difference in model quality between backward stepwise regression, $L
 Elastic net regression
 ======================
 
-Instead of penalizing the sum of squared errors by the $L^1$ or $L^2$ norm of the regression coefficients, we can penalize with a *combination* of the two, corresponding to setting the `alpha` parameter in `glmnet()` to a value *between* 0 and 1.[^alpha] This is known as [elastic net regularization](https://en.wikipedia.org/wiki/Elastic_net_regularization) and usually performs better than pure $L^1$ or $L^2$ regularization alone. However, instead of simply finding a *single* hyperparameter $\lambda$, we now must find the optimal *pair* of hyperparameters $(\alpha, \lambda)$ (by testing a large number of such pairs and calculating the cross-validated RMSE corresponding to each one).
+Instead of penalizing the sum of squared errors by the $L^1$ or $L^2$ norm of the regression coefficients, we can penalize with a *combination* of the two, corresponding to setting the `alpha` parameter in `glmnet()` to a value *between* 0 and 1.[^alpha] This is known as [elastic net regularization](https://en.wikipedia.org/wiki/Elastic_net_regularization) and usually performs better than pure $L^1$ or $L^2$ regularization alone. However, instead of simply finding a *single* hyperparameter $\lambda$, we now must find the optimal *pair* of hyperparameters $(\alpha, \lambda)$ (by testing a large number of such pairs and calculating the cross-validated RMSE corresponding to each one). This is a more difficult task, because we must search over a 2-dimensional space of hyperparameter combinations instead of a 1-dimensional space for the value of a single hyperparameter.
 
 [^alpha]: Read the [official documentation for `glmnet`](https://cran.r-project.org/web/packages/glmnet/glmnet.pdf) to figure out how the $\alpha$ parameter works..
 

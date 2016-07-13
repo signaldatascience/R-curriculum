@@ -57,6 +57,8 @@ Be sure to pay attention to these details when you load data from external sourc
 
 The motivation behind the functionality in the next exercise is that linear regressions can't be directly run with factors, which are *categorical* variables, in the predictors; the integer-valued [`levels()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/levels.html) of a factor don't encode any meaning. Instead, we separate all but one level out into *binary indicator variables*, which we can regress against. The simplest and most common example of this is encoding a gender variable as 0 or 1.
 
+**Read the entire description of the problem below, including the diagram illustrating the intended result, before writing any code.**
+
 * Write a function that takes in a data frame, with some but not all columns being factors, and expands each factor into a set of *indicator variables* within the data frame. Precisely, for each factor, *replace* that factor column with a number of *binary indicator variables*, having these properties:
 
 	* Every level of the factor, aside from the first level, corresponds to a new binary indicator variable.[^collin]

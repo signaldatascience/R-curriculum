@@ -15,15 +15,18 @@ We'll be having another self-assessment. As before,
 
 Packages you may find useful: `ggplot2`.
 
-Part 1: Probability
+Part 1: Logistic regression
+===========================
+
+Part 2: Probability
 ===================
 
-In Part 1, we'll look at computational approaches to a variety of probability-based interview questions.
+In Part 2, we'll look at computational approaches to a variety of probability-based interview questions.
 
 Hashmap collisions
 ------------------
 
-From "120 Interview Questions", we have the following:
+From *120 Interview Questions*, we have the following question:
 
 > Your hash function assigns each object to a number between 1:10, each with equal probability. With 10 objects, what is the probability of a hash collision? What is the expected number of hash collisions? What is the expected number of hashes that are unused?
 
@@ -43,17 +46,17 @@ Write code to estimate the answer.
 Bobo the Amoeba
 ---------------
 
-Here's a problem commonly found in quantitative finance interviews, an easier version of which sometimes appears in data science interviews:
+Lastly, here's a problem commonly found in quantitative finance interviews, an easier version of which sometimes appears in data science interviews:
 
 > Bobo the amoeba can divide into 0, 1, 2, or 3 amoebas with equal probability. (Dividing into 0 means that Bobo dies.) Each of Bobo's descendants have the same probabilities. What's the probability that Bobo's lineage eventually dies out?
 
-I'll outline a computational path for you to estimate the solution to this problem. In particular, we're going to simulate a large number of amoeba lineages over time to determine how the probability of total extinction changes as we iterate forward in time.
+To solve this problem, we're going to simultaneously simulate a large number of amoeba lineages and incrementally step forward in time to determine how the probability of total extinction changes as we keep iterating forward.
 
 * Write a function `next_gen(n)` that takes in an initial number of amoebas `n`, determines how many amoebas are in the next generation according to the probability above, and returns that value. Sanity check: `next_gen(1)` should return 0, 1, 2, or 3 with equal probability.
 
 * Note the enormous computation time required for `next_gen(n)` when `n` is very large. If there are a *large* of amoebas, we can assume (with reasonable confidence) that the lineage isn't going to die out. Pick a reasonably large value of `n`, like 500 -- let's call it `N` -- and modify `next_gen(n)` to just return `N+1` when `n > N`. (This is fine because we just want to know if the lineage will *die out* or not -- how huge the population can get in cases where it doesn't don't really matter to us.)
 
-* We're going to simulate `num_lineages` lineages for `n_gens` generations, so set `num_lineages = 10000` and `n_gens = 30`.
+* You're going to simulate `num_lineages` lineages for `n_gens` generations, so set `num_lineages = 10000` and `n_gens = 30`.
 
 * Initialize a matrix of appropriate size and dimensions, where each column represents a single lineage of amoebas and every row represents a different generation. Next, set the initial generation to a population of 1.
 
@@ -65,4 +68,7 @@ I'll outline a computational path for you to estimate the solution to this probl
 
 * `qplot()` the time evolution of the extinction probability. What do you think it is? Give a numerical estimate using your calculations.
 
-Now, use [WolframAlpha](http://www.wolframalpha.com/) to solve the cubic equation $p = \dfrac{1}{4} + \dfrac{1}{4}p + \dfrac{1}{4}p^2 + \dfrac{1}{4}p^3$. One of the solutions will numerically correspond to your calculated probability. Which one? Why?
+Now, use [WolframAlpha](http://www.wolframalpha.com/) to solve the cubic equation $p = \dfrac{1}{4} + \dfrac{1}{4}p + \dfrac{1}{4}p^2 + \dfrac{1}{4}p^3$. One of the solutions will numerically correspond to your calculated probability. How does that polynomial relate to the problem?
+
+Part 3: SQL
+===========

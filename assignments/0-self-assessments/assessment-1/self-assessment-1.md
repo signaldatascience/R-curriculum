@@ -73,7 +73,7 @@ In the next part, we'll be looking at psychological test data.
 
 	* a scatterplot of Extraversion scores vs. Neuroticism scores, with a smoothed nonlinear fit to the points overlaid on top ([`geom_smooth()`](http://docs.ggplot2.org/current/geom_smooth.html)).
 
-* Run linear regressions of Extraversion and Neuroticism against all the other features. Neuroticism should *not* be one of the predictors for Extraversion and vice versa, but `"active"` through `"scornful"` should be included simultaneously.
+* Run linear regressions of Extraversion and Neuroticism against all the other features. Neuroticism should *not* be one of the predictors for Extraversion and vice versa, but `"active"` through `"scornful"` should be included simultaneously. (**Read the note above** to learn how to easily regress one variable against all others without having to type out the name of every predictor.)
 
 * Use [`coef()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/coef.html) on each of the two linear models to view the coefficients associated with each linear fit.
 

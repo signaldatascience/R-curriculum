@@ -3,10 +3,10 @@ title: "Linear Regression: Resampling"
 author: Signal Data Science
 ---
 
-In this assignment, we will be covering basic *resampling* methods in order to combat the problem of *overfitting*.
+In this assignment, we will be covering basic *resampling* methods. First, we'll learn about the usage of $n$-fold cross-validation in order to detect and combat overfitting. Afterward, we'll discuss the usage of bootstrapping to quantify uncertainty in our estimates of a dataset's properties.
 
-Overfitting and resampling
-==========================
+Overfitting
+===========
 
 [*Overfitting*](http://machinelearning.subwiki.org/wiki/Overfitting) is defined as:
 
@@ -18,12 +18,12 @@ To illustrate a straightforward example of overfitting, consider the following p
 
 In general, with an excess of parameters, we run the risk of them being fit to non-generalizable aspects of our data, such as random noise and fluctuations, which may fool us into thinking that our model is better than it really is. However, if we simply train a model on all of our data and evaluate the quality of its fit on the *same* data, we won't be able to detect such problems.
 
-As such, we want to use [*resampling*](https://en.wikipedia.org/wiki/Resampling_(statistics)) techniques, most of which involve splitting data into *train* and *test* sets. Instead of training the model on the entire dataset, we'll in general train it on a *subset* of the data and estimate the quality of the model against the data which was *not* fed into the model, in order to approximate how well the model would perform on *new* data.
+As such, we want to use [*resampling*](https://en.wikipedia.org/wiki/Resampling_(statistics)) techniques to split our data into *train* and *test* sets. Instead of training the model on the entire dataset, we'll in general train it on a *subset* of the data and estimate the quality of the model against the data which was *not* fed into the model, in order to approximate how well the model would perform on *new* data.
 
 Speed dating dataset
 ====================
 
-We'll be exploring several different methods of resampling in this lesson using aggregated data from a famous [speed dating dataset](http://andrewgelman.com/2008/01/21/the_speeddating_1/). The dataset is described by the authors as such:
+We'll be exploring overfitting and resampling in this lesson using aggregated data from a well-known [speed dating dataset](http://andrewgelman.com/2008/01/21/the_speeddating_1/). The dataset is described by the authors as such:
 
 > *Subjects*---Our subjects were drawn from students in graduate and professional schools at Columbia University. Participants were recruited through a combination of mass e-mail and fliers posted throughout the campus and handed out by research assistants. [...]
 > 
@@ -61,13 +61,13 @@ Finally, we're ready to see how a linear model performs on the train set versus 
 
 * Run `split_data()` and `split_predict()` 100 times to generate predictions for 100 different train/test splits. For each prediction, calculate the associated RMSE against the true values. Plot the distribution of RMSEs for both the train set and the test set. Calculate their mean and standard deviation. How does the performance on the train set compare to the performance on the test set?
 
-$n$-fold cross validation
+$n$-fold cross-validation
 =========================
 
-Although a single train/test split is *one* way of estimating how well our model would perform on new data, it is not the only or the best way. Indeed, $n$-fold cross validation has two advantages over making a single train/test split:
+Although a single train/test split is *one* way of estimating how well our model would perform on new data, it is not the only or the best way. Indeed, $n$-fold cross-validation has two advantages over making a single train/test split:
 
-1. In $n$-fold cross validation, we fit multiple models to multiple train/test splits and then aggregate the results. Between all of these different models, each observation in the dataset ends up in a training set at least once.
-2. With a single train/test split, the outcome can depend too much on our choice of RNG seed, which determines whether a particular observation ends up in the train set or the test set. With $n$-fold cross validation, this problem is somewhat reduced -- the outcome is more consistent and stable.
+1. In $n$-fold cross-validation, we fit multiple models to multiple train/test splits and then aggregate the results. Between all of these different models, each observation in the dataset ends up in a training set at least once.
+2. With a single train/test split, the outcome can depend too much on our choice of RNG seed, which determines whether a particular observation ends up in the train set or the test set. With $n$-fold cross-validation, this problem is somewhat reduced -- the outcome is more consistent and stable.
 
 The process is as follows:
 
@@ -75,7 +75,7 @@ The process is as follows:
 2. For each of the $n$ subsets, we train the model against *all the other subsets* and use that model to make predictions on our held-out subset.
 3. We combine all of the predictions and calculate a measure of model quality such as the RMSE.
 
-You'll be implementing the above process in the following problems and comparing the results of $n$-fold cross validation (for various values of $n$) with the results of a single train/test split.
+You'll be implementing the above process in the following problems and comparing the results of $n$-fold cross-validation (for various values of $n$) with the results of a single train/test split.
 
 * Write a function `nfold_cv(df, n_folds)` that splits `df` into `n_folds` folds, generates predictions in the fashion described above, and calculates the RMSE on the whole dataset with those predictions. It should return the RMSE at the end.
 
@@ -99,19 +99,25 @@ Let's find out how much we can improve on a linear regression which includes eve
 
 * Write your own implementation of backward stepwise regression as a function `backward_step(df)` which follows these criteria:
 
-	* It begins with the full dataset -- the attractiveness ratings, which we're trying to predict, as well as the 17 activity scores. As before, *don't* include gender or the other 4 ratings.
+	* Begin with the full dataset -- the attractiveness ratings, which we're trying to predict, as well as the 17 activity scores. As before, *don't* include gender or the other 4 ratings.
 
-	* The function should repeatedly iterate. On each iteration, it should:
+	* Initialize three empty vectors: `n_removed`, `rmse_cv`, and `rmse_nocv`.
 
-		* Use *10-fold cross validation* via `nfold_cv()` to calculate a cross-validated RMSE for the current model, measuring the quality of how well the currently selected variables can predict attractiveness.
+	* Repeatedly iterate until the data frame has fewer than 2 columns left. On each iteration, it should:
+
+		* Append the number of variables removed so far to `n_removed`.
+
+		* Use *10-fold cross-validation* via `nfold_cv()` to calculate a cross-validated RMSE for the current model, measuring the quality of how well the currently selected variables can predict attractiveness. Append this value to `rmse_cv`.
 
 		* Fit a linear model for attractiveness with the entire dataset (minus any variables which have previously been removed).
 
+		* Use the linear model to make predictions on the whole dataset and calculate the associated, *non-cross-validated* RMSE. Append this value to `rmse_nocv`.
+
 		* Remove the variable associated with the coefficient which has the *highest* $p$-value. (If a linear model is stored in `fit`, you can access data about the coefficients by looking at `summary(fit)$coefficients`.)
 
-	* The function should store the cross-validated estimates of RMSE in association with the number of features removed at each step. At the end, it should return both.
+	* At the end, the function should combine `n_removed`, `rmse_cv`, and `rmse_nocv` together into a data frame with three columns and return that data frame.
 
-* Run `backward_step()` and plot the number of variables removed against the cross-validated RMSE. Interpret the results.
+* Run `backward_step()`. On the same graph, plot both the cross-validated RMSE estimate and the non-cross-validated RMSE against the number of features removed. Interpret the results. Is there any evidence of overfitting when using all 17 predictors in our linear model?
 
 Using R's `step()`
 ------------------
@@ -133,3 +139,41 @@ In the following, you will use stepwise regression on *all five* of the average 
 * For *each of the five rating variables* (attractiveness, sincerity, intelligence, fun, and ambition), use `step()` to run backward stepwise regression (with the `direction="backward"` parameter) to predict that rating in terms of the 17 activity ratings. Store the coefficients of the final model for each of the rating variables in a list. Interpret the differences between them.
 
 Note that if you have a column name stored in a *variable*, *e.g.* `var = col_name`, and you would like to regress `col_name` against every other variable in `df`, the call `lm(var ~ ., df)` will *not* work, because [`lm()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/lm.html) will look for a column called `var`. Instead, use [`paste()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/paste.html) to create a *string* `s = "col_name ~ ."` from `var` and then pass `s` in as the first argument of [`lm()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/lm.html).
+
+Bootstrapping
+=============
+
+Aside from $n$-fold cross-validation, there exists a different resampling technique called *bootstrapping*. In bootstrapping, we take the original dataset and randomly pick rows *with replacement* to form a new dataset with the same total number of rows. It is essentially a way for us to *mimic* the results of obtaining completely new data from the population.
+
+Suppose that we want to use bootstrapping in order to measure model quality. The two simplest ways to do so are to generate a large number of bootstrapped samples and to either (1) train a model on each bootstrapped sample and make predictions on the original dataset or (2) train a model on the original dataset and make predictions on each bootstrapped sample. For each (train, test) pair, we calculate a RMSE; at the end, we take the average of all the calculated RMSE values.
+
+Both of the above methods are fundamentally broken as described. Approach (1) will severely underestimate the RMSE (and consequently the degree of overfitting) because of the high overlap between train and test sets -- on average, two-thirds of the rows in the original dataset will show up at least once in each bootstrapped sample. Approach (2) is even worse: if we train a model on the original dataset, it will already have "seen" one copy of every data point, so none of the data in *any* of the test sets will be "new" to the model. This makes approach (2) completely incapable of detecting overfitting.
+
+It is often illustrative and helpful in building intuition to computationally look at the results of methods which we already know are flawed. To that end:
+
+* Write a function `bootstrap_bad(df, approach)` which takes in a data frame `df` and an integer `approach` equal to 1 or 2. Within the function, generate 100 different bootstrapped samples from `df`. For each of the 100 samples, do the following:
+
+	* Depending on the value of `approach`, set either the train set equal to the bootstrapped sample and the test set equal to `df` or vice versa.
+
+	* Train a linear model for attractiveness in terms of the 17 activities with the train set. Use that model to make predictions on the test set.
+
+	* Calculate the RMSE correspnding to your predictions.
+
+	At the end, calculate and return the average of the 100 calculated RMSE values.
+
+* Copy your code from above for `backward_step()` to make a new function `backward_step_2()`. In addition to the calculations performed in `backward_step()`, call `bootstrap_bad()` twice during each iteration (once for each value of `approach`), store the calculated RMSE values, and return them as well.
+
+* Run `backward_step_2()` and graph the results as before. You should have *four* different series of RMSE values to graph against the number of variables removed. Do the results correspond with the theoretical explanation above?
+
+There is, however, a way to get around these problems. Indeed, we can use approach (1) with a single modification: instead of making predictions on the *entire* original dataset, we only make predictions with the rows which were *not* included in the bootstrapped sample, called the *out-of-bag* data points.
+
+* Write a function `bootstrap_good(df)` which works like `bootstrap_bad()` with `approach=1` *except* with the modification outlined above. Here, you may find [`unique()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/unique.html) useful.
+
+* Write a function `backward_step_3()` similar to the other two such functions but using `bootstrap_good()` instead of `bootstrap_bad()`. As before, run it and visualize the results.
+
+Although the modified version of approach (1) works, it [tends to slightly overestimate the RMSE](http://stats.stackexchange.com/a/18355/115666).
+
+Closing notes
+=============
+
+asdf

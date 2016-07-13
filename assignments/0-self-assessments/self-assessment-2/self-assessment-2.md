@@ -49,17 +49,17 @@ First, we'll get some preliminaries out of the way -- loading the data, generati
 
 * Load the `msq` dataset and fill in `NA`s in the numeric columns with column means.
 
-* Make a `features` variable with the columns in `msq` from `"active"` to `"scornful"`. Similarly, make separate variables for the Extraversion and Neuroticism columns.
+* Make a `features` data frame containing just the columns in `msq` from `active` to `scornful`. Similarly, make separate variables for the Extraversion and Neuroticism columns.
 
-* Generate *fold assignments* for *$n$-fold cross-validation* with $n = 10$. We recommend shuffling the row numbers, taking them modulo $n$, and adding 1.
+* Generate *fold assignments* for *$n$-fold cross-validation* with $n = 10$. We recommend shuffling the row numbers, taking them modulo $n$, and adding 1, but there are other ways of doing this which work as well.
 
 * You'll soon implement $n$-fold cross validation, and because of the way you'll structure your code, you'll have to access the train/test data many times. To *reduce on computation time*, it's best to *pre-compute* the subsets of data you need for each fold. To that end, initialize 4 lists of the correct length[^vec] in order to hold these precomputed subsets of data *for each cross-validation fold*: (1) the subset of features which you'll train `glmnet()` on (90% of the data), (2) the subset of features which you'll test the trained model on (10% of the data), (3) the subset of the Extraversion vector which you'll train `glmnet()` on, and (4) the subset of the Neuroticism vector which you'll train `glmnet()` on. Next, iterate through the 10 folds and fill in the elements of these 4 lists. When scaling the *test* data, be sure to pass in `center` and `scale` parameters to `scale()` corresponding to the attributes of the scaled *training* data.
 
-[^vec]: Remember `vector("list", list_length)`.
+[^vec]: Use `vector("list", list_length)` to initialize an empty list of length `list_length`.
 
 * Create an empty data frame with `data.frame()` to store the results of your computations. You don't need to do anything aside from setting a variable equal to `data.frame()`, but in the future you'll be filling in each row with (1) a value of $\alpha$, (2) a value of $\lambda$, (3) the cross-validated RMSE for predicting Extraversion with the selected $(\alpha, \lambda)$, and (4) the cross-validated RMSE for predicting Neuroticism with the selected $(\alpha, \lambda)$.
 
-* Write a convenience function `rmse(x, y)` that takes in two vectors `x` and `y` and returns the associated RMSE. (It doesn't matter which vector is the "actual" values, because $(x-y)^2 = (y-x)^2$.)
+* Write a convenience function `rmse(x, y)` that takes in two vectors `x` and `y` and returns the associated RMSE. (It doesn't matter which vector represents the "actual" values, because $(x-y)^2 = (y-x)^2$.)
 
 Grid search
 -----------
@@ -103,7 +103,7 @@ Next, you'll be writing two nested `for` loops in order to look at every combina
 Finishing up
 ------------
 
-Finally, we'll do a little bit of additional work to analyze our results.
+Now that we have cross-validated RMSE estimates for every $(\alpha, \lambda)$ pair, the next step is to find the pair with the *lowest* RMSE. With that optimal pair of hyperparameters, we'll train an elastic net regularized linear model on the entire dataset. Finally, we'll visualize the results of our regression analysis.
 
 * Define a utility function `arg_min(v)` which returns the index of the vector `v` corresponding to its minimal value. (If there are multiple such indices, return the leftmost one.)
 
@@ -125,4 +125,4 @@ Finally, we'll do a little bit of additional work to analyze our results.
 
 	* Remove every row from the matrix where *both* of the magnitudes of the coefficients fall under the 75th pecentile for their respective columns.
 
-* Use `corrplot()` with `is.corr=FALSE` to plot the matrix. Interpret the results.
+* Use `corrplot()` with `is.corr=FALSE` to plot the matrix of coefficients. Interpret the results.
