@@ -264,7 +264,11 @@ step_results_3 = backward_step_3(df_attr)
 
 ggplot(step_results_3) + geom_point(aes(x=n_removed, y=rmse_cv), color="red") + geom_point(aes(x=n_removed, y=rmse_nocv)) + geom_point(aes(x=n_removed, y=rmse_btstrap), color="blue")
 
+# Distributions of RMSE estimates
 # Use whole dataset for convenience
 rmses_btstrap = sapply(1:100, function(x) bootstrap_good(df_attr))
-rmses_cv = sapply(1:100, function(x) nfold_cv(df_attr, 10))
-qplot(rmses_btstrap) + qplot(rmses_cv)
+rmses_cv = sapply(1:100, function(x) nfold_cv(df_attr, 5))
+qplot(rmses_btstrap)
+qplot(rmses_cv)
+df = data.frame(rmses_btstrap, rmses_cv)
+ggplot(df) + geom_histogram(aes(x=rmses_btstrap), fill="red", alpha=0.2) + geom_histogram(aes(x=rmses_cv), fill="blue", alpha=0.2)
