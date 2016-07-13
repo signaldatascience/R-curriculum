@@ -185,7 +185,7 @@ Estimating parameter distributions
 
 There is, however, a different task for which bootstrapping is very well suited, namely the task of estimating the *variance of parameter estimates*. We'll illustrate with a computational example.
 
-Suppose that you want to invest a fixed sum of money into two different financial assets $X$ and $Y$. You can invest a fraction $\alpha$ of your money into $X$ and the remaining $1 - \alpha$ into $Y$. You'll implement a simple strategy: instead of looking at the returns at all, simply *minimize the risk* (*i.e.*, the variance of the returns). While somewhat counterintuitive, this strategy actually performs well in practice.[^quant]
+Suppose that you want to invest a fixed sum of money into two different financial assets $X$ and $Y$. You can invest a fraction $\alpha$ of your money into $X$ and the remaining $1 - \alpha$ into $Y$. You'll implement a simple strategy: instead of looking at the returns at all, simply *minimize the risk* (*i.e.*, the variance of the returns). Somewhat counterintuitively, this strategy actually performs well in practice.[^quant]
 
 [^quant]: See [Why does the minimum variance portfolio provide good returns?](http://quant.stackexchange.com/questions/2870/why-does-the-minimum-variance-portfolio-provide-good-returns) and Baker *et al.* (2010), [Benchmarks as Limits to Arbitrage: Understanding the Low Volatility Anomaly](http://papers.ssrn.com/sol3/papers.cfm?abstract_id=1585031).
 
