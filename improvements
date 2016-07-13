@@ -34,3 +34,5 @@ permutation generation
 
 outer
 http://stackoverflow.com/questions/5554305/simple-question-regarding-the-use-of-outer-and-user-defined-functions
+
+time series: can't use normal resampling

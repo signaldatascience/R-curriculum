@@ -272,3 +272,44 @@ qplot(rmses_btstrap)
 qplot(rmses_cv)
 df = data.frame(rmses_btstrap, rmses_cv)
 ggplot(df) + geom_histogram(aes(x=rmses_btstrap), fill="red", alpha=0.2) + geom_histogram(aes(x=rmses_cv), fill="blue", alpha=0.2)
+
+# Finance bootstrapping estimate example
+calc_alpha = function(X, Y) {
+  sdX = sd(X)
+  sdY = sd(Y)
+  covXY = cov(X, Y)
+  (sdY^2 - covXY) / (sdX^2 + sdY^2 - 2*covXY)
+}
+
+gen_alphas = function(sdX, sdY) {
+  nobs = 100
+  X = rnorm(nobs, sd=sdX)
+  Y = rnorm(nobs, sd=sdY)
+
+  alphas = numeric(1000)
+  for (i in 1:1000) {
+    Xstrap = X[sample(1:nobs, replace=TRUE)]
+    Ystrap = Y[sample(1:nobs, replace=TRUE)]
+    alpha_est = calc_alpha(Xstrap, Ystrap)
+    alphas[i] = alpha_est
+  }
+alphas
+}
+
+alph1 = gen_alphas(0.1, 100)
+alph2 = gen_alphas(100, 0.1)
+
+qplot(alph1)
+qplot(alph2)
+
+mean(alph1)
+sd(alph1)
+
+mean(alph2)
+sd(alph2)
+
+alph3 = gen_alphas(1, 2)
+alph4 = gen_alphas(1, 3)
+alph5 = gen_alphas(1, 4)
+df_alph = data.frame(alph3, alph4, alph5)
+ggplot(df_alph) + geom_histogram(aes(x=alph3), fill="red", alpha=0.2) + geom_histogram(aes(x=alph4), fill="blue", alpha=0.2) + geom_histogram(aes(x=alph5), fill="black", alpha=0.2)
