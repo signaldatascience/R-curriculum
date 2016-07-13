@@ -164,7 +164,7 @@ bootstrap_bad = function(df, approach) {
     model = lm(attr_o ~ ., train)
     preds = predict(model, test)
 
-    rmse_sum = rmse_sum + rmse(preds, df$attr_o)
+    rmse_sum = rmse_sum + rmse(preds, test$attr_o)
   }
   rmse_sum / 100
 }
