@@ -189,19 +189,19 @@ Suppose that you want to invest a fixed sum of money into two different financia
 
 [^quant]: See [Why does the minimum variance portfolio provide good returns?](http://quant.stackexchange.com/questions/2870/why-does-the-minimum-variance-portfolio-provide-good-returns) and Baker *et al.* (2010), [Benchmarks as Limits to Arbitrage: Understanding the Low Volatility Anomaly](http://papers.ssrn.com/sol3/papers.cfm?abstract_id=1585031).
 
-It can be mathematically shown that the value of $\alpha$ which minimizes the risk is
+We can make the simplifying assumption that the returns of $X$ and $Y$ are uncorrelated. In that case, it can be mathematically shown that the value of $\alpha$ which minimizes the risk is
 
-$$\alpha = \frac{\sigma_Y^2 - \sigma_{XY}}{\sigma_X^2 + \sigma_Y^2 - 2\sigma_{XY}}$$
+$$\alpha = \frac{\sigma_Y^2}{\sigma_X^2 + \sigma_Y^2}$$
 
-where $\sigma_X^2$ and $\sigma_Y^2$ are respectively the *variances* of the returns of $X$ and $Y$ and $\sigma_{XY}$ is their *covariance*.
+where $\sigma_X^2$ and $\sigma_Y^2$ are respectively the *variances* of the returns of $X$ and $Y$.
 
-We don't know the values of $\sigma_X^2$, $\sigma_Y^2$, or $\sigma_{XY}$, but given data on the returns of $X$ and $Y$ you can estimate those values and consequently gain an estimate of $\alpha$, which we denote $\hat{\alpha}$. However, this naturally leads to the question: how variable is our estimate $\hat{\alpha}$? Equivalently, given only a finite dataset and no knowledge about the *true* values of $\sigma_X^2$ *et al.*, is it possible for us to quantify how *certain* we are about our estimate $\hat{\alpha}$? The answer is *yes*.
+We don't know the values of $\sigma_X^2$ or $\sigma_Y^2$, but given data on the returns of $X$ and $Y$ you can estimate those values and consequently gain an estimate of $\alpha$, which we denote $\hat{\alpha}$. However, this naturally leads to the question: how variable is our estimate $\hat{\alpha}$? Equivalently, given only a finite dataset and no knowledge about the *true* values of $\sigma_X^2$ and $\sigma_Y^2$, is it possible for us to quantify how *certain* we are about our estimate $\hat{\alpha}$? The answer is *yes*.
 
 * Write a function `calc_alpha(X, Y)` which takes as inputs equivalently sized vectors containing data about the returns of $X$ and $Y$ and uses the above formula to calculate an estimate for $\alpha$.
 
 * Write a function `gen_alphas(sdX, sdY)` which takes as input two positive numbers `sdX` and `sdY`. We will suppose that the true returns of the assets $X$ and $Y$ are normally distributed with mean 10 and standard deviation equal to `sdX` and `sdY` respectively. Generate 100 observations of both distributions and store them as `X` and `Y`. Next, generate 1000 bootstrapped samples of both `X` and `Y`. For each pair of bootstrapped samples, calculate and store the corresponding value of $\alpha$ with `calc_alpha()`. Finally, return the list of 1000 estimates of $\alpha$.
 
-* For each of the following pairs of `(sdX, sdY)` parameters, run `gen_alphas()` to obtain 1000 bootstrapped estimates of $\alpha$, plot a histogram of them, and calculate their mean and standard deviation: $(0.1, 100)$, $(100, 0.1)$, $(1, 2)$. Do these results correspond to what you would expect?
+* For each of the following pairs of `(sdX, sdY)` parameters, run `gen_alphas()` to obtain 1000 bootstrapped estimates of $\alpha$, plot a histogram of them, and calculate their mean and standard deviation: $(1, 3)$, $(3, 1)$, $(1, 1)$. Do these results correspond to what you would expect?
 
 * Run `gen_alphas()` for each of the following `(sdX, sdY)` pairs and plot histograms of the results on the same graph: $(1, 2)$, $(1, 3)$, $(1, 4)$. Interpret the results.
 

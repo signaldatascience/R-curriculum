@@ -277,8 +277,7 @@ ggplot(df) + geom_histogram(aes(x=rmses_btstrap), fill="red", alpha=0.2) + geom_
 calc_alpha = function(X, Y) {
   sdX = sd(X)
   sdY = sd(Y)
-  covXY = cov(X, Y)
-  (sdY^2 - covXY) / (sdX^2 + sdY^2 - 2*covXY)
+  (sdY^2) / (sdX^2 + sdY^2)
 }
 
 gen_alphas = function(sdX, sdY) {
@@ -296,11 +295,13 @@ gen_alphas = function(sdX, sdY) {
 alphas
 }
 
-alph1 = gen_alphas(0.1, 100)
-alph2 = gen_alphas(100, 0.1)
+alph1 = gen_alphas(1, 3)
+alph2 = gen_alphas(3, 1)
+alph3 = gen_alphas(3, 3)
 
 qplot(alph1)
 qplot(alph2)
+qplot(alph3)
 
 mean(alph1)
 sd(alph1)
@@ -308,8 +309,11 @@ sd(alph1)
 mean(alph2)
 sd(alph2)
 
-alph3 = gen_alphas(1, 2)
-alph4 = gen_alphas(1, 3)
-alph5 = gen_alphas(1, 4)
-df_alph = data.frame(alph3, alph4, alph5)
-ggplot(df_alph) + geom_histogram(aes(x=alph3), fill="red", alpha=0.2) + geom_histogram(aes(x=alph4), fill="blue", alpha=0.2) + geom_histogram(aes(x=alph5), fill="black", alpha=0.2)
+mean(alph3)
+sd(alph3)
+
+alph4 = gen_alphas(1, 2)
+alph5 = gen_alphas(1, 3)
+alph6 = gen_alphas(1, 4)
+df_alph = data.frame(alph4, alph5, alph6)
+ggplot(df_alph) + geom_histogram(aes(x=alph4), fill="red", alpha=0.2) + geom_histogram(aes(x=alph5), fill="blue", alpha=0.2) + geom_histogram(aes(x=alph6), fill="black", alpha=0.2)
