@@ -84,9 +84,9 @@ Stepwise regression tends to *overfit* because of problems with [multiple hypoth
 
 Keep the following in mind while you work:
 
-	* After fitting a model with `cv.glmnet()`, be sure to pass `s=fit$lambda.min` to `predict()`, because by default `predict()` does *not* use the value of $\lambda$ which minimizes the cross-validated error.
+* After fitting a model with `cv.glmnet()`, be sure to pass `s=fit$lambda.min` to `predict()`, because by default `predict()` does *not* use the value of $\lambda$ which minimizes the cross-validated error.
 
-	* Within each cross-validation fold, you'll want to [`scale()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/scale.html) the features which you pass into `cv.glmnet()`. However, when making predictions on the *held-out* data, you don't want to simply call [`scale()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/scale.html) on that data directly; instead, you want to apply the *same transformations* which were applied to the training set. To do so, (1) extract the scaling parameters from the scaled training data (stored as attributes) and (2) pass them in as additional parameters to [`scale()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/scale.html) when calling it on the test set.
+* Within each cross-validation fold, you'll want to [`scale()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/scale.html) the features which you pass into `cv.glmnet()`. However, when making predictions on the *held-out* data, you don't want to simply call [`scale()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/scale.html) on that data directly; instead, you want to apply the *same transformations* which were applied to the training set. To do so, (1) extract the scaling parameters from the scaled training data (stored as attributes) and (2) pass them in as additional parameters to [`scale()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/scale.html) when calling it on the test set.
 
 Elastic net regression
 ======================
