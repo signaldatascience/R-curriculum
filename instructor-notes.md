@@ -37,4 +37,4 @@ This portion of the curriculum takes approximately 1 week. The assignments in th
 3. *Linear Regression: Kaggle Africa Soil Challenge*
 4. *Logistic Regression: Speed Dating*
 
-A day or two after *Linear Regression: Kaggle Africa Soil Challenge*, give students *Self-Assessment 2* (SA2). SA2 will take students 3--5 hours depending on student strength. Present both code (for the whole assessment) and theoretical solutions (for the probability questions)
+A day or two after *Linear Regression: Kaggle Africa Soil Challenge*, give students *Self-Assessment 2* (SA2). Allocate 4 hours for SA2 with a lunch break in between, present solutions at the end, and then have a half-hour break. After the break, students can work on finishing up old assignments, revising their self-assessment code, or working on buffer assignments.

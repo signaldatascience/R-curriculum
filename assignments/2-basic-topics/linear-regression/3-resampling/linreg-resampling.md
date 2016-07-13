@@ -111,7 +111,7 @@ Let's find out how much we can improve on a linear regression which includes eve
 
 		* Remove the variable associated with the coefficient which has the *highest* $p$-value. (If a linear model is stored in `fit`, you can access data about the coefficients by looking at `summary(fit)$coefficients`.)
 
-	* The function should store the cross-validated estimates of RMSE in association with the number of features moved at each step. At the end, it should return both.
+	* The function should store the cross-validated estimates of RMSE in association with the number of features removed at each step. At the end, it should return both.
 
 * Run `backward_step()` and plot the number of variables removed against the cross-validated RMSE. Interpret the results.
 

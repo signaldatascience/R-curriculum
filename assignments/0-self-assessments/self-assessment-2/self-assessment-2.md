@@ -26,7 +26,7 @@ Like before, we'll be trying to predict Extraversion and Neuroticism ratings wit
 
 In short, our goal is to **find the best value for the hyperparameters $(\alpha, \lambda)$** when predicting Extraversion and Neuroticism. In order to do so, you'll be using *$n$-fold cross-validation* to calculate RMSE scores associated with each possible pair of values for $(\alpha, \lambda)$.
 
-Putting it differently, you'll be performing a *grid search* over values of $\alpha$ while *re-implementing* the functionality of `cv.glmnet()` for each value of $\alpha$ tested. (You **should not be using `cv.glmnet()`** in this part of the self-asessment -- just regular `glmnet()`.)
+Putting it differently, you'll be performing a *grid search* over values of $\alpha$ while *re-implementing* the functionality of `cv.glmnet()` for each value of $\alpha$ tested. (You **should not be using `cv.glmnet()`** in this part of the self-asessment -- just regular `glmnet()`.) In total, you'll be re-implementing the basic functionality of `caret`'s `train()` function.
 
 Here are some general tips to keep in mind while working on this:
 
