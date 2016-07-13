@@ -17,7 +17,7 @@ First, we'll focus on predicting calcium levels.
 
 Next, we can expand consideration to all 5 target variables.
 
-* Run the `caret` package to find the best values of the hyperparameters $(\alpha, \lambda)$ for each of the 5 target variables. Generate predictions for the test sets and upload them to Kaggle per the instructions. 
+* Use the `caret` package to find the best values of the hyperparameters $(\alpha, \lambda)$ for each of the 5 target variables. Generate predictions for the test sets and upload them to Kaggle per the instructions. 
 
 The Kaggle competition features an advanced machine learning algorithm called Bayesian Additive Regression Trees (BART)[^bart]. The predictive power of regularized linear regression won't be as good as the BART algorithm, so your position on the leaderboard won't be high, but it's striking that you're able to get as good predictive power as you are without needing to know anything about chemistry, and after just ~10 days of doing data science!
 
