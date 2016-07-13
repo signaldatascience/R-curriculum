@@ -5,7 +5,7 @@ library(ggplot2)
 setwd('C:/Users/Andrew/Documents/Signal/curriculum/datasets/speed-dating-simple/')
 df = read.csv('speed-dating-simple.csv')
 df_attr = select(df, -intel_o, -amb_o, -fun_o, -sinc_o)
-df_attr = filter(df_attr, gender==0)
+df_attr = filter(df_attr, gender==1)
 df_attr = select(df_attr, -gender)
 
 # Single train/test split
@@ -38,10 +38,8 @@ for (i in 1:niter) {
 rmses = data.frame(rmse_train, rmse_test)
 ggplot(rmses) + geom_histogram(aes(rmse_train), fill="blue", alpha=0.2) + geom_histogram(aes(rmse_test), fill="red", alpha=0.2)
 
-std_error = function(x) sd(x) / sqrt(length(x))
-
-std_error(rmse_test)
-std_error(rmse_train)
+sd(rmse_test)
+sd(rmse_train)
 
 # n-fold cross validation
 nfold_cv = function(df, n_folds) {
@@ -59,7 +57,7 @@ nfold_cv = function(df, n_folds) {
     # Fit linear model to training set
     fit = lm(attr_o ~ ., df_train)
 
-    # Make predictions for other training set
+    # Make predictions for test set
     preds[folds == i] = predict(fit, df_test)
   }
 
@@ -81,8 +79,8 @@ for (i in 1:100) {
 df_rmse = data.frame(rmse_2, rmse_10)
 ggplot(df_rmse) + geom_histogram(aes(x=rmse_2), alpha=0.3, fill="red") + geom_histogram(aes(x=rmse_10), alpha=0.3, fill="blue")
 
-std_error(rmse_2)
-std_error(rmse_10)
+sd(rmse_2)
+sd(rmse_10)
 
 
 # Stepwise regression code by Michael Beese II (heavily modified)
@@ -91,7 +89,7 @@ backward_step = function(df) {
   rmse_cv = c()
   rmse_nocv = c()
   n_removed = c()
-  n_removed_count = 0
+  n_removed_count = 1
   while (length(colnames(df)) > 1) {
     # Fit model
     model = lm(attr_o ~ ., df)
@@ -108,7 +106,7 @@ backward_step = function(df) {
     # Feature elimination
     sumDF = as.data.frame(summary(model)$coefficients)
     sumDF = cbind(sumDF, rownames(sumDF))
-    sumDF = sumDF[-1, ] # remove Intercept column
+    sumDF = sumDF[-1, ] # remove Intercept row
     maxRow = filter(sumDF, sumDF[4] == max(sumDF[4])) # biggest p-value
 
     # Eliminate column
@@ -116,7 +114,8 @@ backward_step = function(df) {
 
     n_removed_count = n_removed_count + 1
   }
-  return(data.frame(n_removed=n_removed, rmse_cv=rmse_cv, rmse_nocv=rmse_nocv))
+
+  data.frame(n_removed=n_removed, rmse_cv=rmse_cv, rmse_nocv=rmse_nocv)
 }
 
 step_results = backward_step(df_attr)

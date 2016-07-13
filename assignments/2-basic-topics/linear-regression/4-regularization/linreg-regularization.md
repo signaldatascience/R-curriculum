@@ -30,7 +30,7 @@ If you run `summary(lm(y ~ x - 1))`, corresponding to a linear model with no con
 
 	Your function should return the sum of squared errors for the model `y = aEst*x` plus the $L^p$ regularization term. Check that `cost(1, 2, 3, 4, 2)` returns 37.
 
-* Create two vectors, one corresponding to values of $\lambda$ given by $2^{-2}, 2^{-7}, \ldots, 2^5, 2^6, 2^7$ and another corresponding to values of `aEst` from -0.1 to 0.3 in equally spaced increments of 0.001.
+* Create two vectors, one corresponding to values of $\lambda$ given by $2^{-2}, 2^{-1}, \ldots, 2^5, 2^6, 2^7$ and another corresponding to values of `aEst` from -0.1 to 0.3 in equally spaced increments of 0.001.
 
 * Use [`expand.grid()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/expand.grid.html) on the two vectors of parameter to create a data frame called `grid` with two columns `lambda` and `alpha`, where each row is a unique pair of `(lambda, aEst)` values.
 

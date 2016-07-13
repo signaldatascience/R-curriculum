@@ -40,7 +40,7 @@ The assignments in this section are:
 2. *Linear Regression: Regularization*
 3. *Linear Regression: Kaggle Africa Soil Challenge*
 
-*Linear Regression: Resampling* takes 1 to 1.5 days. Allocate a full day plus the next day's morning to it, presenting solutions before lunchtime. The last section, describing additional analyses, is of lesser importance and can serve as buffer for those who finish early. After lunchtime, give a presentation on regularized linear regression. (*Don't* assign the regularization assignment as reading beforehand; it assumes theoretical understanding of regularization.) Students can then work on *Linear Regression: Regularization*, which takes (...)
+*Linear Regression: Resampling* takes around 1.5 days. Allocate a full day plus the next day's morning to it. After lunchtime, present resampling solutions and then give a presentation on regularized linear regression, with a 15 minute break in between. (*Don't* assign the regularization assignment as reading beforehand; it assumes theoretical understanding of regularization.) Afterward, students should work on *Linear Regression: Regularization*, which takes (...)
 
 After *Linear Regression: Kaggle Africa Soil Challenge*, give students *Self-Assessment 2* (SA2). Allocate 4 hours for SA2 with a lunch break in between, present solutions at the end, and then have a half-hour break. After the break, students can work on finishing up old assignments, revising their self-assessment code, or working on buffer assignments. It may make sense to give students the first logistic regression assignment before SA2, especially if students seem mentally exhausted and might need a weekend to absorb resampling and regularization at a deeper level before doing SA2.
 

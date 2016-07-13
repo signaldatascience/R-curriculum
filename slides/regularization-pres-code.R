@@ -28,7 +28,7 @@ plotCost = function(k, costName){
   aEst = expanded[expanded$lambda == lambdas[k],"a"]
   error = expanded[expanded$lambda == lambdas[k],costName]
   tempdf = data.frame(aEst, error)
-  ggplot(tempdf) + geom_line(aes(aEst, error)) + scale_x_continuous(limits = c(-0.1, 0.3))
+  ggplot(tempdf) + geom_line(aes(aEst, error)) + scale_x_continuous(limits = c(-0.1, 0.3)) + theme_bw()
 }
 
 
