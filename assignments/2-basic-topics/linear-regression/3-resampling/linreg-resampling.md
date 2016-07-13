@@ -185,7 +185,9 @@ Estimating parameter distributions
 
 There is, however, a different task for which bootstrapping is very well suited, namely the task of estimating the *variance of parameter estimates*. We'll illustrate with a computational example.
 
-Suppose that you want to invest a fixed sum of money into two different financial assets $X$ and $Y$. You can invest a fraction $\alpha$ of your money into $X$ and the remaining $1 - \alpha$ into $Y$. You're unusually risk-averse, so you don't care *at all* about optimizing for returns---all you care about is minimizing the *risk* of your investment, *i.e.*, the *variance* of your returns.
+Suppose that you want to invest a fixed sum of money into two different financial assets $X$ and $Y$. You can invest a fraction $\alpha$ of your money into $X$ and the remaining $1 - \alpha$ into $Y$. You'll implement a simple strategy: instead of looking at the returns at all, simply *minimize the risk* (*i.e.*, the variance of the returns). While somewhat counterintuitive, this strategy actually performs well in practice.[^quant]
+
+[^quant]: See [this StackExchange paper](http://quant.stackexchange.com/questions/2870/why-does-the-minimum-variance-portfolio-provide-good-returns) as well as Baker *et al.*, [Benchmarks as Limits to Arbitrage: Understanding the Low Volatility Anomaly](http://papers.ssrn.com/sol3/papers.cfm?abstract_id=1585031).
 
 It can be mathematically shown that the value of $\alpha$ which minimizes the risk is
 
@@ -197,10 +199,12 @@ We don't know the values of $\sigma_X^2$, $\sigma_Y^2$, or $\sigma_{XY}$, but gi
 
 * Write a function `calc_alpha(X, Y)` which takes as inputs equivalently sized vectors containing data about the returns of $X$ and $Y$ and uses the above formula to calculate an estimate for $\alpha$.
 
-* Write a function `gen_alphas(sdX, sdY)` which takes as input two positive numbers `sdX` and `sdY`. We will suppose that the true returns of the assets $X$ and $Y$ are normally distributed with mean 0 and standard deviation equal to `sdX` and `sdY` respectively. (It doesn't actually matter what the mean is -- remember, we don't care about returns, only about risk.) Generate 100 observations of both distributions and store them as `X` and `Y`. Next, generate 1000 bootstrapped samples of both `X` and `Y`. For each pair of bootstrapped samples, calculate and store the corresponding value of $\alpha$ with `calc_alpha()`. Finally, return the list of 1000 estimates of $\alpha$.
+* Write a function `gen_alphas(sdX, sdY)` which takes as input two positive numbers `sdX` and `sdY`. We will suppose that the true returns of the assets $X$ and $Y$ are normally distributed with mean 10 and standard deviation equal to `sdX` and `sdY` respectively. Generate 100 observations of both distributions and store them as `X` and `Y`. Next, generate 1000 bootstrapped samples of both `X` and `Y`. For each pair of bootstrapped samples, calculate and store the corresponding value of $\alpha$ with `calc_alpha()`. Finally, return the list of 1000 estimates of $\alpha$.
 
 * For each of the following pairs of `(sdX, sdY)` parameters, run `gen_alphas()` to obtain 1000 bootstrapped estimates of $\alpha$, plot a histogram of them, and calculate their mean and standard deviation: $(0.1, 100)$, $(100, 0.1)$, $(1, 2)$. Do these results correspond to what you would expect?
 
 * Run `gen_alphas()` for each of the following `(sdX, sdY)` pairs and plot histograms of the results on the same graph: $(1, 2)$, $(1, 3)$, $(1, 4)$. Interpret the results.
 
-Bootstrapping is very powerful in cases when the parameters to estimate are complex functions of the data, like in the above example. (However, if the parameter is as simple as the mean of the data, it's typically better to use the [*t*-test](https://en.wikipedia.org/wiki/Student%27s_t-test) from classical statistics, which will give more precise results with theoretical justification.) For example, bootstrapping can be used to calculate estimates of standard error for parameters like regression coefficients or to even estimate the stability of clustering algorithms.
+Bootstrapping is very powerful in cases when the parameters to estimate are complex functions of the data, like in the above example. (However, if the parameter is as simple as the mean of the data, it's typically better to use the [*t*-test](https://en.wikipedia.org/wiki/Student%27s_t-test) from classical statistics, which will give more precise results with theoretical justification.) For example, bootstrapping can be used to calculate estimates of standard error for parameters like regression coefficients or to even estimate the stability of clustering algorithms. It is also useful for revealing non-normality in parameter distributions.
+
+We'll seldom implement bootstrapping ourselves, but we'll see it incorporated into a variety of different algorithms in the future.

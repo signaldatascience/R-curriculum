@@ -283,8 +283,8 @@ calc_alpha = function(X, Y) {
 
 gen_alphas = function(sdX, sdY) {
   nobs = 100
-  X = rnorm(nobs, sd=sdX)
-  Y = rnorm(nobs, sd=sdY)
+  X = rnorm(nobs, mean=10, sd=sdX)
+  Y = rnorm(nobs, mean=10, sd=sdY)
 
   alphas = numeric(1000)
   for (i in 1:1000) {
