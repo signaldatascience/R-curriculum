@@ -203,3 +203,4 @@ We don't know the values of $\sigma_X^2$, $\sigma_Y^2$, or $\sigma_{XY}$, but gi
 
 * Run `gen_alphas()` for each of the following `(sdX, sdY)` pairs and plot histograms of the results on the same graph: $(1, 2)$, $(1, 3)$, $(1, 4)$. Interpret the results.
 
+Bootstrapping is very powerful in cases when the parameters to estimate are complex functions of the data, like in the above example. (However, if the parameter is as simple as the mean of the data, it's typically better to use the [*t*-test](https://en.wikipedia.org/wiki/Student%27s_t-test) from classical statistics, which will give more precise results with theoretical justification.) For example, bootstrapping can be used to calculate estimates of standard error for parameters like regression coefficients or to even estimate the stability of clustering algorithms.
