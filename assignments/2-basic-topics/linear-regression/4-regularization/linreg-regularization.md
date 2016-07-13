@@ -32,7 +32,7 @@ If you run `summary(lm(y ~ x - 1))`, corresponding to a linear model with no con
 
 * Create two vectors, one corresponding to values of $\lambda$ given by $2^{-2}, 2^{-1}, \ldots, 2^5, 2^6, 2^7$ and another corresponding to values of `aEst` from -0.1 to 0.3 in equally spaced increments of 0.001.
 
-* Use [`expand.grid()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/expand.grid.html) on the two vectors of parameter to create a data frame called `grid` with two columns `lambda` and `alpha`, where each row is a unique pair of `(lambda, aEst)` values.
+* Use [`expand.grid()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/expand.grid.html) on the two vectors of parameter to create a data frame called `grid` with two columns `lambda` and `aEst`, where each row is a unique pair of `(lambda, aEst)` values.
 
 * Add `costL1` and `costL2` columns to `grid` where we'll store the cost of associated with each pair `(lambda, aEst)` for each of `p = 1` and `p = 2`. Fill in those columns with `cost()`.
 
