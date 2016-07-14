@@ -1,7 +1,6 @@
 things to improve about the curriculum
 
 Incorporate into R curriculum:
-- R inferno: ch 1-6, parts of 8
 - match(), model.matrix()
 
 Parallelization:
@@ -24,14 +23,12 @@ http://www.cs.columbia.edu/~blei/fogm/2015F/
 - softimpute
 - how to make graphs properly / present / etc
 - resampling: add exposition on why higher/lower n for n-fold cv
+- time series: can't use normal resampling
 
 https://www.kaggle.com/benhamner/2016-us-election
-
-add outer() exercises
 dfs/bfs
-permutation generation
 
-outer
-http://stackoverflow.com/questions/5554305/simple-question-regarding-the-use-of-outer-and-user-defined-functions
-
-time series: can't use normal resampling
+Full assignments to write in the future:
+- Gradient descent, numerical optimization, backpropagation
+- Data structures
+- 

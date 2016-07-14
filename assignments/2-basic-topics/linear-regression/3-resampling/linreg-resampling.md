@@ -36,7 +36,7 @@ In the `speed-dating-simple` dataset, `speed-dating-simple.csv` has the data and
 Random number generation in R
 =============================
 
-In the problems below, we'll be splitting the data into random subsets. This entails using R's [`sample()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/sample.html) which uses a R's random number generator. At any given time, R's random number generator has a state. If you want your results to be reproducible, before using a function that depends on random number generation, you can reset the state using [`set.seed(n)`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Random.html) (the new state depends on `n`). To see how this works, try using [set.seed()](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Random.html) in conjunction with [`runif(5)`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Uniform.html).
+In the problems below, we'll be splitting the data into random subsets. This entails using R's [`sample()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/sample.html) which uses a R's random number generator. At any given time, R's random number generator has a state. If you want your results to be reproducible, before using a function that depends on random number generation, you can reset the state using [`set.seed(n)`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Random.html) (the new state depends on `n`). To see how this works, try using [`set.seed()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Random.html) in conjunction with [`runif(5)`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Uniform.html).
 
 A single train/test split
 =========================
