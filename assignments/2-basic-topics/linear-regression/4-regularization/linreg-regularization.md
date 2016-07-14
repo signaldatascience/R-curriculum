@@ -99,8 +99,8 @@ The `caret` package allows us to easily obtain a cross-validated estimate of the
 
 ```r
 # Set grid of parameter values to search over
-param_grid = expand.grid(.alpha = 1:10 * 0.1,
-                         .lambda = 10^seq(-4, 0, length.out=10))
+param_grid = expand.grid(alpha = 1:10 * 0.1,
+                         lambda = 10^seq(-4, 0, length.out=10))
 
 # Set 10-fold cross validation repeated 3x
 control = trainControl(method="repeatedcv", number=10,
