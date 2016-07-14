@@ -23,8 +23,7 @@ http://www.cs.columbia.edu/~blei/fogm/2015F/
 - memoisation in 1st assignment -- need <<- or something else
 - softimpute
 - how to make graphs properly / present / etc
-- think about rmse for individual folds vs whole
-- resampling: train vs test rmse dist for n-fold cv as well
+- resampling: add exposition on why higher/lower n for n-fold cv
 
 https://www.kaggle.com/benhamner/2016-us-election
 

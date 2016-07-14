@@ -25,7 +25,7 @@ For buffer, use *R: Basic Algorithms*, which can be completed directly after *R:
 
 On the first weekend, assign the completion of old work along with [SQLZoo](http://sqlzoo.net/) tutorials. If there will be a self-assessment after the weekend, give students advance notice of this.
 
-Give students *Self-Assessment 1* (SA1) after all the R basics have been introduced. SA1 will take 3--5 hours based on student strength, so allocate 4 hours for its completion with a lunch break in between. Afterward, go over solutions and give students a half-hour break. Time after completing SA1 can be used for catching up on old work. There is a theoretical solution to Part 1, which can be mentioned in the presentation of R code solutions and presented *only* to those students who are interested. **Important:** Depending on how many days occur before the weekend, students or may not have had a chance to learn SQL, so the SQL questions on SA1 may have to be removed.
+Give students *Self-Assessment 1* (SA1) after all the R basics have been introduced. SA1 will take 3--5 hours based on student strength, so allocate 4 hours for its completion with a lunch break in between. Afterward, go over solutions and give students a half-hour break. Time after completing SA1 can be used for catching up on old work. There is a theoretical solution to Part 1, which can be mentioned in the presentation of R code solutions and presented *only* to those students who are interested. (**Important:** Depending on how many days occur before the weekend, students or may not have had a chance to learn SQL, so the SQL questions on SA1 may have to be removed.)
 
 It should be emphasized to students that they should make extra effort to wrap up any loose ends in the core R curriculum after SA1, as they will be moving on to more substantive data science material afterward.
 
@@ -36,11 +36,15 @@ This portion of the curriculum takes approximately 1 week. It covers n-fold cros
 
 The assignments in this section are:
 
-1. *Linear Regression: Resampling*
-2. *Linear Regression: Regularization*
-3. *Linear Regression: Kaggle Africa Soil Challenge*
+0. *Linear Regression: Resampling*
+1. *Linear Regression: Regularization*
+2. *Linear Regression: Kaggle Africa Soil Challenge*
 
-*Linear Regression: Resampling* takes around 1.5 days. Allocate a full day plus the next day's morning to it. After lunchtime, present resampling solutions and then give a presentation on regularized linear regression, with a 15 minute break in between. (*Don't* assign the regularization assignment as reading beforehand; it assumes theoretical understanding of regularization.) Afterward, students should work on *Linear Regression: Regularization*, which takes (...)
+*Linear Regression: Resampling* takes around 1.5 days. Allocate the first day and the beginning of the second day for its completion. After lunchtime, present resampling solutions, allow a 10 minute break, and then give a presentation on regularized linear regression. (*Don't* assign the regularization assignment as reading beforehand; it assumes theoretical understanding of regularization.)
+
+Afterward, assign *Linear Regression: Regularization*, which takes approximately 1 day. In the afternoon of the third day, present code solutions, allow a 10 minute break, and then present a brief exploratory analysis of the Kaggle African Soil Challenge data.
+
+Finally, assign *Linear Regression: Kaggle Africa Soil Challenge*, taking through the morning of the fourth day. Any extra time can be used for completing old work or buffer assignments. **Note:** The afternoon of the fourth day is unallocated going by this schedule. Use it for a short logistic 
 
 After *Linear Regression: Kaggle Africa Soil Challenge*, give students *Self-Assessment 2* (SA2). Allocate 4 hours for SA2 with a lunch break in between, present solutions at the end, and then have a half-hour break. After the break, students can work on finishing up old assignments, revising their self-assessment code, or working on buffer assignments. It may make sense to give students the first logistic regression assignment before SA2, especially if students seem mentally exhausted and might need a weekend to absorb resampling and regularization at a deeper level before doing SA2.
 
@@ -53,3 +57,7 @@ Dimensionality reduction
 Project: ???
 ============
 
+Advanced topics
+===============
+
+1. Amazon Web Services
