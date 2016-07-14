@@ -1,19 +1,23 @@
 ---
 title: "Logistic Regression: Speed Dating"
+author: Signal Data Science
 ---
 
-This assignment will focus on the aggregated speed dating data, containing information about gender, race, activity participation, and career.
+We'll introduce logistic regression by returning to the [Columbia speed dating dataset](http://andrewgelman.com/2008/01/21/the_speeddating_1/).
 
-When doing the following, examine and interpret the coefficients of each model. Also, examine the area under the ROC curve as well as the shape of the ROC cuve itself.
+* Load `speeddating-aggregated.csv` in the `speed-dating` dataset. The dataset is an aggregated form of the full speed dating dataset; you've worked with a simplified form of this dataset before (with fewer variables). Refer to the documentation in `speeddating-documentation.txt` for a description of the new variables.
 
-* Use logistic regression with the `glm()` function. In order for it to work, you need to either have a binary variable (taking on values 0 or 1) as the target variable, or convert the thing that you want to predict into a factor variable, *e.g.*,
+You can run logistic regression with [`glm()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/glm.html). It can be used in the same fashion as [`lm()]`(https://stat.ethz.ch/R-manual/R-devel/library/stats/html/lm.html), except for logistic regression you must pass in the additional parameter `family="binomial"`. Additionally, the column representing the binary class which you want to predict must either be (1) a numeric column taking on values 0 and 1 or (2) a factor.
 
-	```r
-	df$gender = factor(gender)
-	m = glm(gender ~ . , family = "binomial")
-	```
+The `pROC` package provides a function, `roc()`, which plots the [receiver operating characteristic](https://en.wikipedia.org/wiki/Receiver_operating_characteristic) (ROC) curve given the results of a logistic regression fit. In addition, `auc()` can be called on the output of `roc()` to calculate the area under the ROC curve. Note that `roc()` accepts *probabilities* as inputs, but the predictions made with a logistic regression model will be in the form of *log-odds ratios*, which must be converted into probabilities with
 
-* Predict gender in terms of self-rated activity participation.
+$$P = \frac{\exp L}{1 + \exp L}$$
+
+where $L$ is a log-odds ratio and $P$ is the corresponding probability.
+
+When working through the following questions, examine and interpret the coefficients of each logistic regression model. In addition, examine the area under the ROC curve as well as the shape of the ROC curve itself.
+
+* Predict gender in terms of the 17 self-rated activity participation variables.
 
 * Restrict to the subset of participants who indicated career code 2 (academia) or 7 (business / finance). Use logistic regression to differentiate between the two. 
 

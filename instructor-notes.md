@@ -43,7 +43,7 @@ It should be emphasized to students that they should make extra effort to wrap u
 Resampling and regularization
 =============================
 
-This portion of the curriculum takes approximately 4.5 days. It covers n-fold cross validation and elastic net regularization in the context of linear regression and also briefly touches upon bootstrapping.
+This portion of the curriculum takes approximately 4 days. It covers n-fold cross validation and elastic net regularization in the context of linear regression and also briefly touches upon bootstrapping.
 
 Schedule
 --------
@@ -58,14 +58,16 @@ The assignments in this section are:
 
 Afterward, assign *Linear Regression: Regularization*, which takes approximately 1 day. In the afternoon of the third day, present code solutions, allow a 10 minute break, and then present a brief exploratory analysis of the Kaggle African Soil Challenge data.
 
-Finally, assign *Linear Regression: Kaggle Africa Soil Challenge*, taking through the morning of the fourth day. Any extra time can be used for completing old work or buffer assignments. **Note:** The afternoon of the fourth day is unallocated going by this schedule and should be used for the first logistic regression assignment (in the next section).
+Finally, assign *Linear Regression: Kaggle Africa Soil Challenge*, taking through the end of the third day. Extra time can be used for completing homework assignments or old work.
 
-After *Linear Regression: Kaggle Africa Soil Challenge*, give students *Self-Assessment 2* (SA2). Allocate 4 hours for SA2 with a lunch break in between, present solutions at the end, and then have a half-hour break. After the break, students can work on finishing up old assignments, revising their self-assessment code, or working on buffer assignments. It may make sense to give students the first logistic regression assignment before SA2, especially if students seem mentally exhausted and might need a weekend to absorb resampling and regularization at a deeper level before doing SA2.
+After *Linear Regression: Kaggle Africa Soil Challenge*, give students *Self-Assessment 2* (SA2). Allocate 4 hours for SA2 with a lunch break in between, present solutions at the end, and then have a half-hour break. After the break, students can work on finishing up old assignments, revising their self-assessment code, or working on buffer assignments. **Note:** It may make sense to give students the first logistic regression assignment before SA2, especially if students seem mentally exhausted and might need a weekend to absorb resampling and regularization at a deeper level before doing SA2.
 
 Homework
 --------
 
 Assign reading from Gelman and Hill, described in *Homework: Reading from Gelman and Hill*. The document portions out the homework into 3 different assignments over 3 nights. These can be assigned as soon as students start learning about resampling.
+
+Over the weekend, assign *R Inferno* for reading (Circles 1--6). Also, assign *Homework: Intermediate SQL Practice*.
 
 Additional notes
 ----------------

@@ -22,12 +22,18 @@ http://www.cs.columbia.edu/~blei/fogm/2015F/
 - memoisation in 1st assignment -- need <<- or something else
 - softimpute
 - how to make graphs properly / present / etc
+
 - resampling: add exposition on why higher/lower n for n-fold cv
+http://stats.stackexchange.com/questions/27730/choice-of-k-in-k-fold-cross-validation
+https://en.wikipedia.org/wiki/Cross-validation_(statistics)
+
 - time series: can't use normal resampling
-- clarify purpose of Gelman homework
 
 TODO SOON:
-- 
+- Weekend 2 homework: SQL
+- Notes and slides for cross entropy
+- Notes and slides for topological data analysis (+ short assignment?)
+- Read more Vapnik
 
 https://www.kaggle.com/benhamner/2016-us-election
 dfs/bfs
