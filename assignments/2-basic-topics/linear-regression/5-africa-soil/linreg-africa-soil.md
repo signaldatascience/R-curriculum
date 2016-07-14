@@ -5,6 +5,8 @@ author: Signal Data Science
 
 After finishing the regularization assignment using the speed dating dataset, you'll be working on the Kaggle [Africa Soil Property Prediction Challenge](https://www.kaggle.com/c/afsis-soil-properties). Download the data. If you haven't made a Kaggle account, do so.
 
+* Download the data from the Kaggle website. Load both the train and test sets into R. Use `read_csv()` from the [`readr`](https://cran.r-project.org/web/packages/readr/) package to load the data instead of [`read.csv()`](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/read.table.html) (the former is substantially faster).
+
 The premise here is that we can predict amounts of soil organic carbon, pH values, calcium, phosphorus and sand content in a soil sample soil's absorbance at many electromagnetic [wave numbers](https://en.wikipedia.org/wiki/Wavenumber).[^inv] We'll use regularized linear regression for this. For simplicity, restrict your attention to the wave number features.
 
 [^inv]: Wave number is equal to inverse frequency.

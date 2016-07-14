@@ -53,4 +53,4 @@ Our goal will be to distinguish between males and females by using regularized l
 
 * Scale `cross_terms` and use it with `cv.glmnet()` to train a $L^1$ regularized logistic regression model distinguishing between the two genders. Access the coefficients of the optimal model with `coef()` (you'll have to pass in the value of $\lambda$ to use into the `s` parameter) and print out the nonzero entries. Interpret the results.
 
-* Compare the AUC of the regularized model with cross terms against the AUC of the unregularized model trained only against the 17 activities. Why isn't the model much of an improvement?
+* Compare the AUC of the regularized model with cross terms against the AUC of the unregularized model trained only against the 17 activities. Is the regularized model much of an improvement?
