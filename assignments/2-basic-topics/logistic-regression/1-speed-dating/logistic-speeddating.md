@@ -45,12 +45,12 @@ We can also use *regularization* with logistic regression via the `glmnet` packa
 
 With regularization, we have the freedom to throw a lot of features into our model, because the regularization parameter will be chosen such that only the important ones remain. In particular, $L^1$ regularization will produce a very interpretable model, because the coefficients of the less important variables will be driven to 0.
 
-Our goal will be to distinguish between Caucasians and Asians by using regularized logistic regression. As predictors, we'll include the 17 activites *and* every possible 2nd-order interaction term between the 17 activities.
+Our goal will be to distinguish between males and females by using regularized logistic regression. As predictors, we'll include the 17 activites *and* every possible 2nd-order interaction term between the 17 activities.
 
-* Restrict to the subset of Caucasian or Asian participants. From that subset, create a new data frame, `df_activities`, with just the 17 activity variables.
+* Create a new data frame, `df_activities`, with just the 17 activity variables.
 
 * To form the 2nd-order interaction terms, pass in `df_activities` to [`model.matrix()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/model.matrix.html) along with the formula `~ .*. + 0`. Store the output in a variable `cross_terms`. (In the formula, `.*.` indicates that every possible interaction term should be formed and `+ 0` indicates that no intercept column should be created.)
 
-* Scale `cross_terms` and use it with `cv.glmnet()` to train a $L^1$ regularized logistic regression model distinguishing between Caucasians and Asians. Access the coefficients of the optimal model with `coef()` (you'll have to pass in the value of $\lambda$ to use into the `s` parameter) and print out the nonzero entries. Interpret the results.
+* Scale `cross_terms` and use it with `cv.glmnet()` to train a $L^1$ regularized logistic regression model distinguishing between the two genders. Access the coefficients of the optimal model with `coef()` (you'll have to pass in the value of $\lambda$ to use into the `s` parameter) and print out the nonzero entries. Interpret the results.
 
-* Compare the AUC of the regularized model with cross terms against the AUC of the unregularized model trained only against the 17 activities.
+* Compare the AUC of the regularized model with cross terms against the AUC of the unregularized model trained only against the 17 activities. Why isn't the model much of an improvement?
