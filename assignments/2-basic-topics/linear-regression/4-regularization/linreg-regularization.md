@@ -108,7 +108,8 @@ control = trainControl(method="repeatedcv", number=10,
 
 # Search over the grid
 caret_fit = train(x=features, y=target, method="glmnet",
-                  tuneGrid=param_grid, trControl=control)
+                  tuneGrid=param_grid, trControl=control,
+                  preProc=c("center", "scale"))
 
 # View the optimal values of alpha and lambda
 caret_fit$bestTune
