@@ -1,0 +1,11 @@
+MDBS = $(wildcard *.mdb)
+PDFS = $(patsubst %.mdb,%.pdf,$(MDBS))
+.PHONY: all
+all: $(PDFS)
+
+%.pdf: %.mdb
+	pandoc "$<" -o "$@" -f markdown -t beamer --smart -M urlcolor:MidnightBlue -M fontfamily:mathpazo -V theme:CambridgeUS -i
+
+.PHONY: clean
+clean:
+	rm -f $(PDFS)

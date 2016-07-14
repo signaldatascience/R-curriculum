@@ -1,4 +1,4 @@
-TEMPLATE = "/home/kironide/Shared/Documents/Signal/curriculum/pandoc-template-latex.latex"
+TEMPLATE = "/home/kironide/Shared/Documents/Signal/curriculum/_build/pandoc-template-latex.latex"
 
 MDS = $(wildcard *.md)
 PDFS = $(patsubst %.md,%.pdf,$(MDS))

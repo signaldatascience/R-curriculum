@@ -24,6 +24,10 @@ http://www.cs.columbia.edu/~blei/fogm/2015F/
 - how to make graphs properly / present / etc
 - resampling: add exposition on why higher/lower n for n-fold cv
 - time series: can't use normal resampling
+- clarify purpose of Gelman homework
+
+TODO SOON:
+- 
 
 https://www.kaggle.com/benhamner/2016-us-election
 dfs/bfs
@@ -31,4 +35,10 @@ dfs/bfs
 Full assignments to write in the future:
 - Gradient descent, numerical optimization, backpropagation
 - Data structures
-- 
+
+Weekend assignments:
+- Weekend 2: More basic SQL
+- Weekend 3: Window functions / PARTITION
+- Weekend 4: 
+- Weekend 5: 
+- Weekend 6: 

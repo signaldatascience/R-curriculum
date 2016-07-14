@@ -21,10 +21,10 @@ Prefix codes are part of a larger class of very special codes called *uniquely d
 
 To illustrate, if a code has code words $\{0, 1, 10\}$, then this code is *not* uniquely decodable; if someone receives the message "0110", it's impossible to tell whether the last two characters, "10", are supposed to be interpreted as the code word "10" or as "1" followed by "0". As such, "0110" could stand for "0, 1, 10" or for "0, 1, 1, 10". However, a code with code words $\{0, 1, 2, 32\}$ would be uniquely decodable.
 
-The Kraft-McMillan theorem
-==========================
+The Kraft--McMillan theorem
+===========================
 
-The [Kraft-McMillan theorem](https://en.wikipedia.org/wiki/Kraft%27s_inequality) says the following:[^in]
+The [Kraft--McMillan theorem](https://en.wikipedia.org/wiki/Kraft%27s_inequality) says the following:[^in]
 
 [^in]: This theorem is more properly formulated as an inequality, but it's presented here in a simplified form for the sake of exposition.
 
@@ -130,10 +130,10 @@ Additional reading
 
 * Shalizi's [Information Theory](http://bactra.org/notebooks/information-theory.html) is a good explanation of information-theoretic entropy as well as an excellent source for further reading.
 
-The Kraft-McMillan theorem: more rigor
+The Kraft--McMillan theorem: more rigor
 ======================================
 
-Feel free to skip this section. It's a development of the Kraft-McMillan theorem in more precise terms.
+Feel free to skip this section. It's a development of the Kraft--McMillan theorem in more precise terms.
 
 Formal statement
 ----------------
