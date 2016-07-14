@@ -113,13 +113,15 @@ qplot(fit_l2_cv$lambda, fit_l2_cv$cvm)
 
 # Comparing stepwise regression vs. regularization
 
+df_step = select(df, attr_o, sports:yoga)
+
 # Initialize predictions vectors
 preds_step = numeric(nrow(df))
 preds_l1 = numeric(nrow(df))
 preds_l2 = numeric(nrow(df))
 
 # Do cross-validation
-n_folds = 10
+n_folds = 20
 folds = sample(nrow(df)) %% n_folds + 1
 for (i in 1:n_folds) {
   print(paste0("Running fold: ", as.character(i)))

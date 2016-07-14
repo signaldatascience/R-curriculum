@@ -80,7 +80,7 @@ Stepwise regression tends to *overfit* because of problems with [multiple hypoth
 
 **Read the entirety of this section before writing any code.**
 
-* Implement 10-fold cross-validation. Within each fold, you should fit a model predicting attractiveness in terms of the 17 activities (1) with [`step()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/step.html) for backward stepwise regression and (2) with `cv.glmnet()` for both $L^1$ and $L^2$ regularized linear regression. Use the fitted model to make predictions on the held-out fold for all three methods. At the end of the 10 iterations, calculate and return the RMSE corresponding to each method. Interpret the results.
+* Implement **20-fold** cross-validation. Within each fold, you should fit a model predicting attractiveness in terms of the 17 activities (1) with [`step()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/step.html) for backward stepwise regression and (2) with `cv.glmnet()` for both $L^1$ and $L^2$ regularized linear regression. Use the fitted model to make predictions on the held-out fold for all three methods. At the end of the 10 iterations, calculate and return the RMSE corresponding to each method. Interpret the results.
 
 Keep the following in mind while you work:
 
