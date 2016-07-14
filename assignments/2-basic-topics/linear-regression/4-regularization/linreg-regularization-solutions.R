@@ -138,6 +138,7 @@ for (i in 1:n_folds) {
   df_step_test = df_step[folds == i, ]
   model_init = lm(attr_o ~ ., df_step_train)
   model_full = formula("attr_o ~ .")
+  #model_full = formula(model_init)
   cv_fit_step = step(model_init, model_full, direction="backward", trace=0)
 
   # Generate and store predictions
