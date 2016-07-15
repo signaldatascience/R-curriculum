@@ -120,7 +120,7 @@ Doing a bit of factoring, we arrive at
 
 $$C_1(\beta) = \beta^2 \mathrm{Var}(\textbf{x}) + \mathrm{Var}(\textbf{y}) + \beta \left( \lambda - 2 \mathrm{Cov}(\textbf{x}, \textbf{y}) \right).$$
 
-Notice that $C_1(0) = \mathrm{Var}(\textbf{Y})$, a fixed value independent of $\lambda$. Assume that $C_1(\beta)$ is minimized at some value $\beta > 0$ for all $\lambda$. However, this is a contradiction, because if $\beta > 0$ we can increase the value of $C_1(\beta)$ to arbitrarily large values by increasing $\lambda$ and thereby increasing $\beta \left( \lambda - 2 \mathrm{Cov}(\textbf{x}, \textbf{y}) \right)$. It must therefore be the case that for sufficiently large $\lambda$, the only possible minimum of $C_1(\beta)$ is at $\beta = 0$.
+Notice that $C_1(0) = \mathrm{Var}(\textbf{y})$, a fixed value independent of $\lambda$. Assume that $C_1(\beta)$ is minimized at some value $\beta > 0$ for all $\lambda$. However, this is a contradiction, because if $\beta > 0$ we can increase the value of $C_1(\beta)$ to arbitrarily large values by increasing $\lambda$ and thereby increasing $\beta \left( \lambda - 2 \mathrm{Cov}(\textbf{x}, \textbf{y}) \right)$. It must therefore be the case that for sufficiently large $\lambda$, the only possible minimum of $C_1(\beta)$ is at $\beta = 0$.
 
 Comparing regularization and stepwise regression
 ================================================
