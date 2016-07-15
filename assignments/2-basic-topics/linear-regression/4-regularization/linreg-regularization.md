@@ -60,7 +60,7 @@ $$C_2(\beta) = S(\beta) + \lambda \beta^2.$$
 
 What value of $\beta$ minimizes $C_2(\beta)$? Since $C_2(\beta)$ is the sum of two quadratic functions of $\beta$, it is smooth (being a quadratic function of $\beta$ itself) and therefore the minimum is achieved when $C_2'(\beta) = 0$, *i.e.*, when
 
-$S'(\beta) + 2 \lambda \beta = 0.$$
+$$S'(\beta) + 2 \lambda \beta = 0.$$
 
 Remember that we're interested in the situation where regularization causes the coefficient estimate $\beta$ to be driven to 0. It's then natural to ask: what needs to be true for $C_2(\beta)$ to be minimized at $\beta = 0$? The condition $C_2'(0) = 0$ must hold. Substituting $\beta = 0$ into our expression above, we obtain the condition
 
