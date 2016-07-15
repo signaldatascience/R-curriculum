@@ -50,9 +50,15 @@ Theoretical explanation
 
 We can see that $L^1$ regularization successfully drives coefficient estimates to 0 as $\lambda$ increases while $L^2$ regularization does not. Why does this happen? We can get more insight into what's going on by looking at the underlying mathematics.
 
-Suppose we have a vector of true values $\textbf{y}$ and a predictor variable $\textbf{x}$, and consider an $L^p$ regularized linear model for $\textbf{y}$ in terms of $\textbf{x}$ with regularization hyperparameter $\lambda$ and coefficient estimate $\beta$. Call the sum of squared errors $\mathrm{SSE} = S(\beta) = \sum_i \left(y_i - \beta x_i \right)^2$. Then our total cost function for the model is given by
+*Note:* The reasoning below will consider only the single variable case, where we have a single regression coefficient $\beta$. However, the reasoning applies equally as well to higher-dimensional cases -- the notation just get a little bit more cluttered.
 
-$$C_p(\beta) = S(\beta) + \lambda \lvert \beta \rvert^p.$$
+Suppose we have a vector of true values $\textbf{y}$ and a predictor variable $\textbf{x}$, and consider an $L^p$ regularized linear model for $\textbf{y}$ in terms of $\textbf{x}$ with regularization hyperparameter $\lambda$, coefficient estimate $\beta$, and intercept term $I$. That is, our model is given by
+
+$$\textbf{y} = \beta \textbf{x} + I.$$
+
+Call the sum of squared errors $\mathrm{SSE} = S(\beta) = \sum_i \left(y_i - \beta x_i \right + I)^2$. Then our total cost function for the model is given by
+
+$$C_p(\beta) = \mathrm{SSE} + \lambda \lvert \beta \rvert^p = S(\beta) + \lambda \lvert \beta \rvert^p.$$
 
 First, let's consider the case when we perform $L^2$ regularization. In that situation, $p = 2$ so $\lvert \beta \rvert^p = \beta^2$, and our cost function is
 

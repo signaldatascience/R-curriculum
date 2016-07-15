@@ -1,5 +1,6 @@
 ---
 title: Cross Entropy
+author: Signal Data Science
 ---
 
 This is a short primer on the notion of the *cross entropy*. We'll develop it from the standpoint of information theory.
