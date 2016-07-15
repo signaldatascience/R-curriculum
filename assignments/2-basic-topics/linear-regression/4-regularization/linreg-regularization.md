@@ -82,20 +82,6 @@ Now, let's consider $L^1$ regularization, where $p = 1$ so
 
 $$C_1(\beta) = S(\beta) + \lambda \lvert \beta \rvert.$$
 
-This is the sum of a quadratic function of $\beta$ and a scaled absolute value function of $\beta$. Each of the two functions has a single local minimum, so the global minimum of $C_1(\beta)$ must be located at *either* (1) at the minimum of $S(\beta)$, where $S'(\beta) = 0$, *or* at (2) the minimum of the regularization parameter, where $\beta = 0$.
-
-Let's say that $S(\beta)$ is minimized at $\beta = \beta^\star$. $C_1(\beta)$ will be minimized at the minimum of the regularization parameter, *i.e.*, at $\beta = 0$, if and only if $C_1(0) < C_1(\beta^\star)$, *i.e.*,
-
-$$S(0) < S(\beta^\star) + \lambda \lvert \beta^\star \rvert.$$
-
-Rearranging terms, we can rewrite this inequality as
-
-$$\lambda > \frac{S(0) - S(\beta^\star)}{|\beta^\star|}.$$
-
-The right hand side of this inequality is a *constant* which depends solely upon $\textbf{y}$ and $\textbf{x}$. As such, we can *always* make this inequality true by making the regularization hyperparameter $\lambda$ sufficiently large!
-
-**Therefore:** $L^1$ regularization can always drive a coefficient estimate to 0 by increasing the regularization hyperparameter $\lambda$ past some constant threshold. In other words, with enough regularization we are *guaranteed* to be able to drive the coefficients of our model to 0.
-
 Comparing regularization and stepwise regression
 ================================================
 
