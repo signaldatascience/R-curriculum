@@ -3,6 +3,8 @@ title: "Linear Regression: Kaggle Africa Soil Challenge"
 author: Signal Data Science
 ---
 
+*Note:* The R script used in the presentation is located in the `lectures/africa-soil` folder of the curriculum repository.
+
 After finishing the regularization assignment using the speed dating dataset, you'll be working on the Kaggle [Africa Soil Property Prediction Challenge](https://www.kaggle.com/c/afsis-soil-properties). Download the data. If you haven't made a Kaggle account, do so.
 
 * Download the data from the Kaggle website. Load both the train and test sets into R. Use `read_csv()` from the [`readr`](https://cran.r-project.org/web/packages/readr/) package to load the data instead of [`read.csv()`](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/read.table.html) (the former is substantially faster).
@@ -13,7 +15,7 @@ The premise here is that we can predict amounts of soil organic carbon, pH value
 
 First, we'll focus on predicting calcium levels.
 
-* As in the final lines of the R script `linreg-africa-soil-exploration.R`, explore how the graph of the coefficients varies with $\alpha$, using `cv.glmnet()` with `alpha` set to 1, 0.1, 0.05, 0.01, 0.001 and 0.
+* As in the final lines of the R script used in the presentation, explore how the graph of the coefficients varies with $\alpha$, using `cv.glmnet()` with `alpha` set to 1, 0.1, 0.05, 0.01, 0.001 and 0.
 
 * Use the `caret` package to tabulate cross validated RMSE as a function of $(\alpha, \lambda)$. Make sure that your grid of values of $\alpha$ includes values close to zero.
 
