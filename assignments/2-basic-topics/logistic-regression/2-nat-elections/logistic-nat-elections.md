@@ -49,7 +49,7 @@ We're now ready to use regularized logistic regression to explore the dataset. A
 
 For each of the following questions, you should interpret the nonzero regression coefficients and calculate the area under the ROC curve.
 
-* Predict support for George H. W. Bush in the 1992 election. (Restrict consideration to people who actually voted!)
+* Predict support for George H. W. Bush in the 1992 election. (Restrict consideration to people who actually voted!) Can you improve your model by adding interaction terms?
 
 * Predict party support for different years and look at how the coefficients of the predictors change over time.
 
