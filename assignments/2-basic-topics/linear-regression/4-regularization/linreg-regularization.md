@@ -56,7 +56,7 @@ Suppose we have a vector of true values $\textbf{y}$ and a predictor variable $\
 
 $$\textbf{y} = \beta \textbf{x} + I.$$
 
-Call the sum of squared errors $\mathrm{SSE} = S(\beta) = \sum_i \left(y_i - \beta x_i \right + I)^2$. Then our total cost function for the model is given by
+Call the sum of squared errors $\mathrm{SSE} = S(\beta) = \sum_i \left(y_i - \beta x_i + I\right)^2$. Then our total cost function for the model is given by
 
 $$C_p(\beta) = \mathrm{SSE} + \lambda \lvert \beta \rvert^p = S(\beta) + \lambda \lvert \beta \rvert^p.$$
 
@@ -81,6 +81,34 @@ We can also think about $L^2$ regularization in the following fashion: The cost 
 Now, let's consider $L^1$ regularization, where $p = 1$ so
 
 $$C_1(\beta) = S(\beta) + \lambda \lvert \beta \rvert.$$
+
+This is the sum of a quadratic function of $\beta$ and a scaled absolute value function of $\beta$. Each of the two functions has a single local minimum, so the global minimum of $C_1(\beta)$ must be located at *either* (1) at the smooth local minimum of $C_1(\beta)$, where $C_1'(\beta) = 0$, *or* at (2) the minimum of the regularization parameter, where $\beta = 0$.
+
+Taking the deriative of $C_1'(\beta)$, we obtain
+
+$$C_1'(\beta) = S'(\beta) + \lambda \frac{\lvert \beta \rvert}{\beta}.$$
+
+Since $S(\beta)$ is a quadratic function of $\beta$, $S'(\beta)$ is a linear function of $\beta$. Without any regularization (at $\lambda = 0$), $S'(\beta)$ is guaranteed to be 0 for *some* value of $\beta$ (any straight line on the $x$--$y$ axis will pass through $y = 0$ eventually).
+
+Now, note that $\lvert \beta \rvert / \beta$ is equal to 1 for $\beta > 0$, equal to $-1$ for $\beta < 0$, and is undefined at $\beta = 0$. As such, adding on the regularization term $\lambda \lvert \beta \rvert / \beta$ to $S'(\beta)$ is equivalent to *shifting* the $\beta < 0$ side of the graph of $S'(\beta)$ down $\lambda$ units, shifting the $\beta > 0$ side of the graph up $\lambda$ units, and making the $\beta = 0$ point undefined. Intuitively, it must be the case that after a sufficiently large shift---after $\lambda$ exceeds some finite threshold--the two halves of the graph are driven completely above and below the $\beta = 0$ line, and neither one attains the value of 0 anywhere. As such, the only remaining candidate for the minimum of $C_1(\beta)$ is at the nondifferentiable corner $\beta = 0$.
+
+Formally, let $S'(\beta) = a\beta + b$ without loss of generality (where $a > 0$ is guaranteed because $S(\beta)$ is convex). Suppose also that $\textbf{y}$ has a nonzero correlation with $\textbf{x}$, so $b \ne 0$ (*i.e.*, $\beta = 0$ is no tthe solution to $S'(\beta) = 0$). Then 
+
+$$C_1'(\beta) = a\beta + b + \lambda \frac{\lvert \beta \rvert}{\beta}.$$
+
+We aim to show that for sufficiently large $\lambda$, $C_1'(\beta) = 0$ has no solution. Setting everything equal to 0, we obtain
+
+$$a\beta + b + \lambda \lvert \beta \rvert / \beta = 0$$
+
+Suppose that we have a solution where $\beta > 0$, meaning that $a\beta + b + \lambda = 0$. Rearranging, we obtain $\beta = -b/a -\lambda/a$. Since $a$ is guaranteed to be positive, increasing $\lambda$ will decrease the value of the entire expression; indeed, for $\lambda > -b$ we obtain $\beta < 0$, a contradiction.
+
+Similarly, suppose that we have a solution where $\beta < 0$, meaning that $a\beta + b - \lambda = 0$. Rearranging, we obtain $\beta = \lambda/a - b/a$, and for $L > b$ we obtain $\beta > 0$, a contradiction.
+
+As such, for $\lambda > \lvert b \rvert$ -- where the right hand side is purely a function of $\textbf{y}$ and $\textbf{x}$ -- the only possible global minimum of $C_1(\beta)$ is at the nondifferentiable cusp $\beta = 0$.
+
+**Therefore:** For sufficiently large $\lambda$, $L^1$ regularization is *guaranteed* to drive coefficient estimates to 0, unless the target variable is completely uncorrelated with its predictors.
+
+Here's an alternative explanation for why $L^1$ regularization drives coefficient estimates to 0.
 
 Comparing regularization and stepwise regression
 ================================================
