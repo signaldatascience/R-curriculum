@@ -104,7 +104,7 @@ Suppose that we have a solution where $\beta > 0$, meaning that $a\beta + b + \l
 
 Similarly, suppose that we have a solution where $\beta < 0$, meaning that $a\beta + b - \lambda = 0$. Rearranging, we obtain $\beta = \lambda/a - b/a$, and for $L > b$ we obtain $\beta > 0$, a contradiction.
 
-As such, for $\lambda > \lvert b \rvert$ -- where the right hand side is purely a function of $\textbf{y}$ and $\textbf{x}$ -- the only possible global minimum of $C_1(\beta)$ is at the nondifferentiable cusp $\beta = 0$.
+As such, for $\lambda > \lvert b \rvert$, where the right hand side is purely a function of $\textbf{y}$ and $\textbf{x}$, the only possible global minimum of $C_1(\beta)$ is at the nondifferentiable cusp $\beta = 0$.
 
 **Therefore:** For sufficiently large $\lambda$, $L^1$ regularization is *guaranteed* to drive coefficient estimates to 0, unless the target variable is completely uncorrelated with its predictors.
 
