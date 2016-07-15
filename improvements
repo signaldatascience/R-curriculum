@@ -23,6 +23,7 @@ http://www.cs.columbia.edu/~blei/fogm/2015F/
 - softimpute
 - how to make graphs properly / present / etc
 - add http://math.stanford.edu/~vakil/potentialstudents.html to precourse
+- https://gist.github.com/hadley/6734639
 
 - resampling: add exposition on why higher/lower n for n-fold cv
 http://stats.stackexchange.com/questions/27730/choice-of-k-in-k-fold-cross-validation

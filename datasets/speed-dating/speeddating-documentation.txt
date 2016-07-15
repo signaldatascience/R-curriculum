@@ -1,4 +1,8 @@
-In the unaggregated data, the iid column has a unique value for each participant.
+In the unaggregated data, we have these variables:
+
+iid: ID of person being rated
+pid: ID of partner (person doing the rating)
+race_o, ...: characteristics of the partner
 
 The following columns correspond to ratings of a participant by others on a 1-10 scale:
 
