@@ -2,7 +2,7 @@
 title: "Homework: Reading from Gelman and Hill"
 ---
 
-Over the next *three nights*, you'll be working through various sections of [Data Analysis Using Multilevel/Hierarchical Models](http://www.stat.columbia.edu/~gelman/arm/) by Gelman and Hill. Chapters 3 through 5 of this book are located in the `readings/gelman` folder of the GitHub curriculum repository.
+Over the next *three nights*, you'll be working through various sections of [Data Analysis Using Multilevel/Hierarchical Models](http://www.stat.columbia.edu/~gelman/arm/) by Gelman and Hill. Chapters 3 through 5 of this book are located in the `readings/gelman` folder of the GitHub curriculum repository. **The first section or two may seem like review** but the readings quickly move into new territory. Pay especially close attention to Gelman's exposition regarding how to properly interpret the coefficients of a linear or logistic regression model.
 
 The reading assignments are given below (one per night):
 

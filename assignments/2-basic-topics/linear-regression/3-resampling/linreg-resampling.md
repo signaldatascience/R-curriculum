@@ -8,7 +8,7 @@ In this assignment, we will be covering basic *resampling* methods. First, we'll
 Overfitting
 ===========
 
-[*Overfitting*](http://machinelearning.subwiki.org/wiki/Overfitting) is defined as:
+The notion of [*overfitting*](http://machinelearning.subwiki.org/wiki/Overfitting) is defined as:
 
 > a problem where a functional form or algorithm performs substantially better on the data used to train it than on new data drawn from the same distribution. It occurs when the parameters used to describe the functional form end up fitting the noise or random fluctuations in the training data rather than the attributes that are common between the training data and test data.
 
@@ -36,7 +36,7 @@ In the `speed-dating-simple` dataset, `speed-dating-simple.csv` has the data and
 Random number generation in R
 =============================
 
-In the problems below, we'll be splitting the data into random subsets. This entails using R's [`sample()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/sample.html) which uses a R's random number generator. At any given time, R's random number generator has a state. If you want your results to be reproducible, before using a function that depends on random number generation, you can reset the state using [`set.seed(n)`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Random.html) (the new state depends on `n`). To see how this works, try using [set.seed()](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Random.html) in conjunction with [`runif(5)`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Uniform.html).
+In the problems below, we'll be splitting the data into random subsets. This entails using R's [`sample()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/sample.html) which uses a R's random number generator. At any given time, R's random number generator has a state. If you want your results to be reproducible, before using a function that depends on random number generation, you can reset the state using [`set.seed(n)`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Random.html) (the new state depends on `n`). To see how this works, try using [`set.seed()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Random.html) in conjunction with [`runif(5)`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Uniform.html).
 
 A single train/test split
 =========================
@@ -59,7 +59,7 @@ Next, we will split the task before us into three different functions. As you wr
 
 Finally, we're ready to see how a linear model performs on the train set versus the test set.
 
-* Run `split_data()` and `split_predict()` 100 times to generate predictions for 100 different train/test splits. For each prediction, calculate the associated RMSE against the true values. Plot the distribution of RMSEs for both the train set and the test set. Calculate their mean and standard deviation. How does the performance on the train set compare to the performance on the test set?
+* Run `split_data()` and `split_predict()` 100 times to generate predictions for 100 different train/test splits. For each prediction, calculate the associated RMSE against the true values. Plot histograms of the RMSE values for both the train set and the test set on the same graph. Calculate their mean and standard deviation. How does the performance on the train set compare to the performance on the test set?
 
 $n$-fold cross-validation
 =========================
@@ -145,9 +145,14 @@ Bootstrapping
 
 Aside from $n$-fold cross-validation, there exists a different resampling technique called *bootstrapping*. In bootstrapping, we take the original dataset and randomly pick rows *with replacement* to form a new dataset with the same total number of rows. It is essentially a way for us to *mimic* the results of obtaining completely new data from the population.
 
+Comparing models
+----------------
+
 Suppose that we want to use bootstrapping in order to measure model quality. The two simplest ways to do so are to generate a large number of bootstrapped samples and to either (1) train a model on each bootstrapped sample and make predictions on the original dataset or (2) train a model on the original dataset and make predictions on each bootstrapped sample. For each (train, test) pair, we calculate a RMSE; at the end, we take the average of all the calculated RMSE values.
 
-Both of the above methods are fundamentally broken as described. Approach (1) will severely underestimate the RMSE (and consequently the degree of overfitting) because of the high overlap between train and test sets -- on average, two-thirds of the rows in the original dataset will show up at least once in each bootstrapped sample. Approach (2) is even worse: if we train a model on the original dataset, it will already have "seen" one copy of every data point, so none of the data in *any* of the test sets will be "new" to the model. This makes approach (2) completely incapable of detecting overfitting.
+Both of the above methods are fundamentally broken as described. Approach (1) will severely underestimate the RMSE (and consequently the degree of overfitting) because of the high overlap between train and test sets -- on average, two-thirds of the rows in the original dataset will show up at least once in each bootstrapped sample. Approach (2) is even worse: if we train a model on the original dataset, it will already have "seen" one copy of every data point, so none of the data in *any* of the test sets will be "new" to the model. This makes approach (2) underestimate the RMSE by an even greater extent *and* be incapable of measuring the degree of overfitting.[^subset]
+
+[^subset]: Mathematically speaking, in approach (1) every train set is a subset of the test set and in approach (2) every test set is a subset of the train set.
 
 It is often illustrative and helpful in building intuition to computationally look at the results of methods which we already know are flawed. To that end:
 
@@ -171,9 +176,35 @@ There is, however, a way to get around these problems. Indeed, we can use approa
 
 * Write a function `backward_step_3()` similar to the other two such functions but using `bootstrap_good()` instead of `bootstrap_bad()`. As before, run it and visualize the results.
 
-Although the modified version of approach (1) works, it [tends to slightly overestimate the RMSE](http://stats.stackexchange.com/a/18355/115666).
+Although the modified version of approach (1) certainly works, we can see that it [tends to slightly overestimate the RMSE](http://stats.stackexchange.com/a/18355/115666). However, it also has a minor advantage over $n$-fold cross validation in that its RMSE estimates tend to have lower variance (when compared against commonly used values of $n$). Bootstrapped estimates can be corrected for the RMSE overestimation, and we can use repeated cross-validation to reduce the variance of cross-validated RMSE estimates, so in practice the differences are quite minor -- it's more important to just pick one and use it consistently.
 
-Closing notes
-=============
+Moving forward, we'll stick to using $n$-fold cross-validation for measuring model quality. It's conceptually simpler than bootstrapping and is encountered more often.
 
-asdf
+Estimating parameter distributions
+----------------------------------
+
+There is, however, a different task for which bootstrapping is very well suited, namely the task of estimating the *variance of parameter estimates*. We'll illustrate with a computational example.
+
+Suppose that you want to invest a fixed sum of money into two different financial assets $X$ and $Y$. You can invest a fraction $\alpha$ of your money into $X$ and the remaining $1 - \alpha$ into $Y$. You'll implement a simple strategy: instead of looking at the returns at all, simply *minimize the risk* (*i.e.*, the variance of the returns). Somewhat counterintuitively, this strategy actually performs well in practice.[^quant]
+
+[^quant]: See [Why does the minimum variance portfolio provide good returns?](http://quant.stackexchange.com/questions/2870/why-does-the-minimum-variance-portfolio-provide-good-returns) and Baker *et al.* (2010), [Benchmarks as Limits to Arbitrage: Understanding the Low Volatility Anomaly](http://papers.ssrn.com/sol3/papers.cfm?abstract_id=1585031).
+
+We can make the simplifying assumption that the returns of $X$ and $Y$ are uncorrelated. In that case, it can be mathematically shown that the value of $\alpha$ which minimizes the risk is
+
+$$\alpha = \frac{\sigma_Y^2}{\sigma_X^2 + \sigma_Y^2}$$
+
+where $\sigma_X^2$ and $\sigma_Y^2$ are respectively the *variances* of the returns of $X$ and $Y$.
+
+We don't know the values of $\sigma_X^2$ or $\sigma_Y^2$, but given data on the returns of $X$ and $Y$ you can estimate those values and consequently gain an estimate of $\alpha$, which we denote $\hat{\alpha}$. However, this naturally leads to the question: how variable is our estimate $\hat{\alpha}$? Equivalently, given only a finite dataset and no knowledge about the *true* values of $\sigma_X^2$ and $\sigma_Y^2$, is it possible for us to quantify how *certain* we are about our estimate $\hat{\alpha}$? The answer is *yes*.
+
+* Write a function `calc_alpha(X, Y)` which takes as inputs equivalently sized vectors containing data about the returns of $X$ and $Y$ and uses the above formula to calculate an estimate for $\alpha$.
+
+* Write a function `gen_alphas(sdX, sdY)` which takes as input two positive numbers `sdX` and `sdY`. We will suppose that the true returns of the assets $X$ and $Y$ are normally distributed with mean 10 and standard deviation equal to `sdX` and `sdY` respectively. Generate 100 observations of both distributions and store them as `X` and `Y`. Next, generate 1000 bootstrapped samples of both `X` and `Y`. For each pair of bootstrapped samples, calculate and store the corresponding value of $\alpha$ with `calc_alpha()`. Finally, return the list of 1000 estimates of $\alpha$.
+
+* For each of the following pairs of `(sdX, sdY)` parameters, run `gen_alphas()` to obtain 1000 bootstrapped estimates of $\alpha$, plot a histogram of them, and calculate their mean and standard deviation: $(1, 3)$, $(3, 1)$, $(1, 1)$. Do these results correspond to what you would expect?
+
+* Run `gen_alphas()` for each of the following `(sdX, sdY)` pairs and plot histograms of the results on the same graph: $(1, 2)$, $(1, 3)$, $(1, 4)$. Interpret the results.
+
+Bootstrapping is very powerful in cases when the parameters to estimate are complex functions of the data, like in the above example. (However, if the parameter is as simple as the mean of the data, it's typically better to use the [*t*-test](https://en.wikipedia.org/wiki/Student%27s_t-test) from classical statistics, which will give more precise results with theoretical justification.) For example, bootstrapping can be used to calculate estimates of standard error for parameters like regression coefficients or to even estimate the stability of clustering algorithms. It is also useful for revealing non-normality in parameter distributions.
+
+We'll seldom implement bootstrapping ourselves, but we'll see it incorporated into a variety of different algorithms in the future.

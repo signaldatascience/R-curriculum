@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import os
-import sys
 import glob
 import shutil
 from subprocess import Popen, PIPE
@@ -11,8 +10,7 @@ bad = ['.git']
 def get_dirs(d):
     return filter(lambda x: os.path.isdir(os.path.join(d, x)), os.listdir(d))
 
-
-def recurse(d='assignments/'):
+def recurse(d):
     l = []
     dirs = get_dirs(d)
     for subdir in dirs:
@@ -22,23 +20,25 @@ def recurse(d='assignments/'):
             l.extend(recurse(d=full))
     return l
 
-# Change directory to path of script
 initpath = os.path.dirname(os.path.realpath(__file__))
-os.chdir(initpath)
 
-# Run make on subdirectories
-rec = recurse()
+def recursive_make(paths, makefile):
+    r = [os.path.abspath(p) for p in paths]
+    for directory in r:
+        os.chdir(directory)
+        print(directory)
+        p = Popen('make -f ' + makefile, shell=True, stdout=PIPE, stderr=PIPE)
+        (out, err) = p.communicate()
+        print(out)
+
+# Recursive make for .md -> .pdf
+os.chdir(initpath)
+rec = recurse(d='assignments/')
 rec.extend(recurse(d='interview-prep/'))
+rec.extend(recurse(d='lectures/'))
 rec.append('interview-prep/')
-r = [os.path.abspath(p) for p in rec]
-mpath = os.path.abspath('Makefile')
-for directory in r:
-    os.chdir(directory)
-    print(directory)
-    if len(sys.argv) == 1:
-        p = Popen('make -f ' + mpath, shell=True, stdout=PIPE, stderr=PIPE)
-    else:
-        p = Popen('make -f ' + mpath + ' ' + sys.argv[1],
-                  shell=True, stdout=PIPE, stderr=PIPE)
-    (out, err) = p.communicate()
-    print(out)
+recursive_make(rec, os.path.abspath('_build/Makefile'))
+
+# Recursive make for .mdb -> .pdf (Beamer)
+os.chdir(initpath)
+recursive_make(recurse(d='lectures/'), os.path.abspath('_build/Makefile-mdb'))

@@ -4,23 +4,6 @@ library(glmnet)
 library(caret)
 library(Rmisc)
 
-### UTILITY FUNCTIONS ##########################################################
-
-# Find leftmost index in vector corresponding to min value
-arg_min = function(v) match(min(v), v)[1]
-
-# RMSE for (actual, predicted)
-rmse = function(x, y) sqrt(mean((x-y)^2))
-
-# Get RMSEs for L1/L2 glmnet() fit given lambda
-get_rmses = function(fit, lamb) rmse(predict(fit, activities_scaled, s=lamb), attr_o)
-
-# Given L1/L2 glmnet() fit, return lambda and RMSE corresponding to minimum RMSE
-get_min_rmse = function(fit) {
-  rmses = sapply(fit$lambda, get_rmses, fit=fit)
-  c(lambda=fit$lambda[arg_min(rmses)], rmse=min(rmses))
-}
-
 ### SIMULATED DATA FOR REGULARIZATION ##########################################
 
 # Define x and y
@@ -81,6 +64,9 @@ multiplot(plotlist=plotsL2, cols=2)
 
 set.seed(1)
 
+# RMSE function
+rmse = function(x, y) sqrt(mean((x-y)^2))
+
 # Load data
 setwd('C:/Users/Andrew/Documents/Signal/curriculum/datasets/speed-dating-simple')
 df = read.csv('speed-dating-simple.csv')
@@ -93,42 +79,41 @@ activities = select(df, sports:yoga)
 activities_scaled = scale(activities)
 attr_o = df$attr_o
 
-# Stepwise regression on entire dataset
-df_step = select(df, attr_o, sports:yoga)
-model_init = lm(attr_o ~ ., df_step)
-model_full = formula("attr_o ~ .")
-fit_step = step(model_init, model_full, direction="backward", trace=0)
-
 # L1/L2 regularized fit on entire dataset
 fit_l1 = glmnet(activities_scaled, attr_o, alpha=1)
 fit_l2 = glmnet(activities_scaled, attr_o, alpha=0)
 
-# Get RMSEs
-rmse_step = rmse(predict(fit_step, df_step), attr_o)
-min_l1_rmse = get_min_rmse(fit_l1)["rmse"]
-min_l2_rmse = get_min_rmse(fit_l2)["rmse"]
+# Function to calculate RMSE for each lambda
+get_rmses = function(fit, features, target) {
+  rmses = numeric(length(fit$lambda))
+  for (i in 1:length(fit$lambda)) {
+    lamb = fit$lambda[i]
+    preds = predict(fit, features, s=lamb)
+    tmp_rmse = rmse(preds, target)
+    rmses[i] = tmp_rmse
+  }
+  rmses
+}
 
-# Compare the RMSE values for stepwise regression, L1/L2 regularization
-c(step=rmse_step, l1=min_l1_rmse, l2=min_l2_rmse)
+# Get RMSE values
+rmse_l1 = get_rmses(fit_l1, activities_scaled, attr_o)
+rmse_l2 = get_rmses(fit_l2, activities_scaled, attr_o)
 
-# View coefficients of L1/L2 models for lambda=0.2 (arbitrarily chosen)
-coef(fit_l1, s=0.1)
-coef(fit_l2, s=0.2)
-
-# Plot the RMSE for L1/L2 regularization as function of lambda
-qplot(fit_l1$lambda, sapply(fit_l1$lambda, get_rmses, fit=fit_l1))
-qplot(fit_l2$lambda, sapply(fit_l2$lambda, get_rmses, fit=fit_l2))
+# Plot RMSE against lambda
+qplot(fit_l1$lambda, rmse_l1)
+qplot(fit_l2$lambda, rmse_l2)
 
 # Use cv.glmnet() to determine optimal cross-validated lambda
 fit_l1_cv = cv.glmnet(activities_scaled, attr_o, alpha=1)
 fit_l2_cv = cv.glmnet(activities_scaled, attr_o, alpha=0)
 
-# Get optimal lambdas for the two fits
-c(l1=fit_l1_cv$lambda.min, l2=fit_l2_cv$lambda.min)
+# Plot cross-validated error against lambda
+qplot(fit_l1_cv$lambda, fit_l1_cv$cvm)
+qplot(fit_l2_cv$lambda, fit_l2_cv$cvm)
 
-### MAKING CROSS-VALIDATED RMSE PREDICTIONS ####################################
+# Comparing stepwise regression vs. regularization
 
-set.seed(2)
+df_step = select(df, attr_o, sports:yoga)
 
 # Initialize predictions vectors
 preds_step = numeric(nrow(df))
@@ -136,7 +121,7 @@ preds_l1 = numeric(nrow(df))
 preds_l2 = numeric(nrow(df))
 
 # Do cross-validation
-n_folds = 10
+n_folds = 20
 folds = sample(nrow(df)) %% n_folds + 1
 for (i in 1:n_folds) {
   print(paste0("Running fold: ", as.character(i)))
@@ -153,6 +138,7 @@ for (i in 1:n_folds) {
   df_step_test = df_step[folds == i, ]
   model_init = lm(attr_o ~ ., df_step_train)
   model_full = formula("attr_o ~ .")
+  #model_full = formula(model_init)
   cv_fit_step = step(model_init, model_full, direction="backward", trace=0)
 
   # Generate and store predictions
@@ -170,8 +156,6 @@ cv_rmse_l2 = rmse(preds_l2, attr_o)
 c(step=cv_rmse_step, l1=cv_rmse_l1, l2=cv_rmse_l2)
 
 ### ELASTIC NET REGRESSION #####################################################
-
-set.seed(3)
 
 # Set parameters
 param_grid = expand.grid(.alpha=1:10*0.1, .lambda=10^seq(-4, 0, length.out=10))

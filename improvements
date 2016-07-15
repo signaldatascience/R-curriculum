@@ -1,7 +1,6 @@
 things to improve about the curriculum
 
 Incorporate into R curriculum:
-- R inferno: ch 1-6, parts of 8
 - match(), model.matrix()
 
 Parallelization:
@@ -23,14 +22,29 @@ http://www.cs.columbia.edu/~blei/fogm/2015F/
 - memoisation in 1st assignment -- need <<- or something else
 - softimpute
 - how to make graphs properly / present / etc
-- think about rmse for individual folds vs whole
-- resampling: train vs test rmse dist for n-fold cv as well
+
+- resampling: add exposition on why higher/lower n for n-fold cv
+http://stats.stackexchange.com/questions/27730/choice-of-k-in-k-fold-cross-validation
+https://en.wikipedia.org/wiki/Cross-validation_(statistics)
+
+- time series: can't use normal resampling
+
+TODO SOON:
+- Weekend 2 homework: SQL
+- Notes and slides for cross entropy
+- Notes and slides for topological data analysis (+ short assignment?)
+- Read more Vapnik
 
 https://www.kaggle.com/benhamner/2016-us-election
-
-add outer() exercises
 dfs/bfs
-permutation generation
 
-outer
-http://stackoverflow.com/questions/5554305/simple-question-regarding-the-use-of-outer-and-user-defined-functions
+Full assignments to write in the future:
+- Gradient descent, numerical optimization, backpropagation
+- Data structures
+
+Weekend assignments:
+- Weekend 2: More basic SQL
+- Weekend 3: Window functions / PARTITION
+- Weekend 4: 
+- Weekend 5: 
+- Weekend 6: 
