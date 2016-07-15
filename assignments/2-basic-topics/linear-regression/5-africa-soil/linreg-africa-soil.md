@@ -3,7 +3,7 @@ title: "Linear Regression: Kaggle Africa Soil Challenge"
 author: Signal Data Science
 ---
 
-*Note:* The R script used in the presentation is located in the `lectures/africa-soil` folder of the curriculum repository.
+*Note:* The R script used in the presentation is located in the `lectures/africa-soil` folder of the curriculum repository. Feel free to refer to it as you work.
 
 After finishing the regularization assignment using the speed dating dataset, you'll be working on the Kaggle [Africa Soil Property Prediction Challenge](https://www.kaggle.com/c/afsis-soil-properties). Download the data. If you haven't made a Kaggle account, do so.
 

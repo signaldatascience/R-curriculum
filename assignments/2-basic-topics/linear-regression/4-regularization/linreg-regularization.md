@@ -8,7 +8,10 @@ Some helpful notes on the `glmnet` package are in a section at the end of this d
 Exploring regularization with simulated data
 ============================================
 
-Before using regularized linear regression on real data, we'll build some intuition by using regularization in a simpler context with simulated data.
+Before using regularized linear regression on real data, we'll build some intuition by using regularization in a simpler context with simulated data. It's often useful to look at simple cases when trying to understand complex phenomena, so we'll consider the 1-dimensional case where we only have a single predictor variable.
+
+Computational exercise
+----------------------
 
 Define `x` and `y` using:
 
@@ -41,6 +44,49 @@ If you run `summary(lm(y ~ x - 1))`, corresponding to a linear model with no con
 * Use [`lapply()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/lapply.html) with `get_plot()` to create two lists, `plotsL1` and `plotsL2`, where the $i$th plot is generated using the $i$th value of the vector of `lambda` values.
 
 * Use `multiplot` with `cols=2` and the `plotlist` parameter set to either `plotsL1` or `plotsL2` to visualize the results. Interpret the differences between the sets of plots for the $L^1$ and $L^2$ regularized cost function with respect to how $L^1$ regularization drives coefficient estimates to zero whereas $L^2$ regularization does not.
+
+Theoretical explanation
+-----------------------
+
+We can see that $L^1$ regularization successfully drives coefficient estimates to 0 as $\lambda$ increases while $L^2$ regularization does not. Why does this happen? We can get more insight into what's going on by looking at the underlying mathematics.
+
+Suppose we have a vector of true values $\textbf{y}$ and a predictor variable $\textbf{x}$, and consider an $L^p$ regularized linear model for $\textbf{y}$ in terms of $\textbf{x}$ with regularization hyperparameter $\lambda$ and coefficient estimate $\beta$. Call the sum of squared errors $\mathrm{SSE} = S(\beta) = \sum_i \left(y_i - \beta x_i \right)^2$. Then our total cost function for the model is given by
+
+$$C_p(\beta) = S(\beta) + \lambda \lvert \beta \rvert^p.$$
+
+First, let's consider the case when we perform $L^2$ regularization. In that situation, $p = 2$ so $\lvert \beta \rvert^p = \beta^2$, and our cost function is
+
+$$C_2(\beta) = S(\beta) + \lambda \beta^2.$$
+
+What value of $\beta$ minimizes $C_2(\beta)$? Since $C_2(\beta)$ is the sum of two quadratic functions of $\beta$, it is smooth (being a quadratic function of $\beta$ itself) and therefore the minimum is achieved when $C_2'(\beta) = 0$, *i.e.*, when
+
+$S'(\beta) + 2 \lambda \beta = 0.$$
+
+Remember that we're interested in the situation where regularization causes the coefficient estimate $\beta$ to be driven to 0. It's then natural to ask: what needs to be true for $C_2(\beta)$ to be minimized at $\beta = 0$? The condition $C_2'(0) = 0$ must hold. Substituting $\beta = 0$ into our expression above, we obtain the condition
+
+$$S'(0) + 2 \lambda \cdot 0 = S'(0) = 0.$$
+
+We can conclude that $L^2$ regularization will drive the coefficient estimate $\beta$ to 0 *if and only if* the condition $S'(0) = 0$ holds. Since the sum of squared errors $S(\beta)$ is a smooth quadratic function of $\beta$, the condition $S'(0) = 0$ is equivalent to saying that the sum of squared errors is minimized at $\beta = 0$, *i.e.*, that $\textbf{y}$ is absolutely uncorrelated with $\textbf{x}$.
+
+**Therefore:** $L^2$ regularization drives the coefficient estimates to 0 if and only if the target variable is completely uncorrelated with its predictors. This is essentially *never* the case, so $L^2$ regularization will *never* drive coefficient estimates to 0.
+
+Now, let's consider $L^1$ regularization, where $p = 1$ so
+
+$$C_1(\beta) = S(\beta) + \lambda \lvert \beta \rvert.$$
+
+This is the sum of a quadratic function of $\beta$ and a scaled absolute value function of $\beta$. Each of the two functions has a single local minimum, so the global minimum of $C_1(\beta)$ must be located at *either* (1) at the minimum of $S(\beta)$, where $S'(\beta) = 0$, *or* at (2) the minimum of the regularization parameter, where $\beta = 0$.
+
+Let's say that $S(\beta)$ is minimized at $\beta = \beta^\star$. $C_1(\beta)$ will be minimized at the minimum of the regularization parameter, *i.e.*, at $\beta = 0$, if and only if $C_1(0) < C_1(\beta^\star)$, *i.e.*,
+
+$$S(0) < S(\beta^\star) + \lambda \lvert \beta^\star \rvert.$$
+
+Rearranging terms, we can rewrite this inequality as
+
+$$\lambda > \frac{S(0) - S(\beta^\star)}{|\beta^\star|}.$$
+
+The right hand side of this inequality is a *constant* which depends solely upon $\textbf{y}$ and $\textbf{x}$. As such, we can *always* make this inequality true by making the regularization hyperparameter $\lambda$ sufficiently large!
+
+**Therefore:** $L^1$ regularization can always drive a coefficient estimate to 0 by increasing the regularization hyperparameter $\lambda$ past some constant threshold. In other words, with enough regularization we are *guaranteed* to be able to drive the coefficients of our model to 0.
 
 Comparing regularization and stepwise regression
 ================================================
