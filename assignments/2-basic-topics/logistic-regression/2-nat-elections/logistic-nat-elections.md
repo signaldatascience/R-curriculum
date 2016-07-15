@@ -47,10 +47,10 @@ Thankfully, we don't need to write our own function to perform this expansion.
 
 We're now ready to use regularized logistic regression to explore the dataset. As described in the regularization assignment, use `caret`'s `train()` function to search for the correct values of $\alpha$ and $\lambda$. It typically gives good  initial results to search over $\alpha \in \{0, 0.1, \ldots, 1\}$ and $\lambda \in \{2^{-4}, 2^{-3}, \ldots, 2^1\}$; if you want further improvements, you can perform a finer grid search over a smaller range of values.
 
-For each of the following questions, you should interpret the nonzero regression coefficients and calculate the area under the ROC curve.
+For each of the following questions, you should interpret the nonzero regression coefficients and calculate the area under the ROC curve. They are relatively open-ended; feel free to do any additional analysis which interests you or to explore questions which aren't listed here.
 
 * Predict support for George H. W. Bush in the 1992 election. (Restrict consideration to people who actually voted!) Can you improve your model by adding interaction terms?
 
-* Predict party support for different years and look at how the coefficients of the predictors change over time.
+* Predict party support for different years and look at how the coefficients of the models change over time. Again, consider adding some interaction terms to your model. Which demographic variables have increased or decreased the most in importance over time?
 
 * For voters who didn't vote, predict how they *would have* voted. If you aggregate these predictions by election year, how do they appear to change over time?

@@ -3,11 +3,6 @@ title: "Logistic Regression: Filtering Spam Emails"
 author: Signal Data Science
 ---
 
-
-
-The CSDMC2010 SPAM Corpus
-=========================
-
 You'll be looking at the data from the [CSDMC2010 SPAM Corpus](http://csmining.org/index.php/spam-email-datasets-.html). The data is in `spam-emails.csv`, with `spam-emails-key.txt` giving the correct classification as spam or not-spam.
 
 * Use the [`tm` package](https://cran.r-project.org/web/packages/tm/) to construct a `DocumentTermMatrix` from the data, where each row represents a document, each column represents a word, and each entry contains the word frequency for the associated word in the associated document.
