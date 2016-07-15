@@ -41,16 +41,27 @@ When working through the following questions, examine and interpret the coeffici
 Regularized linear regression
 =============================
 
-We can also use *regularization* with logistic regression via the `glmnet` package. Like [`glm()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/glm.html), the only difference with linear regression is that we need to pass in the `family="binomial"` parameter. Unlike [`glm()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/glm.html), `glmnet()` and `cv.glmnet()` will only accept a binary variable (taking on values 0 and 1) and *not* a factor for the target variable.
+In this part of the assignment you'll be predicting decisions (`dec`) of speed dating participants in terms of interactions between partners' attributes.
 
-With regularization, we have the freedom to throw a lot of features into our model, because the regularization parameter will be chosen such that only the important ones remain. In particular, $L^1$ regularization will produce a very interpretable model, because the coefficients of the less important variables will be driven to 0.
+Starter code is located at `speedDatingDecisionStarter.R` and the associated dataset is `speeddating-full.csv` in the `speed-dating` folder. We'll be using the *unaggregated* version of the dataset, with data about *both* the person being rated *and* each individual person doing the rating.
 
-Our goal will be to distinguish between males and females by using regularized logistic regression. As predictors, we'll include the 17 activites *and* every possible 2nd-order interaction term between the 17 activities.
+The first portion of the code creates a data frame with race and career code for both partners on each date, as well as the frequency with which the person making a decision expressed interest in seeing a partner again (`decAvg`), the frequency with which others expressed interest in the partner (`decPartnerAvg`), and the average attractiveness rating of the partner (`attrPartnerAvg`).
 
-* Create a new data frame, `df_activities`, with just the 17 activity variables.
+We'll be doing our cross validation at the level of speed dating events, so that there no participants appear in each of the train set and test set for any cross validation fold. The function `crossValidate()` in the starter code performs a grid search for `glmnet()` over values of $\alpha$ and $\lambda$, returning the area under the ROC for each pair $(\alpha, \lambda)$, and can correspondingly be used to find the best choice of coefficients.
 
-* To form the 2nd-order interaction terms, pass in `df_activities` to [`model.matrix()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/model.matrix.html) along with the formula `~ .*. + 0`. Store the output in a variable `cross_terms`. (In the formula, `.*.` indicates that every possible interaction term should be formed and `+ 0` indicates that no intercept column should be created.)
+* Using `dummy.data.frame()` from the [`dummies`](https://cran.r-project.org/web/packages/dummies/) package, create a data frame `dums1` with dummy variables corresponding to the participant making the decision and another data frame `dums2` with dummy variables corresponding to the partner being decided on.
 
-* Scale `cross_terms` and use it with `cv.glmnet()` to train a $L^1$ regularized logistic regression model distinguishing between the two genders. Access the coefficients of the optimal model with `coef()` (you'll have to pass in the value of $\lambda$ to use into the `s` parameter) and print out the nonzero entries. Interpret the results.
+* Create a data frame `dums` by calling [`cbind()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/cbind.html) on `dums1` and `dums2`. To this data frame, add [interaction terms](https://en.wikipedia.org/wiki/Interaction_(statistics)#Introduction) for
 
-* Compare the AUC of the regularized model with cross terms against the AUC of the unregularized model trained only against the 17 activities. Is the regularized model much of an improvement?
+	- (race of decider) x (attractiveness of partner),
+	- (career of decider) x ( attractiveness of partner),
+	- (race of decider) x (race of partner), and
+	- (career code of decider) x (career code of partner),
+
+	with column names formed by calling `paste(name1, name2, sep = ":")`.
+
+	To save on computational time, remove those columns with 20 or fewer entries, with `dums = dums[,colSums(dums) > 20]`.
+
+* Form a `features` data frame by binding `decAvg`, `decPartnerAvg`, and `attrPartnerAvg` to the data frame `dums`.
+
+* For each of males and females, use `crossValidate()` to find the optimal values of $\alpha$ and $\lambda$ for predicting `dec` in terms of the features. Then inspect the coefficients of the model corresponding to the best values of $\alpha$ and $\lambda$ and discuss interpretation of the results with your partner.
