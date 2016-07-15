@@ -3,60 +3,51 @@ title: "Logistic Regression: U.S. National Elections"
 author: Signal Data Science
 ---
 
-To get some practice with logistic regression, we'll first be looking at American election data from the National Election Study from 1948 through 2002. Afterward, we'll be taking a look at a classic classification task: email spam filtering.
+For some additional practice with logistic regression, we'll be looking at American election data from the National Election Study from 1948 through 2002.
 
 A note on `caret`
 =================
 
-In the following, use the `caret` package to obtain cross-validated estimates of $\alpha$ and $\lambda$ for regularized logistic regression. You can simply do 5-fold cross-validation without any repeats (instead of 10-fold with 3 repeats). (If you want better predictive power, then do a *second* run of `train()` where you look more finely at values of $(\alpha, \lambda)$ close to the optimal values you found with a coarser search. However, it's not that important.)
+In the following, you'll be using the `caret` package to obtain cross-validated estimates of $\alpha$ and $\lambda$ for regularized logistic regression. Keep the following points in mind:
 
-When calling `train()`, you should set `classProbs=TRUE` in the control parameters. Also, set `summaryFunction` to either `twoClassSummary` or `multiClassSummary` depending on whether you want your metric of model quality to be area under the ROC or log loss.
+* Use 5-fold cross validation without any repeats.
 
-National Election Study Analysis
-================================
+* In order to tell `train()` that you want to perform two-class classification instead of standard regression, set `classProbs=TRUE` in the control parameters. 
 
-If you get stuck, look at section 5.1 of Gelman and Hill as necessary.
-
-For the tasks described below:
-
-* You should use regularized logistic regression in conjunction with the `caret` package.
-
-* Consider adding interaction terms to your fits; if you do so, again use the `caret` package to determine whether or not adding them improves your model.
-
-* Plot the ROC curves for your best models.
-
-* Finally, interpret the coefficients of your models.
-
-Feel free to play around with the data and find interesting relationships.
+* In addition, in order to use area under the ROC curve as your metric of model quality, set `summaryFunction=twoClassSummary` in the control parameters and pass in `metric="ROC"` to `train()`.
 
 Getting started
----------------
+===============
 
-Refer back to the assignment on factors if you need a refresher on how factors work.
+The dataset is located in the `nat-elections` directory as `elections-cleaned.dta`. Information about the data is located in `nes-glossary.txt`.
 
-* Use the `read.dta()` function from the `foreign` library to load `elections.dta`.
+* `.dta` files are Stata data files which R cannot natively read. Load the `foreign` package and use `read.dta()` to load the dataset into R.
 
-* Select the columns `year`, `age` through `religion`, `vote`, and `presvote`. Restrict to years with a presidential election.
-
-* If you check the levels of the dataframe's factors (with `lapply(df[sapply(df, is.factor)], levels)`), you'll see that the data needs some cleaning. Modify the `levels()` of each factor so the descriptive text is more concise. You can replace missing values with `NA`s (using `addNA()`), but note that a missing survey response often carries its own information and corresponds to its own category, and as such should not by default be replaced with a `NA` and subsequently imputed.
-
-* Replace `NA`s with column means if the column they're in is numeric. If the column is a factor, instead replace each `NA` with a randomly chosen level of the factor such that the proportion of each factor level to the number of entries stays unchanged after replacement.
-
-* You'll want to expand each factor out into *indicator variables*. You can use the function you previously wrote in the assignment on factors to do so. Alternatively, you can learn how to use the [`dummies` package](https://cran.r-project.org/web/packages/dummies/index.html) or how to use [`model.matrix`](http://stackoverflow.com/a/2082278/3721976) to do so.
+For your convenience, we've already cleaned the dataset by imputing missing values and properly renaming factor levels. In addition, we've restricted consideration to years with presdential elections and selected a subset of the original variables.
 
 Exploring the data
-------------------
+==================
 
-Before you do any data analysis, it's typically a good idea to do some basic visualizations and get a sense of what you're working with.
+Before you do any data analysis, it's typically a good idea to do some basic exploratory visualizations to build intuition around the dataset.
 
-Use R's `mosaicplot()` function to make a couple mosaic plots from the cleaned and simplified dataset. For example, try:
+* Use [`mosaicplot()`](https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/mosaicplot.html) to make a couple mosaic plots from the cleaned and simplified dataset. For example, try `mosaicplot(table(df$income, df$presvote))`. Can you find any counterintuitive results?
 
-```r
-mosaicplot(table(df$income, df$presvote))
-```
+* Considering the entire time period from 1948--2000, it there any relationship between what region a voter lives in and which presidential party they support? Is this relationship any different if you restrict to looking data from smaller timespans (*e.g.*, a single election year or 2 consecutive elections)? You can just look at a couple mosaic plots to answer this.
 
-Things to predict
------------------
+Analysis with logistic regression
+=================================
+
+We need to expand out the factor columns into a set of binary indicator variables in order to fit linear models.
+
+Earlier, you learned that a factor with $k$ levels should be expanded out into a set of $k-1$ indicator variables, because $k$ indicator variables (one for each level) would suffer from [multicollinearity](https://en.wikipedia.org/wiki/Multicollinearity). When using regularized models, we however *do* want to use $k$ indicator variables. Here's why: intuitively, the multicollinearity arises from our being able to write one of the $k$ indicator variables as a linear combination of the others. However, when we *regularize*, we constrain the magnitudes of the model's coefficients and effectively overcome this problem. As such, adding in $k$ instead of $k-1$ indicator variables for factors can improve the performance of a regularized model.
+
+Thankfully, we don't need to write our own function to perform this expansion.
+
+* Use `dummy.data.frame()` from the [`dummies`](https://cran.r-project.org/web/packages/dummies/) package to create a *new* data frame with the factors expanded out into indicator variables. When calling `dummy.data.frame()`, set `sep="_"` to make the resulting column names more readable.
+
+We're now ready to use regularized logistic regression to explore the dataset. As described in the regularization assignment, use `caret`'s `train()` function to search for the correct values of $\alpha$ and $\lambda$. It typically gives good  initial results to search over $\alpha \in \{0, 0.1, \ldots, 1\}$ and $\lambda \in \{2^{-4}, 2^{-3}, \ldots, 2^1\}$; if you want further improvements, you can perform a finer grid search over a smaller range of values.
+
+For each of the following questions, you should interpret the nonzero regression coefficients and calculate the area under the ROC curve.
 
 * Predict support for George H. W. Bush in the 1992 election. (Restrict consideration to people who actually voted!)
 
