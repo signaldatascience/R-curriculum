@@ -92,7 +92,7 @@ Since $S(\beta)$ is a quadratic function of $\beta$, $S'(\beta)$ is a linear fun
 
 Now, note that $\lvert \beta \rvert / \beta$ is equal to 1 for $\beta > 0$, equal to $-1$ for $\beta < 0$, and is undefined at $\beta = 0$. As such, adding on the regularization term $\lambda \lvert \beta \rvert / \beta$ to $S'(\beta)$ is equivalent to *shifting* the $\beta < 0$ side of the graph of $S'(\beta)$ down $\lambda$ units, shifting the $\beta > 0$ side of the graph up $\lambda$ units, and making the $\beta = 0$ point undefined. Intuitively, it must be the case that after a sufficiently large shift---after $\lambda$ exceeds some finite threshold--the two halves of the graph are driven completely above and below the $\beta = 0$ line, and neither one attains the value of 0 anywhere. As such, the only remaining candidate for the minimum of $C_1(\beta)$ is at the nondifferentiable corner $\beta = 0$.
 
-Formally, let $S'(\beta) = a\beta + b$ without loss of generality (where $a > 0$ is guaranteed because $S(\beta)$ is convex). Suppose also that $\textbf{y}$ has a nonzero correlation with $\textbf{x}$, so $b \ne 0$ (*i.e.*, $\beta = 0$ is no tthe solution to $S'(\beta) = 0$). Then 
+Formally, let $S'(\beta) = a\beta + b$ without loss of generality, where $a > 0$ is guaranteed because $S(\beta)$ is convex. Suppose also that $\textbf{y}$ has a nonzero correlation with $\textbf{x}$, so $b \ne 0$ (*i.e.*, $\beta = 0$ is no tthe solution to $S'(\beta) = 0$). Then 
 
 $$C_1'(\beta) = a\beta + b + \lambda \frac{\lvert \beta \rvert}{\beta}.$$
 
@@ -108,7 +108,19 @@ As such, for $\lambda > \lvert b \rvert$ -- where the right hand side is purely 
 
 **Therefore:** For sufficiently large $\lambda$, $L^1$ regularization is *guaranteed* to drive coefficient estimates to 0, unless the target variable is completely uncorrelated with its predictors.
 
-Here's an alternative explanation for why $L^1$ regularization drives coefficient estimates to 0.
+Here's an alternative explanation for why $L^1$ regularization drives coefficient estimates to 0. Consider the simpler model where our variables have been appropriately rescaled (to mean 0) and reflected such that the model is just $\textbf{y} = \beta \textbf{x}$ for $\beta \ge 0$. Then the $L^1$ regularized cost function is
+
+$$C_1(\beta) = \sum_i \left( y_i - \beta x_i \right)^2 + \lambda \beta.$$
+
+Expanding out the sum, we obtain
+
+$$C_1(\beta) = \beta^2 \mathrm{Var}(\textbf{x}) - 2\beta \mathrm{Cov}(\textbf{x}, \textbf{y}) + \mathrm{Var}(\textbf{y}) + \lambda \beta.$$
+
+Doing a bit of factoring, we arrive at
+
+$$C_1(\beta) = \beta^2 \mathrm{Var}(\textbf{x}) + \mathrm{Var}(\textbf{y}) + \beta \left( \lambda - 2 \mathrm{Cov}(\textbf{x}, \textbf{y}) \right).$$
+
+Notice that $C_1(0) = \mathrm{Var}(\textbf{Y})$, a fixed value independent of $\lambda$. Assume that $C_1(\beta)$ is minimized at some value $\beta > 0$ for all $\lambda$. However, this is a contradiction, because if $\beta > 0$ we can increase the value of $C_1(\beta)$ to arbitrarily large values by increasing $\lambda$ and thereby increasing $\beta \left( \lambda - 2 \mathrm{Cov}(\textbf{x}, \textbf{y}) \right)$. It must therefore be the case that for sufficiently large $\lambda$, the only possible minimum of $C_1(\beta)$ is at $\beta = 0$.
 
 Comparing regularization and stepwise regression
 ================================================
