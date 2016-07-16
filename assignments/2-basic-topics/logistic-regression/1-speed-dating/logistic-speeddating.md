@@ -49,7 +49,7 @@ The first portion of the code creates a data frame with race and career code for
 
 We'll be doing our cross validation at the level of speed dating events, so that there no participants appear in each of the train set and test set for any cross validation fold. The function `crossValidate()` in the starter code performs a grid search for `glmnet()` over values of $\alpha$ and $\lambda$, returning the area under the ROC for each pair $(\alpha, \lambda)$, and can correspondingly be used to find the best choice of coefficients.
 
-* Using `dummy.data.frame()` from the [`dummies`](https://cran.r-project.org/web/packages/dummies/) package, create a data frame `dums1` with dummy variables corresponding to the participant making the decision and another data frame `dums2` with dummy variables corresponding to the partner being decided on.
+* Using `dummy.data.frame()` from the [`dummies`](https://cran.r-project.org/web/packages/dummies/) package, create a data frame `dums1` with dummy variables corresponding to the participant making the decision and another data frame `dums2` with dummy variables corresponding to the partner being decided on. You only need to expand race and career code out into dummy variables.
 
 * Create a data frame `dums` by calling [`cbind()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/cbind.html) on `dums1` and `dums2`. To this data frame, add [interaction terms](https://en.wikipedia.org/wiki/Interaction_(statistics)#Introduction) for
 

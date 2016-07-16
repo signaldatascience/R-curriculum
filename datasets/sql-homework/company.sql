@@ -8,3 +8,9 @@ CREATE TABLE records AS
     SELECT "DeWitt Aull",           "Administration",       "Secretary",       25000,           "Oliver Warbucks" UNION
     SELECT "Eben Scrooge",          "Accounting",           "Chief Accountant", 75000,          "Oliver Warbucks" UNION
     SELECT "Robert Cratchet",       "Accounting",           "Scrivener",       18000,           "Eben Scrooge";
+
+CREATE TABLE meetings AS
+    SELECT "Accounting" as Division, "Monday" as Day, "9am" as Time UNION
+    SELECT "Computer",               "Wednesday",     "4pm" UNION
+    SELECT "Administration",         "Monday",        "11am" UNION
+    SELECT "Administration",         "Thursday",      "1pm";
