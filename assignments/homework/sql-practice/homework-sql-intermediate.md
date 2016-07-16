@@ -147,8 +147,8 @@ Now, your turn:
 	12|13|14
 	```
 
-Dogs
-====
+Presidential dogs
+=================
 
 We'll next be working with `dogs.sql`, containing three tables with information about 8 dogs, their genealogy, and their characteristics. Again, the tables here are sufficiently small that you should verify the correctness of your queries via visual inspection of the data.
 
