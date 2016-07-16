@@ -3,7 +3,9 @@ title: "Homework: Intermediate SQL Practice"
 author: Signal Data Science
 ---
 
-SQL is very important for interview questions. Consistent practice will help you retain the various details of SQL queries. The following problems are adapted from UC Berkeley curricular material.[^course] Admittedly, writing SQL queries is not nearly as interesting as data science proper. However, it's sufficiently easy to master the basics that it's worth practicing nevertheless.
+The following problems are adapted from UC Berkeley curricular material.[^course]
+
+SQL is very important for interview questions. Consistent practice will help you retain the various details of SQL queries. Admittedly, writing SQL queries is not nearly as interesting as data science proper. However, it's sufficiently easy to master the basics that it's worth practicing nevertheless.
 
 [^course]: Specifically from [CS 61A: The Structure and Interpretation of Computer Programs](http://cs61a.org/).
 
