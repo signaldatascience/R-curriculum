@@ -24,6 +24,7 @@ http://www.cs.columbia.edu/~blei/fogm/2015F/
 - how to make graphs properly / present / etc
 - add http://math.stanford.edu/~vakil/potentialstudents.html to precourse
 - https://gist.github.com/hadley/6734639
+- regularization assignment: not JUST linear models
 
 - resampling: add exposition on why higher/lower n for n-fold cv
 http://stats.stackexchange.com/questions/27730/choice-of-k-in-k-fold-cross-validation
@@ -47,7 +48,7 @@ Full assignments to write in the future:
 Weekend assignments:
 - Weekend 2: More basic SQL
 - Weekend 3: Window functions / PARTITION
-- Weekend 4: 
+- Weekend 4: Python + SQLite (writing to tables etc.)
 - Weekend 5: 
 - Weekend 6: 
 
@@ -56,3 +57,26 @@ https://support.google.com/a/answer/33353?hl=en
 https://www.godaddy.com/help/pointing-your-domains-email-service-to-google-7936
 
 http://www.ssc.wisc.edu/wlsresearch/documentation/waves/
+
+Advanced SQL
+https://community.modeanalytics.com/sql/tutorial/sql-window-functions/
+http://javarevisited.blogspot.com/2012/11/how-to-join-three-tables-in-sql-query-mysql-sqlserver.html
+http://javarevisited.blogspot.com/2012/12/how-to-find-duplicate-records-in-table-mysql-query-example.html
+http://www.java67.com/2015/01/second-highest-salary-in-mysql-and-sql-server.html comments => window function
+http://www.java67.com/2013/04/10-frequently-asked-sql-query-interview-questions-answers-database.html
+- How to go about picking a good PARTITION key for a big table, and what are some of the "gotchas" of a badly chosen PARTITION key.
+https://sqlwithmanoj.com/2011/08/18/reverse-a-string-without-using-tsqls-reverse-function/
+https://sqlwithmanoj.com/2011/07/04/calculating-running-totals/
+https://sqlwithmanoj.com/2011/10/14/identify-delete-duplicate-records-from-a-table/
+https://sqlwithmanoj.com/2010/08/09/ranking-functions-with-sql-server-2005/
+https://www.quora.com/Which-SQL-interview-questions-effectively-test-depth-of-experience-and-knowledge/answer/Toby-Thain
+https://www.quora.com/Which-SQL-interview-questions-effectively-test-depth-of-experience-and-knowledge/answer/Barraco-Barner
+https://www.quora.com/Which-SQL-interview-questions-effectively-test-depth-of-experience-and-knowledge/answer/Greg-Kemnitz
+http://www.codeproject.com/Tips/788671/Some-Common-Mistakes-When-Querying-SQL-Database
+https://www.toptal.com/sql/interview-questions
+http://sql-info.de/mysql/gotchas.html
+http://stackoverflow.com/a/2121387/3721976
+https://biginterview.com/blog/2014/09/sql-interview-questions.html INSERT INTO => maybe python + sqlite assignment
+https://dwbi.org/database/sql/72-top-20-sql-interview-questions-with-answers
+http://stackoverflow.com/questions/6942904/senior-sql-developer-interview-questions-too-difficult
+http://www.bullraider.com/database/sql-tutorial/7-complex-queries-in-sql

@@ -5,9 +5,9 @@ author: Signal Data Science
 
 The following problems are adapted from UC Berkeley curricular material.[^course]
 
-SQL is very important for interview questions. Consistent practice will help you retain the various details of SQL queries. Admittedly, writing SQL queries is not nearly as interesting as data science proper. However, it's sufficiently easy to master the basics that it's worth practicing nevertheless.
-
 [^course]: Specifically from [CS 61A: The Structure and Interpretation of Computer Programs](http://cs61a.org/).
+
+SQL is very important for interview questions. Consistent practice will help you retain the various details of SQL queries. Admittedly, writing SQL queries is not nearly as interesting as data science proper. However, it's sufficiently easy to master the basics that it's worth practicing nevertheless.
 
 Refer to the [SQLite documentation](https://www.sqlite.org/lang.html) if you have questions about how to structure the syntax of your queries. As you work through these problems, **write down your final SQL query for each question in a separate document**.
 
@@ -169,7 +169,7 @@ The Fédération Cynologique Internationale classifies a standard poodle as over
 
 When dogs are stacked on top of one another, the total height of the stack is the sum of the heights of the dogs.
 
-* Create a two-column table describing all stacks of dogs at least 170 cm high. The first column should contains a comma-separated list of dogs in the stack, and the second column should contain the total height of the stack. Order the stacks in increasing order of total height. A valid stack of dogs includes each dog only once, and the dogs should be listed in increasing order of height within the stack. **Assume that no two dogs have the same height.**
+* Create a two-column table describing all stacks of 4 dogs at least 170 cm high. The first column should contains a comma-separated list of dogs in the stack, and the second column should contain the total height of the stack. Order the stacks in increasing order of total height. A valid stack of dogs includes each dog only once, and the dogs should be listed in increasing order of height within the stack. **Assume that no two dogs have the same height.**
 
 	The expected output is:
 
