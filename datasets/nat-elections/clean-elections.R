@@ -29,10 +29,10 @@ levels(presDf$vote) = c(NA, "no", "yes")
 levels(presDf$presvote) = c(NA, "democrat", "republican", "other")
 
 # Impute NAs
-for (i in 1:ncol(presDf)) {
+for (i in 1:11) {
   col = presDf[[i]]
   if (is.numeric(col)) {
-    presDf[is.na(presDf[,i]), i] <- mean(presDf[,i], na.rm = TRUE)
+    presDf[is.na(presDf[,i]), i] = mean(presDf[,i], na.rm = TRUE)
   }
   if (is.factor(col)) {
     n = length(presDf[is.na(presDf[,i]), i])
