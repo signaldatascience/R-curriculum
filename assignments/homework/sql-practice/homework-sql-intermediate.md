@@ -188,18 +188,3 @@ When dogs are stacked on top of one another, the total height of the stack is th
 A non-parent relation is either an ancestor that is not a parent (such as a grandparent or great-grandparent) or a descendent that is not a child (such as a grandchild or great-grandchild). Siblings are *not* relations under this definition.
 
 * Select all pairs that form non-parent relations ordered by the difference in height between one dog and the other. The shortest paired with the tallest should appear first, and the tallest paired with the shortest should appear last. If two pairs have the same height difference, they may appear together in any order.
-
-	The first ten lines of the expected output are:
-
-	```
-	fillmore|barack
-	eisenhower|barack
-	fillmore|clinton
-	eisenhower|clinton
-	eisenhower|delano
-	abraham|eisenhower
-	grover|eisenhower
-	herbert|eisenhower
-	herbert|fillmore
-	fillmore|herbert
-	```
