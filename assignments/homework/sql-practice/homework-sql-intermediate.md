@@ -185,7 +185,7 @@ When dogs are stacked on top of one another, the total height of the stack is th
 
 * Write a query which outputs a table that includes the `height` and `name` of every dog that shares the 10s digit of its `height` with at least one other dog and has the highest 1's digit of all dogs that have the same 10's digit.
 
-A non-parent relation is either an ancestor that is not a parent (such as a grandparent or great-grandparent) or a descendent that is not a child (such as a grandchild or great-grandchild). Siblings are *not* relations under this definition.
+A non-parent relation is either an ancestor that is not a parent (such as a grandparent or great-grandparent) or a descendent that is not a child (such as a grandchild or great-grandchild). Siblings are *not* relations under this definition. *I.e.*, non-parent relations are grandparent/children or great-grandparent/children pairs.
 
 * Select all pairs that form non-parent relations ordered by the difference in height between one dog and the other. The shortest paired with the tallest should appear first, and the tallest paired with the shortest should appear last. If two pairs have the same height difference, they may appear together in any order.
 
