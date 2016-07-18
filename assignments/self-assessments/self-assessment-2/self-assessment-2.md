@@ -107,7 +107,7 @@ Now that we have cross-validated RMSE estimates for every $(\alpha, \lambda)$ pa
 
 * Define a utility function `arg_min(v)` which returns the index of the vector `v` corresponding to its minimal value. (If there are multiple such indices, return the leftmost one.)
 
-* Use your `arg_min(v)` function to help you concisely extract the rows of your results data frame corresponding to the minimal RMSE values for predicting Extraversion and Neuroticism.
+* Use your `arg_min(v)` function to help you concisely extract the rows of your results data frame corresponding to the minimal RMSE values for predicting Extraversion and Neuroticism. You should find $(\alpha, \lambda) = (0.1, 0.2329952)$ for Extraversion and $(\alpha, \lambda) = (0.1, 0.3393222)$ for Neuroticism.
 
 * On the *whole dataset*, train regularized linear models for Extraversion and Neuroticism using the optimal values of $(\alpha, \lambda)$ you just determined.
 
