@@ -7,13 +7,13 @@ We'll be having another self-assessment. As before,
 
 * Type your answers in a new R script file with comments indicating where the answer to each question begins.
 
-* Write down your starting time. When you finish, mail `signaldatascience@gmail.com` with your R script attached along with the amount of time you spent on the self assessment.
+* Write down your starting time. When you finish, email `signaldatascience@gmail.com` with your R script attached along with the amount of time you spent on the self assessment.
 
 * Work individually. You can however consult R documentation, look at old assignments, use the Internet, etc., but don't copy and paste code verbatim.
 
 * Make your code as clear, compact, and efficient as possible. Use everything that you've learned! **Please comment and organize your code so we can easily tell how parts of your R script correspond to specific problems.**
 
-Packages you may find useful: `dplyr`, `ggplot2`, `glmnet`, `psych`, and `corrplot`.
+Packages you may find useful: `dplyr`, `ggplot2`, and `glmnet`.
 
 Regularization, grid search, and cross-validation
 =================================================

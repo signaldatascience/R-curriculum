@@ -47,6 +47,8 @@ Thankfully, we don't need to write our own function to perform this expansion.
 
 We're now ready to use regularized logistic regression to explore the dataset. As described in the regularization assignment, use `caret`'s `train()` function to search for the correct values of $\alpha$ and $\lambda$. It typically gives good  initial results to search over $\alpha \in \{0, 0.1, \ldots, 1\}$ and $\lambda \in \{2^{-4}, 2^{-3}, \ldots, 2^1\}$; if you want further improvements, you can perform a finer grid search over a smaller range of values.
 
+*Note:* In the following, [`scale()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/scale.html)ing various subsets of the data might introduce `NAs` into the data frame because a constant column cannot be scaled (as it has standard deviation 0). Be sure to check and correct for this.
+
 For each of the following questions, you should interpret the nonzero regression coefficients and calculate the area under the ROC curve. They are relatively open-ended; feel free to do any additional analysis which interests you or to explore questions which aren't listed here.
 
 * Predict support for George H. W. Bush in the 1992 election. (Restrict consideration to people who actually voted!) Can you improve your model by adding interaction terms?
