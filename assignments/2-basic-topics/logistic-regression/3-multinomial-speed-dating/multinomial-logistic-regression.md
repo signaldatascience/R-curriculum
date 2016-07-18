@@ -38,4 +38,4 @@ Return to the aggregated speed dating dataset (`speeddating-aggregated.csv` in t
 
 	* You can combine the output of `coef()` with [`cbind()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/cbind.html), [`do.call()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/do.call.html), and [`as.matrix()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/matrix.html) as input into `corrplot()`. Be sure to plot just the coefficients, *not* the intercepts of the linear models.
 
-* Write a function `probabilities(preds, rownum)` that takes in a matrix `preds` of predictions generated from multinomial logistic regression (*i.e.*, a matrix of log-odds ratios) and a row number `rownum`, returning row `rownum` converted into *probabilities*.
+* Write a function `probabilities(preds, rownum)` that takes in a matrix `preds` of predictions generated from multinomial logistic regression (*i.e.*, a matrix of log-odds ratios) and a row number `rownum`, returning row `rownum` converted into *probabilities*. Verify that the output sums to 1 as expected.

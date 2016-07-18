@@ -1,10 +1,11 @@
 ---
-title: Principal Components Analysis
+title: Introduction to Principal Component Analysis
+author: Signal Data Science	
 ---
 
 Use the `prcomp(..., scale.=TRUE)` function to explore the principal components of various datasets.
 
-A couple things to keep in mind: Let `p = prcomp(df, scale.=TRUE)` be the result of PCA run on a data frame `df`. Then:
+A few points to keep in mind: Let `p = prcomp(df, scale.=TRUE)` be the result of PCA run on a data frame `df`. Then:
 
 * `p$rotation` gives a matrix with rows corresponding to columns of `df`, columns corresponding to principal components, and entries corresponding to the *loadings* of a particular column of `df` on a particular principal component. Put another way, each principal component is formed out of a linear combination of the variables of `df`, and the column corresponding to each principal column corresponds to the *coefficients* of that linear combination.
 
@@ -14,7 +15,7 @@ A couple things to keep in mind: Let `p = prcomp(df, scale.=TRUE)` be the result
 
 For supplementary reading on the theory behind PCA, consult *Introduction to Statistical Learning* or *Applied Predictive Modeling*.
 
-Write up your findings in an "R Markdown" file. (It's one of the options in RStudio when you go to make new files.) At the end, click on the "Knit HTML" button in RStudio, select "Knit HTML", and generate a HTML file which you can upload to Github! (Now you can share your findings with friends and family in a more accessible form!) It's pretty intuitive how this works, but for additional guidance check out [Yihui Xie's blog](http://yihui.name/en/2012/06/enjoyable-reproducible-research/) and other posts on the same blog, all written by the author of the `knitr` package (which is what makes this work).
+Write up your findings in an "R Markdown" file. (It's one of the options in RStudio when you go to make new files.) At the end, click on the "Knit HTML" button in RStudio, select "Knit HTML", and generate a HTML file which you can upload to Github! (Now you can share your findings with friends and family in a more accessible form!) For additional guidance, read [Yihui Xie's blog](http://yihui.name/en/2012/06/enjoyable-reproducible-research/) (written by the author of the `knitr` package, which provides the underlying functionality behind R script $\to$ HTML compilation).
 
 PCA on the `msq` dataset
 ========================
@@ -40,14 +41,16 @@ Afterward, run PCA on the remaining variables.
 PCA on the speed dating dataset
 ===============================
 
-Return to the aggregated speed dating dataset from last week, which you used for logistic regression.
+Return to the aggregated speed dating dataset (`speeddating-aggregated.csv` in the `speed-dating` folder) which you used for logistic regression.
 
-* Drop the rows corresponding to people who didn't answer the activities questions.
+* Clean the data by dropping any rows with `NA`s.
 
-Run PCA on the columns corresponding to the activity questions.
+* Run PCA on the 17 self-rated activities.
 
-* Perform the same analysis which you did with the `msq` dataset: looking at and interpreting the loadings of each principal component, visualizing them with `corrplot()`, and looking at the associated eigenvalues. Since there aren't very many variables, you can `cbind()` the activities to the principal component scores and then use `cor()` $\to$ `corrplot()` for easy visualization. As before, assign appropriate names to the principal components which seem to have a coherent meaning or interpretation.
+* Perform the same analysis which you did with the `msq` dataset: looking at and interpreting the loadings of each principal component, visualizing them with `corrplot()`, and looking at the associated eigenvalues. Since there aren't very many variables, you can [`cbind()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/cbind.html) the activities to the principal component scores and then use [`cor()`](https://stat.ethz.ch/R-manual/R-patched/library/stats/html/cor.html) $\to$ `corrplot()` for easy visualization. As before, assign appropriate names to the principal components which seem to have a coherent meaning or interpretation.
 
 * Predict gender, race (restricting to whites and Asians), and career code (restricting to academia and business / finance) using the principal components with logistic regression. Do so with the 1st principal component, the 1st and the 2nd, the 1st, 2nd, and 3rd, ... all the way up to every principal component. (You can just use `glm()` so you get the $p$-values too.) Interpret the coefficients.
 
 * For the above regressions, use the `pROC` package to calculate the associated areas under the ROC curve. Compare to the results of using stepwise or regularized regression on all of the activities for the same predictions.
+
+* Restrict to the four most commonly listed careers and use unregularized multinomial logistic regression to predict career in terms of average ratings by other participants and the 17 activities. Make predictions on the whole dataset and calculate the principal components of the resulting log-odds ratios. Use `corrplot()` to visualize the loadings of the principal components and interpret their meaning.
