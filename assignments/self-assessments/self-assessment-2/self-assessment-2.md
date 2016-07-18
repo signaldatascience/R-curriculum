@@ -94,7 +94,7 @@ Next, you'll be writing two nested `for` loops in order to look at every combina
 
 		* Calculate the RMSE values corresponding to your predictions of Extraversion and Neuroticism.
 
-		* `rbind()` the row `(alpha, lambda, rmse_extraversion, rmse_neuroticism)` into the results data frame you created earlier.
+		* `rbind()` the row `(alpha, lambda, rmse_extraversion, rmse_neuroticism)` into the results data frame you created earlier. (It *is* possible to initialize the data frame prior to the nested loops and to fill it out as we go, but the improvement in computation time required is so miniscule that either approach is fine.)
 
 * Set the column names of your results data frame appropriately, to something like `c("alpha", "lambda", "rmse_extraversion", "rmse_neuroticism")`.
 
