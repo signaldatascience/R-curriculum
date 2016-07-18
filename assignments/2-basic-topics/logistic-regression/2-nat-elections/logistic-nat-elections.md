@@ -51,8 +51,9 @@ We're now ready to use regularized logistic regression to explore the dataset. A
 
 For each of the following questions, you should interpret the nonzero regression coefficients and calculate the area under the ROC curve. They are relatively open-ended; feel free to do any additional analysis which interests you or to explore questions which aren't listed here.
 
-* Predict support for George H. W. Bush in the 1992 election. (Restrict consideration to people who actually voted!) Can you improve your model by adding interaction terms?
+* Predict support for George H. W. Bush in the 1992 election. (Restrict consideration to people who actually voted!) Can you improve your model by adding interaction terms? Compare the performance of a regularized vs. unregularized model.
 
-* Predict party support for different years and look at how the coefficients of the models change over time. Again, consider adding some interaction terms to your model. Which demographic variables have increased or decreased the most in importance over time?
+* For each election year, predict party support in terms of the features of the dataset. 
+(Again, consider adding well-chosen interaction terms fo your model.) Make a data frame to store the coefficients of your model each year and graph how the coefficients have changed over time. Which demographic variables have increased or decreased the most in importance over time?
 
-* For voters who didn't vote, predict how they *would have* voted. If you aggregate these predictions by election year, how do they appear to change over time?
+* Using a similar approach to the previous question, predict how voters who didn't vote *would have voted* each year and analyze how predicted non-voter preferences have changed over time.
