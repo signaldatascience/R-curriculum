@@ -134,7 +134,9 @@ Getting started with `glmnet()`
 
 `glmnet()` can perform both $L^1$ and $L^2$ regularized linear regression as well as a mix of the two (which we'll be exploring later). When calling `glmnet()`, you can set `alpha=1` for $L^1$ regularization and `alpha=0` for $L^2$ regularization.
 
-* Create a `activities_scaled` variable which is the result of calling [`scale()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/scale.html) on a data frame containing only the 17 activity variables and an `attr_o` variable equal to the (unscaled) `attr_o` column of the original dataset. You'll be passing these variables into `glmnet()`.
+* Create a `activities_scaled` variable which is the result of calling [`scale()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/scale.html) on a data frame containing only the 17 activity variables and an `attr_o` variable equal to the (unscaled) `attr_o` column of the original dataset. You'll be passing these variables into `glmnet()`. (Since regularization penalizes all of the coefficients in a 'uniform' manner, not weighting some more than others in the calculation of the regularization penalty term, the variables should be scaled so that they are expressed in roughly equivalent units.[^units])
+
+[^units]: For example, consider a regression of height against (1) age and (2) testosterone level. The coefficient of age will be much higher if age is expressed in seconds rather than in decades, and correspondingly a regularized model would overly penalize the coefficient on age expressed in seconds relative to what it would do for age expressed in decades.
 
 * Use `glmnet()` to fit both $L^1$ and $L^2$ regularized linear models for `attr_o` in terms of the variables in `activities_scaled`. By default, the function automatically determines a range of different $\lambda$ values to try. To illustrate this, access the object returned by `glmnet()` and print out the values of $\lambda$ used for each of the two regularized models.
 
@@ -201,6 +203,8 @@ caret_fit$results$RMSE
 In the above example, we perform *10-fold cross-validation* for each pair of hyperparameters $(\alpha, \lambda)$ to estimate the corresponding RMSE. The 10-fold cross validation is *repeated* three times, each time using a different random set of folds, in order to combat potential bias resulting from any particular choice of random folds. The optimal pair of values $(\alpha, \lambda)$ is the one corresponding to the lowest cross-validated RMSE.
 
 * Use the `caret` package, following the above example, to find the optimal values for $(\alpha, \lambda)$ when predicting attractiveness ratings with elastic net regularization. Extract the minimum RMSE value obtained from the resulting `caret_fit` object and compare it to the cross-validated RMSE estimates obtained earlier with backward stepwise regression, $L^1$ regularized linear regression, and $L^2$ regularized linear regression.
+
+As a closing note, keep in mind that the technique of regularization is not *specific* to linear regression. Indeed, the penalization of the cost function with a regularization term can be applied to a very wide range of machine learning techniques (some of which will be covered in the future assignments), resulting in methods such as [sparse PCA](https://en.wikipedia.org/wiki/Sparse_PCA) and [penalized SVMs](https://cran.r-project.org/web/packages/penalizedSVM/).
 
 A note on `glmnet`
 ==================

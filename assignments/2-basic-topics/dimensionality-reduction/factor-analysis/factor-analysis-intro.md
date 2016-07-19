@@ -1,9 +1,9 @@
 ---
-title: Factor Analysis
+title: Introduction to Factor Analysis
 author: Signal Data Science
 ---
 
-In this assignment, you'll be learning about the technique of *factor analysis*. Put concisely, in PCA, one tries to explain *all* of the variance in $p$-dimensional data with the $p$ principal components, whereas in factor analysis, one picks a *number of factors* $k < p$ and calculates those factors such that they explain as much of the *shared variance* in the data as they possibly can. Don't worry if this definition seems a little opaque to you right now -- you'll first get some computational intuition by empirically comparing the results of PCA to factor analysis, and afterward we'll have a lecture covering some of the theoretical details.
+In this assignment, you'll be learning about the technique of *factor analysis*. Put concisely, in PCA, one tries to explain *all* of the variance in $p$-dimensional data with the $p$ principal components, whereas in factor analysis, one chooses a *number of factors* $k < p$ and calculates those factors such that they explain as much of the *shared variance* in the data as they possibly can. Don't worry if this definition seems a little opaque to you right now -- you'll first get some computational intuition by empirically comparing the results of PCA to factor analysis, and afterward we'll have a lecture covering some of the theoretical details.
 
 Keep the following in mind while you work:
 

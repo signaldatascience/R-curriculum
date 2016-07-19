@@ -24,9 +24,6 @@ http://www.cs.columbia.edu/~blei/fogm/2015F/
 - how to make graphs properly / present / etc
 - add http://math.stanford.edu/~vakil/potentialstudents.html to precourse
 - https://gist.github.com/hadley/6734639
-- regularization assignment: not JUST linear models
-- last problem of Intermediate SQL Practice (??? example output is weird)
-- students get confused on why you need to scale in connection to regularization
 
 - resampling: add exposition on why higher/lower n for n-fold cv
 http://stats.stackexchange.com/questions/27730/choice-of-k-in-k-fold-cross-validation
