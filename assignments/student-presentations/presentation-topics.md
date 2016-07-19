@@ -24,6 +24,8 @@ Multiple hypothesis testing and A/B testing
 Support vector machines
 =======================
 
+* See the sources referenced at [Kernel Machines](http://www.kernel-machines.org/frequently-asked-questions).
+
 Markov models
 =============
 

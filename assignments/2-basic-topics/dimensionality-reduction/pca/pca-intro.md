@@ -3,7 +3,7 @@ title: Introduction to Principal Component Analysis
 author: Signal Data Science	
 ---
 
-Use the `prcomp(..., scale.=TRUE)` function to explore the principal components of various datasets.
+Use `prcomp(..., scale.=TRUE)` to explore the principal components of various datasets.
 
 A few points to keep in mind: Let `p = prcomp(df, scale.=TRUE)` be the result of PCA run on a data frame `df`. Then:
 
@@ -22,9 +22,9 @@ PCA on the `msq` dataset
 
 Prepare the data in this fashion:
 
-* Extract the columns `active:scornful` from the `msq` dataset.
+* Load the `psych` pachage. Extract the columns `active` through `scornful` from the `msq` dataset.
 
-* Look at the number of `NAs` in each column (hint: use `colSums()` in conjunction with `is.na()`). For simplicity's sake, throw out the columns with a huge number of missing values and subsequently remove all the rows with any `NA`s.
+* Look at the number of `NAs` in each column (hint: use [`colSums()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/colSums.html) in conjunction with [`is.na()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/NA.html)). For simplicity, throw out the columns with a very lage number of missing values and subsequently remove all the rows with any `NA`s.
 
 Afterward, run PCA on the remaining variables.
 
@@ -49,7 +49,7 @@ Return to the aggregated speed dating dataset (`speeddating-aggregated.csv` in t
 
 * Perform the same analysis which you did with the `msq` dataset: looking at and interpreting the loadings of each principal component, visualizing them with `corrplot()`, and looking at the associated eigenvalues. Since there aren't very many variables, you can [`cbind()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/cbind.html) the activities to the principal component scores and then use [`cor()`](https://stat.ethz.ch/R-manual/R-patched/library/stats/html/cor.html) $\to$ `corrplot()` for easy visualization. As before, assign appropriate names to the principal components which seem to have a coherent meaning or interpretation.
 
-* Predict gender, race (restricting to whites and Asians), and career code (restricting to academia and business / finance) using the principal components with logistic regression. Do so with the 1st principal component, the 1st and the 2nd, the 1st, 2nd, and 3rd, ... all the way up to every principal component. (You can just use `glm()` so you get the $p$-values too.) Interpret the coefficients.
+* Predict gender, race (restricting to whites and Asians), and career code (restricting to academia and business / finance) using the principal components with logistic regression. Do so with the 1st principal component, the 1st and the 2nd, the 1st, 2nd, and 3rd, ... all the way up to every principal component. (You can just use [`glm()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/glm.html) so you get the $p$-values too.) Interpret the coefficients.
 
 * For the above regressions, use the `pROC` package to calculate the associated areas under the ROC curve. Compare to the results of using stepwise or regularized regression on all of the activities for the same predictions.
 

@@ -68,7 +68,7 @@ In the last factor analysis exercise, we were using a type of factor analysis wh
 
 * Examine the correlation between `W` and `Y`.
 
-* Use `noisyIndicators()` to generate 10   indicators associated with `X` and 4 noisy indicators associated with W, with correlations 0.8 in both cases.
+* Use `noisyIndicators()` to generate 10 indicators associated with `X` and 4 noisy indicators associated with W, with correlations 0.8 in both cases.
 
 * Plot the associated correlation matrix. 
 
@@ -77,7 +77,7 @@ In the last factor analysis exercise, we were using a type of factor analysis wh
 Speed dating data
 =================
 
-* Do factor analysis on the speed dating data activities. Try `nfactor = 1`, `2`, `3`, and `4`, both with `rotate = "varimax"` and with `rotate = "oblimin"`. Use `corrplot()` to visualize the factor loadings (which you can get with `$loadings`).
+* Run factor analysis on the aggregated speed dating dataset's 17 activity variables. Try `nfactor = 1`, `2`, `3`, and `4`, both with `rotate = "varimax"` and with `rotate = "oblimin"`. Use `corrplot()` to visualize the factor loadings (which you can get with `$loadings`). Interpret the results.
 
 Big Five personality data
 =========================

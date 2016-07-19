@@ -64,4 +64,6 @@ We'll be doing our cross validation at the level of speed dating events, so that
 
 * Form a `features` data frame by binding `decAvg`, `decPartnerAvg`, and `attrPartnerAvg` to the data frame `dums`.
 
+Keep the following in mind as you work: (1) If your `glmnet()` call returns an error indicating `NA` or `NaN` values in the predictors, use [`is.nan()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/is.finite.html) to check for and filter out columns with `NaN`s. This occurs when [`scale()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/scale.html) is used on constant columns (with standard deviation 0). (2) If your `glmnet()` model with a single $\lambda$ value fails to converge, run `glmnet()` without specifying the `lambda` parameter, and subsequently [pass in the desired $\lambda$ value to `predict()` and `coef()` directly via the `s` parameter](http://stats.stackexchange.com/questions/101101/convergence-for-1st-lambda-value-not-reached-error-using-glmnet-package-and-sp).
+
 * For each of males and females, use `crossValidate()` to find the optimal values of $\alpha$ and $\lambda$ for predicting `dec` in terms of the features. Then inspect the coefficients of the model corresponding to the best values of $\alpha$ and $\lambda$ and discuss interpretation of the results with your partner.
