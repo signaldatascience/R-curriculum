@@ -24,11 +24,11 @@ Using `glm()`
 
 You can run logistic regression with [`glm()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/glm.html). It can be used in the same fashion as [`lm()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/lm.html), except for logistic regression you must pass in the additional parameter `family="binomial"`. Additionally, the column representing the binary class which you want to predict must either be (1) a numeric column taking on values 0 and 1 or (2) a factor.
 
-The `pROC` package provides a function, `roc()`, which plots the [receiver operating characteristic](https://en.wikipedia.org/wiki/Receiver_operating_characteristic) (ROC) curve given the results of a logistic regression fit. The output of `roc()` can be passed into `plot()` or directly printed to display the area under the ROC. Note that `roc()` accepts *probabilities* as inputs, but the predictions made with a logistic regression model will be in the form of *log-odds ratios*, which must be converted into probabilities with
+The `pROC` package provides a function, `roc()`, which plots the [receiver operating characteristic](https://en.wikipedia.org/wiki/Receiver_operating_characteristic) (ROC) curve given the results of a logistic regression fit. The output of `roc()` can be passed into `plot()` or directly printed to display the area under the ROC. Note that `roc()` accepts *probabilities* as inputs, but the predictions made with a logistic regression model will be in the form of *log-odds*, which must be converted into probabilities with
 
 $$P = \frac{\exp L}{1 + \exp L}$$
 
-where $L$ is a log-odds ratio and $P$ is the corresponding probability.
+where $L$ is a log-odds and $P$ is the corresponding probability.
 
 When working through the following questions, examine and interpret the coefficients of each logistic regression model. In addition, examine the area under the ROC curve as well as the shape of the ROC curve itself.
 

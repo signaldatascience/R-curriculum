@@ -7,7 +7,7 @@ You'll be formally learning about [multinomial logistic regression](https://en.w
 
 [^softmax]: This comes from the usage of the *softmax function*, which is a continuous approximation of the indicator function.
 
-Previously, you used binomial logistic regression to do *two-class classification*, where you modeled the log-odds ratio associated with a binary outcome as being linearly related to a number of predictor variables. The technique of *multinomial logistic regression* is a straightforward extension of this: our outcome variable has more than two categories, and we model the log-odds ratio associated with falling into each category as being linearly related to our predictor variables.
+Previously, you used binomial logistic regression to do *two-class classification*, where you modeled the log-odds associated with a binary outcome as being linearly related to a number of predictor variables. The technique of *multinomial logistic regression* is a straightforward extension of this: our outcome variable has more than two categories, and we model the log-odds associated with falling into each category as being linearly related to our predictor variables.
 
 Using multinomial logistic regression
 =====================================
@@ -19,7 +19,7 @@ The coefficients for the model can be accessed with `coef(fit, s=lambda)` as usu
 Converting to probabilities
 ---------------------------
 
-Suppose that we've fit a multinomial logistic regression model to some data and made predictions on the dataset. Now, for each particular row, we have a log-odds ratio $L_i$ associated to each outcome $i$. We sometimes want to convert to *probabilities* $P_i$, which ought to be proportional to the exponentiated log-odds ratios $\exp(L_i)$. We can exponentiate and obtain just $\exp(L_i)$, but those values might not necessarily sum to 1: $\sum_i \exp(L_i) \ne 1$. This is a problem, because probabilities have to sum to 1, that is, $\sum_i P_i = 1$.
+Suppose that we've fit a multinomial logistic regression model to some data and made predictions on the dataset. Now, for each particular row, we have a log-odds $L_i$ associated to each outcome $i$. We sometimes want to convert to *probabilities* $P_i$, which ought to be proportional to the exponentiated log-odds $\exp(L_i)$. We can exponentiate and obtain just $\exp(L_i)$, but those values might not necessarily sum to 1: $\sum_i \exp(L_i) \ne 1$. This is a problem, because probabilities have to sum to 1, that is, $\sum_i P_i = 1$.
 
 To resolve this, we divide each $\exp(L_i)$ by the proper *normalization factor*. That is, we can compute
 
@@ -38,4 +38,4 @@ Return to the aggregated speed dating dataset (`speeddating-aggregated.csv` in t
 
 	* You can combine the output of `coef()` with [`cbind()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/cbind.html), [`do.call()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/do.call.html), and [`as.matrix()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/matrix.html) as input into `corrplot()`. Be sure to plot just the coefficients, *not* the intercepts of the linear models.
 
-* Write a function `probabilities(preds, rownum)` that takes in a matrix `preds` of predictions generated from multinomial logistic regression (*i.e.*, a matrix of log-odds ratios) and a row number `rownum`, returning row `rownum` converted into *probabilities*. Verify that the output sums to 1 as expected.
+* Write a function `probabilities(preds, rownum)` that takes in a matrix `preds` of predictions generated from multinomial logistic regression (*i.e.*, a matrix of log-odds) and a row number `rownum`, returning row `rownum` converted into *probabilities*. Verify that the output sums to 1 as expected.
