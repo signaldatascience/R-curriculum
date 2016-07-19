@@ -36,7 +36,7 @@ Afterward, run PCA on the remaining variables.
 
 One alternative to using regularized linear models is [principal component regression](https://en.wikipedia.org/wiki/Principal_component_regression) (PCR), where we run a regression of the target variable against the first $k$ principal component scores. The parameter $k$ can be selected via cross-validation.
 
-* Suppose that we use the first $k$th principal components to predict Extraversion and Neuroticism using a simple, unregularized linear model. Calculate a cross-validated RMSE for $k = 1, 2, \ldots, n$, plot them against $k$, and compare to the cross-validated RMSE which you got in the self-assessment when using regularized linear regression with all of the original variables. Interpret the results. (You can either calculate the RMSE by implementing cross-validation yourself, like you did in the self-assessment but simpler, or use `CVlm` from the `DAAG` package.)
+* Suppose that we use the first $k$th principal components to predict Extraversion and Neuroticism using a simple, unregularized linear model. Calculate a cross-validated RMSE for $k = 1, 2, \ldots, n$ and plot the RMSE values against $k$. Which value of $k$ performs the best? Compare the RMSE values to the cross-validated RMSE which you calculated in the self-assessment when using regularized linear regression with all of the original variables. Interpret the results. (You can either calculate the RMSE by implementing cross-validation yourself, like you did in the assignment on resampling, or use `CVlm()` from the `DAAG` package.)
 
 * Read about the [history of trait theories](http://webspace.ship.edu/cgboer/eysenck.html). How do the principal components relate to Extraversion and Neuroticism?
 
@@ -45,14 +45,14 @@ PCA on the speed dating dataset
 
 Return to the aggregated speed dating dataset (`speeddating-aggregated.csv` in the `speed-dating` folder) which you used for logistic regression.
 
-* Clean the data by dropping any rows with `NA`s.
-
-* Run PCA on the 17 self-rated activities.
+* Clean the data by dropping any rows with `NA`s and run PCA on the 17 self-rated activities.
 
 * Perform the same analysis which you did with the `msq` dataset: looking at and interpreting the loadings of each principal component, visualizing them with `corrplot()`, and looking at the associated eigenvalues. Since there aren't very many variables, you can [`cbind()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/cbind.html) the activities to the principal component scores and then use [`cor()`](https://stat.ethz.ch/R-manual/R-patched/library/stats/html/cor.html) $\to$ `corrplot()` for easy visualization. As before, assign appropriate names to the principal components which seem to have a coherent meaning or interpretation.
 
 * Predict gender, race (restricting to whites and Asians), and career code (restricting to academia and business / finance) using the principal components with logistic regression. Do so with the 1st principal component, the 1st and the 2nd, the 1st, 2nd, and 3rd, ... all the way up to every principal component. (You can just use [`glm()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/glm.html) so you get the $p$-values too.) Interpret the coefficients.
 
 * For the above regressions, use the `pROC` package to calculate the associated areas under the ROC curve. Compare to the results of using stepwise or regularized regression on all of the activities for the same predictions.
+
+In the following, use unregularized multinomial logistic regression as before, by calling `glmnet(..., family="multinomial")` and then passing `s=0` into `predict()` and `coef()`.
 
 * Restrict to the four most commonly listed careers and use unregularized multinomial logistic regression to predict career in terms of average ratings by other participants and the 17 activities. Make predictions on the whole dataset and calculate the principal components of the resulting log-odds ratios. Use `corrplot()` to visualize the loadings of the principal components and interpret their meaning.

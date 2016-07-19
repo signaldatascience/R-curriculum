@@ -12,9 +12,7 @@ Previously, you used binomial logistic regression to do *two-class classificatio
 Using multinomial logistic regression
 =====================================
 
-You can use multinomial logistic regression with `glmnet(x, y, family="multinomial")`, where `x` is a scaled matrix of predictors and `y` is a numeric vector representing a categorical variable. In the following, you can just set `lambda=0`, because we aren't using very many predictors relative to the number of rows (so the improvement from regularization is relatively minimal).
-
-The coefficients for the model can be accessed with `coef(fit, s=lambda)` as usual.
+You can use multinomial logistic regression with `glmnet(x, y, family="multinomial")`, where `x` is a scaled matrix of predictors and `y` is a numeric vector representing a categorical variable. In the following, we can simply use unregularized logistic regression because the number of predictors is relatively low. To do so, **don't** pass in `lambda=0` to `glmnet()`; instead, call `glmnet()` without specifying the `lambda` parameter, and when calling `predict()` or `coef()` on the output of `glmnet()`, simply set `s=0`.
 
 Converting to probabilities
 ---------------------------
