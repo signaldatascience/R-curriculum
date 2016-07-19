@@ -34,7 +34,9 @@ Afterward, run PCA on the remaining variables.
 
 * Plot the eigenvalues obtained via `prcomp(...)$sdev`. How do their relative magnitudes relate to the interpretability of each principal component?
 
-* Suppose that we use the first $n$th principal components to predict Extraversion and Neuroticism using a simple, unregularized linear model. Calculate a cross-validated RMSE for $n = 1, 2, \ldots$, plot them against $n$, and compare to the cross-validated RMSE which you got in the self-assessment when using regularized linear regression with all of the original variables. Interpret the results. (You can either calculate the RMSE by implementing cross-validation yourself, like you did in the self-assessment but simpler, or use `CVlm` from the `DAAG` package.)
+One alternative to using regularized linear models is [principal component regression](https://en.wikipedia.org/wiki/Principal_component_regression) (PCR), where we run a regression of the target variable against the first $k$ principal component scores. The parameter $k$ can be selected via cross-validation.
+
+* Suppose that we use the first $k$th principal components to predict Extraversion and Neuroticism using a simple, unregularized linear model. Calculate a cross-validated RMSE for $k = 1, 2, \ldots, n$, plot them against $k$, and compare to the cross-validated RMSE which you got in the self-assessment when using regularized linear regression with all of the original variables. Interpret the results. (You can either calculate the RMSE by implementing cross-validation yourself, like you did in the self-assessment but simpler, or use `CVlm` from the `DAAG` package.)
 
 * Read about the [history of trait theories](http://webspace.ship.edu/cgboer/eysenck.html). How do the principal components relate to Extraversion and Neuroticism?
 
