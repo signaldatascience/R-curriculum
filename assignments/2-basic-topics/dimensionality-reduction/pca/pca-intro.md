@@ -58,3 +58,7 @@ Return to the aggregated speed dating dataset (`speeddating-aggregated.csv` in t
 In the following, use unregularized multinomial logistic regression as before, by calling `glmnet(..., family="multinomial")` and then passing `s=0` into `predict()` and `coef()`.
 
 * Restrict to the four most commonly listed careers and use unregularized multinomial logistic regression to predict career in terms of average ratings by other participants and the 17 activities. Make predictions on the whole dataset and calculate the principal components of the resulting log-odds ratios. Use `corrplot()` to visualize the loadings of the principal components and interpret their meaning.
+
+We *could* have expanded out the `career_c` variable into binary indicator variables and looked at the principal components of those indicator variables. However, it's better to look at principal components of the log-odds ratios. Intuitively, the latter will capture the "extent" to which someone is a given career, because the logistic regression model incorporates information from the whole dataset. As such, we can better understand the dimensions of "career variation".[^poly]
+
+[^poly]: Note also that it is more appropriate to use [polychoric correlation](https://en.wikipedia.org/wiki/Polychoric_correlation) for calculating the principal components of binary variables than the standard Pearson correlation coefficient.

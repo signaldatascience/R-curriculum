@@ -1,0 +1,308 @@
+---
+title: "PCA exercises"
+author: "Huey Kwik"
+date: "May 16, 2016"
+output: pdf_document
+---
+
+The following solutions are adapted from the work of Huey Kwik (Signal Cohort #2).
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
+library(psych)
+library(dplyr)
+library(corrplot)
+library(DAAG)
+library(dummies)
+library(caret)
+library(pROC)
+```
+
+# PCA on the msq dataset
+
+Extract columns active:scornful from the msq dataset.
+```{r}
+df = msq
+df = select(df, Extraversion, Neuroticism, active:scornful)
+# Count number of NAs in each column
+colSums(is.na(df))
+
+# Throw out columns with huge number of missing values
+df = df[,colSums(is.na(df)) <= 500]
+# Remove all rows with any NAs
+df = df[rowSums(is.na(df)) == 0,]
+```
+
+## Run PCA on the remaining variables
+
+Convenience method to print out the top 10 loadings of the nth PCA, ordered by absolute value.
+```{r}
+top = function(n, p) {
+  v = p$rotation[,n]
+  v[order(abs(v), decreasing = TRUE)][1:10]
+}
+```
+
+Run PCA on the remaining variables.
+```{r}
+features = select(df, -Extraversion, -Neuroticism)
+p = prcomp(features, scale = TRUE)
+
+# Plot the PCA loadings for first 5-10 PCAs.
+loadings = p$rotation[,1:5]
+corrplot(loadings, is.corr = FALSE)
+```
+
+## PC1
+Likely interpretation: energetic happiness
+```{r}
+top(1,p)
+```
+
+## PC2
+Likely interpretation: negative tension
+```{r}
+top(2,p)
+```
+
+## PC3
+Likely interpretation: calm ease
+```{r}
+top(3,p)
+```
+
+## PC4
+Possible interpretation: tired or awake
+```{r}
+top(4,p)
+```
+
+After PC4, it's difficult to see a representation of anything coherent.
+
+Plot the eigenvalues
+```{r}
+p$sdev
+library(ggplot2)
+qplot(,p$sdev)
+```
+
+Looking at the eigenvalues, the first three seem the most interpretable, and then there is a drop-off after that.
+
+## Principal component regression
+
+Use the first n principal components to predict Extraversion and Neuroticism:
+```{r}
+n = ncol(p$rotation)
+
+rmses_extra = numeric(n)
+rmses_neuro = numeric(n)
+
+rmse = function(x, y) sqrt(mean((x - y)^2))
+
+# What if colbind the PCAs
+testDf = select(df, Extraversion:Neuroticism)
+
+# Iterate through n
+for (i in seq(n)) {
+  testDf = cbind(testDf, p$x[,i])
+  colnames(testDf)[ncol(testDf)] = paste0("PC", i)
+  
+  # Run a lm with PCA
+  sumss = 0 # Hack to get around error message in cv.lm
+  fit_extra = cv.lm(data=testDf, form.lm=formula(Extraversion~.-Neuroticism), plotit = FALSE, printit = FALSE)
+  fit_neuro = cv.lm(data=testDf, form.lm=formula(Neuroticism~.-Extraversion), plotit = FALSE, printit = FALSE)
+  
+  # Store the RMSE
+  rmses_extra[i] = rmse(fit_extra$Predicted, testDf$Extraversion)
+  rmses_neuro[i] = rmse(fit_neuro$Predicted, testDf$Neuroticism)
+}
+  
+```
+
+Plot the RMSEs against n:
+```{r}
+qplot(, y=rmses_extra)
+qplot(, y=rmses_neuro)
+```
+
+From the self-assessment, the RMSEs for extraversion and neuroticism were 3.91 and 4.36, respectively. Note that these are similar to 
+the RMSEs for when we use all the PCs.
+From looking at the plot, the RMSEs for using the first 4-5 PCs are higher. 
+
+## History of Trait Theories
+Neuroticism is a dimension that ranges from normal, fairly calm to one's tendency to be quite "nervous."
+Extraversion is a dimension that most people have a common-sense understanding of: Shy, quiet vs. out-going, loud.
+
+```{r}
+lm(Extraversion~PC1+PC2+PC3+PC4, testDf)$coefficients
+lm(Neuroticism~PC1+PC2+PC3+PC4, testDf)$coefficients
+```
+Extraversion is positively correlated with PC1 (energetic) and PC2 (tension, slightly) and negatively correlated with PC3 (calm) and PC4 (tired).
+Neuroticism is negatively correlated with PC1 and PC2 and positively correlated with PC3 and PC4.
+
+# PCA on the speed dating dataset
+
+Load the speed dating set.
+```{r}
+df = read.csv("C:/Users/Andrew/Documents/Signal/curriculum/datasets/speed-dating/speeddating-aggregated.csv")
+df = df[rowSums(is.na(df)) == 0,]
+```
+
+## Interpreting PCA on the activities
+
+Run PCA
+```{r}
+features = select(df, sports:yoga)
+p = prcomp(features, scale = TRUE)
+```
+
+Plot the eigenvalues
+```{r}
+qplot(,p$sdev)
+```
+
+Leveling after three PCs.
+
+```{r}
+# Plot the PCA loadings for first 5-10 PCAs.
+loadings = p$rotation[,1:5]
+corrplot(loadings, is.corr = FALSE)
+
+fdf = cbind(features, p$x[,1:5])
+corrplot(cor(fdf))
+```
+
+PC1: Going out/cultured (dining, museums, art, theater, movies, concerts)
+PC2: Sports/exercise
+
+After PC2, the PCs appear less coherent.
+
+## Principal component regression
+
+Predict gender, race (restrict to whites + Asians), and career code using PCAs with logistic regression
+
+```{r}
+# Create four datasets
+# gender + activities
+fdf = cbind(df, p$x)
+gdf = select(fdf, gender, contains("PC"))
+
+# white/asians + activities
+rdf = fdf %>% select(race, contains("PC")) %>% filter(race == 2 | race == 4)
+rdf = dummy.data.frame(rdf, names=colnames(rdf)[1], sep="_")
+rdf = rdf[,-1] # Just keep one dummy column.
+
+# academia/biz+finance + activites
+cdf = fdf %>% select(career_c, contains("PC")) %>% filter(career_c == 2 | career_c == 7)
+cdf = dummy.data.frame(cdf, names=colnames(cdf)[1], sep="_")
+cdf = cdf[,-1] # Just keep one dummy column.
+
+# Iterate over the PCAs
+for (i in 1:ncol(p$x)) {
+  for (data in list(gdf, rdf, cdf)) {
+    # Subset with the PCA needed
+    sub = data[,1:(1+i)]
+    # call glm for logistic regression
+    f = paste(colnames(sub)[1], "~.")
+    #print(f)
+    fit = glm(formula(f), family="binomial", sub)
+    print(paste(f, i))
+    coefs = as.data.frame(summary(fit)$coefficients)
+    probs = predict(fit, type="response")
+    
+    print(coefs[coefs[4] < 0.05, ])
+    print(roc(sub[[1]], probs)$auc)
+    cat("\n")
+  }
+}
+```
+
+## Comparison with stepwise regression
+
+Run stepwise regression on activities for same predictions:
+```{r, message = FALSE, warning = FALSE}
+
+gdf = select(df, gender, sports:yoga)
+rdf = df %>% select(race, sports:yoga) %>% filter(race == 2 | race == 4)
+rdf = dummy.data.frame(rdf, names=colnames(rdf)[1], sep="_")
+rdf = rdf[,-1] # Just keep one dummy column.
+
+cdf = df %>% select(career_c, sports:yoga) %>% filter(career_c == 2 | career_c == 7)
+cdf = dummy.data.frame(cdf, names=colnames(cdf)[1], sep="_")
+cdf = cdf[,-1] # Just keep one dummy column.
+
+dataList = list(gdf, rdf, cdf)
+
+for (data in dataList) {
+  resp = colnames(data)[1]
+  
+  # Perform stepwise logistic regression.
+  print(resp)
+  f = formula(paste(resp, "~."))
+  model_init = lm(f, data)
+  fit_step = step(model_init, f, direction="backward", trace=0)
+  probs = predict(fit_step, type = "response")
+ 
+  coefs = as.data.frame(summary(fit_step)$coefficients)
+  print(coefs[coefs[4] < 0.05, ])
+  print(roc(data[[1]], probs)$auc)
+ 
+  print("Regularization:")
+  
+  # Perform regularization
+  param_grid = expand.grid(.alpha=1:10*0.1, .lambda=10^seq(-4, -1, length.out=10))
+  control = trainControl(method = "repeatedcv", number = 5, repeats = 1, 
+                        verboseIter = FALSE, search = "grid", classProbs = TRUE, summaryFunction = twoClassSummary)
+
+  activities = select(data, sports:yoga)
+  
+  # Might want to add twoClassSummary and probs
+  target_factor = factor(data[[1]])
+  levels(target_factor) = c("a","b") # Get because of default class levels not being valid R variable names
+  caret_fit = train(x=scale(activities), y=target_factor, method="glmnet", tuneGrid=param_grid, trControl=control, metric = "ROC")
+  alpha = caret_fit$best[1]
+  lambda = caret_fit$best[2]
+
+  fitted = glmnet(as.matrix(activities), target_factor, family = "binomial", alpha=alpha, lambda=lambda)
+  probs = predict(fitted, as.matrix(activities), type="response", s=lambda)
+  print(roc(data[[1]], as.numeric(probs))$auc)
+  
+  cat("\n")
+}
+
+```
+
+Gender:
+
+* PCA: 17 variables, AUC: 0.8252
+* Backward Stepwise: 8 variables, AUC: 0.824 (When PCA has 8 variables, AUC: 0.78)
+* Regularization: 0.821
+
+Race: 
+
+* PCA: 17 variables, AUC: 0.6905
+* Backward Stepwise: 4 variables, AUC: 0.682 (When PC has 4 variables, AUC: 0.6541)
+* Regularization: 0.682
+
+Career: 
+
+* PCA: 17 variables, AUC: 0.7594
+* Backward Stepwise: 5 variables, AUC: 0.749 (When PC has 4 variables, AUC: 0.7164)
+* Regularization: AUC 0.759
+
+## Multinomial logistic regression
+
+Next, we'll use multinomial logistic regression.
+```{r}
+ctable = table(df$career_c)
+top4 = as.numeric(names(sort(ctable, decreasing=TRUE))[1:4])
+dfc = filter(df, career_c %in% top4)
+features = as.matrix(select(dfc, -career_c))
+fit_career = glmnet(features, dfc$career_c, family="multinomial")
+preds_career = predict(fit_career, features, s=0)
+pca_preds = prcomp(scale(as.data.frame(preds_career)))
+rownames(pca_preds$rotation) = c("Lawyer", "Academic", "Creative", "Finance")
+corrplot(pca_preds$rotation, is.corr=FALSE)
+```
+
+The first PC is "business vs. non-business", and the second PC represents a dichotomy between academics and artists. These principal components represent the dimensions of "career variation" among the members of the dataset.
