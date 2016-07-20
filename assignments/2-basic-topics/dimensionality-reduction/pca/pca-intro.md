@@ -1,19 +1,17 @@
 ---
-title: Introduction to Principal Component Analysis
+title: Principal Component Analysis
 author: Signal Data Science	
 ---
 
-Use `prcomp(..., scale.=TRUE)` to explore the principal components of various datasets.
+In this assignment, you'll be learning about [principal component analysis](https://en.wikipedia.org/wiki/Principal_component_analysis) (PCA), a method of linear dimensionality reduction. PCA is a method which *rotates* a dataset such that the new ordered set of coordinate axes maximally captures the variation of the data.
 
-A few points to keep in mind: Let `p = prcomp(df, scale.=TRUE)` be the result of PCA run on a data frame `df`. Then:
+In R, PCA can be used via [`prcomp()`](https://stat.ethz.ch/R-manual/R-patched/library/stats/html/prcomp.html). A few points to keep in mind: Let `p = prcomp(df, scale.=TRUE)` be the result of PCA run on a data frame `df`. Then:
 
 * `p$rotation` gives a matrix with rows corresponding to columns of `df`, columns corresponding to principal components, and entries corresponding to the *loadings* of a particular column of `df` on a particular principal component. Put another way, each principal component is formed out of a linear combination of the variables of `df`, and the column corresponding to each principal column corresponds to the *coefficients* of that linear combination.
 
 * `p$x` gives the *principal component scores* for each row of `df`, that is, the *actual value* of each principal component for every row in `df`.
 
 * `p$sdev` gives the *eigenvalues of the covariance matrix* of the data. One can interpret the `n`th value in `p$sdev` as corresponding to the relative proportion of the variance in the data explained by the `n`th principal component. Put another way, `p$sdev[n] / sum(p$sdev)` is the proportion of the variance in the data explained by the `n`th principal component.
-
-For supplementary reading on the theory behind PCA, consult *Introduction to Statistical Learning* or *Applied Predictive Modeling*.
 
 Write up your findings in an "R Markdown" file. (It's one of the options in RStudio when you go to make new files.) At the end, click on the "Knit HTML" button in RStudio, select "Knit HTML", and generate a HTML file which you can upload to Github! (Now you can share your findings with friends and family in a more accessible form!) For additional guidance, read [Yihui Xie's blog](http://yihui.name/en/2012/06/enjoyable-reproducible-research/) (written by the author of the `knitr` package, which provides the underlying functionality behind R script $\to$ HTML compilation).
 

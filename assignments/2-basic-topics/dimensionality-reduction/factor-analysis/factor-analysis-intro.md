@@ -1,9 +1,11 @@
 ---
-title: Introduction to Factor Analysis
+title: Factor Analysis
 author: Signal Data Science
 ---
 
-In this assignment, you'll be learning about the technique of *factor analysis*. Put concisely, in PCA, one tries to explain *all* of the variance in $p$-dimensional data with the $p$ principal components, whereas in factor analysis, one chooses a *number of factors* $k < p$ and calculates those factors such that they explain as much of the *shared variance* in the data as they possibly can.
+In this assignment, you'll be learning about [factor analysis](https://en.wikipedia.org/wiki/Factor_analysis). Like PCA, factor analysis falls into the class of linear dimensionality reduction; however, both the technique and the philosophy of factor analysis are quite different.
+
+Jn PCA, one tries to explain *all* of the variance in $p$-dimensional data with the $p$ principal components. In contrast, in factor analysis, one chooses a *number of factors* $k < p$ and calculates those factors such that they explain as much of the *shared variance* in the data as they possibly can. In other words, we *posit* that the observed data linearly are generated via $k$ unobserved or *latent* factors and then find the best possible factors given this model, each of which can be expressed as a linear combination of the observed variables. PCA re-expresses your data in a different fashion but the $p$ principal components together capture 100% of the information of the original dataset; this cannot be said of the factors in factor analysis, which is a [generative model](https://en.wikipedia.org/wiki/Generative_model) which, again, focuses only on finding a lower-dimensional structure which captures as much of the *shared* variance as possible and *not* the *unique* variance in each individual variable (*e.g.*, noise).
 
 Keep the following in mind while you work:
 

@@ -68,23 +68,23 @@ Homework
 * **D1 through D3**: *Homework: Reading from Gelman and Hill*
 * **D4:** Zumel, *"I don't think that means what you think it means"* (`readings/misc/zumel-classification.pdf`)
 * **D5:** Review solutions to (5); revise work on (5) if code review is desired
-* **Weekend:** *R Inferno* (`readings/r-miscellanea/R Inferno`) and *Homework: Intermediate SQL Practice*
+* **Weekend:** *R Inferno* (`readings/r-miscellanea/R Inferno/`) and *Homework: Intermediate SQL Practice*
 
 Additional notes
 ----------------
 
 Students will find (1) challenging, particularly with regard to how they should fill in a predictions vector for n-fold cross-validation.
 
-Dimensionality reduction
-========================
+Unsupervised learning
+=====================
 
 **Time:** 1 week.
 
 Schedule
 --------
 
-1. *Introduction to Principal Component Analysis* (1 day)
-2. *Introduction to Factor Analysis* (1 day)
+1. *Principal Component Analysis* (1 day)
+2. *Factor Analysis* (1 day)
 3. *Collaborative Filtering with Movie Ratings* (1 day)
 4. *Clustering* (1 day)
 5. *Self-Assessment 3*
@@ -102,7 +102,3 @@ Homework
 * **D1:** Shlens (2014), *A Tutorial on Principal Component Analysis* (`readings/misc/shlens-pca-tutorial.pdf`) and Novembre and Stephens (2008), *Interpreting principal component analyses of spatial population genetic variation* (`readings/misc/novembre-2008-pca.pdf`); both optional, with former strongly recommended
 * **Weekend:** *Homework: Advanced SQL Practice*
 
-Advanced topics
-===============
-
-1. Amazon Web Services
