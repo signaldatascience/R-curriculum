@@ -38,8 +38,8 @@ Send out each assignment in the morning. After (5), go over solutions and give s
 Homework
 --------
 
-* **D1 through D5:** Completion of old work.
-* **Weekend:** *Homework: SQLZoo*.
+* **D5:** Revise work on (5) if code review is desired
+* **Weekend:** *Homework: SQLZoo*
 
 Additional notes
 ----------------
@@ -54,11 +54,11 @@ Regularization and logistic regression
 Schedule
 --------
 
-1. *Linear Regression: Resampling* (1.5 days).
-2. *Linear Regression: Regularization* (1 days).
-3. *Linear Regression: Kaggle Africa Soil Challenge* (1 day).
-4. *Logistic Regression: Speed Dating* (1 day).
-5. *Self-Assessment 2* (5 hours).
+1. *Linear Regression: Resampling* (1.5 days)
+2. *Linear Regression: Regularization* (1 days)
+3. *Linear Regression: Kaggle Africa Soil Challenge* (1 day)
+4. *Logistic Regression: Speed Dating* (1 day)
+5. *Self-Assessment 2* (5 hours)
 
 Detailed schedule
 -----------------
@@ -68,17 +68,21 @@ Allocate D1 and the morning of D2 for (1). After lunch on D2, present code solut
 Homework
 --------
 
-* **D1 through D3**: *Homework: Reading from Gelman and Hill*.
-* **D4:** Zumel's "'I don't think that means what you think it means'" (`readings/misc/zumel-classification.pdf`).
-* **D5:** Circles 1--6 of *R Inferno* (`readings/r-miscellanea/R Inferno`) and *Homework: Intermediate SQL Practice*.
+* **D1 through D3**: *Homework: Reading from Gelman and Hill*
+* **D4:** Zumel, *"I don't think that means what you think it means"* (`readings/misc/zumel-classification.pdf`)
+* **D5:** Review solutions to (5); revise work on (5) if code review is desired
+* **Weekend** Circles 1--6 of *R Inferno* (`readings/r-miscellanea/R Inferno`) and *Homework: Intermediate SQL Practice*
 
 Additional notes
 ----------------
 
-Students will find *Linear Regression: Resampling* challenging, particularly with regard to how they should fill in a predictions vector for $n$-fold cross-validation.
+Students will find (1) challenging, particularly with regard to how they should fill in a predictions vector for $n$-fold cross-validation.
 
 Dimensionality reduction
 ========================
+
+Schedule
+--------
 
 1. *Introduction to Principal Component Analysis* (1 day)
 2. *Introduction to Factor Analysis*
@@ -86,14 +90,16 @@ Dimensionality reduction
 4. *Collaborative Filtering with Movie Ratings*
 5. *Self-Assessment 3*
 
+Detailed schedule
+-----------------
+
 Give a lecture on the theory of PCA followed by *Introduction to Principal Component Analysis*. Have students begin *Introduction to Factor Analysis* and give a lecture on the theory *after* students have completed at least some of the simulated data part of the assignment.
 
 Homework
 --------
 
-After *Introduction to Principal Component Analysis*, assign as optional reading Shlens (2014) and Novembre and Stephens (2008). The former is a theoretical overview of PCA and the latter is a cautionary tale of PCA overinterpretation in population genetics.
-
-Over the weekend, assign *Homework: Advanced SQL Practice*.
+* **D1:** Shlens, *A Tutorial on Principal Component Analysis* (`readings/misc/shlens-pca-tutorial.pdf`) and Novembre and Stephens, *Interpreting principal component analyses of spatial population genetic variation* (`readings/misc/novembre-2008-pca.pdf`), both optional, with former strongly recommended
+* **Weekend:** *Homework: Advanced SQL Practice*
 
 Advanced topics
 ===============
