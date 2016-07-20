@@ -17,12 +17,11 @@ Schedule
 
 Assignments should be done in this order:
 
-1. *R: Basics*, *R: Atomic Vectors and Functions*, *Linear Regression: Infant Mortality*, and *Linear Regression: Galton's Height Data*
-2. *R: Data Frames* and *Linear Regression: Simulated Data*
-3. *R: Attributes, Factors, and Matrices*
-4. *R: Functional Programming*
-
-In the above list, each list item's contents should be assigned in the morning.
+1. *R: Basics*, *R: Atomic Vectors and Functions*, *Linear Regression: Infant Mortality*, and *Linear Regression: Galton's Height Data* (1 day)
+2. *R: Data Frames* and *Linear Regression: Simulated Data* (1 day)
+3. *R: Attributes, Factors, and Matrices* (1 day)
+4. *R: Functional Programming* (1 day)
+5. *Self-Assessment 1* (4 hours)
 
 For buffer, use *R: Basic Algorithms*, which can be completed directly after *R: Data Frames*, and *R: Spellchecking*, which should be done after *R: Functional Programming*.
 
@@ -50,17 +49,20 @@ Schedule
 
 The assignments in this section are:
 
-1. *Linear Regression: Resampling*
-2. *Linear Regression: Regularization*
-3. *Linear Regression: Kaggle Africa Soil Challenge*
+1. *Linear Regression: Resampling* (1.5 days)
+2. *Linear Regression: Regularization* (1 days)
+3. *Linear Regression: Kaggle Africa Soil Challenge* (1 day)
+4. *Self-Assessment 2* (5 hours)
 
-*Linear Regression: Resampling* takes around 1.5 days. Allocate the first day and the beginning of the second day for its completion. After lunchtime, present resampling solutions, allow a 10 minute break, and then give a presentation on regularized linear regression. (*Don't* assign the regularization assignment as reading beforehand; it assumes theoretical understanding of regularization.)
+Present code solutions to both *Linear Regression: Resampling* and *Linear Regression: Regularization*.
 
-Afterward, assign *Linear Regression: Regularization*, which takes approximately 1 day. In the afternoon of the third day, present code solutions, allow a 10 minute break, and then present a brief exploratory analysis of the Kaggle African Soil Challenge data.
+*Linear Regression: Resampling* takes 1.5 days. Allocate the first day and the beginning of the second day for its completion. After lunchtime, present resampling solutions, allow a 10 minute break, and then give a presentation on regularized linear regression. (*Don't* assign the regularization assignment as reading beforehand; it assumes theoretical understanding of regularization.)
+
+Afterward, assign *Linear Regression: Regularization*, which takes 1 day. In the afternoon of the third day, present code solutions, allow a 10 minute break, and then present a brief exploratory analysis of the Kaggle African Soil Challenge data.
 
 Finally, assign *Linear Regression: Kaggle Africa Soil Challenge*, taking through the end of the third day. Extra time can be used for completing homework assignments or old work.
 
-After *Linear Regression: Kaggle Africa Soil Challenge*, give students *Self-Assessment 2* (SA2). Allocate 4 hours for SA2 with a lunch break in between, present solutions at the end, and then have a half-hour break. After the break, students can work on finishing up old assignments, revising their self-assessment code, or working on buffer assignments. **Note:** It may make sense to give students the first logistic regression assignment before SA2, especially if students seem mentally exhausted and might need a weekend to absorb resampling and regularization at a deeper level before doing SA2.
+After *Linear Regression: Kaggle Africa Soil Challenge*, give students *Self-Assessment 2* (SA2). Allocate 5 hours for SA2 with a lunch break in between, present solutions at the end, and then have a half-hour break. After the break, students can work on finishing up old assignments, revising their self-assessment code, or working on buffer assignments. **Note:** It may make sense to give students the first logistic regression assignment before SA2, especially if students seem mentally exhausted and might need a weekend to absorb resampling and regularization at a deeper level before doing SA2.
 
 Homework
 --------
@@ -77,8 +79,27 @@ Students will find *Linear Regression: Resampling* challenging, particularly wit
 Logistic regression
 ===================
 
+The assignments in this section are:
+
+1. *Logistic Regression: Speed Dating* (0.8 days)
+2. *Multinomial Logistic Regression: Speed Dating* (0.2 days)
+
 Dimensionality reduction
 ========================
+
+1. *Introduction to Principal Component Analysis* (1 day)
+2. *Introduction to Factor Analysis*
+3. *Clustering*
+4. *Collaborative Filtering with Movie Ratings*
+
+Give a lecture on the theory of PCA followed by *Introduction to Principal Component Analysis*. Have students begin *Introduction to Factor Analysis* and give a lecture on the theory *after* students have completed at least some of the simulated data part of the assignment.
+
+Homework
+--------
+
+After *Introduction to Principal Component Analysis*, assign as optional reading Shlens (2014) and Novembre and Stephens (2008). The former is a theoretical overview of PCA and the latter is a cautionary tale of PCA overinterpretation in population genetics.
+
+Over the weekend, assign *Homework: Advanced SQL Practice*.
 
 Project: ???
 ============

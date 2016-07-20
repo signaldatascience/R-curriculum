@@ -25,15 +25,15 @@ For reproducibility, place `set.seed(1)` at the top of your code.
 Part 1: PCA
 -----------
 
-* Make a `factors` data frame with 100 observations of 3 normally distributed variables `X`, `Y`, and `Z`. Each variable should be drawn from the standard normal distribution. The "factors" here have nothing to do with factors in R, instead representing latent variables.  
+* Make a `factors` data frame with 100 observations of 3 normally distributed variables `X`, `Y`, and `Z`. Each variable should be drawn from the standard normal distribution. The "factors" here have nothing to do with factors in R, instead representing latent variables.
 
-* Write a function `noisyProxies(feature, k, correlation)` that takes a vector `feature` and returns a data frame with `k` noisy proxies to the feature which are (1) correlated with the feature at the level of `correlation` and (2) differ from the feature by a normally distributed error term.[^corr]
+* Write a function `noisyProxies(feature, k, correlation)` that takes a vector `feature` and returns a data frame with `k` noisy proxies to the feature which are (1) correlated with the feature at the level of `correlation` and (2) differ from the feature by a normally distributed error term.[^corr] Your function should not include `feature` itself in the data frame.
 
 [^corr]: Refer back to *Linear Regression: Simulated Data* for information on how to do so. Essentially, you want to take the sum of `correlation*feature` and an error term proportional to $\sqrt{1-\left(\mathrm{correlation}\right)^2}$.
 
 * Make a dataframe `noisies` with 4 noisy proxies to `X` and 3 noisy proxies to `Y` with `correlation = 0.9`. Use `corrplot()` to plot the correlation matrix of `noisies`.
 
-* Run PCA on the features and plot the correlations between the principal components and the `noisies` data frame. Also, plot the correlations between the principal components and the `factors` data frame.
+* Run PCA on the noisy proxies and plot the correlations between the principal components and the `noisies` data frame. Also, plot the correlations between the principal components and the `factors` data frame.
 
 You should see that the first two principal components pick up on the factors `X` and `Y`, but only imperfectly.
 
@@ -48,12 +48,12 @@ where each $a_j$ is a constant that depends on $V_i$. Goodness of fit is measure
 
 The key difference from PCA here is that the factors are supposed to explain as much of the correlations *between* the variables as possible, rather than as much *total* variance as possible: we don't try to pick up on the variables to the extent that they're not correlated with one another.
 
-* Run factor analysis on the data from the previous section with `nfactors=2` and `rotate="varimax"`, and compare the correlations between the modeled factors and the true factors `X` and `Y`.  The modeled factors should be closer to the true factors than the principal components were.
+* Run factor analysis on `noisies` with `nfactors=2` and `rotate="varimax"`, and compare the correlations between the modeled factors and the true factors `X` and `Y`. The modeled factors should be closer to the true factors than the principal components were.
 
-* Generate 50 variables given by
+* Generate 50 variables, each given by
 	
 	```r
-	X*runif(1) + Y*runif(2) + Z*runif(3) + 0.5*error
+	X*runif(1) + Y*runif(1) + Z*runif(1) + 0.5*error
 	```
 
 	where `error` is normally distributed with standard deviation 1.
