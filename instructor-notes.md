@@ -22,11 +22,11 @@ Take special care to pair stronger students with weaker students, as a weak--wea
 Schedule
 --------
 
-1. *R: Basics*, *R: Atomic Vectors and Functions*, *Linear Regression: Infant Mortality*, and *Linear Regression: Galton's Height Data* (1 day)
-2. *R: Data Frames* and *Linear Regression: Simulated Data* (1 day)
-3. *R: Attributes, Factors, and Matrices* (1 day)
-4. *R: Functional Programming* (1 day)
-5. *Self-Assessment 1* (4 hours)
+1. *R: Basics*, *R: Atomic Vectors and Functions*, *Linear Regression: Infant Mortality*, and *Linear Regression: Galton's Height Data* (1 day).
+2. *R: Data Frames* and *Linear Regression: Simulated Data* (1 day).
+3. *R: Attributes, Factors, and Matrices* (1 day).
+4. *R: Functional Programming* (1 day).
+5. *Self-Assessment 1* (4 hours).
 
 For buffer, use *R: Basic Algorithms*, which can be completed directly after *R: Data Frames*, and *R: Spellchecking*, which should be done after *R: Functional Programming*.
 
@@ -38,8 +38,8 @@ Send out each assignment in the morning. After (5), go over solutions and give s
 Homework
 --------
 
-* **D1 through D5:** Completion of old work
-* **Weekend:** *Homework: SQLZoo*
+* **D1 through D5:** Completion of old work.
+* **Weekend:** *Homework: SQLZoo*.
 
 Additional notes
 ----------------
@@ -54,11 +54,11 @@ Regularization and logistic regression
 Schedule
 --------
 
-1. *Linear Regression: Resampling* (1.5 days)
-2. *Linear Regression: Regularization* (1 days)
-3. *Linear Regression: Kaggle Africa Soil Challenge* (1 day)
-4. *Logistic Regression: Speed Dating* (1 day)
-5. *Self-Assessment 2* (5 hours)
+1. *Linear Regression: Resampling* (1.5 days).
+2. *Linear Regression: Regularization* (1 days).
+3. *Linear Regression: Kaggle Africa Soil Challenge* (1 day).
+4. *Logistic Regression: Speed Dating* (1 day).
+5. *Self-Assessment 2* (5 hours).
 
 Detailed schedule
 -----------------
@@ -68,9 +68,9 @@ Allocate D1 and the morning of D2 for (1). After lunch on D2, present code solut
 Homework
 --------
 
-* **D1 through D3**: *Homework: Reading from Gelman and Hill*
-* **D4:** Zumel's "'I don't think that means what you think it means'" (`readings/misc/zumel-classification.pdf`)
-* **D5:** Circles 1--6 of *R Inferno* (`readings/r-miscellanea/R Inferno`) and *Homework: Intermediate SQL Practice*
+* **D1 through D3**: *Homework: Reading from Gelman and Hill*.
+* **D4:** Zumel's "'I don't think that means what you think it means'" (`readings/misc/zumel-classification.pdf`).
+* **D5:** Circles 1--6 of *R Inferno* (`readings/r-miscellanea/R Inferno`) and *Homework: Intermediate SQL Practice*.
 
 Additional notes
 ----------------
