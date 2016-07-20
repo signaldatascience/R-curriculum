@@ -7,15 +7,12 @@ The sections are ordered chronologically.
 
 At the end of each day, students should be instructed to read the next day's assignment.
 
-Notation
-========
-
-In each section, DN refers to the Nth day of the block of time allocated to each section.
+**Notation:** In each section, DN refers to the Nth day of the block of time allocated to each section.
 
 R and linear regression
 =======================
 
-**Time:** 1 week. **Material:** The basics of R and linear regression.
+**Time:** 1 week.
 
 Take special care to pair stronger students with weaker students, as a weak--weak pair is disastrous at this early stage.
 
@@ -44,12 +41,12 @@ Homework
 Additional notes
 ----------------
 
-It should be emphasized to students that they should make extra effort to wrap up any loose ends in the core R curriculum after SA1, as they will be moving on to more substantive data science material afterward.
+It should be emphasized to students that they should make extra effort to wrap up any loose ends in the core R curriculum after (5), as they will be moving on to more substantive data science material afterward.
 
 Regularization and logistic regression
 ======================================
 
-**Time:** 1 week. **Material:** N-fold cross validation and elastic net regularization in the context of linear regression. Bootstrapping. Logistic regression.
+**Time:** 1 week.
 
 Schedule
 --------
@@ -71,34 +68,38 @@ Homework
 * **D1 through D3**: *Homework: Reading from Gelman and Hill*
 * **D4:** Zumel, *"I don't think that means what you think it means"* (`readings/misc/zumel-classification.pdf`)
 * **D5:** Review solutions to (5); revise work on (5) if code review is desired
-* **Weekend** Circles 1--6 of *R Inferno* (`readings/r-miscellanea/R Inferno`) and *Homework: Intermediate SQL Practice*
+* **Weekend:** *R Inferno* (`readings/r-miscellanea/R Inferno`) and *Homework: Intermediate SQL Practice*
 
 Additional notes
 ----------------
 
-Students will find (1) challenging, particularly with regard to how they should fill in a predictions vector for $n$-fold cross-validation.
+Students will find (1) challenging, particularly with regard to how they should fill in a predictions vector for n-fold cross-validation.
 
 Dimensionality reduction
 ========================
+
+**Time:** 1 week.
 
 Schedule
 --------
 
 1. *Introduction to Principal Component Analysis* (1 day)
-2. *Introduction to Factor Analysis*
-3. *Clustering*
-4. *Collaborative Filtering with Movie Ratings*
+2. *Introduction to Factor Analysis* (1 day)
+3. *Clustering* (1 day)
+4. *Collaborative Filtering with Movie Ratings* (1 day)
 5. *Self-Assessment 3*
 
 Detailed schedule
 -----------------
 
-Give a lecture on the theory of PCA followed by *Introduction to Principal Component Analysis*. Have students begin *Introduction to Factor Analysis* and give a lecture on the theory *after* students have completed at least some of the simulated data part of the assignment.
+For (1)--(4), allocate an hour at the morning of each following day to finish up the assignment and compare work against solutions.
+
+Lecture on PCA and then assign (1). Lecture on factor analysis around 2 hours after students start (2).
 
 Homework
 --------
 
-* **D1:** Shlens, *A Tutorial on Principal Component Analysis* (`readings/misc/shlens-pca-tutorial.pdf`) and Novembre and Stephens, *Interpreting principal component analyses of spatial population genetic variation* (`readings/misc/novembre-2008-pca.pdf`), both optional, with former strongly recommended
+* **D1:** Shlens (2014), *A Tutorial on Principal Component Analysis* (`readings/misc/shlens-pca-tutorial.pdf`) and Novembre and Stephens (2008), *Interpreting principal component analyses of spatial population genetic variation* (`readings/misc/novembre-2008-pca.pdf`), both optional, with former strongly recommended
 * **Weekend:** *Homework: Advanced SQL Practice*
 
 Advanced topics
