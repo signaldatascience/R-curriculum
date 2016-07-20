@@ -7,7 +7,9 @@ In this assignment, you'll be learning about the technique of *factor analysis*.
 
 Keep the following in mind while you work:
 
-* The outputs of factor analysis, accessed with `fa()`, are similar to the outputs of `prcomp()`. In particular, if we have `p = prcomp(...)` and `f = fa(...)`, then `p$rotation` is analogous to `f$loadings` and `p$x` is analogous to `f$scores`.
+* Factor analysis is implemented in the R package `psych` as `fa()`.
+
+* The outputs of factor analysis, accessed with `fa()`, are similar to the outputs of `prcomp()`. In particular, if we have `p = prcomp(...)` and `f = fa(...)`, then `f$loadings` is analogous to `p$rotation` and `f$scores` is analogous to `p$x`.
 
 * You should be consistently using `corrplot()` to visualize the loadings of principal components / factors.
 
@@ -46,7 +48,7 @@ where each $a_j$ is a constant that depends on $V_i$. Goodness of fit is measure
 
 The key difference from PCA here is that the factors are supposed to explain as much of the correlations *between* the variables as possible, rather than as much *total* variance as possible: we don't try to pick up on the variables to the extent that they're not correlated with one another.
 
-* Factor analysis is implemented in the R package `psych` as `fa()`. Run factor analysis on the data from the previous section with `nfactors=2` and `rotate="varimax"`, and compare the correlations between the modeled factors and the true factors `X` and `Y`.  The modeled factors should be closer to the true factors than the principal components were.
+* Run factor analysis on the data from the previous section with `nfactors=2` and `rotate="varimax"`, and compare the correlations between the modeled factors and the true factors `X` and `Y`.  The modeled factors should be closer to the true factors than the principal components were.
 
 * Generate 50 variables given by
 	
