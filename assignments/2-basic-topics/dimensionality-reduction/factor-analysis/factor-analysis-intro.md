@@ -25,7 +25,7 @@ Part 1: PCA
 
 * Make a `factors` data frame with 100 observations of 3 normally distributed variables `X`, `Y`, and `Z`. Each variable should be drawn from the standard normal distribution. The "factors" here have nothing to do with factors in R, instead representing latent variables.  
 
-* Write a function `noisyIndicators(feature, k, correlation)` that takes a vector `feature` and returns a data frame with `k` noisy proxies to the feature which are (1) correlated with the feature at the level of `correlation` and (2) differ from the feature by a normally distributed error term.[^corr]
+* Write a function `noisyProxies(feature, k, correlation)` that takes a vector `feature` and returns a data frame with `k` noisy proxies to the feature which are (1) correlated with the feature at the level of `correlation` and (2) differ from the feature by a normally distributed error term.[^corr]
 
 [^corr]: Refer back to *Linear Regression: Simulated Data* for information on how to do so. Essentially, you want to take the sum of `correlation*feature` and an error term proportional to $\sqrt{1-\left(\mathrm{correlation}\right)^2}$.
 
@@ -69,7 +69,7 @@ In the last factor analysis exercise, we were using a type of factor analysis wh
 
 * Examine the correlation between `W` and `Y`.
 
-* Use `noisyIndicators()` to generate 10 indicators associated with `X` and 4 noisy indicators associated with W, with correlations 0.8 in both cases.
+* Use `noisyProxies()` to generate 10 indicators associated with `X` and 4 noisy indicators associated with W, with correlations 0.8 in both cases.
 
 * Plot the associated correlation matrix. 
 
