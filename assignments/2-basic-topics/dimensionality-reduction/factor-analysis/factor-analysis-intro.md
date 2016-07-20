@@ -82,8 +82,8 @@ Factor analysis on real datasets
 
 Factor analysis can be most fruitfully applied to real datasets, where it has the potential to uncover the true underlying factors behind real-world phenomena.
 
-Speed dating datset
--------------------
+Speed dating dataset
+--------------------
 
 We'll first return to the aggregated speed dating dataset (`speeddating-aggregated.csv` in the `speed-dating` folder).
 
