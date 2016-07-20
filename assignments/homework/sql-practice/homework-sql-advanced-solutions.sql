@@ -1,3 +1,5 @@
+-- Thanksgiving questions
+
 -- Question 1
 with flights(day, cur, prev, prev2) as (
   SELECT 1, 20, 0, 0 UNION

@@ -3,7 +3,7 @@ title: Introduction to Factor Analysis
 author: Signal Data Science
 ---
 
-In this assignment, you'll be learning about the technique of *factor analysis*. Put concisely, in PCA, one tries to explain *all* of the variance in $p$-dimensional data with the $p$ principal components, whereas in factor analysis, one chooses a *number of factors* $k < p$ and calculates those factors such that they explain as much of the *shared variance* in the data as they possibly can. Don't worry if this definition seems a little opaque to you right now -- you'll first get some computational intuition by empirically comparing the results of PCA to factor analysis, and afterward we'll have a lecture covering some of the theoretical details.
+In this assignment, you'll be learning about the technique of *factor analysis*. Put concisely, in PCA, one tries to explain *all* of the variance in $p$-dimensional data with the $p$ principal components, whereas in factor analysis, one chooses a *number of factors* $k < p$ and calculates those factors such that they explain as much of the *shared variance* in the data as they possibly can.
 
 Keep the following in mind while you work:
 
@@ -100,4 +100,6 @@ We'll conclude our exploration of factor analysis by taking a look at personalit
 
 * Create a logistic regression predictive model of gender in terms of the 50 questions, then in terms of the 5 factors derived from them. Compare the coefficients of the two models. You can use regular [`glm()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/glm.html) because there are sufficently many data points compared to variables that the effect of regularization will be relatively minor.
 
-* By focusing on the 10 questions corresponding to a trait, for each trait, can you replicate the subfactors of the Big 5 personality inventory traits given in [The Items in the Big Five Aspects Scales](http://ipip.ori.org/BFASKeys.htm)? See also the original paper [Between Facets and Domains: 10 Aspects of the Big Five](http://jordanbpeterson.com/Psy230H/docs/2014/15DeYoung.pdf)?
+* For each of the five traits, consider only its 10 corresponding questions. Can you replicate the subfactors of the Big 5 personality inventory traits given in [The Items in the Big Five Aspects Scales](http://ipip.ori.org/BFASKeys.htm)?[^facets]
+
+[^facets]: See also the original paper [Between Facets and Domains: 10 Aspects of the Big Five](http://jordanbpeterson.com/Psy230H/docs/2014/15DeYoung.pdf).

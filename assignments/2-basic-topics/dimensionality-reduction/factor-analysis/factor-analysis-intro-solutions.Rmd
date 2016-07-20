@@ -1,0 +1,283 @@
+---
+title: "Factor Analysis"
+author: "Huey Kwik & Richard Zhang"
+date: "May 17, 2016"
+output: pdf_document
+---
+
+Solutions adapted from work by Huey Kwik & Richard Zhang (Signal Cohort #2).
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library('dplyr')
+library('psych')
+library('GPArotation')
+library('corrplot')
+
+set.seed(1)
+```
+
+## Factor Analysis
+
+Let's create a factors data frame!
+```{r factors data frame}
+X = rnorm(100)
+Y = rnorm(100)
+Z = rnorm(100)
+
+factors = data.frame(X,Y,Z)
+colnames(factors) = c("X","Y","Z")
+
+noisyIndicators = function(feature, k, correlation) {
+  noisies = lapply(1:k, function(x) {
+    error = rnorm(length(feature))
+    d = sqrt(1-correlation^2)
+    correlation * feature + d * error
+  })
+  return(noisies)
+}
+
+xProxies = noisyIndicators(X, 4, 0.9)
+yProxies = noisyIndicators(Y, 3, 0.9)
+noisies = data.frame(xProxies, yProxies)
+colnames(noisies) = as.character(1:7)
+```
+
+Check out the correlations!
+
+```{r}
+corrplot(cor(noisies), is.corr = TRUE)
+cor(cbind(X, noisies))
+```
+ Run PCA on the noisy dataframe
+
+```{r PCA}
+
+pca = prcomp(noisies, scale=TRUE)
+cor_pca = cor(cbind(pca$x,noisies))
+corrplot(cor_pca, is.corr=TRUE)
+```
+
+##Part 2: Orthogonal Factor Analysis
+
+```{r factor analysis}
+pca = prcomp(noisies, scale=TRUE)
+cor_pca = cor(cbind(pca$x,noisies))
+corrplot(cor_pca, is.corr=TRUE)
+```
+
+
+Generate Variables
+```{r generates 50 variables of length 100, warning=FALSE}
+vars = sapply(1:50, function(i) { X*runif(1)+Y*runif(2)+Z*runif(3)+0.5*rnorm(1) })
+pca = prcomp(vars, scale=TRUE)
+```
+Principal component 1 picks up on some of X Y Z
+Principal component 2 picks up on more of X than Y and Z
+Principal component 3 picks up on Y and Z
+
+Corrplot of Principal Components with X,Y,Z
+```{r corrplot of pca of variables with X Y Z}
+cor_pca = cor(cbind(pca$x[,1:3], X,Y,Z))
+corrplot(cor_pca, is.corr=TRUE, type="upper") 
+```
+
+MR1 mostly picks up on Y
+MR2 mostly picks up on X
+MR3 mostly picks up on Z
+```{r corrplot of factors, warning=FALSE, message=FALSE}
+
+fac_f = fa(vars, nfactors=3, rotate="varimax")
+cor_fac = cor(cbind(fac_f$scores, X,Y,Z))
+corrplot(cor_fac, is.corr=TRUE, type="upper") 
+```
+
+
+##Part 3: Oblique Factor Analysis
+
+Create a noisy dataframe!
+```{r noisy dataframe with X and W}
+
+W = 0.5*X + Y
+
+cor(W,Y) 
+
+xProxies = noisyIndicators(X, 10, 0.8)
+wProxies = noisyIndicators(W, 4, 0.8)
+noisies = data.frame(xProxies, wProxies)
+colnames(noisies) = as.character(1:14)
+
+corrplot(cor(noisies), is.corr = TRUE)
+```
+
+Compare varimax rotation with oblimin rotation
+```{r corrplot comparisons of rotation methods}
+corrplot(cor(cbind(X, W, noisies)), is.corr=TRUE, type="upper")
+
+library('GPArotation')
+fac_f = fa(noisies, nfactors=2, rotate="varimax")
+fac_obli = fa(noisies, nfactors=2, rotate="oblimin")
+
+cor_fac_noisies = cor(cbind(fac_f$scores, noisies))
+corrplot(cor_fac_noisies, is.corr=TRUE, type="upper") 
+
+cor_fac = cor(cbind(fac_f$scores, X,W,Y))
+corrplot(cor_fac, is.corr=TRUE, type="upper") 
+
+cor_fac_obli = cor(cbind(fac_obli$scores, X,W,Y))
+corrplot(cor_fac_obli, is.corr=TRUE, type="upper") 
+```
+ 
+Compared to varimax:
+ 
+* MR1 is more highly correlated with MR2 
+* MR1 and X are more highly correlated
+* MR2 and W are more highly correlated 
+ 
+## Speed Dating Data
+ 
+Our goal is to detect factors in the speed dating dataset.
+
+```{r}
+df = read.csv("C:/Users/Andrew/Documents/Signal/curriculum/datasets/speed-dating/speeddating-aggregated.csv")
+activities = select(df, sports:yoga)
+fac_activities = fa(activities, nfactor=1, rotate='varimax')
+corrplot(fac_activities$loadings, is.corr=FALSE)
+```
+
+Corrplots with 1-4 factors, comparing varimax vs oblique rotation.
+ 
+```{r}
+fac = function(n, rotation){
+  fac_activities = fa(activities, nfactor=n, rotate=rotation)
+  corrplot(fac_activities$loadings, is.corr=FALSE)
+}
+fac(2,"varimax")
+fac(3,"varimax")
+fac(4,"varimax")
+fac(1,"oblimin")
+fac(2,"oblimin")
+fac(3,"oblimin")
+fac(4,"oblimin") # Splits nicely into four factors!
+```
+
+## Big Five Personality Data
+
+Compare Principal components and 5 factors analysis
+```{r}
+df = read.csv("C:/Users/Andrew/Documents/Signal/curriculum/datasets/big-5/data.csv", sep="\t")
+questions = select(df, E1:O10)
+pca_5 = prcomp(scale(questions))
+fac_5 = fa(questions, nfactor=5, rotate="varimax")
+
+corrplot(pca_5$rotation[,1:5], is.corr=FALSE)
+
+
+corrplot(fac_5$loadings, is.corr=FALSE)
+```
+
+The former is very noisy, while the latter cleanly indicates 5 factors.
+
+Regression Analysis: Predicting Gender using Questions
+
+```{r}
+gender_questions = cbind(df$gender, questions)
+colnames(gender_questions)[1] = "gender"
+gender_questions = dplyr::filter(gender_questions, gender != 3)
+gender_questions$gender[gender_questions$gender == 2] = 0
+
+fit = glm(gender ~ ., data = gender_questions, family = "binomial")
+summary(fit) # Many many questions seem to be correlated with gender 
+```
+  
+Each question predicts gender poorly (low coefficients)
+
+Factor Analysis: Predicting Gender using 5 Factors
+```{r}
+gender_factors = as.data.frame(cbind(df$gender, fac_5$scores))
+colnames(gender_factors)[1] = "gender"
+gender_factors = dplyr::filter(gender_factors, gender != 3)
+gender_factors$gender[gender_factors$gender == 2] = 0
+
+
+fit = glm(gender ~ ., data = as.data.frame(gender_factors), family = "binomial")
+summary(fit) 
+```
+Each factor predicts gender with a comparatively large coefficient.
+
+Identifying the 5 factors from the questions:
+
+* E1-E10 -> Extraversion
+* N1-N10 -> Neuroticism
+* A1-A10 -> Agreeableness
+* C1-C10 -> Conscientiousness
+* O1-O10 -> Openness
+
+## Identifying Subfactors
+```{r}
+subfactors = function(questions) {
+  fac_2 = fa(questions, nfactor=2, rotate="varimax")
+  fac_3 = fa(questions, nfactor=3, rotate="varimax")
+  fac_4 = fa(questions, nfactor=4, rotate="varimax")
+  fac_5 = fa(questions, nfactor=5, rotate="varimax")
+  
+  # corrplot
+  corrplot(fac_2$loadings, is.corr=FALSE) 
+  corrplot(fac_3$loadings, is.corr=FALSE) 
+  corrplot(fac_4$loadings, is.corr=FALSE)
+  corrplot(fac_5$loadings, is.corr=FALSE) 
+}
+
+subfactors(select(df, E1:E10))
+```
+
+Extraversion:
+
+* 2 factor - Separates out E8/E9, but not coherent
+* 3 factor - MR1 - talking to people, MR2 - attention, MR3 - talking
+* 4 factor MR1 - life of the party, MR2 - talking to people, MR3 - attention, MR4 - talking
+* 5 factor - Additional factor doesn't seem to add much value
+
+```{r}
+subfactors(select(df, N1:N10))
+```
+
+Neuroticism: 
+
+* 2 factor - MR1 - mood swings, MR2 - not coherent
+* 3 factor - MR1 - mood swings, MR2 - irritability, MR3 - not coherent
+* 4 factor - MR1 - mood swings, MR2 - irritability, MR3 - depression, MR4 - irritability
+* 5 factor - MR1 - mood swings?, MR2 - mood swings?, MR3 - worry/stress, MR4 - depression, MR5 - upset/irritated
+
+```{r}
+subfactors(select(df, A1:A10))
+```
+
+Agreeability:
+
+* 2 factor - MR1 - interest in others, MR2 - empathy
+* 3 factor - MR1 - empathy, MR2 - interest in others, MR3 - interest in tohers?
+* 4 factor - MR1- empathy, MR2 - interest in others, MR3 - make people feel at ease, MR4 - insult people
+* 5 factor - MR1 - interest in people, MR2 - make people feel at ease, MR3 - empathy, MR4 - interest in people, MR5 - insult people
+
+```{r}
+subfactors(select(df, C1:C10))
+```
+
+Conscientiousness:
+
+* 2 factor - MR1 - responsibility?, MR2 - tidy/messy
+* 3 factor - MR1 - tidy/messy, MR2 - responsibility, MR3 - lack of responsiblity
+* 4 factor - MR1 - schedule, MR2 - messy, MR3 - detail-oriented, MR4 - lack of responsibilty
+* 5 factor - MR1 - messy, MR2 - forget messy, MR3 - schedule, MR4 - detail oriented, MR5 - lack of responsibility
+
+```{r}
+subfactors(select(df, O1:O10))
+```
+
+Openness:
+
+* 2 factor - MR1 - imagination, MR2 - vocabulary
+* 3 factor - MR1 - ideas, MR2 - vocabulary, MR3 - abstract ideas
+* 4 factor - MR1 - abstract ideas, MR2 - good ideas?, MR3 - vocabulary, MR4 - imagination 
+* 5 factor - MR1 - ideas, MR2 - vocabulary, MR3 - abstract ideas, MR4 - imagination, MR5 - learning?

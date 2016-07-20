@@ -130,6 +130,7 @@ the RMSEs for when we use all the PCs.
 From looking at the plot, the RMSEs for using the first 4-5 PCs are higher. 
 
 ## History of Trait Theories
+
 Neuroticism is a dimension that ranges from normal, fairly calm to one's tendency to be quite "nervous."
 Extraversion is a dimension that most people have a common-sense understanding of: Shy, quiet vs. out-going, loud.
 
@@ -137,6 +138,7 @@ Extraversion is a dimension that most people have a common-sense understanding o
 lm(Extraversion~PC1+PC2+PC3+PC4, testDf)$coefficients
 lm(Neuroticism~PC1+PC2+PC3+PC4, testDf)$coefficients
 ```
+
 Extraversion is positively correlated with PC1 (energetic) and PC2 (tension, slightly) and negatively correlated with PC3 (calm) and PC4 (tired).
 Neuroticism is negatively correlated with PC1 and PC2 and positively correlated with PC3 and PC4.
 
