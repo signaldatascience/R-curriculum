@@ -85,21 +85,21 @@ Schedule
 
 1. *Introduction to Principal Component Analysis* (1 day)
 2. *Introduction to Factor Analysis* (1 day)
-3. *Clustering* (1 day)
-4. *Collaborative Filtering with Movie Ratings* (1 day)
+3. *Collaborative Filtering with Movie Ratings* (1 day)
+4. *Clustering* (1 day)
 5. *Self-Assessment 3*
 
 Detailed schedule
 -----------------
 
-For (1)--(4), allocate an hour at the morning of each following day to finish up the assignment and compare work against solutions.
+For (1) through (4), allocate an hour at the morning of each following day to finish up the assignment and compare work against solutions.
 
-Lecture on PCA and then assign (1). Lecture on factor analysis around 2 hours after students start (2).
+On D1, lecture on PCA and then assign (1). Students should start (2) in the morning of D2; after lunch, lecture on factor analysis.
 
 Homework
 --------
 
-* **D1:** Shlens (2014), *A Tutorial on Principal Component Analysis* (`readings/misc/shlens-pca-tutorial.pdf`) and Novembre and Stephens (2008), *Interpreting principal component analyses of spatial population genetic variation* (`readings/misc/novembre-2008-pca.pdf`), both optional, with former strongly recommended
+* **D1:** Shlens (2014), *A Tutorial on Principal Component Analysis* (`readings/misc/shlens-pca-tutorial.pdf`) and Novembre and Stephens (2008), *Interpreting principal component analyses of spatial population genetic variation* (`readings/misc/novembre-2008-pca.pdf`); both optional, with former strongly recommended
 * **Weekend:** *Homework: Advanced SQL Practice*
 
 Advanced topics
