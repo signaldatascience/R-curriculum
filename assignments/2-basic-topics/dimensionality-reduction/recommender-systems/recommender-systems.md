@@ -51,9 +51,64 @@ We will proceed to use the method of alternating least squares (ALS) to impute t
 
 [^als]: Hastie *et al.* (2014), [Matrix Completion and Low-Rank SVD via Fast Alternating Least Squares](http://arxiv.org/abs/1410.2596).
 
-Formally, we would like to fill in the missing entries of the matrix $\textbf{X}$, and we do so by (1) expressing the *filled-in matrix* $\textbf{Z}$ as a function of two different matrices $\textbf{A}$ and $\textbf{B}$ and (2) minimizing a function of $\textbf{A}$ and $\textbf{B}$. From the form of the minimization problem we can characterize the minimal solution for each of the two matrices as a function of the other one. As such, this suggests an iterative strategy where we use $\textbf{A}$ to estimate the optimal $\textbf{B}$ and vice versa, repeating until the values stabilize. We do so via $L^2$ regularized ("ridge") regression, controlled by a regularization parameter $\lambda$. This is the method of alternating least squares.
+Theoretical explanation
+-----------------------
 
-The final filled-in ratings matrix can be expressed in terms of a *reduced-rank* [singular value decomposition](https://en.wikipedia.org/wiki/Singular_value_decomposition), where $\textbf{Z} = \textbf{U} \textbf{D} \textbf{V}^\intercal$ and $\textbf{D}$ is a diagonal matrix containing the *singular values* of $\textbf{Z}$. We say that the solution has reduced rank because as we increase $\lambda$, the *rank* of $\textbf{D}$ (*i.e.*, the number of nonzero values on the diagonal of $\textbf{D}$) decreases. In addition, we can think of the *rows* of $\textbf{U}$ and the *columns* of $\textbf{V}^\intercal$ as being "factor scores" for users and movies. As such, we can (loosely) think of ALS as simultaneously performing imputation *and* dimensionality reduction on the ratings matrix.
+The operation of [matrix multiplication](https://en.wikipedia.org/wiki/Matrix_multiplication) allows us to *multiply* two matrices and form a new matrix. It is illustrated below:
+
+![An illustration of matrix multiplication, where $x_{12} = a_{11} b_{12} + a_{12} b_{22}$ and $x_{33} = a_{31} b_{13} + a_{32} b_{23}$.](matmult.png){width=50%}
+
+Note specifically the dimensions of the resulting matrix. If $\textbf{A}$ is an $n \times p$ matrix and $\textbf{B}$ is a $p \times m$ matrix, the product $\textbf{A}\textbf{B}$ will have dimensions $n \times m$.[^dim] What if $p$ is very small compared to $n$ and $m$? We will be able to obtain quite a large matrix just from multiplying together two very narrow matrices (one tall and one wide).
+
+[^dim]: If the matrices all have real values, we can write $\textbf{A} \in \mathbb{R}^{n \times p}$, etc.
+
+In general, we find that it is possible to [decompose](https://en.wikipedia.org/wiki/Matrix_decomposition) large matrices into the *product* of multiple *smaller* matrices. This is the key behind the method of alternating least squares.
+
+The task at hand is that given a matrix $\textbf{X}$ with many missing entries, we want to construct a filled-in matrix $\textbf{Z}$ which *minimizes some loss function*. It turns out that we can write a *regularized* cost function which makes this task straightforward, and also that we can write the solution which minimizes the cost function as
+
+$$\textbf{Z} = \textbf{X} + \textbf{A} \textbf{B}^\intercal$$
+
+for an appropriate choice of a quite tall matrix $\textbf{A}$ and a wide matrix $\textbf{B}$.[^ab] The operator $\intercal$ denotes the *transpose* of a matrix, where we flip a $n \times m$ matrix so that its dimensions become $m \times n$.
+
+[^ab]: We take the sum only of (1) non-missing entries of $\textbf{X}$ and (2) entries in $\textbf{A} \textbf{B}^\intercal$ which do *not* correspond to non-missing entries of $\textbf{X}. Essentially the matrix $\textbf{A} \textbf{B}^\intercal$ is only used to estimate missing values in $\textbf{X}$.
+
+Our task is now simply to estimate the matrices $\textbf{A}$ and $\textbf{B}$. It turns out that the optimal estimates are related via the equation[^ridge]
+
+[^ridge]: Notice that this is actually equivalent to using [Tihkonov regularized linear regression](https://en.wikipedia.org/wiki/Tikhonov_regularization) with Tikhonov matrix $\Gamma = \left( \lambda \textbf{I} \right)^{1/2}$. This is also called *ridge regression* and reduces to $L^2$ regularization in the case where $\Gamma$ is the identity matrix. We are essentially running a linear regression of each column of $\textbf{Z}$ with the columns of $\textbf{B}$ as predictors and getting $\textbf{A}$ back as the coefficient estimates.
+
+$$\textbf{A} = \left( \textbf{B}^\intercal \textbf{B} + \lambda \textbf{I} \right)^{-1} \textbf{B}^\intercal \textbf{Z}$$
+
+and vice versa with $\textbf{A}$ and $\textbf{B}$ switched, where $\lambda$ is the regularization parameter and $\textbf{I}$ is the identity matrix.[^iden]
+
+[^iden]: The identity matrix is a matrix with 1 on the diagonal and 0 elsewhere. Multiplying it by a different matrix leaves that matrix unchanged.
+
+As such, this suggests a strategy where we start by initializing $\textbf{A}$ and $\textbf{B}$ and then repeatedly use one to estimate the other and vice versa (hence the name of *alternating* least squares), updating the filled-in matrix $\textbf{Z}$ at each step via $\textbf{Z} = \textbf{X} + \textbf{A} \textbf{B}^\intercal$ and iterating until convergence.
+
+At the end, the algorithm returns the imputed matrix $\textbf{Z}$, but in a *special form*. It turns out that the product $\textbf{A} \textbf{B}^\intercal$ is related to $\textbf{Z}$ in yet another fashion. Taking a step back: in general, *all* matrices can be decomposed into a product of the form $\textbf{U} \textbf{D} \textbf{V}^\intercal$ called the [singular value decomposition](https://en.wikipedia.org/wiki/Singular_value_decomposition) (SVD) where $\textbf{D}$ is a diagonal matrix (the only nonzero entries are on the diagonal).
+
+We can compute a *modified* version of the SVD for $\textbf{Z}$ called the *soft-thresholded SVD* formed by taking $\textbf{D}$ and shrinking the entries on its diagonal toward 0 by a value $\lambda$, setting an entry $d_i$ equal to 0 if $\lvert d_i \rvert \le \lambda$. With the modified matrix $\textbf{D}^\star$, we can compute the soft-thresholded SVD as $S_\lambda(\textbf{Z}) = \textbf{U} \textbf{D}^\star \textbf{V}^\intercal$.
+
+The connection between $\textbf{A} \textbf{B}^\intercal$ and $\textbf{Z}$ lies in the somewhat remarkable relation
+
+$$\textbf{A} \textbf{B}^\intercal = S_\lambda(\textbf{Z})$$
+
+for the optimal estimates of $\textbf{A}$ and $\textbf{B}$.
+
+As such, `softImpute()` will return three matrices as `$u`, `$d`, and `$v`, corresponding to the matrices in $S_\lambda(\textbf{Z}) = \textbf{U} \textbf{D}^\star \textbf{V}^\intercal$. From those, we also know $\textbf{A} \textbf{B}^\intercal$, and so the imputed matrix $\textbf{Z} = \textbf{X} + \textbf{A} \textbf{B}^\intercal$ can be calculated.
+
+Connection to dimensionality reduction
+--------------------------------------
+
+From the definition of the soft-thresholded SVD, we see that increasing $\lambda$ sufficiently high will make every value in $\textbf{D}^\star$ equal to 0. The immediate takeaway is that by calculating the maximum value in $\textbf{D}$, we can establish an *upper bound* for the values of $\lambda$ to test. However, there is a more important and subtler interpretation of the results of ALS in connection with the regularization parameter.
+
+It is likely that the optimal value of $\lambda$ is one which drives some *but not all* of the values in $\textbf{D}$ to 0. An $n \times n$ diagonal matrix with $k$ nonzero values on the diagonal can simply be rewritten as a $k \times k$ diagonal matrix without any nonzero values on the diagonal. Our decomposition then becomes the product of (1) $\textbf{U}$ (a tall $n \times f$ matrix), (2) $\textbf{D}^\star$ (a small square $f \times f$ matrix), and (3) $\textbf{V}^\intercal$ (a wide $f \times m$ matrix) for some small value of $f$. We can interpret this as being able to *summarize* both users and movies in terms of $f$ factors, with the columns of $\textbf{U}$ being factor scores for users and the rows of $\textbf{V}^\intercal$ being factor scores for movies.
+
+If a user has factor scores $\textbf{u} = (u_1, u_2, \ldots, u_f)$, a movie has factor scores $\textbf{m} = (m_1, m_2, \ldots, m_f)$, and the diagonal entries of $\textbf{D}^\star$ are given by $\{d_1, d_2, \ldots, d_f\}$, then the predicted rating for that user--movie pair is simply given a [weighted inner product](https://en.wikipedia.org/wiki/Inner_product_space) of $\textbf{u}$ and $\textbf{m}$ equal to
+
+$$\langle \textbf{u}, \textbf{m} \rangle = \textbf{u}^\intercal \textbf{D} \textbf{m} = \sum_{i=1}^f u_i d_i m_i.$$
+
+Computational work
+------------------
 
 First, we need to calculate what values of the regularization parameter $\lambda$ we'll search over.
 
