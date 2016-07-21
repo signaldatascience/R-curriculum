@@ -83,7 +83,7 @@ The `hclust()` function in R provides access to hierarchical clustering. Specifi
 Getting started
 ---------------
 
-To explore hierarchical clustering, we will be using the `protein` dataset, available as `protein.txt` with documentation in `protein_README.txt` or online at [CMU's Data and Story Library](http://lib.stat.cmu.edu/DASL/Datafiles/Protein.html). The dataset contains information about protein consumption (divided into various subgroups) for 25 European countries in 1973. Our goal will be to cluster countries together based on their protein consumption.
+To explore hierarchical clustering, we will be using the `protein-consumption` dataset, available in `protein.txt` with documentation in `protein_README.txt` or online at [CMU's Data and Story Library](http://lib.stat.cmu.edu/DASL/Datafiles/Protein.html). The dataset contains information about protein consumption (divided into various subgroups) for 25 European countries in 1973. Our goal will be to cluster countries together based on their protein consumption.
 
 * Load the data into R with `readr`'s `read_delim()`. When specifying the delimiter, you can represent a tab character as `"\t"`.
 
