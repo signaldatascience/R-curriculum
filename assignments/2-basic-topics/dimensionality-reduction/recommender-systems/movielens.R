@@ -34,25 +34,28 @@ train = rbind(train, grid1, grid2)
 # Create sparse matrix of users and movie ratings
 mat = Incomplete(train$uid, train$mid, train$rating)
 
-scaled = biScale(mat, maxit = 5, trace = TRUE)
-lambdas = seq(0.51, 0.6, 0.01)
-lambdas
-grid = expand.grid(rank = ranks, lam = lambdas)
-grid$rmse = 0
-lambdas = seq(0.5, 1., 0.05)
-ranks = seq(2, 20, 2)
-lam0  = lambda0(scaled)
-lamseq=exp(seq(from=log(lam0),to=log(1),length=20))
-warm = NULL
-fits = as.list(lamseq)
-rank.max = 30
+# RMSE utility function
 rmse = function(arr1, arr2){
   sqrt(mean((arr1 - arr2)^2))
 }
 
+#lambdas = seq(0.51, 0.6, 0.01)
+#lambdas = seq(0.5, 1., 0.05)
+
+scaled = biScale(mat, maxit = 5, trace = TRUE)
+lam0 = lambda0(scaled)
+lamseq=exp(seq(from=log(lam0),to=log(1),length=20))
+
+
+grid = expand.grid(rank = ranks, lam = lambdas)
+grid$rmse = 0
+ranks = seq(2, 20, 2)
+warm = NULL
+fits = as.list(lamseq)
+rank.max = 30
 
 for( i in seq(along=lamseq)){
-  fiti=softImpute(scaled,lambda=lamseq[i],rank=rank.max,warm=warm, maxit = 1000)
+  fiti=softImpute(scaled,lambda=lamseq[i],rank.max=rank.max,warm.start=warm, maxit = 1000)
   ranks[i]=sum(round(fiti$d,4)>0)
   warm=fiti
   fits[[i]]=fiti
