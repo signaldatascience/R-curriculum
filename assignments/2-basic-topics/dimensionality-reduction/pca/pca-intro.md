@@ -1,6 +1,6 @@
 ---
 title: Principal Component Analysis
-author: Signal Data Science	
+author: Signal Data Science
 ---
 
 In this assignment, you'll be learning about [principal component analysis](https://en.wikipedia.org/wiki/Principal_component_analysis) (PCA), a method of linear dimensionality reduction. PCA is a method which *rotates* a dataset such that the new ordered set of coordinate axes maximally captures the variation of the data.

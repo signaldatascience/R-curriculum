@@ -1,4 +1,4 @@
----
+	---
 title: Distributed Computing with AWS
 ---
 
@@ -176,6 +176,8 @@ Using RStudio in a web browser
 ==============================
 
 We can run RStudio in a web browser! For your `t2.micro` instance, it won't be much better than your own computer, but we'll go through the process so you know how to set it up for yourself.
+
+* Install R (in the `R` package).
 
 * Run the two commands [RStudio Server installation instructions](https://www.rstudio.com/products/rstudio/download-server/) for "RedHat/CentOS 6 and 7" under the "64bit" section.
 

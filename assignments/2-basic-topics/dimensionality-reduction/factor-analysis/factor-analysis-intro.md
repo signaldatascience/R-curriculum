@@ -70,7 +70,7 @@ Next, we'll explore the case where our observed variables are generated from *mu
 
 * Run principal component analysis on the 50 variables. Compute the correlations between the first 3 principal components and the variables `X`, `Y`, and `Z`.
 
-* Now do factor analysis with `k=3` and `rotate="varimax"` and compute the correlations between the modeled factors and the true factors.
+* Now do factor analysis with `nfactors=3` and `rotate="varimax"` and compute the correlations between the modeled factors and the true factors.
 
 Part 3: Oblique factor analysis:
 --------------------------------
@@ -79,7 +79,7 @@ In the last factor analysis exercise, we were using a type of factor analysis wh
 
 * Set `W = 0.5*X + Y`.
 
-* Examine the correlation between `W` and `Y`.
+* Examine the correlation between `W` and `X`.
 
 * Use `noisyProxies()` to generate 10 indicators associated with `X` and 4 noisy indicators associated with W, with correlations 0.8 in both cases.
 

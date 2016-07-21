@@ -81,3 +81,8 @@ https://biginterview.com/blog/2014/09/sql-interview-questions.html INSERT INTO =
 https://dwbi.org/database/sql/72-top-20-sql-interview-questions-with-answers
 http://stackoverflow.com/questions/6942904/senior-sql-developer-interview-questions-too-difficult
 http://www.bullraider.com/database/sql-tutorial/7-complex-queries-in-sql
+
+Numerical optimization
+- 
+- R: 1st principal component with optim()
+- R: implementing K-means as instance of EM algorithm
