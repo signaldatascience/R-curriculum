@@ -71,12 +71,12 @@ Let $\textbf{x} = (x_1, x_2, \ldots, x_n)$ and $\textbf{y} = (y_1, y_2, \ldots, 
 
 Using a different distance function will lead to different clusters, and some clustering methods can only be used with a specific distance function.
 
-The `dist()` function in R will compute a matrix of distances between data points in an input matrix corresponding to a variety of different methods: `"euclidean"` (the $L^2$-induced distance), `"manhattan"` (the $L^1$-induced distance), and others.
+`dist()` in R will compute a matrix of distances between data points in an input matrix corresponding to a variety of different methods: `"euclidean"` (the $L^2$-induced distance), `"manhattan"` (the $L^1$-induced distance), and others.
 
 Agglomerative hierarchical clustering
 =====================================
 
-The `hclust()` function in R provides access to hierarchical clustering. Specifically, it provides access to algorithms for *agglomerative* hierarchical clustering, in which each data point initially represents a single cluster and the clusters are successively merged based on how close they are to each other.[^agglom]
+`hclust()` in R provides access to hierarchical clustering. Specifically, it provides access to algorithms for *agglomerative* hierarchical clustering, in which each data point initially represents a single cluster and the clusters are successively merged based on how close they are to each other.[^agglom]
 
 [^agglom]: This is in contrast to *divisive* hierarchical clustering, in which objects initially all belong to a single cluster which is then successively divided into sub-clusters.
 
@@ -98,13 +98,13 @@ Since our data is continuous, we'll default to using the *Euclidean distance*.
 Using `hclust()`
 ----------------
 
-Hierarchical clustering is provided as part of R's base packages in the `hclust()` function. We would like to use [Ward's method](https://en.wikipedia.org/wiki/Ward%27s_method) for agglomerative hierarchical clustering, which minimizes the total within-cluster variance.
+Hierarchical clustering is provided as part of R's base packages in `hclust()`. We would like to use [Ward's method](https://en.wikipedia.org/wiki/Ward%27s_method) for agglomerative hierarchical clustering, which minimizes the total within-cluster variance.
 
-* The `hclust()` function accepts a `method` parameter for selection of the specific agglomeration method. Read the "Details" section of the `hclust()` documentation to find out the difference between passing in `"ward"`, `"ward.D"`, and `"ward.D2"` for `method`.
+* `hclust()` accepts a `method` parameter for selection of the specific agglomeration method. Read the "Details" section of the `hclust()` documentation to find out the difference between passing in `"ward"`, `"ward.D"`, and `"ward.D2"` for `method`.
 
 * Use the correct input for the `method` parameter to run agglomerative hierarchical clustering with Ward's method on the scaled data. (You'll want to assign the output of `hclust()` to an variable.) Run `plot()` on the output and interpret the results.
 
-If you want to consider a specific number of clusters, the `cutree(hclust(...), k)` function can be used to select the right cutoff point for the dendrogram so that you end up with `k` clusters.
+If you want to consider a specific number of clusters, `cutree(hclust(...), k)` can be used to select the right cutoff point for the dendrogram so that you end up with `k` clusters.
 
 * Load the following convenience function into R:
 
@@ -166,7 +166,7 @@ Although only two iterations of the process are shown, the positions of the clus
 Using `kmeans()`
 ----------------
 
-$K$-means clustering is implemented in R as the `kmeans()` function.
+$K$-means clustering is implemented in R as `kmeans()`.
 
 * Run $K$-means clustering on the scaled protein consumption data, setting $K = 5$. Interpret the results and compare them to the results of hierarchical clustering. Experiment with different values of $K$ and note the differences.
 
@@ -221,7 +221,7 @@ First, we'll model our data as a mixture of normal distributions, also called "G
 
 	* The first plot is of the *log-likelihood*, which the function tries to iteratively maximize by adjusting the parameters of the Gaussian distributions. The second plot is a plot of the Gaussian density components of the mixture model overlaid on top of a histogram of the data.
 
-The `normalmixEM()` function uses an [expectation-maximization (EM) algorithm](https://en.wikipedia.org/wiki/Expectation%E2%80%93maximization_algorithm) to maximize the log-likelihood. The details of the EM algorithm are beyond the scope of this lesson, but there are two important points to know:
+`normalmixEM()` uses an [expectation-maximization (EM) algorithm](https://en.wikipedia.org/wiki/Expectation%E2%80%93maximization_algorithm) to maximize the log-likelihood. The details of the EM algorithm are beyond the scope of this lesson, but there are two important points to know:
 
 1. The EM algorithm may not converge. Whether or not it will converge can be highly dependent on what problem it's applied to.
 
@@ -235,7 +235,7 @@ For this reason, it's important to visualize your data to get a sense of what in
 
 However, the assumption that our data points are all generated from normal distributions is quite strong. We might in some cases like to relax our assumptions; indeed, we can fit our data to a mixture of *semiparametric* models, where we assume only that the underlying distributions have densities symmetric around their center with the allowed complexity controlled by their bandwidth.
 
-We can use the `spEMsymloc()` function in `mixtools` to do semiparametric fitting of univariate symmetric density functions to our mixture.[^leb] The `mu0` parameter controls the *number* of models to fit and the `bw` parameter controls the *bandwidth* of our method.
+We can use `spEMsymloc()` in `mixtools` to do semiparametric fitting of univariate symmetric density functions to our mixture.[^leb] The `mu0` parameter controls the *number* of models to fit and the `bw` parameter controls the *bandwidth* of our method.
 
 [^leb]: To be precise, the specific stochastic algorithm implemented in `spEMsymloc()` is from Bordes *et al.* (2007) and relies on the additional assumption that the densities are absolutely continuous with respect to Lebesgue measure.
 
@@ -254,7 +254,7 @@ For fitting a mixture of *multivariate normal distributions* specifically, the [
 
 * Load the `mclust` library and run `Mclust()` on the scaled Old Faithful data. (Pay attention to the capitalization!) Run `plot()` on the output, view the associated graphs, and interpret the results.
 
-The `Mclust()` function (1) chose initialization parameters for fitting a mixture of Gaussians by using hierarchical clustering, (2) ran the EM algorithm to fit a mixture of $k$ Gaussians for $1 \le k \le 9$, calculates a metric of model quality for each one called the BIC,[^bic] and (4) picks the best value of $k$! Very convenient.
+`Mclust()` (1) chose initialization parameters for fitting a mixture of Gaussians by using hierarchical clustering, (2) ran the EM algorithm to fit a mixture of $k$ Gaussians for $1 \le k \le 9$, calculates a metric of model quality for each one called the BIC,[^bic] and (4) picks the best value of $k$! Very convenient.
 
 [^bic]: Bayesian Information Criterion of Schwarz (1978).
 
