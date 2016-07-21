@@ -34,46 +34,61 @@ train = rbind(train, grid1, grid2)
 # Create sparse matrix of users and movie ratings
 mat = Incomplete(train$uid, train$mid, train$rating)
 
+#lambdas = seq(0.51, 0.6, 0.01)
+#lambdas = seq(0.5, 1., 0.05)
+
+##################################################
+
+# Scale data
+scaled = biScale(mat, maxit = 5, trace = TRUE)
+
+# Get lambda values
+lam0 = lambda0(scaled)
+lamseq=exp(seq(from=log(lam0),to=log(1),length=20))
+
+# Initialize results data frame and fits vector
+results = data.frame(lambda=lamseq)
+results$rank = 0
+results$rmse = 0
+fits = vector("list", 20)
+
 # RMSE utility function
 rmse = function(arr1, arr2){
   sqrt(mean((arr1 - arr2)^2))
 }
 
-#lambdas = seq(0.51, 0.6, 0.01)
-#lambdas = seq(0.5, 1., 0.05)
-
-scaled = biScale(mat, maxit = 5, trace = TRUE)
-lam0 = lambda0(scaled)
-lamseq=exp(seq(from=log(lam0),to=log(1),length=20))
-
-
-grid = expand.grid(rank = ranks, lam = lambdas)
-grid$rmse = 0
-ranks = seq(2, 20, 2)
+# Alternating least squares for different lambda values
 warm = NULL
-fits = as.list(lamseq)
-rank.max = 30
-
-for( i in seq(along=lamseq)){
-  fiti=softImpute(scaled,lambda=lamseq[i],rank.max=rank.max,warm.start=warm, maxit = 1000)
-  ranks[i]=sum(round(fiti$d,4)>0)
-  warm=fiti
-  fits[[i]]=fiti
+for(i in seq_along(lamseq)){
+  fiti=softImpute(scaled, lambda=lamseq[i], rank.max=50, warm.start=warm, maxit = 1000)
+  fit_rank = sum(round(fiti$d,4)>0)
+  warm = fiti
+  fits[[i]] = fiti
   imps = impute(fiti, test$uid, test$mid )
   r = rmse(test$rating, imps)
 
-  cat(i,"lambda=",lamseq[i],"rank.max",rank.max,"rank",ranks[i],"rmse", r, "\n")
+  results[i, 2:3] = c(fit_rank, r)
+  cat(i,"lambda=",lamseq[i],"rank",fit_rank,"rmse", r, "\n")
 }
 
-movies = read.csv("~/Downloads/ml-1m/movies.dat", sep = ":", header = F)
+# Store best result
+best_svd = fits[[match(min(results$rmse), results$rmse)]]
+
+##################################################
+
+# Load the movies dataset
+movies = read.csv("C:/Users/Andrew/Downloads/ml-1m/movies.dat", sep = ":", header = F)
 head(movies)
 movies = movies[c(1,3,5)]
 head(movies)
 colnames(movies) = c("mid", "title", "genres")
+
+# Make indicator variables for each movie's membership in listed genres
 l = lapply(movies$genres, function(pip){
   strsplit(as.character(pip), split = "\\|")[[1]]
 })
 head(l)
+unique(unlist(l))
 us = unique(unlist(l))[1:18]
 movies[unique(unlist(l))[1:18]] = 0
 for(i in 1:length(l)){
@@ -85,8 +100,8 @@ for(i in 1:length(l)){
   }
 }
 movies = movies[movies$mid %in% unique(train$mid),]
-dim(fit$v)
-movies = data.frame(movies, fit$v[as.numeric(as.character(movies$mid)),])
+dim(best_svd$v)
+movies = data.frame(movies, best_svd$v[as.numeric(as.character(movies$mid)),])
 head(movies)
 cor(movies$Drama, select(movies, X1:X30))
 sels = select(movies, Drama, X1:X30)
