@@ -7,6 +7,8 @@ colnames(df)[1:3] = c("uid", "mid", "rating")
 # Load libraries
 library(softImpute)
 library(dplyr)
+library(DAAG)
+library(pROC)
 
 # Compute unique user and movie IDs, mean rating
 uids = unique(df$uid)
@@ -99,18 +101,24 @@ for(i in 1:length(l)){
     }
   }
 }
+
+
+# Restrict to movies which were listed in the ratings dataset
 movies = movies[movies$mid %in% unique(train$mid),]
+
+# Add "factor columns" to movies data frame
 dim(best_svd$v)
 movies = data.frame(movies, best_svd$v[as.numeric(as.character(movies$mid)),])
+
+# Look at Drama genre with logistic regression against factors
 head(movies)
 cor(movies$Drama, select(movies, X1:X30))
 sels = select(movies, Drama, X1:X30)
 m = glm(Drama ~ . , sels, family = "binomial")
 summary(m)
-library(DAAG)
 cvs = CVbinary(m)
-library(pROC)
 roc(sels$Drama,cvs$cvhat)
+
 pdf = data.frame(movies[c("title", "Drama")], cvs$cvhat)
 head(pdf)
 head(pdf[order(pdf["cvs.cvhat"]),], 40)

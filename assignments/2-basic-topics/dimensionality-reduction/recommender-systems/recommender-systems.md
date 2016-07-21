@@ -53,7 +53,7 @@ We will proceed to use the method of alternating least squares (ALS) to impute t
 
 Formally, we would like to fill in the missing entries of the matrix $\textbf{X}$, and we do so by (1) expressing the *filled-in matrix* $\textbf{Z}$ as a function of two different matrices $\textbf{A}$ and $\textbf{B}$ and (2) minimizing a function of $\textbf{A}$ and $\textbf{B}$. From the form of the minimization problem we can characterize the minimal solution for each of the two matrices as a function of the other one. As such, this suggests an iterative strategy where we use $\textbf{A}$ to estimate the optimal $\textbf{B}$ and vice versa, repeating until the values stabilize. We do so via $L^2$ regularized ("ridge") regression, controlled by a regularization parameter $\lambda$. This is the method of alternating least squares.
 
-The final filled-in ratings matrix can be expressed in terms of a *reduced-rank* [singular value decomposition](https://en.wikipedia.org/wiki/Singular_value_decomposition), where $\textbf{Z} = \textbf{U} \textbf{D} $\textbf{V}^\intercal$ and $\textbf{D}$ is a diagonal matrix containing the *singular values* of $\textbf{Z}$. We say that the solution has reduced rank because as we increase $\lambda$, the number of nonzero values on the diagonal of $\textbf{D}$ decreases. As such, we can (loosely) think of ALS as finding a lower-dimensional representation of the filled-in matrix of ratings.
+The final filled-in ratings matrix can be expressed in terms of a *reduced-rank* [singular value decomposition](https://en.wikipedia.org/wiki/Singular_value_decomposition), where $\textbf{Z} = \textbf{U} \textbf{D} \textbf{V}^\intercal$ and $\textbf{D}$ is a diagonal matrix containing the *singular values* of $\textbf{Z}$. We say that the solution has reduced rank because as we increase $\lambda$, the *rank* of $\textbf{D}$ (*i.e.*, the number of nonzero values on the diagonal of $\textbf{D}$) decreases. In addition, we can think of the *rows* of $\textbf{U}$ and the *columns* of $\textbf{V}^\intercal$ as being "factor scores" for users and movies. As such, we can (loosely) think of ALS as simultaneously performing imputation *and* dimensionality reduction on the ratings matrix.
 
 First, we need to calculate what values of the regularization parameter $\lambda$ we'll search over.
 
@@ -69,11 +69,11 @@ First, we need to calculate what values of the regularization parameter $\lambda
 
 * Write a RMSE function to calculate the [root-mean-square error](https://en.wikipedia.org/wiki/Root-mean-square_deviation) between two vectors.
 
-Now, we're ready to try using ALS for varying values of $\lambda$.
+Now, we're ready to try using ALS for varying values of $\lambda$. In order to reduce computation time and find a low-dimensionality solution, we will constrain the rank of $\textbf{D}$ to a maximum of 30.
 
 * Iterate through the calculated values of $\lambda$. For each one, do the following:
 
-	* Use `softImpute()` with the current value of $\lambda$ to calculate a singular value decomposition of the scaled sparse ratings matrix. Set `rank.max=30` to restrict solutions to a maximum rank of 30 and `maxit=1000` to control the number of iterations allowed. For all but the first iteration, pass into the `warm.start` parameter the *previous* result of calling `softImpute()`. Read the documentation for details on what these parameters mean.
+	* Use `softImpute()` with the current value of $\lambda$ to calculate a singular value decomposition of the scaled sparse ratings matrix. Set `rank.max=30` to restrict solutions to a maximum rank of 30 and `maxit=1000` to control the number of iterations allowed. For all but the first call of `softImpute()`, pass into the `warm.start` parameter the *previous* result of calling `softImpute()` to reduce the required computation time via a "warm start". Read the documentation for details on what these parameters mean.
 
 	* Calculate the *rank* of the solution by (1) rounding the values of the diagonal matrix of the resulting decomposition, stored in `$d`, to 4 decimal places and (2) calculating the number of nonzero entries.
 
@@ -92,3 +92,24 @@ Now that we have a way to fill in missing entries, we can do some further analys
 
 * As with the ratings dataset, load the movies dataset (in `movies.dat`) and name the columns appropriately.
 
+* How many different genres are listed in the dataset? (You may find [`strsplit()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/strsplit.html) helpful.) There is a single genre which is obviously the result of a data entry error. Add an appropriately named column for all of the *other* genres to serve as an *indicator variable* for whether each movie belongs to a particular genre. Fill in the entries of those columns accordingly.
+
+* Restrict to movies which were listed at least once in the ratings dataset.
+
+Examine the dimensions of the calculated matrix $\textbf{V}$ in `best_svd`. The $i$th row corresponds to the movie with ID $i$ and the $j$th column represents the "scores" for the $j$th "movies factor" (loosely speaking). We're interested in analyzing these "factors". To that end:
+
+* Subset `best_svd$v` with the movie IDs in the movie dataset which remain after removing rows corresponding to movies not present in the ratings dataset. (Pay attention to the data type of the movie ID column, which is loaded in as a *factor*.) After doing so, add the factor columns to the data frame created from the movies dataset.[^subs]
+
+[^subs]: Something like `movies = cbind(movies, best_svd$v[as.numeric(as.character(movies$mid)),])`. (Be sure to understand what this code does!)
+
+Next, we'll illustrate one possible path of analysis by looking at the "Drama" genre.
+
+* Examine the correlation between the indicator variable for movies tagged as dramas and the factor columns. Using [`glm()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/glm.html), run an unregularized logistic regression of the indicator variables against the factors.
+
+* Use `CVbinary()` (from the [`DAAG`](https://cran.r-project.org/web/packages/DAAG/index.html) package) on the resulting model to generate *cross-validated probability predictions* for the whole dataset (stored in `CVbinary(fit)$cvhat`). Plot the associated ROC curve and calculate the AUC.
+
+We now have a *probability* for each movie corresponding to how likely it is to be a drama or not given the information stored in the factor variables.
+
+* Create a new data frame with (1) movie titles, (2) the indicator variable for dramas, and (3) the predicted probability for each movie. Order the rows from largest to smallest probability. Which movies are the most likely to be dramas and which movies are the most unlikely to be dramas? How well does this correspond with the actual genre labeling in the dataset?
+
+* Repeat the above analysis for 3 other genres of your choice.
