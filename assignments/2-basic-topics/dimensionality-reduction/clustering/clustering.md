@@ -125,7 +125,7 @@ This method is implemented in the [`pvclust` package](http://www.sigmath.es.osak
 
 * Use `pvclust()` on your data with `method.hclust="ward.D2"` and `method.dist="euclidean"`. Note that `pvclust()` clusters columns and not rows, so you'll need to transpose your scaled matrix of data.
 
-* Call `pvrect()` on the output of `pvclust()`, which defaults to highlighting the largest clusters with $p$-value $\le 0.05$. Read the [What is `pvclust`? section](http://www.sigmath.es.osaka-u.ac.jp/shimo-lab/prog/pvclust/) on its official page (and scroll down for some examples of nice dendrograms).
+* Call both `plot()` and `pvrect()` on the output of `pvclust()`, which defaults to highlighting the largest clusters with $p$-value $\le 0.05$ . (The call to `plot()` displays the dendrogram and the call to `pvrect()` overlays rectangles highlighting clusters.) Read the [What is `pvclust`? section](http://www.sigmath.es.osaka-u.ac.jp/shimo-lab/prog/pvclust/) on its official page (and scroll down for some examples of nice dendrograms).
 
 * Experiment with different values of the `alpha` parameter in `pvrect()`. (There are some graphical bugs with `pvrect()`; you may need to plot something else in between every call of `pvrect()` with different parameters.) Interpret the results.
 

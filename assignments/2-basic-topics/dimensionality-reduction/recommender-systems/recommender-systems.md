@@ -68,9 +68,11 @@ The task at hand is that given a matrix $\textbf{X}$ with many missing entries, 
 
 $$\textbf{Z} = \textbf{X} + \textbf{A} \textbf{B}^\intercal$$
 
-for an appropriate choice of a quite tall matrix $\textbf{A}$ and a wide matrix $\textbf{B}$.[^ab] The operator $\intercal$ denotes the *transpose* of a matrix, where we flip a $n \times m$ matrix so that its dimensions become $m \times n$. Instead of *directly* imputing $\textbf{X}$, we are essentially considering the "optimal" filled-in matrix $\textbf{Z}$ and imputing the *differences* between $\textbf{X}$ and $\textbf{Z}$ (given by $\textbf{A} \textbf{B}^\intercal$).
+for an appropriate choice of a quite tall matrix $\textbf{A}$ and a wide matrix $\textbf{B}$.[^ab] The operator $\intercal$ denotes the *transpose* of a matrix, where we flip a $n \times m$ matrix so that its dimensions become $m \times n$. Instead of *directly* imputing $\textbf{X}$, we are essentially considering the "optimal" filled-in matrix $\textbf{Z}$ and *implicitly* imputing the *differences* between $\textbf{X}$ and $\textbf{Z}$ (given by $\textbf{A} \textbf{B}^\intercal$) by trying to minimize the differences between the filled-in entries of $\textbf{X}$ and the corresponding entries of $\textbf{A} \textbf{B}^\intercal$ (along with a regularization term).[^deg]
 
-[^ab]: We take the sum only of (1) non-missing entries of $\textbf{X}$ and (2) entries in $\textbf{A} \textbf{B}^\intercal$ which do *not* correspond to non-missing entries of $\textbf{X}. Essentially the matrix $\textbf{A} \textbf{B}^\intercal$ is only used to estimate missing values in $\textbf{X}$.
+[^ab]: We take the sum only of (1) non-missing entries of $\textbf{X}$ and (2) entries in $\textbf{A} \textbf{B}^\intercal$ which do *not* correspond to non-missing entries of $\textbf{X}$. Essentially the matrix $\textbf{A} \textbf{B}^\intercal$ is only used to estimate missing values in $\textbf{X}$.
+
+[^deg]: One can ask the question of why we don't simply estimate $\textbf{A} = \textbf{B} = \textbf{0}$ in the degenerate case of $\textbf{X}$ having *no* missing values. If that were the result, it would contradict the fact that $\textbf{A} \textbf{B}^\intercal$ should be equal to the soft-thresholded SVD of $\textbf{Z}$ (presented later in this exposition)! The reason is that although $\textbf{A} \textbf{B}^\intercal$ contains information about the *differences* between $\textbf{X}$ and $\textbf{Z}$, we don't try to impute those differences directly (in which case we might stop immediately if there were no differences whatsoever) but rather *infer* them by trying to bring $\textbf{X}$ and $\textbf{A} \textbf{B}^\intercal$ closer together.
 
 Our task is now simply to estimate the matrices $\textbf{A}$ and $\textbf{B}$. It turns out that the optimal estimates are related via the equation[^ridge]
 
@@ -86,7 +88,9 @@ As such, this suggests a strategy where we start by initializing $\textbf{A}$ an
 
 At the end, the algorithm returns the imputed matrix $\textbf{Z}$, but in a *special form*. It turns out that the product $\textbf{A} \textbf{B}^\intercal$ is related to $\textbf{Z}$ in yet another fashion. Taking a step back: in general, *all* matrices can be decomposed into a product of the form $\textbf{U} \textbf{D} \textbf{V}^\intercal$ called the [singular value decomposition](https://en.wikipedia.org/wiki/Singular_value_decomposition) (SVD) where $\textbf{D}$ is a diagonal matrix (the only nonzero entries are on the diagonal).
 
-We can compute a *modified* version of the SVD for $\textbf{Z}$ called the *soft-thresholded SVD* formed by taking $\textbf{D}$ and shrinking the entries on its diagonal toward 0 by a value $\lambda$, setting an entry $d_i$ equal to 0 if $\lvert d_i \rvert \le \lambda$. With the modified matrix $\textbf{D}^\star$, we can compute the soft-thresholded SVD as $S_\lambda(\textbf{Z}) = \textbf{U} \textbf{D}^\star \textbf{V}^\intercal$.
+We can compute a *modified* version of the SVD for $\textbf{Z}$ called the *soft-thresholded SVD* formed by taking $\textbf{D}$ and shrinking the entries on its diagonal toward 0 by a value $\lambda$, setting an entry $d_i$ equal to 0 if $\lvert d_i \rvert \le \lambda$.[^soft] With the modified matrix $\textbf{D}^\star$, we can compute the soft-thresholded SVD as $S_\lambda(\textbf{Z}) = \textbf{U} \textbf{D}^\star \textbf{V}^\intercal$.
+
+[^soft]: Soft-thresholding is basically solving a $L^1$ regularized cost function very rapidly by looking at the first derivative. Refer back to the theoretical discussion in *Linear Regression: Regularization* for some related details.
 
 The connection between $\textbf{A} \textbf{B}^\intercal$ and $\textbf{Z}$ lies in the somewhat remarkable relation
 
