@@ -51,13 +51,15 @@ We will proceed to use the method of alternating least squares (ALS) to impute t
 
 [^als]: Hastie *et al.* (2014), [Matrix Completion and Low-Rank SVD via Fast Alternating Least Squares](http://arxiv.org/abs/1410.2596).
 
-TODO: ADD THEORETICAL EXPOSITION OF ALS
+Formally, we would like to fill in the missing entries of the matrix $\textbf{X}$, and we do so by (1) expressing the *filled-in matrix* $\textbf{Z}$ as a function of two different matrices $\textbf{A}$ and $\textbf{B}$ and (2) minimizing a function of $\textbf{A}$ and $\textbf{B}$. From the form of the minimization problem we can characterize the minimal solution for each of the two matrices as a function of the other one. As such, this suggests an iterative strategy where we use $\textbf{A}$ to estimate the optimal $\textbf{B}$ and vice versa, repeating until the values stabilize. We do so via $L^2$ regularized ("ridge") regression, controlled by a regularization parameter $\lambda$. This is the method of alternating least squares.
+
+The final filled-in ratings matrix can be expressed in terms of a *reduced-rank* [singular value decomposition](https://en.wikipedia.org/wiki/Singular_value_decomposition), where $\textbf{Z} = \textbf{U} \textbf{D} $\textbf{V}^\intercal$ and $\textbf{D}$ is a diagonal matrix containing the *singular values* of $\textbf{Z}$. We say that the solution has reduced rank because as we increase $\lambda$, the number of nonzero values on the diagonal of $\textbf{D}$ decreases. As such, we can (loosely) think of ALS as finding a lower-dimensional representation of the filled-in matrix of ratings.
 
 First, we need to calculate what values of the regularization parameter $\lambda$ we'll search over.
 
 * Use `biScale()` to scale both the columns and the rows of the sparse ratings matrix with `maxit=5` and `trace=TRUE`. You can ignore the resulting warnings (increasing the number of maximum iterations doesn't improve the outcome, which you can verify for yourself).
 
-`lambda0()` will calculate the lowest value of the regularization parameter which gives a zero solution, *i.e.*, the largest value of $\lambda$ which we should test (because any more regularization drives all estimates to zero).
+`lambda0()` will calculate the lowest value of the regularization parameter which gives a zero matrix for $\textbf{D}$, *i.e.*, drives all rating estimates to zero.
 
 * Use `lambda0()` on the scaled matrix and store the returned value as `lam0`.
 
@@ -67,7 +69,7 @@ First, we need to calculate what values of the regularization parameter $\lambda
 
 * Write a RMSE function to calculate the [root-mean-square error](https://en.wikipedia.org/wiki/Root-mean-square_deviation) between two vectors.
 
-Now, we're ready to try ALS for varying values of $\lambda$. The following code will take some time to run.
+Now, we're ready to try using ALS for varying values of $\lambda$.
 
 * Iterate through the calculated values of $\lambda$. For each one, do the following:
 
@@ -75,7 +77,7 @@ Now, we're ready to try ALS for varying values of $\lambda$. The following code 
 
 	* Calculate the *rank* of the solution by (1) rounding the values of the diagonal matrix of the resulting decomposition, stored in `$d`, to 4 decimal places and (2) calculating the number of nonzero entries.
 
-	* Use `impute()` to fill in the entries of the test set with the calculated matrix decomposition decomposition. Calculate the corresponding RMSE between the predicted ratings and the actual ratings.
+	* Use `impute()` to fill in the entries of the test set with the calculated matrix decomposition. (Pass in to `impute()` the calculated matrix decomposition as well as the user and movie ID columns in the test set.) Calculate the corresponding RMSE between the predicted ratings and the actual ratings.
 
 	* Store the calculated decomposition in the previously initialized list `fits` as well as the calculated rank and RMSE in the corresponding row of the `results` data frame. Print out the results of the current iteration as well.
 
@@ -86,7 +88,7 @@ You should find that the minimum RMSE is attained at approximately $\lambda \app
 Analyzing the results
 =====================
 
-TODO: WRITE SOMETHING HERE
+Now that we have a way to fill in missing entries, we can do some further analysis of the MovieLens dataset.
 
 * As with the ratings dataset, load the movies dataset (in `movies.dat`) and name the columns appropriately.
 
