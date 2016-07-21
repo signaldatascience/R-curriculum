@@ -75,8 +75,8 @@ Additional notes
 
 Students will find (1) challenging, particularly with regard to how they should fill in a predictions vector for n-fold cross-validation.
 
-Unsupervised learning
-=====================
+Dimensionality reduction
+========================
 
 **Time:** 1 week.
 
@@ -85,7 +85,7 @@ Schedule
 
 1. *Principal Component Analysis* (1 day)
 2. *Factor Analysis* (1 day)
-3. *Collaborative Filtering with Movie Ratings* (1 day)
+3. *Recommender Systems* (1 day)
 4. *Clustering* (1 day)
 5. *Self-Assessment 3*
 

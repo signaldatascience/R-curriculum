@@ -32,7 +32,7 @@ We'll first need to spend some time preparing the data before we can use any col
 
 * Compute the sets of [`unique()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/unique.html) user IDs and movie IDs as well as the mean rating given. Compare the numbers of different user IDs and movie IDs with the *maximum* user ID and movie ID.
 
-* Set the seed for consistency. Generate a training set using 80% of the data and a test set with the remaining 20%.
+* Set the seed to **3** for consistency. Generate a training set using 80% of the data and a test set with the remaining 20%.
 
 Because there are some movies which are rated by very few people and some people who rated very few movies, we have two corresponding problems: (1) there will be movies in the test set which were not rated by any people in the training set and (2) there will be people in the test set who do not show up in the training set. As such, we need to add to the training set a fake movie rated by every user and a fake user who rated every movie.
 
