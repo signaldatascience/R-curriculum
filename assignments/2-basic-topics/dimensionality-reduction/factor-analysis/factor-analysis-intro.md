@@ -27,7 +27,11 @@ For reproducibility, place `set.seed(1)` at the top of your code.
 Part 1: PCA
 -----------
 
+We'll explore the differences between PCA and factor analysis by seeing how they perform when our data are *really* generated from a set of unobserved, latent variables. In particular, we'll create three vectors `X`, `Y`, and `Z` from which we'll derive the rest of our data.
+
 * Make a `factors` data frame with 100 observations of 3 normally distributed variables `X`, `Y`, and `Z`. Each variable should be drawn from the standard normal distribution. The "factors" here have nothing to do with factors in R, instead representing latent variables.
+
+Next, we need a function to help us create `derived` variables. The simplest latent variable model is one where each observed variable is noisily generated from just a single latent variable, so we'll write a function that helps us create such observed variables, *i.e.*, "proxies" to the factors.
 
 * Write a function `noisyProxies(feature, k, correlation)` that takes a vector `feature` and returns a data frame with `k` noisy proxies to the feature which are (1) correlated with the feature at the level of `correlation` and (2) differ from the feature by a normally distributed error term.[^corr] Your function should not include `feature` itself in the data frame.
 
@@ -48,9 +52,13 @@ $$V_i = a_1F_1 + a_2F_2 + \cdots + a_kF_k + \mathrm{error}_i$$
 
 where each $a_j$ is a constant that depends on $V_i$. Goodness of fit is measured by taking the correlation matrix of the errors $\mathrm{error}_i$ and measuring how far it is from being the identity matrix with 1s down the diagonal (as usual) and 0s off of the diagonal. 
 
-The key difference from PCA here is that the factors are supposed to explain as much of the correlations *between* the variables as possible, rather than as much *total* variance as possible: we don't try to pick up on the variables to the extent that they're not correlated with one another.
+Again, the key difference from PCA here is that the factors are supposed to explain as much of the correlations *between* the variables as possible, rather than as much *total* variance as possible: we don't try to pick up on the variables to the extent that they're not correlated with one another.
 
-* Run factor analysis on `noisies` with `nfactors=2` and `rotate="varimax"`, and compare the correlations between the modeled factors and the true factors `X` and `Y`. The modeled factors should be closer to the true factors than the principal components were.
+* Run factor analysis on `noisies` with `nfactors=2` and `rotate="varimax"`. Compare the correlations between the extracted factors and the true factors `X` and `Y`.
+
+You should see that the extracted factors are closer to the true factors than the principal components.
+
+Next, we'll explore the case where our observed variables are generated from *multiple* latent variables, specifically the case where each observed variable is a random linear combination of `X`, `Y`, and `Z` along with some noise.
 
 * Generate 50 variables, each given by
 	
@@ -67,7 +75,7 @@ The key difference from PCA here is that the factors are supposed to explain as 
 Part 3: Oblique factor analysis:
 --------------------------------
 
-In the last factor analysis exercise, we were using a type of factor analysis which is analogous to PCA in assuming the factors to be orthogonal (perpendicular). Here we explore oblique factor analysis, which allows for correlated factors.
+In the last factor analysis exercise, we were using a type of factor analysis which is analogous to PCA in assuming the factors to be orthogonal (perpendicular) by specifying `rotate="varimax"`. This was appropriate for our analysis because `X`, `Y`, and `Z` were all uncorrelated with each other. Here, we explore *oblique* factor analysis which allows for correlated factors by considering a new latent variable which *is* correlated with both `X` and `Y`.
 
 * Set `W = 0.5*X + Y`.
 
@@ -75,7 +83,7 @@ In the last factor analysis exercise, we were using a type of factor analysis wh
 
 * Use `noisyProxies()` to generate 10 indicators associated with `X` and 4 noisy indicators associated with W, with correlations 0.8 in both cases.
 
-* Plot the associated correlation matrix. 
+* Plot the associated correlation matrix.
 
 * Setting `nfactors=2` in both cases, compare the results of using `fa()` with `rotate="varimax"` and `rotate = "oblimin"` by looking at the correlations of the results with the noisy indicators and with the true factors.
 
