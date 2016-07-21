@@ -306,10 +306,3 @@ More recent advances in cluster analysis have resulted in a number of powerful t
 [^comp]: See [Computational experience on four algorithms for the hard clustering problem](http://www.sciencedirect.com/science/article/pii/0167865595001220) by Al-Sultana and Khan (1996) and [An empirical study of the performance of heuristic methods for clustering](https://books.google.com/books?id=sbajBQAAQBAJ&pg=PA425&lpg=PA425&dq=An+empirical+study+of+the+performance+of+heuristic+methods+for+clustering&source=bl&ots=KdJOXmA4vq&sig=pC4LrYF81va7KsZeC29RQp_g894&hl=en&sa=X&ved=0ahUKEwjynPj07PbMAhVJ42MKHbaTBQ4Q6AEIIzAB#v=onepage&q=An%20empirical%20study%20of%20the%20performance%20of%20heuristic%20methods%20for%20clustering&f=false) by Mishra and Raghavan (1994).
 
 The $K$-means algorithm (and the [Kohonen net](https://en.wikipedia.org/wiki/Self-organizing_map), an analogue of $K$-means with artificial neural networks) will converge to a locally optimal solution but is sensitive to initialization parameters; as such, for large data sets, it may be feasible to use a more complex algorithm to obtain an initial partitioning and to then pass that partitioning into the $K$-means algorithm for a starting position.
-
-Clustering on the LessWrong dataset
-===================================
-
-Try out the clustering methods on the LessWrong dataset. Note your findings!
-
-You may want to do factor analysis on subsets of the questions and then cluster based on those factor scores instead of clustering based on the original question responses themselves.
