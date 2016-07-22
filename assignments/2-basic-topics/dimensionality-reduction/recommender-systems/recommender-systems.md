@@ -187,11 +187,17 @@ We can perform the exact same calculation for the factor scores we have calculat
 
 * Using the factor scores calculated for genres and careers, the matrix decomposition in `best_svd`, and the above equation, fill in each entry of the `pairings` with the corresponding predicted rating.
 
-* Plot the values of `pairings` with `corrplot()`. Interpret the results.
+* Plot the values of `pairings` with `corrplot()` and interpret the results.
 
-We can adjust for both (1) the differences in the mean ratings given to each genre and (2) the differences in the mean ratings given out by members of each career by scaling both the columns and the rows of `pairings`.
+We can adjust for both (1) the differences in the mean ratings given to each genre and (2) the differences in the mean ratings given out by members of each career by scaling both the columns and the rows of `pairings` to have mean 0.
 
-* Use `biScale()` to scale the columns and rows of `pairings`. Plot the scaled matrix with `corrplot()`. Interpret both the scaled values themselves and the *differences* between the scaled and unscaled values. How does this analysis differ from just calculating summary statistics from the unimputed data, *i.e.*, looking at the average rating given by members of career $X$ to movies in genre $Y$ for each $(X, Y)$ pair?
+* Use `biScale()` to scale the columns and rows of `pairings`, setting `row.scale=FALSE` and `col.scale=FALSE` to preserve the original variances. Plot the scaled matrix with `corrplot()` and interpret the results as well as differences with the previous plot.
+
+It's also possible to scale the variances of the rows and columns as well to make the output of `corrplot()` prettier, although in doing so we throw away yet even more information about how genres or careers differ from one another.
+
+* Use `biScale()` to scale the rows and columns of `pairings` to have mean 0 and variance 1. Plot the scaled matrix with `corrplot()` and interpret the results as well as differences with previous plots.
+
+* How does this method of analysis differ from just calculating summary statistics from the unimputed data, *i.e.*, looking at the average rating given by members of career $X$ to movies in genre $Y$ for each $(X, Y)$ pair?
 
 Estimating each career's specific movie preferences
 ---------------------------------------------------
