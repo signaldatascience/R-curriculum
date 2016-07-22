@@ -7,7 +7,7 @@ author: Signal Data Science
 \newcommand{\Bhat}{\boldsymbol{\hat{\textbf{B}}}}
 \newcommand{\Mhat}{\boldsymbol{\hat{\textbf{M}}}}
 
-This document is an exposition of the method of alternating least squares (ALS) for imputation of missing values. The reference is Hastie *et al.* (2014), [Matrix Completion and Low-Rank SVD via Fast Alternating Least Squares](http://arxiv.org/abs/1410.2596); ALS is implemented in the `softImpute` package in R.[^vig]
+This document is an exposition of the method of alternating least squares (ALS) for imputation of missing values. The reference is Hastie *et al.* (2014), [Matrix Completion and Low-Rank SVD via Fast Alternating Least Squares](http://arxiv.org/abs/1410.2596); ALS is implemented in the `softImpute` package in R.[^vig] We develop the theory in the context of filling in the missing values of a sparse matrix $\textbf{X}$ representing different users' ratings of various movies, with users as rows and movies as columns.
 
 [^vig]: The details presented here are also covered in the [`softImpute` vignette](https://cran.r-project.org/web/packages/softImpute/vignettes/softImpute.html).
 
