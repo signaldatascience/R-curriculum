@@ -103,9 +103,9 @@ On D1, lecture on PCA and then assign (1). Students should start (2) in the morn
 Homework
 --------
 
-* **D1:** Shlens (2014), *A Tutorial on Principal Component Analysis* (`readings/misc/shlens-pca-tutorial.pdf`) and Novembre and Stephens (2008), *Interpreting principal component analyses of spatial population genetic variation* (`readings/misc/novembre-2008-pca.pdf`); both optional, with former strongly recommended
-* **D2:** 
-* **D3:** *Notes on Alternating Least Squares*
+* **D1:** Shlens (2014), *A Tutorial on Principal Component Analysis* (`readings/misc/shlens-pca-tutorial.pdf`) and Novembre and Stephens (2008), *Interpreting principal component analyses of spatial population genetic variation* (`readings/misc/novembre-2008-pca.pdf`) -- both optional, with former strongly recommended
+* **D2:** Abdi, *Factor Rotations in Factor Analyses* (`readings/misc/abdi-factor-rotations.pdf`)
+* **D3:** Sections 2--3 of Steinbach *et al.* (2004), *The Challenges of Clustering High Dimensional Data* (`readings/misc/high-dim-clustering.pdf`) and *Notes on Alternating Least Squares*, the latter being preparation for D4
 * **D4:** 
 * **D5:** 
 * **Weekend:** *Homework: Advanced SQL Practice*
