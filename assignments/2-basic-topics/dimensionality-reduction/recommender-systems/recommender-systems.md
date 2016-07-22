@@ -66,11 +66,11 @@ In general, we find that it is possible to [decompose](https://en.wikipedia.org/
 
 The task at hand is that given a matrix $\textbf{X}$ with many missing entries, we want to construct a filled-in matrix $\textbf{Z}$ which *minimizes some loss function*. It turns out that we can write a *regularized* cost function which makes this task straightforward, and also that we can write the solution which minimizes the cost function as
 
-$$\textbf{Z} = \textbf{X} + \textbf{A} \textbf{B}^\intercal$$
+$$\textbf{Z} \approx \textbf{A} \textbf{B}^\intercal$$
 
-for an appropriate choice of a quite tall matrix $\textbf{A}$ and a wide matrix $\textbf{B}$.[^ab] The operator $\intercal$ denotes the *transpose* of a matrix, where we flip a $n \times m$ matrix so that its dimensions become $m \times n$. Instead of *directly* imputing $\textbf{X}$, we are essentially considering the "optimal" filled-in matrix $\textbf{Z}$ and *implicitly* imputing the *differences* between $\textbf{X}$ and $\textbf{Z}$ (given by $\textbf{A} \textbf{B}^\intercal$) by trying to minimize the differences between the filled-in entries of $\textbf{X}$ and the corresponding entries of $\textbf{A} \textbf{B}^\intercal$ (along with a regularization term).[^deg]
+for an appropriate choice of a tall matrix $\textbf{A}$ and a wide matrix $\textbf{B}$, where the operator $\intercal$ denotes the *transpose* of a matrix, (flipping a $n \times m$ matrix so that its dimensions become $m \times n$). Note that for the existing data in $\textbf{X}$ we simply use that rating data directly instead of the approximated values in $\textbf{A} \textbf{B}^\intercal$ (hence the $\approx$ symbol).
 
-[^ab]: We take the sum only of (1) non-missing entries of $\textbf{X}$ and (2) entries in $\textbf{A} \textbf{B}^\intercal$ which do *not* correspond to non-missing entries of $\textbf{X}$. Essentially the matrix $\textbf{A} \textbf{B}^\intercal$ is only used to estimate missing values in $\textbf{X}$.
+we are essentially considering the "optimal" filled-in matrix $\textbf{Z}$ and *implicitly* imputing the *differences* between $\textbf{X}$ and $\textbf{Z}$. That is, we are trying to minimize the differences between the filled-in entries of $\textbf{X}$ and the corresponding entries of $\textbf{A} \textbf{B}^\intercal$ (along with a regularization term).[^deg] Our cost function only considers the matrix entries which correspond to existing data, but the fashion in which we estimate $\textbf{A}$ and $\textbf{B}$ operate on the entirety of each matrix, so we take the entries $\textbf{A} \textbf{B}^\intercal$ corresponding to positions of missing data to be our rating estimates.
 
 [^deg]: One can ask the question of why we don't simply estimate $\textbf{A} = \textbf{B} = \textbf{0}$ in the degenerate case of $\textbf{X}$ having *no* missing values. If that were the result, it would contradict the fact that $\textbf{A} \textbf{B}^\intercal$ should be equal to the soft-thresholded SVD of $\textbf{Z}$ (presented later in this exposition)! The reason is that although $\textbf{A} \textbf{B}^\intercal$ contains information about the *differences* between $\textbf{X}$ and $\textbf{Z}$, we don't try to impute those differences directly (in which case we might stop immediately if there were no differences whatsoever) but rather *infer* them by trying to bring $\textbf{X}$ and $\textbf{A} \textbf{B}^\intercal$ closer together.
 
@@ -98,7 +98,7 @@ $$\textbf{A} \textbf{B}^\intercal = S_\lambda(\textbf{Z})$$
 
 for the optimal estimates of $\textbf{A}$ and $\textbf{B}$.
 
-As such, `softImpute()` will return three matrices as `$u`, `$d`, and `$v`, corresponding to the matrices in $S_\lambda(\textbf{Z}) = \textbf{U} \textbf{D}^\star \textbf{V}^\intercal$. From those, we also know $\textbf{A} \textbf{B}^\intercal$, and so the imputed matrix $\textbf{Z} = \textbf{X} + \textbf{A} \textbf{B}^\intercal$ can be calculated.
+As such, `softImpute()` will return three matrices as `$u`, `$d`, and `$v`, corresponding to the matrices in $S_\lambda(\textbf{Z}) = \textbf{U} \textbf{D}^\star \textbf{V}^\intercal$. From those, we also know $\textbf{A} \textbf{B}^\intercal$, and so the imputed matrix $\textbf{Z} \approx \textbf{A} \textbf{B}^\intercal$ can be calculated.
 
 Connection to dimensionality reduction
 --------------------------------------
