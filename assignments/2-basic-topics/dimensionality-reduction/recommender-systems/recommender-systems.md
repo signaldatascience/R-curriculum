@@ -60,7 +60,7 @@ First, we need to prepare our data and calculate what values of the regularizati
 
 * Use `lambda0()` on the scaled matrix and store the returned value as `lam0`.
 
-* Create a vector of $\lambda$ values to test by (1) generating a vector of 20 *decreasing* and uniformly spaced numbers from `log(lam0)` to 1 and then (2) calculating $e^x$ with each of the previously generated values as $x$. You should obtain a vector where entries 1 and 5 are respectively 103.21 and 38.89.
+* Create a vector of $\lambda$ values to test by (1) generating a vector of 20 *decreasing* and uniformly spaced numbers from `log(lam0)` to `log(1)` and then (2) calculating $e^x$ with each of the previously generated values as $x$. You should obtain a vector where entries 1 and 5 are respectively 103.21 and 38.89.
 
 Finally, we need to initialize some data structures to store the results of our computations.
 
@@ -75,7 +75,7 @@ We are now ready to impute the training data with alternating least squares. For
 
 	* Use `softImpute()` with the current value of $\lambda$ on the scaled sparse ratings matrix. In order to reduce computation time and find a low-dimensionality solution, constrain the rank of $\textbf{D}$ to a maximum of 30. `rank.max=30` to restrict solutions to a maximum rank of 30 and `maxit=1000` to control the number of iterations allowed. For all but the first call of `softImpute()`, pass into the `warm.start` parameter the *previous* result of calling `softImpute()` to reduce the required computation time via a "warm start". Read the documentation for details on what these parameters mean.
 
-	* Calculate the *rank* of the solution by (1) rounding the values of the diagonal matrix $\textbf{D}$ (stored in `$d`) to 4 decimal places and (2) calculating the number of nonzero entries in the rounded matrix.
+	* Calculate the *rank* of the solution by (1) rounding the values of the diagonal matrix $\textbf{D}$ (stored in `$d`) to 4 decimal places and (2) determining the number of nonzero entries in the rounded matrix.
 
 	* Use `impute()` to calculate ratings for the test set using the results of `softImpute()`. (Pass in to `impute()` the calculated matrix decomposition as well as the user and movie ID columns in the test set.) Calculate the corresponding RMSE between the predicted ratings and the actual ratings.
 
