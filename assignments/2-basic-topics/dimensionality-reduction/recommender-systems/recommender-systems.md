@@ -51,8 +51,8 @@ We will proceed to use the method of alternating least squares (ALS) to impute t
 
 [^als]: Hastie *et al.* (2014), [Matrix Completion and Low-Rank SVD via Fast Alternating Least Squares](http://arxiv.org/abs/1410.2596).
 
-Theoretical explanation
------------------------
+Theoretical explanation of ALS
+------------------------------
 
 The operation of [matrix multiplication](https://en.wikipedia.org/wiki/Matrix_multiplication) allows us to *multiply* two matrices and form a new matrix. It is illustrated below:
 
@@ -70,25 +70,30 @@ $$\textbf{Z} \approx \textbf{A} \textbf{B}^\intercal$$
 
 for an appropriate choice of a tall matrix $\textbf{A}$ and a wide matrix $\textbf{B}^\intercal$, where the operator $\intercal$ denotes the *transpose* of a matrix, (flipping a $n \times m$ matrix so that its dimensions become $m \times n$). Note that for the existing data in $\textbf{X}$ we simply use that rating data directly in the filled-in matrix $\textbf{Z}$ instead of the approximated values in $\textbf{A} \textbf{B}^\intercal$ (hence the $\approx$ symbol).
 
-We are essentially considering the "optimal" filled-in matrix $\textbf{Z}$ and *implicitly* imputing the *differences* between $\textbf{X}$ and $\textbf{Z}$. That is, we are trying to minimize the differences between the filled-in entries of $\textbf{X}$ and the corresponding entries of $\textbf{A} \textbf{B}^\intercal$ (along with a regularization term).[^deg] Our cost function only considers the matrix entries which correspond to existing data, but the fashion in which we estimate $\textbf{A}$ and $\textbf{B}$ operate on the entirety of each matrix, so we take the entries $\textbf{A} \textbf{B}^\intercal$ corresponding to positions of missing data to be our rating estimates.
+Our imputation method is an indirect one in the sense that instead of *directly* trying to calculate missing values from existing ones, we ask what the optimal filled-in matrix $\textbf{Z}$ would look like and infer the missing values based on an analysis of $\textbf{Z}$. Precisely, we are trying to minimize the differences between the filled-in entries of $\textbf{X}$ and the corresponding entries of $\textbf{A} \textbf{B}^\intercal$ along with a regularization term controlled by a parameter $\lambda$.[^deg] Our cost function only considers the matrix entries which correspond to existing data (the filled-in values of $\textbf{X}$), but the fashion in which we estimate $\textbf{A}$ and $\textbf{B}$ operate on the *entirety* of each matrix. Consequently, the entries of $\textbf{A} \textbf{B}^\intercal$ corresponding to *missing* data in $\textbf{X}$ serve as rating estimates.[^zero]
 
 [^deg]: One can ask the question of why we don't simply estimate $\textbf{A} = \textbf{B} = \textbf{0}$ in the degenerate case of $\textbf{X}$ having *no* missing values. If that were the result, it would contradict the fact that $\textbf{A} \textbf{B}^\intercal$ should be equal to the soft-thresholded SVD of $\textbf{Z}$ (presented later in this exposition)! The reason is that although $\textbf{A} \textbf{B}^\intercal$ contains information about the *differences* between $\textbf{X}$ and $\textbf{Z}$, we don't try to impute those differences directly (in which case we might stop immediately if there were no differences whatsoever) but rather *infer* them by trying to bring $\textbf{X}$ and $\textbf{A} \textbf{B}^\intercal$ closer together.
 
-Our task is now simply to estimate the matrices $\textbf{A}$ and $\textbf{B}$. It turns out that the optimal estimates are related via the equation[^ridge]
+Our task is now simply to estimate the matrices $\textbf{A}$ and $\textbf{B}$. It turns out that the optimal estimates are related via the equation
 
-[^ridge]: Notice that this is actually equivalent to using [Tihkonov regularized linear regression](https://en.wikipedia.org/wiki/Tikhonov_regularization) with Tikhonov matrix $\Gamma = \left( \lambda \textbf{I} \right)^{1/2}$. This is also called *ridge regression* and reduces to $L^2$ regularization in the case where $\Gamma$ is the identity matrix. We are essentially running a linear regression of each column of $\textbf{Z}$ with the columns of $\textbf{B}$ as predictors and getting $\textbf{A}$ back as the coefficient estimates.
+$$\textbf{B} = \left( \textbf{A}^\intercal \textbf{A} + \lambda \textbf{I} \right)^{-1} \textbf{A}^\intercal \textbf{Z}$$
 
-$$\textbf{A} = \left( \textbf{B}^\intercal \textbf{B} + \lambda \textbf{I} \right)^{-1} \textbf{B}^\intercal \textbf{Z}$$
-
-and vice versa with $\textbf{A}$ and $\textbf{B}$ switched, where $\lambda$ is the regularization parameter and $\textbf{I}$ is the identity matrix.[^iden]
+and vice versa with $\textbf{A}$ and $\textbf{B}$ switched, where $\lambda$ is the regularization parameter and $\textbf{I}$ is the identity matrix.[^iden] For mathematical reasons, this is actually equivalent to running a regularized[^ridge] least squares regression for each column of $\textbf{Z}$ with the columns of $\textbf{A}$ as predictors, with the coefficient estimates corresponding to entries of $\textbf{B}$![^check]
 
 [^iden]: The identity matrix is a matrix with 1 on the diagonal and 0 elsewhere. Multiplying it by a different matrix leaves that matrix unchanged.
 
-As such, this suggests a strategy where we start by initializing $\textbf{A}$ and $\textbf{B}$ and then repeatedly use one to estimate the other and vice versa (hence the name of *alternating* least squares), updating the filled-in matrix $\textbf{Z}$ at each step via $\textbf{Z} = \textbf{X} + \textbf{A} \textbf{B}^\intercal$ and iterating until convergence.
+[^ridge]: Specifically, this is equivalent to using [Tihkonov regularized linear regression](https://en.wikipedia.org/wiki/Tikhonov_regularization) with Tikhonov matrix $\Gamma = \left( \lambda \textbf{I} \right)^{1/2}$. This is also called *ridge regression* and reduces to $L^2$ regularization in the case where $\Gamma$ is the identity matrix. We are essentially running a linear regression of each column of $\textbf{Z}$ with the columns of $\textbf{A}$ as predictors and getting $\textbf{B}$ back as the coefficient estimates.
 
-At the end, the algorithm returns the imputed matrix $\textbf{Z}$, but in a *special form*. It turns out that the product $\textbf{A} \textbf{B}^\intercal$ is related to $\textbf{Z}$ in yet another fashion. Taking a step back: in general, *all* matrices can be decomposed into a product of the form $\textbf{U} \textbf{D} \textbf{V}^\intercal$ called the [singular value decomposition](https://en.wikipedia.org/wiki/Singular_value_decomposition) (SVD) where $\textbf{D}$ is a diagonal matrix (the only nonzero entries are on the diagonal).
+[^check]: We can check that the dimensions match up. Suppose that $\textbf{Z} \in \mathbb{R}^{n \times p}$, $\textbf{A} \in \mathbb{R}^{n \times f}$, and $\textbf{B} \in \mathbb{R}^{p \times f}$. Then the columns of $\textbf{Z}$ and $\textbf{A}$ all have $n$ entries each, and so we can run $p$ different linear regressions (one for each column of $\textbf{Z}$) and get out $f$ coefficient estimates each time. We therefore estimate $p \times f$ different coefficient estimates in total, which matches up with the dimensions of $\textbf{B}$.
 
-We can compute a *modified* version of the SVD for $\textbf{Z}$ called the *soft-thresholded SVD* formed by taking $\textbf{D}$ and shrinking the entries on its diagonal toward 0 by a value $\lambda$, setting an entry $d_i$ equal to 0 if $\lvert d_i \rvert \le \lambda$.[^soft] With the modified matrix $\textbf{D}^\star$, we can compute the soft-thresholded SVD as $S_\lambda(\textbf{Z}) = \textbf{U} \textbf{D}^\star \textbf{V}^\intercal$.
+As such, this suggests a strategy for estimating $\textbf{A}$ and $\textbf{B}. First, we start by initializing $\textbf{A}$. Next, we use the regression strategy described above both to generate predictions for $\textbf{Z}$ and to generate an estimate for $\textbf{B}$. Next, we can switch the places of $\textbf{A}$ and $\textbf{B}$ in the above equation and use the same process to update $\textbf{Z}$ and $\textbf{A}$. We repeat in this *alternating* fashion until we achieve convergence.
+
+The output of `softImpute()`
+----------------------------
+
+After running the algorithm described above, `softImpute()` returns the imputed matrix $\textbf{Z}$ in a *special form*. It turns out that the product $\textbf{A} \textbf{B}^\intercal$ is related to $\textbf{Z}$ in yet another fashion!
+
+Taking a step back: in general, *all* matrices can be decomposed into a product of the form $\textbf{U} \textbf{D} \textbf{V}^\intercal$ called the [singular value decomposition](https://en.wikipedia.org/wiki/Singular_value_decomposition) (SVD) where $\textbf{D}$ is a diagonal matrix (the only nonzero entries are on the diagonal). We can compute a *modified* version of the SVD for $\textbf{Z}$ called the *soft-thresholded SVD* formed by taking $\textbf{D}$ and shrinking the entries on its diagonal toward 0 by a value $\lambda$, setting an entry $d_i$ equal to 0 if $\lvert d_i \rvert \le \lambda$.[^soft] With the modified matrix $\textbf{D}^\star$, we can compute the soft-thresholded SVD as $S_\lambda(\textbf{Z}) = \textbf{U} \textbf{D}^\star \textbf{V}^\intercal$.
 
 [^soft]: Soft-thresholding is basically solving a $L^1$ regularized cost function very rapidly by looking at the first derivative. Refer back to the theoretical discussion in *Linear Regression: Regularization* for some related details. We can therefore think of soft-thresholded SVD as a sort of $L^1$ regularized version of SVD.
 
@@ -98,7 +103,7 @@ $$\textbf{A} \textbf{B}^\intercal = S_\lambda(\textbf{Z})$$
 
 for the optimal estimates of $\textbf{A}$ and $\textbf{B}$.
 
-As such, `softImpute()` will return three matrices as `$u`, `$d`, and `$v`, corresponding to the matrices in $S_\lambda(\textbf{Z}) = \textbf{U} \textbf{D}^\star \textbf{V}^\intercal$. From those, we also know $\textbf{A} \textbf{B}^\intercal$, and so the imputed matrix $\textbf{Z} \approx \textbf{A} \textbf{B}^\intercal$ can be calculated.
+Indeed, `softImpute()` will return three matrices as `$u`, `$d`, and `$v`, corresponding to the matrices in $S_\lambda(\textbf{Z}) = \textbf{U} \textbf{D}^\star \textbf{V}^\intercal$. From those, we also know $\textbf{A} \textbf{B}^\intercal$, and so the imputed matrix $\textbf{Z} \approx \textbf{A} \textbf{B}^\intercal$ can be calculated.
 
 Connection to dimensionality reduction
 --------------------------------------
