@@ -1,5 +1,6 @@
 ---
 title: Clustering
+author: Signal Data Science
 ---
 
 Clustering is an important technique in data science. It is similar to dimensionality reduction in two main ways:
