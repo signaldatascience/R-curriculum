@@ -44,15 +44,15 @@ Next, we need to create a matrix containing rating data for (user, movie) pairs.
 
 * Use `Incomplete()` to generate a sparse ratings matrix with one row per user ID and one column per movie ID. The resulting matrix should have **6041 rows** and **3953 columns**.
 
-Alternating least squares imputation
-====================================
+Alternating least squares
+=========================
 
 We will proceed to use the method of alternating least squares (ALS) to impute the missing entries in the sparse ratings matrix.[^als]
 
 [^als]: Hastie *et al.* (2014), [Matrix Completion and Low-Rank SVD via Fast Alternating Least Squares](http://arxiv.org/abs/1410.2596).
 
-Theoretical explanation of ALS
-------------------------------
+Theoretical explanation
+-----------------------
 
 The operation of [matrix multiplication](https://en.wikipedia.org/wiki/Matrix_multiplication) allows us to *multiply* two matrices and form a new matrix. It is illustrated below:
 
@@ -116,8 +116,8 @@ If a user has factor scores $\textbf{u} = (u_1, u_2, \ldots, u_f)$, a movie has 
 
 $$\langle \textbf{u}, \textbf{m} \rangle = \textbf{u}^\intercal \textbf{D} \textbf{m} = \sum_{i=1}^f u_i d_i m_i.$$
 
-Computational work
-------------------
+Using ALS on movie ratings
+--------------------------
 
 We're finally ready to actually apply ALS-based imputation to our ratings. First, we need to prepare our data and calculate what values of the regularization parameter $\lambda$ we'll search over.
 
