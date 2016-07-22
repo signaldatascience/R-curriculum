@@ -9,8 +9,8 @@ Some of the following problems are adapted from UC Berkeley curricular material.
 
 As you work, write down your queries in a separate file.
 
-Thanksgiving dinner
-===================
+Celebrating the winter holidays
+===============================
 
 The following problems refer to `thanksgiving.sql` in the `sql-homework` datasets folder.
 
@@ -87,3 +87,6 @@ You want to make a shopping list by choosing the item that is the best deal poss
 Finally, you'll be shopping online, of course. Bandwidth costs money, so you'd like to minimize the amount of Internet traffic used. The MiBs column in the `stores` table contains information about how much bandwidth is consumed by accessing each store's online page to buy a *single* type of item.
 
 * Write a query to calculate the total amount of bandwidth needed to get everything in your shopping list.
+
+Happy Holidays!
+

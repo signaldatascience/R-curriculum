@@ -77,7 +77,7 @@ We are now ready to impute the training data with alternating least squares. For
 
 	* Calculate the *rank* of the solution by (1) rounding the values of the diagonal matrix $\textbf{D}$ (stored in `$d`) to 4 decimal places and (2) determining the number of nonzero entries in the rounded matrix.
 
-	* Use `impute()` to calculate ratings for the test set using the results of `softImpute()`. (Pass in to `impute()` the calculated matrix decomposition as well as the user and movie ID columns in the test set.) Calculate the corresponding RMSE between the predicted ratings and the actual ratings.
+	* Use `impute()` to calculate ratings for the test set using the results of `softImpute()`. (Pass in to `impute()` the calculated matrix decomposition as well as the user and movie ID columns in the test set.) You don't need to worry about unscaling the predictions: `impute()` will automatically take care of that. Calculate the corresponding RMSE between the predicted ratings and the actual ratings.
 
 	* Store the output of `softImpute()` in the previously initialized list `fits` as well as the calculated rank and RMSE in the corresponding row of the `results` data frame. Print out the results of the current iteration as well.
 
