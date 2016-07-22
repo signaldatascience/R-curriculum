@@ -226,7 +226,7 @@ Finally, we're ready to see which movies writers especially love or hate!
 
 [^writ]: The top movie for writers should be "North by Northwest" and the bottom movie should be "Toy Story".
 
-* Calculate the mean of `writer_ratings`. What is the interpretation of this value?
+* Calculate the mean of `writer_ratings`. What is the interpretation of this value (both its magnitude and its sign)?
 
 We can, of course, repeat the above process for other careers.
 
