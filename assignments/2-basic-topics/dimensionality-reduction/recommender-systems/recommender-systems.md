@@ -68,7 +68,7 @@ The task at hand is that given a matrix $\textbf{X}$ with many missing entries, 
 
 $$\textbf{Z} \approx \textbf{A} \textbf{B}^\intercal$$
 
-for an appropriate choice of a tall matrix $\textbf{A}$ and a wide matrix $\textbf{B}$, where the operator $\intercal$ denotes the *transpose* of a matrix, (flipping a $n \times m$ matrix so that its dimensions become $m \times n$). Note that for the existing data in $\textbf{X}$ we simply use that rating data directly instead of the approximated values in $\textbf{A} \textbf{B}^\intercal$ (hence the $\approx$ symbol).
+for an appropriate choice of a tall matrix $\textbf{A}$ and a wide matrix $\textbf{B}^\intercal$, where the operator $\intercal$ denotes the *transpose* of a matrix, (flipping a $n \times m$ matrix so that its dimensions become $m \times n$). Note that for the existing data in $\textbf{X}$ we simply use that rating data directly instead of the approximated values in $\textbf{A} \textbf{B}^\intercal$ (hence the $\approx$ symbol).
 
 we are essentially considering the "optimal" filled-in matrix $\textbf{Z}$ and *implicitly* imputing the *differences* between $\textbf{X}$ and $\textbf{Z}$. That is, we are trying to minimize the differences between the filled-in entries of $\textbf{X}$ and the corresponding entries of $\textbf{A} \textbf{B}^\intercal$ (along with a regularization term).[^deg] Our cost function only considers the matrix entries which correspond to existing data, but the fashion in which we estimate $\textbf{A}$ and $\textbf{B}$ operate on the entirety of each matrix, so we take the entries $\textbf{A} \textbf{B}^\intercal$ corresponding to positions of missing data to be our rating estimates.
 
