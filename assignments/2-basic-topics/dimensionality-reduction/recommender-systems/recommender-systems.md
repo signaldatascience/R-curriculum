@@ -90,7 +90,7 @@ Evaluation metrics for collaborative filtering
 
 Previously, we used the RMSE to evaluate the quality of our predicted ratings. We'll briefly explore several other ways to evaluate the output of a collaborative filtering algorithm.[^eval]
 
-[^eval]: See Lee *et al.* (2012), [A Comparative Study of Collaborative Filtering Algorithms](https://arxiv.org/pdf/1205.3193.pdf) for more detail.
+[^eval]: See Lee *et al.* (2012), [A Comparative Study of Collaborative Filtering Algorithms](https://arxiv.org/pdf/1205.3193.pdf) and the [`softImpute` vignette](https://cran.r-project.org/web/packages/softImpute/vignettes/softImpute.html) for more detail.
 
 Aside from RMSE, we can also look at the mean absolute error (MAE), defined as
 
@@ -119,7 +119,7 @@ An alternative method is to look at *implied rankings*. For a given set of predi
 Analyzing the results
 =====================
 
-Now that we have good results from running alternating least squares, we can do some further analysis of the MovieLens dataset.
+Now that we have good results from running alternating least squares, we can do some further analysis of the MovieLens dataset. There are many aspects of the data to explore, so feel free to perform your own analyses if you have any ideas of your own!
 
 Predicting movie genres
 -----------------------

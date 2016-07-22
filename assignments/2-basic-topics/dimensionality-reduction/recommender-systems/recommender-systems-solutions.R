@@ -155,7 +155,7 @@ movies = data.frame(movies, best_svd$v[as.numeric(as.character(movies$mid)),])
 head(movies)
 cor(movies$Drama, select(movies, X1:X30))
 sels = select(movies, Drama, X1:X30)
-m = glm(Drama ~ . , sels, family = "binomial")
+m = glm(Drama ~ ., sels, family = "binomial")
 summary(m)
 cvs = CVbinary(m)
 roc(sels$Drama,cvs$cvhat)
@@ -188,3 +188,75 @@ pca_c = prcomp(scale(as.data.frame(preds_c)))
 rownames(pca_c$rotation) = c('academic', 'medicine', 'executive', 'engineer')
 library(corrplot)
 corrplot(pca_c$rotation, is.corr=FALSE)
+
+# Calculation of characteristic factor score vectors
+genre_facs = list()
+for (genre in us) {
+  set.seed(1)
+  print(paste("Genre:", genre))
+  orig_name = genre
+  genre = gsub("'", ".", genre)
+  genre = gsub("-", ".", genre)
+  sels = select(movies, X1:X30, one_of(genre))
+  fit_genre = glm(paste(genre, "~ ."), sels, family="binomial")
+  p_genre = CVbinary(fit_genre)$cvhat
+  fscores = sapply(1:30, function(i) weighted.mean(sels[[i]], p_genre))
+  genre_facs[[orig_name]] = fscores
+}
+genre_facs = as.data.frame(genre_facs)
+
+career_facs = list()
+for (car in 0:20) {
+  set.seed(1)
+  print(paste("Career:", car))
+  cname = paste0("career_", car)
+  sels = select(users, X1:X30, one_of(cname))
+  fit_c = glm(paste(cname, "~ ."), sels, family="binomial")
+  p_c = CVbinary(fit_c)$cvhat
+  fscores = sapply(1:30, function(i) weighted.mean(sels[[i]], p_c))
+  career_facs[[cname]] = fscores
+}
+career_facs = as.data.frame(career_facs)
+names(career_facs) = c("other",
+                       "academic/educator",
+                       "artist",
+                       "clerical/admin",
+                       "college/grad student",
+                       "customer service",
+                       "doctor/health care",
+                       "executive/managerial",
+                       "farmer",
+                       "homemaker",
+                       "K-12 student",
+                       "lawyer",
+                       "programmer",
+                       "retired",
+                       "sales/marketing",
+                       "scientist",
+                       "self-employed",
+                       "technician/engineer",
+                       "tradesman/craftsman",
+                       "unemployed",
+                       "writer")
+
+rating = function(x, y) sum(sapply(1:length(x), function(i) x[i]*best_svd$d[i]*y[i]))
+cs = matrix(nrow=ncol(genre_facs), ncol=ncol(career_facs))
+for (i in 1:ncol(genre_facs)) {
+  for (j in 1:ncol(career_facs)) {
+    cs[i, j] = rating(genre_facs[[i]], career_facs[[j]])
+  }
+}
+rownames(cs) = names(genre_facs)
+colnames(cs) = names(career_facs)
+scs = scale(cs)
+corrplot(scs, is.corr=FALSE)
+scs2 = t(scale(t(cs)))
+corrplot(scs2, is.corr=FALSE)
+
+scs3 = biScale(cs)
+corrplot(scs3, is.corr=FALSE)
+
+corrplot(cs, tl.cex=1.2, is.corr=FALSE)
+
+corrplot(cs, is.corr=FALSE, method="pie")
+corrplot(cs[-17, -c(10, 11)], is.corr=FALSE)
