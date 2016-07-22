@@ -1,0 +1,11 @@
+I didn't have notes; I was mostly talking impromptu
+
+I'll have to write something down for previous cohorts
+
+I talked about the idea behind agglomerative clustering, the example from Elements of Statistical Learning involving cancer tumor types, how you can cut the clusters off wherever you want with agglomerative clustering, how the algorithm will give a dendrogram regardless of whether or not there are real clusterings in the data, 
+
+talked about k-means using your diagram, the problem of choosing the optimal value of k (using human interpretability or a scree plot or bootstrapping)
+
+how in practice often statistical distributions are in reality overlapping with different means rather than forming discrete clumps (using the example of neuroticism by gender) and how a Gaussian mixture model will tend give a better fit in such cases, showing them https://en.wikipedia.org/wiki/K-means_clustering#/media/File:ClusterAnalysis_Mouse.svg
+
+So you can include those as instructor notes regarding what should be covered in the lecture

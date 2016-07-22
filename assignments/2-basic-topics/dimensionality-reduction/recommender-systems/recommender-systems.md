@@ -44,10 +44,10 @@ Next, we need to create a matrix containing rating data for (user, movie) pairs.
 
 * Use `Incomplete()` to generate a sparse ratings matrix with one row per user ID and one column per movie ID. The resulting matrix should have **6041 rows** and **3953 columns**.
 
-Alternating least squares
-=========================
+Using `softImpute()`
+====================
 
-We will proceed to use the method of alternating least squares (ALS) to impute the missing entries in the sparse ratings matrix. See *Notes on Alternating Least Squares* for an exposition of the technique.
+We will proceed to use the method of alternating least squares (ALS) via `softImpute()` to fill in the missing entries of the sparse ratings matrix. See *Notes on Alternating Least Squares* for an exposition of the technique.
 
 First, we need to prepare our data and calculate what values of the regularization parameter $\lambda$ we'll search over.
 
