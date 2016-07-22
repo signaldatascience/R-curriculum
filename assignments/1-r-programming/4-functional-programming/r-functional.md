@@ -261,7 +261,19 @@ Intuitively, you can think of `mapply()` as walking down multiple parallel vecto
 
 * There are functions which, when passed into [`Reduce()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/funprog.html), give a different overall result depending on whether [`Reduce()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/funprog.html) starts with the two leftmost or the two rightmost elements of the vector it's operating on. Write a function that runs [`Reduce()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/funprog.html) in both directions and, if the two results are the same, returns the result, and returns `NA` otherwise.
 
-* Implement your own version of [`Reduce()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/funprog.html) with all the basic functionality.
+* Implement your own version of [`Reduce()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/funprog.html) with basic functionality.
+
+* Use [`Reduce()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/funprog.html) to approximate the value of the infinite continued fraction:
+
+	$$2 + \cfrac{1}{1 + \cfrac{1}{2 + \cfrac{1}{1 + \cfrac{1}{2 + \cdots}}}}$$
+
+	You should obtain an approximate value of 2.73. (*Hint:* Work "from the inside out".)
+
+* Use [`Reduce()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/funprog.html) to approximate the value of the infinitely nested radical:
+
+	$$\sqrt{1 + 2\sqrt{1 + 3\sqrt{1 + 4\sqrt{1 + \cdots}}}}$$
+
+	You should obtain an [approximate value of 3](https://en.wikipedia.org/wiki/Nested_radical#Ramanujan.27s_infinite_radicals).
 
 `Filter()`, `Find()`, and `Position()`
 --------------------------------------

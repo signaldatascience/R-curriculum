@@ -49,6 +49,9 @@ Using `softImpute()`
 
 We will proceed to use the method of alternating least squares (ALS) via `softImpute()` to fill in the missing entries of the sparse ratings matrix. See *Notes on Alternating Least Squares* for an exposition of the technique.
 
+Preparation
+-----------
+
 First, we need to prepare our data and calculate what values of the regularization parameter $\lambda$ we'll search over.
 
 * Use `biScale()` to scale both the columns and the rows of the sparse ratings matrix with `maxit=5` and `trace=TRUE`. You can ignore the resulting warnings (increasing the number of maximum iterations doesn't improve the outcome, which you can verify for yourself).
@@ -62,6 +65,9 @@ First, we need to prepare our data and calculate what values of the regularizati
 Finally, we need to initialize some data structures to store the results of our computations.
 
 * Initialize a data frame `results` with three columns: `lambda`, `rank`, and `rmse`, where the `lambda` column is equal to the previously generated sequence of values of $\lambda$ to test. Initialize a list `fits` as well to store the results of alternating least squares for each value of $\lambda$.
+
+Imputation
+----------
 
 We are now ready to impute the training data with alternating least squares. For each value of $\lambda$, we will obtain as a result of `softImpute()` factor scores for every movie and every user. As described above, we can then use those to *impute* the ratings in the test set and calculate a corresponding RMSE to evaluate the quality of the imputation in order to determine the optimal amount of regularization.
 
@@ -79,10 +85,46 @@ You should find that the minimum RMSE is attained at approximately $\lambda \app
 
 * Store the best-performing soft-thresholded SVD into a variable called `best_svd`.
 
+Evaluation
+----------
+
+Previously, we used the RMSE to evaluate the quality of our predicted ratings. We'll briefly explore several other ways to evaluate the output of a collaborative filtering algorithm.[^eval]
+
+[^eval]: See Lee *et al.* (2012), [A Comparative Study of Collaborative Filtering Algorithms](https://arxiv.org/pdf/1205.3193.pdf) for more detail.
+
+Aside from RMSE, we can also look at the mean absolute error (MAE), defined as
+
+$$\mathrm{MAE}(\textbf{x}, \textbf{y}) = \frac{1}{n} \sum_{i=1}^n \lvert x_i - y_i \rvert.$$
+
+* Add a column `mae` to `results` with the MAE corresponding to each value of $\lambda$. Which value of $\lambda$ minimizes the MAE?
+
+The RMSE and MAE are the two most commonly used evaluation metrics for collaborative filtering algorithms. In practice, only one of the two is chosen, since they yield fairly similar results.
+
+We can also *classify* ratings that exceed a certain threshold as corresponding to movie to recommend to the user and those which do not as corresponding to movies to *not* recommend, turning our regression problem into a classification problem. This allows us to use [precision and recall](https://en.wikipedia.org/wiki/Precision_and_recall) as evaluation metrics.
+
+**Precision**, also known as the positive predictive value, is defined as the fraction of all recommended items which were correctly recommended, whereas **recall**, also known as sensitivity, is defined as the fraction of liked items which were actually recommended.
+
+* Add `precision` and `recall` columns to `results`. Which values of $\lambda$ maximize the precision and recall?
+
+Finally, we can use an *asymmetric cost function*, motivated by the thought that it is substantially worse to highly recommend a bad movie than to underrate a good movie (because in the former case the user may suffer through the movie whereas in the latter case they don't know what they're missing). Since ratings are given on a 1--5 scale, we can define such a cost function as, *e.g.*,
+
+$$L(t, p) = \textbf{L}_{t, p} \text{ given } \textbf{L} = \left( \begin{array}{ccccc} 0 & 0 & 0 & 7.5 & 10 \\ 0 & 0 & 0 & 4 & 6 \\ 0 & 0 & 0 & 1.5 & 3 \\ 3 & 2 & 1 & 0 & 0 \\ 4 & 3 & 2 & 0 & 0 \end{array} \right),$$
+
+where $t$ is the true rating, $p$ is the predicted rating rounded to the closest integer from 1--5, and $\textbf{L}_{t, p}$ denotes the entry in the $t$th row and $p$th column of the matrix $\textbf{L}$. (Given a vector of predicted ratings, we take the sum of $L(t, p)$ evaluated for each value.) We see that the cost of predicting a rating of 5 for a movie which was actually rated 1 is 10, the highest cost in the entire matrix, whereas the cost of predicting a rating of 1 for a movie which was actually rated 5 is only 4, less than half of the cost for the other way around.
+
+* Add a column `asym` to `results` with the asymmetric cost function described above. Which value of $\lambda$ minimizes the aymmetric cost?
+
+An alternative method is to look at *implied rankings*. For a given set of predicted ratings, we can calculate for each user a value corresponding to how well the ranking of movies implied by the predicted ratings matches up with the ranking of movies implied by the user's actual ratings. For instance, we could calculate [Spearman's rank correlation coefficient](https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient) between the two sets of rankings for each user and take the average of the rank correlations. However, we won't be exploring this method here because the high number of users increases the computation time required and the fact that users haven't rated very many movies on average decreases its overall effectiveness.
+
 Analyzing the results
 =====================
 
-Now that we have a way to fill in missing entries, we can do some further analysis of the MovieLens dataset.
+Now that we have good results from running alternating least squares, we can do some further analysis of the MovieLens dataset.
+
+Movie genres
+------------
+
+We'll begin by using the computed "factors" to look at different movie genres.
 
 * As with the ratings dataset, load the movies dataset (in `movies.dat`) and name the columns appropriately.
 
@@ -107,3 +149,6 @@ We now have a *probability* for each movie corresponding to how likely it is to 
 * Create a new data frame with (1) movie titles, (2) the indicator variable for dramas, and (3) the predicted probability for each movie. Order the rows from largest to smallest probability. Which movies are the most likely to be dramas and which movies are the most unlikely to be dramas? How well does this correspond with the actual genre labeling in the dataset?
 
 * Repeat the above analysis for 3 other genres of your choice.
+
+User careers
+------------

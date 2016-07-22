@@ -19,11 +19,11 @@ Take special care to pair stronger students with weaker students, as a weak--wea
 Schedule
 --------
 
-1. *R: Basics*, *R: Atomic Vectors and Functions*, *Linear Regression: Infant Mortality*, and *Linear Regression: Galton's Height Data* (1 day).
-2. *R: Data Frames* and *Linear Regression: Simulated Data* (1 day).
-3. *R: Attributes, Factors, and Matrices* (1 day).
-4. *R: Functional Programming* (1 day).
-5. *Self-Assessment 1* (4 hours).
+1. *R: Basics*, *R: Atomic Vectors and Functions*, *Linear Regression: Introduction* (1 day)
+2. *R: Data Frames* and *Linear Regression: Simulated Data* (1 day)
+3. *R: Attributes, Factors, and Matrices* (1 day)
+4. *R: Functional Programming* (1 day)
+5. *Self-Assessment 1* (4 hours)
 
 For buffer, use *R: Basic Algorithms*, which can be completed directly after *R: Data Frames*, and *R: Spellchecking*, which should be done after *R: Functional Programming*.
 

@@ -36,10 +36,10 @@ train = rbind(train, grid1, grid2)
 # Create sparse matrix of users and movie ratings
 mat = Incomplete(train$uid, train$mid, train$rating)
 
+##################################################
+
 #lambdas = seq(0.51, 0.6, 0.01)
 #lambdas = seq(0.5, 1., 0.05)
-
-##################################################
 
 # Scale data
 scaled = biScale(mat, maxit = 5, trace = TRUE)
@@ -75,6 +75,47 @@ for(i in seq_along(lamseq)){
 
 # Store best result
 best_svd = fits[[match(min(results$rmse), results$rmse)]]
+
+# Calculate MAE
+mae = function(x, y) mean(abs(x-y))
+results$mae = sapply(seq_along(lamseq), function(i) mae(impute(fits[[i]], test$uid, test$mid), test$rating))
+
+# Calculating precision and recall
+precision = function(true, pred, threshold) {
+  true = ifelse(true > threshold, 1, 0)
+  pred = ifelse(pred > threshold, 1, 0)
+  sum(true * pred) / sum(pred)
+}
+recall = function(true, pred, threshold) {
+  true = ifelse(true > threshold, 1, 0)
+  pred = ifelse(pred > threshold, 1, 0)
+  sum(true * pred) / sum(true)
+}
+results$precision = sapply(seq_along(lamseq), function(i) precision(test$rating, impute(fits[[i]], test$uid, test$mid), m))
+results$recall = sapply(seq_along(lamseq), function(i) recall(test$rating, impute(fits[[i]], test$uid, test$mid), m))
+
+# Asymmetric cost function
+L = matrix(c(0, 0, 0, 7.5, 10, 0, 0, 0, 4, 6, 0, 0, 0, 1.5, 3, 3, 2, 1, 0, 0, 4, 3, 2, 0, 0), nrow=5)
+round_rating = function(x) min(max(round(x), 1), 5)
+Lcost = function(true, pred) sum(sapply(seq_along(true), function(i) L[true[i], round_rating(pred[i])]))
+results$asym = sapply(seq_along(lamseq), function(i) Lcost(test$rating, impute(fits[[i]], test$uid, test$mid)))
+
+# Spearman's rank correlation
+# Not part of assignment
+rankcor = function(true, pred) {
+  rank_true = match(true, sort(true))
+  rank_pred = match(pred, sort(pred))
+  cor(rank_true, rank_pred)
+}
+rankcor_metric = function(true, pred, uids) {
+  cor_sum = 0
+  for (u in unique(uids)) {
+    c = rankcor(true[uids == u], pred[uids == u])
+    cor_sum = cor_sum + c
+  }
+  cor_sum / length(unique(uids))
+}
+results$rankcor = sapply(seq_along(lamseq), function(i) rankcor_metric(test$rating, impute(fits[[i]], test$uid, test$mid), test$uid))
 
 ##################################################
 
