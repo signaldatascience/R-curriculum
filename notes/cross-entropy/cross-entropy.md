@@ -1,5 +1,5 @@
 ---
-title: Cross Entropy
+title: "Notes: Cross Entropy"
 author: Signal Data Science
 ---
 
