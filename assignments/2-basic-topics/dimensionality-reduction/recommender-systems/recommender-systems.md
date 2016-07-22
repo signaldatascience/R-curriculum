@@ -206,7 +206,7 @@ More insight into our results so far can be gained by focusing in on specific ca
 
 * Use `CVbinary()` to generate a cross-validated probability estimate for each user being a writer. Convert the probabilities into log odds.
 
-Next, we want to calculate a single rating for each movie that represents how much *writers* specifically like that movie. Unlike the previous section, we'll have to do some additional normalization (by dividing by the *sum* of the log odds for each linear combination of ratings) to keep our values in the correct range.
+Next, we want to calculate a single rating for each movie that represents how much *writers specifically* like that movie. Unlike in the previous section, we'll have to do some additional normalization (by dividing by the *sum* of the log odds for each linear combination of ratings) to keep our values in the correct numerical range.
 
 * Calculate a *linear combination* of the rows of $\textbf{Z}$ with the coefficients being the previously obtained log odds. That is, (1) multiply the $i$th row of $\textbf{Z}$ by the $i$th log odds and (2) take the sum of all of the scaled rows. Next, divide each linear combination by the *sum* of the log odds used as its coefficients. Call this linear combination `writer_ratings`.
 
