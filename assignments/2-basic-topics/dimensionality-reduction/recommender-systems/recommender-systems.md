@@ -86,7 +86,7 @@ and vice versa with $\textbf{A}$ and $\textbf{B}$ switched, where $\lambda$ is t
 
 [^check]: We can check that the dimensions match up. Suppose that $\textbf{Z} \in \mathbb{R}^{n \times p}$, $\textbf{A} \in \mathbb{R}^{n \times f}$, and $\textbf{B} \in \mathbb{R}^{p \times f}$. Then the columns of $\textbf{Z}$ and $\textbf{A}$ all have $n$ entries each, and so we can run $p$ different linear regressions (one for each column of $\textbf{Z}$) and get out $f$ coefficient estimates each time. We therefore estimate $p \times f$ different coefficient estimates in total, which matches up with the dimensions of $\textbf{B}$.
 
-As such, this suggests a strategy for estimating $\textbf{A}$ and $\textbf{B}. First, we start by initializing $\textbf{A}$. Next, we use the regression strategy described above both to generate predictions for $\textbf{Z}$ and to generate an estimate for $\textbf{B}$. Next, we can switch the places of $\textbf{A}$ and $\textbf{B}$ in the above equation and use the same process to update $\textbf{Z}$ and $\textbf{A}$. We repeat in this *alternating* fashion until we achieve convergence.
+As such, this suggests a strategy for estimating $\textbf{A}$ and $\textbf{B}$. First, we start by initializing $\textbf{A}$. Next, we use the regression strategy described above both to generate predictions for $\textbf{Z}$ and to generate an estimate for $\textbf{B}$. Next, we can switch the places of $\textbf{A}$ and $\textbf{B}$ in the above equation and use the same process to update $\textbf{Z}$ and $\textbf{A}$. We repeat in this *alternating* fashion until we achieve convergence.
 
 The output of `softImpute()`
 ----------------------------
