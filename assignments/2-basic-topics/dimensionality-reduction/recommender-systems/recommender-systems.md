@@ -187,7 +187,7 @@ We can perform the exact same calculation for the factor scores we have calculat
 
 * Using the factor scores calculated for genres and careers, the matrix decomposition in `best_svd`, and the above equation, fill in each entry of the `pairings` with the corresponding predicted rating.
 
-* Plot the values of `pairings` with `corrplot()`.
+* Plot the values of `pairings` with `corrplot()`. Interpret the results.
 
 We can adjust for both (1) the differences in the mean ratings given to each genre and (2) the differences in the mean ratings given out by members of each career by scaling both the columns and the rows of `pairings`.
 
