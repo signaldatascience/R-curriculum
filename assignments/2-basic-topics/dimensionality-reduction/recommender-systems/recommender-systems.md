@@ -104,7 +104,7 @@ We can also *classify* ratings that exceed a certain threshold as corresponding 
 
 **Precision**, also known as the positive predictive value, is defined as the fraction of all recommended items which were correctly recommended, whereas **recall**, also known as sensitivity, is defined as the fraction of liked items which were actually recommended.
 
-* Add `precision` and `recall` columns to `results`. Which values of $\lambda$ maximize the precision and recall?
+* Using the mean rating in the entire training set as the threshold value, add `precision` and `recall` columns to `results`. Which values of $\lambda$ maximize the precision and recall?
 
 Finally, we can use an *asymmetric cost function*, motivated by the thought that it is substantially worse to highly recommend a bad movie than to underrate a good movie (because in the former case the user may suffer through the movie whereas in the latter case they don't know what they're missing). Since ratings are given on a 1--5 scale, we can define such a cost function as, *e.g.*,
 
