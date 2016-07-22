@@ -83,7 +83,7 @@ We are now ready to impute the training data with alternating least squares. For
 
 You should find that the minimum RMSE is attained at approximately $\lambda \approx 20$ with an RMSE of approximately 0.858.
 
-* Store the best-performing soft-thresholded SVD into a variable called `best_svd`.
+* Store the best-performing soft-thresholded SVD (*i.e.*, the result of the best `softImpute()` call) into a variable called `best_svd`.
 
 Evaluation metrics for collaborative filtering
 ----------------------------------------------
