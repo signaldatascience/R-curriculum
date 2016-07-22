@@ -1,5 +1,5 @@
 ---
-title: "Notes: Regularization and Coefficient Shrinkage"
+title: "Notes on Regularization and Coefficient Shrinkage"
 author: Signal Data Science
 ---
 

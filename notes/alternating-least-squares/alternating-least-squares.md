@@ -1,5 +1,5 @@
 ---
-title: "Notes: Alternating Least Squares"
+title: "Notes on Alternating Least Squares"
 author: Signal Data Science
 ---
 
@@ -22,7 +22,9 @@ The task at hand is that given a matrix $\textbf{X}$ with many missing entries, 
 
 $$\textbf{Z} \approx \textbf{A} \textbf{B}^\intercal$$
 
-for an appropriate choice of a tall matrix $\textbf{A}$ and a wide matrix $\textbf{B}^\intercal$, where the operator $\intercal$ denotes the *transpose* of a matrix, (flipping a $n \times m$ matrix so that its dimensions become $m \times n$). Note that for the existing data in $\textbf{X}$ we simply use that rating data directly in the filled-in matrix $\textbf{Z}$ instead of the approximated values in $\textbf{A} \textbf{B}^\intercal$ (hence the $\approx$ symbol).
+for an appropriate choice of a tall matrix $\textbf{A}$ and a wide matrix $\textbf{B}^\intercal$, where the operator $\intercal$ denotes the *transpose* of a matrix (flipping a $n \times m$ matrix so that its dimensions become $m \times n$).[^cost] Note that for the existing data in $\textbf{X}$ we simply use that rating data directly in the filled-in matrix $\textbf{Z}$ instead of the approximated values in $\textbf{A} \textbf{B}^\intercal$ (hence the $\approx$ symbol).
+
+[^cost]: Specifically, we minimize the expression $\frac{1}{2} \left\lVert P_\Omega \left( \textbf{X} \right) - P_\Omega \left( \textbf{A} \textbf{B}^\intercal \right) \right\rVert + \frac{\lambda}{2} \left( \left\lVert \textbf{A} \right\rVert_F^2 + \left\lVert \textbf{B} \right\rVert_F^2 \right)$, where $\Omega$ is the set of positions of $\textbf{X}$ which do not correspond to missing values, $P_\Omega(\textbf{X})$ denotes $\textbf{X}$ with the positions *not* in $\Omega$ set to 0, and $\left\lVert \textbf{X} \right\rVert_F$ denotes the [Frobenius norm](https://en.wikipedia.org/wiki/Matrix_norm#Frobenius_norm) of $\textbf{X}$ (the square root of the sum of squares of entries of $\textbf{X}).
 
 Our imputation method is an indirect one in the sense that instead of *directly* trying to calculate missing values from existing ones, we ask what the optimal filled-in matrix $\textbf{Z}$ would look like and infer the missing values based on an analysis of $\textbf{Z}$. Precisely, we are trying to minimize the differences between the filled-in entries of $\textbf{X}$ and the corresponding entries of $\textbf{A} \textbf{B}^\intercal$ along with a regularization term controlled by a parameter $\lambda$.[^deg] Our cost function only considers the matrix entries which correspond to existing data (the filled-in values of $\textbf{X}$), but the fashion in which we estimate $\textbf{A}$ and $\textbf{B}$ operate on the *entirety* of each matrix. Consequently, the entries of $\textbf{A} \textbf{B}^\intercal$ corresponding to *missing* data in $\textbf{X}$ serve as rating estimates.
 
@@ -32,13 +34,13 @@ Our task is now simply to estimate the matrices $\textbf{A}$ and $\textbf{B}$. I
 
 $$\textbf{B} = \left( \textbf{A}^\intercal \textbf{A} + \lambda \textbf{I} \right)^{-1} \textbf{A}^\intercal \textbf{Z}$$
 
-and vice versa with $\textbf{A}$ and $\textbf{B}$ switched, where $\lambda$ is the regularization parameter and $\textbf{I}$ is the identity matrix.[^iden] For mathematical reasons, this is actually equivalent to running a regularized[^ridge] least squares regression for each column of $\textbf{Z}$ with the columns of $\textbf{A}$ as predictors, with the coefficient estimates corresponding to entries of $\textbf{B}$![^check]
+and vice versa with $\textbf{A}$ and $\textbf{B}$ switched, where $\lambda$ is the regularization parameter and $\textbf{I}$ is the identity matrix.[^iden] For mathematical reasons, this is actually equivalent to running a regularized least squares regression for each column of $\textbf{Z}$ with the columns of $\textbf{A}$ as predictors, with the coefficient estimates corresponding to entries of $\textbf{B}$![^ridge]
 
 [^iden]: The identity matrix is a matrix with 1 on the diagonal and 0 elsewhere. Multiplying it by a different matrix leaves that matrix unchanged.
 
 [^ridge]: Specifically, this is equivalent to using [Tihkonov regularized linear regression](https://en.wikipedia.org/wiki/Tikhonov_regularization) with Tikhonov matrix $\Gamma = \left( \lambda \textbf{I} \right)^{1/2}$. This is also called *ridge regression* and reduces to $L^2$ regularization in the case where $\Gamma$ is the identity matrix. We are essentially running a linear regression of each column of $\textbf{Z}$ with the columns of $\textbf{A}$ as predictors and getting $\textbf{B}$ back as the coefficient estimates.
 
-[^check]: We can check that the dimensions match up. Suppose that $\textbf{Z} \in \mathbb{R}^{n \times p}$, $\textbf{A} \in \mathbb{R}^{n \times f}$, and $\textbf{B} \in \mathbb{R}^{p \times f}$. Then the columns of $\textbf{Z}$ and $\textbf{A}$ all have $n$ entries each, and so we can run $p$ different linear regressions (one for each column of $\textbf{Z}$) and get out $f$ coefficient estimates each time. We therefore estimate $p \times f$ different coefficient estimates in total, which matches up with the dimensions of $\textbf{B}$.
+	In addition, we can check that the dimensions match up. Suppose that $\textbf{Z} \in \mathbb{R}^{n \times p}$, $\textbf{A} \in \mathbb{R}^{n \times f}$, and $\textbf{B} \in \mathbb{R}^{p \times f}$. Then the columns of $\textbf{Z}$ and $\textbf{A}$ all have $n$ entries each, and so we can run $p$ different linear regressions (one for each column of $\textbf{Z}$) and get out $f$ coefficient estimates each time. We therefore estimate $p \times f$ different coefficient estimates in total, which matches up with the dimensions of $\textbf{B}$.
 
 As such, this suggests a strategy for estimating $\textbf{A}$ and $\textbf{B}$. First, we start by initializing $\textbf{A}$. Next, we use the regression strategy described above both to generate predictions for $\textbf{Z}$ and to generate an estimate for $\textbf{B}$. Next, we can switch the places of $\textbf{A}$ and $\textbf{B}$ in the above equation and use the same process to update $\textbf{Z}$ and $\textbf{A}$. We repeat in this *alternating* fashion until we achieve convergence.
 

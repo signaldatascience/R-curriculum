@@ -35,6 +35,10 @@ Send out each assignment in the morning. After (5), go over solutions and give s
 Homework
 --------
 
+* **D1:** 
+* **D2:** 
+* **D3:** 
+* **D4:** 
 * **D5:** Revise work on (5) if code review is desired
 * **Weekend:** *Homework: SQLZoo*
 
@@ -85,8 +89,8 @@ Schedule
 
 1. *Principal Component Analysis* (1 day)
 2. *Factor Analysis* (1 day)
-3. *Recommender Systems* (1 day)
-4. *Clustering* (1 day)
+3. *Clustering* (1 day)
+4. *Recommender Systems* (1 day)
 5. *Self-Assessment 3*
 
 Detailed schedule
@@ -100,5 +104,9 @@ Homework
 --------
 
 * **D1:** Shlens (2014), *A Tutorial on Principal Component Analysis* (`readings/misc/shlens-pca-tutorial.pdf`) and Novembre and Stephens (2008), *Interpreting principal component analyses of spatial population genetic variation* (`readings/misc/novembre-2008-pca.pdf`); both optional, with former strongly recommended
+* **D2:** 
+* **D3:** *Notes on Alternating Least Squares*
+* **D4:** 
+* **D5:** 
 * **Weekend:** *Homework: Advanced SQL Practice*
 
