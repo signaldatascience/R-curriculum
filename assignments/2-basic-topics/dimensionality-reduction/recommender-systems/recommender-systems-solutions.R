@@ -189,7 +189,7 @@ rownames(pca_c$rotation) = c('academic', 'medicine', 'executive', 'engineer')
 library(corrplot)
 corrplot(pca_c$rotation, is.corr=FALSE)
 
-# Calculation of characteristic factor score vectors
+# Estimating different careers' genre preferences
 genre_facs = list()
 for (genre in us) {
   set.seed(1)
@@ -200,7 +200,8 @@ for (genre in us) {
   sels = select(movies, X1:X30, one_of(genre))
   fit_genre = glm(paste(genre, "~ ."), sels, family="binomial")
   p_genre = CVbinary(fit_genre)$cvhat
-  fscores = sapply(1:30, function(i) weighted.mean(sels[[i]], p_genre))
+  p_genre = log(p_genre / (1 - p_genre))
+  fscores = sapply(1:30, function(i) sum(sels[[i]] * p_genre))
   genre_facs[[orig_name]] = fscores
 }
 genre_facs = as.data.frame(genre_facs)
@@ -213,7 +214,8 @@ for (car in 0:20) {
   sels = select(users, X1:X30, one_of(cname))
   fit_c = glm(paste(cname, "~ ."), sels, family="binomial")
   p_c = CVbinary(fit_c)$cvhat
-  fscores = sapply(1:30, function(i) weighted.mean(sels[[i]], p_c))
+  p_c = log(p_c / (1 - p_c))
+  fscores = sapply(1:30, function(i) sum(sels[[i]] * p_c))
   career_facs[[cname]] = fscores
 }
 career_facs = as.data.frame(career_facs)
@@ -253,10 +255,37 @@ corrplot(scs, is.corr=FALSE)
 scs2 = t(scale(t(cs)))
 corrplot(scs2, is.corr=FALSE)
 
-scs3 = biScale(cs)
+scs3 = biScale(cs, maxit=100, trace=TRUE)
 corrplot(scs3, is.corr=FALSE)
 
 corrplot(cs, tl.cex=1.2, is.corr=FALSE)
 
 corrplot(cs, is.corr=FALSE, method="pie")
 corrplot(cs[-17, -c(10, 11)], is.corr=FALSE)
+
+# Top movies for each career
+Z = complete(Incomplete(df$uid, df$mid), best_svd)
+
+# Ignore this in lieu of the function below
+career_movies = function(career_code) {
+  cname = paste0("career_", career_code)
+  sels = select(users, X1:X30, one_of(cname))
+  fit_c = glm(paste(cname, "~ ."), sels, family="binomial")
+  coef_c = coef(fit_c)[2:31]
+  mfacs = select(movies, X1:X30)
+  mscore = Reduce('+', lapply(1:30, function(i) mfacs[[i]]*coef_c[i]))
+  data.frame(title=movies[order(mscore, decreasing=TRUE), ]$title, score=sort(mscore, decreasing=TRUE))
+}
+
+career_movies = function(career_code) {
+  cname = paste0("career_", career_code)
+  sels = select(users, X1:X30, one_of(cname))
+  fit_c = glm(paste(cname, "~ ."), sels, family="binomial")
+  p_c = CVbinary(fit_c)$cvhat
+  p_c = log(p_c / (1 - p_c))
+  mscore = Reduce('+', lapply(1:length(p_c), function(i) Z[i, ]*p_c[i]))/sum(p_c)
+  mscore = mscore - colSums(Z)/nrow(Z)
+  mscore = mscore[as.numeric(as.character(movies$mid))]
+  mdf = movies[order(mscore, decreasing=TRUE), ]
+  data.frame(title=mdf$title, genre=mdf$genre, score=sort(mscore, decreasing=TRUE))
+}

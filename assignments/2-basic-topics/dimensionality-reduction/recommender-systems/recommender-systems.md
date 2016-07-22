@@ -121,8 +121,8 @@ Analyzing the results
 
 Now that we have good results from running alternating least squares, we can do some further analysis of the MovieLens dataset. There are many aspects of the data to explore, so feel free to perform your own analyses if you have any ideas of your own!
 
-Predicting movie genres
------------------------
+Predicting user careers and movie genres
+----------------------------------------
 
 We'll begin by using the computed "factors" to look at different movie genres.
 
@@ -134,7 +134,7 @@ We'll begin by using the computed "factors" to look at different movie genres.
 
 Examine the dimensions of the calculated matrix $\textbf{V}$ in `best_svd`. The $i$th row corresponds to the movie with ID $i$ and the $j$th column represents the "scores" for the $j$th "movies factor" (loosely speaking). We're interested in analyzing these "factors". To that end:
 
-* Subset `best_svd$v` with the movie IDs in the movie dataset which remain after removing rows corresponding to movies not present in the ratings dataset. (Pay attention to the data type of the movie ID column, which is loaded in as a *factor*.) After doing so, add the factor columns to the data frame created from the movies dataset.[^subs]
+* Subset `best_svd$v` with the movie IDs in the movie dataset which remain after removing rows corresponding to movie IDs not present in the movies dataset. (Pay attention to the data type of the movie ID column, which is loaded in as a *factor*.) After doing so, add the factor columns to the data frame created from the movies dataset.[^subs]
 
 [^subs]: Something like `movies = cbind(movies, best_svd$v[as.numeric(as.character(movies$mid)),])`. (Be sure to understand what this code does!)
 
@@ -150,10 +150,86 @@ We now have a *probability* for each movie corresponding to how likely it is to 
 
 * Repeat the above analysis for 3 other genres of your choice.
 
-Predicting user careers
------------------------
-
-Similar to the movie genres, the dataset of users (in `users.dat`) includes information about the *occupation* of each movie rater.
+Similar to the movie genres, the users dataset (in `users.dat`) includes information about the *occupation* of each movie rater.
 
 * Restrict to users 35 or older. Among those users, restrict to the 4 most common careers excluding "other" and "self-employed". Use unregularized multinomial logistic regression to predict career in terms of the factors for each user in $\textbf{U}$. Run principal component analysis on the resulting log-odds values; plot and interpret the loadings of the principal components.
 
+Estimating different careers' genre preferences
+-----------------------------------------------
+
+In the previous section, we were able to make career and genre predictions in terms of the factor variables. We'll begin a more complex analysis by attempting to calculate a sort of "vector of characteristic factor scores" for each movie genre.
+
+* With the previously created indicator variables for movie genres, run an unregularized logistic regression for each genre against the factor variables.
+
+* Set the seed for consistency. For each of the fitted models, use `CVbinary()` to generate cross-validated probability estimates of genre membership for each movie in the dataset.
+
+* Convert the estimated probabilities to log odds via $L = \log(P / (1 - P))$.
+
+* For each genre, calculate a [*linear combination*](https://en.wikipedia.org/wiki/Linear_combination) of the vectors of factor scores over the entire movies datasets with the coefficients being each movie's log odds of genre membership. That is, (1) multiply the factor scores corresponding to each movie by that movie's log odds and (2) take the sum of all the scaled vectors of factor scores.
+
+	More precisely, suppose that we have $m$ movies and $f$ factor variables, that the $i$th movie's factor scores are given by $\textbf{s}_i = (s_{i, 1}, s_{i, 2}, \ldots, s_{i, f})$, and that the $i$th movie's predicted log odds of inclusion into a particular genre is given by $l_i$. Then our goal is to calculate the sum $\sum_i l_i \textbf{s}_i$, a process which we repeat for each of the different genres.
+
+* Bind all of the vectors calculated in the previous step into a single data frame, with one column per genre and one row per factor. Set the column names to match the corresponding genres. Call the resulting data frame `genre_scores`.
+
+By combining the factor scores of individual movies in the fashion described above, we have obtained factor scores for each *genre*.
+
+* For the users dataset, use `dummy.data.frame()` (in the `dummies` package) to expand out the column of career codes into a set of indicator variables such that a career coded as $n$ corresponds to a column titled `career_n`.
+
+* Repeat the above process for the users dataset to obtain vectors of factor scores for each *career*. Call the resulting data frame `career_scores`. (Remember to give the columns descriptive names.)
+
+Recall that predicted ratings are generated in the following fashion: if a user has factor scores $\textbf{u} = (u_1, u_2, \ldots, u_f)$, a movie has factor scores $\textbf{m} = (m_1, m_2, \ldots, m_f)$, and the values on the diagonal of $\textbf{D}$ are given by $d_i$, our predicted rating is given by
+
+$$r = \sum_{i=1}^f u_i d_i m_i.$$
+
+We can perform the exact same calculation for the factor scores we have calculated for genres and careers.
+
+* Initialize a matrix `pairings` with one row per career and one column per genre.
+
+* Using the factor scores calculated for genres and careers, the matrix decomposition in `best_svd`, and the above equation, fill in each entry of the `pairings` with the corresponding predicted rating.
+
+* Plot the values of `pairings` with `corrplot()`.
+
+We can adjust for both (1) the differences in the mean ratings given to each genre and (2) the differences in the mean ratings given out by members of each career by scaling both the columns and the rows of `pairings`.
+
+* Use `biScale()` to scale the columns and rows of `pairings`. Plot the scaled matrix with `corrplot()`. Interpret both the scaled values themselves and the *differences* between the scaled and unscaled values. How does this analysis differ from just calculating summary statistics from the unimputed data, *i.e.*, looking at the average rating given by members of career $X$ to movies in genre $Y$ for each $(X, Y)$ pair?
+
+Estimating each career's specific movie preferences
+---------------------------------------------------
+
+More insight into our results so far can be gained by focusing in on specific careers and looking at which movies members of that career particularly like or dislike. Let's begin by just looking at writers.
+
+* Use `complete()` to generate the fully imputed matrix $\textbf{Z}$.[^comp]
+
+[^comp]: The function call should look something like `complete(Incomplete(df$uid, df$mid), best_svd)`.
+
+* With the users dataset, run an unregularized logistic regression for the indicator variable corresponding to writers using the factor variables as predictors.
+
+* Use `CVbinary()` to generate a cross-validated probability estimate for each user being a writer. Convert the probabilities into log odds.
+
+Next, we want to calculate a single rating for each movie that represents how much *writers* specifically like that movie. Unlike the previous section, we'll have to do some additional normalization (by dividing by the *sum* of the log odds for each linear combination of ratings) to keep our values in the correct range.
+
+* Calculate a *linear combination* of the rows of $\textbf{Z}$ with the coefficients being the previously obtained log odds. That is, (1) multiply the $i$th row of $\textbf{Z}$ by the $i$th log odds and (2) take the sum of all of the scaled rows. Next, divide each linear combination by the *sum* of the log odds used as its coefficients. Call this linear combination `writer_ratings`.
+
+We're interested in which movies writers *disproportionately* like or dislike. As such, we have to correct for the fact that each movie has a different average rating. (For example, movies which are extraordinarily bad will be disliked by *every* career, but we're more interested in those which writers specifically dislike more than others.) To that end:
+
+* Subtract the mean of each column of $\textbf{Z}$ from `writer_ratings`.
+
+One last logistical concern: `writer_ratings` has a value for *every* possible movie ID from 1 to the maximum, but not every movie ID has a corresponding movie in the movies dataset.
+
+* Subset `writer_ratings` by the column of movie IDs in the movies dataset. Again, pay attention to the data type of the movie IDs column, taking care to handle factor conversion correctly.
+
+Finally, we're ready to see which movies writers especially love or hate!
+
+* Create a new data frame `writer_prefs` by combining the movies dataset with `writer_ratings` as a new column. Remove all columns aside from movie title, movie genre, and `writer_ratings`. Order the rows of `writer_prefs` from highest to lowest values of `writer_ratings`.
+
+* Examine the top 10 and bottom 10 rows of `writer_prefs`. Do your results here correspond to the results obtained in the previous section?[^writ]
+
+[^writ]: The top movie for writers should be "North by Northwest" and the bottom movie should be "Toy Story".
+
+* Calculate the mean of `writer_ratings`. What is the interpretation of this value?
+
+We can, of course, repeat the above process for other careers.
+
+* Write a function which takes as input an integer `career_code` and performs the above analysis for the corresponding career, returning a reordered data frame of movies with three columns (movie title, movie genre, estimated career-specific rating).
+
+* Choose 3 other careers to analyze in a similar matter. Interpret the results.
