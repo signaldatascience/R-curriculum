@@ -26,6 +26,8 @@ http://www.cs.columbia.edu/~blei/fogm/2015F/
 - https://gist.github.com/hadley/6734639
 - coef.glmnet and predict.glmnet
 - example of factor analysis outperforming regularization
+- add more to clustering assignment
+- add ~1 more hour of work to factor analysis assignment
 
 - resampling: add exposition on why higher/lower n for n-fold cv
 http://stats.stackexchange.com/questions/27730/choice-of-k-in-k-fold-cross-validation

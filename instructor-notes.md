@@ -35,11 +35,11 @@ Send out each assignment in the morning. After (5), go over solutions and give s
 Homework
 --------
 
-* **D1:** 
-* **D2:** 
-* **D3:** 
-* **D4:** 
-* **D5:** Revise work on (5) if code review is desired
+* **D1:** *Advanced R, Day 1* (`readings/r/adv-r-day1.pdf`), on data structures and functions
+* **D2:** *Advanced R, Day 2* (`readings/r/adv-r-day2.pdf`), on lists, data frames, and subsetting
+* **D3:** *Advanced R, Day 3* (`readings/r/adv-r-day3.pdf`), on attributes, factors, matrices, and basic functional programming
+* **D4:** *Advanced R, Day 4* (`readings/r/adv-r-day4.pdf`), on 
+* **D5:** *Advanced R, Day 5* (`readings/r/adv-r-day5.pdf`), on optimization; revise work on (5) if code review is desired
 * **Weekend:** *Homework: SQLZoo*
 
 Additional notes
@@ -96,9 +96,9 @@ Schedule
 Detailed schedule
 -----------------
 
-For (1) through (4), allocate an hour at the morning of each following day to finish up the assignment and compare work against solutions.
+On the morning of D1--D4 and the afternoon of D5, link students solutions to the previous day's assignment.
 
-On D1, lecture on PCA and then assign (1). Students should start (2) in the morning of D2; after lunch, lecture on factor analysis.
+On D1, lecture on PCA and then assign (1). Students should start (2) in the morning of D2; after lunch, lecture on factor analysis before students resume work. After lunch on D3, lecture on clustering and assign (3). Assign (4) in the morning of D4.
 
 Homework
 --------
