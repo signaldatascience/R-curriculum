@@ -15,6 +15,9 @@ Call the sum of squared errors $\mathrm{SSE} = S(\beta) = \sum_i \left(y_i - \be
 
 $$C_p(\beta) = \mathrm{SSE} + \lambda \lvert \beta \rvert^p = S(\beta) + \lambda \lvert \beta \rvert^p.$$
 
+$L^2$ regularization
+====================
+
 First, let's consider the case when we perform $L^2$ regularization. In that situation, $p = 2$ so $\lvert \beta \rvert^p = \beta^2$, and our cost function is
 
 $$C_2(\beta) = S(\beta) + \lambda \beta^2.$$
@@ -32,6 +35,9 @@ We can conclude that $L^2$ regularization will drive the coefficient estimate $\
 **Therefore:** $L^2$ regularization drives the coefficient estimates to 0 if and only if the target variable is completely uncorrelated with its predictors. This is essentially *never* the case, so $L^2$ regularization will *never* drive coefficient estimates to 0.
 
 We can also think about $L^2$ regularization in the following fashion: The cost function $C_2(\beta)$ is the sum of two convex quadratics, and the minimum of a sum of two convex quadratics has a minimum somewhere in between the minima of the two convex quadratics. *I.e.*, if the two convex quadratics are minimized at $\beta_1$ and $\beta_2$, their sum will be minimized for some $\beta$ *between* but *not equal to* $\beta_1$ and $\beta_2$. If $\textbf{y}$ and $\textbf{x}$ have nonzero correlation, then the sum of squared errors is minimized at some value $\beta \ne 0$, whereas the quadratic regularization parameter is minimized at $\beta = 0$. As such, it is *impossible* for their sum to be minimized at $\beta = 0$ precisely; only in the *infinite limit* of $\lambda \to \infty$, where the regularization term *completely dominates* the sum of squared errors, does the minimum of their sum approach $\beta = 0$.
+
+$L^1$ regularization
+====================
 
 Now, let's consider $L^1$ regularization, where $p = 1$ so
 
