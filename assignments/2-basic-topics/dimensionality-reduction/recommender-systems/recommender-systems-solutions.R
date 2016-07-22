@@ -164,3 +164,27 @@ pdf = data.frame(movies[c("title", "Drama")], cvs$cvhat)
 head(pdf)
 head(pdf[order(pdf["cvs.cvhat"]),], 40)
 tail(pdf[order(pdf["cvs.cvhat"]),], 40)
+
+# Users dataset
+users = read.csv("C:/Users/Andrew/Downloads/ml-1m/users.dat", sep = ":", header = F)
+users = users[c(1, 3, 5, 7)]
+names(users) = c("uid", "gender", "age", "career")
+users = data.frame(users, best_svd$u[1:6040, ])
+car = users$career
+library(dummies)
+users = dummy.data.frame(users, names="career", sep="_")
+users = data.frame(users, career=car)
+sort(table(users$career), decreasing=TRUE)
+sort(table(filter(users, age > 25)$career), decreasing=TRUE)
+
+# Multinomial logistic regression for career
+users_c = filter(users, career %in% c(7, 1, 17, 6))
+users_c = filter(users_c, age > 25)
+facs = select(users_c, X1:X30)
+library(glmnet)
+fit_c = glmnet(scale(facs), users_c$career, family="multinomial")
+preds_c = predict(fit_c, scale(facs), s=0)
+pca_c = prcomp(scale(as.data.frame(preds_c)))
+rownames(pca_c$rotation) = c('academic', 'medicine', 'executive', 'engineer')
+library(corrplot)
+corrplot(pca_c$rotation, is.corr=FALSE)

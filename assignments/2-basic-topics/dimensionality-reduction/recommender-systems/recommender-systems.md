@@ -26,7 +26,7 @@ We'll first need to spend some time preparing the data before we can use any col
 	1::2355::5::978824291
 	```
 
-	Use [`read.csv()`](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/read.table.html) with the appropriate options to load the file into R. The resulting data frame should have **1000209 rows** and **7 columns**.
+	Use [`read.csv()`](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/read.table.html) with the appropriate options to load the file into R. (Note that the `sep` parameter only accepts a single character.) The resulting data frame should have **1000209 rows** and **7 columns**.
 
 * Restrict to the columns containing user IDs, movie IDs, and movie ratings. Name the columns appropriately.
 
@@ -44,13 +44,13 @@ Next, we need to create a matrix containing rating data for (user, movie) pairs.
 
 * Use `Incomplete()` to generate a sparse ratings matrix with one row per user ID and one column per movie ID. The resulting matrix should have **6041 rows** and **3953 columns**.
 
-Using `softImpute()`
-====================
+Using collaborative filtering
+=============================
 
 We will proceed to use the method of alternating least squares (ALS) via `softImpute()` to fill in the missing entries of the sparse ratings matrix. See *Notes on Alternating Least Squares* for an exposition of the technique.
 
-Preparation
------------
+Preparing the data
+------------------
 
 First, we need to prepare our data and calculate what values of the regularization parameter $\lambda$ we'll search over.
 
@@ -66,8 +66,8 @@ Finally, we need to initialize some data structures to store the results of our 
 
 * Initialize a data frame `results` with three columns: `lambda`, `rank`, and `rmse`, where the `lambda` column is equal to the previously generated sequence of values of $\lambda$ to test. Initialize a list `fits` as well to store the results of alternating least squares for each value of $\lambda$.
 
-Imputation
-----------
+Imputation via alternating least squares
+----------------------------------------
 
 We are now ready to impute the training data with alternating least squares. For each value of $\lambda$, we will obtain as a result of `softImpute()` factor scores for every movie and every user. As described above, we can then use those to *impute* the ratings in the test set and calculate a corresponding RMSE to evaluate the quality of the imputation in order to determine the optimal amount of regularization.
 
@@ -85,8 +85,8 @@ You should find that the minimum RMSE is attained at approximately $\lambda \app
 
 * Store the best-performing soft-thresholded SVD into a variable called `best_svd`.
 
-Evaluation
-----------
+Evaluation metrics for collaborative filtering
+----------------------------------------------
 
 Previously, we used the RMSE to evaluate the quality of our predicted ratings. We'll briefly explore several other ways to evaluate the output of a collaborative filtering algorithm.[^eval]
 
@@ -121,8 +121,8 @@ Analyzing the results
 
 Now that we have good results from running alternating least squares, we can do some further analysis of the MovieLens dataset.
 
-Movie genres
-------------
+Predicting movie genres
+-----------------------
 
 We'll begin by using the computed "factors" to look at different movie genres.
 
@@ -150,5 +150,10 @@ We now have a *probability* for each movie corresponding to how likely it is to 
 
 * Repeat the above analysis for 3 other genres of your choice.
 
-User careers
-------------
+Predicting user careers
+-----------------------
+
+Similar to the movie genres, the dataset of users (in `users.dat`) includes information about the *occupation* of each movie rater.
+
+* Restrict to users 35 or older. Among those users, restrict to the 4 most common careers excluding "other" and "self-employed". Use unregularized multinomial logistic regression to predict career in terms of the factors for each user in $\textbf{U}$. Run principal component analysis on the resulting log-odds values; plot and interpret the loadings of the principal components.
+
