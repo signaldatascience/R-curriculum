@@ -36,9 +36,9 @@ Homework
 --------
 
 * **D1:** *Advanced R, Day 1* (`readings/r/adv-r-day1.pdf`), on data structures and functions
-* **D2:** *Advanced R, Day 2* (`readings/r/adv-r-day2.pdf`), on lists, data frames, and subsetting
+* **D2:** *Advanced R, Day 2* (`readings/r/adv-r-day2.pdf`), on subsetting
 * **D3:** *Advanced R, Day 3* (`readings/r/adv-r-day3.pdf`), on attributes, factors, matrices, and basic functional programming
-* **D4:** *Advanced R, Day 4* (`readings/r/adv-r-day4.pdf`), on 
+* **D4:** *Advanced R, Day 4* (`readings/r/adv-r-day4.pdf`), on function operators
 * **D5:** *Advanced R, Day 5* (`readings/r/adv-r-day5.pdf`), on optimization; revise work on (5) if code review is desired
 * **Weekend:** *Homework: SQLZoo*
 
