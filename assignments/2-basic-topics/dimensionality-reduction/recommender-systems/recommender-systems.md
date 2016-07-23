@@ -60,7 +60,7 @@ First, we need to prepare our data and calculate what values of the regularizati
 
 * Use `lambda0()` on the scaled matrix and store the returned value as `lam0`.
 
-* Create a vector of $\lambda$ values to test by (1) generating a vector of 20 *decreasing* and uniformly spaced numbers from `log(lam0)` to `log(1)` and then (2) calculating $e^x$ with each of the previously generated values as $x$. You should obtain a vector where entries 1 and 5 are respectively 103.21 and 38.89.
+* Create a vector of $\lambda$ values to test by (1) generating a vector of 20 *decreasing* and uniformly spaced numbers from `log(lam0)` to `log(1)` and then (2) calculating $e^x$ with each of the previously generated values as $x$. You should obtain a vector where entries 1 and 5 are respectively approximately equal to 103.21 and 38.89.
 
 Finally, we need to initialize some data structures to store the results of our computations.
 
