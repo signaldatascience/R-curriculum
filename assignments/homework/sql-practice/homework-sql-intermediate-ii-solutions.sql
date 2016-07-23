@@ -33,7 +33,7 @@ with cart(list, last, budget) as (
 )
 SELECT list, budget FROM cart ORDER BY budget, list;
 
--- need solution for restricting to at most 2 of any item
+-- TODO: add solution for restricting to at most 2 of any item
 
 -- different types of meats
 SELECT COUNT(DISTINCT meat) from main_course;
@@ -64,4 +64,33 @@ SELECT s.name as item, l.store as store
   WHERE l.item = s.name;
 
 -- total amount of bandwidth necessary
-SELECT SUM(s.MiBs) FROM stores as s, shopping_list as sl WHERE s.store = sl.store; 
+SELECT SUM(s.MiBs) FROM stores as s, shopping_list as sl WHERE s.store = sl.store;
+
+-- MovieLens questions
+-- There may be multiple ways to do these questions depending on how you
+-- created your database, what you name your tables and columns, etc. Use
+-- the below as a guide, not as exact solutions.
+
+-- TODO: add solutions to the other questions
+
+-- number of movies released in each year
+SELECT date, COUNT(mid)
+FROM movie
+WHERE date IS NOT NULL
+GROUP BY date;
+-- ALTERNATE SOLUTION
+SELECT SUBSTR(SUBSTR(Name, -5), 1, 4) AS Year, COUNT(*) AS numMovies FROM Movies GROUP BY Year;
+
+-- percent of movies each year which are dramas
+SELECT a.Year, 100*numDrama*1.0 / numMovies percentDrama FROM (
+  SELECT COUNT(*) AS numMovies, SUBSTR(SUBSTR(Name, -5), 1, 4) AS Year FROM Movies GROUP BY Year
+  ) a LEFT JOIN (
+  SELECT COUNT(*) AS numDrama, SUBSTR(SUBSTR(Name, -5), 1, 4) AS Year FROM Movies WHERE genrePipe LIKE '%Drama%' GROUP BY Year
+  ) b ON (b.Year=a.Year);
+
+-- percent of users in each zip code region
+SELECT ROUND(zipcode/10000) AS first, CAST(COUNT(uid) AS FLOAT)/CAST(6040 AS FLOAT) AS num
+FROM user
+GROUP BY first
+ORDER BY num
+DESC

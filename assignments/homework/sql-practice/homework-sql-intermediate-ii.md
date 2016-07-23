@@ -9,7 +9,7 @@ Some of the following problems are adapted from UC Berkeley curricular material.
 
 You'll first work through a series of themed problems involving `WITH` statements and various aggregation operators. Afterward, you'll learn how to convert data frames in R into SQLite tables. Finally, you'll finish off with a series of short readings about advanced SQL techniques (foreign keys, window functions, etc.) which you'll be getting more practice with *next* weekend.
 
-As you work, write down your queries in a separate file.
+Refer to the [official SQLite documentation](https://www.sqlite.org/docs.html) when necessary. As you work, write down your queries in a separate file.
 
 Celebrating the winter holidays
 ===============================
@@ -108,7 +108,7 @@ We can also use SQL queries to look at movie ratings.
 
 * Following [R and SQLite: Part 1](https://www.google.com/url?hl=en&q=http://www.r-bloggers.com/r-and-sqlite-part-1/), convert the [MovieLens 1M Dataset](http://grouplens.org/datasets/movielens/1m/) into a single SQLite database with 3 tables (one for each of users, movies, and ratings). Save the database into a `.db` file on your computer.
 
-Write queries using your newly created SQLite database to solve the following problems. You can either continue running SQLite directly from the command line as you've been doing thus far or switch to using a GUI like [SQLite Studio](http://sqlitestudio.pl/) to view tables and enter queries.
+Write queries using your newly created SQLite database to solve the following problems. You can either continue running SQLite directly from the command line as you've been doing thus far or switch to using a GUI like [SQLite Studio](http://sqlitestudio.pl/) to view tables and enter queries. Depending on how you created your SQLite database, you may find `SUBSTR()`, `ROUND()`, `CAST()`, or the `LIKE` operator useful.
 
 * Determine the number of movies released in each year, omitting those with no date listed.
 
@@ -138,3 +138,11 @@ Write queries using your newly created SQLite database to solve the following pr
 
 Reading about advanced SQL topics
 =================================
+
+Finally, we'll prepare for next week's SQL homework assignment by doing a little bit of reading. Please read through the following:
+
+* [Chapter 3](https://www.postgresql.org/docs/9.1/static/tutorial-advanced.html) of the PostgreSQL documentation
+
+* [SQL Window Functions](https://community.modeanalytics.com/sql/tutorial/sql-window-functions/) by Mode Analytics
+
+* [Probably the Coolest SQL Feature: Window Functions](https://blog.jooq.org/2013/11/03/probably-the-coolest-sql-feature-window-functions/)
