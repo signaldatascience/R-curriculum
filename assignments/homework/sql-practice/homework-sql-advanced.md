@@ -7,12 +7,17 @@ Some of the following problems are adapted from UC Berkeley curricular material.
 
 [^course]: Specifically from [CS 61A: The Structure and Interpretation of Computer Programs](http://cs61a.org/).
 
+You'll first work through a series of themed problems involving `WITH` statements and various aggregation operators.
+
 As you work, write down your queries in a separate file.
 
 Celebrating the winter holidays
 ===============================
 
 The following problems refer to `thanksgiving.sql` in the `sql-homework` datasets folder.
+
+Booking flights home
+--------------------
 
 It's Thanksgiving! You want to book your flight home, but there's just one problem: everybody knows that as we get closer to Thanksgiving, the prices of airplane tickets shoot up for no good reason.
 
@@ -44,6 +49,9 @@ One of your friends has made the terrible mistake of booking Thanksgiving plane 
 
 	Order your table from the cheapest to most expensive option. Be sure to watch out for infinite loops in your SQL query.
 
+Planning a Thanksgiving dinner
+------------------------------
+
 It has finally fallen to you to do the Thanksgiving grocery shopping! You have been given a $60 budget, but you can't make up your mind on what to buy.
 
 * You have access to all the possible things you could purchase as well as their costs in the `supermarket` table. Write a SQL query that outputs a table which lists of all possible ways you could fill your budget with delicious Thanksgiving foods. The final table should have 2 columns:
@@ -71,6 +79,9 @@ We are mainly concerned with what meat is in our planned meal. For every type of
 * Write a query to output a table with two columns: meat and total calories. Each row should correspond to the caloric content of the healthiest meal involving each type of meat. Also, if it is possible to make *any* full meal of strictly more than 3000 calories (even just one) using a certain type of meat, then temptation will surely take over. For this reason, *exclude* such types of meat from your table.
 
 	*Hint:* You shouldn't need to do anything special to choose among several possible healthiest meals, but for completeness you can choose the side with the cranberries.
+
+Shopping for gifts
+------------------
 
 After you are full from your Thanksgiving dinner, you realize that you still need to buy gifts for all your loved ones over the holidays. However, you also want to spend as little money as possible.
 

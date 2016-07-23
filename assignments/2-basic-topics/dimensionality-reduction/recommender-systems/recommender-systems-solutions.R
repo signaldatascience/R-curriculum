@@ -120,9 +120,7 @@ results$rankcor = sapply(seq_along(lamseq), function(i) rankcor_metric(test$rati
 ##################################################
 
 # Load the movies dataset
-movies = read.csv("C:/Users/Andrew/Downloads/ml-1m/movies.dat", sep = ":", header = F)
-head(movies)
-movies = movies[c(1,3,5)]
+movies = read.csv("C:/Users/Andrew/Downloads/ml-1m/movies_edited.dat", sep = "~", header = F)
 head(movies)
 colnames(movies) = c("mid", "title", "genres")
 
@@ -166,8 +164,8 @@ head(pdf[order(pdf["cvs.cvhat"]),], 40)
 tail(pdf[order(pdf["cvs.cvhat"]),], 40)
 
 # Users dataset
-users = read.csv("C:/Users/Andrew/Downloads/ml-1m/users.dat", sep = ":", header = F)
-users = users[c(1, 3, 5, 7)]
+users = read.csv("C:/Users/Andrew/Downloads/ml-1m/users_edited.dat", sep = "~", header = F)
+users = users[1:4]
 names(users) = c("uid", "gender", "age", "career")
 users = data.frame(users, best_svd$u[1:6040, ])
 car = users$career

@@ -126,11 +126,9 @@ Predicting user careers and movie genres
 
 We'll begin by using the computed "factors" to look at different movie genres.
 
-* As with the ratings dataset, load the movies dataset (in `movies.dat`) and name the columns appropriately.
+* The column separator in `movies.dat` must be changed to something aside from a double colon (`"::"`) because passing in `sep=":"` will not work on account of some movies including colons in their titles. Open `movies.dat` in a text editor, replace each instance of `"::"` with a tilde (`"~"`), and save the edited dataset under a different filename.
 
-* How many different genres are listed in the dataset? (You may find [`strsplit()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/strsplit.html) helpful.) There is a single genre which is obviously the result of a data entry error. Add an appropriately named column for all of the *other* genres to serve as an *indicator variable* for whether each movie belongs to a particular genre. Fill in the entries of those columns accordingly.
-
-* Restrict to movies which were listed at least once in the ratings dataset.
+* As with the ratings dataset, load the movies dataset (in `movies.dat`) and name the columns appropriately. Restrict to movies which were listed at least once in the ratings dataset.
 
 Examine the dimensions of the calculated matrix $\textbf{V}$ in `best_svd`. The $i$th row corresponds to the movie with ID $i$ and the $j$th column represents the "scores" for the $j$th "movies factor" (loosely speaking). We're interested in analyzing these "factors". To that end:
 
@@ -151,6 +149,8 @@ We now have a *probability* for each movie corresponding to how likely it is to 
 * Repeat the above analysis for 3 other genres of your choice.
 
 Similar to the movie genres, the users dataset (in `users.dat`) includes information about the *occupation* of each movie rater.
+
+* Perform the same text preprocessing for `users.dat` which you did for `movies.dat` before loading the dataset.
 
 * Restrict to users 35 or older. Among those users, restrict to the 4 most common careers excluding "other" and "self-employed". Use unregularized multinomial logistic regression to predict career in terms of the factors for each user in $\textbf{U}$. Run principal component analysis on the resulting log-odds values; plot and interpret the loadings of the principal components.
 
