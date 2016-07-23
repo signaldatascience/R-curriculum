@@ -130,7 +130,7 @@ We'll begin by using the computed "factors" to look at different movie genres.
 
 * As with the ratings dataset, load the movies dataset (in `movies.dat`) and name the columns appropriately. Restrict to movies which were listed at least once in the ratings dataset.
 
-* How many different genres are listed in the dataset? (You may find [`strsplit()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/strsplit.html) helpful.) Add an appropriately named column for each genre to serve as an *indicator variable* for whether each movie belongs to a particular genre. Fill in the entries of those columns accordingly.
+* How many different genres are listed in the dataset? (You may find [`strsplit()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/strsplit.html) helpful.) Add an appropriately named column for each genre to serve as an *binary indicator variable* corresponding to whether or not each movie belongs to a particular genre. Fill in the entries of those columns accordingly.
 
 Examine the dimensions of the calculated matrix $\textbf{V}$ in `best_svd`. The $i$th row corresponds to the movie with ID $i$ and the $j$th column represents the "scores" for the $j$th "movies factor" (loosely speaking). We're interested in analyzing these "factors". To that end:
 
