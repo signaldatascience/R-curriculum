@@ -58,7 +58,17 @@ Since clustering is fundamentally about similarity and dissimilarity, it's impor
 
 The concept of a *distance* is closely related but not identical to the concept of a [*norm*](https://en.wikipedia.org/wiki/Norm_(mathematics)). The norm is a precise mathematical concept which is a function of one vector and returns a nonnegative number, whereas a distance is a function of *two* vectors which returns a nonnegative number. Each norm induces a corresponding distance function -- the norm $n(\textbf{v})$ induces the distance function $d_n(\textbf{x},\textbf{y}) = n(x-y)$ -- but there are distance functions which have no equivalent norms, like a function $d(\textbf{x},\textbf{y})$ which is 0 if $\textbf{x} = \textbf{y}$ but 1 otherwise.
 
-The most commonly used distance is **Euclidean distance**, induced by the $L^2$ norm. It's defined as $d(\textbf{x},\textbf{y}) = \sqrt{(x_1 - y_1)^2 + (x_2 - y_2)^2 + \cdots + (x_n - y_n)^2}$. This is appropriate for continuously varying data, but not appropriate for categorical or binary data.
+Let $\textbf{x} = (x_1, x_2, \ldots, x_n)$ and $\textbf{y} = (y_1, y_2, \ldots, y_n)$ in the following description of distance functions.
+
+* The most commonly used distance is **Euclidean distance**, induced by the $L^2$ norm. It's defined as $d(\textbf{x},\textbf{y}) = \sqrt{(x_1 - y_1)^2 + (x_2 - y_2)^2 + \cdots + (x_n - y_n)^2}$. This is appropriate for continuously varying data, but not appropriate for categorical or binary data.
+
+* When we have binary data (or categorical data, which can be expanded out into binary variables), we can use **Hamming distance**, defined as such: Let $h(a,b)$ be equal to 1 if $a = b$ and 0 otherwise. Then $d(\textbf{x},\textbf{y}) = \sum_i h(x_i,y_i)$.
+
+	* Note that some categorical variables have a natural interpretation as continuous variables -- for instance, you could transform a categorical variable taking on values "short", "medium", and "tall" into the numerical values 1, 2, and 3, in which case you would be able to use a distance function for continuously varying data (such as the Euclidean distance).
+
+* The **Manhattan distance** is induced by the $L^1 norm$ and is defined as $d(\textbf{x},\textbf{y}) = \left|x_1 - y_1\right| + \left|x_2 - y_2\right| + \cdots + \left|x_n - y_n\right|$. Intuitively, one can think of the Manhattan distance as being the number of city blocks you would have to travel to get from $x$ to $y$ if the 'streets' are laid out in a perfect grid -- indeed, that is the origin of its name (compare: [1](https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Manhattan_distance.svg/283px-Manhattan_distance.svg.png), [2](http://re-re.info/wp-content/uploads/2012/02/1828%20Lower%20and%20Dowtown%20Manhattan%20grid.jpg)).
+
+* **Cosine similarity** is a distance function that measures the cosine of the *angle* between two vectors. From the identity $\textbf{x} \cdot \textbf{y} = \lVert \textbf{x} \rVert \lVert \textbf{y} \rVert \cos \theta$, we can derive an expression for $d(\textbf{x},\textbf{y}) = \cos \theta$. It is often used in high-dimensional data analysis problems, such as natural language processing, where the Euclidean distance metric is inapplicable or works poorly.
 
 Using a different distance function will lead to different clusters, and some clustering methods can only be used with a specific distance function.
 
