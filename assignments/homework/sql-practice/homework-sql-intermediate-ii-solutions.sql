@@ -71,8 +71,6 @@ SELECT SUM(s.MiBs) FROM stores as s, shopping_list as sl WHERE s.store = sl.stor
 -- created your database, what you name your tables and columns, etc. Use
 -- the below as a guide, not as exact solutions.
 
--- TODO: add solutions to the other questions
-
 -- number of movies released in each year
 SELECT date, COUNT(mid)
 FROM movie
@@ -88,9 +86,18 @@ SELECT a.Year, 100*numDrama*1.0 / numMovies percentDrama FROM (
   SELECT COUNT(*) AS numDrama, SUBSTR(SUBSTR(Name, -5), 1, 4) AS Year FROM Movies WHERE genrePipe LIKE '%Drama%' GROUP BY Year
   ) b ON (b.Year=a.Year);
 
+-- percent of users with titles beginning with same first letter
+SELECT SUBSTR(Name, 1, 1) AS firstLetter, COUNT(*) AS numMovies FROM Movies GROUP BY firstLetter ORDER BY numMovies DESC LIMIT 5;
+
 -- percent of users in each zip code region
 SELECT ROUND(zipcode/10000) AS first, CAST(COUNT(uid) AS FLOAT)/CAST(6040 AS FLOAT) AS num
 FROM user
 GROUP BY first
 ORDER BY num
 DESC
+-- ALTERNATE SOLUTION
+SELECT SUBSTR(zipcode, 1, 1) AS zipFirst, 100*COUNT(*)*1.0 / (SELECT COUNT(*) FROM Users) AS percentUsers FROM users GROUP BY zipFirst;
+
+-- average movie rating in each category
+
+-- which movies are rated highest for each category
