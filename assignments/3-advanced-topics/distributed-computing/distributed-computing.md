@@ -1,4 +1,4 @@
-	---
+---
 title: Distributed Computing with AWS
 ---
 

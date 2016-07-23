@@ -25,7 +25,7 @@ SELECT path, cost FROM trips WHERE ending = "PDX" ORDER BY cost;
 -- SFO, LAX, PDX|186
 -- SFO, PDX|192
 
--- shopping
+-- all possible shopping lists
 with cart(list, last, budget) as (
   SELECT item, price, 60 - price FROM supermarket WHERE price <= 60 UNION
   SELECT list || ", " || item, price, budget - price FROM cart, supermarket
@@ -34,6 +34,7 @@ with cart(list, last, budget) as (
 SELECT list, budget FROM cart ORDER BY budget, list;
 
 -- TODO: add solution for restricting to at most 2 of any item
+-- Whoever finishes this question first can email me with their solution and I'll add it :-)
 
 -- different types of meats
 SELECT COUNT(DISTINCT meat) from main_course;
@@ -72,32 +73,45 @@ SELECT SUM(s.MiBs) FROM stores as s, shopping_list as sl WHERE s.store = sl.stor
 -- the below as a guide, not as exact solutions.
 
 -- number of movies released in each year
-SELECT date, COUNT(mid)
-FROM movie
-WHERE date IS NOT NULL
-GROUP BY date;
+SELECT date, COUNT(mid) FROM movie WHERE date IS NOT NULL GROUP BY date;
+
 -- ALTERNATE SOLUTION
 SELECT SUBSTR(SUBSTR(Name, -5), 1, 4) AS Year, COUNT(*) AS numMovies FROM Movies GROUP BY Year;
 
 -- percent of movies each year which are dramas
 SELECT a.Year, 100*numDrama*1.0 / numMovies percentDrama FROM (
-  SELECT COUNT(*) AS numMovies, SUBSTR(SUBSTR(Name, -5), 1, 4) AS Year FROM Movies GROUP BY Year
+  SELECT COUNT(*) AS numMovies, SUBSTR(SUBSTR(Name, -5), 1, 4) AS Year
+    FROM Movies GROUP BY Year
   ) a LEFT JOIN (
-  SELECT COUNT(*) AS numDrama, SUBSTR(SUBSTR(Name, -5), 1, 4) AS Year FROM Movies WHERE genrePipe LIKE '%Drama%' GROUP BY Year
+  SELECT COUNT(*) AS numDrama, SUBSTR(SUBSTR(Name, -5), 1, 4) AS Year
+    FROM Movies WHERE genrePipe LIKE '%Drama%' GROUP BY Year
   ) b ON (b.Year=a.Year);
 
 -- percent of users with titles beginning with same first letter
-SELECT SUBSTR(Name, 1, 1) AS firstLetter, COUNT(*) AS numMovies FROM Movies GROUP BY firstLetter ORDER BY numMovies DESC LIMIT 5;
+SELECT SUBSTR(Name, 1, 1) AS firstLetter, COUNT(*) AS numMovies
+  FROM Movies GROUP BY firstLetter ORDER BY numMovies DESC LIMIT 5;
 
 -- percent of users in each zip code region
 SELECT ROUND(zipcode/10000) AS first, CAST(COUNT(uid) AS FLOAT)/CAST(6040 AS FLOAT) AS num
-FROM user
-GROUP BY first
-ORDER BY num
-DESC
+  FROM user GROUP BY first ORDER BY num DESC;
 -- ALTERNATE SOLUTION
-SELECT SUBSTR(zipcode, 1, 1) AS zipFirst, 100*COUNT(*)*1.0 / (SELECT COUNT(*) FROM Users) AS percentUsers FROM users GROUP BY zipFirst;
+SELECT SUBSTR(zipcode, 1, 1) AS zipFirst, 100*COUNT(*)*1.0 / (SELECT COUNT(*) FROM Users) AS percentUsers
+  FROM users GROUP BY zipFirst ORDER BY zipFirst DESC;
 
 -- average movie rating in each category
+SELECT Age, AVG(rating) AS avgRating, COUNT(*) as numRatings
+  FROM Users LEFT JOIN Ratings ON (Users.userID=Ratings.userID)
+  GROUP BY Age ORDER BY numRatings DESC;
+SELECT Sex, AVG(rating) AS avgRating, COUNT(*) as numRatings
+  FROM Users LEFT JOIN Ratings ON (Users.userID=Ratings.userID)
+  GROUP BY Sex ORDER BY numRatings DESC;
+SELECT occupationCode, AVG(rating) as avgRating, COUNT(*) as numRatings
+  FROM Users LEFT JOIN Ratings ON (Users.userID=Ratings.userID)
+  GROUP BY occupationCode ORDER BY numRatings DESC;
 
 -- which movies are rated highest for each category
+-- below query can be modified for various analyses, e.g., adding "HAVING avgRating < 5"
+SELECT Sex, Name, AVG(rating) as avgRating, COUNT(*) as numRatings
+  FROM Users LEFT JOIN Ratings ON (Users.userID=Ratings.userID)
+    LEFT JOIN Movies ON (Ratings.movieID=Movies.movieID)
+  GROUP BY Name, Sex ORDER BY avgRating DESC LIMIT 20;

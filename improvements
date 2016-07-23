@@ -31,32 +31,24 @@ http://www.cs.columbia.edu/~blei/fogm/2015F/
 - continued fractions with Reduce()
 - regression to the mean
 - change NLP to Python
+- time series: can't use normal resampling
+- revise clustering substantially
 
 - resampling: add exposition on why higher/lower n for n-fold cv
 http://stats.stackexchange.com/questions/27730/choice-of-k-in-k-fold-cross-validation
 https://en.wikipedia.org/wiki/Cross-validation_(statistics)
 
-- time series: can't use normal resampling
+things to do in week 4:
+- add to recommender systems
+- numerical optimization
+- nonlinear techniques (reframe regression -> more general)
+- student presentation topics
+- advanced sql homework
 
-TODO SOON:
-- Weekend 2 homework: SQL
-- Notes and slides for cross entropy
-- Notes and slides for topological data analysis (+ short assignment?)
-- Read more Vapnik
+distributed computing -> web scraping and NLP
 
 https://www.kaggle.com/benhamner/2016-us-election
 dfs/bfs
-
-Full assignments to write in the future:
-- Gradient descent, numerical optimization, backpropagation
-- Data structures
-
-Weekend assignments:
-- Weekend 2: More basic SQL
-- Weekend 3: Window functions / PARTITION
-- Weekend 4: Python + SQLite (writing to tables etc.)
-- Weekend 5: 
-- Weekend 6: 
 
 EMAIL
 https://support.google.com/a/answer/33353?hl=en
@@ -88,6 +80,6 @@ http://stackoverflow.com/questions/6942904/senior-sql-developer-interview-questi
 http://www.bullraider.com/database/sql-tutorial/7-complex-queries-in-sql
 
 Numerical optimization
-- R: integration for area under ROC curve (trapezoidal, etc.)
-- R: calculating 1st principal component with optim()
-- R: implementing K-means as instance of EM algorithm
+- integration for area under ROC curve (trapezoidal, etc.)
+- calculating 1st principal component with optim()
+- implementing K-means as instance of EM algorithm

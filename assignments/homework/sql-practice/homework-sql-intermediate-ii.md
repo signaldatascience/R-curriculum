@@ -56,7 +56,7 @@ It has finally fallen to you to do the Thanksgiving grocery shopping! You have b
 
 * You have access to all the possible things you could purchase as well as their costs in the `supermarket` table. Write a SQL query that outputs a table which lists of all possible ways you could fill your budget with delicious Thanksgiving foods. The final table should have 2 columns:
 
-	* A comma separated list of items, from least to most expensive.
+	* A comma-separated list of items ordered from least to most expensive.
 
 	* The amount of your budget left over.
 
