@@ -199,7 +199,7 @@ It's also possible to scale the variances of the rows and columns as well to mak
 
 * Use `biScale()` to scale the rows and columns of `pairings` to have mean 0 and variance 1. Plot the scaled matrix with `corrplot()` and interpret the results as well as differences with previous plots.
 
-* How does this method of analysis differ from just calculating summary statistics from the unimputed data, *i.e.*, looking at the average rating given by members of career $X$ to movies in genre $Y$ for each $(X, Y)$ pair?
+* How does this method of analysis differ from just calculating summary statistics from the unimputed data, *i.e.*, looking at the average rating given by members of career $X$ to movies in genre $Y$ for each $(X, Y)$ pair? (You don't have to actually calculate these summary statistics---just think more generally about what information each approach captures and how they differ at an abstract level. However, you can make a direct comparison if you're interested in seeing the specific differences.)
 
 Estimating each career's specific movie preferences
 ---------------------------------------------------
