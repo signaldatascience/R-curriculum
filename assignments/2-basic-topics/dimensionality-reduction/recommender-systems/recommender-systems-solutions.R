@@ -97,7 +97,7 @@ results$recall = sapply(seq_along(lamseq), function(i) recall(test$rating, imput
 # Asymmetric cost function
 L = matrix(c(0, 0, 0, 7.5, 10, 0, 0, 0, 4, 6, 0, 0, 0, 1.5, 3, 3, 2, 1, 0, 0, 4, 3, 2, 0, 0), nrow=5)
 round_rating = function(x) min(max(round(x), 1), 5)
-Lcost = function(true, pred) sum(sapply(seq_along(true), function(i) L[true[i], round_rating(pred[i])]))
+Lcost = function(true, pred) mean(sapply(seq_along(true), function(i) L[true[i], round_rating(pred[i])]))
 results$asym = sapply(seq_along(lamseq), function(i) Lcost(test$rating, impute(fits[[i]], test$uid, test$mid)))
 
 # Spearman's rank correlation
@@ -248,18 +248,14 @@ for (i in 1:ncol(genre_facs)) {
 }
 rownames(cs) = names(genre_facs)
 colnames(cs) = names(career_facs)
-scs = scale(cs)
+
 corrplot(scs, is.corr=FALSE)
-scs2 = t(scale(t(cs)))
-corrplot(scs2, is.corr=FALSE)
 
-scs3 = biScale(cs, maxit=100, trace=TRUE)
-corrplot(scs3, is.corr=FALSE)
+sc1 = biScale(cs, row.scale=FALSE, col.scale=FALSE)
+corrplot(sc1, is.corr=FALSE)
 
-corrplot(cs, tl.cex=1.2, is.corr=FALSE)
-
-corrplot(cs, is.corr=FALSE, method="pie")
-corrplot(cs[-17, -c(10, 11)], is.corr=FALSE)
+sc2 = biScale(cs, maxit=100, trace=TRUE)
+corrplot(sc2, is.corr=FALSE)
 
 # Top movies for each career
 Z = complete(Incomplete(df$uid, df$mid), best_svd)
