@@ -40,7 +40,7 @@ Homework
 * **D3:** *Advanced R, Day 3* (`readings/r/adv-r-day3.pdf`), on attributes, factors, matrices, and basic functional programming
 * **D4:** *Advanced R, Day 4* (`readings/r/adv-r-day4.pdf`), on function operators
 * **D5:** *Advanced R, Day 5* (`readings/r/adv-r-day5.pdf`), on optimization; revise work on (5) if code review is desired
-* **Weekend:** *Homework: SQLZoo*
+* **Weekend:** *R Inferno* (`readings/r-miscellanea/R Inferno/`) and *Homework: SQLZoo Tutorials*
 
 Additional notes
 ----------------
@@ -72,7 +72,7 @@ Homework
 * **D1 through D3**: *Homework: Reading from Gelman and Hill*
 * **D4:** Zumel, *"I don't think that means what you think it means"* (`readings/misc/zumel-classification.pdf`)
 * **D5:** Review solutions to (5); revise work on (5) if code review is desired
-* **Weekend:** *R Inferno* (`readings/r-miscellanea/R Inferno/`) and *Homework: Intermediate SQL Practice*
+* **Weekend:** *Homework: Intermediate SQL Practice*
 
 Additional notes
 ----------------
@@ -108,5 +108,5 @@ Homework
 * **D3:** Sections 2--3 of Steinbach *et al.* (2004), *The Challenges of Clustering High Dimensional Data* (`readings/misc/high-dim-clustering.pdf`) and *Notes on Alternating Least Squares*, the latter being preparation for D4
 * **D4:** 
 * **D5:** 
-* **Weekend:** *Homework: Advanced SQL Practice*
+* **Weekend:** *Homework: Intermediate SQL Practice II*
 
