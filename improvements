@@ -33,6 +33,18 @@ http://www.cs.columbia.edu/~blei/fogm/2015F/
 - change NLP to Python
 - time series: can't use normal resampling
 - revise clustering substantially
+- random forest feature importance
+- pagerank
+- plot *histogram* of residuals in linear regression: intro
+- regularization: diff models overfit to diff extents, some can learn training data perfectly
+- union, except, intersect in SQL
+- write SQL queries out by hand first
+- geospatial SQL functions
+- triadic closure
+- birthday paradox
+- Kalman filter
+- unbalanced classes
+- explore curse of dimensionality
 
 - resampling: add exposition on why higher/lower n for n-fold cv
 http://stats.stackexchange.com/questions/27730/choice-of-k-in-k-fold-cross-validation
@@ -44,6 +56,7 @@ things to do in week 4:
 - nonlinear techniques (reframe regression -> more general)
 - student presentation topics
 - advanced sql homework
+- nonlinear dimensionality reduction
 
 distributed computing -> web scraping and NLP
 
