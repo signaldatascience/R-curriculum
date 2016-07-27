@@ -105,15 +105,15 @@ Regression trees are easiest to understand visually:
 
 Predictions are made on new data by following the tree down from the top to one of the terminal nodes and then taking the average of the values of all the training points which are located at that node. At each split, the [recursive partitioning](https://en.wikipedia.org/wiki/Recursive_partitioning) algorithm tries to find the variable which, if used for that split, would improve the algorithm's predictions the most. The algorithm stops growing the tree when no split would improve the prediction quality above a predefined limit.
 
-The *complexity parameter*, usually denoted `cp`, is the single hyperparameter used for fitting regression tree models. It is the "predefined limit" mentioned above and is expressed in units of *Gini impurity*, a metric of variable importance.
+The *complexity parameter*, usually denoted `cp`, is the single hyperparameter used for fitting regression tree models. It is the "predefined limit" mentioned above and is expressed in units of *impurity*, a metric of variable importance.
 
 * Evaluate the performance of regression trees on the wine quality dataset by setting `method="rpart"` and searching over `cp=10^seq(-3, 0, length.out=10)`.
 
 * View the final model by directly printing it in the console. (Unlike with MARS, the result of `summary()` is *less* interpretable than just printing the fit object directly.) Interpret the results.
 
+The impurity metric for a predictor variable can be intuitively understood as being proportional to the amount of variance in the *target variable* captured by splits made on that variable.
 
-
-* View the documentation in `?rpart.object` to determine how to access the Gini impurity (variable importance) for the final regression tree model. Compare the order of the splits in the tree with the size of the Gini impurity for each variable.
+* View the documentation in `?rpart.object` to determine how to access the impurities (variable importance metrics) for the final regression tree model. Compare the order of the splits in the tree with the magnitude of the impurity of each variable.
 
 You will often see regression trees called "CART", which stands for "Classification And Regression Tree". As the name indicates, decision trees (and methods derived from decision trees) can also be used for classification. We'll focus on their application to regression in the present assignment; once you understand how they work for regression, it is straightforward to apply them to classification tasks.
 
@@ -136,11 +136,11 @@ The size of the random subset of predictors considered at each split is the sing
 
 [^parrf]: The `ranger` method is a faster *and* parallelized implementation of the random forests algorithm. One can set `method="rf"` for the standard (and slower) version.
 
-The random forest algorithm calculates the [Gini impurity](https://en.wikipedia.org/wiki/Decision_tree_learning#Gini_impurity) for each of the predictor variables. Although the Gini impurity is typically  calculated with respect to *individual* regression trees, the impurity for each variable can be averaged over the entire random forest for an ensemble-wide measure of variable importance.
+The random forest algorithm calculates the impurity of the predictor variables. Although impurity is typically calculated with respect to *individual* regression trees, the impurity for each variable can be averaged over the entire random forest for an ensemble-wide measure of variable importance.
 
-* Read the documentation for `ranger()` to determine how to access the calculated Gini impurity for the final random forest model. Compare the Gini impurities with the variable splits calculated in the ordinary regression tree model.
+* Read the documentation for `ranger()` to determine how to access the calculated impurities for the final random forest model.
 
-Ordinary regression trees are easily interpretable from visual inspection of the splitting structure of the tree. Examining the Gini impurity is therefore substantially more useful for random forest models, where it would be an absurdly onerous task to individually inspect each constituent regression tree of the final random forest model.
+Ordinary regression trees are easily interpretable from visual inspection of the splitting structure of the tree. Examining the impurity values is therefore substantially more useful for random forest models, where it would be an absurdly onerous task to individually inspect each constituent regression tree of the final random forest model.
 
 Finally, we can fit each data point in the training data with the trees which were *not* trained on that data point to obtain an *out-of-bag error*, which is a good estimate for the generalizable error of our model.
 
@@ -169,7 +169,7 @@ Intuitively, one can think of boosting as a method which iteratively improves a 
 
 * Evaluate the performance of gradient boosted trees on the wine quality dataset by setting `method="gbm"` and searching over `n.trees=500`, `shrinkage=seq(0.01, 0.1, 0.03)`, `interaction.depth=c(1, 5, 10, 20, 40, 60)`, and `n.minobsinnode=1:3`. Note that you'll have to pass in the features as a *matrix* rather than a data frame (because of an annoying peculiarity in how `gbm()` works).
 
-* With the optimal values of the hyperparameters determined in the previous call to `caret_reg()`, run `caret_reg()` again and tune only the value of `n.tree`, trying values from 500 to 5000 in steps of 5000.
+* With the optimal values of the hyperparameters determined in the previous call to `caret_reg()`, run `caret_reg()` again and tune only the value of `n.tree`, trying values from 500 to 5000 in steps of 100.
 
 Your gradient boosted tree model here may not actually perform as well as your random forest model. A more fine-grained hyperparameter search would likely change that, but at the cost of quite a large amount of computation time. If you would like to try it nevertheless, do so after completing the remainder of this assignment.
 
