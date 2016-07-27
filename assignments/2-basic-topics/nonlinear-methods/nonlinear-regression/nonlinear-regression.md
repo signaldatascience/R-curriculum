@@ -42,7 +42,7 @@ First, we'll write a utility function for easily accessing `caret`'s `train()`, 
 
 * Use `caret_reg()` with `method="glmnet"` to fit an elastic net regularized linear model for wine quality. Create a data frame `results` with two columns, `method` and `min_rmse`, and add in a row with values corresponding to the model you just fit.
 
-As you work through this assignment, continually update `results` with a new row for each method you try.
+As you work through this assignment, continually update `results` with a new row for the best run of each method you try.
 
 $K$-Nearest Neighbors
 ===================

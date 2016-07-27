@@ -40,7 +40,7 @@ wine_quality = df_white$quality
 
 grid_glmnet = expand.grid(alpha=seq(0, 1, 0.1), lambda=2^seq(-4, 1, length.out=20))
 fit_glmnet = caret_reg(wine_features, wine_quality, "glmnet", grid_glmnet)
-results = data.frame(method="glmnet", rmse=caret_rmse(fit_glmnet))
+results = data.frame(method="glmnet", min_rmse=caret_rmse(fit_glmnet))
 results$method = as.character(results$method)
 results
 

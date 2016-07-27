@@ -79,12 +79,6 @@ Read the following post about visualizing the results of LDA:
 
 * [Compute and graph the LDA decision boundary](http://stats.stackexchange.com/a/103552/115666)
 
-Extensions of discriminant analysis
------------------------------------
-
-A variant of LDA is occasionally used for dimensionality reduction.
-
-
 Perceptrons
 ===========
 
