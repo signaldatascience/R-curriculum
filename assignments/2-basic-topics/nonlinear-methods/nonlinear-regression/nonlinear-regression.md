@@ -42,7 +42,7 @@ First, we'll write a utility function for easily accessing `caret`'s `train()`, 
 
 * Use `caret_reg()` with `method="glmnet"` to fit an elastic net regularized linear model for wine quality. Create a data frame `results` with two columns, `results` and `rmse`, and add in a row with values corresponding to the model you just fit.
 
-As you work through this assignment, continually update `results` with a row for each method you try.
+As you work through this assignment, continually update `results` with a new row for each method you try.
 
 $K$-Nearest Neighbors
 ===================
@@ -118,43 +118,53 @@ In short, a *random forest* trains many different different regression trees and
 
 [^bagging]: Recall that a bootstrapped sample of a dataset is a dataset of the same size formed by repeatedly sampling the original dataset *with replacement*.
 
-The size of the random subset of predictors considered at each split is the single hyperparameter involved in fitting a random forest model, typically denoted `mtry`. For a dataset with $p$ predictors, it is typically advised to try setting `mtry` to $\mathrm{floor}(\sqrt{p})$, $\mathrm{floor}(p/3)$, and $p$, with further refinement of the search space afterward if desired.[^mtry] The computation time required for larger datasets can be quite significant, so `mtry = floor(sqrt(p))` works well for obtaining a baseline level of performance with nonlinear techniques.
+The size of the random subset of predictors considered at each split is the single hyperparameter involved in fitting a random forest model, typically denoted `mtry`. For a dataset with $p$ predictors, it is typically advised to try setting `mtry` to $\mathrm{floor}(\sqrt{p})$, $\mathrm{floor}(p/3)$, and $p$, with further refinement of the search space afterward if desired.[^mtry]
 
-[^mtry]: Setting the value of `mtry` carefully is of [debatable importance](http://code.env.duke.edu/projects/mget/export/HEAD/MGET/Trunk/PythonPackage/dist/TracOnlineDocumentation/Documentation/ArcGISReference/RandomForestModel.FitToArcGISTable.html). [Random Forests for Classification in Ecology](http://depts.washington.edu/landecol/PDFS/RF.pdf) by Cutler *et al.* (2007) reports that performance isn't very sensitive to `mtry`, whereas [Conditional variable importance for random forests](http://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-9-307) by Strobl *et al.* (2008) reports the opposite. Finally, [Random Forests: some metholodological insights](http://www.math.u-psud.fr/~genuer/genuer-poggi-tuleau.rf-insights.pdf) by Genuer *et al.* (2008) finds varying importance for `mtry` depending on properties of the dataset. *All considered*, I think it's fine to initially just try $p/3$, $\sqrt{p}$, and $p$, and to decide if further tuning is warranted based on those results.
+[^mtry]: Setting the value of `mtry` carefully is of [debatable importance](http://code.env.duke.edu/projects/mget/export/HEAD/MGET/Trunk/PythonPackage/dist/TracOnlineDocumentation/Documentation/ArcGISReference/RandomForestModel.FitToArcGISTable.html). Cutler *et al.* (2007), [Random Forests for Classification in Ecology](http://depts.washington.edu/landecol/PDFS/RF.pdf) reports that performance isn't very sensitive to `mtry`, whereas Strobl *et al.* (2008), [Conditional variable importance for random forests](http://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-9-307) reports the opposite. Finally, by Genuer *et al.* (2008), [Random Forests: some metholodological insights](http://www.math.u-psud.fr/~genuer/genuer-poggi-tuleau.rf-insights.pdf) finds varying importance for `mtry` depending on properties of the dataset. *All considered*, I think it's fine to initially just try $p/3$, $\sqrt{p}$, and $p$, and to decide if further tuning is warranted based on those results.
 
 * Evaluate the performance of random forests on the wine quality dataset by setting `method="ranger"` and searching over `mtry=2:6`.[^parrf] In the call to `caret_reg()`, pass in the parameter `importance="impurity"`.
 
 [^parrf]: The `ranger` method is a faster *and* parallelized implementation of the random forests algorithm. One can set `method="rf"` for the standard (and slower) version.
 
-The random forest algorithm calculates the [Gini impurity](https://en.wikipedia.org/wiki/Decision_tree_learning#Gini_impurity) for each of the predictor variables, which is a measure of variable *importance*. It s
+The random forest algorithm calculates the [Gini impurity](https://en.wikipedia.org/wiki/Decision_tree_learning#Gini_impurity) for each of the predictor variables, which is a measure of variable *importance*. (By default, the algorithm won't calculate this, which is why we had to set `importance="impurity"` earlier.) Larger values indicate a more important predictor variable.
 
-> Gini impurity is a measure of how often a randomly chosen element from the [dataset] would be incorrectly labeled if it was randomly labeled according to the distribution of labels in the subset. Gini impurity can be computed by summing the probability {\displaystyle f_{i}} f_{i} of an item with label {\displaystyle i} i being chosen times the probability {\displaystyle 1-f_{i}} 1-f_{i} of a mistake in categorizing that item.
+* Read the documentation for `ranger()` to determine how to access the calculated Gini impurity for the final random forest model. Compare the Gini impurities with the variable splits calculated in the ordinary regression tree model.
 
-Finally, we can fit each data point in the training data with the trees which were *not* trained on that data point to obtain an *out-of-bag error*, which is an estimate for the generalizable error of our model.
+The Gini impurity can also be calculated for ordinary regression tree models. However, those are easily interpretable from visual inspection of the splitting structure of the tree. The value of the Gini impurity is greater for random forests, where it would be an absurdly onerous task to individually inspect each constituent regression tree of the final random forest model.
+
+Finally, we can fit each data point in the training data with the trees which were *not* trained on that data point to obtain an *out-of-bag error*, which is a good estimate for the generalizable error of our model.
+
+* Read the documentation for `ranger()` to determine how to access the calculated out-of-bag error. Compare it with the RMSE calculated by `train()`.[^won]
+
+[^won]: If you're wondering why the former is much smaller than the latter: re-read the documentation, paying special attention to what error metric is actually being used.
+
+We could have selected the optimal value of `mtry` with the out-of-bag error instead of using cross-validation, which would have saved a considerable amount of computation time. (However, we can't use such a method for other nonlinear regression methods, so we wouldn't have been able to do an apples-to-apples comparison of random forests against other techniques.)
+
+Random forests are easy to parallelize because each of the constituent trees of a random forest can be trained independently of the others. This also means that a random forest model can be subsequently *improved* by training and adding on more regression trees if the performance of the model is unsatisfactory. The ease with which random forest models are applied makes them a standard first choice of nonlinear regression method to *e.g.* test if nonlinear methods can offer any substantive improvement over linear models at all for a given dataset under consideration. For such a purpose, the computation time required for testing high values of `mtry` can be quite significant if the dataset is large, but $\mathrm{floor}(\sqrt{p})$ typically works well for obtaining an approximate baseline level of performance.
 
 Gradient boosted trees
 ----------------------
 
-*Boosting* is a technique that iteratively improves a decision tree ensemble with more and more decision trees.[^ada] Specifically, *gradient boosting* is a very powerful nonlinear technique and is one of the best "off-the-shelf" machine learning models.[^kuhn] They train relatively quickly, they can pick up on fairly complicated nonlinear interactions, you can guard against overfitting by increasing the shrinkage parameter, and their performance is difficult to beat.
+Boosting is a technique which iteratively improves an *ensemble* of decision trees.[^ada] Specifically, *gradient boosting* is a very powerful nonlinear technique and is one of the best "off-the-shelf" machine learning models.[^kuhn] A *gradient boosted tree* model trains relatively quickly, can pick up on fairly complicated nonlinear interactions, does not typically suffer from much overfitting, and generally performs better than a random forest. However, they are more difficult to use than random forests because of the substantially larger number of hyperparameters to tune, necessitating a much greater overall time spent training a well-performing model.[^hyp]
 
-[^ada]: The first implementation of boosting -- or at least the most famous -- is [AdaBoost](https://en.wikipedia.org/wiki/AdaBoost), which can be considered to be like a [special case of gradient boosting](http://stats.stackexchange.com/a/164262/115666), a more modern form of boosting.
+[^ada]: The first implementation of boosting, or at least the most famous one, is [AdaBoost](https://en.wikipedia.org/wiki/AdaBoost), which can be considered to be a [special case of gradient boosting](http://stats.stackexchange.com/a/164262/115666).
 
 [^kuhn]: See Ben Kuhn's [comments](http://www.benkuhn.net/gbm) on gradient boosting.
 
-However, they're a little more complicated than random forests; there are more hyperparameters to tune, and it's much more difficult to parallelize gradient boosted trees.[^hyp]
-
 [^hyp]: See [StackExchange](http://stats.stackexchange.com/questions/25748/what-are-some-useful-guidelines-for-gbm-parameters) for a brief overview of tuning `gbm()` hyperparameters.
 
-Intuitively, one can think of boosting as iteratively improving a regression tree ensemble by repeatedly training a new regression tree on the *residuals* of the ensemble (when making predictions on the dataset) and then incorporating that regression tree into the ensemble.
+Intuitively, one can think of boosting as a method which iteratively improves a collection of many different regression trees by repeatedly training new regression trees on the *residuals* of the predictions made by the current ensemble and incorporating the resulting tree into the overall ensemble.
 
-* Evaluate the performance of gradient boosted trees on the wine quality dataset by setting `method="gbm"` and searching over `n.trees=500`, `shrinkage=10^seq(-3, 0, 1)`, `interaction.depth=1:3`, and `n.minobsinnode=seq(10, 50, 10)`.
+* Evaluate the performance of gradient boosted trees on the wine quality dataset by setting `method="gbm"` and searching over `n.trees=500`, `shrinkage=10^seq(-3, 0, 1)`, `interaction.depth=1:3`, and `n.minobsinnode=seq(10, 50, 10)`. Note that you'll have to pass in the features as a *matrix* rather than a data frame (because of an annoying peculiarity in how `gbm()` works).
 
 * With the optimal values of the hyperparameters determined in the previous call to `caret_reg()`, run `caret_reg()` again and tune only the value of `n.tree`, trying values from 500 to 5000 in steps of 5000.
+
+Although the sequential dependence of this method means that the algorithm cannot be parallelized at the level of individual trees, the computation of each regression tree can itself be parallelized. Such a method is used in the [`xgboost`](https://cran.r-project.org/web/packages/xgboost/) package.
 
 Cubist
 ------
 
-Cubist is a nonlinear, decision tree-based regression algorithm developed by Ross Quinlan with a [proprietary parallelized implementation](https://www.rulequest.com/cubist-info.html). (The single-threaded code is open source and has been [ported to R](https://cran.r-project.org/web/packages/Cubist/vignettes/cubist.pdf.)
+Cubist is a nonlinear, decision tree-based regression algorithm developed by [John Ross Quinlan](https://en.wikipedia.org/wiki/Ross_Quinlan) with a [proprietary parallelized implementation](https://www.rulequest.com/cubist-info.html). (The single-threaded code is open source and has been [ported to R](https://cran.r-project.org/web/packages/Cubist/vignettes/cubist.pdf.)
 
 In practice, Cubist performs approximately as well as a gradient boosted tree (as far as predictive power is concerned).[^subpixel] Having only two hyperparameters to tune, Cubist is a little simpler to use, and the hyperparameters themselves are very easily interpretable.
 
@@ -164,18 +174,16 @@ Broadly speaking, Cubist works by creating a *tree of linear models*, where the 
 
 As such, there are two hyperparameters to tune, called `committees` and `neighbors`. `committees` is the number of boosting iterations (*i.e.*, the number of different trees to train), and the functionality of `neighbors` is easily intuitively understandable as a more complex version of $k$-NN.
 
-* Evaluate the performance of Cubist on the wine quality dataset by setting `method="cubist"` and searching over `committees=seq(10, 30, 5)` and `neighbors=0:9`.
-
-Note that Cubist can only be used for *regression*, not for *classification*. Quinlan also developed the [C5.0 algorithm](https://cran.r-project.org/web/packages/C50/C50.pdf), which is for classification instead of regression.
+* Evaluate the performance of Cubist on the wine quality dataset by setting `method="cubist"` and searching over `committees=seq(30, 50, 5)` and `neighbors=5:9`.
 
 Stacking
 ========
 
-[Stacking](https://en.wikipedia.org/wiki/Ensemble_learning#Stacking) is a technique in which multiple different learning algorithms are trained and then *combined* together into an ensemble.[^stack] The final 'stack' is very computationally expensive to compute, but usually performs better than any of the individual models used to create it.
+[Stacking](https://en.wikipedia.org/wiki/Ensemble_learning#Stacking) is a technique in which multiple different learning algorithms are trained and then *combined* together into an *ensemble of models*.[^stack] The final 'stack' is very computationally expensive to compute but performs better than any of the individual models used in its creation.
 
-[^stack]: The canonical paper on stacking is [Stacked Generalization](http://machine-learning.martinsewell.com/ensembles/stacking/Wolpert1992.pdf) by Wolpert (1992).
+[^stack]: The canonical paper on stacking is Wolpert (1992), [Stacked Generalization](http://machine-learning.martinsewell.com/ensembles/stacking/Wolpert1992.pdf).
 
-Ensemble stacking using a `caret`-based interface is implemented in the [`caretEnsemble` package](https://cran.r-project.org/web/packages/caretEnsemble/index.html). We'll start off by illustrating how to combine (1) MARS, (2) K-Nearest Neighbors, and (3) regression trees into a stack.
+Ensemble stacking using a `caret`-based interface is implemented in the [`caretEnsemble` package](https://cran.r-project.org/web/packages/caretEnsemble/index.html). We'll start off by illustrating how to combine (1) MARS, (2) K-Nearest Neighbors, and (3) standard regression trees.
 
 We'll first have to specify which methods we're using and the control parameters:
 
@@ -191,7 +199,7 @@ Next, we have to specify the tuning parameters for all three methods:
 ```r
 ensemble_tunes = list(
   glmnet=caretModelSpec(method='glmnet', tuneLength=10),
-  kknn=caretModelSpec(method='kknn', tuneLength=10),
+  knn=caretModelSpec(method='knn', tuneLength=10),
   rpart=caretModelSpec(method='rpart', tuneLength=10)
 )
 ```
@@ -199,7 +207,7 @@ ensemble_tunes = list(
 We then create a list of `train()` fits using the `caretList()` function:
 
 ```r
-ensemble_fits = caretList(quality ~ ., df_whitewine,
+ensemble_fits = caretList(wine_features, wine_quality,
                           trControl=ensemble_control,
                           methodList=ensemble_methods,
                           tuneList=ensemble_tunes)
@@ -221,32 +229,32 @@ In the [`caretEnsemble` documentation](https://cran.r-project.org/web/packages/c
 
 * If you use a gradient boosted tree for `caretStack()`, is it any better than the simple linear combination?
 
-* If you use all of the techniques you've just learned about in a big ensemble, how low can the RMSE get? (This might take a lot of computation time, so it's **optional**, but is fun to look at.)
+* If you use all of the techniques you've just learned about in a large stacked ensemble, how low can you get the RMSE? (This might take a lot of computation time, so it's *optional*, but it's also fun.)
 
 Closing notes
 =============
 
-By now, you've tried a fairly wide variety of nonlinear fitting techniques and gotten some sense for how each of them works. *In practice*, people usually use tree-based methods, especially random forests and gradient boosted trees -- they tend to be fairly easily tuned and robust to overfitting. However, it's useful to have a broader overview of the field as a whole.
+By now, you've tried a fairly wide variety of nonlinear fitting techniques and gotten some sense for how each of them works. *In practice*, people usually use decision tree-based methods, especially random forests and gradient boosted trees; they tend to be fairly easily tuned and robust to overfitting. However, it's useful to have a broader overview of the field as a whole.
 
-Also, there are a lot of peculiarities to the interfaces of different nonlinear techniques -- when comparing them, `caret` offers a very well-designed interface for all of them, so it's nice to stick to using `train()` and other `caret` methods when possible.
+There are a lot of peculiarities to the interfaces of different nonlinear techniques. It's nice to stick to using `caret`'s `train()` when possible because of how easy it is to set up.
 
 Hyperparameter optimization
 ---------------------------
 
-You may have noticed that tuning hyperparameters is a very big part of fitting nonlinear methods well! As the techniques become more complex, the number of hyperparameters to tune can grow significantly. Grid search is fine for ordinary usage, but in very complicated situations (10-20+ hyperparameters) it's better to use [random search](http://www.jmlr.org/papers/volume13/bergstra12a/bergstra12a.pdf) -- otherwise there would just be far too many hyperparameter combinations to evaluate![^comb]
+You may have noticed that tuning hyperparameters is a very big part of fitting nonlinear methods well! As the techniques become more complex, the number of hyperparameters to tune can grow significantly. Grid search is fine for ordinary usage, but in very complicated situations (10-20+ hyperparameters) it's better to use [*random* search](http://www.jmlr.org/papers/volume13/bergstra12a/bergstra12a.pdf); otherwise, there would just be far too many hyperparameter combinations to evaluate![^comb]
 
 [^comb]: If you have, say, 15 hyperparameters, even the simplest possible grid search that selects one of two possible values for each hyperparameter still has $2^{15}$ configurations to iterate over. That will almost assuredly take far too long.
 
 * Read the first 4 paragraphs of the `caret` package's documentation on [random hyperparameter search](http://topepo.github.io/caret/random.html).
 
-The `caret` package is very well-designed, and grid search will usually suffice for your purposes, especially because of its internal optimizations. It's good to be aware that alternatives to grid search exist.
+The `caret` package is very well-designed and grid search will usually suffice for your purposes, especially because of its internal optimizations. Nevertheless, it's good to be aware that alternatives to grid search exist.
 
 Which model to use?
 -------------------
 
 When trying to do predictive regression modeling, it's usually advised to start out with random forests or gradient boosted trees because they're fairly well understood and perform well out of the box with fairly straightforward tuning.[^comp] Random forests are simpler than gradient boosted trees, but both are much simpler than, say, a deeps neural net.
 
-[^comp]: One of the only good comparison of nonlinear regression techniques is in [BART: Bayesian Additive Regression Trees](https://arxiv.org/pdf/0806.3286.pdf) by Chipman *et al.* (2010), which gives the following ordering (from better to worse): BART, 1-layer neural nets, gradient boosted trees, random forests. Cubist isn't used very much, mostly because almost nobody really knows what it does, even if its results are pretty good in practice. See also [Performance Analysis of Some Machine Learning Algorithms for Regression Under Varying Spatial Autocorrelation](https://agile-online.org/Conference_Paper/cds/agile_2015/shortpapers/100/100_Paper_in_PDF.pdf) by Santibanez *et al.* (2015).
+[^comp]: One of the only good comparison of nonlinear regression techniques is in Chipman *et al.* (2010), [BART: Bayesian Additive Regression Trees](https://arxiv.org/pdf/0806.3286.pdf), which gives the following ordering (from better to worse): BART, 1-layer neural nets, gradient boosted trees, random forests. Cubist isn't used very much, mostly because almost nobody really knows what it does, even if its results are pretty good in practice. See also Santibanez *et al.* (2015), [Performance Analysis of Some Machine Learning Algorithms for Regression Under Varying Spatial Autocorrelation](https://agile-online.org/Conference_Paper/cds/agile_2015/shortpapers/100/100_Paper_in_PDF.pdf).
 
 For fast parallelized gradient boosted trees in R, use the [`xgboost` package](https://cran.r-project.org/web/packages/xgboost/vignettes/xgboostPresentation.html) -- it's currently the state of the art. For random trees, the currently best implementation can be used by setting `method="parRF"` in `caret`'s `train()`, which is a parallelized combination of the `randomForest`, `e1071`, and `foreach` packages.
 

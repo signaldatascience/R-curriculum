@@ -5,6 +5,7 @@ library(caret)
 library(dplyr)
 library(kknn)
 library(gbm)
+library(caretEnsemble)
 
 rmse = function(x, y) sqrt(mean((x - y)^2))
 
@@ -69,11 +70,41 @@ fit_rf = caret_reg(wine_features, wine_quality, "ranger", grid_rf, importance="i
 results = rbind(results, c("rf", caret_rmse(fit_rf)))
 results
 
+# Gradient boosted trees
+grid_gbm = expand.grid(n.trees=500, shrinkage=seq(0.01, 0.1, 0.03), interaction.depth=seq(20, 60, 20), n.minobsinnode=1)
+fit_gbm = caret_reg(as.matrix(wine_features), wine_quality, "gbm", grid_gbm)
+caret_rmse(fit_gbm)
+
+grid_gbm2 = expand.grid(n.trees=seq(500, 2000, 100), shrinkage=0.05, interaction.depth=40, n.minobsinnode=1)
+fit_gbm2 = caret_reg(as.matrix(wine_features), wine_quality, "gbm", grid_gbm2)
+
+# Cubist
+grid_cubist = expand.grid(committees=seq(30, 50, 5), neighbors=5:9)
+fit_cubist = caret_reg(wine_features, wine_quality, "cubist", grid_cubist)
+results = rbind(results, c("cubist", caret_rmse(fit_cubist)))
+results
+
+# Stacking regularized linear regression, MARS, and regression trees
+ensemble_methods = c('glmnet', 'earth', 'rpart')
+ensemble_control = trainControl(method="repeatedcv", repeats=1,
+                                number=3, verboseIter=TRUE,
+                                savePredictions="final")
+ensemble_tunes = list(
+  glmnet=caretModelSpec(method='glmnet', tuneGrid=grid_glmnet),
+  earth=caretModelSpec(method='earth', tuneGrid=grid_mars),
+  rpart=caretModelSpec(method='rpart', tuneGrid=grid_rpart)
+)
+ensemble_fits = caretList(wine_features, wine_quality,
+                          trControl=ensemble_control,
+                          methodList=ensemble_methods,
+                          tuneList=ensemble_tunes)
+fit_ensemble = caretEnsemble(ensemble_fits)
+print(fit_ensemble)
+summary(fit_ensemble)
 
 #####################################################################
 
-# Old stuff
-
+# Old stuff that you can ignore
 
 rtree_white = rpart(quality ~ ., df_white)
 rtree_white
