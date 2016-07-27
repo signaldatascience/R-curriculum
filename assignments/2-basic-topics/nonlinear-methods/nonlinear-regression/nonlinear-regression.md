@@ -5,6 +5,8 @@ author: Signal Data Science
 
 In this lesson, we will explore a collection of standard nonlinear regression techniques through predicting wine quality in terms of chemical properties. At the end, we'll combine all of these methods with [stacking](https://en.wikipedia.org/wiki/Ensemble_learning#Stacking) to create a model which performs better than any individual technique alone.
 
+Nonlinear regression is a tremendously large topic---large enough that no single authoritative document should serve as your only source of knowledge. As you work through this assignment, you should seek to clarify for your own understanding the details of each method used below. You should be consistently referring to *Applied Predictive Modeling* and *Introduction to Statistical Learning* as well as Internet resources to gain visual intuition for how nonlinear regression techniques work and a more sophisticated theoretical understanding of the underlying mathematics. This assignment is designed to *guide* you in the right directions, but it is *not* a replacement for individual curiosity. The goal is not to complete every problem below as rapidly as possible but rather to use them to generate directions of further inquiry.
+
 Getting started
 ===============
 
@@ -103,7 +105,7 @@ Regression trees are easiest to understand visually:
 
 Predictions are made on new data by following the tree down from the top to one of the terminal nodes and then taking the average of the values of all the training points which are located at that node. At each split, the [recursive partitioning](https://en.wikipedia.org/wiki/Recursive_partitioning) algorithm tries to find the variable which, if used for that split, would improve the algorithm's predictions the most. The algorithm stops growing the tree when no split would improve the prediction quality above a predefined limit.
 
-The *complexity parameter*, usually denoted `cp`, is the single hyperparameter used for fitting regression tree models. It is the "predefined limit" mentioned above.
+The *complexity parameter*, usually denoted `cp`, is the single hyperparameter used for fitting regression tree models. It is the "predefined limit" mentioned above and is expressed in units of *Gini impurity*, a metric of variable importance.
 
 * Evaluate the performance of regression trees on the wine quality dataset by setting `method="rpart"` and searching over `cp=10^seq(-3, 0, length.out=10)`.
 
@@ -130,11 +132,11 @@ The size of the random subset of predictors considered at each split is the sing
 
 [^parrf]: The `ranger` method is a faster *and* parallelized implementation of the random forests algorithm. One can set `method="rf"` for the standard (and slower) version.
 
-The random forest algorithm calculates the [Gini impurity](https://en.wikipedia.org/wiki/Decision_tree_learning#Gini_impurity) for each of the predictor variables, which is a measure of variable *importance*. (By default, the algorithm won't calculate this, which is why we had to set `importance="impurity"` earlier.) Larger values indicate a more important predictor variable.
+The random forest algorithm calculates the [Gini impurity](https://en.wikipedia.org/wiki/Decision_tree_learning#Gini_impurity) for each of the predictor variables. Although the Gini impurity is typically  calculated with respect to *individual* regression trees, the impurity for each variable can be averaged over the entire random forest for an ensemble-wide measure of variable importance.
 
 * Read the documentation for `ranger()` to determine how to access the calculated Gini impurity for the final random forest model. Compare the Gini impurities with the variable splits calculated in the ordinary regression tree model.
 
-The Gini impurity can also be calculated for ordinary regression tree models. However, those are easily interpretable from visual inspection of the splitting structure of the tree. The value of the Gini impurity is greater for random forests, where it would be an absurdly onerous task to individually inspect each constituent regression tree of the final random forest model.
+Ordinary regression trees are easily interpretable from visual inspection of the splitting structure of the tree. Examining the Gini impurity is therefore substantially more useful for random forest models, where it would be an absurdly onerous task to individually inspect each constituent regression tree of the final random forest model.
 
 Finally, we can fit each data point in the training data with the trees which were *not* trained on that data point to obtain an *out-of-bag error*, which is a good estimate for the generalizable error of our model.
 
@@ -191,7 +193,7 @@ Stacking
 
 [^stack]: The canonical paper on stacking is Wolpert (1992), [Stacked Generalization](http://machine-learning.martinsewell.com/ensembles/stacking/Wolpert1992.pdf).
 
-Ensemble stacking using a `caret`-based interface is implemented in the [`caretEnsemble` package](https://cran.r-project.org/web/packages/caretEnsemble/index.html). We'll start off by illustrating how to combine (1) MARS, (2) K-Nearest Neighbors, and (3) standard regression trees.
+Ensemble stacking using a `caret`-based interface is implemented in the [`caretEnsemble` package](https://cran.r-project.org/web/packages/caretEnsemble/index.html). We'll start off by illustrating how to combine (1) elastic net regularization, (2) MARS, and (3) standard regression trees.
 
 We'll first have to specify which methods we're using and the control parameters:
 

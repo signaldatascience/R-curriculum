@@ -1,31 +1,3 @@
-
-Preliminary steps
-=================
-
-We will mainly be using simulated data for the exercises below. First, we must write functions which generate our simulated data.
-
-For simplicity, we will restrict attention to the 2-dimensional [unit square](https://en.wikipedia.org/wiki/Unit_square) ($x \in [0,1]$, $y \in [0,1]$).
-
-* Write a function `lin_pair(m, b, label)` that takes in integers `m`, `b`, and `label` and returns two numerics `c(x, y)` satisfying the following criteria:
-
-	* Both `x` and `y` should be between 0 and 1.
-
-	* If `label` is set to 1, then `y` must be greater than `m*x + b`. Conversely, if `label` is set to -1, then `y` must be less than `m*x + b`.
-
-You can think of the function `lin_pair(m, b, label)` as picking a point in the unit square uniformly randomly from the region falling above or below the line $y = mx + b$.
-
-* Plot the points you get from running `lin_pair()` many times with the same input parameters to visually verify that your function works correctly.
-
-* Write a function `quad_pair(a, b, c, label)` which does the same thing except for the quadratic parabola $y = a(x - b)^2 + c$. Verify that it works by plotting the results.
-
-* Write a function `mvnorm_pair(mu, cov)` which returns a point sampled from a multivariate normal distribution. `mu` should be a vector containing the mean for each dimension and `cov` should be a 2-by-2 covariance matrix (where `cov[1, 1]` is the variance in dimension 1, `cov[2, 2]` is the variance in dimension 2, and `cov[1, 2] = cov[2, 1]` are the covariance of the two dimensions). You may find `mvrnorm()` from the `MASS` package useful.
-
-	* For this function, **don't** restrict the return values to be within the unit square, although when using `mvnorm_pair()` you should pass in means that are inside the unit square.
-
-	* Note that the `select()` function from `MASS` will mask the `select()` function from `dplyr` if you load `MASS` after `dplyr`. You can access the `dplyr` `select()` function with `dplyr::select()`.
-
-In the exercises to follow, we will restrict consideration almost entirely to the problem of **binary classification** for simplicity's sake. Multiclass classification is possible with many of the following methods, but it is generally wise to work with simple examples first to gain intuition and understanding.
-
 $k$-Nearest Neighbors
 =====================
 
@@ -34,7 +6,6 @@ We will only briefly mention that $k$-Nearest Neighbors classification works in 
 Although $k$-NN works well when there is "enough" data, prediction is slow and there are problems with high-dimensional data. In practice, one can improve predictive performance by considering points farther away.
 
 $k$-NN can be used in R for classification via the `knn()` function in the `class` library.
-
 
 Discriminant analysis in R
 --------------------------
