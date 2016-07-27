@@ -25,40 +25,49 @@ qplot(df_white$pH, df_white$quality) + geom_smooth()
 qplot(df_white$sulphates, df_white$quality) + geom_smooth()
 qplot(df_white$alcohol, df_white$quality) + geom_smooth()
 
-# Load Iris dataset + plot
-df_iris = iris
-
-ggplot(df_iris, aes(Sepal.Length, Sepal.Width, color=Species)) + geom_point()
-ggplot(df_iris, aes(Sepal.Length, Petal.Length, color=Species)) + geom_point()
-ggplot(df_iris, aes(Sepal.Length, Petal.Width, color=Species)) + geom_point()
-ggplot(df_iris, aes(Sepal.Width, Petal.Length, color=Species)) + geom_point()
-ggplot(df_iris, aes(Sepal.Width, Petal.Width, color=Species)) + geom_point()
-ggplot(df_iris, aes(Petal.Length, Petal.Width, color=Species)) + geom_point()
-
-df_iris = filter(df_iris, Species != "setosa")
-df_iris$Species = droplevels(df_iris$Species)
-
 # Caret utility functions
-caret_reg = function(x, y, method, grid) {
+caret_reg = function(x, y, method, grid, ...) {
   set.seed(1)
   control = trainControl(method="repeatedcv", repeats=1, number=3, verboseIter=TRUE)
-  train(x=x, y=y, method=method, tuneGrid=grid, trControl=control, metric="RMSE", preProcess=c("center", "scale"))
+  train(x=x, y=y, method=method, tuneGrid=grid, trControl=control, metric="RMSE", preProcess=c("center", "scale"), ...)
 }
-caret_class = function(x, y, method, grid) {
-  set.seed(1)
-  control = trainControl(method="repeatedcv", repeats=1, number=3, verboseIter=TRUE, classProbs=TRUE, summaryFunction=twoClassSummary)
-  train(x=x, y=y, method=method, tuneGrid=grid, trControl=control, metric="ROC", preProcess=c("center", "scale"))
-}
+caret_rmse = function(caret_fit) min(caret_fit$results$RMSE)
 
 # Elastic net regularized regression for a baseline
 wine_features = select(df_white, -quality)
 wine_quality = df_white$quality
-iris_features = select(df_iris, -Species)
-iris_species = df_iris$Species
 
-grid_glmnet = expand.grid(alpha=seq(0, 1, 0.1), lambda=2^seq(-4, 1, length.out=10))
-glmnet_wine = caret_reg(wine_features, wine_quality, "glmnet", grid_glmnet)
-glmnet_iris = caret_class(iris_features, iris_species, "glmnet", grid_glmnet)
+grid_glmnet = expand.grid(alpha=seq(0, 1, 0.1), lambda=2^seq(-4, 1, length.out=20))
+fit_glmnet = caret_reg(wine_features, wine_quality, "glmnet", grid_glmnet)
+results = data.frame(method="glmnet", rmse=caret_rmse(fit_glmnet))
+results$method = as.character(results$method)
+results
+
+# K-Nearest Neighbors
+grid_knn = expand.grid(k=1:20)
+fit_knn = caret_reg(wine_features, wine_quality, "knn", grid_knn)
+results = rbind(results, c("knn", caret_rmse(fit_knn)))
+results
+
+# Multivariate adaptive regression splines
+grid_mars = expand.grid(degree=1:5, nprune=15:25)
+fit_mars = caret_reg(wine_features, wine_quality, "earth", grid_mars)
+results = rbind(results, c("mars", caret_rmse(fit_mars)))
+results
+coef(fit_mars$finalModel)
+
+# Standard regression trees
+grid_rpart = expand.grid(cp=10^seq(-3, 0, length.out=10))
+fit_rpart = caret_reg(wine_features, wine_quality, "rpart", grid_rpart)
+results = rbind(results, c("rpart", caret_rmse(fit_rpart)))
+results
+fit_rpart$finalModel
+
+# Random forests
+grid_rf = expand.grid(mtry=2:6)
+fit_rf = caret_reg(wine_features, wine_quality, "ranger", grid_rf, importance="impurity")
+results = rbind(results, c("rf", caret_rmse(fit_rf)))
+results
 
 
 #####################################################################
