@@ -111,6 +111,10 @@ The *complexity parameter*, usually denoted `cp`, is the single hyperparameter u
 
 * View the final model by directly printing it in the console. (Unlike with MARS, the result of `summary()` is *less* interpretable than just printing the fit object directly.) Interpret the results.
 
+
+
+* View the documentation in `?rpart.object` to determine how to access the Gini impurity (variable importance) for the final regression tree model. Compare the order of the splits in the tree with the size of the Gini impurity for each variable.
+
 You will often see regression trees called "CART", which stands for "Classification And Regression Tree". As the name indicates, decision trees (and methods derived from decision trees) can also be used for classification. We'll focus on their application to regression in the present assignment; once you understand how they work for regression, it is straightforward to apply them to classification tasks.
 
 Random forests
