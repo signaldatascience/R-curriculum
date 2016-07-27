@@ -40,7 +40,7 @@ First, we'll write a utility function for easily accessing `caret`'s `train()`, 
 
 * Use [`expand.grid()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/expand.grid.html) to create a grid of hyperparameters to search over with `alpha=seq(0, 1, 0.1)` and `lambda=2^seq(-4, 1, length.out=20)`.
 
-* Use `caret_reg()` with `method="glmnet"` to fit an elastic net regularized linear model for wine quality. Create a data frame `results` with two columns, `results` and `rmse`, and add in a row with values corresponding to the model you just fit.
+* Use `caret_reg()` with `method="glmnet"` to fit an elastic net regularized linear model for wine quality. Create a data frame `results` with two columns, `method` and `rmse`, and add in a row with values corresponding to the model you just fit.
 
 As you work through this assignment, continually update `results` with a new row for each method you try.
 

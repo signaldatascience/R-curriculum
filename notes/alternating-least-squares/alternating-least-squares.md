@@ -1,5 +1,5 @@
 ---
-title: "Notes on Alternating Least Squares"
+title: Notes on Alternating Least Squares
 author: Signal Data Science
 ---
 
