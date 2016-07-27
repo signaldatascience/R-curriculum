@@ -1,12 +1,3 @@
-$k$-Nearest Neighbors
-=====================
-
-We will only briefly mention that $k$-Nearest Neighbors classification works in precisely the way one would expect it to work: for any given point, the algorithm looks at the nearest $k$ points and finds the most common class among those $k$ points. That class is the classification result.
-
-Although $k$-NN works well when there is "enough" data, prediction is slow and there are problems with high-dimensional data. In practice, one can improve predictive performance by considering points farther away.
-
-$k$-NN can be used in R for classification via the `knn()` function in the `class` library.
-
 Discriminant analysis in R
 --------------------------
 

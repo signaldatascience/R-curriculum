@@ -52,3 +52,14 @@ Other methods
 =============
 
 $k$-Nearest Neighbors and decision tree methods previously discussed (random forests and gradient boosted trees)
+
+$k$-Nearest Neighbors
+---------------------
+
+$k$-Nearest Neighbors classification works in precisely the way one would expect it to work: for any given point to classify, the algorithm looks at the nearest $k$ points in the training set and finds the most common class among those $k$ points. That class is the prediction result.
+
+Although $k$-NN works well when there is enough data to capture, at a very fine-grained level, all of the detailed structure in the data, prediction is slow (because it depends on searching through the *entire* training set for every single prediction) and $k$-NN has difficulty with higher-dimensional data (because distance metrics stop working well at very high dimensions).
+
+Decision tree methods
+---------------------
+
