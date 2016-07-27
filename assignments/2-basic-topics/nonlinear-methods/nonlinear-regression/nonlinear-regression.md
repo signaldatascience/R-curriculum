@@ -85,8 +85,8 @@ latter controls the maximum complexity of the model.
 
 The advantage of MARS models is that they are easy to fit and interpret, especially 1st degree MARS models.
 
-Decision trees
-==============
+Decision tree methods
+=====================
 
 The previous two nonlinear algorithms we have seen are not particularly impressive, outperforming elastic net regularized linear regression only by a relatively small margin. However, we'll move into a discussion of *decision trees*. By themselves, decision trees are *also* not particularly good and tend to overfit badly, but they can be *combined* into various different regression algorithms which *do* perform quite well.
 
@@ -155,9 +155,13 @@ Boosting is a technique which iteratively improves an *ensemble* of decision tre
 
 Intuitively, one can think of boosting as a method which iteratively improves a collection of many different regression trees by repeatedly training new regression trees on the *residuals* of the predictions made by the current ensemble and incorporating the resulting tree into the overall ensemble.
 
-* Evaluate the performance of gradient boosted trees on the wine quality dataset by setting `method="gbm"` and searching over `n.trees=500`, `shrinkage=10^seq(-3, 0, 1)`, `interaction.depth=1:3`, and `n.minobsinnode=seq(10, 50, 10)`. Note that you'll have to pass in the features as a *matrix* rather than a data frame (because of an annoying peculiarity in how `gbm()` works).
+* Read the documentation for `gbm()` (in the `gbm` package) to figure out what the `n.trees`, `shrinkage`, `interaction.depth`, and `n.minobsinnode` hyperparameters do.
+
+* Evaluate the performance of gradient boosted trees on the wine quality dataset by setting `method="gbm"` and searching over `n.trees=500`, `shrinkage=seq(0.01, 0.1, 0.03)`, `interaction.depth=c(1, 5, 10, 20, 40, 60)`, and `n.minobsinnode=1:3`. Note that you'll have to pass in the features as a *matrix* rather than a data frame (because of an annoying peculiarity in how `gbm()` works).
 
 * With the optimal values of the hyperparameters determined in the previous call to `caret_reg()`, run `caret_reg()` again and tune only the value of `n.tree`, trying values from 500 to 5000 in steps of 5000.
+
+Your gradient boosted tree model here may not actually perform as well as your random forest model. A more fine-grained hyperparameter search would likely change that, but at the cost of quite a large amount of computation time. If you would like to try it nevertheless, do so after completing the remainder of this assignment.
 
 Although the sequential dependence of this method means that the algorithm cannot be parallelized at the level of individual trees, the computation of each regression tree can itself be parallelized. Such a method is used in the [`xgboost`](https://cran.r-project.org/web/packages/xgboost/) package.
 
@@ -166,11 +170,11 @@ Cubist
 
 Cubist is a nonlinear, decision tree-based regression algorithm developed by [John Ross Quinlan](https://en.wikipedia.org/wiki/Ross_Quinlan) with a [proprietary parallelized implementation](https://www.rulequest.com/cubist-info.html). (The single-threaded code is open source and has been [ported to R](https://cran.r-project.org/web/packages/Cubist/vignettes/cubist.pdf.)
 
-In practice, Cubist performs approximately as well as a gradient boosted tree (as far as predictive power is concerned).[^subpixel] Having only two hyperparameters to tune, Cubist is a little simpler to use, and the hyperparameters themselves are very easily interpretable.
+In practice, Cubist performs approximately as well as a gradient boosted tree (as far as predictive power is concerned).[^subpixel] Having only two hyperparameters to tune, Cubist is a little simpler to use, and the hyperparameters themselves are very easily interpretable. However, the exact functionality of the algorithm is somewhat opaque due to its formerly proprietary nature, so Cubist receives relatively little attention and analysis relative to other methods.
 
 [^subpixel]: In [Subpixel Urban Land Cover Estimation](http://www.nrs.fs.fed.us/pubs/jrnl/2008/nrs_2008_walton_003.pdf) by Walton (2008), various nonlinear regression methods are compared for a prediction task and Cubist is found to be superior to gradient boosted trees. A [comment on a Ben Kuhn post](http://www.benkuhn.net/gbm#comment-1175) reports the same result.
 
-Broadly speaking, Cubist works by creating a *tree of linear models*, where the final linear models are *smoothed* by the intermediate models earlier in the tree. It's usually referred to as a *rule-based model*. Cubist incorporates a *boosting-like scheme* of iterative model improvement where the residuals of the ensemble model are taken into account when training a new tree. (It calls its trees *committees*.) In addition, Cubist can also adjust its final predictions using a more complex version of $k$-NN. When Cubist is finished building a rule-based model, Cubist can make predictions on the training set; subsequently, when trying to make a prediction for a new point, it can incorporate the predictions of the $K$ nearest points in the training set into the new prediction.
+Broadly speaking, Cubist works by creating a *tree of linear models*, where the final linear models are *smoothed* by the intermediate models earlier in the tree. (It's usually referred to as a *rule-based model*.) Cubist incorporates a *boosting-like scheme* of iterative model improvement where the residuals of the ensemble model are taken into account when training a new tree. (It calls its trees *committees*.) In addition, Cubist can also adjust its final predictions using a more complex version of $k$-NN. When Cubist is finished building a rule-based model, Cubist can make predictions on the training set; subsequently, when trying to make a prediction for a new point, it can incorporate the predictions of the $K$ nearest points in the training set into the new prediction.
 
 As such, there are two hyperparameters to tune, called `committees` and `neighbors`. `committees` is the number of boosting iterations (*i.e.*, the number of different trees to train), and the functionality of `neighbors` is easily intuitively understandable as a more complex version of $k$-NN.
 
@@ -188,29 +192,30 @@ Ensemble stacking using a `caret`-based interface is implemented in the [`caretE
 We'll first have to specify which methods we're using and the control parameters:
 
 ```r
-ensemble_methods = c('glmnet', 'knn', 'rpart')
+ensemble_methods = c('glmnet', 'earth', 'rpart')
 ensemble_control = trainControl(method="repeatedcv", repeats=1,
                                 number=3, verboseIter=TRUE,
                                 savePredictions="final")
 ```
 
-Next, we have to specify the tuning parameters for all three methods:
+Next, we have to specify the tuning parameters for all three methods (suppose in the following that `grid_glmnet`, `grid_mars`, and `grid_rpart` are the hyperparameter grids for their associated methods):
 
 ```r
 ensemble_tunes = list(
-  glmnet=caretModelSpec(method='glmnet', tuneLength=10),
-  knn=caretModelSpec(method='knn', tuneLength=10),
-  rpart=caretModelSpec(method='rpart', tuneLength=10)
+  glmnet=caretModelSpec(method='glmnet', tuneGrid=grid_glmnet),
+  earth=caretModelSpec(method='earth', tuneGrid=grid_mars),
+  rpart=caretModelSpec(method='rpart', tuneGrid=grid_rpart)
 )
 ```
 
-We then create a list of `train()` fits using the `caretList()` function:
+We then create a list of `train()` fits using the `caretList()` function (suppose in the following that `wine_features` is a data frame of features and `wine_quality` is the wine quality target variable):
 
 ```r
 ensemble_fits = caretList(wine_features, wine_quality,
                           trControl=ensemble_control,
                           methodList=ensemble_methods,
-                          tuneList=ensemble_tunes)
+                          tuneList=ensemble_tunes,
+                          preProcess=c("center", "scale"))
 ```
 
 Finally, we can find the best *linear combination* of our many models by calling `caretEnsemble()` on our list of models:
@@ -223,7 +228,7 @@ summary(fit_ensemble)
 
 By combining three simple methods, we've managed to get a cross-validated RMSE lower than the RMSE for any of the three individual models!
 
-* How much lower does the RMSE get if you add in gradient boosted trees to the ensemble model? (The `caretModelSpec()` function can take a `tuneGrid` parameter instead of `tuneLength`.)
+* How much lower does the RMSE get if you add in a $k$-Nearest Neighbors model to the stacked ensemble? What about a random forest or a gradient boosted tree?
 
 In the [`caretEnsemble` documentation](https://cran.r-project.org/web/packages/caretEnsemble/vignettes/caretEnsemble-intro.html), read about how to use `caretStack()` to make a more sophisticated *nonlinear ensemble* from `ensemble_fits`.
 
@@ -234,28 +239,20 @@ In the [`caretEnsemble` documentation](https://cran.r-project.org/web/packages/c
 Closing notes
 =============
 
-By now, you've tried a fairly wide variety of nonlinear fitting techniques and gotten some sense for how each of them works. *In practice*, people usually use decision tree-based methods, especially random forests and gradient boosted trees; they tend to be fairly easily tuned and robust to overfitting. However, it's useful to have a broader overview of the field as a whole.
+By now, you've tried a fairly wide variety of nonlinear fitting techniques and gotten some sense for how each of them works.
 
-There are a lot of peculiarities to the interfaces of different nonlinear techniques. It's nice to stick to using `caret`'s `train()` when possible because of how easy it is to set up.
-
-Hyperparameter optimization
----------------------------
-
-You may have noticed that tuning hyperparameters is a very big part of fitting nonlinear methods well! As the techniques become more complex, the number of hyperparameters to tune can grow significantly. Grid search is fine for ordinary usage, but in very complicated situations (10-20+ hyperparameters) it's better to use [*random* search](http://www.jmlr.org/papers/volume13/bergstra12a/bergstra12a.pdf); otherwise, there would just be far too many hyperparameter combinations to evaluate![^comb]
-
-[^comb]: If you have, say, 15 hyperparameters, even the simplest possible grid search that selects one of two possible values for each hyperparameter still has $2^{15}$ configurations to iterate over. That will almost assuredly take far too long.
-
-* Read the first 4 paragraphs of the `caret` package's documentation on [random hyperparameter search](http://topepo.github.io/caret/random.html).
-
-The `caret` package is very well-designed and grid search will usually suffice for your purposes, especially because of its internal optimizations. Nevertheless, it's good to be aware that alternatives to grid search exist.
-
-Which model to use?
--------------------
-
-When trying to do predictive regression modeling, it's usually advised to start out with random forests or gradient boosted trees because they're fairly well understood and perform well out of the box with fairly straightforward tuning.[^comp] Random forests are simpler than gradient boosted trees, but both are much simpler than, say, a deeps neural net.
+When trying to do predictive regression modeling, it's usually advised to start out with random forests because they're easily tuned and perform decently without the need for a very detailed hyperparameter search.[^comp] Afterward, people will move to more sophisticated techniques such as gradient boosted trees. We have neglected two major classes of regression techniques: neural nets and support vector regression. They are very substantial topics in and of themselves, so they will be covered in future lessons.
 
 [^comp]: One of the only good comparison of nonlinear regression techniques is in Chipman *et al.* (2010), [BART: Bayesian Additive Regression Trees](https://arxiv.org/pdf/0806.3286.pdf), which gives the following ordering (from better to worse): BART, 1-layer neural nets, gradient boosted trees, random forests. Cubist isn't used very much, mostly because almost nobody really knows what it does, even if its results are pretty good in practice. See also Santibanez *et al.* (2015), [Performance Analysis of Some Machine Learning Algorithms for Regression Under Varying Spatial Autocorrelation](https://agile-online.org/Conference_Paper/cds/agile_2015/shortpapers/100/100_Paper_in_PDF.pdf).
 
-For fast parallelized gradient boosted trees in R, use the [`xgboost` package](https://cran.r-project.org/web/packages/xgboost/vignettes/xgboostPresentation.html) -- it's currently the state of the art. For random trees, the currently best implementation can be used by setting `method="parRF"` in `caret`'s `train()`, which is a parallelized combination of the `randomForest`, `e1071`, and `foreach` packages.
+You may have noticed that tuning hyperparameters is a very important part of making nonlinear methods work well! As the techniques become more complex, the number of hyperparameters to tune can grow significantly. Grid search ordinarily works well, but in very complicated situations (10-20+ hyperparameters) it's better to use [*random* search](http://www.jmlr.org/papers/volume13/bergstra12a/bergstra12a.pdf); otherwise, there would just be far too many hyperparameter combinations to evaluate![^comb]
 
-In the future, you'll learn about more complex nonlinear regression techniques, which can either be used on their own or be combined with the techniques you've already learned in a larger ensemble. However, defaulting to either random forests or gradient boosted trees works quite well in practice if you want to get a sense of how much predictive improvement you can get from using a nonlinear method.
+[^comb]: If you have, say, 15 hyperparameters, even the simplest possible grid search that selects one of two possible values for each hyperparameter still has $2^{15}$ configurations to iterate over. That will almost assuredly take far too long.
+
+The `caret` package's documentation on [random hyperparameter search](http://topepo.github.io/caret/random.html) has this to say:
+
+> The default method for optimizing tuning parameters in `train()` is to use a grid search. This approach is usually effective but, in cases when there are many tuning parameters, it can be inefficient. An alternative is to use a combination of [grid search and racing](http://topepo.github.io/caret/adaptive.html). Another is to use a random selection of tuning parameter combinations to cover the parameter space to a lesser extent.
+> 
+> There are a number of models where this can be beneficial in finding reasonable values of the tuning parameters in a relatively short time. However, there are some models where the efficiency in a small search field can cancel out other optimizations. For example, a number of models in `caret` utilize the "sub-model trick" where [even when] $M$ tuning parameter combinations are evaluated, potentially far fewer than $M$ [complete] model fits are required. This approach is best leveraged when a simple grid search is used. For this reason, it may be inefficient to use random search for [models including gradient boosted trees, random forests, etc.]
+
+Indeed, the `caret` package is very well-designed; on account of its many internal optimizations, grid search will typically suffice for your purposes. Nevertheless, it's good to be aware that alternatives to grid search exist.

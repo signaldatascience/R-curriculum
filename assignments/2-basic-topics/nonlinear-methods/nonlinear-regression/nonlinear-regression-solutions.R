@@ -71,7 +71,7 @@ results = rbind(results, c("rf", caret_rmse(fit_rf)))
 results
 
 # Gradient boosted trees
-grid_gbm = expand.grid(n.trees=500, shrinkage=seq(0.01, 0.1, 0.03), interaction.depth=seq(20, 60, 20), n.minobsinnode=1)
+grid_gbm = expand.grid(n.trees=500, shrinkage=seq(0.01, 0.1, 0.03), interaction.depth=c(1, 5, 10, 20, 40, 60), n.minobsinnode=1)
 fit_gbm = caret_reg(as.matrix(wine_features), wine_quality, "gbm", grid_gbm)
 caret_rmse(fit_gbm)
 
@@ -85,6 +85,7 @@ results = rbind(results, c("cubist", caret_rmse(fit_cubist)))
 results
 
 # Stacking regularized linear regression, MARS, and regression trees
+set.seed(1)
 ensemble_methods = c('glmnet', 'earth', 'rpart')
 ensemble_control = trainControl(method="repeatedcv", repeats=1,
                                 number=3, verboseIter=TRUE,
@@ -97,7 +98,8 @@ ensemble_tunes = list(
 ensemble_fits = caretList(wine_features, wine_quality,
                           trControl=ensemble_control,
                           methodList=ensemble_methods,
-                          tuneList=ensemble_tunes)
+                          tuneList=ensemble_tunes,
+                          preProcess=c("center", "scale"))
 fit_ensemble = caretEnsemble(ensemble_fits)
 print(fit_ensemble)
 summary(fit_ensemble)
