@@ -3,7 +3,7 @@ title: "Nonlinear Methods: Regression and Classification"
 author: Signal Data Science
 ---
 
-In this lesson, we will explore a collection of standard nonlinear regression and classification techniques. For regression, we'll be predicting wine quality in terms of chemical properties, and for classification, we'll be using the classic [*Iris* flower data set](https://en.wikipedia.org/wiki/Iris_flower_data_set) and trying to differentiate between different species of irises. At the end, we'll combine all of these methods with [stacking](https://en.wikipedia.org/wiki/Ensemble_learning#Stacking) to create a model which performs better than any individual technique alone.
+In this lesson, we will explore a collection of standard nonlinear regression and classification techniques. For regression, we'll be predicting wine quality in terms of chemical properties, and for classification, we'll be TODO At the end, we'll combine all of these methods with [stacking](https://en.wikipedia.org/wiki/Ensemble_learning#Stacking) to create a model which performs better than any individual technique alone.
 
 Getting started
 ===============
@@ -16,32 +16,25 @@ The wine quality dataset can be found in the `wine-quality` dataset folder (with
 
 * Use `qplot(...) + geom_smooth()` to plot wine quality against each of the individual variables representing chemical properties in the white wine dataset. Which variables are strongly *and* nonlinearly associated with wine quality?
 
-The *Iris* dataset is a default variable in base R.
-
-* Set `df_iris = iris` to copy the *Iris* dataset to a different variable. Call `?iris` and read the *Description* section of the documentation.
-
-* There are 4 different numeric variables in the *Iris* dataset, yielding $\binom{4}{2} = 6$ different pairs of these variables. Plot each pair of variables on a scatterplot with the points colored according to their species. For example, the code for plotting sepal width against sepal length should look like this:
-
-	```r
-	ggplot(df_iris,
-	  aes(Sepal.Length, Sepal.Width, color=Species))
-	  + geom_point()
-	```
-
-	Which pairs of species are linearly separable (*i.e.*, in the 4-dimensional space of the 4 numeric variables, which pairs of species can be perfectly separated from each other with a 3-dimensional hyperplane)? Which pairs of species are not?
-
-* Restrict to the two species which are *not* linearly separable from each other.
+(todo)
 
 Elastic net regularization
 ==========================
 
 Before using nonlinear methods to predict white wine quality, we will use elastic net regularized linear and logistic regression to calculate a performance "baseline" to which we can compare the performance of nonlinear methods.
 
-* Use `caret` with `train(..., method="glmnet")` to get an estimate for how low you can get the cross validated RMSE to get with just regularized linear regression.
+First, we'll write some utility functions for using `caret`'s `train()`, which will serve as a standardized interface for applying a variety of different nonlinear techniques. `caret` supports [a very large number of different models](https://topepo.github.io/caret/modelList.html)!
 
-	* For simplicity, instead of passing in a grid of values, you can just pass in `tuneLength=10` to `train()`, which makes it automatically generate a grid of hyperparameters. (This is fine for `glmnet`, but may not work so well for the hyperparameters of more complex nonlinear methods.)
+* Write two functions `caret_reg(x, y, method, grid)` and `caret_reg(x, y, method, grid)` which return the output of calling `caret`'s `train()` for a regression task and a binary classification task respectively with predictors `x`, a target variable `y`, a model type `method`, and a grid of hyperparameters `grid`. Follow these specifications:
 
-* Examine the coefficients associated with the best linear fit and interpret the results. Based on the graphs you viewed earlier, which nonlinear relationships (between wine quality and chemical properties) are the regularized linear model not successfully modeling?
+	* The functions should both set the seed to 1.
+
+	* The `trControl` parameter of `train()` should be set for repeated cross-validation with 1 repeat and 3 folds. Set `verboseIter=TRUE` as well.
+
+	* For classification, the control parameters should include `classProbs=TRUE` and `summaryFunction=twoClassSummary`.
+
+	* In the call to `train()`, set `metric="RMSE"` for regression and `metric="ROC"` (area under the ROC curve) for classification. For both, pass in the parameter `preProcess=c("center", "scale")`.
+
 
 Multivariate adaptive regression splines
 ========================================

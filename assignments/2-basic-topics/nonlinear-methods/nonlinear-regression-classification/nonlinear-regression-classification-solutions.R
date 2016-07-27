@@ -58,7 +58,7 @@ iris_species = df_iris$Species
 
 grid_glmnet = expand.grid(alpha=seq(0, 1, 0.1), lambda=2^seq(-4, 1, length.out=10))
 glmnet_wine = caret_reg(wine_features, wine_quality, "glmnet", grid_glmnet)
-glmnet_iris = caret_class(iris_features, iris_species, "glmnet")
+glmnet_iris = caret_class(iris_features, iris_species, "glmnet", grid_glmnet)
 
 
 #####################################################################
