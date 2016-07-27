@@ -60,7 +60,11 @@ The only hyperparameter to tune is $k$. A larger value of $k$ helps guard agains
 Multivariate adaptive regression splines
 ========================================
 
-Multivariate adaptive regression splines (MARS) is an extension of linear models which uses *hinge functions*. MARS models a target variable as being a linear combination of functions of the form $\max(0, \pm (x_i-c))$, where $x_i$ is one of the predictor variables.
+Multivariate adaptive regression splines (MARS) is an extension of linear models which uses *hinge functions*.[^spline] MARS models a target variable as being a linear combination of functions of the form $\max(0, \pm (x_i-c))$, where $x_i$ is one of the predictor variables.
+
+[^spline]: The word "spline" has historical origins in mechanical engineering and construction. Originally, it meant a piece of thin wood or a metal slat, but by the 20th century came to mean a flexible ruler used to interpolate (*i.e.*, fill in the missing points of) curves when "blowing up" a smaller diagram into a full-size diagram. The ruler would be held at various important fixed points, and the natural minimum-strain-energy configuration assumed by the ruler between those points would be taken as the interpolated curve. The first usage of "spline" in mathematics is typically accepted to be Schoenberg (1946), "Contributions to the Problem of Approximation of Equidistant Data by Analytic Functions".
+
+	MARS models themselves were introduced only in 1991 by Jerome H. Friedman.
 
 ![Two examples of hinge functions.](mars.png){width=40%}
 
