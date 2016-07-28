@@ -49,6 +49,7 @@ http://www.cs.columbia.edu/~blei/fogm/2015F/
 - turn LDA visualization reading into problems
 - follow Fisher's analysis of Iris data in original paper
 - dfs/bfs in basic algorithms
+- improve the SVM exercises (far too open ended, not enough *stuff*)
 
 - resampling: add exposition on why higher/lower n for n-fold cv
 http://stats.stackexchange.com/questions/27730/choice-of-k-in-k-fold-cross-validation

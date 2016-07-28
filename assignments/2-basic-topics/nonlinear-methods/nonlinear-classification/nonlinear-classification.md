@@ -174,7 +174,9 @@ If the data points are iterated over in the same order each time, the weights wi
 Support vector machines
 =======================
 
-Support vector machines are implemented in R as `svm()` in the `e1071` package. When you call `svm()` in the following exercises, you should always specify `kernel="linear"`, because `svm()` defaults to using a *radial* kernel. (We will discuss kernel methods later.)
+The problem of choosing the optimal separating hyperplane directly provides motivation for the method which underlies the method of support vector machines (SVMs). In particular, the linear formulation of SVMs directly searches for the *maximum-margin hyperplane* which separates two classes of data, *i.e.*, the separating hyperplane which lies "in between" two separable classes in a precise sense. The intuition behind the privileged status of the maximum-margin hyperplane as follows: data very far away from the boundary are easy to classify, so it is far more important to classify data at the *margins* of the class boundaries as well as possible.
+
+Support vector machines are implemented in R as `svm()` in the `e1071` package. When you call `svm()` in the following exercises, you should always specify `kernel="linear"`, because `svm()` defaults to using a *radial* kernel.
 
 * Return to the linearly separable data with 2000 points which you initially used for the perceptron. Remove the column of 1s, convert the matrix into a data frame, add on a column with the class labels (which should be $\pm 1$), and convert the class label column into a factor.
 
@@ -184,26 +186,24 @@ Support vector machines are implemented in R as `svm()` in the `e1071` package. 
 
 * Generate 40 data points, where 20 of them fall above $y = 3(x - 0.5)^2 + 0.55$ and the other 20 fall below $y = 3(x - 0.5)^2 + 0.4$. Plot the data. (If you want a better visualization of what the class boundaries are like, plot the result with 2000 points.) Turn your matrix of data into a data frame and add a column with class labels; turn the class label column into a factor.
 
-* Try classifying the data with a linear SVM. How well does it work? How does the hyperplane change as you vary $C$?
+Our current formulation of support vector machines only supports *binary* classification.
 
-* How well can a linear SVM separate data when each class is drawn from a different multivariate normal distribution? Try it for both distributions which have means close to each other and distributions with have means far away from each other.
+* How would you use a SVM for multiclass classification? Come up with at least one plausible method.
+
+* Explore the performance of linear SVMs on the wine cultivar and *Iris* datasets. Write up any interesting results.
 
 Having used SVMs to classify some data, it may not yet be entirely clear why support vector machines receive so much attention. Is the support vector machine not simply a slightly better version of the perceptron? Is it not also almost entirely reliant upon the data being approximately linearly separable? In the next section, you will see how we can cleverly overcome these challenges.
 
-* Our current formulation of support vector machines only supports binary classification. How would you use a SVM for multiclass classification? Come up with at least one plausible method.
-
-Nonlinear kernels for SVMs
---------------------------
+Nonlinear kernels
+-----------------
 
 The `svm()` function supports `"radial"`, `"polynomial"`, and `"sigmoid"` as arguments for its `kernel` parameter. The documentation describes how to set the hyperparameters corresponding to each type of kernel.
 
-* Try using a radial kernel SVM with different costs and values for $\sigma$ on both the linearly separable and the quadratically separable data, plotting the results of each fit. How does the best value of $\sigma$ vary with the sample size?
+* Try using a radial kernel SVM with different costs and values for $\sigma$ on both the linearly separable and the quadratically separable simulated data, plotting the results of each fit. How does the best value of $\sigma$ vary with the sample size? Do the polynomial and sigmoid kernel perform better or worse?
 
-* Are there sample sizes for which a linear kernel can do better than a radial kernel?
+* Using `lin_pair()` and `quad_pair()`, explore whether or not there are sample sizes for which a linear kernel outperform radial kernels.
 
-* Write better versions of `lin_pair()` and `quad_pair()` that return points in $p$-dimensional space for a specified value of $p$. (You will need to pass in parameters which define a $(p-1)$ dimensional hyperplane or quadric surface and then check which side of the surface a generated point is on.) When $p$ is much greater than the number of data points, how does the performance of a linear kernel compare to the performance of a radial kernel?
-
-* Just for fun, try to use the polynomial and sigmoid kernels to classify the data and see how well they do.
+* Explore the functionality of the radial, polynomial, and sigmoid kernels on the wine cultivar and *Iris* datasets. Write up any interesting results.
 
 Closing notes
 =============
