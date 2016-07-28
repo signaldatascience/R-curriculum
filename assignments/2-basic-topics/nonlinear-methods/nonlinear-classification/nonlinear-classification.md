@@ -165,9 +165,7 @@ As you can see, the perceptron algorithm typically works pretty well. Unfortunat
 
 * Restrict the *Iris* dataset to the sepal length and sepal width variables. Plot the data and restrict to the two species which are *not* linearly separable from one another. What happens when you run `perceptron_conv()` to classify those two species? Plot the "solution" returned by the perceptron for some intuition.
 
-If the data points are iterated over in the same order each time, the weights will eventually *cycle* in the case of nonseparability, but detecting a cycle can take a long time if the sample size is large.
-
-Also, as you have seen, when it *does* converge, the perceptron's solution is highly dependent upon choice of random seed. When the training data are linearly separable *and* there exists a "gap" or "margin" between them, there are infinitely many possible choices of a valid decision boundary. We will see later how to resolve these problems.
+If the data points are iterated over in the same order each time, the weights will eventually *cycle* in the case of nonseparability, but detecting a cycle can take a long time if the sample size is large. Also, as you have seen, when it *does* converge, the perceptron's solution is highly dependent upon choice of random seed. When the training data are linearly separable *and* there exists a "gap" or "margin" between them, there are infinitely many possible choices of a valid decision boundary. We will soon see how to resolve these problems.
 
 * Read more about the fascinating history of perceptrons in the Wikipedia article for Minsky and Papert's book titled [Perceptrons: an introduction to computational geometry](https://en.wikipedia.org/wiki/Perceptrons_(book)).
 
@@ -208,36 +206,22 @@ The `svm()` function supports `"radial"`, `"polynomial"`, and `"sigmoid"` as arg
 Other methods
 =============
 
-TODO
+The above discussion of classification techniques is by no means exhaustive! We have omitted a variety of methods: some because they are derivatives of previously discussed, others because you have already had substantial practice applying them, and yet more because they would have been far too tangential to this lesson as a whole.
 
-svm regression
-
-The only remaining major class of machine learning techniques we have remaining to discuss is the field of *deep learning and neural networks*. That topic is complex, broad, and deep, so it will be treated on its on in a future lesson.
-
-$k$-Nearest Neighbors
----------------------
-
-$k$-Nearest Neighbors classification works in precisely the way one would expect it to work: for any given point to classify, the algorithm looks at the nearest $k$ points in the training set and finds the most common class among those $k$ points. That class is the prediction result.
+We developed $k$-Nearest Neighbors in the context of nonlinear regression, but $k$-NN can also be used for classification tasks. It works in precisely the way one would expect it to work: for any given point to classify, the algorithm looks at the nearest $k$ points in the training set and finds the most common class among those $k$ points. That class is the prediction result.
 
 Although $k$-NN works well when there is enough data to capture, at a very fine-grained level, all of the detailed structure in the data, prediction is slow (because it depends on searching through the *entire* training set for every single prediction) and $k$-NN has difficulty with higher-dimensional data (because distance metrics stop working well at very high dimensions).
 
-Decision tree methods
----------------------
+Moreover, since decision trees can also be used for classification (hence the acronym CART), random forests and gradient boosted trees can consequently also be used for classification tasks. Like with nonlinear regression, they typically function reasonably well. Note that the metric of variable importance is typically the *Gini impurity* for classification rather than the variance-based *impurity* calculated for regression tasks.
 
-TODO
+Finally, we have omitted any discussion of logistic regression and deep learning; the former has already been covered in substantial depth and the latter is too complex of a topic to be treated alongside other methods.
 
 Choosing a classifier
 ---------------------
 
-TODO
+Like with nonlinear methods, one has the question of *which* classifier technique to apply to any given problem. Caruana and Niculescu-Mizil (2008), [An Empirical Comparison of Supervised Learning Algorithms](http://www.niculescu-mizil.org/papers/comparison.tr.pdf), Caruana *et al.* (2008), [An Empirical Evaluation of Supervised Learning in High Dimensions](http://cms.brookes.ac.uk/research/visiongroup/talks/rg_august_09_normalized_cuts/eval_of_supervised_learning_in_high_dimensions.pdf), and Fernández-Delgado (2014), [Do we Need Hundreds of Classifiers to Solve Real World Classification Problems?](http://jmlr.org/papers/volume15/delgado14a/delgado14a.pdf) all compare the performance of different classifiers. The paper by Fernández-Delgado is particularly informative, being a comparison of 179 different classifiers from 17 families on the UCI Machine Learning Repository's classification datasets. There is also a [follow-up](http://fastml.com/what-is-better-gradient-boosted-trees-or-random-forest/) from the authors about the performance of gradient boosted trees (omitted in the original study).
 
-These three papers perform various empirical comparisons of classifier methods:
-
-1. Caruana and Niculescu-Mizil (2008), [An Empirical Comparison of Supervised Learning Algorithms](http://www.niculescu-mizil.org/papers/comparison.tr.pdf)
-2. Caruana *et al.* (2008), [An Empirical Evaluation of Supervised Learning in High Dimensions](http://cms.brookes.ac.uk/research/visiongroup/talks/rg_august_09_normalized_cuts/eval_of_supervised_learning_in_high_dimensions.pdf)
-3. Fernández-Delgado (2014), [Do we Need Hundreds of Classifiers to Solve Real World Classification Problems?](http://jmlr.org/papers/volume15/delgado14a/delgado14a.pdf)
-
-The third paper is particularly informative, being a comparison of 179 different classifiers from 17 families. There is also a [follow-up](http://fastml.com/what-is-better-gradient-boosted-trees-or-random-forest/) from the authors about the performance of gradient boosted trees (omitted in the original study).
+The takeaway broadly seems to be: if nonlinear classification is necessary, try using random forests, gradient boosted trees, or support vector machines with nonlinear kernels. Decision tree ensemble methods will function well in general, although specific tasks may be particularly well-suited for a SVM with a specialized kernel.
 
 Closing notes
 =============
