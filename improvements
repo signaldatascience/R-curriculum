@@ -28,8 +28,7 @@ http://www.cs.columbia.edu/~blei/fogm/2015F/
 - example of factor analysis outperforming regularization
 - add more to clustering assignment
 - add ~1 more hour of work to factor analysis assignment
-- continued fractions with Reduce()
-- regression to the mean
+- regression to the mean w/ galton height data
 - change NLP to Python
 - time series: can't use normal resampling
 - revise clustering substantially
@@ -44,7 +43,12 @@ http://www.cs.columbia.edu/~blei/fogm/2015F/
 - birthday paradox
 - Kalman filter
 - unbalanced classes
-- explore curse of dimensionality
+- explore curse of dimensionality https://en.wikipedia.org/wiki/Concentration_of_measure
+- add kaggle bike sharing and box cox to end of nonlinear regression assignment
+- regularizing when predicting genre for recommender systems assignment
+- turn LDA visualization reading into problems
+- follow Fisher's analysis of Iris data in original paper
+- dfs/bfs in basic algorithms
 
 - resampling: add exposition on why higher/lower n for n-fold cv
 http://stats.stackexchange.com/questions/27730/choice-of-k-in-k-fold-cross-validation
@@ -61,7 +65,7 @@ things to do in week 4:
 distributed computing -> web scraping and NLP
 
 https://www.kaggle.com/benhamner/2016-us-election
-dfs/bfs
+http://artax.karlin.mff.cuni.cz/r-help/library/LiblineaR/html/heuristicC.html
 
 EMAIL
 https://support.google.com/a/answer/33353?hl=en
