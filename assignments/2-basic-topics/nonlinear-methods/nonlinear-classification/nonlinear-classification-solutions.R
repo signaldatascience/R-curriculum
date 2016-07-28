@@ -77,8 +77,20 @@ wine_ldapreds = predict(wine_lda)
 ldahist(wine_ldapreds$x[,1], wine_cultivar)
 ldahist(wine_ldapreds$x[,2], wine_cultivar)
 qplot(wine_ldapreds$x[,1], wine_ldapreds$x[,2], color=wine_cultivar)
+wine_pc = prcomp(wine_features, scale.=TRUE)
+qplot(wine_pc$x[,1], wine_pc$x[,2], color=wine_cultivar)
 
 # Iris classification
+iris_features = select(df_iris, -Species)
+iris_species = df_iris$Species
+iris_pc = prcomp(iris_features, scale.=TRUE)
+iris_lda = lda(iris_features, iris_species)
+iris_ldap = predict(iris_lda)
+qplot(iris_ldap$x[,1], iris_ldap$x[,2], color=iris_species)
+qplot(iris_pc$x[,1], iris_pc$x[,2], color=iris_species)
+
+
+# More Iris stuff (not part of assignment)
 p_iris = prcomp(select(df_iris, -Species), scale.=TRUE)
 qplot(p_iris$x[,1], p_iris$x[,2], color=df_iris$Species)
 

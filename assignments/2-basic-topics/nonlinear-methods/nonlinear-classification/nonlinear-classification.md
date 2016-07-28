@@ -52,6 +52,8 @@ Finally, we will look at a dataset containing the results of chemical analysis o
 
 * Load the wine dataset in `wine.data` and read the documentation in `wine.names`.
 
+* Use [`aggregate()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/aggregate.html) to view the mean value of each predictor variable for each the three different wine cultivars. (You'll have to set `FUN=mean` and convert the vector of class labels to a *list* before passing it into the `by` parameter.)
+
 Discriminant analysis
 =====================
 
@@ -170,11 +172,9 @@ Also, as you have seen, when it *does* converge, the perceptron's solution is hi
 Support vector machines
 =======================
 
-Support vector machines are implemented in R as `svm()` in the `e1071` package.
+Support vector machines are implemented in R as `svm()` in the `e1071` package. When you call `svm()` in the following exercises, you should always specify `kernel="linear"`, because `svm()` defaults to using a *radial* kernel. (We will discuss kernel methods later.)
 
-When you call `svm()` in the following exercises, you should always specify `kernel="linear"`, because `svm()` defaults to using a *radial* kernel. We will discuss kernel methods later.
-
-* Return to the linearly separable data with 2000 points which you initially used for the perceptron. Convert the matrix into a dataframe, add on a column with the class labels (which should be either $+1$ or $-1$), and convert the class label column into a factor. Name the columns of your dataframe appropriately.
+* Return to the linearly separable data with 2000 points which you initially used for the perceptron. Convert the matrix into a dataframe, add on a column with the class labels (which should be $\pm 1$), and convert the class label column into a factor. Name the columns of your dataframe appropriately.
 
 * Run `svm()` on your data to predict class label from $x$ and $y$ coordinates. Visualize the resulting model with `plot(fit, df)`. The points marked with an "X" are the support vectors of the corresponding maximum-margin hyperplane.
 
@@ -186,15 +186,9 @@ When you call `svm()` in the following exercises, you should always specify `ker
 
 * How well can a linear SVM separate data when each class is drawn from a different multivariate normal distribution? Try it for both distributions which have means close to each other and distributions with have means far away from each other.
 
-* Return to the aggregated speed dating dataset and use a linear SVM to separate males from females in terms of their self-rated activity participation. Use cross-validation to select the best value of $C$ and evaluate the accuracy of the linear SVM.
+Having used SVMs to classify some data, it may not yet be entirely clear why support vector machines receive so much attention. Is the support vector machine not simply a slightly better version of the perceptron? Is it not also almost entirely reliant upon the data being approximately linearly separable? In the next section, you will see how we can cleverly overcome these challenges.
 
-Having used SVMs to classify some data, it may not yet be entirely clear why support vector machines receive so much attention. Is the support vector machine not simply a slightly better version of the perceptron? Is it not almost entirely reliant upon the data being approximately linearly separable?
-
-In the next section, you will see how we can cleverly overcome these challenges.
-
-Note that SVMs can be used to perform regression, not just classification. However, the formulation of SVM regression is not as elegant, and it is an uncommonly used technique. Nevertheless, be aware that it exists.
-
-* Our current formulation of support vector machines only supports binary classification. In general, if you have a binary classifier (of any type), how can you use it for multiclass classification? Come up with at least one potentially viable method.
+* Our current formulation of support vector machines only supports binary classification. How would you use a SVM for multiclass classification? Come up with at least one plausible method.
 
 Nonlinear kernels for SVMs
 --------------------------
@@ -209,12 +203,12 @@ The `svm()` function supports `"radial"`, `"polynomial"`, and `"sigmoid"` as arg
 
 * Just for fun, try to use the polynomial and sigmoid kernels to classify the data and see how well they do.
 
-* Use a radial kernel SVM to classify speed dating participants' gender with their self-rated activity performance. If you use cross-validation to select the best values of $C$ and $\sigma$, how much better can you do over a linear SVM?
-
 Other methods
 =============
 
 TODO
+
+svm regression
 
 The only remaining major class of machine learning techniques we have remaining to discuss is the field of *deep learning and neural networks*. That topic is complex, broad, and deep, so it will be treated on its on in a future lesson.
 
