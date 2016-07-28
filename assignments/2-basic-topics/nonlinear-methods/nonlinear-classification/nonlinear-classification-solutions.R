@@ -80,7 +80,7 @@ qplot(wine_ldapreds$x[,1], wine_ldapreds$x[,2], color=wine_cultivar)
 wine_pc = prcomp(wine_features, scale.=TRUE)
 qplot(wine_pc$x[,1], wine_pc$x[,2], color=wine_cultivar)
 
-# Iris classification
+# Iris stuff (not part of assignment)
 iris_features = select(df_iris, -Species)
 iris_species = df_iris$Species
 iris_pc = prcomp(iris_features, scale.=TRUE)
@@ -89,8 +89,6 @@ iris_ldap = predict(iris_lda)
 qplot(iris_ldap$x[,1], iris_ldap$x[,2], color=iris_species)
 qplot(iris_pc$x[,1], iris_pc$x[,2], color=iris_species)
 
-
-# More Iris stuff (not part of assignment)
 p_iris = prcomp(select(df_iris, -Species), scale.=TRUE)
 qplot(p_iris$x[,1], p_iris$x[,2], color=df_iris$Species)
 
@@ -228,3 +226,5 @@ df_species = cbind(df_species, rep(1, nrow(df_species)))
 lbl_species = as.numeric(df_iris_nonsep$Species) - 2
 w = perceptron_conv(df_species, lbl_species, 1, 1)
 perceptron_plot(df_species, lbl_species, unlist(w))
+
+# Support vector machines

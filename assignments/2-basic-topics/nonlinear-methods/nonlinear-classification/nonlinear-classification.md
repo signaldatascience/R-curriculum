@@ -3,9 +3,11 @@ title: "Nonlinear Methods: Classification"
 author: Signal Data Science
 ---
 
-Previously, we considered nonlinear *regression* techniques. Next, we'll move to briefly covering nonlinear *classification* techniques, allowing us to improve upon logistic regression via more sophisticated and general methods. The theory of some of the classification techniques used in this assignment is discussed in *Notes on Classification Theory*; feel free to back to those notes as you work through the exercises below.
+Previously, we considered nonlinear *regression* techniques. Next, we'll move to briefly covering nonlinear *classification* techniques, allowing us to improve upon logistic regression via more sophisticated and general methods. The theory of some of the classification techniques used in this assignment is discussed in *Notes on Classification Theory*; feel free to back to those notes as you work through the exercises below. The heavily theoretical discussion in those notes may become clearer as you gain some concrete intuition for how to apply these classification methods and how they work.
 
-The field of nonlinear techniques is *very* vast and wide. As with the nonlinear regression assignment, you should be constantly referring to textbooks and online resources to clarify details and to improve your own understanding and intuition. The lesson below is designed to *guide* you in the correct directions, and the goal is not to speedily finish the exercises but rather to use them as prompts for your curiosity and as sources of further directions of intellectual exploration.
+The field of nonlinear techniques is *very* vast and wide. As with the nonlinear regression assignment, you should be constantly referring to external sources to clarify details and improve your own understanding and intuition of the methods discussed. The lesson below is designed to *guide* you in the correct directions, and the goal is not to speedily finish the exercises but rather to use them as prompts for your curiosity and as sources of further directions of intellectual exploration.
+
+A substantial part of this lesson will be devoted to *linear* methods, but we will culminate with a very powerful nonlinear classification technique. By following the historical development of these statistical and algorithmic ideas, we hope to provide sufficient *motivation* at each step such that the entire path, from discriminant analysis all the way to support vector machines with nonlinear kernels, will feel natural rather than arbitrary.
 
 Getting started
 ===============
@@ -174,13 +176,13 @@ Support vector machines
 
 Support vector machines are implemented in R as `svm()` in the `e1071` package. When you call `svm()` in the following exercises, you should always specify `kernel="linear"`, because `svm()` defaults to using a *radial* kernel. (We will discuss kernel methods later.)
 
-* Return to the linearly separable data with 2000 points which you initially used for the perceptron. Convert the matrix into a dataframe, add on a column with the class labels (which should be $\pm 1$), and convert the class label column into a factor. Name the columns of your dataframe appropriately.
+* Return to the linearly separable data with 2000 points which you initially used for the perceptron. Remove the column of 1s, convert the matrix into a data frame, add on a column with the class labels (which should be $\pm 1$), and convert the class label column into a factor.
 
 * Run `svm()` on your data to predict class label from $x$ and $y$ coordinates. Visualize the resulting model with `plot(fit, df)`. The points marked with an "X" are the support vectors of the corresponding maximum-margin hyperplane.
 
 * Vary the `cost` parameter of `svm()` from 0.1 all the way to much higher values. Each time, plot the resulting SVM fit. Interpret the results.
 
-* Generate 40 data points, where 20 of them fall above $y = 3(x - 0.5)^2 + 0.55$ and the other 20 fall below $y = 3(x - 0.5)^2 + 0.4$. Plot the data. (If you want a better visualization of what the class boundaries are like, plot the result with 2000 points.) Turn your matrix of data into a dataframe and add a column with class labels; turn the class label column into a factor.
+* Generate 40 data points, where 20 of them fall above $y = 3(x - 0.5)^2 + 0.55$ and the other 20 fall below $y = 3(x - 0.5)^2 + 0.4$. Plot the data. (If you want a better visualization of what the class boundaries are like, plot the result with 2000 points.) Turn your matrix of data into a data frame and add a column with class labels; turn the class label column into a factor.
 
 * Try classifying the data with a linear SVM. How well does it work? How does the hyperplane change as you vary $C$?
 
