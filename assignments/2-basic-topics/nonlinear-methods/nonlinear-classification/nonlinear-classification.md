@@ -208,7 +208,7 @@ The `svm()` function supports `"radial"`, `"polynomial"`, and `"sigmoid"` as arg
 Closing notes
 =============
 
-The above discussion of classification techniques is by no means exhaustive! Its focus is on tracing the outlines of a multi-decade historical path of research and development, not on enumerating every nonlinear classification technique in modern use. We have omitted a variety of methods: some because they are derivatives of previously discussed algorithms, others because you have already had substantial practice applying them, and yet more because they would have been far too tangential to this lesson as a whole.
+The above discussion of classification techniques is by no means exhaustive! Its focus is on tracing the outlines of a multi-decade historical path of research and development, not on enumerating every nonlinear classification technique in common usage. We have omitted a variety of methods: some because they are derivatives of previously discussed algorithms, others because you have already had substantial practice applying them, and yet more because they would have been far too tangential to this lesson as a whole.
 
 We developed $k$-Nearest Neighbors in the context of nonlinear regression, but $k$-NN can also be used for classification tasks. It works in precisely the way one would expect it to work: for any given point to classify, the algorithm looks at the nearest $k$ points in the training set and finds the most common class among those $k$ points. That class is the prediction result.
 
