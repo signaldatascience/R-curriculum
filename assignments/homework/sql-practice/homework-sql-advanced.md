@@ -15,7 +15,7 @@ Write SQL in *either* the [MySQL](https://en.wikipedia.org/wiki/MySQL) or the [O
 
 When finished, check your answers against the solutions. Mark every part of every problem which was answered incorrectly and understand your error. Next week, you will redo the marked problems.
 
-Each substantive error you find in the solutions qualifies you to a $1 prize and public recognition.
+Each substantive error you find in the solutions entitles you to a $1 prize and public recognition.
 
 Warming up
 ==========
