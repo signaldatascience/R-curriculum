@@ -159,7 +159,7 @@ A perceptron is *guaranteed to converge* to a line which fully separates two cla
 
 * Set the seed to 1 and plot the decision boundary which `perceptron_conv()` gives you for your output. Try setting the seed to integers from 2 to 10 as well and plot each result. How much variation do you observe? What if you only use a dataset of 20 points (generated in the same fashion) rather than a dataset of 2000?
 
-* Write a function `perceptron_time(xs, y, rate)` which runs `perceptron_conv()` 10 times, with the random seed set to 1 through 100, and times each iteration with the [`tictoc`](https://cran.r-project.org/web/packages/tictoc/index.html) package. It should return the average time elapsed over the 100 iterations. Use `perceptron_time()` to explore how the average convergence time varies for both your large and small simulated datasets as you vary the `rate` parameter over the range `10^seq(-1, 2, length.out=20)`.
+* Write a function `perceptron_time(xs, y, rate)` which runs `perceptron_conv()` 100 times, with the random seed set to 1 through 100, and times each iteration with the [`tictoc`](https://cran.r-project.org/web/packages/tictoc/index.html) package. It should return the average time elapsed over the 100 iterations. Use `perceptron_time()` to explore how the average convergence time varies for both your large and small simulated datasets as you vary the `rate` parameter over the range `10^seq(-1, 2, length.out=20)`.
 
 As you can see, the perceptron algorithm typically works pretty well. Unfortunately, despite its advantages, the standard perceptron cannot classify data which are *not* linearly separable---the algorithm will simply not converge.
 
@@ -196,6 +196,8 @@ Having used SVMs to classify some data, it may not yet be entirely clear why sup
 
 Nonlinear kernels
 -----------------
+
+The application of the *kernel trick*, replacing the linear inner product with a higher-dimensional inner product, allows us to formulate a *nonlinear* version of the support vector machine.
 
 The `svm()` function supports `"radial"`, `"polynomial"`, and `"sigmoid"` as arguments for its `kernel` parameter. The documentation describes how to set the hyperparameters corresponding to each type of kernel.
 

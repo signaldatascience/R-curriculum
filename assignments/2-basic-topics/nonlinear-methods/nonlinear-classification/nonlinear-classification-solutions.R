@@ -5,6 +5,7 @@ library(tictoc)
 library(MASS)
 library(klaR)
 library(dplyr)
+library(e1071)
 select = dplyr::select
 
 # Create simulated data functions
@@ -228,3 +229,24 @@ w = perceptron_conv(df_species, lbl_species, 1, 1)
 perceptron_plot(df_species, lbl_species, unlist(w))
 
 # Support vector machines
+# This section of the solution needs major revision
+df3 = as.data.frame(df)
+df3$label = factor(labels)
+names(df3) = c('X', 'Y', 'label')
+m = svm(label ~ ., df3, kernel="linear", scale=FALSE, cost=10000000)
+plot(m, df3)
+p = predict(m, df3)
+sum(sign(as.numeric(as.character(p))) == labels)
+
+t = tune.svm(df, labels)
+
+n = 40
+qupper = do.call(rbind, rlply(n/2, partial(quad_pair, a=3, b=0.5, c=0.55, label=1)))
+qlower = do.call(rbind, rlply(n/2, partial(quad_pair, a=3, b=0.5, c=0.4, label=-1)))
+qdf = as.data.frame(rbind(qupper, qlower))
+qdf$label = c(rep(1, n/2), rep(-1, n/2))
+names(qdf) = c('X', 'Y', 'label')
+qdf$label = factor(qdf$label)
+qplot(qdf$X, qdf$Y, color=qdf$label)
+qsvm = svm(label ~ ., qdf, kernel="sigmoid")
+plot(qsvm, qdf)

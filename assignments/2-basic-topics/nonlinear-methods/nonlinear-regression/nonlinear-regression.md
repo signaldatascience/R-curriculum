@@ -1,5 +1,5 @@
 ---
-title: "Nonlinear Methods: Regression"
+title: "Nonlinear Regression"
 author: Signal Data Science
 ---
 

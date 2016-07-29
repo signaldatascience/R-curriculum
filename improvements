@@ -50,6 +50,7 @@ http://www.cs.columbia.edu/~blei/fogm/2015F/
 - follow Fisher's analysis of Iris data in original paper
 - dfs/bfs in basic algorithms
 - improve the SVM exercises (far too open ended, not enough *stuff*)
+- solutions for nonlinear classification SVM exercises
 
 - resampling: add exposition on why higher/lower n for n-fold cv
 http://stats.stackexchange.com/questions/27730/choice-of-k-in-k-fold-cross-validation
@@ -97,7 +98,86 @@ https://dwbi.org/database/sql/72-top-20-sql-interview-questions-with-answers
 http://stackoverflow.com/questions/6942904/senior-sql-developer-interview-questions-too-difficult
 http://www.bullraider.com/database/sql-tutorial/7-complex-queries-in-sql
 
-Numerical optimization
-- integration for area under ROC curve (trapezoidal, etc.)
-- calculating 1st principal component with optim()
-- implementing K-means as instance of EM algorithm
+Nonlinear dimensionality reduction
+http://math.stackexchange.com/questions/87230/picking-random-points-in-the-volume-of-sphere-with-uniform-probability
+
+Datasets
+- congressional voting patterns
+- NYT articles
+- MNIST
+- book reviews http://www2.informatik.uni-freiburg.de/~cziegler/BX/
+- Facebook social graph data http://snap.stanford.edu/data/egonets-Facebook.html
+
+A/B testing
+
+Boosting
+- AdaBoost
+- feature importance
+
+Clustering
+- cosine distance on text
+- rmse decreases with # clusters
+- k-means++
+- hierarchical less useful if too much data to visualize
+
+Data visualization
+
+Dimensionality reduction
+- PCA vs. SVD
+- eigenfaces
+- multicollinearity => PC regression better
+
+Gradient descent
+- high learning rate -> divergence
+- feature scaling
+
+Graphs
+
+Image featurization
+
+Linear algebra
+
+Linear regression
+
+Logistic regression
+- sigmoid vs. logit function
+- confusion matrix
+
+MapReduce
+- Counter, Combiner
+
+Multi-armed bandit
+
+Natural language processing
+- part of speech tagging
+- more definitions: stop words, tokenization, etc.
+- skipgrams
+- handling text encoding
+- information retrieval
+- laplace smoothing
+- td-idf, word location sum
+
+Non-parametric learners
+- Gini inequality
+
+Power and Bayesian statistics
+
+Probability
+
+Profit curves
+
+Recommender systems
+- violin plots of true vs predicted
+- cold start problem
+
+Support vector machines
+- comparison of margin in logistic vs. SVM
+
+Time series
+- ARIMA
+
+Topic modeling
+- nonnegative matrix factorization vs. LDA
+
+Web scraping
+- Tor and proxies
