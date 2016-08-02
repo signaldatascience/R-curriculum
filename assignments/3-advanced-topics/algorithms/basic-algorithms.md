@@ -105,12 +105,14 @@ The [Sieve of Erastosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 
 1. List all the integers from 2 to $N$.
 2. We begin with the first and smallest prime number $p = 2$.
-3. Remove all the multiples of $p$ ($2p, 3p, \ldots$) aside from $p$ itself from the list.
-4. Find the first number greater than $p$ in the list and set $p$ equal to that number. Repeat step 3 or terminate if no such number exists.
+3. Mark all the multiples $p$ ($2p, 3p, \ldots$) aside from $p$ itself in the list.
+4. Find the first unmarked number greater than $p$ in the list and set $p$ equal to that number. Repeat step 3 or terminate if no such number exists.
 
 The numbers in the list constitute the primes between 2 and $N$.
 
 * Write a function `sieve(N)` which uses the Sieve of Erastosthenes to find and return a vector of all prime numbers from 2 to `N`. Check your function by evaluating `sieve(100)`, which should return 25 prime numbers from 2 to 97.
+
+* Go back and solve the 10th Project Euler problem with the Sieve of Erastosthenes.
 
 The Sieve is useful for generating primes, but not so much for *testing primality*; to know whether or not $n$ is prime, one would have to generate all the prime numbers from 1 to $n$. There are much faster ways to check whether or not a *specific* number is prime, such as the Miller--Rabin primality test.
 
