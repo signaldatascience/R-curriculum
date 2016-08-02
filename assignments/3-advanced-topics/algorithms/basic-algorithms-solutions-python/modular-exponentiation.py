@@ -1,4 +1,7 @@
 from math import log
+
+# pow() and pow2() are straightforward
+
 def decompose(n):
 	m = int(log(n, 2))
 	ret = []
