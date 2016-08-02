@@ -5,25 +5,6 @@ author: Signal Data Science
 
 Here's a collection of problems about advanced algorithms. These are designed to reinforce your R programming skills while teaching you useful and applicable material.
 
-Fast modular exponentiation
-===========================
-
-Before we can implement more complex algorithms, we'll need a fast implementation of [modular exponentiation](https://en.wikipedia.org/wiki/Modular_exponentiation), consisting of the task of calculating $a^b \mathrm{\ mod\ } c$, *i.e.*, the remainder of dividing $a^b$ by $c$. In addition to being intrinsically useful, modular exponentiation through repeated squaring (which is the end goal of this section) is a common programming question in interviews.
-
-* Write a function `pow(a, b, c)` that calculates $a^b \mathrm{\ mod\ } c$. Begin with a naive implementation that simply evaluates the calculation directly. Verify that $6^{17} \mathrm{\ mod\ } 7 = 6$ and that $50^{67} \mathrm{\ mod\ } 39 = 2$.
-
-* To improve the runtime of `pow()`, start at 1 and repeatedly multiply an intermediate result by $a$, calculating the answer mod $c$ each time, until the $b$th power of $a$ is reached. Implement this as `pow2()`.
-
-* Using the [`tictoc`](https://cran.r-project.org/web/packages/tictoc/index.html) package, quantify the resulting improvement in runtime. How does runtime improve as $a$ or $c$ increase in size? Is the runtime improvement merely a constant-factor scaling change (is the new runtime a constant multiple of the previous runtimes)?
-
-In order to make our algorithm even faster, we'll want to write a short utility function:
-
-* Write a function `decompose(n)` which takes as input an integer `n` and returns a vector of integers such that when you calculate 2 to the power of each element of the result and take the sum of those powers of 2, you obtain $n$. (*Hint:* First, calculate all powers of 2 less than or equal to $n$. After that, iteratively subtract off the highest power from $n$, keeping track of *which* power of 2 it was, until you get to 0.)
-
-Now, we can implement a quite rapid algorithm for modular exponentiation with the trick of repeated squaring:
-
-* You can improve the runtime of `pow()` further by decomposing $b$ into a sum of powers of 2, starting with $a$ and repeatedly squaring modulo $c$ (to calculate $a^1, a^2, a^4, a^8, \ldots \mathrm{\ mod\ } c$), and then forming the final answer as a *product* of those intermediate calculations. (For example, for $6^{17} \mathrm{\ mod\ } 7$, you are essentially calculating $17 = 2^0 + 2^4$ and $6^{17} \mathrm{\ mod\ } 7 = 6^{2^0} \cdot 6^{2^4} \mathrm{\ mod\ } 7$.) Using `decompose(n)`, implement this improvement as `pow3()`, making sure to calculate every intermediate result modulo $c$. Verify that `pow3()` is faster than `pow2()`.
-
 Pseudorandom number generators
 ==============================
 
@@ -153,22 +134,6 @@ Prime numbers are mathematically important because they form the "backbone" of t
 
 Primality testing is in fact a classic algorithmic task, stretching all the way back to 200 BC with the [Sieve of Erastosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes) developed by [Erastosthenes of Cyrene](https://en.wikipedia.org/wiki/Eratosthenes). We will first implement the Sieve and then work toward writing an implementation of the [Miller--Rabin primality test](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test), a modern test for primality known to be [very fast in practice](http://stackoverflow.com/questions/2586596/fastest-algorithm-for-primality-test) for reasonably small numbers.
 
-The Sieve of Erastosthenes
---------------------------
-
-Instead of directly being a test for primality, the Sieve of Erastosthenes is an algorithm for finding all prime numbers up to some prespecified limit $N$. It works as follows:
-
-1. List all the integers from 2 to $N$.
-2. We begin with the first and smallest prime number $p = 2$.
-3. Remove all the multiples of $p$ ($2p, 3p, \ldots$) aside from $p$ itself from the list.
-4. Find the first number greater than $p$ in the list and set $p$ equal to that number. Repeat step 3 or terminate if no such number exists.
-
-The numbers in the list constitute the primes between 2 and $N$.
-
-* Write a function `sieve(N)` which uses the Sieve of Erastosthenes to find and return a vector of all prime numbers from 2 to `N`. Check your function by evaluating `sieve(100)`, which should return 25 prime numbers from 2 to 97.
-
-The Sieve is useful for generating primes, but not so much for *testing primality* -- to know whether or not $n$ is prime, one would have to generate all the prime numbers from 1 to $n$. There are much faster ways to check whether or not a *specific* number is prime, one of which we will implement below.
-
 The Miller--Rabin primality test
 --------------------------------
 
@@ -192,7 +157,7 @@ With `decompose()`, `decompose_even()`, and `pow3()`, we are now ready to implem
 
 	* You can verify that your implementation works correctly by combining it with [`Filter()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/funprog.html) to find the prime numbers from 1 to 100 and checking the output against that of the Sieve of Erastosthenes.
 
-* Write a function `simple_check(n)` that checks if `n` is a prime by checking if `n` is divisible by any integers from 2 up to `floor(sqrt(b))`. Verify that `miller_rabin()` and `simple_check()` produce the same output for the first 100 integers. Use the [`tictoc`](https://cran.r-project.org/web/packages/tictoc/index.html) to compare the performance of the two functions as `n` grows.
+* Write a function `simple_check(n)` that checks if `n` is a prime by checking if `n` is divisible by any integers from 2 up to `floor(sqrt(b))`. Verify that `miller_rabin()` and `simple_check()` produce the same output for the first 10,000 integers.
 
 A small primality problem
 -------------------------
@@ -202,7 +167,3 @@ We can apply the Miller--Rabin primality test to solve a simple problem in compu
 * Write a function `variations(n)` which takes in an integer `n` and returns a vector containing every number which can be obtained by changing a single digit of `n`.
 
 * With `variations()` and the Miller--Rabin primality test, find a counterexample to the following statement: By changing at most a single digit of any positive integer, we can obtain a prime number.
-
-
-
-Use the [`memoise`](https://cran.r-project.org/web/packages/memoise/index.html) package to easily perform [memoization](https://en.wikipedia.org/wiki/Memoization) for the output of `miller_rabin()`. How much faster is your code with memoization compared to without memoization?

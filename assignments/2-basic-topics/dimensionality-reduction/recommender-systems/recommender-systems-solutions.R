@@ -258,7 +258,7 @@ sc2 = biScale(cs, maxit=100, trace=TRUE)
 corrplot(sc2, is.corr=FALSE)
 
 # Top movies for each career
-Z = complete(Incomplete(df$uid, df$mid), best_svd)
+Z = complete(Incomplete(df$uid, df$mid, df$rating), best_svd)
 
 # Ignore this in lieu of the function below
 career_movies = function(career_code) {
