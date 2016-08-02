@@ -237,7 +237,7 @@ Finally, we're ready to see which movies writers especially love or hate!
 [^writ]: The top movie for writers should be "North by Northwest" and the bottom movie should be "Toy Story".
 
 * Calculate the mean of `writer_ratings`. What is the interpretation of this value (both its magnitude and its sign)?
-
+		
 We can, of course, repeat the above process for other careers.
 
 * Write a function which takes as input an integer `career_code` and performs the above analysis for the corresponding career, returning a reordered data frame of movies with three columns (movie title, movie genre, estimated career-specific rating).
