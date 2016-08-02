@@ -99,7 +99,7 @@ Run-length encoding
 The Sieve of Erastosthenes
 ==========================
 
-The Sieve of Erastosthenes is an algorithm for finding all prime numbers up to some prespecified limit $N$. It works as follows:
+The [Sieve of Erastosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes) is an algorithm for finding all prime numbers up to some prespecified limit $N$. It works as follows:
 
 1. List all the integers from 2 to $N$.
 2. We begin with the first and smallest prime number $p = 2$.
@@ -142,17 +142,43 @@ The above method is very slow, but there are much faster algorithms. Indeed, it 
 * We can generate permutations in [lexicographic order](https://en.wikipedia.org/wiki/Lexicographical_order). Follow the [Wikipedia description of the algorithm](https://en.wikipedia.org/wiki/Permutation#Generation_in_lexicographic_order) to write a function `perm_lexico(n)` which returns a list of all the permutations of 1 to $n$ in lexicographic order.
 
 Sorting and selecting
-======================
+=====================
 
-Mergesort
----------
+Sorting a list of numbers and selecting its $k$th largest or smallest elements are extraordinarily common algorithmic tasks. As such, a variety of algorithms have been developed for their purpose.
 
-One of the most straightforward sorting algorithms is [mergesort](https://en.wikipedia.org/wiki/Merge_sort), which sorts a list of length $n$ in $O(n \log n)$ time.
+Merge sort
+----------
+
+One of the most straightforward sorting algorithms is [merge sort](https://en.wikipedia.org/wiki/Merge_sort), which sorts a list of length $n$ in $O(n \log n)$ time. It was invented by [John von Neumann](https://en.wikipedia.org/wiki/John_von_Neumann), one of the most prodigious and brilliant researchers of the 20th century, in 1945.[^awake]
+
+[^awake]: *Turing's Cathedral* quotes Eugene Wigner (a Nobel Laureate in Physics) as saying that von Neumann was so overwhelmingly and extraordinarily intelligent that "only he was fully awake".
+
+The algorithm is very conceptually simple:
+
+1. Divide the list of numbers into two sublists. (*E.g.*, a sublist of even-indexed elements and a sublist of odd-indexed elements.)
+
+2. Sort the two sublists with merge sort. (A list with 1 or fewer elements is considered sorted.)
+
+3. Merge the two sorted sublists together into a single sorted list.
+
+The functionality of merge sort is depicted in the following diagram:
+
+![An illustration of merge sort, taking the sublists to be the left and right halves of each list.](mergesort.png){width=70%}
+
+We can see that merge sort is quite intuitive and simple enough to be carried out by hand!
+
+* Write a function `merge(x, y)` which *assumes* that `x` and `y` are both sorted from least to greatest and returns the result of *merging* them together into a single sorted list.
+
+* Write a function `merge_sort(L)` that sorts a vector of numbers `L` from least to greatest with merge sort. Verify that `merge_sort (c(2, 4, 1, 2, 3))` returns `c(1, 2, 2, 3, 4)`.
+
+Merge sort has a *worst case* runtime of $O(n \log n)$, which makes it quite reliable in practice. With a different algorithm, we can get slightly improved performance in the average case at the cost of substantially worse performance in the worst case.
 
 Quicksort
 ---------
 
-Another standard sorting algorithm is [*quicksort*](https://en.wikipedia.org/wiki/Quicksort). It was developed by [Tony Hoare](https://en.wikipedia.org/wiki/Tony_Hoare) at Moscow State University as part of a translation project for the [National Physical Laboratory](https://en.wikipedia.org/wiki/National_Physical_Laboratory,_UK) requiring the alphabetical sorting of Russian words.
+Another standard sorting algorithm is [*quicksort*](https://en.wikipedia.org/wiki/Quicksort) (also running in $O(n \log n)$ time). It was developed by [Tony Hoare](https://en.wikipedia.org/wiki/Tony_Hoare) at Moscow State University as part of a translation project for the [National Physical Laboratory](https://en.wikipedia.org/wiki/National_Physical_Laboratory,_UK) requiring the alphabetical sorting of Russian words.
+
+Although both merge sort and quicksort have $O(n \log n)$ average case runtimes, the runtime for quicksort will typically be a *constant multiple lower* than the runtime of merge sort. However, the worst case runtime of quicksort is $O(n^2)$!
 
 The steps of a simplified form of the algorithm are as follows:[^simp]
 
@@ -166,7 +192,9 @@ The steps of a simplified form of the algorithm are as follows:[^simp]
 
 Now it's your turn:
 
-* Write a function `quicksort(L)` that sorts a vector of numbers `L` from least to greatest with quicksort. Verify that `quicksort(c(2, 4, 1, 2, 3))` returns `c(1, 2, 2, 3, 4)`. Compare the performance of `quicksort()` to that of [`sort()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/sort.html).
+* Write a function `quicksort(L)` that sorts a vector of numbers `L` from least to greatest with quicksort. Verify that `quicksort(c(2, 4, 1, 2, 3))` returns `c(1, 2, 2, 3, 4)`.
+
+Quicksort is used when average case performance is more important than worst case performance. The $O(n^2)$ worst case runtime can actually be considered as a *security risk*, allowing attackers to slow down your servers substantially by constantly feeding in data designed to take a long time to sort! However, the random selection of the pivot successfully guards against this (but we could have used *e.g.* the last element of each list as the pivot and the algorithm would still have worked).
 
 Quickselect
 -----------
@@ -178,19 +206,19 @@ The [*quickselect*](https://en.wikipedia.org/wiki/Quickselect) algorithm, which 
 Fast modular exponentiation
 ===========================
 
-Before we can implement more complex algorithms, we'll need a fast implementation of [modular exponentiation](https://en.wikipedia.org/wiki/Modular_exponentiation), consisting of the task of calculating $a^b \mathrm{\ mod\ } c$, *i.e.*, the remainder of dividing $a^b$ by $c$. In addition to being intrinsically useful, modular exponentiation through repeated squaring (which is the end goal of this section) is a common programming question in interviews.
+A fast implementation of [modular exponentiation](https://en.wikipedia.org/wiki/Modular_exponentiation), consisting of the task of calculating $a^b \mathrm{\ mod\ } c$ (*i.e.*, the remainder of dividing $a^b$ by $c$) is useful for many advanced, number-theoretic algorithms. In addition to being intrinsically useful, the implementation modular exponentiation through repeated squaring (which is the end goal of this section) is a *very* common programming question in interviews.
 
-* Write a function `pow(a, b, c)` that calculates $a^b \mathrm{\ mod\ } c$. Begin with a naive implementation that simply evaluates the calculation directly. Verify that $6^{17} \mathrm{\ mod\ } 7 = 6$ and that $50^{67} \mathrm{\ mod\ } 39 = 2$.
+* Write a function `pow(a, b, c)` that calculates $a^b \mathrm{\ mod\ } c$. Begin with a naive, one-line implementation which simply evaluates the calculation directly. Verify that $6^{17} \mathrm{\ mod\ } 7 = 6$ and that $50^{67} \mathrm{\ mod\ } 39 = 2$.
 
-* To improve the runtime of `pow()`, start at 1 and repeatedly multiply an intermediate result by $a$, calculating the answer mod $c$ each time, until the $b$th power of $a$ is reached. Implement this as `pow2()`.
+* To improve the runtime of `pow()`, start at 1 and repeatedly multiply an intermediate result by $a$, calculating the answer mod $c$ each time, until the $b$th power of $a$ is reached. Implement this improvement as `pow2()`.
 
 * Using the [`tictoc`](https://cran.r-project.org/web/packages/tictoc/index.html) package, quantify the resulting improvement in runtime. How does runtime improve as $a$ or $c$ increase in size? Is the runtime improvement merely a constant-factor scaling change (is the new runtime a constant multiple of the previous runtimes)?
 
-In order to make our algorithm even faster, we'll want to write a short utility function:
+In order to make our algorithm even faster, we'll want to write a short utility function.
 
-* Write a function `decompose(n)` which takes as input an integer `n` and returns a vector of integers such that when you calculate 2 to the power of each element of the result and take the sum of those powers of 2, you obtain $n$. (*Hint:* First, calculate all powers of 2 less than or equal to $n$. After that, iteratively subtract off the highest power from $n$, keeping track of *which* power of 2 it was, until you get to 0.)
+* Write a function `decompose(n)` which takes as input an integer `n` and returns a vector of integers such that when you calculate 2 to the power of each element of the result and take the sum of those powers of 2, you obtain $n$. (*Hint:* First, calculate all powers of 2 less than or equal to $n$. After that, iteratively subtract off the highest power from $n$, keeping track of *which* power of 2 it was, until you get to 0.) This is equal to determining the nonzero positions of the binary representation of `n`.
 
-Now, we can implement a quite rapid algorithm for modular exponentiation with the trick of repeated squaring:
+Now, we can implement a quite rapid algorithm for modular exponentiation with the trick of repeated squaring.
 
 * You can improve the runtime of `pow()` further by decomposing $b$ into a sum of powers of 2, starting with $a$ and repeatedly squaring modulo $c$ (to calculate $a^1, a^2, a^4, a^8, \ldots \mathrm{\ mod\ } c$), and then forming the final answer as a *product* of those intermediate calculations. (For example, for $6^{17} \mathrm{\ mod\ } 7$, you are essentially calculating $17 = 2^0 + 2^4$ and $6^{17} \mathrm{\ mod\ } 7 = 6^{2^0} \cdot 6^{2^4} \mathrm{\ mod\ } 7$.) Using `decompose(n)`, implement this improvement as `pow3()`, making sure to calculate every intermediate result modulo $c$. Verify that `pow3()` is faster than `pow2()`.
 
@@ -210,7 +238,7 @@ $$\mathrm{kitten} \xrightarrow{\mathrm{substitution}} \mathrm{sitten} \xrightarr
 
 transforms "kitten" into "sitting" *and* there is no shorter series of allowed edits between the two strings.
 
-[^list]: The Levenshtein distance was developed by [Vladimir Levenshtein](https://en.wikipedia.org/wiki/Vladimir_Levenshtein) in 1965. Interestingly, Wikipedia notes: "There is a controversy in regard to the publication date of the paper where the Levenshtein distance was introduced. The original, Russian, version was published in 1965, but the translation appeared in 1966." Even *more* interestingly, there is little evidence that this is actually considered to be a real "controversy" by anyone aside from [Srchvrs](https://en.wikipedia.org/wiki/User:Srchvrs), the pseudonymous editor who added those sentences.
+[^lhist]: The Levenshtein distance was developed by [Vladimir Levenshtein](https://en.wikipedia.org/wiki/Vladimir_Levenshtein) in 1965. Interestingly, Wikipedia notes: "There is a controversy in regard to the publication date of the paper where the Levenshtein distance was introduced. The original, Russian, version was published in 1965, but the translation appeared in 1966." Even *more* interestingly, there is little evidence that this is actually considered to be a real "controversy" by anyone aside from [Srchvrs](https://en.wikipedia.org/wiki/User:Srchvrs), the pseudonymous editor who added those sentences.
 
 Consider two strings $s$ and $t$ of lengths $l_s$ and $l_t$; furthermore, let $s_i$ and $t_i$ represent the $i$th characters of each string. Let $s^\star$ and $t^\star$ respectively denote substrings of $s$ and $t$ containing all but the final character.
 
@@ -220,7 +248,9 @@ This suggests a *recursive* strategy where we define the Levenshtein distance $L
 
 $$L(s, t) = \min \left\{ L(s^\star, t) + 1, L(s, t^\star) + 1, L(s^\star, t^\star) + c \right\}$$
 
-where $c = 0$ if $s_{l_s} = t_{l_t}$ and $c = 1$ otherwise. However, a naive recursive implementation will be computationally costly, because the distance between identical substrings of $s$ and $t$ will be evaluated multiple times. Instead of implementing memoization directly, we can use the [Wagner--Fischer algorithm](https://en.wikipedia.org/wiki/Wagner%E2%80%93Fischer_algorithm), which cleverly builds up the calculation of $L(s, t)$ from the "bottom up" *à la* [dynamic programming](https://en.wikipedia.org/wiki/Dynamic_programming).
+where $c = 0$ if $s_{l_s} = t_{l_t}$ and $c = 1$ otherwise.[^ltriv] However, a naive recursive implementation will be computationally costly, because the distance between identical substrings of $s$ and $t$ will be evaluated multiple times. Instead of implementing memoization directly, we can use the [Wagner--Fischer algorithm](https://en.wikipedia.org/wiki/Wagner%E2%80%93Fischer_algorithm), which cleverly builds up the calculation of $L(s, t)$ from the "bottom up" *à la* [dynamic programming](https://en.wikipedia.org/wiki/Dynamic_programming).
+
+[^ltriv]: This does not actually guarantee that the calculated $L(s, t)$ is minimal, which requires a more involved proof by contradiction.
 
 The algorithm works as follows:
 
@@ -238,7 +268,18 @@ This algorithm has both time and space complexity of $O(l_s l_t)$.
 
 * Write a function `lev(s, t)` which calculates the Levenshtein distance between `s` and `t` using the Wagner--Fischer algorithm. Verify that `lev("kitten", "sitting")` returns 3.
 
+Ukkonen's cutoff
+----------------
 
+Below is an illustration of the calculation of the Levenshtein distance between "relevant" and "elephant".
+
+![The matrix of the Wagner--Fischer algorithm, with the minimal distance "path" highlighted in yellow.](ukkonen.png){width=70%}
+
+Notice that if we are only interested in knowing the exact distance if it is less than some threshold $k$, we can restrict ourselves to filling in the entries of $\textbf{M}$ which are at most $k$ to the left or the right of the [main diagonal](https://en.wikipedia.org/wiki/Main_diagonal) until we reach either the bottom-right corner of $\textbf{M}$ (at which point the algorithm terminates) or until we reach the bottom or right side of $\textbf{M}$ (in which case we can head directly for the corner, corresponding to a series of insertions or deletions). Such entries for $k = 3$ are highlighted in the figure above in light purple.
+
+If $L(s, t) < k$, the modified algorithm will yield the exact distance, and if $L(s, t) \ge k$, the algorithm will simply yield $k$. This reduces the time complexity from $O(l_s, l_t)$ to $O(k \min \{ l_s, l_t \})$ and is known as *Ukkonen's cutoff*.
+
+* Write a function `lev_fast(s, t, k)` which calculates the Levenshtein distance between `s` and `t` with Ukkonen's cutoff. Verify that `lev_fast("kitten", "sitting", 5) = 3` and `lev_fast("kitten", "sitting", 2) = 2`.
 
 Damerau--Levenshtein distance
 -----------------------------
