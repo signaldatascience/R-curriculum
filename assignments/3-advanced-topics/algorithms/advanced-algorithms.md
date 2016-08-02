@@ -23,7 +23,7 @@ We have one more utility function to write:
 
 * Write a function `decompose_even(n)` which takes as input an *even* integer `n` and returns a vector of two integers `c(s, d)` such that `n` is equal to `2^s * d` and `d` is odd.
 
-With `decompose()`, `decompose_even()`, and `pow3()`, we are now ready to implement the entire primality test.
+With `decompose()`, `decompose_even()`, and `pow3()` (your fastest modular exponentiation implementation from *Basic Algorithms*, we are now ready to implement the entire primality test.
 
 * Following the above description, implement the deterministic Miller--Rabin test as `miller_rabin(n)` for $n < 4,759,123,141$, returning `TRUE` for a prime number and `FALSE` otherwise. Keep the following points in mind:
 

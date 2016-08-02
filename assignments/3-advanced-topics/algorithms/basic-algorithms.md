@@ -14,6 +14,22 @@ Run-length encoding
 
 * Write a function `longest_run(v)` that prints out the longest "run" (sequence of consecutive identical values) in `v`. If there are multiple runs of the same length which quality, print out the first one. You may find [`rle()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/rle.html) helpful. The function evaluated on `v = c(1, 2, 3, 3, 2)` should return `c(3, 3)`.
 
+The Sieve of Erastosthenes
+==========================
+
+The Sieve of Erastosthenes is an algorithm for finding all prime numbers up to some prespecified limit $N$. It works as follows:
+
+1. List all the integers from 2 to $N$.
+2. We begin with the first and smallest prime number $p = 2$.
+3. Remove all the multiples of $p$ ($2p, 3p, \ldots$) aside from $p$ itself from the list.
+4. Find the first number greater than $p$ in the list and set $p$ equal to that number. Repeat step 3 or terminate if no such number exists.
+
+The numbers in the list constitute the primes between 2 and $N$.
+
+* Write a function `sieve(N)` which uses the Sieve of Erastosthenes to find and return a vector of all prime numbers from 2 to `N`. Check your function by evaluating `sieve(100)`, which should return 25 prime numbers from 2 to 97.
+
+The Sieve is useful for generating primes, but not so much for *testing primality*; to know whether or not $n$ is prime, one would have to generate all the prime numbers from 1 to $n$. There are much faster ways to check whether or not a *specific* number is prime, such as the Miller--Rabin primality test.
+
 Reservoir sampling
 ==================
 
@@ -63,22 +79,6 @@ Now it's your turn:
 The [*quickselect*](https://en.wikipedia.org/wiki/Quickselect) algorithm, which is similar to quicksort, allows you to find the $k$th largest (or smallest) element of a list of $n$ elements in $O(n)$ time. The difference in the algorithms is that in each iteration, we only have to recurse into *one* of the two subdivisions of the vector, because we can tell which one holds our desired value based on the value of $k$ and the sizes of `lesser` and `greater`.
 
 * Implement a `quickselect(L, k)` function which finds the $k$th smallest element of $L$.
-
-The Sieve of Erastosthenes
-==========================
-
-The Sieve of Erastosthenes is an algorithm for finding all prime numbers up to some prespecified limit $N$. It works as follows:
-
-1. List all the integers from 2 to $N$.
-2. We begin with the first and smallest prime number $p = 2$.
-3. Remove all the multiples of $p$ ($2p, 3p, \ldots$) aside from $p$ itself from the list.
-4. Find the first number greater than $p$ in the list and set $p$ equal to that number. Repeat step 3 or terminate if no such number exists.
-
-The numbers in the list constitute the primes between 2 and $N$.
-
-* Write a function `sieve(N)` which uses the Sieve of Erastosthenes to find and return a vector of all prime numbers from 2 to `N`. Check your function by evaluating `sieve(100)`, which should return 25 prime numbers from 2 to 97.
-
-The Sieve is useful for generating primes, but not so much for *testing primality*; to know whether or not $n$ is prime, one would have to generate all the prime numbers from 1 to $n$. There are much faster ways to check whether or not a *specific* number is prime, such as the Miller--Rabin primality test.
 
 Fast modular exponentiation
 ===========================
