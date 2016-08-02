@@ -205,8 +205,8 @@ The [*quickselect*](https://en.wikipedia.org/wiki/Quickselect) algorithm, which 
 
 * Write a function `quickselect(L, k)` which finds the $k$th smallest element of $L$ with quickselect. Verify that `quickselect(c(4, 1, 5, 9), 3)` returns `5`.
 
-Fast modular exponentiation
-===========================
+Modular exponentiation
+======================
 
 A fast implementation of [modular exponentiation](https://en.wikipedia.org/wiki/Modular_exponentiation), consisting of the task of calculating $a^b \mathrm{\ mod\ } c$ (*i.e.*, the remainder of dividing $a^b$ by $c$) is useful for many advanced, number-theoretic algorithms. In addition to being intrinsically useful, the implementation modular exponentiation through repeated squaring (which is the end goal of this section) is a *very* common programming question in interviews.
 
