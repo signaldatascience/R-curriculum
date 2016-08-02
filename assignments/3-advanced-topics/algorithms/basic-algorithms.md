@@ -5,6 +5,8 @@ author: Signal Data Science
 
 This lesson consists of a collection of standard algorithmic questions. The material below is likely to show up on programming-focused interviews, so study it well!
 
+If you are completing this assignment in **Python**, consider working in an [IPython notebook](https://ipython.org/). Once you're comfortable with basic Python syntax, try to use [list comprehensions](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions) to simplify your code as much as possible.
+
 Project Euler
 =============
 
