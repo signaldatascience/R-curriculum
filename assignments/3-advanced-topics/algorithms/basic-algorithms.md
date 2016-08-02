@@ -104,8 +104,11 @@ The Sieve of Erastosthenes
 The [Sieve of Erastosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes) is an algorithm for finding all prime numbers up to some prespecified limit $N$. It works as follows:
 
 1. List all the integers from 2 to $N$.
-2. We begin with the first and smallest prime number $p = 2$.
+
+2. Begin with the first and smallest prime number $p = 2$.
+
 3. Mark all the multiples $p$ ($2p, 3p, \ldots$) aside from $p$ itself in the list.
+
 4. Find the first unmarked number greater than $p$ in the list and set $p$ equal to that number. Repeat step 3 or terminate if no such number exists.
 
 The numbers in the list constitute the primes between 2 and $N$.
@@ -124,6 +127,7 @@ A classic task in data analysis is the problem of reading in $n$ data items one 
 The algorithm consists of the following:
 
 1. Initialize a "reservoir" of size $k$ populated with the first $k$ data items.
+
 2. Continue reading in the data items. For the $i$th data element, generate a random integer $j$ between 1 and $i$ inclusive. If $j \le k$, then the $j$th item in the reservoir is replaced with the $i$th data item.
 
 Now, following the above description:
