@@ -285,7 +285,7 @@ Below is an illustration of the calculation of the Levenshtein distance between 
 
 Notice that if we are only interested in knowing the exact distance if it is less than some threshold $k$, we can restrict ourselves to filling in the entries of $\textbf{M}$ which are at most $k$ to the left or the right of the [main diagonal](https://en.wikipedia.org/wiki/Main_diagonal) until we reach either the bottom-right corner of $\textbf{M}$ (at which point the algorithm terminates) or until we reach the bottom or right side of $\textbf{M}$ (in which case we can head directly for the corner, corresponding to a series of insertions or deletions). Such entries for $k = 3$ are highlighted in the figure above in light purple.
 
-If $L(s, t) < k$, the modified algorithm will yield the exact distance, and if $L(s, t) \ge k$, the algorithm will simply yield $k$. This reduces the time complexity from $O(l_s, l_t)$ to $O(k \min \{ l_s, l_t \})$ and is known as *Ukkonen's cutoff*.
+If $L(s, t) < k$, the modified algorithm should yield the exact distance, and if $L(s, t) \ge k$, the algorithm should yield $k$. This reduces the time complexity from $O(l_s, l_t)$ to $O(k \min \{ l_s, l_t \})$ and is known as *Ukkonen's cutoff*.
 
 * Write a function `lev_fast(s, t, k)` which calculates the Levenshtein distance between `s` and `t` with Ukkonen's cutoff. Verify that `lev_fast("kitten", "sitting", 5) = 3` and `lev_fast("kitten", "sitting", 2) = 2`.
 
