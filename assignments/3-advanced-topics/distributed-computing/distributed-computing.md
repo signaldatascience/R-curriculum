@@ -1,27 +1,30 @@
 ---
-title: Distributed Computing with AWS
+title: Distributed Computing
+author: Signal Data Science
 ---
 
-This brief tutorial is designed to get you up-to-speed with regard to handling large datasets in Python and R. We'll be using Amazon Web Services for this tutorial.
+This lesson focuses on using distributed computing to parallelize algorithms for a significant reduction in the amount of required computatoin time. We will be using [Amazon Web Services](https://en.wikipedia.org/wiki/Amazon_Web_Services), although a variety of other cloud computing platforms are also available, most notably [Google Cloud Platform](https://en.wikipedia.org/wiki/Google_Cloud_Platform).
 
-Since the readers of this document have varying levels of experience with Linux, I've tried to explain this in some depth. Many terms which may be unfamiliar to you are linked to expository pages; if you are unfamiliar with a linked term, I strongly urge you to spend a minute or two reading the corresponding page.
+Many technical terms in this assignment are linked to expository pages; if you are unfamiliar with a linked term, we strongly urge you to spend a minute or two reading the corresponding page. Taking the time to do so will substantially improve your understanding of GNU/Linux and relatedtopics.
 
 Getting started with Amazon Web Services
 ========================================
 
 * [Register](http://aws.amazon.com/) an account on the AWS website. You'll have to enter your billing info, but we'll be working with a cheap (under [$0.02/hour](https://aws.amazon.com/ec2/pricing/)) instance throughout this demonstration for which Amazon provides 31 free days of usage each month.
 
-* At the top-right of AWS, make sure that the "US West (Oregon)" region is selected. You'll have the fastest connection to the N. California server, but speeds to Oregon are unnoticeably slower and AWS is substantially cheaper in that region due to high demand for N. California servers.
+* At the top-right of AWS, make sure that the "US West (Oregon)" region is selected. You'll have the fastest connection to the N. California server, but speeds to Oregon are unnoticeably slower and AWS is slightly cheaper in that region due to high demand for N. California servers.
 
-* Click on "Services" in the top left corner and go to "Console Home", where you'll see an overview of all the services which AWS offers. Click on the top option in the "Compute" section, labeled "EC2". This stands for "Elastic Compute Cloud".
+* Click on "Services" in the top left corner and go to "Console Home", where you'll see an overview of all the services which AWS offers. Click on the top option in the "Compute" section, labeled "EC2". This stands for "Elastic Compute Cloud", AWS's main service.[^amaz]
 
-* Click on "Launch Instance" to make your first EC2 instance!
+[^amazon]: Indeed, Amazon has been using AWS and EC2 to host its own website since November 2010!
+
+* Click on "Launch Instance" to make your first EC2 instance! Follow these steps to configure the instance:
 
 	* *Step 1:* You can choose from a wide variety of preconfigured operating systems. Scroll through the list to get a sense of the options available to you, then scroll back to the top and select "[Amazon Linux AMI](https://aws.amazon.com/amazon-linux-ami/faqs/)", which comes configured with a wide variety of programming-related tools.
 
 	* *Step 2:* Select the `t2.micro` instance type, which should be selected by default and is labeled as "Free tier eligible".
 
-	* *Step 3:* Read the information tooltip (hover over the "i" icon) for each option. For the "[Subnet](https://en.wikipedia.org/wiki/Subnetwork)" option, select `us-west-2a`. (The subnet labels are randomized for each user, so that the one labeled `us-west-2a` doesn't get a disproportionate number of people.)
+	* *Step 3:* Read the information tooltip (hover over the "i" icon) for each option. For the "[Subnet](https://en.wikipedia.org/wiki/Subnetwork)" option, select `us-west-2a`.[^rand]
 
 	* *Step 4:* Briefly read about the [different types of EBS storage available](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html). (You can think of Amazon's EBS service as being analogous to a choice of hard drive.) Change the size of the "Root" volume, where your operating system files will reside, to "10 GiB", and select the General Purpose [SSD](https://en.wikipedia.org/wiki/Solid-state_drive) (`gp2`) type.
 
@@ -31,7 +34,9 @@ Getting started with Amazon Web Services
 
 	* *Step 7:* Review the information and click "Launch". If you haven't used Amazon Web Services before, it will prompt you to create an authentication key. Do so and download the key file.
 
-Congratulations: you've launched your first AWS server!
+[^rand]: The subnet labels are actually randomized for each user, so that the one labeled `us-west-2a` doesn't get a disproportionate number of people.
+
+Congratulations: you've launched your first AWS server![^res]
 
 Amazon EC2 instances are billed on a *per-hour* basis, with different types of servers having [different costs](https://aws.amazon.com/ec2/pricing/). You can turn instances on and off from the AWS web interface. If you'll be using an AWS instance consistently over a long period of time, it's possible to buy a [reserved instance](https://aws.amazon.com/ec2/purchasing-options/reserved-instances/), where you pay a large upfront cost for a lower overall cost.[^res] However, we won't be doing that at the moment, although you can spend a couple minutes looking around in the "Reserved Instances" tab to get a sense for how it works.
 
@@ -50,7 +55,7 @@ Next, we'll set up the server with some standard programming utilities.
 
 * Python comes preinstalled on the Amazon Linux AMI. Type `python --version` to find out which version of Python is installed.
 
-* We would like to install Python 3, not Python 2. Search for packages with `python3` in their name and install the main Python 3 package as well as the `-devel` addon package. To figure out the command associated with Python 3, type `python` and then press Tab to see the autocomplete options. Run the correct command with the `--version` flag to verify that the correct version of Python has been installed.
+* We would like to install Python 3 and use it instead of Python 2. Search for packages with `python3` in their name and install the main Python 3 package as well as the `-devel` addon package. To figure out the command associated with Python 3, type `python` and then press Tab to see the autocomplete options. Run the correct command with the `--version` flag to verify that the correct version of Python has been installed.
 
 * Briefly read about [virtual environments in Python](http://docs.python-guide.org/en/latest/dev/virtualenvs/). It's easiest to work with Python on a server within a virtual environment. To create one, first determine the *path* of your Python 3 executable with the `which` command (try `which python` for an illustration of how it works). Next, type `virtualenv -p <path> ~/venv`, where `<path>` is the path to your Python 3 executable.
 
@@ -58,7 +63,7 @@ Next, we'll set up the server with some standard programming utilities.
 
 You can run Python scripts by calling `<exec> script.py`, where `<exec>` denotes the path to a Python executable, but you can also play around in the Python interpreter itself by just running `<exec>`.
 
-* If you haven't tried using the Python interpreter before, then do so. You can exit the interpreter with `quit()`.
+* If you haven't tried using the Python interpreter before, do so. You can exit the interpreter with `quit()`.
 
 Using Python with AWS
 =====================
@@ -128,15 +133,19 @@ Next, we'll extract just the text of the reviews in preparation for doing some n
 Running `vec2pca`
 -----------------
 
-Finally, you will be running the [`vec2pca`](https://github.com/taygetea/vec2pca) algorithm on your server to analyze the subset of Amazon reviews.
+Finally, you will be running [`vec2pca`](https://github.com/taygetea/vec2pca) on your server to analyze the subset of Amazon reviews.
 
-* Read a [short description](http://signaldatascience.com/projects/oliviaschaefer/) of the `vec2pca` algorithm.
+* Read [this description](http://signaldatascience.com/projects/oliviaschaefer/) of `vec2pca`.
 
-* In order to compile some of the Python packages necessary, you will need to `yum install` the [`gcc`](https://en.wikipedia.org/wiki/GNU_Compiler_Collection), `gcc-c++`, [`blas-devel`](https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms), [`lapack-devel`](https://en.wikipedia.org/wiki/LAPACK), [`atlas-devel`](https://en.wikipedia.org/wiki/Automatically_Tuned_Linear_Algebra_Software), and [`gfortran`](https://en.wikipedia.org/wiki/GNU_Fortran) packages. While installing them, read the introductions to their linked Wikipedia pages so you know what you're installing![^tools]
+In order to compile some of the Python packages necessary, you will need to install several programming and numerical computing-related dependencies. 
 
-[^tools]: In the future, you can do `sudo yum groupinstall "Development Tools"`, which will install a lot of unnecessary packages but will probably give you all the general-purpose compilation-required packages you'll need.
+* `yum install` the following packages: [`gcc`](https://en.wikipedia.org/wiki/GNU_Compiler_Collection), `gcc-c++`, [`blas-devel`](https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms), [`lapack-devel`](https://en.wikipedia.org/wiki/LAPACK), [`atlas-devel`](https://en.wikipedia.org/wiki/Automatically_Tuned_Linear_Algebra_Software), and [`gfortran`](https://en.wikipedia.org/wiki/GNU_Fortran) packages. While waiting for them to download and install, read the introductions to their linked Wikipedia pages so you know what you're installing![^tools]
 
-* Since the `t2.micro` EC2 instance doesn't have enough RAM to properly install the necessary packages, you'll have to enable [swap space](http://www.linfo.org/swap_space.html). Run these commands to do so:
+[^tools]: In the future, you can run `sudo yum groupinstall "Development Tools"`, which will install a lot of unnecessary packages but will probably give you all the general-purpose compilation-related packages you'll need.
+
+Since the `t2.micro` EC2 instance doesn't have enough RAM to properly install the Python packages we want, you'll have to enable [swap space](http://www.linfo.org/swap_space.html), which uses hard drive storage space as a surrogate for RAM.
+
+* Run these commands to allocate 1 GB of swap space:
 
 	```bash
 	sudo /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=1024
@@ -149,7 +158,7 @@ Finally, you will be running the [`vec2pca`](https://github.com/taygetea/vec2pca
 
 	**These packages may take some time to install.** This is a good time to go back and look at any explanatory pages about various packages and utilities which you would like to learn more about.
 
-* The `nltk` library will need some configuration. Open a command-line session of Python, `import` the `nltk` library, and run `nltk.download()`. Enter `d` (for "Download") and then enter `punkt`. Afterwards, use `q` followed by `quit()` to return to the [shell](https://en.wikipedia.org/wiki/Shell).
+* The `nltk` library will need some configuration. Open a command-line session of Python, `import` the `nltk` library, and run `nltk.download()`. Enter `d` (for "Download") and then enter `punkt`. Afterwards, type `q` followed by `quit()` to return to the [shell](https://en.wikipedia.org/wiki/Shell).
 
 * Install the `git` package (using `yum`). Go to the [Github page for `vec2pca`](https://github.com/taygetea/vec2pca) and click on the green "Clone or download" button. Copy the URL and run `git clone <url>` to download the Github repository's files.
 
@@ -158,7 +167,7 @@ Finally, you will be running the [`vec2pca`](https://github.com/taygetea/vec2pca
 Viewing the results of `vec2pca`
 --------------------------------
 
-`vec2pca` gives us results in HTML format, which web browsers know how to handle. We'll set up a webserver on our EC2 instance so we can see the results online.
+`vec2pca` gives us results in [HTML](https://en.wikipedia.org/wiki/HTML) format, which web browsers know how to handle. We'll set up a webserver on our EC2 instance so we can see the results online.
 
 * Install [`httpd`](https://en.wikipedia.org/wiki/Apache_HTTP_Server), which is a standard, commonly-used web server software package. To start the HTTP server, run [`sudo /etc/init.d/httpd start`](https://en.wikipedia.org/wiki/Init).  We want the HTTP server to automatically start whenever the server is rebooted, so run [`sudo chkconfig --levels 3 httpd on`](http://linuxcommand.org/man_pages/chkconfig8.html).
 
@@ -175,7 +184,7 @@ Each time we restart the server, its public IP will change, which isn't good for
 Using RStudio in a web browser
 ==============================
 
-We can run RStudio in a web browser! For your `t2.micro` instance, it won't be much better than your own computer, but we'll go through the process so you know how to set it up for yourself.
+To easily develop and run R scripts on an AWS server, it's possible to install a *server-side* version of RStudio which you can access via your web browser. Running RStudio on your `t2.micro` instance will not be much of an improvement over your own computer, but the setup process is identical for more powerful servers.
 
 * Install R (in the `R` package).
 
@@ -198,14 +207,14 @@ You can now use the `rstudio-server` command to start and stop RStudio Server.
 Shutting off your AWS server
 ============================
 
-In order to avoid any costs, stop the instance which you created ("Instances" $\to$ "Actions"$\to$ "Instance State" $\to$ "Stop") and release the Elastic IP you allocated for that instance ("Elastic IPs" $\to$ "Actions" $\to$ "Disassociate Address" $\to$ "Release Addresses").
+In order to avoid incurring any costs, stop the instance which you created ("Instances" $\to$ "Actions"$\to$ "Instance State" $\to$ "Stop") and release the Elastic IP you allocated for that instance ("Elastic IPs" $\to$ "Actions" $\to$ "Disassociate Address" $\to$ "Release Addresses").
 
 If you don't think you'll use it again, delete the EC2 instance ("Instances" $\to$ "Actions" $\to$ "Instance State" $\to$ "Terminate") as well as any EBS volumes which you created ("Volumes" $\to$ "Actions" $\to$ "Delete Volume"). You may need to detach EBS volumes before deleting them.
 
-Parallel decision trees
-=======================
+Parallelizing gradient boosted trees
+====================================
 
-You should have received elsewhere a document with information about how to log in to a more powerful AWS instance's RStudio Server. Follow the instructions!
+You should have received as part of this assignment a document with information about how to log in to a more powerful AWS instance's RStudio Server. Follow the instructions!
 
 We'll explore the Wine Quality Dataset which we looked at earlier, using random forests to illustrate how parallelization works in R. Since each constituent tree of a random forest is independent of the other ones, we can train lots of different trees on different processor cores and then combine them all together at the end.
 
@@ -247,23 +256,10 @@ Some packages will automatically handle the parallelization for you. In particul
 
 * Using the optimal hyperparameters for `gbm()` which you found in the nonlinear techniques assignment, compare the time it takes to use `gbm()` versus `xgboost` for the task of training a gradient boosted tree to predict wine quality.
 
-Dealing directly with big datasets in R
-=======================================
-
-We will be considering a dataset of all commercial flights within the USA from 1987 to 2008. You will not actually be downloading or directly working with the entire data, which takes up 12 GB when uncompressed.
-
-* Read [Hadley Wickham's description of the ASA 2009 expo](http://vita.had.co.nz/papers/data-expo-09.pdf) and look at the [top three posters](http://stat-computing.org/dataexpo/2009/posters/) made about the flights dataset. The dataset itself is located on the [data expo's website](http://stat-computing.org/dataexpo/2009/); take a look at its description.
-
-* Pick a year and download the associated data.
-
-* Work through the [vignette for the `bigmemory` package](https://cran.r-project.org/web/packages/bigmemory/vignettes/Overview.pdf) on your laptop, typing out the code as you go and using the subset of the data which you downloaded.
-
-	* If you run into problems, feel free to move on. It's more important to have an idea of what you can do with `bigmemory` than to work through the vignette in excruciating detail.
-
 Advanced topics
 ===============
 
-There are many things you can do with AWS, and we can only hope to cover but the minutest fraction of them. Here, I'll point you to the right place to look for certain relatively common things for which you might want to use AWS.
+There are many things you can do with AWS, and we can only hope to cover but the minutest fraction of them. Here, we'll point you to the right place to look for certain relatively common tasks for which you might want to use AWS.
 
 Even if you don't have immediate need for this information, skim through it regardless so you have a better sense of what's possible with AWS.
 

@@ -75,6 +75,23 @@ https://www.godaddy.com/help/pointing-your-domains-email-service-to-google-7936
 
 http://www.ssc.wisc.edu/wlsresearch/documentation/waves/
 
+Add to algorithms
+- genetic algorithms: travelling salesman problem
+- ford-fulkerson
+- discrete fourier transform for multiplying polynomials
+- iterative merge sort
+- knuth-morris-pratt
+- kruskal's algorithm
+- nth fibonacci number with matrix exponentiation
+- dfs/bfs
+- rsa
+- towers of hanoi
+- dijkstra's algorithm
+- floyd-warshall
+- subset sum
+- 3SUM problem
+- fast fourier transform
+
 Advanced SQL
 https://community.modeanalytics.com/sql/tutorial/sql-window-functions/
 http://javarevisited.blogspot.com/2012/11/how-to-join-three-tables-in-sql-query-mysql-sqlserver.html

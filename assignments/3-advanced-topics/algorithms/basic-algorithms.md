@@ -3,7 +3,7 @@ title: "Basic Algorithms"
 author: Signal Data Science
 ---
 
-This lesson consists of a collection of standard algorithmic questions. The material below is likely to show up on programming-focused interviews, so study it well!
+This lesson consists of a collection of standard algorithmic questions. The material below is likely to show up on programming-focused interviews, so study it well! These problems can be completed in both R and Python.
 
 If you are completing this assignment in **Python**, consider working in an [IPython notebook](https://ipython.org/). Once you're comfortable with basic Python syntax, try to use [list comprehensions](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions) to simplify your code as much as possible.
 
@@ -163,7 +163,7 @@ One of the most straightforward sorting algorithms is [merge sort](https://en.wi
 
 The algorithm is very conceptually simple:
 
-1. Divide the list of numbers into two sublists. (*E.g.*, a sublist of even-indexed elements and a sublist of odd-indexed elements.)
+1. Divide the list of numbers into two sublists of similar size. (*E.g.*, a sublist of even-indexed elements and a sublist of odd-indexed elements; other division methods work as well.)
 
 2. Sort the two sublists with merge sort. (A list with 1 or fewer elements is considered sorted.)
 
