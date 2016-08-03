@@ -115,7 +115,7 @@ The numbers in the list constitute the primes between 2 and $N$.
 
 * Write a function `sieve(N)` which uses the Sieve of Erastosthenes to find and return a vector of all prime numbers from 2 to `N`. Check your function by evaluating `sieve(100)`, which should return 25 prime numbers from 2 to 97.
 
-* Go back and solve the 10th Project Euler problem with the Sieve of Erastosthenes.
+* If you implemented step 3 by *removing* the multiples of $p$ from a list, improve your algorithm by finding a way to carry out step 3 without directly removing any numbers (which is slow and takes a large amount of time). Afterward, go back and solve the 10th Project Euler problem with the Sieve of Erastosthenes.
 
 The Sieve is useful for generating primes, but not so much for *testing primality*; to know whether or not $n$ is prime, one would have to generate all the prime numbers from 1 to $n$. There are much faster ways to check whether or not a *specific* number is prime, such as the Miller--Rabin primality test.
 

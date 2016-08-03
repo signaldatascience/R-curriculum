@@ -124,3 +124,41 @@ x = sample(1:10)
 x
 quickselect(x, 3)
 quickselect(x, 10)
+
+# Fast modular exponentiation
+decompose = function(n) {
+  powers = c()
+  current_pow = 1
+  i = 0
+  while (current_pow <= n) {
+    powers = c(powers, current_pow)
+    i = i + 1
+    current_pow = current_pow * 2
+  }
+  needed = c()
+  while (n > 0) {
+    sub = powers[powers <= n]
+    cur_pow = sub[length(sub)]
+    cur_idx = length(sub) - 1
+    needed = c(needed, cur_idx)
+    n = n - cur_pow
+  }
+  needed
+}
+
+# pow3(6, 17, 7) = 6
+# pow3(50, 67, 39) = 2
+pow3 = function(a, b, c) {
+  dec = decompose(b)
+  powers = c()
+  tmp_pow = a
+  for (i in 0:floor(log(b, 2))) {
+    powers = c(powers, tmp_pow)
+    tmp_pow = (tmp_pow * tmp_pow) %% c
+  }
+  s = 1
+  for (d in dec) {
+    s = (s * powers[d+1]) %% c
+  }
+  s
+}
