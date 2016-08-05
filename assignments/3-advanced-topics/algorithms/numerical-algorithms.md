@@ -18,8 +18,24 @@ Newton's method
 The expectation--maximization algorithm
 =======================================
 
+The expectation--maximization (EM) algorithm is a standard technique for iteratively finding maximum likelihood estimates of parameters in statistical models where the parameters are themselves dependent on latent variables.
+
+For intuition, consider a classic example of the EM algorithm in use, $k$-means clustering: we posit that there exist $k$ clusters with means located at certain locations (parameters of the model) and that each data point belongs to the closest of the $k$ clusters (the cluster assignment is a hidden variable). We clearly see that the model parameters and hidden variables are circularly dependent---with an estimate of cluster assignment, we can calculate an estimate of the cluster means (by taking the mean location of each point assigned to a particular cluster), and similarly, with an estimate of cluster means, we can calculate an estimate of the cluster assignments (by checking for each point what the closest cluster mean is). This process is repeated until convergence.
+
+More generally, we have a dataset $\textbf{X}$, hidden ("latent") variables $\textbf{Z}$, and model parameters $\boldsymbol{\theta}$. Typically, one latent variable is associated with each data point, and the latent variables can take on one of a fixed number of values (*i.e.*, they are discrete). The model parameters are usually of two classes---first, those associated with the entire dataset, and second, those associated only with the data points whose corresponding latent variable takes on some particular value.
+
+If we knew the true values of the latent variables $\textbf{Z}$, we would be able to obtain the best estimates of the parameters $\boldsymbol{\theta}$ by averaging some function of the data points $\textbf{X}$ (either over the entire dataset or over only the data points whose corresponding latent variables take on some particular value). Similarly, if we knew the true values of the model parameters $\boldsymbol{\theta}$, finding the values of $\textbf{Z}$ which maximize the likelihood associated with the entire model is a straightforward matter of iterating over possible values of the latent variable for each data point. This suggests an iterative method in the case where both $\textbf{Z}$ and $\boldsymbol{\theta}$ are unknown, *i.e.*, the EM algorithm.
+
+$k$-means clustering
+--------------------
+
+Gaussian mixture models
+-----------------------
+
 Markov chain Monte Carlo
 ========================
+
+
 
 Iterative principal component extraction
 ========================================

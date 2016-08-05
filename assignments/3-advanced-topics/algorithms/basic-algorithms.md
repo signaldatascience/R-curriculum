@@ -196,7 +196,7 @@ The steps of a simplified form of the algorithm are as follows:[^simp]
 
 2. Form two vectors of elements `lesser` and `greater` which hold elements of `L` at positions *other than* `i` which are respectively lesser than or greater than `L[i]`. (Elements equal to `L[i]` can go in either one.)
 
-3. Call the algorithm thus far `qs()`. Our result is the combination of concatenating together `qs(lesser)`, `L[i]`, and `qs(upper)` in that order.
+3. Use quicksort to sort `lesser` and `greater`. Return the result of concatenating together the sorted version of `lesser`, the pivot, and the sorted version of `upper`.
 
 Now it's your turn:
 
@@ -207,7 +207,9 @@ Quicksort is used when average case performance is more important than worst cas
 Quickselect
 -----------
 
-The [*quickselect*](https://en.wikipedia.org/wiki/Quickselect) algorithm, which is similar to quicksort, allows you to find the $k$th largest (or smallest) element of a list of $n$ elements in $O(n)$ time. The difference in the algorithms is that in each iteration, we only have to recurse into *one* of the two subdivisions of the vector, because we can tell which one holds our desired value based on the value of $k$ and the sizes of `lesser` and `greater`.
+The [*quickselect*](https://en.wikipedia.org/wiki/Quickselect) algorithm, which is similar to quicksort, allows you to find the $k$th largest (or smallest) element of a list of $n$ elements in $O(n)$ time.[^qscl] The difference in the algorithms is that in each iteration, we only have to recurse into *one* of the two subdivisions of the vector, because we can tell which one holds our desired value based on the value of $k$ and the sizes of `lesser` and `greater`.
+
+[^qscl]: The ranking of elements implicitly used by "$k$th smallest" is one which assigns a distinct rank to each element of the list *and* the ranks form a *contiguous* subset of the natural numbers. As such, distinct ranks need not correspond to distinct elements.
 
 * Write a function `quickselect(L, k)` which finds the $k$th smallest element of $L$ with quickselect. Verify that `quickselect(c(4, 1, 5, 9), 3)` returns `5`.
 

@@ -1,3 +1,7 @@
+# Expectation-maximization algorithm
+
+
+
 # Iterative principal component analysis
 
 set.seed(1)

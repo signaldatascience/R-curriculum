@@ -1,6 +1,6 @@
 Group 1 should use the login for student1, etc.
-
-Server location: http://52.39.156.207:8787/
+	
+Server location: http://52.42.90.243:8787/
 
 If you would like to use the server outside of this assignment, let me know personally.
 
@@ -9,3 +9,4 @@ student1 kkyUCv3Ujc5gOWFnV3c0
 student2 5BGnYopdBcVaiD14xIaY
 student3 GcicGJgEn9QY3ftnL8Rh
 student4 PMWl62MdPsUmspbpnRY0
+student5 ho87dsO3fDSJDS7oSOAJ

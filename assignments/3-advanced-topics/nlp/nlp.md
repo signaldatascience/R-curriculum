@@ -3,58 +3,87 @@ title: Natural Language Processing
 author: Signal Data Science
 ---
 
-In this lesson, we will focus on natural language processing. Beginning with some classical NLP tasks, we will slowly work our way up to the most complex methods used on text that we scrape directly from the Internet.
+In this lesson, we will focus on [natural language processing](https://en.wikipedia.org/wiki/Natural_language_processing) (NLP), *i.e.*, the application of data science to human-generated text. To illustrate the diversity and depth of modern NLP, we will proceed through a series of classical exercises in both Python and R.
 
-Many of these methods will use the [*bag-of-words*](https://en.wikipedia.org/wiki/Bag-of-words_model) assumption, where we assume that within each document the *order* of words isn't important. This assumption will only be violated when we use [$n$-grams](https://en.wikipedia.org/wiki/N-gram), groups of $n$ consecutive words, which *do* preserve information about the order of words.
-
-As you progress through this assignment, write up your findings. At the end, email us with your writeup of your results.
+Natural language processing is particularly enjoyable because its results tend to be very human-interpretable. Be sure to note any project ideas which occur to you while working through this assignment.
 
 Email spam classification
 =========================
 
-Using a naive Bayes classifier for the task of filtering spam is one of the classic applications of machine learning, going [all the way back to 1998](http://robotics.stanford.edu/users/sahami/papers-dir/spam.pdf). Essentially, the idea is to classify spam probabilistically based on which words appear or don't appear in the email (without taking into account word frequency).
+In 2009, Symantec estimated that almost 90% of global email traffic consisted entirely of spam.[^sym] Modern email providers make extensive use of machine learning techniques to automatically classify and divert spam emails from your inbox. Without those algorithms, the enormous amount of spam received on a daily basis would be overwhelming!
+
+[^sym]: Symantec, September 2009, Report #33, [State of Spam: A Monthly Report](http://eval.symantec.com/mktginfo/enterprise/other_resources/b-state_of_spam_report_09-2009.en-us.pdf): "Overall spam volumes averaged at 87 percent of all email messages in August 2009. Health spam decreased again this month and averaged at 6.73 percent, while over 29 percent of spam is Internet related spam. Holiday spam campaigns have begun leveraging Halloween and Christmas, following closely after Labor Day-related spam."
+
+We will begin with naive Bayes spam filtering, one of the oldest methods of statistical spam classification. After writing our own naive Bayes classifier and implementing various improvements, we will then compare its performance to that of elastic net regularized logistic regression. For training our model, we will use the [CSDMC2010 SPAM corpus](http://csmining.org/index.php/spam-email-datasets-.html), downloadable online and located in the `csdmc2010-spam` dataset folder.
+
+* Download the CSDMC2010 SPAM dataset. Examine several emails labeled as spam and several emails labeled as ham. (We will refer to "not-spam" emails as "ham" for convenience.[^ham])
+
+[^ham]: "Ham" is a commonly used term for not-spam, not just something we made up.
+
+* Load the CSDMC2010 SPAM training data into R, storing the text of each `.eml` file in a string. (You may find [`list.files()`](http://www.inside-r.org/r-doc/base/list.files) and [`scan()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/scan.html) useful.) Use the entirety of each file, including the HTML tags and email headers.
 
 Naive Bayes classification
 --------------------------
 
-For any given word and email, suppose that $W$, $S$, and $H$ are respectively events corresponding to the word appearing in the email, the email being spam, and the email not being spam ("H" for "ham"). From [Bayes' theorem](https://en.wikipedia.org/wiki/Bayes%27_theorem), we can say
+Using a naive Bayes classifier for spam filtration dates as far back as 1998.[^sahami] The basic idea behind Bayesian spam filtering to classify spam based on which words appear or don't appear in any given email. For example, words such as "[Viagra](https://en.wikipedia.org/wiki/Viagra)" or "refinance" show up often in spam emails, whereas words such as "brunch" are more likely to show up in non-spam emails. Bayes' theorem can therefore be used (with some simplifying assumptions) to train a spam vs. not-spam classifier based on the presence or absence of various words.
 
-$$P(S \mid W) = \frac{P(W \mid S) P(S)}{P(W \mid S) P(S) + P(W \mid H) P(H)}.$$
+[^sahami]: See Sahami *et al.* (1998), [A Bayesian Approach to Filtering Junk E-Mail](http://robotics.stanford.edu/users/sahami/papers-dir/spam.pdf): "In addressing the growing problem of junk E-mail onthe Internet, we examine methods for the automated construction of filters to eliminate such unwanted messages from a user's mail stream. By casting this problem in a decision theoretic framework, we are able to make use of probabilistic learning methods in conjunction with a notion of differential misclassification cost to produce filters which are especially appropriate for the nuances of this task."
 
-[Recent statistics](http://eval.symantec.com/mktginfo/enterprise/other_resources/b-state_of_spam_report_09-2009.en-us.pdf) indicate that the probability of any given email being spam is around 80%. However, the simplest Bayesian spam filters assume that there is no *a priori* reason to assume that an incoming email is more likely to be spam and not, and consequently set $P(S) = P(H) = \frac{1}{2}$. We may then simplify the above expression to
+Three important assumptions are made in Bayesian spam filtering:
+
+1. First, each email is treated as a [bag of words](https://en.wikipedia.org/wiki/Bag-of-words_model) in which the *order* of words is irrelevant, which enormously simplifies the task at hand (otherwise we might want to look at every possible *pairing* of words, or every possible *triplet* of words, and so on and so forth).
+
+2. Second, we consider only the *presence* or *absence* of each word. That is, if the word is present, we do not consider its *frequency* in the email.
+
+3. Third, the presence of each word in an email is assumed to be *statistically independent* from the presence of each other word. The assumption of *independence of events* is the core assumption of the naive Bayes method, turning a very computationally difficult problem into a tractable one.
+
+We will proceed to process the data accordingly.
+
+* Randomly select 80% of the emails as a training set, leaving the remaining 20% as the test set.
+
+* Create two data frames from the training and test sets such that each row corresponds to a single email, each column corresponds to a particular word, and each entry is 0 or 1 depending on whether or not the column's corresponding word is present in the row's corresponding email. For now, consider a "word" to be any sequence of non-space characters without further characters on either side; *e.g.*, in `"Lorem4 ipsum; dolor. Sit <b>amet</b>"`, the words are `"Lorem4"`, `"ipsum;"`, `"dolor."`, `"Sit"`, and `"<b>amet</b>"`. The columns for the two data frames should *not* be identical (*i.e.*, there should be words in the training set which do not appear in the test set and vice versa). (You may find [`strsplit()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/strsplit.html) helpful.)
+
+Consider a subset of the words in the entire training corpus consisting of $n$ words $w_1, w_2, \ldots, w_n$. Let $W_i$, $S$, and $H$ respectively denote events corresponding to $w_i$ being present in an email, an email being spam, and an email being ham, and let $W$ denote the *conjunction* of all the events $W_i$, *i.e.*, the event corresponding to $w_1, w_2, \ldots, w_n$ all being present in an email. From [Bayes' theorem](https://en.wikipedia.org/wiki/Bayes%27_theorem), we can write an expression for $P(W \mid S) = P(W_1, W_2, \ldots, W_n \mid S)$, the probability of observing the words $w_1, w_2, \ldots, w_n$ in a spam email:
+
+$$P(W \mid S) = \frac{P(S \mid W) P(W)}{P(W)} = \frac{P(W \mid S) P(S)}{P(W \mid S) P(S) + P(W \mid H) P(H)}.$$
+
+It is simplest to assume *a priori* that any given email is equally as likely to be spam or ham, *i.e.*, $P(S) = P(H) = \frac{1}{2}$. The above expression then simplifies to
 
 $$P(S \mid W) = \frac{P(W \mid S)}{P(W \mid S) + P(W \mid H)}.$$
 
-Intuitively, this is the same as asking: "Of all the occurrences of the word under consideration, what proportion of them appear in spam messages?" This is something we can calculate directly from the training data.
+Although we only have to calculate the two probabilities $P(W \mid S)$ and $P(W \mid H)$, they are both computationally intractable. First, each of the two would have to be evaluated for every possible combination of words $W$ from the entire corpus, which correpsonds to an enormously large number of parameters to estimate; second, the amount of data required to obtain accurate estimations of such probabilities would be enormous. (Intuitively, if we pick 100 random words from the dictionary, a very small proportion of emails *in general* will contain those 100 words specifically! As such, we would need a *lot* of emails to be able to estimate $P(W \mid S)$ and $P(W \mid H)$.)
 
-However, how do we combine each evaluation of $P(S \mid W)$ (for each word which appears in the dataset) to find $P(S)$? This is difficult in general, because the appearances of words may be *correlated* -- if, say, "birthday" appears in an email, it's more likely than usual that "party" will also appear in the email. Ordinarily, we would have to account for all these "interactions" between different words.
+However, we can make a simplifying assumption to turn our *full Bayes* classification problem into a *naive Bayes* classification problem. Specifically, we assume that the presence of each word is *independent* of the presence of each other word, so
 
-To simplify our task and turn our *full Bayes* classifier into a *naive Bayes* classifier, we assume that whether or not a word appears in an email is *independent* from whether or not any other word appears in the email. This is almost surely false, but in practice this simplification works remarkably well!
+$$P(W_1, W_2, \ldots, W_n \mid S) = P(W_1 \mid S) P(W_2 \mid S) \cdots P(W_n \mid S)$$
 
-From this assumption, it follows that
+and similarly for ham emails as well, where $P(W_i \mid S)$ is simply the proportion of spam emails in the training set which contain the word $w_i$!
+
+* For each word in the training set, calculate $P(S \mid )$
+
+Suppose, for instance, that the words "birthday" and "celebration" are both present in ham emails with probabilities $p_\text{b}$ and $p_\text{c}$. If the occurrences of "birthday" and "celebration" were *independent* of each other in ham emails---that is, knowing that one word was present in a ham email provided zero information about how likely the other one was to be present---then an email consisting of both words would have
+
+$$P(W \mid H) = P(W_\text{b} \text{ and } W_\text{c} \mid H) = P(W_\text{b} \mid H) P(W_\text{c} \mid H) = p_\text{b} p_\text{c}.$$
+
+However, that assumption is *not* true; a ham email containing "birthday" is much more likely than usual to also contain "celebration" and vice versa. As such, multiplying together $
+
+* For each word in the training set, calculate $P(S \mid W_i)$. If a word appears only in spam emails, assign it a probability of $P(S \mid W_) = 0.99$ instead of 1; similarly, if a word appears only in ham emails, assign it a probability of $0.01$ rather than 0.
+
+Our eventual goal is to calculate $P(S \mid W)$ for each email. This is difficult in general, because the occurrences of words may be *correlated*. For example, "birthday", "cake", and "exegesis" are more likely to occur in ham emails; however, since "birthday" and "cake" are likely to occur together (compared to "birthday" and "exegesis" or "cake" and "exegesis"), the presence of both of them provides little additional information over the presence of either one of them alone. As such, even if $P(S \mid W_i)$ were identical for all three of those words, we ought to rate an email containing "birthday" and "cake" as more likely to be spam than one containing "birthday" and "exegesis" or "cake" and "exegesis".
+
+In fact, determining $P(S \mid W_i)$ for each word alone is *not sufficient* for a full computation of $P(S)$; we really want to calculate $P(S \mid W_1, W_2)$ for every possible pair of words, $P(S \mid W_1, W_2, W_3)$ for every possible triple, and so on and so forth. Aside from being an enormous computational task, it would also require a tremendous amount of data to get an accurate estimate of $P(S \mid W_1, W_2, \ldots, W_n)$ for high values of $n$. (Intuitively, if we pick 10 random words from the dictionary, a very small proportion of emails *in general* will contain all 10 of those words!)
+
+However, we can continue onwards and turn *full Bayes* classifier into a *naive Bayes* classifier by assuming that the occurrence of each word is *independent* of the occurrences of other words. This is almost surely false, but in practice this simplification works remarkably well! From this assumption, it follows that an email with words $w_1, w_2, \ldots, w_n$ has the associated probabilities
 
 $$P(S) = \frac{p_1 p_2 \cdots p_n}{p_1 p_2 \cdots p_n + (1 - p_1) (1 - p_2) \cdots (1 - p_n)},$$
 
-where $p_i = P(S \mid W_i)$, the probability that a message is spam given that it contains $W_i$, and $W_1, W_2, \ldots, W_n$ represent the unique words in the email.
+where $p_i = P(S \mid W_i)$, the probability that email $e_p$ is spam given that it contains the word $w_i$ and $w_1, w_2, \ldots, w_n$ are the words in $e_p$.
 
 Due to [floating-point underflow](https://en.wikipedia.org/wiki/Arithmetic_underflow), instead of calculating $P(S)$ directly, it is better to calculate
 
 $$\log \left( \frac{1}{P(S)} - 1 \right) = \sum_{i=1}^N \left( \log (1 - p_i) - \log p_i \right)$$
 
 because the summation doesn't have problems with underflow due to multiplying many small numbers together, and to then calculate $P(S)$ after a numeric expression for the right side of the above equation has been obtained.
-
-Writing a naive Bayes spam classifier
--------------------------------------
-
-* In R, write a naive Bayes spam classifier using the [CSDMC2010 SPAM corpus](http://csmining.org/index.php/spam-email-datasets-.html) training data. The `.eml` files can just be read in as plaintext files. Use the entirety of each message, including the HTML tags and the email headers.
-
-	* For reading the text files, you may find [`list.files()`](http://www.inside-r.org/r-doc/base/list.files) and [`scan()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/scan.html) useful.
-
-	* You may find R's string manipulation functions to be very useful, such as [`strsplit()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/strsplit.html).
-
-	* You can classify a message as spam if $P(S) > \frac{1}{2}$.
-
-	* Your end goal here should be to end up with some function `detect_spam()` which can take in a string as input and decide whether or not that string is a spam email.
 
 * Look at the words with the highest and lowest $p_i$s. Interpret the results.
 
