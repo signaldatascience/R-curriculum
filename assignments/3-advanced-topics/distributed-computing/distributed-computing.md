@@ -89,7 +89,7 @@ You can use `nano <file>` to open a simple text editor suitable for writing a sh
 
 * Write a Python script following these specifications:
 
-	* Use the [`random.sample()` function](https://docs.python.org/3/library/random.html) from the `random` library to sample 10% numbers from 0 to $L-1$, where $L$ is the number of lines in the JSON file.
+	* Use [`random.sample()`](https://docs.python.org/3/library/random.html) from the `random` library to sample 10% numbers from 0 to $L-1$, where $L$ is the number of lines in the JSON file.
 
 	* You can use the following Python code to iterate over the lines of a file without reading the entire file into memory simultaneously:
 
@@ -224,7 +224,7 @@ We'll explore the Wine Quality Dataset which we looked at earlier, using random 
 
 * Load the CSVs for the red and white wine data with `read.delim()` (don't forget `header=TRUE`). Consolidate them into a single dataframe with which you'll be making predictions for wine quality.
 
-* Using a random forest, regress wine quality against the other variables with `ntree=2000`. Measure and record the elapsed time with `tic()` and `toc()`.
+* Using `randomForest()` in the `randomForest` package, regress wine quality against the other variables with `ntree=2000`. Measure and record the elapsed time with `tic()` and `toc()`.
 
 * Run `detectCores()` to check the number of processing cores on the server, and then run `registerDoMC(detectCores())` to tell the parallelization package to use all 8 cores. Call `getDoParWorkers()` to verify that all 8 cores have been successfully registered.
 
