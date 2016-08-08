@@ -16,7 +16,7 @@
 
 -- "A table typically has a column or combination of columns that contain values that uniquely identify each row in the table. This column, or columns, is called the primary key (PK) of the table and enforces the entity integrity of the table. ... A foreign key (FK) is a column or combination of columns that is used to establish and enforce a link between the data in two tables to control the data that can be stored in the foreign key table. In a foreign key reference, a link is created between two tables when the column or columns that hold the primary key value for one table are referenced by the column or columns in another table. This column becomes a foreign key in the second table." (https://msdn.microsoft.com/en-us/library/ms179610.aspx)
 
--- Warming up with simple queries
+-- Practical problems
 
 -- FizzBuzz
 WITH RECURSIVE nums(n) AS (
@@ -130,7 +130,44 @@ WHERE RowNum >= FLOOR(0.99 * (
     FROM ag
 ));
 
--- More complex problems
+-- Pilots and planes (1)
+-- See https://www.simple-talk.com/sql/t-sql-programming/divided-we-stand-the-sql-of-relational-division/ for more elaboration.
+-- Intuition: We want to find pilots for whom no plane exists in the hangar for which they have no skills.
+SELECT DISTINCT PilotName
+FROM PilotSkills AS ps1
+WHERE NOT EXISTS (
+    SELECT *
+    FROM Hangar
+    WHERE NOT EXISTS (
+        SELECT *
+        FROM PilotSkills AS ps2
+        WHERE ps1.PilotName = ps2.PilotName
+        AND ps2.PlaneName = hangar.PlaneName
+    )
+);
+
+-- Pilots and planes (2)
+SELECT PilotName
+FROM PilotSkills
+CROSS JOIN Hangar
+WHERE PilotSkills.PlaneName = Hangar.PlaneName
+GROUP BY PilotSkills.PilotName
+HAVING COUNT(*) = (
+    SELECT COUNT(*)
+    FROM Hangar
+);
+
+-- Pilots and planes (3)
+SELECT DISTINCT PilotName
+FROM PilotSkills AS ps1
+WHERE (
+    SELECT PlaneName
+    FROM Hangar
+    EXCEPT
+    SELECT PlaneName
+    FROM PilotSkills AS ps2
+    WHERE ps1.PilotName = ps2.PilotName
+) IS NULL;
 
 -- Roulette runs
 WITH runs_tmp AS (

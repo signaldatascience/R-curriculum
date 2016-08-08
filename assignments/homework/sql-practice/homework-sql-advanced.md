@@ -4,9 +4,6 @@ author: Signal Data Science
 ---
 
 - UNION vs UNION ALL
-- COALESCE
-- EXISTS
-- relational division
 - know about: cursors, views
 
 This assignment is *very* focused on SQL concepts and questions which are commonly found in interviews.
@@ -15,9 +12,7 @@ For the following problems, take out multiple sheets of paper and write down you
 
 **Do not collaborate on these problems.** Attempt each problem without looking anything up; *only afterward* are you allowed to refer to online resources. (You may find the [PostgreSQL 9.5 Documentation](https://www.postgresql.org/docs/9.5/static/index.html) particularly helpful.)
 
-When finished, check your answers against the solutions. Mark every part of every problem which was answered incorrectly and understand your error. Next week, you will redo the marked problems.
-
-Each substantive error you find in the solutions entitles you to a $1 prize and public recognition.
+When finished, check your answers against the solutions. Mark every part of every problem which was answered incorrectly and understand your error.
 
 Conceptual questions
 ====================
@@ -53,10 +48,10 @@ The following questions are less essential for interviews---you should know how 
 
 * Briefly explain normalization and its advantages. Describe a situation where you would want to denormalize a database.
 
-Warming up with simple queries
-==============================
+Practical problems
+==================
 
-Each of the following problems can be solved in a single line of SQL with at most 1 level of query nesting or 1 intermediate table.
+Solve the following problems by writing a single query per problem.
 
 * Write a query which prints out 100 strings such that the $i$th string is "Fizz" if $i$ is divisible by 3, "Buzz" if $i$ is divisible by 5, "FizzBuzz" if $i$ is divisible by both, or $i$ itself as a string if $i$ is divisible by neither.
 
@@ -82,11 +77,10 @@ Last year, employees brought in many commissions for the company. The data for e
 
 * Write a query to list the names of employees whose total commissions in the previous year were equal to or higher than those for at least 99% of employees (*i.e.*, placed them in the 99th percentile or higher).
 
-Information about departments is stored in a table `Departments` with columns `DeptID` for the department's ID (a primary key), `DeptName` for the name of the department, and `Goal` for the department's annual commissions goal. Correspondences between employees 
+You are given a table `PilotSkills` with columns `PilotName` and `PlaneName` representing pilots with the planes they can fly as well as a table `Hangar` with a single column `PlaneName` listing the available planes in the hangar.
 
-More complex problems
-=====================
+* Write a query to display the names of pilots who can fly every plane in the hangar. Do so (1) with two `NOT EXISTS` statements, (2) with a cross join, and (3) with `EXCEPT`.
 
-The following problems are more complex. Using `WITH` clauses to create intermediate tables before forming the final `SELECT` query will be useful.
+You are given a table `Roulette` of roulette spins with columns `Color`, either "red" or "black", and `Time`, a timestamp corresponding to when the spin was made.
 
-* Given a table `Roulette` of roulette spins with columns `Color`, either "red" or "black", and `Time`, a timestamp corresponding to when the spin was made, write a query which returns the timestamp of the longest consecutive "run" of either color.
+* Write a query which returns the timestamp of the longest consecutive "run" of either color.

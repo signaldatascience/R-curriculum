@@ -1,3 +1,9 @@
+INTERVIEWS:
+Monday - Gaurav, 3 PM; Barry, 5 PM
+Wednesday - Sara, 12 PM
+Thursday - Noah, 1 PM
+
+
 things to improve about the curriculum
 
 Incorporate into R curriculum:
@@ -51,6 +57,7 @@ http://www.cs.columbia.edu/~blei/fogm/2015F/
 - dfs/bfs in basic algorithms
 - improve the SVM exercises (far too open ended, not enough *stuff*)
 - solutions for nonlinear classification SVM exercises
+- xgboost <=> gbm hyperparameters in distrib. computing
 
 - resampling: add exposition on why higher/lower n for n-fold cv
 http://stats.stackexchange.com/questions/27730/choice-of-k-in-k-fold-cross-validation
