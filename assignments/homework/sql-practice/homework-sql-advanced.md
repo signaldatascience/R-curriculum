@@ -3,9 +3,6 @@ title: "Homework: Advanced SQL Practice"
 author: Signal Data Science
 ---
 
-- UNION vs UNION ALL
-- know about: cursors, views
-
 This assignment is *very* focused on SQL concepts and questions which are commonly found in interviews.
 
 For the following problems, take out multiple sheets of paper and write down your answer to each one *by hand*. At *no* point in the process should you be typing *any* SQL code *at all*. Strive to get the answer right on the very first try. Write queries in the [PostgreSQL](https://en.wikipedia.org/wiki/PostgreSQL) variant.
