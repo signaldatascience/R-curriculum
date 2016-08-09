@@ -205,7 +205,7 @@ In the following, we will see how to use latent Dirichlet allocation on the corp
 Scraping Wikipedia pages
 ------------------------
 
-We need to scrape the relevant Wikipedia pages from the Internet. It it often easiest to break down a scraping task into two stages: first, scraping a list of URLs to content that we want, and second, actually scraping from our list of URLs.
+We need to scrape the relevant Wikipedia pages from the Internet. It it often easiest to break down a scraping task into two stages: first, scraping a list of URLs to content that we want, and second, scraping the actual content we want from each of those URLs.
 
 As such, our first task will be to look at [Category:Machine_learning](https://en.wikipedia.org/wiki/Category:Machine_learning) and its subcategories to get a list of every machine learning-related Wikipedia page. As you work, watch out for two traps: (1) infinite loops in the subcategory tree (where a category ends up being its own parent) and (2) subcategories which are *overly general* and branch out into non-machine learning related topics. Both problems cane be dealt with manually if they occur.
 
