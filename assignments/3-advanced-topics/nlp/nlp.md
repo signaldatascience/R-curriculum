@@ -74,9 +74,11 @@ Using $n$-grams with logistic regression
 
 We can compare our naive Bayes classifier with logistic regression! Let's see how much better we can do by using [$n$-grams](https://en.wikipedia.org/wiki/N-gram), which are sequences of $n$ consecutive words, instead of individual words. (For simplicity, we'll just consider $n \in \{1, 2\}$.) In addition, we'll use the *count* of each $n$-gram, which is more informative than the simple binary *presence or absence* of each word used for naive Bayes classification.
 
-* Use the [`ngram`](https://cran.r-project.org/web/packages/ngram/ngram.pdf) package to create a dataframe of 1-grams and 2-grams from the training data with the `ngram()` and `get.phrasetable()` functions. Each row should represent a particular email and each column should be one of the $n$-grams.
+* Use the [`ngram`](https://cran.r-project.org/web/packages/ngram/ngram.pdf) package to create a dataframe of 1-grams and 2-grams from the entire dataset of labeled emails with the `ngram()` and `get.phrasetable()` functions. Each row should represent a particular email and each column should be one of the $n$-grams.
 
 * To reduce computational demands and help combat overfitting, restrict consideration to the 1000 most common $n$-grams used. Do you retain any 2-grams after doing so?
+
+* Randomly subset 80% of the rows to form a training set and use the remaining 20$ as a test set.
 
 * Fit a $L^1$ regularized elastic net logistic regression model on your training set. Make predictions on the test set, graph the associated ROC, and compute the AUC, false positive rate, and false negative rate. Compare the quality of the logistic classifier to that of the naive Bayes model.
 
