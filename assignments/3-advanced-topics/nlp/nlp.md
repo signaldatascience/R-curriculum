@@ -167,6 +167,10 @@ The results of the analysis are stored in `$all`, a data frame with a column `po
 
 * Plot two overlapping, semi-transparent histograms of the polarity scores for Linus's comments and everyone else's comments. Interpret the results.
 
+* Use a two-sample $t$-test with [`t.test()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/t.test.html) to check if the difference in mean polarity between the two groups of comments is statistically significant.[^ttest]
+
+[^ttest]: See [Using t-tests in R](http://statistics.berkeley.edu/computing/r-t-tests) for a brief explanation of $t$-tests.
+
 * **Extra:** User "shepik" commented on May 12th:
 	
 	> I love it that you can easily know just by  
