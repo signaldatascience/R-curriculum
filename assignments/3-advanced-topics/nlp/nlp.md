@@ -43,6 +43,8 @@ We will proceed to process the data accordingly.
 
 * Create two data frames from the training and test sets such that each row corresponds to a single email, each column corresponds to a particular word, and each entry is 0 or 1 depending on whether or not the column's corresponding word is present in the row's corresponding email. For now, consider a "word" to be any sequence of non-space characters without further characters on either side; *e.g.*, in `"Lorem4 ipsum; dolor. Sit <b>amet</b>"`, the words are `"Lorem4"`, `"ipsum;"`, `"dolor."`, `"Sit"`, and `"<b>amet</b>"`. The columns for the two data frames should *not* be identical (*i.e.*, there should be words in the training set which do not appear in the test set and vice versa). (You may find [`strsplit()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/strsplit.html) helpful.)
 
+* To save on computation time, select only the columns of the training and test data frames which correspond the 20,000 most common words in each one (where "commonness" is measured by the number of emails in which a word appears at least once).
+
 The method of *naive* Bayes refers to the assumption of conditional independence among the classifier features. That is, if $P(w_i)$ denotes the probability of word $w_i$ appearing in an email, we assume that $P(w_i \mid w_j) = P(w_i)$ for all $i \ne j$. In addition, we assume that there is no *a priori* reason for us to believe that an incoming message is more likely than not to be spam, so $P(\text{spam}) = P(\text{ham})$. These two assumptions allow us to obtain a very simple expression for the probability of an email containing the set of unique words $\{w_1, w_2, \ldots, w_n\}$ being spam:
 
 $$P(\text{spam}) = p = \frac{p_1 p_2 \cdots p_n}{p_1 p_2 \cdots p_n + (1 - p_1) (1 - p_2) \cdots (1 - p_n)},$$
@@ -74,11 +76,11 @@ Using $n$-grams with logistic regression
 
 We can compare our naive Bayes classifier with logistic regression! Let's see how much better we can do by using [$n$-grams](https://en.wikipedia.org/wiki/N-gram), which are sequences of $n$ consecutive words, instead of individual words. (For simplicity, we'll just consider $n \in \{1, 2\}$.) In addition, we'll use the *count* of each $n$-gram, which is more informative than the simple binary *presence or absence* of each word used for naive Bayes classification.
 
-* Use the [`ngram`](https://cran.r-project.org/web/packages/ngram/ngram.pdf) package to create a dataframe of 1-grams and 2-grams from the entire dataset of labeled emails with the `ngram()` and `get.phrasetable()` functions. Each row should represent a particular email and each column should be one of the $n$-grams.
+* Use the [`ngram`](https://cran.r-project.org/web/packages/ngram/ngram.pdf) package (specifically `ngram()` and `get.phrasetable()`) to create a dataframe of 1-gram and 2-gram frequencies from the entire dataset of labeled emails. Each row should represent a particular email and each column should be one of the $n$-grams.
 
-* To reduce computational demands and help combat overfitting, restrict consideration to the 1000 most common $n$-grams used. Do you retain any 2-grams after doing so?
+* To reduce computational demands, restrict consideration to the 20,000 most common 1-grams and the 10,000 most common 2-grams, where commonness is judged by the number of emails in which an $n$-gram appears at least once, *not* the total frequency of appearances.
 
-* Randomly subset 80% of the rows to form a training set and use the remaining 20$ as a test set.
+* Randomly subset 80% of the rows to form a training set and use the remaining 20% as a test set.
 
 * Fit a $L^1$ regularized elastic net logistic regression model on your training set. Make predictions on the test set, graph the associated ROC, and compute the AUC, false positive rate, and false negative rate. Compare the quality of the logistic classifier to that of the naive Bayes model.
 
