@@ -173,8 +173,6 @@ MapReduce
 Multi-armed bandit
 
 Natural language processing
-- part of speech tagging
-- more definitions: stop words, tokenization, etc.
 - skipgrams
 - handling text encoding
 - information retrieval
