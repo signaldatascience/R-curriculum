@@ -140,9 +140,9 @@ Additional pages of the API request can be accessed by appending `?page=2` and s
 
 * How many pages of API requests need to be downloaded to retrieve all comments on issue #17 posted on or before May 12th, 2012?
 
-* Write a Python script using the [`urllib.request`](https://docs.python.org/3/library/urllib.request.html#module-urllib.request) module to download the API calls which include all comments on issue #17 of the GitHub Linux repository on or before May 12, 2012.
+* Write a Python script using the [`urllib.request`](https://docs.python.org/3/library/urllib.request.html#module-urllib.request) module to download the API calls which include all comments on issue #17 of the GitHub Linux repository on or before May 12, 2012. Replace all instances of the *strings* `"\r\n"` or `"\n"` with actual linebreaks.
 
-* Use the [`json`](https://docs.python.org/3/library/json.html) module, specifically the `loads()` function, along with the [`csv`](https://docs.python.org/3/library/csv.html) module to create a CSV with columns for the comment poster's username and the comment text. Note that occurrences of `"\r\n"` and `"\n"` in the comments should both be converted to linebreaks.
+* Use the [`json`](https://docs.python.org/3/library/json.html) module, specifically the `loads()` function, along with the [`csv`](https://docs.python.org/3/library/csv.html) module to create a CSV with columns for the comment poster's username and the comment text.
 
 Performing sentiment analysis
 -----------------------------
@@ -155,14 +155,23 @@ Next, we'll perform some simple sentiment analysis in R on the GitHub comments a
 
 * Following the [Cleaning Text & Debugging](http://cran.us.r-project.org/web/packages/qdap/vignettes/cleaning_and_debugging.pdf) vignette, use `qdap` to clean the GitHub comments in preparation for sentiment analysis. In particular, `check_text()` should suggest some text-cleaning functions to use.
 
+* Create a binary column indicating whether or not a comment was authored by Linus Torvalds.
 
-* Use `polarity()` with its default settings to perform sentiment analysis on the GitHub comments, passing in both the character vector of every commit message as well as the grouping vector.
+* Use `polarity()` with its default settings to perform sentiment analysis on the GitHub comments, passing in the binary indicator column as the grouping variable.
 
-The results of the analysis are stored in `$all`, a data frame with a column `polarity` for the sentiment polarity score of each message.
+The results of the analysis are stored in `$all`, a data frame with a column `polarity` for the sentiment polarity score of each comment.
 
-* Plot two histograms of the polarity scores for Linus and Brad overlaid on top of each other. Interpret the results.
+* Examine the commit messages which had the lowest and highest polarity scores. What do high and low polarity represent?
 
-* Look at the commit messages which had the lowest and highest polarity scores.
+* Plot two overlapping, semi-transparent histograms of the polarity scores for Linus's comments and everyone else's comments. Interpret the results.
+
+* **Extra:** User "shepik" commented on May 12th:
+	
+	> I love it that you can easily know just by  
+	> looking at word wraps of the comment  
+	> whether a person is supporting Linus or not
+
+	Check to see if comments with manual linebreaks (those containing `"\r\n"` or `"\n"` in the raw JSON) have a lower polarity than those without.
 
 Topic modeling of Wikipedia articles
 ====================================
