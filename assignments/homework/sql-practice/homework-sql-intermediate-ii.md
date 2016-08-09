@@ -64,7 +64,7 @@ It has finally fallen to you to do the Thanksgiving grocery shopping! You have b
 
 Of course, part of planning a good Thanksgiving dinner is making sure there's enough variety on the dinner table.
 
-* **Optional:** Modify your previous query so that you never pick more than two of any item. (If this is taking too long, move on and come back to it later.)
+* **Extra:** Modify your previous query so that you never pick more than two of any item. (Don't spend too long on this at the expense of the rest of the assignment.)
 
 Tragically, many people find themselves overeating during Thanksgiving. Let's try to plan a healthier meal.
 

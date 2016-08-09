@@ -43,59 +43,47 @@ We will proceed to process the data accordingly.
 
 * Create two data frames from the training and test sets such that each row corresponds to a single email, each column corresponds to a particular word, and each entry is 0 or 1 depending on whether or not the column's corresponding word is present in the row's corresponding email. For now, consider a "word" to be any sequence of non-space characters without further characters on either side; *e.g.*, in `"Lorem4 ipsum; dolor. Sit <b>amet</b>"`, the words are `"Lorem4"`, `"ipsum;"`, `"dolor."`, `"Sit"`, and `"<b>amet</b>"`. The columns for the two data frames should *not* be identical (*i.e.*, there should be words in the training set which do not appear in the test set and vice versa). (You may find [`strsplit()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/strsplit.html) helpful.)
 
-Consider a subset of the words in the entire training corpus consisting of $n$ words. Let $w_i$, $S$, and $H$ respectively denote events corresponding to word $i$ being present in an email, an email being spam, and an email being ham, and let $W$ denote the *conjunction* of all the events $w_i$, *i.e.*, the event corresponding to words 1 through $n$ all being present in an email. From [Bayes' theorem](https://en.wikipedia.org/wiki/Bayes%27_theorem), we can write an expression for $P(S \mid W) = P(S \mid w_1, w_2, \ldots, w_n)$, the probability of a message being spam given that it contains words 1 through $n$.
+The method of *naive* Bayes refers to the assumption of conditional independence among the classifier features. That is, if $P(w_i)$ denotes the probability of word $w_i$ appearing in an email, we assume that $P(w_i \mid w_j) = P(w_i)$ for all $i \ne j$. In addition, we assume that there is no *a priori* reason for us to believe that an incoming message is more likely than not to be spam, so $P(\text{spam}) = P(\text{ham})$. These two assumptions allow us to obtain a very simple expression for the probability of an email containing the set of unique words $\{w_1, w_2, \ldots, w_n\}$ being spam:
 
-$$P(S \mid W) = \frac{P(W \mid S) P(S)}{P(W)} = \frac{P(W \mid S) P(S)}{P(W \mid S) P(S) + P(W \mid H) P(H)}.$$
+$$P(\text{spam}) = p = \frac{p_1 p_2 \cdots p_n}{p_1 p_2 \cdots p_n + (1 - p_1) (1 - p_2) \cdots (1 - p_n)},$$
 
-Note that since $P(W \mid S) P(S) = P(W \text{ and } S)$, we can rewrite it as
+where $p_i = P(\text{spam} \mid w_i)$, the proportion of spam emails out of all the emails in which the word $w_i$ appears.
 
-$$P(W \mid S) P(S) = P(w_1 \mid w_2, \ldots, w_n, S) P(w_2 \mid w_3, \ldots, w_n, S) \cdots P(w_n \mid S) P(S)$$
+* Calculate $P(\text{spam} \mid w_i)$ for each word in the training set. If a word appears only in spam emails, assign it a probability of $P(\text{spam} \mid w_i) = 0.999$ instead of 1; similarly, if a word appears only in ham emails, assign it a probability of $0.001$ rather than 0.
 
-and similarly for $P(W \mid H)$.
+* Examine the words with the highest and lowest values of $P(\text{spam} \mid w_i)$. Interpret the results. Are they as you expected?
 
-We make the *naive* assumption that the presences of the words are conditionally independent, *i.e.*, that $P(w_i \mid w_j) = P(w_i)$ for $i \ne j$. We then arrive at
+It is difficult for computers to precisely calculate the product of many small probabilities due to [floating-point underflow](https://en.wikipedia.org/wiki/Arithmetic_underflow). As such, instead of performing a direct calculation of $p$, it is better to rewrite the above expression as
 
-$$P(W \mid S) = P(w_1 \mid S) P(w_2 \mid S) \cdots P(w_n \mid S) P(S).$$
+$$\frac{1}{p} - 1 = \frac{1 - p_1}{p_1} \frac{1 - p_2}{p_2} \cdots \frac{1 - p_n}{p_n}$$
 
-This simplification is the key to a naive Bayes classifier. Although the assumption of conditional independence is often false, it nevertheless yields serviceable results in practice.
+so that the right hand side becomes a single product and to then take the logarithm of both sides to obtain
 
-* For each word in the training set, calculate $P(w_i \mid S)$, *i.e.*, the proportion of spam emails out of all the emails in which the word appears. If a word appears only in spam emails, assign it a probability of $P(w_i \mid S) = 0.999$ instead of 1; similarly, if a word appears only in ham emails, assign it a probability of $0.001$ rather than 0.
+$$\log \left( \frac{1}{p} - 1 \right) = \sum_{i=1}^n \left( \log (1 - p_i) - \log p_i \right).$$
 
-It is simplest to assume *a priori* that any given email is equally as likely to be spam or ham, *i.e.*, $P(S) = P(H) = \frac{1}{2}$. Then our expression for $P(S \mid W)$ simplifies into
+$P(\text{spam}) = p$ can therefore be calculated from the value of the summation, which is much more amenable to floating-point calculations than our earlier product.
 
-$$P(S \mid W) = \frac{P(w_i \mid S) \cdots P(w_n \mid S)}{}.$$
+* Following the above description, calculate $P(\text{spam})$ for each email in the test set. (If a word occurs in the test set but not in the training set, give it $p_i = 0.4$.) Plot the associated ROC curve; calculate the AUC, false positive rate, and false negative rate.
 
-Due to [floating-point underflow](https://en.wikipedia.org/wiki/Arithmetic_underflow), instead of calculating $P(S)$ directly, it is better to calculate
+* Examine the emails with the highest and lowest values of $P(\text{spam})$.
 
-$$\log \left( \frac{1}{P(S)} - 1 \right) = \sum_{i=1}^N \left( \log (1 - p_i) - \log p_i \right)$$
-
-because the summation doesn't have problems with underflow due to multiplying many small numbers together, and to then calculate $P(S)$ after a numeric expression for the right side of the above equation has been obtained.
-
-* Look at the words with the highest and lowest $p_i$s. Interpret the results.
-
-* Calculate the true positive, true negative, false positive, and false negative rates for your classifier.
-
-* Modify your classifier so that it converts all uppercase characters to lowercase. Does this improve the performance of your classifier on the training data?
-
-* Find examples of both spam and non-spam emails from your personal email accounts. See if your classifer classifies them correctly.
+* **Extra:** Test the classifier on some spam and ham emails from your own personal inbox. Are they classified correctly?
 
 Using $n$-grams with logistic regression
 ----------------------------------------
 
-We can compare our naive Bayes classifier with logistic regression. For our logistic regression, we will use as features the frequency counts of individual words, *i.e.*, the number of time each word we know appears in an email. Additionally, we will also use [$n$-grams](https://en.wikipedia.org/wiki/N-gram), which are sequences of $n$ consecutive words.
+We can compare our naive Bayes classifier with logistic regression! Let's see how much better we can do by using [$n$-grams](https://en.wikipedia.org/wiki/N-gram), which are sequences of $n$ consecutive words, instead of individual words. (For simplicity, we'll just consider $n \in \{1, 2\}$.) In addition, we'll use the *count* of each $n$-gram, which is more informative than the simple binary *presence or absence* of each word used for naive Bayes classification.
 
-* Use the [`ngram`](https://cran.r-project.org/web/packages/ngram/ngram.pdf) package to create a dataframe of 1-grams and 2-grams from the training data with the `ngram()` and `get.phrasetable()` functions. Each row should represent a particular email and each column should be one of the 1-grams or 2-grams.
+* Use the [`ngram`](https://cran.r-project.org/web/packages/ngram/ngram.pdf) package to create a dataframe of 1-grams and 2-grams from the training data with the `ngram()` and `get.phrasetable()` functions. Each row should represent a particular email and each column should be one of the $n$-grams.
 
-* Use regularized elastic net logistic regression to predict spam vs. not-spam, selecting the hyperparameters $\alpha$ and $\lambda$ with the `caret` package.
+* To reduce computational demands and help combat overfitting, restrict consideration to the 1000 most common $n$-grams used. Do you retain any 2-grams after doing so?
 
-	* To reduce computational demands, restrict consideration to the 1000 most common $n$-grams.
+* Fit a $L^1$ regularized elastic net logistic regression model on your training set. Make predictions on the test set, graph the associated ROC, and compute the AUC, false positive rate, and false negative rate. Compare the quality of the logistic classifier to that of the naive Bayes model.
 
-* Compute the true positive, true negative, false positive, and false negative rates for you logistic regression spam classifier. Compare its performance to that of your naive Bayes spam classifier.
+Sentiment analysis of Github comments
+=====================================
 
-Sentiment analysis of Github commit logs
-========================================
-
-[Linus Torvalds](https://github.com/torvalds), the creator of the [Linux](https://en.wikipedia.org/wiki/Linux) kernel, is well-known for a very direct manner of communication. For example, in 2012, he [wrote the following](https://lkml.org/lkml/2012/12/23/75) about a proposed kernel patch:
+[Linus Torvalds](https://github.com/torvalds), the creator of the [Linux](https://en.wikipedia.org/wiki/Linux) kernel, is well-known for a very direct manner of communication. For example, in 2012, he [replied with the following email](https://lkml.org/lkml/2012/12/23/75) regarding a proposed kernel patch:
 
 > On Sun, Dec 23, 2012 at 6:08 AM, Mauro Carvalho Chehab
 > `<mchehab@redhat.com>` wrote:
@@ -135,45 +123,46 @@ Sentiment analysis of Github commit logs
 > 
 > WE DO NOT BREAK USERSPACE!
 
-... and so on and so forth. Torvalds has commented similarly regarding [the usage of `overflow_usub()`](http://lkml.iu.edu/hypermail/linux/kernel/1510.3/02866.html), [GitHub pull requests](https://github.com/torvalds/linux/pull/17#issuecomment-5654674), and a host of other topics.
+... and so on and so forth. Torvalds has commented similarly regarding [the improper usage of `overflow_usub()`](http://lkml.iu.edu/hypermail/linux/kernel/1510.3/02866.html), [GitHub pull requests](https://github.com/torvalds/linux/pull/17#issuecomment-5654674), and a host of other topics.
 
-But is Linus's personality as well reflected in his GitHub commit messages? Let's compare his activity to that of [Bram Moolenaar](https://github.com/brammool?tab=activity), creator, maintainer, and [benevolent dictator for life](https://en.wikipedia.org/wiki/Benevolent_dictator_for_life) of the [Vim](https://en.wikipedia.org/wiki/Vim_(text_editor)) text editor. First, we will scrape the commit messages for all their contributions to their respective projects using the GitHub API; afterward, we will perform [sentiment analysis](https://en.wikipedia.org/wiki/Sentiment_analysis) on their commit messages to determine if such a difference exists and, if so, how large it is.
+How different is Linus compared to everyone else? As a brief case study in combining web scraping with NLP, we will use the GitHub API to scrape all the comments on a particularly notorious comment thread with Linus and then perform sentiment analysis on the messages to see if 
 
 Using the Github API
 --------------------
 
-Since Linus and Bram make most of their commits to Linux and Vim respectively, we can use the API to (1) get some of the latest commits to Linux and Vim and (2) strip out all of the commits which don't come from either of them.
+The Github API can be accessed directly via your browser. In general, you begin with the URL `https://api.github.com/` and then successively append text to it, *e.g.*, `https://api.github.com/users/JonahSinick`. The output of GitHub's API calls is provided in the [JSON](https://en.wikipedia.org/wiki/JSON) format.
 
-The Github API can be accessed directly via your browser. In general, you begin with the url `https://api.github.com/` and then successively append text to it, *e.g.*, `https://api.github.com/users/JonahSinick`.
+* Referencing the [API documentation on issue comments](https://developer.github.com/v3/issues/comments/), determine what API query will return the latest comments for issue #17 on the [Linux repository](https://github.com/torvalds/linux).[^issue]  (A parameter beginning with a colon (`:`) denotes a *variable* which you should fill in with the appropriate value *without* retaining the colon.)
 
-* Referencing the [API documentation on commits](https://developer.github.com/v3/repos/commits/), figure out which API queries will return the latest commits for [Linux](https://github.com/torvalds/linux) and for [Vim](https://github.com/vim/vim). (A parameter beginning with a colon (`:`) is a *variable* which you should fill in with the appropriate value.)
+[^issue]: Issue #17 is viewable online [here](https://github.com/torvalds/linux/pull/17#issuecomment-5654674) (archive link [here](https://web.archive.org/web/20160114224658/https://github.com/torvalds/linux/pull/17)).
 
-* Write a Python script to access the Github API and download our desired data. Follow these specifications:
+Additional pages of the API request can be accessed by appending `?page=2` and such to the URL.
 
-	* Use [`urllib.request`](https://docs.python.org/3/library/urllib.request.html#module-urllib.request) to download the results of API calls. Use the [`json`](https://docs.python.org/3/library/json.html) module, particularly the `loads()` function, to strip out all the commit messages which don't come from Linus or Brad.
+* How many pages of API requests need to be downloaded to retrieve all comments on issue #17 posted on or before May 12th, 2012?
 
-	* Write the commit messages to two files, `linus.txt` and `brad.txt`, with one message per line.
+* Write a Python script using the [`urllib.request`](https://docs.python.org/3/library/urllib.request.html#module-urllib.request) module to download the API calls which include all comments on issue #17 of the GitHub Linux repository on or before May 12, 2012.
+
+* Use the [`json`](https://docs.python.org/3/library/json.html) module, specifically the `loads()` function, along with the [`csv`](https://docs.python.org/3/library/csv.html) module to create a CSV with columns for the comment poster's username and the comment text. Note that occurrences of `"\r\n"` and `"\n"` in the comments should both be converted to linebreaks.
 
 Performing sentiment analysis
 -----------------------------
 
-* Load the files containing the commit messages for Linus and Brad. Process them, creating one vector for Linus's messages and another vector for Brad's messages.
+Next, we'll perform some simple sentiment analysis in R on the GitHub comments and use $t$-tests to analyze the results.
 
-* Install and load the `qdap` package, which has functions for both cleaning text and performing sentiment analysis.
+* Load the CSV containing the GitHub comments. Ensure that the columns are loaded as character vectors rather than as factor vectors by setting `stringsAsFactors=FALSE`.
 
-* Following the [Cleaning Text & Debugging](http://cran.us.r-project.org/web/packages/qdap/vignettes/cleaning_and_debugging.pdf) vignette, use `qdap` to clean the commit messages in preparation for sentiment analysis. In particular, `check_text()` should suggest the usage of some text-cleaning functions to use.
+* Install and load the [`qdap`](https://cran.r-project.org/web/packages/qdap/index.html) package, containing functions for both cleaning text and performing sentiment analysis.
 
-* Combine all of the commit messages into a character vector with many entries. In addition, create a vector of labels (integers 0 or 1) which indicate whether the corresponding entry in the aforementioned character vector is from Linus or Brad.
+* Following the [Cleaning Text & Debugging](http://cran.us.r-project.org/web/packages/qdap/vignettes/cleaning_and_debugging.pdf) vignette, use `qdap` to clean the GitHub comments in preparation for sentiment analysis. In particular, `check_text()` should suggest some text-cleaning functions to use.
 
-* Use `polarity()` with its default settings to perform sentiment analysis, passing in both the character vector of every commit message as well as the grouping vector.
+
+* Use `polarity()` with its default settings to perform sentiment analysis on the GitHub comments, passing in both the character vector of every commit message as well as the grouping vector.
 
 The results of the analysis are stored in `$all`, a data frame with a column `polarity` for the sentiment polarity score of each message.
 
 * Plot two histograms of the polarity scores for Linus and Brad overlaid on top of each other. Interpret the results.
 
 * Look at the commit messages which had the lowest and highest polarity scores.
-
-- t test...
 
 Topic modeling of Wikipedia articles
 ====================================
@@ -374,13 +363,13 @@ LDA is most useful for learning structure for corpora which are too large for hu
 
 Some interesting articles on topic modeling to look at include:
 
-* Mimno, [Using phrases in Mallet topic models](http://www.mimno.org/articles/phrases/)
+* Mimno, [Using phrases in Mallet topic models](http://www.mimno.org/articles/phrases/).
 
-* Mimno and McCallum (2007), [Organizing the OCA: Learning Faceted Subjects from a Library of Digital Books](http://mimno.infosci.cornell.edu/papers/f129-mimno.pdf)
+* Mimno and McCallum (2007), [Organizing the OCA: Learning Faceted Subjects from a Library of Digital Books](http://mimno.infosci.cornell.edu/papers/f129-mimno.pdf).
 
-* Hu and Saul (2003), [A Probabilistic Topic Model for Unsupervised Learning of Musical Key-Profiles](http://cseweb.ucsd.edu/~saul/papers/ismir09_lda.pdf)
+* Hu and Saul (2003), [A Probabilistic Topic Model for Unsupervised Learning of Musical Key-Profiles](http://cseweb.ucsd.edu/~saul/papers/ismir09_lda.pdf).
 
-* Pritchard *et al.* (2000), [Inference of Population Structure Using Multilocus Genotype Data](http://pritchardlab.stanford.edu/publications/structure.pdf), which was written before the development of LDA as it is now but proposes essentially the same generative model
+* Pritchard *et al.* (2000), [Inference of Population Structure Using Multilocus Genotype Data](http://pritchardlab.stanford.edu/publications/structure.pdf), which was written before the development of LDA as it is now but proposes essentially the same generative model.
 
 Writing a spellchecker
 ======================
