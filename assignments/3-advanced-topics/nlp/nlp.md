@@ -18,7 +18,7 @@ We will begin with naive Bayes spam filtering, one of the oldest methods of stat
 
 [^ham]: "Ham" is a commonly used term for not-spam, not just something we made up.
 
-* Convert all text in the emails to lowercase and remove the following punctuation: periods, commas, colons, semicolons, exclamation marks, question marks, apostrophes, and quotation marks. (Simple text pre-processing will improve the performance of our classifier; we'll cover pre-processing in greater depth in a later section.)
+* Write a Python script to convert all text in the emails to lowercase and remove the following punctuation: periods, commas, colons, semicolons, exclamation marks, question marks, apostrophes, and quotation marks. (Simple text pre-processing will improve the performance of our classifier; we'll cover pre-processing in greater depth in a later section.)
 
 * Load the CSDMC2010 SPAM training data into R, storing the text of each `.eml` file in a string. (You may find [`list.files()`](http://www.inside-r.org/r-doc/base/list.files) and [`scan()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/scan.html) useful.) Use the entirety of each file, including the HTML tags and email headers.
 
@@ -82,7 +82,7 @@ Let's compare the performance of our naive Bayes classifier to logistic regressi
 
 * Install the [`tm`](https://cran.r-project.org/web/packages/tm/) package, which provides a variety of useful functions for NLP-related text manipulation and serves as the backbone of many other NLP packages.
 
-* Use `DirSource()` to get a list of `.eml` files in the labeled dataset (ensure that these files are pre-processed as specified above: all lowercase and with punctuation removed). Call `VCorpus()` on the output of `DirSource()` to create a `VCorpus` object with the text of the email files.
+* Use `DirSource()` to get a list of `.eml` files (ensure that these files are pre-processed as specified above: all lowercase and with punctuation removed). Call `VCorpus()` on the output of `DirSource()` to create a `VCorpus` object with the text of the email files.
 
 * Call `DocumentTermMatrix()` on the `VCorpus` object to create a matrix with word frequency data (representing emails as rows and words as columns) from the corpus of emails.
 
@@ -156,7 +156,9 @@ Additional pages of the API request can be accessed by appending `?page=2` and s
 
 * How many pages of API requests need to be downloaded to retrieve all comments on issue #17 posted on or before May 12th, 2012?
 
-* Write a Python script using the [`urllib.request`](https://docs.python.org/3/library/urllib.request.html#module-urllib.request) module to download the API calls which include all comments on issue #17 of the GitHub Linux repository on or before May 12, 2012. Replace all instances of the *strings* `"\r\n"` or `"\n"` with actual linebreaks.
+* Write a Python script using the [`urllib.request`](https://docs.python.org/3/library/urllib.request.html#module-urllib.request) module to download the API calls which include all comments on issue #17 of the GitHub Linux repository on or before May 12, 2012. Save the downloaded API calls to disk.
+
+* Open the downloaded files in a text editor and replace all instances of the *strings* `"\r\n"` or `"\n"` with spaces.
 
 * Use the [`json`](https://docs.python.org/3/library/json.html) module, specifically the `loads()` function, along with the [`csv`](https://docs.python.org/3/library/csv.html) module to create a CSV with columns for the comment poster's username and the comment text.
 
@@ -167,7 +169,9 @@ Next, we'll perform some simple sentiment analysis in R on the GitHub comments a
 
 * Load the CSV containing the GitHub comments. Ensure that the columns are loaded as character vectors rather than as factor vectors by setting `stringsAsFactors=FALSE`.
 
-* Install and load the [`qdap`](https://cran.r-project.org/web/packages/qdap/index.html) package, containing functions for both cleaning text and performing sentiment analysis.
+* Install and load the [`qdap`](https://cran.r-project.org/web/packages/qdap/index.html) package, which contains functions for both cleaning text and performing sentiment analysis.[^osx]
+
+[^osx]: On OS X, loading `qdap` may result in an error pertaining to the JVM. According to [StackOverflow](http://stackoverflow.com/a/36173681/3721976), try running `sudo R CMD javareconf` in the Terminal followed by `install.packages('RJava', type='source')` in R.
 
 * Following the [Cleaning Text & Debugging](http://cran.us.r-project.org/web/packages/qdap/vignettes/cleaning_and_debugging.pdf) vignette, use `qdap` to clean the GitHub comments in preparation for sentiment analysis. In particular, `check_text()` should suggest some text-cleaning functions to use.
 
