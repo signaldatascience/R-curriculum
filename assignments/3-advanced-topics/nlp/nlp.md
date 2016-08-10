@@ -88,6 +88,8 @@ Let's compare the performance of our naive Bayes classifier to logistic regressi
 
 * Call `DocumentTermMatrix()` on the `VCorpus` object to create a matrix with word frequency data (representing emails as rows and words as columns) from the corpus of emails.
 
+* To reduce the computation time required, remove columns corresponding to words which occur in fewer than 20 emails.
+
 * Subset 80% of the rows of the document-term matrix to use as a training set, leaving the remaining 20% as a test set. Remove columns of *both* matrices corresponding to words which only show up in one but not both matrices.
 
 * Train an $L^1$ regularized logistic classifier to distinguish between spam and ham. Examine the words associated with the greatest coefficients.
