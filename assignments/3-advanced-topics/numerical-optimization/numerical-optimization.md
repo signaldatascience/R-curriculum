@@ -1,5 +1,5 @@
 ---
-title: Numerical Algorithms
+title: Numerical Optimization
 author: Signal Data Science
 ---
 

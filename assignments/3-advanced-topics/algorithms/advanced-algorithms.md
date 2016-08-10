@@ -5,6 +5,9 @@ author: Signal Data Science
 
 Here's a collection of problems about advanced algorithms. These are designed to reinforce your R programming skills while teaching you useful and applicable material.
 
+PageRank
+========
+
 Fast primality testing
 ======================
 

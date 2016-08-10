@@ -20,3 +20,16 @@ Some things to keep in mind (read these before you begin):
 * Remove columns corresponding to words that show up fewer than 10 times in total throughout the entire corpus.
 
 * The matrix of documents and word frequencies is very sparse -- don't scale it! If you do so, it will make it non-sparse, which is bad!
+
+Using $n$-grams with logistic regression
+----------------------------------------
+
+We can compare our naive Bayes classifier with logistic regression! Let's see how much better we can do by using [$n$-grams](https://en.wikipedia.org/wiki/N-gram), which are sequences of $n$ consecutive words, instead of individual words. (For simplicity, we'll just consider $n \in \{1, 2\}$.) In addition, we'll use the *count* of each $n$-gram, which is more informative than the simple binary *presence or absence* of each word used for naive Bayes classification.
+
+* Use the [`ngram`](https://cran.r-project.org/web/packages/ngram/ngram.pdf) package (specifically `ngram()` and `get.phrasetable()`) to create a dataframe of 1-gram and 2-gram frequencies from the entire dataset of labeled emails. Each row should represent a particular email and each column should be one of the $n$-grams.
+
+* To reduce computational demands, restrict consideration to the 20,000 most common 1-grams and the 10,000 most common 2-grams, where commonness is judged by the number of emails in which an $n$-gram appears at least once, *not* the total frequency of appearances.
+
+* Randomly subset 80% of the rows to form a training set and use the remaining 20% as a test set.
+
+* Fit a $L^1$ regularized elastic net logistic regression model on your training set. Make predictions on the test set, graph the associated ROC, and compute the AUC, false positive rate, and false negative rate. Compare the quality of the logistic classifier to that of the naive Bayes model.

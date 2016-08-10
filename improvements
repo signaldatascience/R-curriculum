@@ -1,7 +1,9 @@
 INTERVIEWS:
 Monday - Gaurav, 3 PM; Barry, 5 PM
-Wednesday - Sara, 12 PM
-Thursday - Noah, 1 PM
+Wednesday - Sara, 12 PM; Adom, 1 PM
+Thursday - Noah, 1 PM; Gaurav, 5 PM
+Monday - Mark, 2 PM
+Thursday - Diane, 2 PM
 
 
 things to improve about the curriculum
@@ -63,6 +65,12 @@ http://www.cs.columbia.edu/~blei/fogm/2015F/
 http://stats.stackexchange.com/questions/27730/choice-of-k-in-k-fold-cross-validation
 https://en.wikipedia.org/wiki/Cross-validation_(statistics)
 
+Classification
+https://www.quora.com/Machine-Learning-What-are-advantages-of-SVM-over-Neural-networks-and-k-Nearest-neighbours/answer/Leonid-Boytsov
+
+PageRank
+http://blog.revolutionanalytics.com/2014/12/a-reproducible-r-example-finding-the-most-popular-packages-using-the-pagerank-algorithm.html
+
 things to do in week 4:
 - add to recommender systems
 - numerical optimization
@@ -70,8 +78,6 @@ things to do in week 4:
 - student presentation topics
 - advanced sql homework
 - nonlinear dimensionality reduction
-
-distributed computing -> web scraping and NLP
 
 https://www.kaggle.com/benhamner/2016-us-election
 http://artax.karlin.mff.cuni.cz/r-help/library/LiblineaR/html/heuristicC.html

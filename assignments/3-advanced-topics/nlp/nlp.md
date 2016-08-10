@@ -20,6 +20,8 @@ We will begin with naive Bayes spam filtering, one of the oldest methods of stat
 
 [^ham]: "Ham" is a commonly used term for not-spam, not just something we made up.
 
+* Convert all text in the emails to lowercase and remove the following punctuation: periods, commas, colons, semicolons, exclamation marks, question marks, apostrophes, and quotation marks. (Simple text pre-processing will improve the performance of our classifier; we'll cover pre-processing in greater depth in a later section.)
+
 * Load the CSDMC2010 SPAM training data into R, storing the text of each `.eml` file in a string. (You may find [`list.files()`](http://www.inside-r.org/r-doc/base/list.files) and [`scan()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/scan.html) useful.) Use the entirety of each file, including the HTML tags and email headers.
 
 Naive Bayes classification
@@ -51,17 +53,21 @@ $$P(\text{spam}) = p = \frac{p_1 p_2 \cdots p_n}{p_1 p_2 \cdots p_n + (1 - p_1) 
 
 where $p_i = P(\text{spam} \mid w_i)$, the proportion of spam emails out of all the emails in which the word $w_i$ appears.
 
-* Calculate $P(\text{spam} \mid w_i)$ for each word in the training set. If a word appears only in spam emails, assign it a probability of $P(\text{spam} \mid w_i) = 0.999$ instead of 1; similarly, if a word appears only in ham emails, assign it a probability of $0.001$ rather than 0.
+* Calculate $P(\text{spam} \mid w_i)$ for each word in the training set. If a word appears only in spam emails, assign it a probability of $P(\text{spam} \mid w_i) = 0.999$ instead of 1; similarly, if a word appears only in ham emails, assign it a probability of $0.001$ rather than 0. (The assignment of probabilities aside from 0 or 1 when a word only shows up in a single category is called Laplace or [additive smoothing](https://en.wikipedia.org/wiki/Additive_smoothing), where we say that not observing any instances of an event should cause us to assign it a very *low* probability, but not one exactly equal to zero.[^laplace])
+
+[^laplace]: Regarding the rising of the sun, Laplace wrote: "But this number [the probability of the sun coming up tomorrow] is far greater for him who, seeing in the totality of phenomena the principle regulating the days and seasons, realizes that nothing at present moment can arrest the course of it." The statement in general is intended to illustrate the difficulty of using probability theory, specifically Laplace's [rule of succession](https://en.wikipedia.org/wiki/Rule_of_succession) in the particular case of the [sunrise problem](https://en.wikipedia.org/wiki/Sunrise_problem), to infer parameters of probability distributions.
 
 * Examine the words with the highest and lowest values of $P(\text{spam} \mid w_i)$. Interpret the results. Are they as you expected?
 
-It is difficult for computers to precisely calculate the product of many small probabilities due to [floating-point underflow](https://en.wikipedia.org/wiki/Arithmetic_underflow). As such, instead of performing a direct calculation of $p$, it is better to rewrite the above expression as
+It is difficult for computers to precisely calculate the product of many small probabilities due to [floating-point underflow](https://en.wikipedia.org/wiki/Arithmetic_underflow).[^underflow] As such, instead of performing a direct calculation of $p$, it is better to rewrite the above expression as
 
 $$\frac{1}{p} - 1 = \frac{1 - p_1}{p_1} \frac{1 - p_2}{p_2} \cdots \frac{1 - p_n}{p_n}$$
 
 so that the right hand side becomes a single product and to then take the logarithm of both sides to obtain
 
 $$\log \left( \frac{1}{p} - 1 \right) = \sum_{i=1}^n \left( \log (1 - p_i) - \log p_i \right).$$
+
+[^underflow]: For a given data type in some programming language, there is typically some value $f_\text{min}$ which is the magnitude of the smallest precisely representable floating-point number. As such, it becomes impossible to represent values in the interval $(-f_\text{min}, f_\text{min})$, known as the *underflow gap*. In the past, it was typical to simply set values in the underflow gap equal to 0, a practice known as *flushing to zero* on underflow. Newer versions of [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point), the international standard for floating-point arithmetic, have introduced [subnormal numbers](https://en.wikipedia.org/wiki/Denormal_number), a set of linearly spaced numbers in the underflow gap which allow for imprecise representation of values falling within that gap. (In contrast, if you look at [the non-exponent part](https://en.wikipedia.org/wiki/Normalized_number) of regular floating-point numbers written in scientific notation, they are *logarithmically* spaced.)
 
 $P(\text{spam}) = p$ can therefore be calculated from the value of the summation, which is much more amenable to floating-point calculations than our earlier product.
 
@@ -71,23 +77,29 @@ $P(\text{spam}) = p$ can therefore be calculated from the value of the summation
 
 * **Extra:** Test the classifier on some spam and ham emails from your own personal inbox. Are they classified correctly?
 
-Using $n$-grams with logistic regression
-----------------------------------------
+Regularized logistic regression
+-------------------------------
 
-We can compare our naive Bayes classifier with logistic regression! Let's see how much better we can do by using [$n$-grams](https://en.wikipedia.org/wiki/N-gram), which are sequences of $n$ consecutive words, instead of individual words. (For simplicity, we'll just consider $n \in \{1, 2\}$.) In addition, we'll use the *count* of each $n$-gram, which is more informative than the simple binary *presence or absence* of each word used for naive Bayes classification.
+Let's compare the performance of our naive Bayes classifier to logistic regression! The standard formulation of naive Bayes requires *binary* features, which is why we only considered the presence or absence of words, discarding information about *how many time* a word shows up in each email. However, the flexibility of logistic regression allows us to use word count information in our classification model.
 
-* Use the [`ngram`](https://cran.r-project.org/web/packages/ngram/ngram.pdf) package (specifically `ngram()` and `get.phrasetable()`) to create a dataframe of 1-gram and 2-gram frequencies from the entire dataset of labeled emails. Each row should represent a particular email and each column should be one of the $n$-grams.
+* Install the [`tm`](https://cran.r-project.org/web/packages/tm/) package, which provides a variety of useful functions for NLP-related text manipulation and serves as the backbone of many other NLP packages.
 
-* To reduce computational demands, restrict consideration to the 20,000 most common 1-grams and the 10,000 most common 2-grams, where commonness is judged by the number of emails in which an $n$-gram appears at least once, *not* the total frequency of appearances.
+* Use `DirSource()` to get a list of `.eml` files in the labeled dataset (ensure that these files are pre-processed as specified above: all lowercase and with punctuation removed). Call `VCorpus()` on the output of `DirSource()` to create a `VCorpus` object with the text of the email files.
 
-* Randomly subset 80% of the rows to form a training set and use the remaining 20% as a test set.
+* Call `DocumentTermMatrix()` on the `VCorpus` object to create a matrix with word frequency data (representing emails as rows and words as columns) from the corpus of emails.
 
-* Fit a $L^1$ regularized elastic net logistic regression model on your training set. Make predictions on the test set, graph the associated ROC, and compute the AUC, false positive rate, and false negative rate. Compare the quality of the logistic classifier to that of the naive Bayes model.
+* Subset 80% of the rows of the document-term matrix to use as a training set, leaving the remaining 20% as a test set. Remove columns of *both* matrices corresponding to words which only show up in one but not both matrices.
+
+* Train an $L^1$ regularized logistic classifier to distinguish between spam and ham. Examine the words associated with the greatest coefficients.
+
+* Make predictions for the test set. Plot the associated ROC curve and calculate the AUC, false positive rate, and false negative rate. Compare with the performance of the naive Bayes classifier.
 
 Sentiment analysis of Github comments
 =====================================
 
-[Linus Torvalds](https://github.com/torvalds), the creator of the [Linux](https://en.wikipedia.org/wiki/Linux) kernel, is well-known for a very direct manner of communication. For example, in 2012, he [replied with the following email](https://lkml.org/lkml/2012/12/23/75) regarding a proposed kernel patch:
+[Linus Torvalds](https://github.com/torvalds), the creator of the [Linux](https://en.wikipedia.org/wiki/Linux) kernel, is well-known for a very direct manner of communication.[^ben] For example, in 2012, he [replied with the following email](https://lkml.org/lkml/2012/12/23/75) regarding a proposed kernel patch:
+
+[^ben]: Linus is a [Benevolent Dictator For Life](https://en.wikipedia.org/wiki/Benevolent_dictator_for_life) of the Linux project, a term which refers to open-source project founders who maintain a position of final authority *in perpetuum*. The term actually originated with [Guido van Rossum](https://en.wikipedia.org/wiki/Guido_van_Rossum), creator of Python.
 
 > On Sun, Dec 23, 2012 at 6:08 AM, Mauro Carvalho Chehab
 > `<mchehab@redhat.com>` wrote:
@@ -358,8 +370,33 @@ gensim provides access to the log-perplexity via [`LdaModel.log_perplexity()`](h
 
 * Use [`LdaModel.save()`](https://radimrehurek.com/gensim/models/ldamodel.html#gensim.models.ldamodel.LdaModel.save) to save the optimal LDA model to disk.
 
-Visualizing an LDA model
-------------------------
+Evaluating document similarity
+------------------------------
+
+LDA models each document as a mixture of different topics; as such, we can think of it as a dimensionality reduction technique that *represents* documents as linear combinations of topics. Looking at the vectors of topic proportions allows us to estimate the *similarity* between two documents. Indeed, if two documents have topic vectors $\textbf{x}$ and $\textbf{y}$, we can look at the Euclidean distance $D(\textbf{x}, \textbf{y})$ between the two vectors, given by the relation
+
+$$D(\textbf{x}, \textbf{y}) = \sqrt{ \sum_{i=1}^n (\textbf{x}_i - \textbf{y}_i)^2 }.$$
+
+This is the standard $L^2$ norm.
+
+The topic distribution for each document can be accessed in gensim via [`LdaModel.get_document_topics()`](https://radimrehurek.com/gensim/models/ldamodel.html#gensim.models.ldamodel.LdaModel.get_document_topics).
+
+* Choose two Wikipedia pages which you think are topically very similar and two Wikipedia pages which you think are topically very dissimilar. Normalize the topic distribution vector for all four pages and compute the Euclidean distance between each of the two pairs' normalized distribution vectors. Are the results as you expect?
+
+It is commonly said that the cosine similarity---the cosine of the angle between two vectors---rather than the Euclidean distance (as given above) is the proper distance metric to use for natural language processing. **This is typically incorrect.** When $\textbf{x}$ and $\textbf{y}$ are normalized to have a length of 1, the Euclidean distance is related to the cosine similarity $C(\textbf{x}, \textbf{y})$ by
+
+$$D^2(\textbf{x}, \textbf{y}) = 2 \left( 1 - C(\textbf{x}, \textbf{y}) \right).$$
+
+The Euclidean distance and cosine similarity are related through a monotonic transformation, meaning that if $D(\textbf{x}, \textbf{y}) < D(\textbf{a}, \textbf{b})$ then $C(\textbf{x}, \textbf{y}) > C(\textbf{a}, \textbf{b})$ and vice versa.[^cos] In natural language, this means that if the Euclidean distance indicates that $X$ and $Y$ are closer together than documents $A$ and $B$, then the cosine similarity $X$ and $Y$ is correspndingly smaller than the cosine similarity between $A$ and $B$, with the converse also being true. As such, for purposes of comparing document similarity, the Euclidean distance and cosine similarity produce different results *only* if you work with unnormalized vectors![^cave]
+
+[^cos]: This is because $C(\textbf{x}, \textbf{y}) = \frac{\textbf{x} \cdot \textbf{y}}{\lVert \textbf{x} \rVert \lVert \textbf{y} \rVert}$. When the vectors are normalized to unit length (*i.e.*, $\lVert \textbf{x} \rVert = \lVert \textbf{y} \rVert = 1$), then $D^2(\textbf{x}, \textbf{y}) = (\textbf{x} - \textbf{y}) \cdot (\textbf{x} - \textbf{y}) = \lVert \textbf{x} \rVert^2 + \lVert \textbf{y} \rVert^2 - 2 \textbf{x} \cdot \textbf{y} = 2 - 2C(\textbf{x}, \textbf{y}))$. The transformation between the two is clearly monotonic.
+
+[^cave]: That being said, there are valid reasons to occasionally work with unnormalized or slightly unnormalized vectors. It just seems to be the case that the cosine similarity is over-recommended for NLP tasks without any good justification!
+
+* The cosine similarity can be computed as $C(\textbf{x}, \textbf{y}) = \textbf{x} \cdot \textbf{y}$ when $\textbf{x}$ and $\textbf{y}$ are normalized. Verify the above statements using the two pairs of documents you chose earlier.
+
+Visualizing the LDA model
+-------------------------
 
 We will conclude by using [`pyLDAvis`](https://github.com/bmabey/pyLDAvis) with Jupyter to visualize our best LDA model.
 
@@ -391,10 +428,10 @@ Some interesting articles on topic modeling to look at include:
 Writing a spellchecker
 ======================
 
-We'll conclude with an enjoyable but less-important exercise in NLP, probabilistic modeling, and programmatic text manipulation.
+We'll conclude with an enjoyable but less-important exercise in NLP, probabilistic modeling, and programmatic text manipulation. **This section is optional.**
 
 Spelling correction is one of the most natural and oldest natural language processing tasks. It may seem like a difficult task to you at the moment, but it's surprisingly easy to write a spellchecker that does fairly well. (Of course, companies like Google spend millions of dollars making their spellcheckers better and better, but we'll start with something simpler for now.)
 
 * Read Peter Norvig's [How to Write a Spelling Corrector](http://norvig.com/spell-correct.html), paying particular attention to the probabilistic reasoning (which is similar to the ideas behind a [naive Bayes classifier](https://en.wikipedia.org/wiki/Naive_Bayes_classifier)). Recreate it in R and reproduce his results. (The text file `big.txt` is available in the dataset folder `norvig-spellcheck-txt`.)
 
-* **After** implementing your own spellchecker, read about [this 2-line R implementation](http://www.sumsar.net/blog/2014/12/peter-norvigs-spell-checker-in-two-lines-of-r/) of Norvig's spellchecker.
+* After implementing your own spellchecker, read about [this 2-line R implementation](http://www.sumsar.net/blog/2014/12/peter-norvigs-spell-checker-in-two-lines-of-r/) of Norvig's spellchecker.
