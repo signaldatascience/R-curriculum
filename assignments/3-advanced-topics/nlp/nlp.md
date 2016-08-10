@@ -3,12 +3,10 @@ title: Natural Language Processing
 author: Signal Data Science
 ---
 
-In this lesson, we will focus on [natural language processing](https://en.wikipedia.org/wiki/Natural_language_processing) (NLP), *i.e.*, the application of data science to human-generated text. To illustrate the diversity and depth of modern NLP, we will proceed through a series of classical exercises in both Python and R.
+In this lesson, we will focus on [natural language processing](https://en.wikipedia.org/wiki/Natural_language_processing) (NLP), *i.e.*, the application of data science to human-generated text. To illustrate the scope modern NLP, we will proceed through a series of *case studies* which make use of a diverse range of concepts and techniques, including programming in both R and Python. In the course of doing so, we'll gain experience with the foundations of probabilistic language modeling, web scraping, naive Bayes classification, topic modeling, and more.
 
-Natural language processing is particularly enjoyable because its results tend to be very human-interpretable. Be sure to note any project ideas which occur to you while working through this assignment.
-
-Email spam classification
-=========================
+Email spam detection
+====================
 
 In 2009, Symantec estimated that almost 90% of global email traffic consisted entirely of spam.[^sym] Modern email providers make extensive use of machine learning techniques to automatically classify and divert spam emails from your inbox. Without those algorithms, the enormous amount of spam received on a daily basis would be overwhelming!
 
@@ -143,7 +141,7 @@ Sentiment analysis of Github comments
 
 ... and so on and so forth. Torvalds has commented similarly regarding [the improper usage of `overflow_usub()`](http://lkml.iu.edu/hypermail/linux/kernel/1510.3/02866.html), [GitHub pull requests](https://github.com/torvalds/linux/pull/17#issuecomment-5654674), and a host of other topics.
 
-How different is Linus compared to everyone else? As a brief case study in combining web scraping with NLP, we will use the GitHub API to scrape all the comments on a particularly notorious comment thread with Linus and then perform sentiment analysis on the messages to see if 
+How different is Linus compared to everyone else? As a brief case study in combining web scraping with NLP, we will use the GitHub API to scrape all the comments on a particularly notorious comment thread with Linus and then perform sentiment analysis on the messages to quantify these differences.
 
 Using the Github API
 --------------------
@@ -372,6 +370,10 @@ gensim provides access to the log-perplexity via [`LdaModel.log_perplexity()`](h
 
 * Use [`LdaModel.save()`](https://radimrehurek.com/gensim/models/ldamodel.html#gensim.models.ldamodel.LdaModel.save) to save the optimal LDA model to disk.
 
+* **Extra:** Latent semantic analysis (LSI) is a simpler topic modeling technique developed before LDA, analogous to principal component analysis in the same way that LDA is analogous to factor analysis. LSI requires much less computation time, but the underlying model is much simpler.[^infer] Run LSI in gensim (implemented in [`gensim.models.lsimodel`](https://en.wikipedia.org/wiki/Latent_semantic_analysis)) and compare the results to those from LDA.
+
+[^infer]: Between the two is *probabilistic* LSI (pLSI), which is completely superseded by LDA; Radim Řehůřek, creator of gensim, [writes:](https://groups.google.com/forum/#!topic/gensim/f6fad21h1Xg) "With uniform topic priors, pLSI and LDA use essentially the same model, so with enough training data, you'll get the same results. But an added advantage of LDA (apart from more flexibility w.r.t. non-uniform priors) is that you can infer topics for previously unseen documents, which you can't with pLSI."
+
 Evaluating document similarity
 ------------------------------
 
@@ -408,7 +410,7 @@ We will conclude by using [`pyLDAvis`](https://github.com/bmabey/pyLDAvis) with 
 
 We will proceed to follow the examples in [the `pyLDAvis` demonstration notebook](http://nbviewer.jupyter.org/github/bmabey/pyLDAvis/blob/master/notebooks/pyLDAvis_overview.ipynb).
 
-* Use Gensim's [`Dictionary.load()`](https://radimrehurek.com/gensim/corpora/dictionary.html#gensim.corpora.dictionary.Dictionary.load), [`MmCorpus.load()`](https://radimrehurek.com/gensim/corpora/mmcorpus.html#gensim.corpora.mmcorpus.MmCorpus.load), and [`LdaModel.load()`](https://radimrehurek.com/gensim/models/ldamodel.html#gensim.models.ldamodel.LdaModel.load) to load your previously saved dictionary, corpus, and LDA model objects.
+* Use [`Dictionary.load()`](https://radimrehurek.com/gensim/corpora/dictionary.html#gensim.corpora.dictionary.Dictionary.load), [`MmCorpus.load()`](https://radimrehurek.com/gensim/corpora/mmcorpus.html#gensim.corpora.mmcorpus.MmCorpus.load), and [`LdaModel.load()`](https://radimrehurek.com/gensim/models/ldamodel.html#gensim.models.ldamodel.LdaModel.load) to load your previously saved dictionary, corpus, and LDA model objects.
 
 * Call `pyLDAvis.gensim.prepare(lda_model, corpus, dict)` to visualize your LDA results in the Jupyter Notebook! Write down any interesting observations.
 
@@ -430,7 +432,7 @@ Some interesting articles on topic modeling to look at include:
 Writing a spellchecker
 ======================
 
-We'll conclude with an enjoyable but less-important exercise in NLP, probabilistic modeling, and programmatic text manipulation. **This section is optional.**
+*This section is optional.*
 
 Spelling correction is one of the most natural and oldest natural language processing tasks. It may seem like a difficult task to you at the moment, but it's surprisingly easy to write a spellchecker that does fairly well. (Of course, companies like Google spend millions of dollars making their spellcheckers better and better, but we'll start with something simpler for now.)
 
