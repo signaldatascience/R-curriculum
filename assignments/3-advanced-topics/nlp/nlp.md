@@ -92,7 +92,7 @@ Let's compare the performance of our naive Bayes classifier to logistic regressi
 
 * Train an $L^1$ regularized logistic classifier to distinguish between spam and ham. Examine the words associated with the greatest coefficients.
 
-* Make predictions for the test set. Plot the associated ROC curve and calculate the AUC, false positive rate, and false negative rate. Compare with the performance of the naive Bayes classifier.
+* Make predictions for the test set. Plot the associated ROC curve and calculate the AUC, false positive rate, and false negative rate. Compare with the performance of the naive Bayes classifier. Finally, plot two overlapping, semi-transparent histograms of the predicted log-odds on the test set for spam and ham emails; interpret this plot.
 
 Sentiment analysis of Github comments
 =====================================
