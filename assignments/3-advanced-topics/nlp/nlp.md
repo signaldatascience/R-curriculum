@@ -262,7 +262,9 @@ It's often useful to throw away information about capitalization. For the purpos
 
 First, we want to *tokenize* each document in Python, that is, turn it into a *list* of its constituent words. NLTK provides a built-in tokenizer which splits text on both whitespace and punctuation, which is what we'll use.
 
-* Use `wordpunct_tokenize()` from the `nltk.tokenize` module to tokenize each downloaded Wikipedia page. Turn each word into lowercase and remove all single-character tokens (corresponding to punctuation like "?" and "!" or words like "a" which we'll want to remove later anyway).
+* Use `wordpunct_tokenize()` from the `nltk.tokenize` module to tokenize each downloaded Wikipedia page. Turn each word into lowercase and remove all words with fewer than 4 characters (corresponding to punctuation like "?" and "!" and words like "but" and "he" which we'll want to remove later anyway).
+
+* The `string` module contains a variable `string.punctuation` which is a string containing common punctuation characters. Remove all tokens which contain one or more punctuation characters.
 
 A common pre-processing step is the removal of [stop words](https://en.wikipedia.org/wiki/Stop_words), like "the", "is", "at", and "on", from our documents. Since they occur very frequently in association with all topics, they will dominate all of our extracted topics in LDA and our results will not be meaningful.
 
