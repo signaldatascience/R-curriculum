@@ -349,7 +349,7 @@ The `Dictionary` object also contains a mapping between words and word IDs, whic
 
 * Briefly examine this mapping by calling [`print()`](https://docs.python.org/3/library/functions.html#print) on the `Dictionary` object.
 
-* Convert each tokenized document into a term--frequency representation with [`Dictionary.doc2bow()`](https://radimrehurek.com/gensim/corpora/dictionary.html#gensim.corpora.dictionary.Dictionary.doc2bow).
+* Convert each tokenized document into a term--frequency representation with [`Dictionary.doc2bow()`](https://radimrehurek.com/gensim/corpora/dictionary.html#gensim.corpora.dictionary.Dictionary.doc2bow). (If your `Dictionary` object is called `d` and a tokenized document is called `x`, you can obtain the term--frequency representation with `d.doc2bow(x)`.)
 
 * Use [`corpora.MmCorpus.serialize()`](https://radimrehurek.com/gensim/corpora/mmcorpus.html#gensim.corpora.mmcorpus.MmCorpus.serialize) to save the processed corpus to disk.
 
@@ -359,9 +359,9 @@ Now, we are ready to run LDA on our corpus of documents!
 
 The terms associated with each of the 20 inferred topics can be examined with [`LdaModel.get_topic_terms()`](https://radimrehurek.com/gensim/models/ldamodel.html#gensim.models.ldamodel.LdaModel.get_topic_terms), which returns topic--term probabilities in terms of word IDs. Word IDs can be converted to words by calling [`Dictionary.get()`](https://radimrehurek.com/gensim/corpora/dictionary.html#gensim.corpora.dictionary.Dictionary.get).
 
-* Write a function `get_topic(lda_model, dict, topic_num)` which uses an `LdaModel` object `lda_model` and a `Dictionary` object `dict` and returns the 20 most likely words for the `topic_num`th topic ordered from greatest to lowest probability. Verify that the output of `get_topic()
+* Write a function `get_topic(lda_model, dict, topic_num)` which uses an `LdaModel` object `lda_model` and a `Dictionary` object `dict` and returns the 20 most likely words for the `topic_num`th topic ordered from greatest to lowest probability. Verify that the output of `get_topic()` matches that of [`LdaModel.show_topics()`](https://radimrehurek.com/gensim/models/ldamodel.html#gensim.models.ldamodel.LdaModel.show_topics).
 
-* Use `get_topic()` (or `LdaModel.show_topics()`) to examine the 20 topics extracted from the Wikipedia corpus. Interpret the results. How many of the topics are semantically meaningful? Do you think the number of topics extracted was too small or too large?
+* Use `get_topic()` (or [`LdaModel.show_topics()`](https://radimrehurek.com/gensim/models/ldamodel.html#gensim.models.ldamodel.LdaModel.show_topics)) to examine the 20 topics extracted from the Wikipedia corpus. Interpret the results. How many of the topics are semantically meaningful? Do you think the number of topics extracted was too small or too large?
 
 Picking the right number of topics to extract is generally difficult and constitutes an area of active research. Each model is associated with a *log-likelihood* value representing the probability of observing the training corpus under the calculated model, so the easiest way to choose the number of topics is to perform a grid search over the number of topics and choose the model associated with the highest (cross-validated) log-likelihood. Often, one will see references to the [log-perplexity](http://planspace.org/2013/09/23/perplexity-what-it-is-and-what-yours-is/) metric, which is equivalent to the average log-likelihood calculated on a per-word basis.[^ntop]
 
