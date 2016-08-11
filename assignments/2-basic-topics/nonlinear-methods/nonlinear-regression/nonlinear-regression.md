@@ -47,7 +47,7 @@ First, we'll write a utility function for easily accessing `caret`'s `train()`, 
 As you work through this assignment, continually update `results` with a new row for the best run of each method you try.
 
 $K$-Nearest Neighbors
-===================
+=====================
 
 $K$-Nearest Neighbors (KNN) is one of the simplest possible nonlinear regression techniques.
 
