@@ -5,6 +5,11 @@ author: Signal Data Science
 
 In this lesson, we will focus on [natural language processing](https://en.wikipedia.org/wiki/Natural_language_processing) (NLP), *i.e.*, the application of data science to human-generated text. To illustrate the scope modern NLP, we will proceed through a series of *case studies* which make use of a diverse range of concepts and techniques, including programming in both R and Python. In the course of doing so, we'll gain experience with the foundations of probabilistic language modeling, web scraping, naive Bayes classification, topic modeling, and more.
 
+Racial surname classification
+=============================
+
+
+
 Email spam detection
 ====================
 
@@ -148,9 +153,11 @@ Using the Github API
 
 The Github API can be accessed directly via your browser. In general, you begin with the URL `https://api.github.com/` and then successively append text to it, *e.g.*, `https://api.github.com/users/JonahSinick`. The output of GitHub's API calls is provided in the [JSON](https://en.wikipedia.org/wiki/JSON) format.
 
-* Referencing the [API documentation on issue comments](https://developer.github.com/v3/issues/comments/), determine what API query will return the latest comments for issue #17 on the [Linux repository](https://github.com/torvalds/linux).[^issue]  (A parameter beginning with a colon (`:`) denotes a *variable* which you should fill in with the appropriate value *without* retaining the colon.)
+* Referencing the [API documentation on issue comments](https://developer.github.com/v3/issues/comments/), determine what API query will return the latest comments for issue #17 on the [Linux repository](https://github.com/torvalds/linux).[^issue]  (A parameter beginning with a colon (`:`) denotes a *variable* which you should fill in with the appropriate value *without* retaining the colon.) **Note:** If you encounter API rate-limiting problems when trying to access the API, log in to GitHub or, *as a last resort*, use the pre-downloaded API requests in the `github-issue-17` folder.[^curl]
 
 [^issue]: Issue #17 is viewable online [here](https://github.com/torvalds/linux/pull/17#issuecomment-5654674) (archive link [here](https://web.archive.org/web/20160114224658/https://github.com/torvalds/linux/pull/17)).
+
+[^curl]: You can also call `curl -u "username" https://api.github.com/...` from the command line in Linux or OS X to download the API call result as a logged in user.
 
 Additional pages of the API request can be accessed by appending `?page=2` and such to the URL.
 

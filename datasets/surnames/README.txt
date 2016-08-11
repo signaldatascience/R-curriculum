@@ -6,7 +6,7 @@ Japanese surnames are from "Japan’s top 100 most common family names", The Jap
 
 German surnames are from "List of the most common surnames in Germany", Wikipedia, https://en.wikipedia.org/wiki/List_of_the_most_common_surnames_in_Germany as of 10 August 2016
 
-The following character replacements have been made:
+The following diacritic character replacements have been made:
 
 ß (eszett) -> ss
 ä (lowercase umlaut a) -> ae

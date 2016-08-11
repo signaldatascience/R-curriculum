@@ -61,6 +61,7 @@ http://www.cs.columbia.edu/~blei/fogm/2015F/
 - solutions for nonlinear classification SVM exercises
 - xgboost <=> gbm hyperparameters in distrib. computing
 - statistical NLP: n-grams, tf-idf
+- Github API rate limits
 
 - resampling: add exposition on why higher/lower n for n-fold cv
 http://stats.stackexchange.com/questions/27730/choice-of-k-in-k-fold-cross-validation
