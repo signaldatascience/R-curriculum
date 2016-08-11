@@ -359,9 +359,16 @@ Now, we are ready to run LDA on our corpus of documents!
 
 * Import [`LdaModel`](https://radimrehurek.com/gensim/models/ldamodel.html) from `gensim.models`. Call [`LdaModel()`](https://radimrehurek.com/gensim/models/ldamodel.html) on the corpus with `num_topics=20`, arbitrarily chosen as a starting value to see how LDA works, to train an LDA model and store the results in an `LdaModel` object.
 
-The terms associated with each of the 20 inferred topics can be examined with [`LdaModel.get_topic_terms()`](https://radimrehurek.com/gensim/models/ldamodel.html#gensim.models.ldamodel.LdaModel.get_topic_terms), which returns topic--term probabilities in terms of word IDs. Word IDs can be converted to words by calling [`Dictionary.get()`](https://radimrehurek.com/gensim/corpora/dictionary.html#gensim.corpora.dictionary.Dictionary.get).
+The terms associated with each of the 20 inferred topics can be examined with [`LdaModel.show_topics(..., formatted=False)`](https://radimrehurek.com/gensim/models/ldamodel.html#gensim.models.ldamodel.LdaModel.show_topics), which returns a list of pairs of topic--term probabilities where words are specified by their IDs. Word IDs can be converted to words by calling [`Dictionary.get()`](https://radimrehurek.com/gensim/corpora/dictionary.html#gensim.corpora.dictionary.Dictionary.get). Finally, the number of topics in a `LdaModel` object `m` can be accessed via `m.num_topics`.
 
-* Use [`LdaModel.show_topics()`](https://radimrehurek.com/gensim/models/ldamodel.html#gensim.models.ldamodel.LdaModel.show_topics) to examine the 20 topics extracted from the Wikipedia corpus. Interpret the results. How many of the topics are semantically meaningful? Do you think the number of topics extracted was too small or too large?
+* Write a function `save_topics(lda_model, dict, fname)` which takes in a `LdaModel` object `lda_model`, a `Dictionary` model `dict`, and a filename `fname`. Your function should determine the top 20 words associated with each topic, form a string for each topic consisting of its top 20 terms joined together with a space in between each pair of words, and form a larger string with each topic-specific string on a different line. The final string should be saved to `fname`.
+
+	*E.g.*, if there are two topics, topic 1 has the words "apple", "orange", "banana", ... (in order of most to least probable), and topic 2 has the words "book", "school", "class", ..., then the following should be saved to `fname`:
+
+	```
+	apple orange banana ...
+	book school class ...
+	```
 
 Picking the right number of topics to extract is generally difficult and constitutes an area of active research. Each model is associated with a *log-likelihood* value representing the probability of observing the training corpus under the calculated model, so the easiest way to choose the number of topics is to perform a grid search over the number of topics and choose the model associated with the highest (cross-validated) log-likelihood. Often, one will see references to the [log-perplexity](http://planspace.org/2013/09/23/perplexity-what-it-is-and-what-yours-is/) metric, which is equivalent to the average log-likelihood calculated on a per-word basis.[^ntop]
 
