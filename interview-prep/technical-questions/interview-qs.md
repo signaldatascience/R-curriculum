@@ -32,6 +32,13 @@ Model taxonomy
 
 	(*Source:* Walmart)
 
+Regression
+----------
+
+* What is heteroskedasticity?
+
+	(*Source:* Vodafone)
+
 Classification
 --------------
 
@@ -74,32 +81,31 @@ Bias--variance tradeoff
 
 	(*Source:* 120 Data Science Interview Questions)
 
-Feature manipulation
---------------------
+Cleaning data
+-------------
 
 * What steps do you take to prepare and clean data before applying machine learning algorithms?
 
 	(*Source:* Microsoft)
 
-* How can you deal with multicollinearity?
-
-	(*Source:* Amazon, Walmart, Uber)
-
 * How can you impute missing data?
 
 	(*Source:* AirBnB, HERE, Amazon)
 
-* What will you do if removing rows containing missing values from your data causes bias?
+* What would you do if removing rows containing missing values from your data causes bias?
 
 	(*Source:* AirBnB)
+
+Problematic datasets
+--------------------
+
+* How can you deal with multicollinearity?
+
+	(*Source:* Amazon, Walmart, Uber)
 
 * What is the curse of dimensionality?
 
 	(*Source:* 120 Data Science Interview Questions)
-
-* How would you perform feature selection given a large set of sparse features?
-
-	(*Source:* StubHub)
 
 * What is target leakage?
 
@@ -126,10 +132,6 @@ Natural language processing
 Other
 -----
 
-* What is heteroskedasticity?
-
-	(*Source:* Vodafone)
-
 * How would you use categorical variables as predictor variables in a model?
 
 	(*Source:* Tagged)
@@ -137,6 +139,18 @@ Other
 * How would you deal with a categorical variable which takes on many different values?
 
 	(*Source:* Microsoft)
+
+* Suppose you run an analysis that suggests a certain factor predicts a certain outcome. How would you determine if the relationship is causal?
+
+	(*Source:* Treehouse)
+
+* What are some ways to measure distances between data points?
+
+	(*Source:* Microsoft)
+
+* How would you perform feature selection given a large set of sparse features?
+
+	(*Source:* StubHub)
 
 Specific techniques
 ===================
@@ -535,6 +549,10 @@ SQL
 * How would you get all rows from one table with keys that do not appear in a different table?
 
 	(*Source:* Adwerx)
+
+* Given data on Facebook users friending or defriending each other, how could you determine whether a given pair of Facebook users are currently friends?
+
+	(*Source:* Facebook)
 
 * Given a table `tbl(col)`, compute the mean, median, and mode of `col`.
 
@@ -1462,6 +1480,37 @@ Estimation methods
 
 	(*Source:* Tesla Motors)
 
+Advanced data science
+---------------------
+
+* Why are rectified linear units good activation functions?
+
+	(*Source:* Netflix)
+
+* Why is $L^{1/2}$ regularization not used?
+
+	(*Source:* Netflix)
+
+* How do you solve the $L^2$-regularized regression problem to obtain a closed-form expression for the coefficient estimates?
+
+	(*Source:* Microsoft)
+
+* How are hidden Markov models and probabilistic graphical models related? What are some common use cases of either?
+
+	(*Source:* AgilOne)
+
+* Describe a Monte Carlo Markov Chain process.
+
+	(*Source:* Philips)
+
+* Describe linear programming and constraint satisfaction problems.
+
+	(*Source:* YP)
+
+* List 3 types of unit root tests in addition to the augmented Dickey--Fuller test.
+
+	(*Source:* KPMG)
+
 Advanced algorithms
 -------------------
 
@@ -1488,37 +1537,17 @@ Advanced algorithms
 Other
 -----
 
-* Describe a Monte Carlo Markov Chain process.
-
-	(*Source:* Philips)
-
-* Describe linear programming and constraint satisfaction problems.
-
-	(*Source:* YP)
-
 * How would you build a distributed, cloud-based machine learning system (like BigML)?
 
 	(*Source:* NTT)
-
-* List 3 types of unit root tests in addition to the augmented Dickey--Fuller test.
-
-	(*Source:* KPMG)
 
 * What are the ACID properties of database transactions?
 
 	(*Source:* Accenture)
 
-* Why are rectified linear units good activation functions?
-
-	(*Source:* Netflix)
-
 * Prove that the Pearson correlation coefficient falls between -1 and 1.
 
 	(*Source:* FINRA)
-
-* Why is $L^{1/2}$ regularization not used?
-
-	(*Source:* Netflix)
 
 * How would you design a web crawler?
 
@@ -1528,9 +1557,13 @@ Other
 
 	(*Source:* Capital One)
 
-* How are hidden Markov models and probabilistic graphical models related? What are some common use cases of either?
+* How could you model 1 cm diameter raindrops falling on a 1 m wide sidewalk and determine how long it takes for the sidewalk to be completely wet?
 
-	(*Source:* AgilOne)
+	(*Source:* Google)
+
+* What would you do if you were a traffic sign?
+
+	(*Source:* LatentView Analytics)
 
 Unorganized questions
 =====================
@@ -1538,9 +1571,7 @@ Unorganized questions
 Programming
 -----------
 
-AirBnB -- Given a dictionary, and a matrix of letters, find all the words in the matrix that are in the dictionary.
-
-Factual -- Given a set of specifications, make a program that would find if a given list of words was in a provided grid of letters
+AirBnB, Factual -- Given a dictionary, and a matrix of letters, find all the words in the matrix that are in the dictionary.
 
 Bay Sensors -- Develop a solution for fusing sensors that are sensing the same goal. Sensors are time unsynchronized and conflict at times. You have some truth data too.
 
@@ -1557,8 +1588,6 @@ Accenture -- Write a function to calculate the acceleration of a car moving nort
 LinkedIn -- Segment a long string into a set of valid words using a dictionary. Return false if the string cannot be segmented. What is the complexity of your solution?
 
 6sense -- Find all possible ways to evaluate the multiplication of 4 numbers in a N by N matrix.
-
-Luxe Valet -- How would you count words in a list using a list comprehension?
 
 Kabbage -- MapReduce: Join two data files (customers, sales) and report top 10 performers.
 
@@ -1584,29 +1613,15 @@ Civis Analytics -- You have been tasked with creating a prediction for the outco
 
 eBay -- Case study, Ebay has to identify the cameras from the other junk like tripods, cables and batteries what is the approach? Data looks like Title, description of the product, Price, Image,...etc
 
-Facebook -- Write a SQL query to compute a frequency table of a certain attribute involving two joins. What if you want to GROUP or ORDER BY some attribute? What changes would you need to make? How would you account for NULLs?
-
-Facebook -- About how to generate all possible friendship given four tables with the "request", "accept","reject", and "remove" information.
-
-Facebook -- You have been given the data on Facebook users friending or defriending each other. How will you determine whether a given pair of Facebook users are friends or not?
-
 Facebook -- How would one develop the Like, Love, Sad feature?
 
-Facebook -- There are two types of cars A and B. The number of people in US who use Aand B are the same. They drive the same distances each month.Now there are two new technologies, X and Y (of equal cost).If apply X, mpg of A would increase from 50 mpg to 75 mpg;If apply Y, mpg of B would increase from 10 mpg to 11 mpg.The goal is to decrease the dependence on foreign oil, or to decrease theconsumption of gasoline.Question: which technology would you apply?Follow up question: after applying the technology of your choice, assumethere's money available for research on new technology, which car would youchoose to conduct research on?"
+Facebook -- There are two types of cars A and B. The number of people in US who use Aand B are the same. They drive the same distances each month.Now there are two new technologies, X and Y (of equal cost).If apply X, mpg of A would increase from 50 mpg to 75 mpg;If apply Y, mpg of B would increase from 10 mpg to 11 mpg.The goal is to decrease the dependence on foreign oil, or to decrease theconsumption of gasoline. Question: which technology would you apply? Follow up question: after applying the technology of your choice, assumethere's money available for research on new technology, which car would youchoose to conduct research on?"
 
 Facebook -- In Mexico, if you take the mean and the median age, which one will be higher and why? Given a table that each day shows who was active in the system and a table that tracks ongoing user status, write a procedure that will take each day's active table and pass it into the ongoing daily tracking table.Possible states are:* user stayed (yesterday yes, today yes)* user churned (yesterday yes, today no)* user revived (yesterday no, today yes)* user new (yesterday null, today yes)Note: you'll want to spot and account for the undefined state.
 
 Facebook -- How would you bring a metric to product X? Products at Facebook could be as large as News Feed or Ads, and as small as Pokes or Socrates (see below). Example 1: How would you assess the health of Facebook's News Feed? (Define health ?) Example 2: Facebook's Socrates is a box displayed under the Profile Picture of a user that prompts the user to answer questions about themselves, such as favorite movies, books, etc. Given the data about how users have answered questions in the past, design the best algorithm to present the next question that they will answer.
 
-Google -- Model raindrops falling on a sidewalk (sidewalk is 1m and raindrops are 1cm). How could we know when the sidewalk is completely wet?
-
-LatentView Analytics -- What would you do if you were a traffic sign?
-
 LinkedIn -- What are the factors used to produce People You May Know data product on LinkedIn?
-
-Microsoft -- How to measure distance between data point?
-
-Microsoft -- How do you solve the L2-regularized regression problem? (and many follow up questions)
 
 Netflix -- How do you measure and compare models? How should we approach to attribution modeling to measure marketing efffectiveness?
 
@@ -1619,8 +1634,6 @@ Soleo -- how I would model the waiting time for a local restaurant and what poss
 Spotify -- How would you detect anomalous behavior? How would you generate profiles of users?
 
 Stitch Fix -- How might you determine if the size of a specific item is a significant feature in determining the customer's calculated propensity to buy it?
-
-Treehouse (Oregon) -- Suppose you run an analysis that suggests a certain factor predicts a certain outcome. How would you gauge whether it's actually causation or just correlation?
 
 Uber -- What algorithm you would use to solve driver accepting a requesting?Which supervised algorithm you would pick to solve the above problem?How do you compare the results of the algorithm?
 
@@ -1639,7 +1652,7 @@ Walmart -- You have a clickthrough rate/impressions on two products, the first h
 120 Data Science book questions (unsorted)
 ------------------------------------------
 
-"What could be some issues if the distribution of the test data is significantly different than the distribution of the training data?
+What could be some issues if the distribution of the test data is significantly different than the distribution of the training data?
 
 What are some ways I can make my model more robust to outliers?
 
