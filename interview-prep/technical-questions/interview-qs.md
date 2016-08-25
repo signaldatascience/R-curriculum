@@ -2,9 +2,17 @@
 title: Interview Question Compilation
 author: Signal Data Science
 toc: True
+newpage: True
 ---
 
+Overview
+========
+
 The following problems are mostly compiled from Glassdoor. The probability and general mathematics sections have been supplemented with quant/trading interview questions.
+
+All material through the SQL section are strongly recommended for all readers. The algorithms and probability sections are together more comprehensive than necessary for each individual student, but you may want to focus more on those sections if you want a software-focused or finance-focused data science job rather than a more standard industry position.
+
+Working through these questions with a partner is strongly recommended, especially the open-ended, product-focused ones.
 
 General data science
 ====================
@@ -66,8 +74,8 @@ Bias--variance tradeoff
 
 	(*Source:* 120 Data Science Interview Questions)
 
-Sources of problems
--------------------
+Feature manipulation
+--------------------
 
 * What steps do you take to prepare and clean data before applying machine learning algorithms?
 
@@ -77,10 +85,6 @@ Sources of problems
 
 	(*Source:* Amazon, Walmart, Uber)
 
-* What is heteroskedasticity?
-
-	(*Source:* Vodafone)
-
 * How can you impute missing data?
 
 	(*Source:* AirBnB, HERE, Amazon)
@@ -89,13 +93,17 @@ Sources of problems
 
 	(*Source:* AirBnB)
 
-* What is target leakage?
-
-	(*Source:* PayScale)
-
 * What is the curse of dimensionality?
 
 	(*Source:* 120 Data Science Interview Questions)
+
+* How would you perform feature selection given a large set of sparse features?
+
+	(*Source:* StubHub)
+
+* What is target leakage?
+
+	(*Source:* PayScale)
 
 Recommender systems
 -------------------
@@ -117,6 +125,10 @@ Natural language processing
 
 Other
 -----
+
+* What is heteroskedasticity?
+
+	(*Source:* Vodafone)
 
 * How would you use categorical variables as predictor variables in a model?
 
@@ -268,6 +280,10 @@ General
 
 	(*Source:* Microsoft)
 
+* Suppose that many users make a small number of purchases and a few users make a large number of purchases. What do you expect the plot of average revenue per user to look like?
+
+	(*Source:* Square)
+
 Frequentist inference
 ---------------------
 
@@ -287,6 +303,10 @@ Frequentist inference
 
 	(*Source:* Tesla Motors)
 
+* Suppose that the population clickthrough rate on Facebook ads is $p$. We select a sample of size $N$ and examine the sample's conversion rate, denoted $\hat{p}$. What is the minimum sample size $N$ such that the probability that $\lvert p - \hat{p} \rvert < \delta$ is at least 95%?
+
+	(*Source:* Facebook)
+
 Distributions
 -------------
 
@@ -294,43 +314,8 @@ Distributions
 
 	(*Source:* 120 Data Science Interview Questions, Altimus Capital)
 
-A/B testing
------------
-
-* In an A/B test, how can you check if assignment to the various buckets was truly random?
-
-	(*Source:* 120 Data Science Interview Questions)
-
-* What might be the benefits of running an A/A test, where you have two buckets who are exposed to the exact same product?
-
-	(*Source:* 120 Data Science Interview Questions)
-
-* What would be the hazards of letting users sneak a peek at the other bucket in an A/B test?
-
-	(*Source:* 120 Data Science Interview Questions)
-
-* What would be some issues if blogs decide to cover one of your experimental groups?
-
-	(*Source:* 120 Data Science Interview Questions)
-
-* How would you conduct an A/B test on an opt-in feature?
-
-	(*Source:* 120 Data Science Interview Questions)
-
-* How would you run an A/B test for many (20 or more) variants?
-
-	(*Source:* 120 Data Science Interview Questions)
-
-* How would you run an A/B test if the observations are extremely right-skewed?
-
-	(*Source:* 120 Data Science Interview Questions)
-
-* What variables determine the duration of an A/B test?
-
-	(*Source:* Thumbtack)
-
-Open-ended questions
-====================
+Product-based questions
+=======================
 
 Predictive modeling
 -------------------
@@ -363,6 +348,10 @@ Predictive modeling
 
 	(*Source:* Capital One)
 
+* How can you determine when a user is beginning to search for a new job?
+
+	(*Source:* LinkedIn)
+
 Business decisions
 ------------------
 
@@ -389,6 +378,10 @@ Business decisions
 * What feature would you add to Facebook? Describe how you would pitch it to executives and measure its success.
 
 	(*Source:* Facebook)
+
+* Given data on TV viewership, how would you optimize the allocation of ads on a TV channel? What external events might influence your predictive algorithm?
+
+	(*Source:* Rovi)
 
 Financial services
 ------------------
@@ -442,8 +435,16 @@ Metrics
 
 	(*Source:* Uber)
 
+* How would you create and test a metric for comparing two users' ranked lists of movies or TV shows?
+
+	(*Source:* Netflix)
+
 Other
 -----
+
+* How would you identify recently trending queries or topics?
+
+	(*Source:* BloomReach)
 
 * What are some possible causes of an anomaly in web traffic data?
 
@@ -472,6 +473,57 @@ Other
 * How would you determine if survey responses were filled in at random by particular users?
 
 	(*Source:* Glassdoor)
+
+A/B testing
+-----------
+
+* In an A/B test, how can you check if assignment to the various buckets was truly random?
+
+	(*Source:* 120 Data Science Interview Questions)
+
+* What might be the benefits of running an A/A test, where you have two buckets who are exposed to the exact same product?
+
+	(*Source:* 120 Data Science Interview Questions)
+
+* What would be the hazards of letting users sneak a peek at the other bucket in an A/B test?
+
+	(*Source:* 120 Data Science Interview Questions)
+
+* What would be some issues if blogs decide to cover one of your experimental groups?
+
+	(*Source:* 120 Data Science Interview Questions)
+
+* How would you conduct an A/B test on an opt-in feature?
+
+	(*Source:* 120 Data Science Interview Questions)
+
+* How would you run an A/B test for many (20 or more) variants?
+
+	(*Source:* 120 Data Science Interview Questions)
+
+* How would you run an A/B test if the observations are extremely right-skewed?
+
+	(*Source:* 120 Data Science Interview Questions)
+
+* What variables determine the duration of an A/B test?
+
+	(*Source:* Thumbtack)
+
+* Suppose that you performed A/B testing for a change in a search engine algorithm, but in the B bucket, the programmers made a mistake---the search results were very poor. Nevertheless, the users in the B bucket clicked on more results *and* on more ads. How do you interpret these results?
+
+	(*Source:* Yammer)
+
+* How would you use A/B testing to compare different recommender systems? What metrics of user behaviors would you look at and how would you decide on the length of the test?
+
+	(*Source:* Kabbage)
+
+* How would you A/B test different ad locations on a webpage?
+
+	(*Source:* Yelp)
+
+* How would you design an experiment to compare the performance of two different coupon campaigns: one where all users are sent the most popular coupons and one where users are sent personalized coupons generated by a recommender system?
+
+	(*Source:* Walmart)
 
 SQL
 ===
@@ -1472,330 +1524,287 @@ Other
 
 	(*Source:* GoDaddy)
 
+* You are given a list of coin denominations. How many ways are there to split a dollar into change?
+
+	(*Source:* Capital One)
+
+* How are hidden Markov models and probabilistic graphical models related? What are some common use cases of either?
+
+	(*Source:* AgilOne)
+
 Unorganized questions
 =====================
 
 Programming
 -----------
 
-"AirBnB" -- "Given a dictionary, and a matrix of letters, find all the words in the matrix that are in the dictionary."
+AirBnB -- Given a dictionary, and a matrix of letters, find all the words in the matrix that are in the dictionary.
 
-"Factual" -- "Given a set of specifications, make a program that would find if a given list of words was in a provided grid of letters"
+Factual -- Given a set of specifications, make a program that would find if a given list of words was in a provided grid of letters
 
-"Bay Sensors" -- "Develop a solution for fusing sensors that are sensing the same goal. Sensors are time unsynchronized and conflict at times. You have some truth data too."
+Bay Sensors -- Develop a solution for fusing sensors that are sensing the same goal. Sensors are time unsynchronized and conflict at times. You have some truth data too.
 
-"Capital One" -- "implement a function to calculate matrix sum"
+Capital One -- implement a function to calculate matrix sum
 
-"Capital One" -- "You have a 300GB dat file, and you want to run a computation on the third column. How do you do that? - This is to check whether you know how to use unix commands that work off disk rather than in memory."
+Capital One -- You have a 300GB dat file, and you want to run a computation on the third column. How do you do that? - This is to check whether you know how to use unix commands that work off disk rather than in memory.
 
-"Facebook" -- "Write C++ code to copy a graph"
+Facebook -- Write C++ code to copy a graph
 
-"NantMobile" -- "word fuzzy matching"
+NantMobile -- word fuzzy matching
 
-"Accenture" -- "Write a function to calculate the acceleration of a car moving north for 5 minutes."
+Accenture -- Write a function to calculate the acceleration of a car moving north for 5 minutes.
 
-"LinkedIn" -- "Segment a long string into a set of valid words using a dictionary. Return false if the string cannot be segmented. What is the complexity of your solution?"
+LinkedIn -- Segment a long string into a set of valid words using a dictionary. Return false if the string cannot be segmented. What is the complexity of your solution?
 
-"6sense" -- "Find all possible ways to evaluate the multiplication of 4 numbers in a N by N matrix."
+6sense -- Find all possible ways to evaluate the multiplication of 4 numbers in a N by N matrix.
 
-"Luxe Valet" -- "How would you count words in a list using a list comprehension?"
+Luxe Valet -- How would you count words in a list using a list comprehension?
 
-"Kabbage" -- "MapReduce: Join two data files (customers, sales) and report top 10 performers."
+Kabbage -- MapReduce: Join two data files (customers, sales) and report top 10 performers.
 
-"Capital One" -- "Map reduce a list of companies and their revenues sorted by industry."
+Capital One -- Map reduce a list of companies and their revenues sorted by industry.
 
-"MaxPoint" -- "What is the significance of a reduceByKey in pySpark - when would you use it?"
+MaxPoint -- What is the significance of a reduceByKey in pySpark - when would you use it?"
 
 Other
 -----
 
-"ZestFinance" -- "Do you think an additional feature improves GBM or Logistic Regression more?"
+Yammer -- German tank problem, breaking a 4-digit code with different prior information etc.
 
-"Yelp" -- "AB Testing on web site ad performance - ie, what are the locations on a web page that you can account and measure changes in user behavior"
+American Express -- Suppose that American Express has 1 million card members along with their transaction details. They also have 10,000 restaurants and 1000 food coupons. Suggest a method which can be used to pass the food coupons to users given that some users have already received the food coupons so far.
 
-"Yammer" -- "German tank problem, breaking a 4-digit code with different prior information etc. Example business cases: You want to buy a TV on Amazon. How do you make a decision? - You performed A/B testing on a change in a search engine algorithm. Although in B, the coders made a mistake which led to really poor search results, user clicked on more results as well as on more ads. How do you interpret the results, what do you do next?"
+Apple -- Given an iTunes type of app that pulls down lots of images that get stale over time, what strategy would you use to flush disused images over time?
 
-"Accenture" -- "What data would you need to understand how company A would better compete with company B?"
+Bitly -- We're interested in tracking users that may appear in our systems via many device ID's. That is, someone may click a Bitly link from a mobile device, and at another time, that same user may click another Bitly link from a laptop at home. We only have these device ID's in addition to sites visited and other metadata, and we would like to attribute these actions to the same user across devices. How would you approach this problem?
 
-"AgilOne" -- "in what cases would you utilize HMM vs. PGM?"
+C3 Energy -- Re-derive linear regression optimization formulation in closed form for a spline function (flat then gradient) rather than y=Ax + B. Use matrix notation and assume tall-skinny problem. Talk about the complexity issues with closed form approach. Then extend to include regularization.
+Write an algo to merge multiedge polygons together given the edges and shared edges.
 
-"AirBnB" -- "How can you reduce bias in a given data set?"
+Civis Analytics -- You have been tasked with creating a prediction for the outcome of the 2014 congressional elections. You are responsible for building your own dataset for this process.
 
-"American Express" -- "Suppose that American Express has 1 million card members along with their transaction details. They also have 10,000 restaurants and 1000 food coupons. Suggest a method which can be used to pass the food coupons to users given that some users have already received the food coupons so far."
+eBay -- Case study, Ebay has to identify the cameras from the other junk like tripods, cables and batteries what is the approach? Data looks like Title, description of the product, Price, Image,...etc
 
-"Apple" -- "Given an iTunes type of app that pulls down lots of images that get stale over time, what strategy would you use to flush disused images over time?"
+Facebook -- Write a SQL query to compute a frequency table of a certain attribute involving two joins. What if you want to GROUP or ORDER BY some attribute? What changes would you need to make? How would you account for NULLs?
 
-"Bitly" -- "We're interested in tracking users that may appear in our systems via many device ID's. That is, someone may click a Bitly link from a mobile device, and at another time, that same user may click another Bitly link from a laptop at home. We only have these device ID's in addition to sites visited and other metadata, and we would like to attribute these actions to the same user across devices. How would you approach this problem?"
+Facebook -- About how to generate all possible friendship given four tables with the "request", "accept","reject", and "remove" information.
 
-"BloomReach" -- "How do you find out trending queries/topics?"
+Facebook -- You have been given the data on Facebook users friending or defriending each other. How will you determine whether a given pair of Facebook users are friends or not?
 
-"BloomReach" -- "Given a set of webpages and changes on the website, how will you test the new website feature to determine if the change works positively?"
+Facebook -- How would one develop the Like, Love, Sad feature?
 
-"C3 Energy" -- "Re-derive linear regression optimization formulation in closed form for a spline function (flat then gradient) rather than y=Ax + B. Use matrix notation and assume tall-skinny problem. Talk about the complexity issues with closed form approach. Then extend to include regularization.
-Write an algo to merge multiedge polygons together given the edges and shared edges."
+Facebook -- There are two types of cars A and B. The number of people in US who use Aand B are the same. They drive the same distances each month.Now there are two new technologies, X and Y (of equal cost).If apply X, mpg of A would increase from 50 mpg to 75 mpg;If apply Y, mpg of B would increase from 10 mpg to 11 mpg.The goal is to decrease the dependence on foreign oil, or to decrease theconsumption of gasoline.Question: which technology would you apply?Follow up question: after applying the technology of your choice, assumethere's money available for research on new technology, which car would youchoose to conduct research on?"
 
-"Capital One" -- "I give you a dollar and a list of coin denominations. How many different ways can you get change? - generator functions"
+Facebook -- In Mexico, if you take the mean and the median age, which one will be higher and why? Given a table that each day shows who was active in the system and a table that tracks ongoing user status, write a procedure that will take each day's active table and pass it into the ongoing daily tracking table.Possible states are:* user stayed (yesterday yes, today yes)* user churned (yesterday yes, today no)* user revived (yesterday no, today yes)* user new (yesterday null, today yes)Note: you'll want to spot and account for the undefined state.
 
-"Castlight Health" -- "You have a table that contains which book was purchased and a bunch of topics, and you want to find out what other books in the category can be recommended to the user. Design the query"
+Facebook -- How would you bring a metric to product X? Products at Facebook could be as large as News Feed or Ads, and as small as Pokes or Socrates (see below). Example 1: How would you assess the health of Facebook's News Feed? (Define health ?) Example 2: Facebook's Socrates is a box displayed under the Profile Picture of a user that prompts the user to answer questions about themselves, such as favorite movies, books, etc. Given the data about how users have answered questions in the past, design the best algorithm to present the next question that they will answer.
 
-"Civis Analytics" -- "You have been tasked with creating a prediction for the outcome of the 2014 congressional elections. You are responsible for building your own dataset for this process."
+Google -- Model raindrops falling on a sidewalk (sidewalk is 1m and raindrops are 1cm). How could we know when the sidewalk is completely wet?
 
-"eBay" -- "Case study, Ebay has to identify the cameras from the other junk like tripods, cables and batteries what is the approach? Data looks like Title, description of the product, Price, Image,...etc"
+LatentView Analytics -- What would you do if you were a traffic sign?
 
-"Facebook" -- "How would add new Facebook members to the database of members, and code their relationships to others in the database?"
+LinkedIn -- What are the factors used to produce People You May Know data product on LinkedIn?
 
-"Facebook" -- "Write a SQL query to compute a frequency table of a certain attribute involving two joins. What if you want to GROUP or ORDER BY some attribute? What changes would you need to make? How would you account for NULLs?"
+Microsoft -- How to measure distance between data point?
 
-"Facebook" -- "About how to generate all possible friendship given four tables with the ""request"", ""accept"",""reject"", and ""remove"" information."
+Microsoft -- How do you solve the L2-regularized regression problem? (and many follow up questions)
 
-"Facebook" -- "You have been given the data on Facebook users friending or defriending each other. How will you determine whether a given pair of Facebook users are friends or not?"
+Netflix -- How do you measure and compare models? How should we approach to attribution modeling to measure marketing efffectiveness?
 
-"Facebook" -- "Lets say the population on Facebook clicks ads with a click-through-rate of P. We select a sample of size N and examine the sample's conversion rate, denoted by hat{P}, what is the minimum sample size N such that Probability( ABS(hat{P} - P) < DELTA ) = 95%. In other words (this is my translation), find the minimum sample size N such that our sample estimate hat{P} is within DELTA of the true click through rate P, with 95% confidence."
+Nielsen -- What are some metrics that are more appropriate for use in a syndicated product than one ordered by a particular client?
 
-"Facebook" -- "How would one develop the Like, Love, Sad feature?"
+Quora -- What metric would you use to measure a search tool bar change?
 
-"Facebook" -- "business sense:There are two types of cars A and B. The number of people in US who use Aand B are the same. They drive the same distances each month.Now there are two new technologies, X and Y (of equal cost).If apply X, mpg of A would increase from 50 mpg to 75 mpg;If apply Y, mpg of B would increase from 10 mpg to 11 mpg.The goal is to decrease the dependence on foreign oil, or to decrease theconsumption of gasoline.Question: which technology would you apply?Follow up question: after applying the technology of your choice, assumethere's money available for research on new technology, which car would youchoose to conduct research on? data question:dialoglog(userid intappid inttype char , a flag either ""imp"" or ""click""ds timestamp)How would you access the quality of app?How to compute click-through rate (in mySQL)?"
+Soleo -- how I would model the waiting time for a local restaurant and what possible statistical models and strategies I could bring to bear on the problem.
 
-"Facebook" -- "In Mexico, if you take the mean and the median age, which one will be higher and why? Given a table that each day shows who was active in the system and a table that tracks ongoing user status, write a procedure that will take each day's active table and pass it into the ongoing daily tracking table.Possible states are:* user stayed (yesterday yes, today yes)* user churned (yesterday yes, today no)* user revived (yesterday no, today yes)* user new (yesterday null, today yes)Note: you'll want to spot and account for the undefined state."
+Spotify -- How would you detect anomalous behavior? How would you generate profiles of users?
 
-"Facebook" -- "How would you find out the number of cars passing through a busy bridge?"
+Stitch Fix -- How might you determine if the size of a specific item is a significant feature in determining the customer's calculated propensity to buy it?
 
-"Facebook" -- "How would you bring a metric to product X? Products at Facebook could be as large as News Feed or Ads, and as small as Pokes or Socrates (see below). Example 1: How would you assess the health of Facebook's News Feed? (Define health ?) Example 2: Facebook's Socrates is a box displayed under the Profile Picture of a user that prompts the user to answer questions about themselves, such as favorite movies, books, etc. Given the data about how users have answered questions in the past, design the best algorithm to present the next question that they will answer."
+Treehouse (Oregon) -- Suppose you run an analysis that suggests a certain factor predicts a certain outcome. How would you gauge whether it's actually causation or just correlation?
 
-"Google" -- "Model raindrops falling on a sidewalk (sidewalk is 1m and raindrops are 1cm). How could we know when the sidewalk is completely wet?"
+Uber -- What algorithm you would use to solve driver accepting a requesting?Which supervised algorithm you would pick to solve the above problem?How do you compare the results of the algorithm?
 
-"Kabbage" -- "How does A/B testing work? Specifically say you are comparing recommender algorithms on a website. What metric of user behavior might you look at, how would you decide on sample size, etc."
+Uber -- optimization of pickup time, how to evaluate the success of a new feature
 
-"LatentView Analytics" -- "What would you do if you were a traffic sign?"
+Uber -- how to optimize surge pricing given data set
 
-"LinkedIn" -- "Define an algorithm to discover when a person is starting to search for new job."
+Uber -- Will uber cause city congestion?
 
-"LinkedIn" -- "What are the factors used to produce People You May Know data product on LinkedIn?"
+Uber -- How would you find the words that became obsolete in English language between 16th and 17th century? You may use a search engine.
 
-"Massachusetts General Hospital" -- "Given an existing set of purchases, how do you predict the next item to purchase of a new basket?"
+Walmart -- A stranger uses a search engine to find something and you do not know anything about the person. How will you design an algorithm to determine what the stranger is looking for just after he/she types few characters in the search box?
 
-"Microsoft" -- "How to measure distance between data point?"
-
-"Microsoft" -- "How do you solve the L2-regularized regression problem? (and many follow up questions)"
-
-"Mu Sigma" -- "Cars are implanted with speed tracker so that the insurance companies can track about our driving state. Based on this new scheme what kind of business questions can be answered?"
-
-"Netflix" -- "What do you know about A/B testing in the context of streaming?"
-
-"Netflix" -- "How would you build and test a metric to compare two user's ranked lists of movie/tv show preferences?"
-
-"Netflix" -- "How do you measure and compare models? How should we approach to attribution modeling to measure marketing efffectiveness?"
-
-"Nielsen" -- "What are some metrics that are more appropriate for use in a syndicated product than one ordered by a particular client?"
-
-"Opera Solutions" -- "support vector Machines, Newton Optimization method."
-
-"Quora" -- "What metric would you use to measure a search tool bar change?"
-
-"Rovi" -- "what would be your approach to solve the following problem: we have big data containing all kind of information on TV viewing. how to optimize the allocation of ads on a tv channel? what external events would most likely influence your predictive algorithm?"
-
-"Soleo" -- "how I would model the waiting time for a local restaurant and what possible statistical models and strategies I could bring to bear on the problem."
-
-"Spotify" -- "How would you leverage Spotify's data?"
-
-"Spotify" -- "How would you detect anomalous behavior? How would you generate profiles of users?"
-
-"Square" -- "(The interview drew a hypothetical histogram of number of purchases per user.) There are a lot of users that make a small number of purchases, and few users that make a large number of purchases. So the histogram is peaked near zero and has a tail off to the left. Based on this, what do you expect the plot of average revenue per user to look like?"
-
-"Stitch Fix" -- "How might you determine if the size of a specific item is a significant feature in determining the customer's calculated propensity to buy it?"
-
-"StubHub" -- "What is a statistical method to control the number of features for large sparse matrices?"
-
-"Treehouse (Oregon)" -- "Suppose you run an analysis that suggests a certain factor predicts a certain outcome. How would you gauge whether it's actually causation or just correlation?"
-
-"Uber" -- "What algorithm you would use to solve driver accepting a requesting?Which supervised algorithm you would pick to solve the above problem?How do you compare the results of the algorithm?"
-
-"Uber" -- "optimization of pickup time, how to evaluate the success of a new feature"
-
-"Uber" -- "how to optimize surge pricing given data set"
-
-"Uber" -- "Will uber cause city congestion?"
-
-"Uber" -- "How would you find the words that became obsolete in English language between 16th and 17th century? You may use a search engine."
-
-"Walmart" -- "A stranger uses a search engine to find something and you do not know anything about the person. How will you design an algorithm to determine what the stranger is looking for just after he/she types few characters in the search box?"
-
-"Walmart" -- "Develop a recommendation engine for a product. Probability of men (Pm) liking a specific product is generally higher than probability of women liking it (Pf). What is the probability of a match between a man and a woman vs. a woman and a woman. What are the boundaries - that is, if Pm is greater than Pf, what are the likelihoods?"
-
-"Walmart" -- "You have a clickthrough rate/impressions on two products, the first has a 1/100 CTR and the second has 100/10000 - how do you reconcile these rates and evaluate the performance of these two products?"
-
-"Walmart" -- "If you were to run two coupon campaigns - one where users are sent popular coupons and the other are sent personalized (recommendation system) coupons, how do you design an experiment to measure the performance?"
+Walmart -- You have a clickthrough rate/impressions on two products, the first has a 1/100 CTR and the second has 100/10000 - how do you reconcile these rates and evaluate the performance of these two products?
 
 120 Data Science book questions (unsorted)
 ------------------------------------------
 
-"What could be some issues if the distribution of the test data is significantly different than the distribution of the training data?"
+"What could be some issues if the distribution of the test data is significantly different than the distribution of the training data?
 
-"What are some ways I can make my model more robust to outliers?"
+What are some ways I can make my model more robust to outliers?
 
-"What are some differences you would expect in a model that minimizes squared error, versus a model that minimizes absolute error? In which cases would each error metric be appropriate?"
+What are some differences you would expect in a model that minimizes squared error, versus a model that minimizes absolute error? In which cases would each error metric be appropriate?
 
-"What error metric would you use to evaluate how good a binary classifier is? What if the classes are imbalanced? What if there are more than 2 groups?"
+What error metric would you use to evaluate how good a binary classifier is? What if the classes are imbalanced? What if there are more than 2 groups?
 
-"What are various ways to predict a binary response variable? Can you compare two of them and tell me when one would be more appropriate? What's the difference between these? (SVM, Logistic Regression, Naive Bayes, Decision Tree, etc.)"
+What are various ways to predict a binary response variable? Can you compare two of them and tell me when one would be more appropriate? What's the difference between these? (SVM, Logistic Regression, Naive Bayes, Decision Tree, etc.)
 
-"Given training data on tweets and their retweets, how would you predict the number of retweets of a given tweet after 7 days after only observing 2 days worth of data?"
+Given training data on tweets and their retweets, how would you predict the number of retweets of a given tweet after 7 days after only observing 2 days worth of data?
 
-"How could you collect and analyze data to use social media to predict the weather?"
+How could you collect and analyze data to use social media to predict the weather?
 
-"How would you construct a feed to show relevant content for a site that involves user interactions with items?"
+How would you construct a feed to show relevant content for a site that involves user interactions with items?
 
-"How would you design the people you may know feature 	on LinkedIn or Facebook?"
+How would you design the people you may know feature 	on LinkedIn or Facebook?
 
-"How would you predict who someone may want to send a Snapchat or Gmail to?"
+How would you predict who someone may want to send a Snapchat or Gmail to?
 
-"How would you suggest to a franchise where to open a new store?"
+How would you suggest to a franchise where to open a new store?
 
-"In a search engine, given partial data on what the user has typed, how would you predict the user's eventual search query?"
+In a search engine, given partial data on what the user has typed, how would you predict the user's eventual search query?
 
-"Given a database of all previous alumni donations to your university, how would you predict which recent alumni are most likely to donate?"
+Given a database of all previous alumni donations to your university, how would you predict which recent alumni are most likely to donate?
 
-"You're Uber and you want to design a heatmap to recommend to drivers where to wait for a passenger. How would you approach this?"
+You're Uber and you want to design a heatmap to recommend to drivers where to wait for a passenger. How would you approach this?
 
-"You want to run a regression to predict the probability of a flight delay, but there are flights with delays of up to 12 hours that are really messing up your model. How can you address this?"
+You want to run a regression to predict the probability of a flight delay, but there are flights with delays of up to 12 hours that are really messing up your model. How can you address this?
 
-"Write a function to calculate all possible assignment vectors of 2n users, where n users are assigned to group 0 (control), and n users are assigned to group 1 (treatment)."
+Write a function to calculate all possible assignment vectors of 2n users, where n users are assigned to group 0 (control), and n users are assigned to group 1 (treatment).
 
-"Program an algorithm to find the best approximate solution to the knapsack problem in a given time."
+Program an algorithm to find the best approximate solution to the knapsack problem in a given time.
 
-"Program an algorithm to find the best approximate solution to the travelling salesman problem in a given time."
+Program an algorithm to find the best approximate solution to the travelling salesman problem in a given time.
 
-"Given a list of numbers, can you return the outliers?"
+Given a list of numbers, can you return the outliers?
 
-"What are the different types of joins? What are the differences between them?"
+What are the different types of joins? What are the differences between them?
 
-"Why might a join on a subquery be slow? How might you speed it up?"
+Why might a join on a subquery be slow? How might you speed it up?
 
-"Given a COURSES table with columns course_id and course_name, a FACULTY table with columns faculty_id and faculty_name, and a COURSE_FACULTY table with columns faculty_id and course_id, how would you return a list of faculty who teach a course given the name of a course?"
+Given a COURSES table with columns course_id and course_name, a FACULTY table with columns faculty_id and faculty_name, and a COURSE_FACULTY table with columns faculty_id and course_id, how would you return a list of faculty who teach a course given the name of a course?
 
-"Given a IMPRESSIONS table with ad_id, click (an indicator that the ad was clicked), and date, write a SQL query that will tell me the click-through-rate of each ad by month."
+Given a IMPRESSIONS table with ad_id, click (an indicator that the ad was clicked), and date, write a SQL query that will tell me the click-through-rate of each ad by month.
 
-"Write a query that returns the name of each department and a count of the number of employees in each: EMPLOYEES containing: Emp_ID (Primary key) and Emp_Name, EMPLOYEE_DEPT containing: Emp_ID (Foreign key) and Dept_ID (Foreign key), DEPTS containing: Dept_ID (Primary key) and Dept_Name"
+Write a query that returns the name of each department and a count of the number of employees in each: EMPLOYEES containing: Emp_ID (Primary key) and Emp_Name, EMPLOYEE_DEPT containing: Emp_ID (Foreign key) and Dept_ID (Foreign key), DEPTS containing: Dept_ID (Primary key) and Dept_Name
 
-"In any 15-minute interval, there is a 20% probability that you will see at least one shooting star. What is the probability that you see at least one shooting star in the period of an hour?"
+In any 15-minute interval, there is a 20% probability that you will see at least one shooting star. What is the probability that you see at least one shooting star in the period of an hour?
 
-"You have an 50-50 mixture of two normal distributions with the same standard deviation. How far apart do the means need to be in order for this distribution to be bimodal?"
+You have an 50-50 mixture of two normal distributions with the same standard deviation. How far apart do the means need to be in order for this distribution to be bimodal?
 
-"A certain couple tells you that they have two children, at least one of which is a girl. What is the probability that they have two girls?"
+A certain couple tells you that they have two children, at least one of which is a girl. What is the probability that they have two girls?
 
-"You have a group of couples that decide to have children until they have their first girl, after which they stop having children. What is the expected gender ratio of the children that are born? What is the expected number of children each couple will have?"
+You have a group of couples that decide to have children until they have their first girl, after which they stop having children. What is the expected gender ratio of the children that are born? What is the expected number of children each couple will have?
 
-"How many ways can you split 12 people into 3 teams of 4?"
+How many ways can you split 12 people into 3 teams of 4?
 
-"Your hash function assigns each object to a number between 1:10, each with equal probability. With 10 objects, what is the probability of a hash collision? What is the expected number of hash collisions? What is the expected number of hashes that are unused."
+Your hash function assigns each object to a number between 1:10, each with equal probability. With 10 objects, what is the probability of a hash collision? What is the expected number of hash collisions? What is the expected number of hashes that are unused.
 
-"You call 2 UberX's and 3 Lyfts. If the time that each takes to reach you is IID, what is the probability that all the Lyfts arrive first? What is the probability that all the UberX's arrive first?"
+You call 2 UberX's and 3 Lyfts. If the time that each takes to reach you is IID, what is the probability that all the Lyfts arrive first? What is the probability that all the UberX's arrive first?
 
-"I write a program should print out all the numbers from 1 to 300, but prints out Fizz instead if the number is divisible by 3, Buzz instead if the number is divisible by 5, and FizzBuzz if the number is divisible by 3 and 5. What is the total number of numbers that is either Fizzed, Buzzed, or FizzBuzzed?"
+I write a program should print out all the numbers from 1 to 300, but prints out Fizz instead if the number is divisible by 3, Buzz instead if the number is divisible by 5, and FizzBuzz if the number is divisible by 3 and 5. What is the total number of numbers that is either Fizzed, Buzzed, or FizzBuzzed?
 
-"On a dating site, users can select 5 out of 24 adjectives to describe themselves. A match is declared between two users if they match on at least 4 adjectives. If Alice and Bob randomly pick adjectives, what is the probability that they form a match?"
+On a dating site, users can select 5 out of 24 adjectives to describe themselves. A match is declared between two users if they match on at least 4 adjectives. If Alice and Bob randomly pick adjectives, what is the probability that they form a match?
 
-"A lazy high school senior types up application and envelopes to n different colleges, but puts the applications randomly into the envelopes. What is the expected number of applications that went to the right college?"
+A lazy high school senior types up application and envelopes to n different colleges, but puts the applications randomly into the envelopes. What is the expected number of applications that went to the right college?
 
-"I have two different experiments that both change the sign-up button to my website. I want to test them at the same time. What kinds of things should I keep in mind?"
+I have two different experiments that both change the sign-up button to my website. I want to test them at the same time. What kinds of things should I keep in mind?
 
-"What is the difference between type-1 and type-2 error?"
+What is the difference between type-1 and type-2 error?
 
-"You are AirBnB and you want to test the hypothesis that a greater number of photographs increases the chances that a buyer selects the listing. How would you test this hypothesis?"
+You are AirBnB and you want to test the hypothesis that a greater number of photographs increases the chances that a buyer selects the listing. How would you test this hypothesis?
 
-"How would you design an experiment to determine the impact of latency on user engagement?"
+How would you design an experiment to determine the impact of latency on user engagement?
 
-"Is more data always better?"
+Is more data always better?
 
-"What are advantages of plotting your data before performing analysis?"
+What are advantages of plotting your data before performing analysis?
 
-"How can you make sure that you don't analyze something that ends up meaningless?"
+How can you make sure that you don't analyze something that ends up meaningless?
 
-"What is the role of trial and error in data analysis? What is the the role of making a hypothesis before diving in?"
+What is the role of trial and error in data analysis? What is the the role of making a hypothesis before diving in?
 
-"How can you determine which features are the most important in your model?"
+How can you determine which features are the most important in your model?
 
-"How do you deal with some of your predictors being missing?"
+How do you deal with some of your predictors being missing?
 
-"You have several variables that are positively correlated with your response, and you think combining all of the variables could give you a good prediction of your response. However, you see that in the multiple linear regression, one of the weights on the predictors is negative. What could be the issue?"
+You have several variables that are positively correlated with your response, and you think combining all of the variables could give you a good prediction of your response. However, you see that in the multiple linear regression, one of the weights on the predictors is negative. What could be the issue?
 
-"Let's say you're given an unfeasible amount of predictors in a predictive modeling task. What are some ways to make the prediction more feasible?"
+Let's say you're given an unfeasible amount of predictors in a predictive modeling task. What are some ways to make the prediction more feasible?
 
-"Now you have a feasible amount of predictors, but you're fairly sure that you don't need all of them. How would you perform feature selection on the dataset?"
+Now you have a feasible amount of predictors, but you're fairly sure that you don't need all of them. How would you perform feature selection on the dataset?
 
-"Your linear regression didn't run and communicates that there are an infinite number of best estimates for the regression coefficients. What could be wrong?"
+Your linear regression didn't run and communicates that there are an infinite number of best estimates for the regression coefficients. What could be wrong?
 
-"You run your regression on different subsets of your data, and find that in each subset, the beta value for a certain variable varies wildly. What could be the issue here?"
+You run your regression on different subsets of your data, and find that in each subset, the beta value for a certain variable varies wildly. What could be the issue here?
 
-"What is the main idea behind ensemble learning? If I had many different models that predicted the same response variable, what might I want to do to incorporate all of the models? Would you expect this to perform better than an individual model or worse?"
+What is the main idea behind ensemble learning? If I had many different models that predicted the same response variable, what might I want to do to incorporate all of the models? Would you expect this to perform better than an individual model or worse?
 
-"Given that you have wifi data in your office, how would you determine which rooms and areas are underutilized and overutilized?"
+Given that you have wifi data in your office, how would you determine which rooms and areas are underutilized and overutilized?
 
-"How could you use GPS data from a car to determine the quality of a driver?"
+How could you use GPS data from a car to determine the quality of a driver?
 
-"Given accelerometer, altitude, and fuel usage data from a car, how would you determine the optimum acceleration pattern to drive over hills?"
+Given accelerometer, altitude, and fuel usage data from a car, how would you determine the optimum acceleration pattern to drive over hills?
 
-"Given position data of NBA players in a season's games, how would you evaluate a basketball player's defensive ability?"
+Given position data of NBA players in a season's games, how would you evaluate a basketball player's defensive ability?
 
-"How would you quantify the influence of a Twitter user?"
+How would you quantify the influence of a Twitter user?
 
-"Given location data of golf balls in games, how would construct a model that can advise golfers where to aim?"
+Given location data of golf balls in games, how would construct a model that can advise golfers where to aim?
 
-"You have 100 mathletes and 100 math problems. Each mathlete gets to choose 10 problems to solve. Given data on who got what problem correct, how would you rank the problems in terms of difficulty?"
+You have 100 mathletes and 100 math problems. Each mathlete gets to choose 10 problems to solve. Given data on who got what problem correct, how would you rank the problems in terms of difficulty?
 
-"You have 5000 people that rank 10 sushis in terms of saltiness. How would you aggregate this data to estimate the true saltiness rank in each sushi?"
+You have 5000 people that rank 10 sushis in terms of saltiness. How would you aggregate this data to estimate the true saltiness rank in each sushi?
 
-"Given data on congressional bills and which congressional representatives co-sponsored the bills, how would you determine which other representatives are most similar to yours in voting behavior? How would you evaluate who is the most liberal? Most republican? Most bipartisan?"
+Given data on congressional bills and which congressional representatives co-sponsored the bills, how would you determine which other representatives are most similar to yours in voting behavior? How would you evaluate who is the most liberal? Most republican? Most bipartisan?
 
-"How would you come up with an algorithm to detect plagiarism in online content?"
+How would you come up with an algorithm to detect plagiarism in online content?
 
-"You have data on all purchases of customers at a grocery store. Describe to me how you would program an algorithm that would cluster the customers into groups. How would you determine the appropriate number of clusters to include?"
+You have data on all purchases of customers at a grocery store. Describe to me how you would program an algorithm that would cluster the customers into groups. How would you determine the appropriate number of clusters to include?
 
-"Let's say you're building the recommended music engine at Spotify to recommend people music based on past listening history. How would you approach this problem?"
+Let's say you're building the recommended music engine at Spotify to recommend people music based on past listening history. How would you approach this problem?
 
-"How would you explain an A/B test to an engineer with no
-statistics background? A linear regression?"
+How would you explain an A/B test to an engineer with no statistics background? A linear regression?
 
-"How would you explain a confidence interval to an engineer with no statistics background? What does 95% confidence mean?"
+How would you explain a confidence interval to an engineer with no statistics background? What does 95% confidence mean?
 
-"How would you explain to a group of senior executives why data is important?"
+How would you explain to a group of senior executives why data is important?
 
-"Tell me about a data project that you've done with a team. What did you add to the group?"
+Tell me about a data project that you've done with a team. What did you add to the group?
 
-"Tell me about a dataset that you've analyzed. What techniques did you find helpful and which ones didn't work?"
+Tell me about a dataset that you've analyzed. What techniques did you find helpful and which ones didn't work?
 
-"How could you help the generate public understanding towards the importance of using data to generate insights?"
+How could you help the generate public understanding towards the importance of using data to generate insights?
 
-"How would you convince a government agency to release their data in a publicly accessible API?"
+How would you convince a government agency to release their data in a publicly accessible API?
 
-"I'm a local business owner operating a small restaurant. Convince me to switch my advertising budget from print to internet."
+I'm a local business owner operating a small restaurant. Convince me to switch my advertising budget from print to internet.
 
-"Let's say that you're are scheduling content for a content provider on television. How would you determine the best times to schedule content?"
+Let's say that you're are scheduling content for a content provider on television. How would you determine the best times to schedule content?
 
-"What kind of services would find churn (metric that tracks how many customers leave the service) helpful? How would you calculate churn?"
+What kind of services would find churn (metric that tracks how many customers leave the service) helpful? How would you calculate churn?
 
-"Say that you are Netflix. How would you determine what original series you should invest in and create?"
+Say that you are Netflix. How would you determine what original series you should invest in and create?
 
-"You are on the data science team at Uber and you are asked to start thinking about surge pricing. What would be the objectives of such a product and how would you start looking into this?"
+You are on the data science team at Uber and you are asked to start thinking about surge pricing. What would be the objectives of such a product and how would you start looking into this?
 
-"How would you measure the impact that sponsored stories on Facebook News Feed have on user engagement? How would you determine the optimum balance between sponsored stories and organic content on a user's News Feed?"
+How would you measure the impact that sponsored stories on Facebook News Feed have on user engagement? How would you determine the optimum balance between sponsored stories and organic content on a user's News Feed?
 
-"Say you are working on Facebook News Feed. What would be some metrics that you think are important? How would you make the news each person gets more relevant?"
+Say you are working on Facebook News Feed. What would be some metrics that you think are important? How would you make the news each person gets more relevant?
 
-"You are tasked with improving the efficiency of a subway system. Where would you start?"
+You are tasked with improving the efficiency of a subway system. Where would you start?
 
-"You're a restaurant and are approached by Groupon to run a deal. What data would you ask from them in order to determine whether or not to do the deal?"
+You're a restaurant and are approached by Groupon to run a deal. What data would you ask from them in order to determine whether or not to do the deal?
 
-"Growth for total number of tweets sent has been slow this month. What data would you look at to determine the cause of the problem?"
+Growth for total number of tweets sent has been slow this month. What data would you look at to determine the cause of the problem?
 
-"A certain metric is violating your expectations by going down or up more than you expect. How would you try to identify the cause of the change?"
+A certain metric is violating your expectations by going down or up more than you expect. How would you try to identify the cause of the change?
 
-"What would be good metrics of success for a product that offered in-app purchases? (Zynga, Angry Birds, other gaming apps)"
+What would be good metrics of success for a product that offered in-app purchases? (Zynga, Angry Birds, other gaming apps)
 
-"What would be good metrics of success for a consumer product that relies heavily on engagement and interaction? (Snapchat, Pinterest, Facebook, etc.) A messaging product? (GroupMe, Hangouts, Snapchat, etc.)"
+What would be good metrics of success for a consumer product that relies heavily on engagement and interaction? (Snapchat, Pinterest, Facebook, etc.) A messaging product? (GroupMe, Hangouts, Snapchat, etc.)
 
-"What would be good metrics of success for an e-commerce product? (Etsy, Groupon, Birchbox, etc.) A subscription product? (Netflix, Birchbox, Hulu, etc.) Premium subscriptions? (OKCupid, LinkedIn, Spotify, etc.)"
+What would be good metrics of success for an e-commerce product? (Etsy, Groupon, Birchbox, etc.) A subscription product? (Netflix, Birchbox, Hulu, etc.) Premium subscriptions? (OKCupid, LinkedIn, Spotify, etc.)
 
-"What would be good metrics of success for a productivity tool? (Evernote, Asana, Google Docs, etc.) A MOOC? (edX, Coursera, Udacity, etc.)"
+What would be good metrics of success for a productivity tool? (Evernote, Asana, Google Docs, etc.) A MOOC? (edX, Coursera, Udacity, etc.)
 
-"What would be good metrics of success for an advertising-driven consumer product? (Buzzfeed, YouTube, Google Search, etc.) A service-driven consumer product? (Uber, Flickr, Venmo, etc.)"
+What would be good metrics of success for an advertising-driven consumer product? (Buzzfeed, YouTube, Google Search, etc.) A service-driven consumer product? (Uber, Flickr, Venmo, etc.)
