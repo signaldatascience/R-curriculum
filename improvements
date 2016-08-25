@@ -3,8 +3,18 @@ Monday - Gaurav, 3 PM; Barry, 5 PM
 Wednesday - Adom, 1 PM
 Thursday - Sara, 12 PM; Noah, 1 PM; Gaurav, 5 PM
 Saturday - Sara, 10:30 PM
-Monday - Mark, 2 PM
-Thursday - Diane, 2 PM
+Monday - Mark, 2 PM; Kelly, 5 PM
+Wednesday - Daniel, 1 PM
+Thursday - Diane, 2 PM; Sean, 4 PM
+Friday - William, 12 PM
+Monday - William, 5 PM
+Tuesday - Rob, 3 PM
+
+Industry relevance improvement:
+- Explicit focus on A/B testing and related issues
+- Drop Cubist, consider dropping multivariable adaptive regression splines
+- Add material about classical statistics and hypothesis testing
+- Students should work through http://www.win-vector.com/blog/2015/02/does-balancing-classes-improve-classifier-performance/ as an assignment
 
 things to improve about the curriculum
 
@@ -106,6 +116,13 @@ Add to algorithms
 - 3SUM problem
 - fast fourier transform
 
+Interview questions
+http://rpubs.com/JDAHAN/172473
+http://blog.udacity.com/2015/04/data-science-interview-questions.html
+https://blog.inferentialist.com/2015/10/03/uber-challenge.html
+http://www.kdnuggets.com/2016/02/21-data-science-interview-questions-answers.html
+http://treycausey.com/data_science_interviews.html
+
 Advanced SQL
 https://community.modeanalytics.com/sql/tutorial/sql-window-functions/
 http://javarevisited.blogspot.com/2012/11/how-to-join-three-tables-in-sql-query-mysql-sqlserver.html
@@ -138,6 +155,37 @@ Datasets
 - MNIST
 - book reviews http://www2.informatik.uni-freiburg.de/~cziegler/BX/
 - Facebook social graph data http://snap.stanford.edu/data/egonets-Facebook.html
+
+Add into SQL assignment:
+1. You have a table of every LinkedIn connection. Also, we define what a shared connection is below. Answer the below line of questions.
+
+    ```
+    Table Columns
+    m_id = member id
+    c_m_id = connection_member_id
+    
+    Table example
+    m_id, c_m_id
+    (user 1), (user 2)
+    (user 3, (user 2)
+    (user 1), (user 50)
+    ...
+    (user 50), (user 30)
+    (user 51), (user 21)
+    ```
+    
+    Shared Connection Definition
+    The first two rows above are an example of 1 shared connection. So you could say "user 1 and user 3 have at least 1 shared connection", as shown here:
+    
+    ```
+    User 1 -- User 2 -- User 3
+    ```
+    
+    Questionsc
+    1. Write a SQL query that finds the number of shared connections between user 1 and user 3
+    2. Write a query that does the same thing in your favorite language
+    3. Write a SQL query that finds the two users with the highest number of shared connections
+    4. OK, now that won't work at scale because there are XX Billion connections. Write an approach that enables you to do this at scale in your favorite language. What algorithm might you consider using?
 
 A/B testing
 

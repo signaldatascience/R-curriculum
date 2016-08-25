@@ -76,7 +76,7 @@ Last year, employees brought in many commissions for the company. The data for e
 
 You are given a table `PilotSkills` with columns `PilotName` and `PlaneName` representing pilots with the planes they can fly as well as a table `Hangar` with a single column `PlaneName` listing the available planes in the hangar.
 
-* Write a query to display the names of pilots who can fly every plane in the hangar. Do so (1) with two `NOT EXISTS` statements, (2) with a cross join, and (3) with `EXCEPT`.
+* Write a query to display the names of pilots who can fly every plane in the hangar. Do so (1) with two `NOT EXISTS` statements, (2) with a `GROUP BY` statement, and (3) with `EXCEPT`.
 
 You are given a table `Roulette` of roulette spins with columns `Color`, either "red" or "black", and `Time`, a timestamp corresponding to when the spin was made.
 

@@ -370,6 +370,12 @@ The terms associated with each of the 20 inferred topics can be examined with [`
 	book school class ...
 	```
 
+* Use `save_topics()` to examine the 20 topics extracted from your corpus. Interpret the results.
+
+We notice that some words are very common, being repeated across *all* of the topics! (For example, "displaystyle", "model", and "edit".) These words reduce the quality of our result, because they provide no topic-specific information and make our topics harder to interpret.
+
+* 
+
 Picking the right number of topics to extract is generally difficult and constitutes an area of active research. Each model is associated with a *log-likelihood* value representing the probability of observing the training corpus under the calculated model, so the easiest way to choose the number of topics is to perform a grid search over the number of topics and choose the model associated with the highest (cross-validated) log-likelihood. Often, one will see references to the [log-perplexity](http://planspace.org/2013/09/23/perplexity-what-it-is-and-what-yours-is/) metric, which is equivalent to the average log-likelihood calculated on a per-word basis.[^ntop]
 
 [^ntop]: More complex methods exist. For instance, one can use the [harmonic mean method](http://stackoverflow.com/questions/21355156/topic-models-cross-validation-with-loglikelihood-or-perplexity/21394092#21394092) as given by Ponweiser (2012), [Latent Dirichlet Allocation in R](http://epub.wu.ac.at/3558/1/main.pdf), Section 4.3.3 to select the optimal $k$. In addition, [Wallace *et al.* (2009)](http://mimno.infosci.cornell.edu/papers/wallach09evaluation.pdf) gives some even more complex (but better) methods for evaluating the quality of topic models.

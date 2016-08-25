@@ -55,6 +55,7 @@ SELECT Salary FROM (
     ORDER BY Salary DESC
     LIMIT 2
 ) AS x
+ORDER BY Salary ASC
 LIMIT 1;
 
 -- Second highest salary (4)
@@ -133,7 +134,7 @@ WHERE RowNum >= FLOOR(0.99 * (
 -- Pilots and planes (1)
 -- See https://www.simple-talk.com/sql/t-sql-programming/divided-we-stand-the-sql-of-relational-division/ for more elaboration.
 -- Intuition: We want to find pilots for whom no plane exists in the hangar for which they have no skills.
-SELECT DISTINCT PilotName
+SELECT PilotName
 FROM PilotSkills AS ps1
 WHERE NOT EXISTS (
     SELECT *
@@ -142,16 +143,14 @@ WHERE NOT EXISTS (
         SELECT *
         FROM PilotSkills AS ps2
         WHERE ps1.PilotName = ps2.PilotName
-        AND ps2.PlaneName = hangar.PlaneName
+        AND ps2.PlaneName = Hangar.PlaneName
     )
 );
 
 -- Pilots and planes (2)
 SELECT PilotName
 FROM PilotSkills
-CROSS JOIN Hangar
-WHERE PilotSkills.PlaneName = Hangar.PlaneName
-GROUP BY PilotSkills.PilotName
+GROUP BY PilotName
 HAVING COUNT(*) = (
     SELECT COUNT(*)
     FROM Hangar
