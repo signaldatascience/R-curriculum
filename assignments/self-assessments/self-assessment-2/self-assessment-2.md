@@ -7,7 +7,7 @@ We'll be having another self-assessment. As before,
 
 * Type your answers in a new R script file with comments indicating where the answer to each question begins.
 
-* Write down your starting time. When you finish, email `signaldatascience@gmail.com` with your R script attached along with the amount of time you spent on the self assessment.
+* When you finish, email `signaldatascience@gmail.com` with your R script attached along with the amount of time you spent on the self assessment.
 
 * Work individually. You can however consult R documentation, look at old assignments, use the Internet, etc., but don't copy and paste code verbatim.
 

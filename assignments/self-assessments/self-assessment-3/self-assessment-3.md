@@ -7,123 +7,55 @@ We'll be having another self-assessment. As before,
 
 * Type your answers in a new R script file with comments indicating where the answer to each question begins.
 
-* Write down your starting time. When you finish, mail `signaldatascience@gmail.com` with your R script attached along with the amount of time you spent on the self assessment.
+* When you finish, email `signaldatascience@gmail.com` with your R script attached along with the amount of time you spent on the self assessment.
 
 * Work individually. You can however consult R documentation, look at old assignments, use the Internet, etc., but don't copy and paste code verbatim.
 
 * Make your code as clear, compact, and efficient as possible. Use everything that you've learned! **Please comment and organize your code so we can easily tell how parts of your R script correspond to specific problems.**
 
-Packages you may find useful: `ggplot2`.
+The results that you'll be obtaining are interesting -- have fun with it! This self assessment is long and will probably extend beyond lunch. We'll break for lunch at 12:30 PM as usual. After the self-assessment, you'll resume work on the recommender systems assignment. 
 
-Part 1: Logistic regression
-===========================
+National Election Study
+=======================
 
-For some additional practice with logistic regression, we'll be looking at American election data from the National Election Study from 1948 through 2002.
+In the `nat-elections` dataset folder, there is a cleaned version of data from the 1992 National Election Study, with demographic information about 1771 US citizens and how they voted in the 1992 US Presidential election as `nes_cleaned_1992.csv`. A glossary describing the variables and giving summary statistics for the original dataset is available in `nes-glossary.txt`. 
 
-A note on `caret`
-=================
+* Expand the factors into dummy variables using `dummy.data.frame()` from the `dummies` R package and remove one dummy variable for each factor to avoid the [multicollinearity dummy variable trap](http://www.algosome.com/articles/dummy-variable-trap-regression.html).
 
-In the following, you'll be using the `caret` package to obtain cross-validated estimates of $\alpha$ and $\lambda$ for regularized logistic regression. Keep the following points in mind:
+* Restrict to those people who voted, and cast their vote for either the Republican or Democrat candidate (George H. W. Bush and Bill Clinton, respectively). Use `glm()` to model the probability of a voter casting a vote for the Republican candidate with logistic regression.
 
-* Use 5-fold cross validation without any repeats.
+* Order the features by size in order of decreasing magnitude to determine the most predictive features. Evaluate the quality of the model by computing the area under the ROC using the appropriate function from the `pROC` package. (No need for cross validation here – the amount of overfitting is negligible. How can you tell this ahead of time?) 
 
-* In order to tell `train()` that you want to perform two-class classification instead of standard regression, set `classProbs=TRUE` in the control parameters. 
+* Use your model to generate predictions for how those people in the study who didn't vote would have voted. What does your model predict the percent who would have supported Clinton to be? How does this percentage compare with the percentage of voters who actually voted for Clinton?
 
-* In addition, in order to use area under the ROC curve as your metric of model quality, set `summaryFunction=twoClassSummary` in the control parameters and pass in `metric="ROC"` to `train()`.
+National Merit Twin Study
+=========================
 
-Getting started
-===============
+The `nmsqt-twin` dataset contains data from the 1962 [National Merit Twin Study](https://dataverse.harvard.edu/dataset.xhtml?persistentId=hdl:1902.1/13913) as `NMSQT.csv`, with data on 752 twin pairs. The features that I've included are:
 
-The dataset is located in the `nat-elections` directory as `elections-cleaned.dta`. Information about the data is located in `nes-glossary.txt`.
+* ID: The unique identifier of a twin pair. There are two entries with each ID, corresponding to two members of a twin pair.
+* ZYG: A categorical variable specifying whether a twin is a member of a pair of [identical twins or fraternal twins](http://www.diffen.com/difference/Fraternal_Twins_vs_Identical_Twins).
+* NMSQT: The [National Merit test scores](https://en.wikipedia.org/wiki/PSAT/NMSQT) of the participant.
+* V11093 through V11572, answers to 478 questions from the 1956 [California Psychological Inventory](https://en.wikipedia.org/wiki/California_Psychological_Inventory) (first edition). "Yes" answers to the questions are coded 1 and "no" answers are encoded 0. 
 
-* `.dta` files are Stata data files which R cannot natively read. Load the `foreign` package and use `read.dta()` to load the dataset into R.
+Also included is a codebook giving the text of the questions from the California Psychological Inventory as `NMSQTcodebook.csv`.
 
-For your convenience, we've already cleaned the dataset by imputing missing values and properly renaming factor levels. In addition, we've restricted consideration to years with presdential elections and selected a subset of the original variables.
+* Use the `caret` package to determine the best values of `alpha` and `lambda` for a regularized elastic net regression model for National Merit test score in terms of answers to the questions from the California Psychological Inventory. (Refer to the material from the assignment which discusses the `caret` package as needed.)
 
-Exploring the data
-==================
+	What percent of the variance in National Merit test scores does the best model explain?
 
-Before you do any data analysis, it's typically a good idea to do some basic exploratory visualizations to build intuition around the dataset.
+	Take the coefficients of the best model and join them to the question text in `NMSQTcodebook.csv`. Order the coefficients in order of decreasing magnitude to see which questions are most predictive.
 
-* Use [`mosaicplot()`](https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/mosaicplot.html) to make a couple mosaic plots from the cleaned and simplified dataset. For example, try `mosaicplot(table(df$income, df$presvote))`. Can you find any counterintuitive results?
+* Do principal component analysis on the CPI questions using `prcomp()` and plot the standard deviations of the principal components in decreasing order. Using the resulting [scree plot](http://support.minitab.com/en-us/minitab/17/topic-library/modeling-statistics/multivariate/principal-components-and-factor-analysis/what-is-a-scree-plot/), make an educated guess for the number of factors to use in factor analysis on the questions.
 
-* Considering the entire time period from 1948--2000, it there any relationship between what region a voter lives in and which presidential party they support? Is this relationship any different if you restrict to looking data from smaller timespans (*e.g.*, a single election year or 2 consecutive elections)? You can just look at a couple mosaic plots to answer this.
+* Do oblique factor analysis on the questions with the number of factors determined above using `fa()` from the `psych` package. Bind the factor loadings to the question names. For each factor, order the loadings in order of decreasing magnitude to interpret the factor. Give each factor an appropriate name based on the questions with loadings of large magnitude. Convert the factor scores into a data frame with these names. (Refer to the factor analysis assignment as appropriate.)
 
-Analysis with logistic regression
-=================================
+* Scale the factors so that the unites are standard deviations. Aggregate the factors by gender using `aggregate()` to pick up on gender differences.
 
-We need to expand out the factor columns into a set of binary indicator variables in order to fit linear models.
+* For a given variable, The percent variance explained by additive genetic effects is
 
-Earlier, you learned that a factor with $k$ levels should be expanded out into a set of $k-1$ indicator variables, because $k$ indicator variables (one for each level) would suffer from [multicollinearity](https://en.wikipedia.org/wiki/Multicollinearity). When using regularized models, we however *do* want to use $k$ indicator variables. Here's why: intuitively, the multicollinearity arises from our being able to write one of the $k$ indicator variables as a linear combination of the others. However, when we *regularize*, we constrain the magnitudes of the model's coefficients and effectively overcome this problem. As such, adding in $k$ instead of $k-1$ indicator variables for factors can improve the performance of a regularized model.
+	$$2\times(r_\text{MZ} - r_\text{DZ})$$
 
-Thankfully, we don't need to write our own function to perform this expansion.
+	where $r_\text{MZ}$ and $r_\text{DZ}$ are the correlations between corresponding members of identical twin pairs and fraternal twin pairs respectively. 
 
-* Use `dummy.data.frame()` from the [`dummies`](https://cran.r-project.org/web/packages/dummies/) package to create a *new* data frame with the factors expanded out into indicator variables. When calling `dummy.data.frame()`, set `sep="_"` to make the resulting column names more readable.
-
-We're now ready to use regularized logistic regression to explore the dataset. As described in the regularization assignment, use `caret`'s `train()` function to search for the correct values of $\alpha$ and $\lambda$. It typically gives good  initial results to search over $\alpha \in \{0, 0.1, \ldots, 1\}$ and $\lambda \in \{2^{-4}, 2^{-3}, \ldots, 2^1\}$; if you want further improvements, you can perform a finer grid search over a smaller range of values.
-
-*Note:* In the following, [`scale()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/scale.html)ing various subsets of the data might introduce `NAs` into the data frame because a constant column cannot be scaled (as it has standard deviation 0). Be sure to check and correct for this.
-
-For each of the following questions, you should interpret the nonzero regression coefficients and calculate the area under the ROC curve. They are relatively open-ended; feel free to do any additional analysis which interests you or to explore questions which aren't listed here.
-
-* Predict support for George H. W. Bush in the 1992 election. (Restrict consideration to people who actually voted!) Can you improve your model by adding interaction terms? Compare the performance of a regularized vs. unregularized model.
-
-* For each election year, predict party support in terms of the features of the dataset. 
-(Again, consider adding well-chosen interaction terms fo your model.) Make a data frame to store the coefficients of your model each year and graph how the coefficients have changed over time. Which demographic variables have increased or decreased the most in importance over time?
-
-* Using a similar approach to the previous question, predict how voters who didn't vote *would have voted* each year and analyze how predicted non-voter preferences have changed over time.
-
-Part 2: Probability
-===================
-
-In Part 2, we'll look at computational approaches to a variety of probability-based interview questions.
-
-Hashmap collisions
-------------------
-
-From *120 Interview Questions*, we have the following question:
-
-> Your hash function assigns each object to a number between 1:10, each with equal probability. With 10 objects, what is the probability of a hash collision? What is the expected number of hash collisions? What is the expected number of hashes that are unused?
-
-Use `sample(..., replace=TRUE)` to give estimates of all three.
-
-(*Clarification:* If $n$ objects are assigned to the same hash, that counts as $n - 1$ hash collisions.)
-
-Rolling the dice
-----------------
-
-Here's a nice question from one of [the first cohort's students](https://www.linkedin.com/in/tom-guo-51116466):
-
-> Given a fair, 6-sided dice, what's the *expected number of rolls* you have to make before each number (1, 2, ..., 6) shows up at least once?
-
-Write code to estimate the answer.
-
-Bobo the Amoeba
----------------
-
-Lastly, here's a problem commonly found in quantitative finance interviews, an easier version of which sometimes appears in data science interviews:
-
-> Bobo the amoeba can divide into 0, 1, 2, or 3 amoebas with equal probability. (Dividing into 0 means that Bobo dies.) Each of Bobo's descendants have the same probabilities. What's the probability that Bobo's lineage eventually dies out?
-
-To solve this problem, we're going to simultaneously simulate a large number of amoeba lineages and incrementally step forward in time to determine how the probability of total extinction changes as we keep iterating forward.
-
-* Write a function `next_gen(n)` that takes in an initial number of amoebas `n`, determines how many amoebas are in the next generation according to the probability above, and returns that value. Sanity check: `next_gen(1)` should return 0, 1, 2, or 3 with equal probability.
-
-* Note the enormous computation time required for `next_gen(n)` when `n` is very large. If there are a *large* of amoebas, we can assume (with reasonable confidence) that the lineage isn't going to die out. Pick a reasonably large value of `n`, like 500 -- let's call it `N` -- and modify `next_gen(n)` to just return `N+1` when `n > N`. (This is fine because we just want to know if the lineage will *die out* or not -- how huge the population can get in cases where it doesn't don't really matter to us.)
-
-* You're going to simulate `num_lineages` lineages for `n_gens` generations, so set `num_lineages = 10000` and `n_gens = 30`.
-
-* Initialize a matrix of appropriate size and dimensions, where each column represents a single lineage of amoebas and every row represents a different generation. Next, set the initial generation to a population of 1.
-
-* Iterate over the number of generations. For each iteration, apply `next_gen(n)` to the population of the most recent generation to get the population for the next generation, filling in the values of your population matrix.
-
-* Turn your population matrix into a matrix of 1s and 0s corresponding to whether the lineage was still alive or died out at each step of the simulation.
-
-* Calculate the probabilities of lineage extinction from your population matrix. *Hint:* Take the `rowSums()` of the matrix.
-
-* `qplot()` the time evolution of the extinction probability. What do you think it is? Give a numerical estimate using your calculations.
-
-Now, use [WolframAlpha](http://www.wolframalpha.com/) to solve the cubic equation $p = \dfrac{1}{4} + \dfrac{1}{4}p + \dfrac{1}{4}p^2 + \dfrac{1}{4}p^3$. One of the solutions will numerically correspond to your calculated probability. How does that polynomial relate to the problem?
-
-Part 3: SQL
-===========
+	For each factor and for the variable `NMSQT`, compute the percent variance explained by additive genetic effects. Interpret the results.

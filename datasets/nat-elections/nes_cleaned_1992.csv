@@ -1,0 +1,1771 @@
+age,gender,race,educ,urban,region,income,occup1,union,religion,vote,presvote
+41,female,NativeAmerican,HighSchool,suburban,north central,68-95 %ile,clerical,no,protestant,yes,republican
+83,female,White,SomeCollege,rural,south,17-33 %ile,homemakers,no,protestant,yes,republican
+37,female,White,HighSchool,central,south,34-67 %ile,skilled,no,protestant,no,NA
+67,female,Black,HighSchool,central,north central,0-16 %ile,skilled,no,protestant,yes,democrat
+28,male,White,CollegeDegree,suburban,south,17-33 %ile,professional,no,protestant,yes,republican
+71,female,NativeAmerican,HighSchool,suburban,north central,34-67 %ile,homemakers,no,protestant,yes,democrat
+53,female,White,SomeCollege,suburban,north central,68-95 %ile,professional,no,protestant,yes,democrat
+33,female,White,SomeCollege,suburban,north central,34-67 %ile,professional,no,protestant,yes,other
+60,male,White,SomeCollege,suburban,north central,17-33 %ile,clerical,no,protestant,yes,republican
+53,female,White,CollegeDegree,rural,north central,68-95 %ile,professional,no,protestant,yes,republican
+23,male,White,HighSchool,rural,north central,34-67 %ile,skilled,no,catholic,yes,other
+79,female,White,CollegeDegree,rural,south,34-67 %ile,professional,no,protestant,no,NA
+20,male,Asian,SomeCollege,rural,south,0-16 %ile,professional,no,other,yes,democrat
+31,female,White,CollegeDegree,rural,south,68-95 %ile,homemakers,no,protestant,yes,republican
+75,female,White,GradeSchool,rural,north central,17-33 %ile,homemakers,no,catholic,yes,other
+48,female,Asian,CollegeDegree,suburban,south,68-95 %ile,professional,no,catholic,yes,republican
+83,female,White,GradeSchool,rural,south,0-16 %ile,skilled,no,protestant,yes,republican
+70,female,White,HighSchool,rural,north central,0-16 %ile,homemakers,no,protestant,no,NA
+29,female,White,SomeCollege,rural,north central,34-67 %ile,skilled,yes,catholic,yes,democrat
+90,male,White,GradeSchool,rural,north central,0-16 %ile,skilled,yes,other,no,NA
+63,female,White,HighSchool,rural,north central,0-16 %ile,skilled,no,other,yes,other
+29,female,White,HighSchool,rural,north central,34-67 %ile,clerical,no,catholic,no,NA
+68,male,White,HighSchool,central,south,17-33 %ile,skilled,yes,protestant,yes,democrat
+30,male,White,SomeCollege,suburban,north central,34-67 %ile,professional,yes,protestant,yes,democrat
+65,male,White,HighSchool,central,south,34-67 %ile,professional,no,protestant,yes,republican
+77,male,White,HighSchool,suburban,north central,34-67 %ile,clerical,no,catholic,yes,democrat
+58,male,White,CollegeDegree,suburban,north central,34-67 %ile,professional,no,catholic,yes,republican
+39,female,White,CollegeDegree,central,north central,17-33 %ile,professional,no,protestant,yes,democrat
+33,male,White,SomeCollege,suburban,north central,34-67 %ile,skilled,no,catholic,yes,republican
+33,female,White,SomeCollege,suburban,south,34-67 %ile,professional,no,protestant,yes,other
+33,male,White,SomeCollege,suburban,south,68-95 %ile,skilled,no,other,yes,democrat
+69,female,White,HighSchool,suburban,north central,34-67 %ile,homemakers,yes,protestant,yes,democrat
+30,female,White,SomeCollege,rural,northeast,34-67 %ile,clerical,no,protestant,yes,democrat
+31,female,NativeAmerican,SomeCollege,rural,south,68-95 %ile,clerical,no,protestant,yes,other
+72,female,White,HighSchool,suburban,north central,17-33 %ile,skilled,no,catholic,yes,republican
+23,male,White,SomeCollege,rural,south,68-95 %ile,skilled,yes,other,yes,other
+39,male,White,CollegeDegree,rural,south,68-95 %ile,professional,no,protestant,yes,republican
+41,female,White,HighSchool,suburban,northeast,34-67 %ile,laborer,yes,protestant,yes,NA
+36,male,White,CollegeDegree,suburban,north central,34-67 %ile,professional,no,protestant,yes,democrat
+64,male,White,HighSchool,central,north central,68-95 %ile,skilled,no,protestant,yes,republican
+39,male,NativeAmerican,SomeCollege,suburban,south,68-95 %ile,laborer,no,catholic,no,NA
+31,male,White,CollegeDegree,suburban,north central,68-95 %ile,professional,no,catholic,yes,republican
+71,female,Black,HighSchool,suburban,northeast,17-33 %ile,skilled,no,protestant,yes,democrat
+35,female,White,SomeCollege,rural,north central,34-67 %ile,clerical,no,protestant,yes,republican
+89,female,White,GradeSchool,suburban,north central,17-33 %ile,professional,no,protestant,yes,republican
+20,male,White,HighSchool,central,west,34-67 %ile,skilled,no,protestant,no,NA
+56,female,NativeAmerican,SomeCollege,central,west,34-67 %ile,clerical,no,other,yes,democrat
+64,female,White,SomeCollege,central,west,34-67 %ile,professional,no,protestant,yes,republican
+62,male,White,HighSchool,central,north central,34-67 %ile,skilled,yes,catholic,yes,democrat
+52,male,White,CollegeDegree,central,north central,34-67 %ile,clerical,no,protestant,yes,other
+66,female,Black,GradeSchool,suburban,south,34-67 %ile,skilled,no,catholic,no,NA
+69,female,Black,CollegeDegree,central,south,17-33 %ile,professional,no,protestant,yes,democrat
+33,male,White,CollegeDegree,suburban,south,96-100 %ile,professional,no,protestant,yes,republican
+69,female,White,HighSchool,central,northeast,34-67 %ile,homemakers,yes,catholic,yes,democrat
+23,male,White,SomeCollege,suburban,north central,34-67 %ile,clerical,no,protestant,yes,republican
+30,male,White,HighSchool,rural,north central,34-67 %ile,skilled,yes,other,yes,democrat
+43,male,White,SomeCollege,rural,northeast,34-67 %ile,professional,no,protestant,yes,republican
+67,female,White,HighSchool,suburban,north central,17-33 %ile,homemakers,no,protestant,yes,other
+27,male,Black,HighSchool,rural,south,68-95 %ile,farmers,no,protestant,yes,democrat
+80,male,White,HighSchool,rural,northeast,0-16 %ile,skilled,no,other,yes,republican
+37,male,White,HighSchool,rural,northeast,68-95 %ile,skilled,no,catholic,yes,democrat
+32,male,Hispanic,CollegeDegree,rural,south,34-67 %ile,professional,no,catholic,yes,democrat
+53,male,White,CollegeDegree,suburban,south,68-95 %ile,skilled,no,protestant,yes,republican
+54,female,NativeAmerican,CollegeDegree,suburban,northeast,68-95 %ile,professional,no,protestant,yes,republican
+68,male,Hispanic,GradeSchool,suburban,west,17-33 %ile,farmers,no,catholic,yes,democrat
+36,female,Hispanic,SomeCollege,suburban,west,17-33 %ile,skilled,no,protestant,yes,democrat
+35,female,White,CollegeDegree,suburban,north central,34-67 %ile,clerical,no,catholic,yes,republican
+39,male,Black,SomeCollege,suburban,south,0-16 %ile,skilled,yes,protestant,yes,democrat
+54,female,White,HighSchool,rural,northeast,68-95 %ile,professional,no,catholic,yes,democrat
+34,male,Black,SomeCollege,central,west,34-67 %ile,clerical,yes,protestant,yes,democrat
+27,female,White,CollegeDegree,suburban,northeast,17-33 %ile,skilled,yes,other,yes,republican
+62,female,White,HighSchool,rural,north central,0-16 %ile,clerical,no,protestant,yes,republican
+44,female,White,HighSchool,suburban,south,17-33 %ile,clerical,no,protestant,yes,republican
+22,male,White,HighSchool,suburban,west,17-33 %ile,skilled,no,catholic,no,NA
+27,female,White,HighSchool,rural,north central,17-33 %ile,homemakers,no,protestant,no,NA
+71,male,White,SomeCollege,suburban,north central,34-67 %ile,skilled,yes,protestant,yes,democrat
+70,male,Black,GradeSchool,central,north central,17-33 %ile,skilled,yes,protestant,yes,democrat
+18,male,White,HighSchool,rural,south,68-95 %ile,laborer,no,protestant,no,NA
+51,male,White,SomeCollege,suburban,northeast,68-95 %ile,professional,no,catholic,yes,other
+35,male,White,SomeCollege,suburban,north central,68-95 %ile,professional,no,protestant,yes,republican
+37,male,Black,HighSchool,central,north central,34-67 %ile,skilled,yes,protestant,no,NA
+54,female,White,HighSchool,central,north central,17-33 %ile,homemakers,yes,protestant,yes,democrat
+37,male,White,CollegeDegree,suburban,south,96-100 %ile,clerical,no,protestant,yes,republican
+58,female,Black,GradeSchool,rural,south,0-16 %ile,professional,no,protestant,yes,democrat
+30,male,White,SomeCollege,suburban,south,0-16 %ile,clerical,no,other,no,NA
+58,male,White,CollegeDegree,suburban,south,96-100 %ile,professional,no,protestant,yes,other
+77,male,White,HighSchool,suburban,north central,0-16 %ile,skilled,no,protestant,yes,democrat
+32,female,White,HighSchool,suburban,northeast,34-67 %ile,homemakers,no,protestant,no,NA
+17,female,Black,HighSchool,central,northeast,34-67 %ile,professional,yes,protestant,no,NA
+53,male,Black,SomeCollege,central,northeast,68-95 %ile,professional,no,other,yes,democrat
+42,female,Black,CollegeDegree,central,northeast,0-16 %ile,professional,no,protestant,yes,democrat
+35,female,Black,SomeCollege,central,northeast,68-95 %ile,clerical,yes,protestant,yes,democrat
+44,female,White,SomeCollege,suburban,northeast,68-95 %ile,skilled,yes,protestant,yes,democrat
+39,female,White,SomeCollege,suburban,northeast,34-67 %ile,homemakers,no,catholic,yes,democrat
+30,female,White,SomeCollege,central,south,68-95 %ile,clerical,no,protestant,yes,republican
+49,female,White,HighSchool,rural,south,17-33 %ile,skilled,no,protestant,yes,democrat
+32,female,White,SomeCollege,suburban,south,34-67 %ile,professional,no,protestant,yes,republican
+45,female,White,CollegeDegree,suburban,south,68-95 %ile,professional,no,protestant,yes,democrat
+51,female,White,CollegeDegree,rural,north central,68-95 %ile,professional,yes,catholic,yes,other
+78,female,Black,CollegeDegree,rural,south,68-95 %ile,professional,no,protestant,yes,democrat
+67,male,White,HighSchool,rural,west,17-33 %ile,professional,no,other,no,NA
+43,male,White,SomeCollege,rural,west,68-95 %ile,professional,no,catholic,yes,other
+84,female,White,HighSchool,suburban,northeast,17-33 %ile,homemakers,no,protestant,yes,democrat
+59,female,White,HighSchool,suburban,north central,68-95 %ile,homemakers,yes,protestant,yes,democrat
+34,male,White,SomeCollege,suburban,south,68-95 %ile,professional,no,catholic,yes,republican
+28,female,White,HighSchool,suburban,north central,68-95 %ile,skilled,no,protestant,yes,republican
+58,female,White,HighSchool,central,north central,68-95 %ile,homemakers,no,catholic,yes,republican
+43,male,White,HighSchool,central,north central,68-95 %ile,professional,no,other,yes,democrat
+83,female,White,CollegeDegree,suburban,south,68-95 %ile,professional,no,protestant,yes,republican
+51,male,White,CollegeDegree,central,west,96-100 %ile,clerical,no,protestant,yes,republican
+65,male,White,CollegeDegree,rural,northeast,68-95 %ile,professional,no,jewish,yes,republican
+67,female,White,CollegeDegree,rural,northeast,17-33 %ile,professional,no,protestant,yes,republican
+38,female,White,CollegeDegree,rural,northeast,68-95 %ile,professional,yes,catholic,yes,democrat
+33,female,White,HighSchool,rural,northeast,17-33 %ile,professional,no,catholic,yes,republican
+26,male,White,HighSchool,rural,north central,34-67 %ile,skilled,no,catholic,yes,republican
+23,male,White,CollegeDegree,rural,north central,0-16 %ile,professional,no,protestant,yes,democrat
+25,female,White,SomeCollege,suburban,south,68-95 %ile,professional,no,protestant,yes,other
+34,male,White,CollegeDegree,rural,south,68-95 %ile,professional,no,catholic,no,NA
+34,female,Black,CollegeDegree,rural,south,96-100 %ile,professional,no,catholic,yes,democrat
+63,male,White,HighSchool,suburban,north central,68-95 %ile,professional,yes,protestant,yes,republican
+48,male,White,CollegeDegree,suburban,south,68-95 %ile,professional,yes,catholic,yes,republican
+85,male,White,CollegeDegree,central,south,68-95 %ile,skilled,no,other,yes,republican
+30,male,White,CollegeDegree,suburban,northeast,34-67 %ile,professional,no,catholic,yes,republican
+81,male,White,SomeCollege,suburban,northeast,68-95 %ile,professional,no,protestant,yes,democrat
+39,male,White,CollegeDegree,suburban,north central,68-95 %ile,professional,no,protestant,yes,republican
+40,male,White,CollegeDegree,suburban,south,68-95 %ile,clerical,no,catholic,yes,republican
+38,male,White,CollegeDegree,suburban,south,68-95 %ile,professional,no,protestant,yes,republican
+36,male,White,CollegeDegree,suburban,south,0-16 %ile,professional,no,protestant,yes,other
+43,male,White,HighSchool,suburban,south,68-95 %ile,clerical,no,protestant,yes,democrat
+46,female,Black,SomeCollege,central,north central,17-33 %ile,skilled,yes,protestant,yes,democrat
+26,male,White,HighSchool,suburban,north central,68-95 %ile,skilled,no,protestant,yes,other
+41,female,White,SomeCollege,suburban,north central,68-95 %ile,clerical,yes,catholic,yes,NA
+55,female,White,HighSchool,central,north central,34-67 %ile,skilled,yes,protestant,yes,democrat
+51,male,White,CollegeDegree,rural,south,68-95 %ile,professional,no,protestant,no,NA
+46,female,Black,SomeCollege,central,south,68-95 %ile,clerical,yes,protestant,yes,democrat
+36,male,White,SomeCollege,central,west,0-16 %ile,clerical,no,protestant,yes,democrat
+25,female,White,SomeCollege,central,west,17-33 %ile,skilled,no,other,yes,democrat
+36,female,White,SomeCollege,rural,south,68-95 %ile,clerical,yes,protestant,yes,republican
+37,male,White,CollegeDegree,suburban,south,68-95 %ile,professional,no,other,yes,other
+32,male,White,CollegeDegree,rural,north central,68-95 %ile,clerical,no,protestant,yes,other
+78,male,White,CollegeDegree,rural,south,68-95 %ile,professional,no,protestant,yes,republican
+65,female,White,SomeCollege,suburban,south,34-67 %ile,clerical,no,protestant,yes,democrat
+31,male,White,CollegeDegree,suburban,north central,34-67 %ile,professional,no,catholic,yes,democrat
+37,female,White,HighSchool,rural,south,34-67 %ile,skilled,yes,protestant,yes,republican
+73,female,Black,HighSchool,suburban,northeast,17-33 %ile,skilled,no,protestant,yes,democrat
+51,female,White,SomeCollege,suburban,north central,68-95 %ile,homemakers,no,other,yes,democrat
+38,female,Hispanic,CollegeDegree,central,south,17-33 %ile,professional,no,catholic,yes,republican
+34,female,Black,HighSchool,central,south,17-33 %ile,skilled,no,protestant,yes,democrat
+51,male,White,HighSchool,central,south,0-16 %ile,skilled,no,protestant,no,NA
+19,female,NativeAmerican,HighSchool,rural,south,96-100 %ile,homemakers,no,other,no,NA
+36,male,White,SomeCollege,rural,west,0-16 %ile,skilled,no,other,yes,NA
+38,female,White,CollegeDegree,rural,west,0-16 %ile,clerical,no,other,yes,other
+35,female,White,HighSchool,central,south,17-33 %ile,homemakers,no,other,yes,republican
+24,male,White,SomeCollege,suburban,south,17-33 %ile,skilled,no,other,yes,democrat
+49,male,White,SomeCollege,rural,south,96-100 %ile,professional,no,protestant,no,NA
+39,male,White,CollegeDegree,rural,south,17-33 %ile,professional,no,protestant,yes,democrat
+39,female,White,HighSchool,suburban,north central,68-95 %ile,professional,no,protestant,yes,republican
+41,male,White,SomeCollege,rural,north central,34-67 %ile,farmers,no,protestant,yes,republican
+60,female,White,HighSchool,rural,north central,17-33 %ile,clerical,no,catholic,yes,democrat
+51,male,White,SomeCollege,central,south,68-95 %ile,professional,yes,protestant,yes,republican
+41,male,White,CollegeDegree,suburban,south,68-95 %ile,professional,no,catholic,yes,democrat
+19,male,White,SomeCollege,rural,north central,68-95 %ile,professional,no,catholic,yes,other
+70,female,White,CollegeDegree,rural,north central,68-95 %ile,professional,no,catholic,yes,republican
+71,male,White,HighSchool,central,north central,34-67 %ile,skilled,no,catholic,yes,democrat
+79,female,White,HighSchool,suburban,north central,17-33 %ile,clerical,no,catholic,yes,republican
+32,male,White,CollegeDegree,suburban,south,68-95 %ile,professional,no,protestant,yes,republican
+49,female,White,SomeCollege,suburban,south,68-95 %ile,professional,no,protestant,yes,other
+37,female,White,SomeCollege,suburban,south,68-95 %ile,homemakers,no,protestant,yes,republican
+68,female,White,HighSchool,rural,south,68-95 %ile,clerical,no,protestant,yes,democrat
+32,male,White,HighSchool,rural,south,34-67 %ile,skilled,no,protestant,no,NA
+49,female,White,HighSchool,central,north central,34-67 %ile,skilled,yes,protestant,no,NA
+38,male,White,GradeSchool,central,northeast,34-67 %ile,professional,no,other,no,NA
+33,female,Black,SomeCollege,rural,south,34-67 %ile,clerical,no,protestant,yes,democrat
+69,female,Black,GradeSchool,rural,south,0-16 %ile,skilled,no,protestant,yes,democrat
+41,male,Asian,HighSchool,central,northeast,68-95 %ile,skilled,no,other,no,NA
+50,male,White,CollegeDegree,central,south,96-100 %ile,professional,no,catholic,yes,democrat
+51,female,White,HighSchool,rural,south,34-67 %ile,clerical,no,other,yes,democrat
+60,female,White,SomeCollege,suburban,south,34-67 %ile,clerical,no,protestant,yes,republican
+52,female,Black,GradeSchool,suburban,northeast,0-16 %ile,skilled,no,protestant,no,NA
+67,female,White,HighSchool,central,north central,34-67 %ile,professional,yes,other,yes,democrat
+40,male,White,SomeCollege,suburban,south,0-16 %ile,clerical,no,other,yes,democrat
+29,male,White,SomeCollege,central,south,34-67 %ile,skilled,no,other,yes,other
+39,female,White,CollegeDegree,suburban,south,68-95 %ile,clerical,no,protestant,yes,republican
+37,female,White,CollegeDegree,central,west,68-95 %ile,professional,yes,protestant,yes,democrat
+28,female,Black,SomeCollege,central,northeast,34-67 %ile,clerical,no,catholic,no,NA
+35,female,White,CollegeDegree,rural,south,96-100 %ile,clerical,no,protestant,yes,other
+49,male,White,CollegeDegree,suburban,northeast,68-95 %ile,professional,no,catholic,yes,republican
+23,female,White,CollegeDegree,rural,north central,34-67 %ile,clerical,no,other,yes,democrat
+77,male,White,HighSchool,rural,south,17-33 %ile,clerical,no,protestant,yes,NA
+63,male,White,HighSchool,rural,north central,68-95 %ile,skilled,no,protestant,no,NA
+68,female,White,HighSchool,suburban,south,0-16 %ile,skilled,no,protestant,no,NA
+35,female,White,CollegeDegree,suburban,northeast,96-100 %ile,professional,no,other,yes,democrat
+48,male,White,GradeSchool,suburban,north central,68-95 %ile,laborer,yes,protestant,yes,democrat
+81,male,White,GradeSchool,suburban,north central,0-16 %ile,skilled,yes,protestant,yes,republican
+23,female,Black,SomeCollege,central,south,34-67 %ile,homemakers,yes,other,yes,democrat
+88,female,White,HighSchool,suburban,northeast,17-33 %ile,clerical,no,jewish,yes,democrat
+31,male,Asian,CollegeDegree,suburban,south,68-95 %ile,professional,no,other,yes,republican
+54,female,White,CollegeDegree,suburban,south,68-95 %ile,professional,no,catholic,no,NA
+39,male,White,CollegeDegree,central,north central,68-95 %ile,professional,no,protestant,yes,other
+71,female,White,SomeCollege,central,south,34-67 %ile,clerical,no,catholic,yes,republican
+73,female,White,SomeCollege,suburban,north central,17-33 %ile,clerical,yes,protestant,yes,republican
+19,male,White,SomeCollege,suburban,north central,68-95 %ile,skilled,no,other,yes,democrat
+39,male,Hispanic,HighSchool,central,west,34-67 %ile,skilled,yes,catholic,yes,democrat
+65,female,White,CollegeDegree,rural,northeast,34-67 %ile,professional,no,catholic,yes,democrat
+81,male,White,GradeSchool,rural,northeast,34-67 %ile,skilled,no,other,yes,other
+37,female,White,SomeCollege,rural,northeast,17-33 %ile,professional,yes,protestant,yes,democrat
+35,female,White,CollegeDegree,rural,northeast,96-100 %ile,homemakers,no,protestant,yes,republican
+65,male,White,GradeSchool,rural,northeast,17-33 %ile,skilled,no,protestant,yes,democrat
+68,male,White,CollegeDegree,suburban,northeast,34-67 %ile,professional,no,catholic,yes,other
+35,male,White,HighSchool,rural,north central,34-67 %ile,clerical,no,catholic,yes,other
+62,female,Hispanic,GradeSchool,suburban,south,0-16 %ile,skilled,no,protestant,yes,democrat
+43,female,Black,HighSchool,suburban,south,17-33 %ile,skilled,no,protestant,yes,democrat
+32,male,White,SomeCollege,central,west,68-95 %ile,skilled,yes,other,no,NA
+21,female,NativeAmerican,HighSchool,central,west,34-67 %ile,clerical,no,protestant,yes,republican
+51,female,White,SomeCollege,central,west,17-33 %ile,professional,no,protestant,yes,democrat
+26,female,Hispanic,HighSchool,central,west,17-33 %ile,homemakers,no,other,yes,republican
+31,male,White,CollegeDegree,suburban,northeast,17-33 %ile,clerical,no,protestant,yes,democrat
+35,female,White,CollegeDegree,suburban,south,34-67 %ile,professional,yes,protestant,yes,republican
+65,male,White,CollegeDegree,central,west,68-95 %ile,professional,no,protestant,yes,republican
+43,male,White,HighSchool,rural,north central,34-67 %ile,farmers,no,catholic,yes,democrat
+79,female,White,SomeCollege,rural,west,68-95 %ile,professional,no,protestant,yes,republican
+59,male,White,CollegeDegree,rural,west,68-95 %ile,professional,yes,protestant,yes,democrat
+45,female,White,CollegeDegree,rural,northeast,34-67 %ile,professional,yes,catholic,yes,democrat
+35,male,White,HighSchool,rural,south,68-95 %ile,professional,no,other,no,NA
+54,female,White,SomeCollege,rural,south,34-67 %ile,clerical,no,protestant,yes,democrat
+57,female,White,HighSchool,rural,south,34-67 %ile,farmers,yes,protestant,yes,republican
+60,female,White,SomeCollege,central,west,17-33 %ile,clerical,no,catholic,yes,democrat
+60,female,Hispanic,HighSchool,suburban,west,68-95 %ile,skilled,no,catholic,yes,other
+22,female,White,HighSchool,suburban,west,34-67 %ile,clerical,yes,protestant,yes,democrat
+49,female,White,SomeCollege,suburban,north central,96-100 %ile,professional,no,protestant,yes,republican
+31,female,White,HighSchool,suburban,north central,68-95 %ile,clerical,no,catholic,yes,democrat
+58,male,White,HighSchool,rural,north central,34-67 %ile,clerical,no,other,yes,republican
+31,female,White,SomeCollege,central,south,68-95 %ile,professional,no,catholic,yes,democrat
+59,female,White,CollegeDegree,central,south,68-95 %ile,professional,no,protestant,yes,republican
+31,male,White,HighSchool,central,west,34-67 %ile,skilled,no,catholic,no,NA
+39,male,White,HighSchool,rural,northeast,68-95 %ile,professional,no,protestant,yes,other
+40,male,White,SomeCollege,rural,northeast,68-95 %ile,clerical,yes,catholic,yes,democrat
+22,female,White,SomeCollege,central,north central,68-95 %ile,clerical,yes,protestant,yes,other
+33,male,Black,CollegeDegree,central,south,68-95 %ile,clerical,yes,protestant,yes,democrat
+68,male,White,HighSchool,rural,northeast,68-95 %ile,skilled,no,catholic,yes,democrat
+27,female,White,HighSchool,rural,south,68-95 %ile,clerical,no,protestant,yes,democrat
+45,male,White,CollegeDegree,suburban,northeast,68-95 %ile,clerical,no,catholic,yes,republican
+74,male,White,HighSchool,suburban,northeast,17-33 %ile,skilled,no,catholic,yes,democrat
+18,male,White,HighSchool,central,south,68-95 %ile,skilled,no,protestant,yes,republican
+21,male,Hispanic,SomeCollege,central,south,34-67 %ile,farmers,no,protestant,yes,republican
+66,male,Black,HighSchool,central,south,0-16 %ile,skilled,no,protestant,no,NA
+65,female,White,HighSchool,suburban,south,34-67 %ile,clerical,no,protestant,yes,republican
+37,male,White,CollegeDegree,central,west,68-95 %ile,professional,no,protestant,yes,republican
+34,male,White,CollegeDegree,central,west,68-95 %ile,professional,no,protestant,yes,republican
+25,female,Hispanic,HighSchool,suburban,south,68-95 %ile,clerical,yes,other,yes,democrat
+35,female,White,HighSchool,suburban,north central,34-67 %ile,clerical,no,protestant,yes,republican
+22,female,White,HighSchool,rural,south,0-16 %ile,homemakers,no,protestant,no,NA
+38,male,White,HighSchool,rural,south,34-67 %ile,skilled,no,protestant,no,NA
+44,male,NativeAmerican,CollegeDegree,rural,south,34-67 %ile,skilled,no,protestant,yes,democrat
+40,female,Black,HighSchool,rural,south,0-16 %ile,homemakers,no,protestant,no,NA
+29,female,White,SomeCollege,suburban,west,68-95 %ile,clerical,no,protestant,yes,democrat
+22,female,White,SomeCollege,suburban,north central,17-33 %ile,skilled,no,catholic,yes,other
+28,male,White,SomeCollege,suburban,north central,34-67 %ile,clerical,no,catholic,yes,NA
+40,female,White,CollegeDegree,central,south,68-95 %ile,homemakers,no,catholic,yes,democrat
+32,female,White,SomeCollege,suburban,north central,68-95 %ile,clerical,no,catholic,yes,republican
+46,female,White,SomeCollege,suburban,north central,34-67 %ile,homemakers,no,protestant,yes,republican
+43,male,White,CollegeDegree,suburban,north central,68-95 %ile,clerical,yes,protestant,yes,democrat
+30,female,White,CollegeDegree,suburban,north central,68-95 %ile,professional,yes,protestant,yes,republican
+35,male,White,SomeCollege,suburban,north central,34-67 %ile,farmers,no,protestant,yes,republican
+34,female,White,HighSchool,suburban,north central,34-67 %ile,clerical,no,protestant,yes,republican
+81,male,White,GradeSchool,central,south,0-16 %ile,skilled,no,other,no,NA
+56,female,White,HighSchool,suburban,north central,68-95 %ile,professional,no,protestant,yes,NA
+54,male,Black,GradeSchool,rural,south,34-67 %ile,skilled,no,protestant,no,NA
+67,female,White,HighSchool,rural,north central,17-33 %ile,homemakers,no,protestant,yes,republican
+45,female,White,GradeSchool,rural,south,0-16 %ile,skilled,no,protestant,no,NA
+23,female,White,SomeCollege,suburban,north central,17-33 %ile,clerical,no,catholic,yes,republican
+45,female,Black,SomeCollege,central,north central,34-67 %ile,clerical,no,protestant,yes,democrat
+51,male,White,SomeCollege,suburban,north central,68-95 %ile,skilled,yes,catholic,yes,other
+44,male,White,CollegeDegree,central,north central,68-95 %ile,clerical,no,catholic,yes,democrat
+31,female,NativeAmerican,HighSchool,rural,south,17-33 %ile,professional,no,protestant,yes,democrat
+69,female,White,SomeCollege,suburban,northeast,68-95 %ile,clerical,no,catholic,yes,democrat
+46,female,White,HighSchool,rural,west,0-16 %ile,clerical,no,catholic,yes,democrat
+34,female,White,CollegeDegree,rural,south,68-95 %ile,professional,no,protestant,yes,other
+27,female,White,CollegeDegree,rural,south,34-67 %ile,professional,no,protestant,yes,democrat
+19,female,White,SomeCollege,rural,south,17-33 %ile,professional,no,protestant,yes,republican
+67,female,White,GradeSchool,rural,north central,34-67 %ile,skilled,no,protestant,yes,republican
+35,female,White,HighSchool,rural,north central,68-95 %ile,clerical,no,protestant,yes,republican
+27,female,Hispanic,HighSchool,suburban,west,68-95 %ile,clerical,no,protestant,no,NA
+19,male,White,HighSchool,central,west,0-16 %ile,laborer,no,protestant,yes,other
+22,female,Black,HighSchool,central,south,17-33 %ile,professional,no,protestant,yes,democrat
+20,female,Black,HighSchool,central,south,17-33 %ile,homemakers,no,protestant,no,NA
+41,female,White,CollegeDegree,suburban,south,34-67 %ile,professional,yes,protestant,yes,republican
+33,male,Black,CollegeDegree,suburban,north central,68-95 %ile,clerical,no,protestant,yes,democrat
+19,male,Black,HighSchool,suburban,northeast,0-16 %ile,professional,no,protestant,yes,democrat
+31,male,White,CollegeDegree,suburban,northeast,68-95 %ile,professional,no,protestant,yes,republican
+35,female,White,HighSchool,suburban,northeast,17-33 %ile,skilled,no,protestant,yes,democrat
+37,female,Black,CollegeDegree,suburban,northeast,68-95 %ile,homemakers,yes,protestant,yes,democrat
+39,male,White,HighSchool,suburban,west,68-95 %ile,professional,no,other,yes,other
+42,male,Black,CollegeDegree,suburban,west,96-100 %ile,skilled,yes,catholic,yes,democrat
+51,male,Hispanic,HighSchool,rural,northeast,34-67 %ile,farmers,yes,other,yes,democrat
+55,female,White,SomeCollege,rural,northeast,96-100 %ile,clerical,yes,catholic,yes,republican
+33,male,White,CollegeDegree,rural,south,34-67 %ile,professional,no,protestant,yes,republican
+61,female,Black,HighSchool,rural,south,17-33 %ile,skilled,no,protestant,yes,republican
+36,male,White,HighSchool,rural,south,17-33 %ile,laborer,no,protestant,yes,republican
+31,male,White,HighSchool,rural,west,68-95 %ile,skilled,yes,protestant,yes,republican
+49,female,Black,SomeCollege,central,west,0-16 %ile,skilled,no,other,yes,democrat
+41,male,Black,HighSchool,central,north central,34-67 %ile,skilled,yes,protestant,yes,republican
+20,female,White,SomeCollege,central,south,0-16 %ile,clerical,no,protestant,yes,other
+62,female,White,HighSchool,central,south,0-16 %ile,professional,no,protestant,yes,republican
+49,female,Hispanic,HighSchool,suburban,south,17-33 %ile,homemakers,no,catholic,yes,democrat
+85,female,White,SomeCollege,rural,south,17-33 %ile,professional,no,protestant,yes,republican
+66,female,Hispanic,HighSchool,suburban,northeast,17-33 %ile,skilled,no,protestant,yes,republican
+32,female,White,SomeCollege,suburban,north central,68-95 %ile,homemakers,no,protestant,yes,democrat
+24,male,White,SomeCollege,central,west,34-67 %ile,skilled,no,protestant,yes,republican
+32,female,Hispanic,SomeCollege,suburban,northeast,96-100 %ile,clerical,no,other,no,NA
+54,male,White,CollegeDegree,suburban,northeast,68-95 %ile,clerical,no,catholic,yes,democrat
+51,male,White,CollegeDegree,suburban,south,96-100 %ile,professional,no,protestant,yes,democrat
+58,male,White,HighSchool,rural,south,0-16 %ile,skilled,no,protestant,yes,democrat
+32,male,Asian,CollegeDegree,rural,south,68-95 %ile,professional,no,protestant,yes,republican
+35,female,White,SomeCollege,rural,south,17-33 %ile,skilled,no,protestant,yes,republican
+42,male,White,CollegeDegree,suburban,north central,68-95 %ile,professional,no,other,yes,democrat
+31,female,White,HighSchool,suburban,south,34-67 %ile,clerical,no,protestant,yes,republican
+41,male,White,CollegeDegree,rural,south,68-95 %ile,professional,no,protestant,yes,republican
+57,male,Black,HighSchool,central,northeast,68-95 %ile,skilled,yes,protestant,yes,democrat
+33,male,White,SomeCollege,rural,north central,34-67 %ile,skilled,no,protestant,yes,republican
+74,female,White,CollegeDegree,central,west,68-95 %ile,professional,no,protestant,yes,republican
+72,female,White,CollegeDegree,central,west,68-95 %ile,homemakers,no,other,yes,democrat
+42,male,White,CollegeDegree,suburban,west,68-95 %ile,professional,no,protestant,no,NA
+38,male,White,HighSchool,central,north central,68-95 %ile,professional,yes,catholic,yes,democrat
+43,female,White,CollegeDegree,suburban,south,96-100 %ile,professional,no,other,yes,democrat
+45,male,White,CollegeDegree,rural,south,68-95 %ile,farmers,no,protestant,yes,other
+53,female,Hispanic,GradeSchool,rural,south,34-67 %ile,skilled,no,protestant,no,NA
+37,female,White,CollegeDegree,central,south,68-95 %ile,professional,no,other,yes,democrat
+32,female,White,CollegeDegree,suburban,south,68-95 %ile,homemakers,no,protestant,yes,republican
+23,female,White,HighSchool,suburban,south,17-33 %ile,clerical,no,protestant,no,NA
+29,female,White,HighSchool,rural,north central,0-16 %ile,professional,no,protestant,no,NA
+34,male,Hispanic,SomeCollege,central,northeast,34-67 %ile,clerical,no,catholic,yes,democrat
+65,male,White,HighSchool,suburban,north central,68-95 %ile,skilled,yes,protestant,yes,democrat
+44,female,White,HighSchool,central,north central,68-95 %ile,laborer,yes,protestant,yes,democrat
+43,female,White,HighSchool,suburban,north central,0-16 %ile,skilled,no,protestant,no,NA
+36,female,White,CollegeDegree,suburban,northeast,68-95 %ile,skilled,yes,catholic,yes,republican
+81,male,White,HighSchool,suburban,northeast,34-67 %ile,skilled,no,catholic,yes,republican
+23,female,White,CollegeDegree,suburban,south,96-100 %ile,professional,no,catholic,yes,democrat
+40,male,White,CollegeDegree,suburban,northeast,68-95 %ile,clerical,no,catholic,yes,other
+36,male,White,SomeCollege,suburban,northeast,17-33 %ile,skilled,no,catholic,yes,democrat
+39,female,White,CollegeDegree,suburban,northeast,68-95 %ile,professional,yes,catholic,yes,other
+31,male,White,SomeCollege,suburban,northeast,34-67 %ile,clerical,no,protestant,yes,other
+36,male,White,HighSchool,suburban,northeast,68-95 %ile,skilled,no,catholic,no,NA
+18,female,Hispanic,HighSchool,suburban,north central,34-67 %ile,professional,no,catholic,yes,republican
+63,female,White,HighSchool,rural,north central,0-16 %ile,clerical,no,protestant,yes,democrat
+52,female,White,HighSchool,suburban,west,68-95 %ile,clerical,no,protestant,yes,republican
+54,female,Hispanic,CollegeDegree,rural,south,68-95 %ile,professional,no,catholic,yes,republican
+38,female,Hispanic,HighSchool,central,west,0-16 %ile,skilled,no,catholic,no,NA
+52,female,White,HighSchool,rural,south,68-95 %ile,clerical,no,protestant,yes,republican
+74,female,White,CollegeDegree,suburban,north central,17-33 %ile,professional,no,protestant,yes,republican
+75,female,White,GradeSchool,central,north central,68-95 %ile,skilled,no,catholic,yes,democrat
+67,female,White,GradeSchool,rural,south,17-33 %ile,skilled,no,protestant,yes,democrat
+21,female,White,SomeCollege,central,south,34-67 %ile,skilled,no,catholic,yes,other
+29,male,White,CollegeDegree,central,south,34-67 %ile,skilled,no,catholic,yes,republican
+35,male,White,HighSchool,rural,north central,96-100 %ile,laborer,yes,protestant,yes,republican
+33,female,Black,HighSchool,central,south,34-67 %ile,skilled,no,protestant,yes,democrat
+83,female,Black,GradeSchool,rural,south,34-67 %ile,skilled,no,protestant,yes,democrat
+57,male,Asian,CollegeDegree,rural,south,68-95 %ile,professional,no,other,yes,democrat
+87,female,White,SomeCollege,suburban,south,68-95 %ile,homemakers,no,protestant,yes,republican
+31,female,White,HighSchool,rural,northeast,68-95 %ile,skilled,yes,protestant,yes,democrat
+37,female,White,SomeCollege,suburban,south,34-67 %ile,clerical,no,protestant,yes,republican
+52,male,White,SomeCollege,central,south,34-67 %ile,skilled,yes,other,yes,other
+38,female,White,CollegeDegree,suburban,south,68-95 %ile,homemakers,no,protestant,yes,republican
+69,male,White,CollegeDegree,suburban,south,96-100 %ile,clerical,no,other,yes,republican
+57,male,NativeAmerican,SomeCollege,central,west,17-33 %ile,clerical,no,other,yes,democrat
+51,male,White,GradeSchool,rural,northeast,34-67 %ile,skilled,no,protestant,no,NA
+35,male,White,SomeCollege,rural,northeast,68-95 %ile,skilled,no,protestant,yes,democrat
+49,male,White,SomeCollege,rural,northeast,68-95 %ile,skilled,no,catholic,yes,republican
+25,male,White,SomeCollege,rural,south,17-33 %ile,skilled,no,protestant,yes,other
+82,female,White,HighSchool,suburban,northeast,0-16 %ile,clerical,no,protestant,yes,republican
+36,male,Black,HighSchool,rural,south,0-16 %ile,laborer,no,protestant,no,NA
+43,male,White,CollegeDegree,suburban,south,96-100 %ile,professional,no,protestant,yes,democrat
+56,male,Asian,CollegeDegree,central,north central,34-67 %ile,professional,no,catholic,yes,republican
+70,male,White,SomeCollege,central,north central,17-33 %ile,clerical,no,catholic,yes,republican
+38,male,White,SomeCollege,central,south,34-67 %ile,clerical,no,catholic,yes,other
+33,female,White,HighSchool,rural,south,68-95 %ile,skilled,no,protestant,yes,republican
+37,male,White,CollegeDegree,rural,north central,34-67 %ile,professional,no,catholic,yes,republican
+34,female,NativeAmerican,CollegeDegree,suburban,south,0-16 %ile,professional,no,protestant,yes,democrat
+78,female,White,SomeCollege,suburban,south,68-95 %ile,homemakers,no,protestant,yes,republican
+38,female,White,HighSchool,suburban,north central,0-16 %ile,skilled,no,protestant,yes,democrat
+45,female,Hispanic,SomeCollege,central,west,34-67 %ile,professional,no,catholic,yes,democrat
+28,female,White,SomeCollege,suburban,west,68-95 %ile,skilled,no,other,yes,democrat
+80,female,Black,HighSchool,suburban,northeast,17-33 %ile,skilled,no,protestant,yes,democrat
+65,female,White,GradeSchool,suburban,north central,34-67 %ile,skilled,no,catholic,yes,republican
+44,male,White,CollegeDegree,suburban,north central,68-95 %ile,professional,no,other,yes,other
+34,male,Black,SomeCollege,central,northeast,34-67 %ile,clerical,yes,protestant,yes,republican
+70,female,White,SomeCollege,suburban,west,17-33 %ile,clerical,no,protestant,yes,democrat
+36,male,White,CollegeDegree,central,west,34-67 %ile,clerical,no,protestant,yes,republican
+33,male,White,CollegeDegree,rural,south,34-67 %ile,professional,no,protestant,yes,republican
+54,female,White,CollegeDegree,suburban,south,68-95 %ile,professional,yes,protestant,yes,democrat
+45,female,Black,HighSchool,rural,south,0-16 %ile,skilled,no,protestant,yes,democrat
+25,female,White,HighSchool,central,north central,0-16 %ile,skilled,no,protestant,yes,democrat
+39,female,White,SomeCollege,central,south,0-16 %ile,skilled,no,protestant,yes,republican
+38,male,White,HighSchool,central,north central,34-67 %ile,skilled,yes,other,no,NA
+51,male,White,CollegeDegree,suburban,south,68-95 %ile,skilled,no,protestant,yes,republican
+23,male,Black,SomeCollege,suburban,south,68-95 %ile,clerical,no,protestant,yes,other
+43,female,White,HighSchool,suburban,south,34-67 %ile,skilled,no,other,yes,democrat
+45,female,White,HighSchool,suburban,northeast,96-100 %ile,clerical,no,catholic,yes,democrat
+72,female,White,CollegeDegree,suburban,northeast,0-16 %ile,professional,no,catholic,yes,democrat
+34,male,Black,CollegeDegree,central,north central,34-67 %ile,skilled,no,catholic,yes,democrat
+39,male,White,HighSchool,central,northeast,0-16 %ile,skilled,no,catholic,yes,democrat
+47,male,White,HighSchool,suburban,north central,68-95 %ile,skilled,yes,protestant,yes,democrat
+51,male,White,SomeCollege,suburban,north central,68-95 %ile,clerical,no,catholic,yes,republican
+22,female,Black,HighSchool,central,south,0-16 %ile,clerical,no,protestant,no,NA
+57,female,Hispanic,GradeSchool,suburban,south,17-33 %ile,skilled,no,catholic,yes,democrat
+46,female,Asian,CollegeDegree,suburban,south,68-95 %ile,skilled,no,protestant,yes,republican
+68,female,White,GradeSchool,suburban,south,17-33 %ile,skilled,no,protestant,yes,republican
+31,female,White,CollegeDegree,central,west,68-95 %ile,skilled,no,protestant,yes,republican
+53,male,Black,HighSchool,central,north central,34-67 %ile,skilled,no,protestant,no,NA
+40,male,Black,SomeCollege,central,south,34-67 %ile,skilled,no,catholic,yes,democrat
+18,female,Hispanic,SomeCollege,central,northeast,0-16 %ile,clerical,no,catholic,yes,democrat
+21,male,Black,CollegeDegree,central,northeast,34-67 %ile,clerical,no,other,yes,democrat
+50,male,White,CollegeDegree,suburban,northeast,68-95 %ile,professional,no,catholic,yes,republican
+44,male,Hispanic,SomeCollege,suburban,north central,68-95 %ile,skilled,yes,catholic,no,NA
+38,female,White,SomeCollege,suburban,northeast,68-95 %ile,homemakers,no,protestant,yes,republican
+35,male,White,SomeCollege,suburban,northeast,68-95 %ile,clerical,no,other,no,NA
+28,male,White,HighSchool,central,north central,17-33 %ile,clerical,no,other,yes,democrat
+72,male,White,CollegeDegree,rural,north central,17-33 %ile,professional,no,protestant,yes,republican
+34,male,White,SomeCollege,rural,north central,34-67 %ile,skilled,no,protestant,yes,republican
+44,male,White,HighSchool,suburban,north central,68-95 %ile,skilled,yes,catholic,yes,democrat
+45,male,White,SomeCollege,suburban,north central,68-95 %ile,skilled,yes,other,yes,democrat
+32,male,White,SomeCollege,suburban,north central,34-67 %ile,skilled,no,catholic,yes,republican
+19,male,White,HighSchool,suburban,south,34-67 %ile,clerical,no,protestant,no,NA
+52,female,White,CollegeDegree,central,west,96-100 %ile,homemakers,no,other,yes,democrat
+18,male,White,HighSchool,suburban,west,68-95 %ile,skilled,yes,other,yes,other
+37,female,Asian,CollegeDegree,suburban,west,68-95 %ile,professional,no,catholic,yes,republican
+28,male,White,HighSchool,central,west,34-67 %ile,skilled,no,protestant,yes,other
+34,male,White,HighSchool,central,west,68-95 %ile,clerical,no,other,yes,republican
+43,female,White,HighSchool,rural,northeast,34-67 %ile,clerical,yes,catholic,yes,democrat
+44,female,White,HighSchool,rural,north central,34-67 %ile,skilled,no,protestant,yes,democrat
+49,female,White,HighSchool,rural,north central,17-33 %ile,skilled,no,protestant,yes,democrat
+33,male,White,HighSchool,rural,north central,34-67 %ile,skilled,no,catholic,yes,other
+26,female,White,HighSchool,rural,north central,34-67 %ile,skilled,yes,protestant,yes,democrat
+19,male,White,SomeCollege,rural,south,0-16 %ile,professional,no,protestant,yes,democrat
+20,female,White,SomeCollege,rural,south,0-16 %ile,clerical,no,protestant,yes,republican
+19,male,White,SomeCollege,rural,south,0-16 %ile,professional,no,protestant,no,NA
+30,female,White,HighSchool,rural,south,68-95 %ile,clerical,no,protestant,yes,republican
+49,male,White,SomeCollege,rural,south,68-95 %ile,skilled,yes,protestant,yes,republican
+79,female,Black,GradeSchool,rural,south,34-67 %ile,skilled,no,protestant,yes,democrat
+79,female,Black,HighSchool,rural,south,17-33 %ile,homemakers,no,protestant,yes,democrat
+82,female,NativeAmerican,GradeSchool,rural,west,17-33 %ile,homemakers,no,protestant,yes,democrat
+37,female,White,CollegeDegree,central,south,34-67 %ile,professional,no,protestant,yes,other
+58,male,White,HighSchool,rural,north central,68-95 %ile,skilled,yes,protestant,yes,other
+38,male,White,HighSchool,rural,north central,34-67 %ile,skilled,yes,protestant,yes,republican
+34,female,White,SomeCollege,central,west,96-100 %ile,clerical,no,protestant,yes,republican
+57,male,White,CollegeDegree,suburban,north central,68-95 %ile,professional,no,protestant,yes,republican
+45,female,White,HighSchool,suburban,south,34-67 %ile,clerical,no,protestant,yes,other
+69,male,White,HighSchool,suburban,south,17-33 %ile,skilled,yes,protestant,yes,republican
+25,male,Black,CollegeDegree,suburban,south,34-67 %ile,professional,no,protestant,yes,republican
+79,male,White,HighSchool,central,west,17-33 %ile,skilled,no,protestant,yes,republican
+70,female,White,HighSchool,rural,west,34-67 %ile,skilled,no,other,yes,other
+34,male,White,CollegeDegree,rural,west,68-95 %ile,farmers,no,other,yes,republican
+49,female,White,HighSchool,rural,south,68-95 %ile,clerical,no,protestant,yes,democrat
+65,female,White,HighSchool,central,south,0-16 %ile,professional,no,catholic,yes,democrat
+26,male,White,CollegeDegree,central,south,68-95 %ile,professional,no,other,no,NA
+40,female,Black,SomeCollege,suburban,northeast,34-67 %ile,clerical,no,protestant,yes,democrat
+66,female,White,HighSchool,suburban,northeast,68-95 %ile,clerical,no,other,yes,democrat
+68,female,White,CollegeDegree,suburban,northeast,96-100 %ile,clerical,no,catholic,yes,republican
+22,male,White,GradeSchool,central,south,34-67 %ile,clerical,no,protestant,yes,republican
+29,female,White,SomeCollege,suburban,south,17-33 %ile,clerical,no,other,yes,democrat
+26,male,Black,HighSchool,suburban,south,34-67 %ile,clerical,no,protestant,yes,democrat
+50,female,White,SomeCollege,suburban,west,34-67 %ile,homemakers,yes,protestant,yes,democrat
+35,female,White,CollegeDegree,rural,south,34-67 %ile,professional,no,protestant,yes,republican
+53,male,Black,CollegeDegree,central,northeast,34-67 %ile,skilled,yes,protestant,yes,democrat
+71,female,White,CollegeDegree,central,west,68-95 %ile,professional,no,protestant,yes,republican
+47,female,NativeAmerican,CollegeDegree,central,west,34-67 %ile,professional,yes,protestant,yes,republican
+73,female,White,HighSchool,central,west,17-33 %ile,homemakers,no,protestant,yes,democrat
+71,male,White,CollegeDegree,suburban,north central,68-95 %ile,clerical,no,protestant,yes,other
+52,male,White,CollegeDegree,suburban,south,68-95 %ile,professional,no,catholic,yes,other
+45,male,White,CollegeDegree,central,south,68-95 %ile,professional,no,other,yes,democrat
+35,male,Asian,SomeCollege,central,west,17-33 %ile,farmers,no,other,yes,republican
+40,male,NativeAmerican,CollegeDegree,central,west,34-67 %ile,professional,no,other,yes,democrat
+32,male,Hispanic,HighSchool,central,west,17-33 %ile,skilled,no,protestant,yes,democrat
+21,female,White,HighSchool,rural,north central,34-67 %ile,skilled,yes,catholic,yes,democrat
+44,female,White,HighSchool,central,west,68-95 %ile,clerical,no,other,yes,other
+33,female,White,CollegeDegree,suburban,north central,34-67 %ile,skilled,no,catholic,yes,democrat
+28,female,White,HighSchool,central,west,68-95 %ile,clerical,no,catholic,yes,republican
+31,female,Black,SomeCollege,central,west,68-95 %ile,professional,no,protestant,yes,democrat
+52,female,White,HighSchool,rural,northeast,68-95 %ile,homemakers,no,catholic,yes,republican
+45,female,White,SomeCollege,rural,north central,34-67 %ile,professional,no,protestant,no,NA
+68,male,White,GradeSchool,rural,north central,0-16 %ile,skilled,no,other,yes,republican
+71,male,White,GradeSchool,rural,north central,0-16 %ile,skilled,no,protestant,yes,democrat
+42,female,NativeAmerican,CollegeDegree,rural,south,34-67 %ile,professional,no,protestant,yes,democrat
+69,male,White,HighSchool,suburban,north central,34-67 %ile,skilled,no,catholic,yes,democrat
+43,male,White,CollegeDegree,rural,south,68-95 %ile,professional,no,protestant,yes,republican
+32,female,White,SomeCollege,suburban,west,68-95 %ile,homemakers,no,protestant,yes,republican
+22,female,White,SomeCollege,rural,south,68-95 %ile,clerical,no,catholic,yes,other
+29,female,White,CollegeDegree,suburban,south,96-100 %ile,clerical,no,protestant,yes,republican
+47,male,Black,HighSchool,central,west,34-67 %ile,skilled,no,other,yes,democrat
+51,male,White,CollegeDegree,central,west,68-95 %ile,professional,no,catholic,yes,republican
+63,female,White,SomeCollege,suburban,west,17-33 %ile,homemakers,no,other,yes,republican
+35,male,Black,CollegeDegree,suburban,north central,68-95 %ile,professional,no,protestant,yes,democrat
+28,male,White,CollegeDegree,suburban,north central,68-95 %ile,clerical,no,protestant,yes,republican
+46,female,White,HighSchool,suburban,north central,17-33 %ile,skilled,yes,other,yes,democrat
+33,female,White,CollegeDegree,central,west,34-67 %ile,professional,no,protestant,no,NA
+26,female,White,SomeCollege,central,west,68-95 %ile,homemakers,no,protestant,yes,republican
+38,female,White,CollegeDegree,central,west,68-95 %ile,professional,no,catholic,yes,democrat
+71,female,White,HighSchool,suburban,south,17-33 %ile,homemakers,no,catholic,yes,republican
+34,female,Black,HighSchool,central,north central,0-16 %ile,homemakers,no,protestant,yes,democrat
+47,female,White,CollegeDegree,suburban,north central,96-100 %ile,professional,no,catholic,yes,democrat
+47,male,White,HighSchool,rural,northeast,34-67 %ile,skilled,yes,catholic,yes,democrat
+79,female,White,GradeSchool,central,south,0-16 %ile,homemakers,no,catholic,yes,republican
+30,male,White,SomeCollege,central,west,34-67 %ile,professional,no,protestant,yes,republican
+40,female,White,CollegeDegree,central,northeast,96-100 %ile,professional,no,jewish,yes,democrat
+70,female,White,HighSchool,central,west,0-16 %ile,skilled,no,protestant,yes,democrat
+23,male,White,SomeCollege,rural,south,0-16 %ile,skilled,no,protestant,yes,democrat
+30,male,White,SomeCollege,suburban,west,68-95 %ile,professional,no,catholic,yes,other
+48,female,Black,SomeCollege,suburban,northeast,68-95 %ile,skilled,yes,protestant,yes,republican
+55,male,White,CollegeDegree,suburban,north central,34-67 %ile,skilled,no,protestant,yes,republican
+32,female,White,HighSchool,suburban,north central,68-95 %ile,skilled,no,other,yes,other
+25,female,White,CollegeDegree,central,north central,34-67 %ile,professional,no,other,yes,democrat
+68,male,White,CollegeDegree,suburban,north central,96-100 %ile,clerical,no,catholic,yes,republican
+29,male,Black,CollegeDegree,suburban,northeast,68-95 %ile,professional,no,protestant,yes,democrat
+32,male,White,CollegeDegree,suburban,northeast,34-67 %ile,professional,yes,protestant,yes,republican
+84,female,Black,HighSchool,suburban,northeast,17-33 %ile,skilled,no,protestant,yes,democrat
+32,female,White,CollegeDegree,rural,south,34-67 %ile,professional,no,protestant,yes,republican
+42,male,White,CollegeDegree,rural,south,96-100 %ile,clerical,no,catholic,yes,republican
+34,male,White,HighSchool,suburban,west,68-95 %ile,clerical,no,protestant,yes,democrat
+53,female,White,HighSchool,suburban,northeast,68-95 %ile,homemakers,yes,protestant,yes,republican
+55,female,Black,CollegeDegree,suburban,south,34-67 %ile,homemakers,no,protestant,yes,democrat
+67,female,White,HighSchool,suburban,northeast,34-67 %ile,clerical,no,jewish,yes,democrat
+34,female,NativeAmerican,SomeCollege,central,north central,34-67 %ile,clerical,no,protestant,no,NA
+37,female,White,CollegeDegree,suburban,north central,68-95 %ile,clerical,no,catholic,yes,republican
+46,male,White,CollegeDegree,suburban,south,68-95 %ile,professional,no,catholic,yes,other
+32,female,White,SomeCollege,suburban,west,34-67 %ile,homemakers,no,other,yes,other
+41,male,White,SomeCollege,rural,north central,68-95 %ile,skilled,yes,protestant,yes,democrat
+18,female,White,HighSchool,suburban,north central,34-67 %ile,clerical,no,protestant,yes,democrat
+48,male,White,HighSchool,suburban,north central,68-95 %ile,professional,no,protestant,yes,democrat
+83,female,White,HighSchool,suburban,north central,17-33 %ile,homemakers,no,protestant,yes,other
+52,male,White,HighSchool,central,south,68-95 %ile,professional,no,protestant,yes,democrat
+36,female,White,HighSchool,central,south,68-95 %ile,clerical,no,protestant,yes,republican
+49,male,White,CollegeDegree,suburban,south,68-95 %ile,professional,no,catholic,yes,democrat
+84,female,White,GradeSchool,rural,south,0-16 %ile,homemakers,yes,protestant,no,NA
+43,female,White,CollegeDegree,suburban,north central,68-95 %ile,skilled,no,jewish,yes,democrat
+32,female,Black,HighSchool,central,west,17-33 %ile,homemakers,no,protestant,yes,democrat
+71,male,White,SomeCollege,central,south,68-95 %ile,clerical,no,catholic,yes,democrat
+44,male,White,CollegeDegree,rural,south,96-100 %ile,professional,no,other,yes,democrat
+48,female,White,SomeCollege,rural,south,34-67 %ile,clerical,no,protestant,yes,democrat
+42,female,White,SomeCollege,suburban,northeast,34-67 %ile,clerical,no,protestant,yes,democrat
+28,female,White,CollegeDegree,suburban,northeast,68-95 %ile,professional,no,protestant,yes,other
+31,male,White,SomeCollege,central,north central,34-67 %ile,skilled,yes,catholic,yes,democrat
+36,male,White,CollegeDegree,suburban,north central,34-67 %ile,professional,yes,catholic,yes,democrat
+34,male,White,SomeCollege,central,west,34-67 %ile,professional,no,protestant,yes,democrat
+39,female,NativeAmerican,HighSchool,rural,south,68-95 %ile,skilled,yes,protestant,yes,other
+51,male,White,CollegeDegree,suburban,south,68-95 %ile,professional,no,protestant,yes,republican
+54,female,White,HighSchool,suburban,northeast,68-95 %ile,professional,no,catholic,yes,democrat
+33,female,White,HighSchool,central,north central,34-67 %ile,clerical,no,other,yes,democrat
+32,female,White,CollegeDegree,rural,south,0-16 %ile,clerical,no,protestant,no,NA
+69,female,White,HighSchool,central,north central,34-67 %ile,skilled,no,protestant,yes,republican
+53,female,White,HighSchool,rural,south,34-67 %ile,professional,no,catholic,yes,republican
+41,female,Hispanic,HighSchool,suburban,west,0-16 %ile,homemakers,no,catholic,yes,democrat
+28,male,White,CollegeDegree,suburban,northeast,68-95 %ile,professional,no,jewish,yes,democrat
+72,female,White,HighSchool,rural,north central,17-33 %ile,skilled,no,protestant,yes,NA
+23,female,Black,HighSchool,central,north central,0-16 %ile,skilled,no,protestant,yes,democrat
+36,female,White,CollegeDegree,rural,north central,34-67 %ile,professional,no,protestant,yes,republican
+42,male,White,CollegeDegree,suburban,south,96-100 %ile,professional,no,catholic,yes,democrat
+40,female,White,CollegeDegree,suburban,south,96-100 %ile,professional,no,protestant,yes,democrat
+84,female,White,HighSchool,rural,south,68-95 %ile,homemakers,no,catholic,yes,NA
+34,female,Black,CollegeDegree,central,south,68-95 %ile,clerical,no,protestant,yes,democrat
+49,female,White,CollegeDegree,rural,north central,68-95 %ile,homemakers,no,protestant,yes,republican
+31,female,Asian,CollegeDegree,central,west,68-95 %ile,professional,no,catholic,yes,republican
+31,female,Hispanic,CollegeDegree,suburban,west,34-67 %ile,skilled,no,protestant,yes,republican
+35,male,White,CollegeDegree,rural,north central,68-95 %ile,professional,no,protestant,yes,other
+37,male,White,HighSchool,rural,north central,34-67 %ile,skilled,no,protestant,no,NA
+37,male,White,CollegeDegree,rural,south,68-95 %ile,professional,no,protestant,yes,republican
+33,male,White,HighSchool,central,west,34-67 %ile,clerical,yes,catholic,yes,democrat
+37,female,White,SomeCollege,suburban,west,34-67 %ile,clerical,no,catholic,yes,democrat
+41,female,White,SomeCollege,suburban,west,68-95 %ile,homemakers,no,protestant,yes,democrat
+48,female,White,HighSchool,suburban,west,68-95 %ile,clerical,no,protestant,yes,republican
+29,male,White,CollegeDegree,suburban,west,68-95 %ile,professional,no,protestant,yes,democrat
+36,male,White,CollegeDegree,central,west,34-67 %ile,professional,no,jewish,yes,democrat
+60,male,Hispanic,HighSchool,suburban,northeast,68-95 %ile,skilled,yes,other,yes,NA
+62,male,White,CollegeDegree,suburban,south,68-95 %ile,professional,no,protestant,yes,republican
+37,female,White,HighSchool,suburban,northeast,34-67 %ile,homemakers,no,catholic,yes,democrat
+64,female,White,SomeCollege,central,south,34-67 %ile,clerical,no,jewish,yes,democrat
+47,female,White,SomeCollege,suburban,south,34-67 %ile,professional,no,catholic,no,NA
+40,male,White,CollegeDegree,suburban,south,68-95 %ile,clerical,no,protestant,yes,republican
+37,female,White,HighSchool,suburban,west,34-67 %ile,professional,no,protestant,yes,democrat
+80,female,White,HighSchool,central,south,0-16 %ile,clerical,no,catholic,yes,republican
+26,female,Black,SomeCollege,central,northeast,17-33 %ile,skilled,no,catholic,yes,democrat
+28,male,Hispanic,HighSchool,suburban,west,34-67 %ile,farmers,no,protestant,no,NA
+40,female,White,CollegeDegree,suburban,south,68-95 %ile,clerical,no,other,yes,democrat
+37,male,White,HighSchool,suburban,north central,68-95 %ile,skilled,yes,other,yes,democrat
+64,male,White,HighSchool,rural,south,68-95 %ile,professional,no,protestant,yes,republican
+26,female,White,SomeCollege,rural,south,34-67 %ile,professional,no,protestant,yes,democrat
+30,female,Black,HighSchool,rural,south,0-16 %ile,homemakers,no,protestant,no,NA
+70,female,White,HighSchool,suburban,west,34-67 %ile,professional,no,catholic,yes,democrat
+35,male,White,HighSchool,suburban,northeast,68-95 %ile,professional,no,protestant,yes,democrat
+54,female,White,HighSchool,rural,north central,68-95 %ile,skilled,no,protestant,yes,republican
+53,female,White,HighSchool,central,west,34-67 %ile,clerical,yes,protestant,yes,democrat
+54,female,White,CollegeDegree,rural,north central,34-67 %ile,professional,yes,catholic,yes,republican
+68,female,White,HighSchool,central,north central,34-67 %ile,homemakers,no,protestant,yes,republican
+61,male,White,HighSchool,rural,north central,68-95 %ile,professional,no,protestant,yes,democrat
+20,male,White,HighSchool,rural,north central,34-67 %ile,skilled,no,catholic,yes,republican
+31,female,White,HighSchool,rural,north central,34-67 %ile,skilled,no,protestant,yes,democrat
+62,female,White,HighSchool,rural,north central,0-16 %ile,skilled,no,protestant,no,NA
+36,male,White,SomeCollege,suburban,west,68-95 %ile,skilled,yes,protestant,yes,republican
+47,female,White,CollegeDegree,suburban,west,68-95 %ile,clerical,no,other,yes,democrat
+33,female,White,HighSchool,central,west,68-95 %ile,clerical,no,protestant,yes,democrat
+44,male,White,CollegeDegree,rural,northeast,34-67 %ile,skilled,no,other,yes,democrat
+79,female,White,HighSchool,suburban,north central,17-33 %ile,homemakers,no,protestant,no,NA
+53,female,White,CollegeDegree,rural,south,68-95 %ile,skilled,no,protestant,yes,democrat
+32,female,White,SomeCollege,central,west,68-95 %ile,clerical,no,protestant,yes,republican
+51,female,White,HighSchool,suburban,north central,68-95 %ile,clerical,yes,protestant,yes,other
+29,female,White,CollegeDegree,suburban,north central,68-95 %ile,professional,no,protestant,yes,republican
+76,male,White,HighSchool,suburban,north central,34-67 %ile,skilled,no,jewish,yes,democrat
+36,male,White,CollegeDegree,suburban,northeast,96-100 %ile,professional,no,protestant,yes,republican
+19,female,Hispanic,SomeCollege,central,north central,17-33 %ile,farmers,no,catholic,yes,democrat
+28,male,White,SomeCollege,central,north central,34-67 %ile,clerical,no,catholic,yes,republican
+73,male,White,CollegeDegree,suburban,west,96-100 %ile,professional,yes,protestant,yes,republican
+35,female,White,CollegeDegree,central,west,68-95 %ile,professional,no,protestant,yes,republican
+49,female,White,SomeCollege,suburban,south,96-100 %ile,clerical,no,protestant,yes,democrat
+83,female,White,HighSchool,suburban,north central,68-95 %ile,homemakers,no,protestant,yes,republican
+42,female,White,HighSchool,rural,north central,17-33 %ile,skilled,no,protestant,yes,other
+38,male,White,HighSchool,central,south,34-67 %ile,skilled,yes,other,yes,democrat
+55,female,White,SomeCollege,suburban,northeast,68-95 %ile,professional,no,catholic,yes,democrat
+38,male,White,HighSchool,suburban,northeast,17-33 %ile,farmers,no,other,yes,republican
+71,male,Hispanic,HighSchool,central,west,17-33 %ile,laborer,no,protestant,yes,democrat
+27,female,Hispanic,CollegeDegree,central,west,34-67 %ile,clerical,yes,protestant,yes,republican
+29,male,Black,HighSchool,suburban,south,34-67 %ile,clerical,no,protestant,yes,democrat
+48,male,White,SomeCollege,suburban,south,68-95 %ile,professional,no,protestant,yes,republican
+33,female,White,CollegeDegree,central,south,68-95 %ile,professional,no,protestant,yes,democrat
+37,female,White,HighSchool,suburban,north central,0-16 %ile,clerical,no,protestant,no,NA
+19,female,Black,HighSchool,suburban,northeast,68-95 %ile,skilled,no,protestant,yes,democrat
+47,male,Black,HighSchool,suburban,northeast,34-67 %ile,skilled,no,catholic,yes,NA
+36,male,White,SomeCollege,suburban,north central,68-95 %ile,skilled,yes,protestant,yes,republican
+31,male,White,HighSchool,rural,northeast,96-100 %ile,skilled,no,other,yes,republican
+75,female,White,SomeCollege,rural,south,34-67 %ile,clerical,no,protestant,yes,republican
+52,male,White,HighSchool,rural,south,68-95 %ile,skilled,yes,protestant,yes,other
+31,female,Black,HighSchool,central,south,17-33 %ile,homemakers,no,protestant,no,NA
+45,male,White,CollegeDegree,suburban,south,0-16 %ile,skilled,yes,protestant,yes,democrat
+42,male,Hispanic,CollegeDegree,central,north central,34-67 %ile,professional,no,catholic,yes,other
+64,female,White,HighSchool,suburban,north central,17-33 %ile,clerical,no,protestant,yes,republican
+29,female,Black,CollegeDegree,suburban,northeast,34-67 %ile,clerical,no,protestant,yes,democrat
+21,male,Hispanic,HighSchool,suburban,south,68-95 %ile,professional,no,protestant,no,NA
+26,male,White,HighSchool,rural,south,34-67 %ile,skilled,yes,protestant,yes,other
+65,male,White,SomeCollege,central,west,68-95 %ile,clerical,no,catholic,yes,republican
+84,male,White,HighSchool,suburban,northeast,17-33 %ile,professional,no,jewish,yes,democrat
+27,male,White,CollegeDegree,rural,south,34-67 %ile,professional,no,protestant,yes,republican
+21,female,White,SomeCollege,rural,north central,17-33 %ile,professional,no,other,no,NA
+63,female,White,CollegeDegree,suburban,north central,0-16 %ile,professional,no,protestant,yes,republican
+46,male,White,CollegeDegree,suburban,north central,68-95 %ile,clerical,no,protestant,yes,republican
+35,female,White,SomeCollege,central,south,17-33 %ile,skilled,no,protestant,yes,democrat
+36,male,White,CollegeDegree,suburban,south,68-95 %ile,professional,no,catholic,no,NA
+61,male,White,CollegeDegree,suburban,south,96-100 %ile,professional,yes,jewish,yes,democrat
+59,female,White,GradeSchool,suburban,south,0-16 %ile,skilled,no,protestant,yes,democrat
+34,male,White,CollegeDegree,suburban,south,34-67 %ile,professional,no,protestant,yes,republican
+51,male,White,HighSchool,rural,north central,17-33 %ile,farmers,no,protestant,no,NA
+41,male,White,SomeCollege,suburban,north central,34-67 %ile,skilled,yes,catholic,yes,democrat
+51,female,White,SomeCollege,suburban,northeast,17-33 %ile,homemakers,no,protestant,yes,other
+51,male,White,CollegeDegree,rural,south,68-95 %ile,professional,no,other,yes,republican
+40,female,White,CollegeDegree,suburban,northeast,68-95 %ile,professional,no,other,yes,democrat
+33,male,White,CollegeDegree,rural,south,34-67 %ile,professional,no,other,yes,democrat
+20,male,Black,SomeCollege,suburban,south,17-33 %ile,skilled,no,protestant,yes,democrat
+58,female,White,CollegeDegree,rural,south,68-95 %ile,professional,no,protestant,yes,democrat
+31,female,White,HighSchool,rural,north central,34-67 %ile,skilled,yes,protestant,yes,democrat
+72,male,White,HighSchool,suburban,northeast,68-95 %ile,skilled,no,catholic,yes,republican
+36,male,White,HighSchool,suburban,south,0-16 %ile,skilled,no,other,yes,republican
+30,female,White,CollegeDegree,rural,northeast,68-95 %ile,homemakers,no,catholic,yes,democrat
+55,male,White,HighSchool,suburban,south,68-95 %ile,skilled,no,protestant,yes,republican
+39,female,White,CollegeDegree,central,west,68-95 %ile,professional,no,other,yes,democrat
+23,male,Black,HighSchool,central,north central,34-67 %ile,laborer,no,protestant,no,NA
+33,male,White,SomeCollege,central,northeast,0-16 %ile,professional,no,catholic,yes,democrat
+53,female,White,HighSchool,suburban,north central,17-33 %ile,homemakers,no,other,yes,democrat
+80,female,White,SomeCollege,suburban,northeast,96-100 %ile,professional,no,jewish,yes,democrat
+72,male,White,SomeCollege,suburban,north central,68-95 %ile,skilled,yes,protestant,yes,other
+46,female,White,HighSchool,suburban,south,68-95 %ile,clerical,no,protestant,yes,republican
+58,male,White,HighSchool,central,south,34-67 %ile,clerical,yes,protestant,yes,democrat
+38,male,Black,CollegeDegree,central,west,68-95 %ile,professional,no,other,yes,democrat
+43,male,White,CollegeDegree,central,west,96-100 %ile,professional,no,other,yes,democrat
+35,female,White,SomeCollege,rural,west,68-95 %ile,skilled,yes,protestant,yes,other
+46,male,Hispanic,CollegeDegree,central,north central,68-95 %ile,skilled,yes,catholic,yes,democrat
+33,female,White,CollegeDegree,suburban,north central,34-67 %ile,professional,yes,catholic,yes,democrat
+51,female,White,HighSchool,suburban,north central,34-67 %ile,clerical,yes,protestant,yes,democrat
+36,male,White,SomeCollege,suburban,north central,68-95 %ile,skilled,no,protestant,yes,republican
+22,female,White,SomeCollege,suburban,south,34-67 %ile,clerical,no,protestant,yes,democrat
+51,male,Black,SomeCollege,central,south,68-95 %ile,professional,no,protestant,no,NA
+27,female,White,SomeCollege,suburban,west,68-95 %ile,professional,no,other,yes,republican
+46,female,White,HighSchool,suburban,north central,68-95 %ile,clerical,no,protestant,yes,democrat
+39,male,White,HighSchool,suburban,north central,68-95 %ile,skilled,yes,protestant,no,NA
+40,male,White,CollegeDegree,central,northeast,17-33 %ile,professional,yes,jewish,yes,democrat
+22,male,White,SomeCollege,suburban,north central,68-95 %ile,clerical,yes,catholic,yes,democrat
+26,male,Black,HighSchool,suburban,south,68-95 %ile,skilled,yes,protestant,yes,democrat
+78,male,Asian,HighSchool,suburban,northeast,68-95 %ile,farmers,no,other,yes,republican
+60,male,White,CollegeDegree,suburban,north central,68-95 %ile,professional,no,catholic,yes,republican
+26,female,Black,SomeCollege,central,south,17-33 %ile,clerical,no,protestant,no,NA
+40,female,Black,HighSchool,central,south,0-16 %ile,skilled,no,protestant,yes,democrat
+31,male,White,HighSchool,central,west,17-33 %ile,skilled,no,protestant,yes,republican
+78,male,White,HighSchool,rural,northeast,0-16 %ile,skilled,no,catholic,yes,democrat
+38,male,White,CollegeDegree,rural,south,68-95 %ile,professional,no,other,yes,democrat
+52,female,Black,SomeCollege,suburban,south,68-95 %ile,professional,no,protestant,yes,democrat
+34,female,White,CollegeDegree,suburban,south,68-95 %ile,homemakers,no,protestant,yes,republican
+60,male,White,CollegeDegree,central,west,96-100 %ile,professional,no,protestant,yes,democrat
+65,female,White,HighSchool,central,west,34-67 %ile,clerical,no,catholic,yes,democrat
+51,female,White,HighSchool,suburban,west,68-95 %ile,clerical,no,protestant,yes,democrat
+37,female,White,CollegeDegree,central,northeast,34-67 %ile,professional,no,catholic,yes,democrat
+30,male,White,SomeCollege,rural,south,68-95 %ile,skilled,yes,protestant,yes,republican
+44,male,White,CollegeDegree,suburban,south,96-100 %ile,clerical,no,protestant,yes,republican
+42,male,White,HighSchool,suburban,northeast,68-95 %ile,clerical,no,catholic,yes,other
+39,male,Hispanic,CollegeDegree,central,west,34-67 %ile,professional,yes,catholic,yes,democrat
+18,male,White,HighSchool,rural,north central,68-95 %ile,skilled,no,other,yes,republican
+57,female,Black,HighSchool,rural,south,0-16 %ile,homemakers,no,protestant,no,NA
+20,female,White,SomeCollege,central,west,0-16 %ile,clerical,no,protestant,yes,democrat
+48,female,Black,CollegeDegree,suburban,south,34-67 %ile,professional,no,protestant,yes,democrat
+20,female,White,HighSchool,suburban,north central,68-95 %ile,clerical,no,catholic,yes,democrat
+56,female,White,HighSchool,suburban,north central,68-95 %ile,homemakers,no,catholic,yes,NA
+41,male,White,HighSchool,rural,north central,34-67 %ile,farmers,no,catholic,yes,other
+66,female,White,HighSchool,suburban,north central,96-100 %ile,homemakers,no,jewish,yes,democrat
+47,female,Hispanic,HighSchool,suburban,northeast,0-16 %ile,skilled,yes,catholic,yes,democrat
+28,male,White,SomeCollege,central,northeast,68-95 %ile,professional,no,catholic,yes,republican
+24,male,White,CollegeDegree,central,north central,17-33 %ile,laborer,no,catholic,yes,democrat
+53,male,White,HighSchool,central,north central,68-95 %ile,skilled,yes,catholic,yes,democrat
+20,female,White,SomeCollege,rural,south,0-16 %ile,professional,no,protestant,yes,republican
+42,female,White,CollegeDegree,central,west,68-95 %ile,professional,no,protestant,yes,democrat
+44,male,Hispanic,CollegeDegree,central,west,68-95 %ile,professional,no,protestant,no,NA
+33,female,Black,SomeCollege,central,south,17-33 %ile,clerical,no,protestant,yes,democrat
+31,male,White,SomeCollege,suburban,west,0-16 %ile,skilled,no,other,yes,democrat
+81,female,White,HighSchool,rural,northeast,34-67 %ile,homemakers,no,protestant,yes,NA
+31,female,White,HighSchool,suburban,north central,68-95 %ile,skilled,yes,catholic,yes,republican
+80,female,White,SomeCollege,suburban,west,68-95 %ile,professional,no,jewish,yes,democrat
+21,female,Black,SomeCollege,suburban,northeast,34-67 %ile,homemakers,no,protestant,yes,democrat
+48,male,White,SomeCollege,suburban,northeast,34-67 %ile,professional,no,jewish,yes,democrat
+20,female,Black,HighSchool,central,south,68-95 %ile,skilled,no,other,yes,democrat
+63,female,Black,CollegeDegree,suburban,northeast,68-95 %ile,professional,no,protestant,no,NA
+37,female,Black,CollegeDegree,suburban,northeast,68-95 %ile,professional,yes,protestant,yes,democrat
+39,female,Black,CollegeDegree,suburban,northeast,68-95 %ile,professional,yes,other,yes,NA
+27,male,White,CollegeDegree,suburban,north central,68-95 %ile,clerical,no,protestant,yes,republican
+72,female,Black,HighSchool,central,south,68-95 %ile,skilled,no,protestant,yes,NA
+52,female,Black,HighSchool,central,south,34-67 %ile,skilled,no,protestant,yes,NA
+52,male,White,HighSchool,suburban,northeast,68-95 %ile,skilled,yes,protestant,yes,republican
+52,female,White,GradeSchool,central,south,17-33 %ile,clerical,no,protestant,no,NA
+31,female,White,SomeCollege,suburban,west,34-67 %ile,professional,no,jewish,yes,democrat
+68,female,White,HighSchool,central,south,34-67 %ile,homemakers,no,protestant,no,NA
+77,male,White,HighSchool,suburban,north central,17-33 %ile,professional,no,protestant,no,NA
+33,female,White,CollegeDegree,suburban,northeast,0-16 %ile,clerical,no,catholic,yes,other
+37,female,White,HighSchool,suburban,south,17-33 %ile,clerical,no,catholic,yes,republican
+52,male,White,CollegeDegree,rural,northeast,68-95 %ile,skilled,no,other,yes,democrat
+32,female,White,SomeCollege,rural,northeast,68-95 %ile,homemakers,no,catholic,yes,democrat
+26,female,White,SomeCollege,rural,north central,34-67 %ile,skilled,no,protestant,yes,other
+44,female,White,HighSchool,rural,south,17-33 %ile,skilled,no,other,no,NA
+26,female,White,SomeCollege,central,west,96-100 %ile,professional,no,protestant,yes,republican
+30,female,Hispanic,SomeCollege,suburban,north central,34-67 %ile,clerical,no,protestant,yes,republican
+78,female,White,HighSchool,central,west,17-33 %ile,clerical,no,protestant,yes,republican
+26,male,White,GradeSchool,central,south,0-16 %ile,skilled,no,protestant,no,NA
+44,male,White,HighSchool,central,north central,68-95 %ile,professional,no,other,yes,other
+43,female,NativeAmerican,HighSchool,rural,south,17-33 %ile,skilled,no,protestant,yes,democrat
+33,female,White,CollegeDegree,rural,north central,96-100 %ile,skilled,no,protestant,yes,republican
+66,male,Black,GradeSchool,central,south,17-33 %ile,skilled,no,protestant,yes,democrat
+21,female,Black,SomeCollege,central,south,17-33 %ile,skilled,no,protestant,yes,democrat
+30,female,White,SomeCollege,central,west,68-95 %ile,professional,yes,protestant,yes,democrat
+23,male,White,CollegeDegree,suburban,west,68-95 %ile,professional,no,protestant,yes,republican
+22,male,Hispanic,SomeCollege,suburban,west,34-67 %ile,skilled,yes,catholic,no,NA
+64,male,White,HighSchool,suburban,west,34-67 %ile,professional,no,other,yes,democrat
+71,female,White,HighSchool,central,west,34-67 %ile,homemakers,no,catholic,yes,democrat
+65,male,White,HighSchool,rural,north central,0-16 %ile,farmers,no,other,yes,democrat
+53,male,White,CollegeDegree,suburban,northeast,68-95 %ile,clerical,no,other,yes,republican
+69,female,Hispanic,HighSchool,suburban,northeast,17-33 %ile,skilled,no,catholic,yes,democrat
+30,female,White,CollegeDegree,suburban,northeast,68-95 %ile,professional,no,protestant,yes,democrat
+56,female,Hispanic,SomeCollege,central,northeast,68-95 %ile,skilled,yes,catholic,yes,democrat
+37,male,White,SomeCollege,suburban,northeast,34-67 %ile,professional,no,protestant,yes,republican
+80,male,Black,GradeSchool,suburban,northeast,17-33 %ile,farmers,no,protestant,yes,democrat
+34,female,White,SomeCollege,rural,northeast,68-95 %ile,clerical,yes,catholic,yes,republican
+24,male,Hispanic,HighSchool,central,northeast,68-95 %ile,professional,no,catholic,no,NA
+59,male,Black,CollegeDegree,suburban,northeast,96-100 %ile,professional,no,protestant,yes,democrat
+58,female,White,CollegeDegree,suburban,west,68-95 %ile,professional,no,protestant,yes,republican
+44,male,White,CollegeDegree,suburban,west,68-95 %ile,professional,no,other,yes,NA
+53,female,White,HighSchool,rural,northeast,34-67 %ile,homemakers,no,catholic,yes,democrat
+33,male,Asian,CollegeDegree,central,northeast,34-67 %ile,homemakers,yes,protestant,yes,democrat
+55,female,White,SomeCollege,rural,south,68-95 %ile,homemakers,yes,protestant,yes,democrat
+42,male,White,SomeCollege,suburban,west,96-100 %ile,skilled,no,protestant,yes,other
+26,female,White,CollegeDegree,suburban,west,68-95 %ile,professional,no,protestant,yes,republican
+26,male,Hispanic,CollegeDegree,suburban,south,17-33 %ile,farmers,no,other,no,NA
+28,male,White,CollegeDegree,central,west,68-95 %ile,professional,no,protestant,yes,democrat
+71,female,White,CollegeDegree,suburban,west,34-67 %ile,clerical,no,catholic,yes,democrat
+29,male,White,HighSchool,suburban,west,34-67 %ile,skilled,no,protestant,yes,other
+58,male,White,SomeCollege,suburban,north central,68-95 %ile,laborer,no,protestant,yes,republican
+42,male,White,HighSchool,rural,northeast,68-95 %ile,professional,no,catholic,yes,democrat
+31,female,White,CollegeDegree,suburban,west,68-95 %ile,professional,yes,jewish,yes,democrat
+50,female,White,SomeCollege,suburban,west,96-100 %ile,professional,no,other,yes,democrat
+25,male,White,CollegeDegree,central,northeast,17-33 %ile,professional,no,other,yes,democrat
+30,male,White,HighSchool,rural,south,17-33 %ile,clerical,yes,protestant,no,NA
+57,female,Black,HighSchool,central,south,17-33 %ile,homemakers,yes,protestant,yes,democrat
+42,female,White,HighSchool,suburban,northeast,68-95 %ile,homemakers,no,catholic,yes,republican
+37,male,White,CollegeDegree,central,south,17-33 %ile,professional,no,jewish,yes,republican
+34,female,White,HighSchool,rural,south,17-33 %ile,skilled,no,catholic,yes,democrat
+33,female,White,SomeCollege,suburban,south,34-67 %ile,skilled,no,protestant,yes,republican
+45,female,White,CollegeDegree,suburban,west,68-95 %ile,clerical,no,protestant,yes,republican
+86,female,White,CollegeDegree,suburban,west,68-95 %ile,professional,no,catholic,no,NA
+18,female,White,HighSchool,suburban,west,34-67 %ile,clerical,no,catholic,yes,democrat
+40,female,White,SomeCollege,rural,north central,34-67 %ile,clerical,yes,catholic,yes,other
+48,male,Hispanic,SomeCollege,central,west,17-33 %ile,clerical,no,catholic,yes,democrat
+25,female,White,HighSchool,suburban,west,34-67 %ile,professional,no,protestant,yes,democrat
+41,male,White,HighSchool,suburban,north central,34-67 %ile,laborer,yes,protestant,yes,democrat
+78,female,White,CollegeDegree,suburban,north central,34-67 %ile,clerical,no,protestant,yes,democrat
+31,male,White,HighSchool,suburban,north central,17-33 %ile,clerical,yes,protestant,yes,republican
+79,female,Black,HighSchool,rural,south,0-16 %ile,homemakers,no,protestant,yes,democrat
+65,female,White,CollegeDegree,suburban,south,34-67 %ile,clerical,no,protestant,yes,republican
+72,female,White,HighSchool,rural,south,0-16 %ile,homemakers,no,protestant,yes,democrat
+68,female,Black,CollegeDegree,central,south,17-33 %ile,professional,no,protestant,yes,republican
+59,female,Black,CollegeDegree,central,south,34-67 %ile,professional,no,protestant,yes,democrat
+63,male,White,SomeCollege,rural,north central,34-67 %ile,skilled,no,protestant,yes,democrat
+45,male,White,HighSchool,rural,north central,68-95 %ile,skilled,yes,protestant,yes,republican
+27,male,White,CollegeDegree,central,south,34-67 %ile,professional,no,catholic,yes,democrat
+32,female,Black,HighSchool,rural,south,0-16 %ile,homemakers,no,protestant,yes,democrat
+39,female,White,HighSchool,rural,north central,68-95 %ile,clerical,no,protestant,yes,republican
+70,female,White,SomeCollege,rural,north central,17-33 %ile,clerical,yes,protestant,yes,republican
+38,male,Black,HighSchool,rural,south,34-67 %ile,skilled,no,protestant,yes,democrat
+81,female,White,HighSchool,central,north central,17-33 %ile,homemakers,no,protestant,yes,republican
+58,male,Black,HighSchool,suburban,northeast,68-95 %ile,skilled,yes,other,no,NA
+69,male,White,HighSchool,central,north central,0-16 %ile,skilled,no,catholic,yes,NA
+60,male,White,HighSchool,suburban,northeast,68-95 %ile,professional,no,catholic,yes,democrat
+37,male,White,SomeCollege,suburban,north central,68-95 %ile,skilled,yes,catholic,yes,other
+67,female,White,HighSchool,suburban,north central,17-33 %ile,homemakers,no,protestant,no,NA
+32,female,White,SomeCollege,suburban,north central,68-95 %ile,professional,no,catholic,yes,other
+40,female,White,CollegeDegree,suburban,north central,68-95 %ile,clerical,no,protestant,yes,other
+63,male,White,HighSchool,rural,north central,68-95 %ile,farmers,no,protestant,yes,other
+54,male,White,HighSchool,suburban,north central,17-33 %ile,laborer,no,other,no,NA
+36,female,Black,HighSchool,central,north central,34-67 %ile,clerical,no,catholic,yes,democrat
+35,male,White,HighSchool,central,north central,34-67 %ile,skilled,yes,catholic,yes,democrat
+64,male,White,SomeCollege,suburban,south,17-33 %ile,laborer,no,protestant,yes,NA
+83,male,Black,GradeSchool,central,south,0-16 %ile,skilled,no,protestant,yes,democrat
+60,male,NativeAmerican,SomeCollege,suburban,south,34-67 %ile,professional,no,protestant,yes,democrat
+83,female,White,HighSchool,rural,north central,0-16 %ile,professional,no,protestant,yes,republican
+37,female,White,SomeCollege,rural,north central,34-67 %ile,skilled,yes,protestant,yes,republican
+66,female,White,HighSchool,rural,west,34-67 %ile,professional,no,catholic,yes,democrat
+70,male,Black,GradeSchool,rural,south,0-16 %ile,skilled,no,protestant,yes,democrat
+33,female,White,HighSchool,central,northeast,34-67 %ile,clerical,yes,jewish,yes,democrat
+84,male,White,HighSchool,suburban,north central,34-67 %ile,clerical,no,protestant,no,NA
+68,female,White,HighSchool,central,west,34-67 %ile,professional,no,protestant,yes,democrat
+43,male,White,CollegeDegree,suburban,west,68-95 %ile,skilled,no,catholic,yes,republican
+62,male,White,CollegeDegree,rural,west,34-67 %ile,clerical,no,catholic,yes,other
+28,female,White,CollegeDegree,rural,west,68-95 %ile,professional,yes,other,yes,democrat
+28,female,White,SomeCollege,suburban,west,68-95 %ile,professional,yes,other,yes,other
+40,male,White,CollegeDegree,rural,north central,68-95 %ile,professional,no,protestant,yes,democrat
+29,female,White,CollegeDegree,rural,north central,34-67 %ile,professional,no,catholic,yes,other
+29,male,White,HighSchool,rural,north central,17-33 %ile,clerical,yes,protestant,yes,other
+39,female,White,SomeCollege,rural,north central,34-67 %ile,clerical,no,protestant,yes,democrat
+29,male,White,SomeCollege,suburban,south,34-67 %ile,clerical,no,protestant,yes,democrat
+40,female,White,CollegeDegree,central,south,17-33 %ile,professional,no,other,yes,democrat
+46,male,White,CollegeDegree,central,south,68-95 %ile,professional,no,protestant,yes,other
+50,male,White,HighSchool,rural,north central,34-67 %ile,farmers,no,protestant,yes,republican
+66,male,White,CollegeDegree,rural,north central,68-95 %ile,farmers,no,protestant,yes,other
+61,female,White,HighSchool,rural,northeast,0-16 %ile,skilled,no,catholic,yes,other
+72,female,White,SomeCollege,rural,south,34-67 %ile,clerical,no,protestant,yes,NA
+39,female,Black,HighSchool,rural,south,17-33 %ile,clerical,no,protestant,no,NA
+68,male,Black,CollegeDegree,central,south,68-95 %ile,clerical,no,protestant,yes,democrat
+86,female,White,HighSchool,rural,north central,0-16 %ile,homemakers,no,protestant,yes,democrat
+72,male,White,HighSchool,suburban,northeast,17-33 %ile,skilled,no,protestant,no,NA
+56,female,White,HighSchool,suburban,northeast,96-100 %ile,clerical,yes,catholic,yes,democrat
+23,female,Black,HighSchool,rural,south,0-16 %ile,clerical,no,other,no,NA
+29,male,White,CollegeDegree,central,south,17-33 %ile,skilled,no,other,yes,democrat
+76,male,White,SomeCollege,rural,north central,17-33 %ile,skilled,no,protestant,yes,republican
+70,female,White,HighSchool,suburban,north central,17-33 %ile,homemakers,no,protestant,yes,republican
+76,female,White,HighSchool,suburban,north central,68-95 %ile,clerical,no,other,yes,democrat
+77,female,White,HighSchool,suburban,south,34-67 %ile,homemakers,no,protestant,yes,democrat
+28,female,White,SomeCollege,suburban,north central,17-33 %ile,homemakers,no,protestant,yes,republican
+82,male,White,SomeCollege,rural,north central,17-33 %ile,professional,no,catholic,yes,other
+26,male,White,SomeCollege,suburban,west,0-16 %ile,professional,no,protestant,yes,other
+25,male,White,CollegeDegree,suburban,northeast,34-67 %ile,professional,no,protestant,yes,republican
+64,female,White,HighSchool,suburban,west,68-95 %ile,skilled,no,other,no,NA
+46,female,White,CollegeDegree,suburban,west,34-67 %ile,clerical,yes,protestant,yes,democrat
+72,female,White,GradeSchool,suburban,west,17-33 %ile,skilled,no,catholic,no,NA
+30,male,White,SomeCollege,suburban,south,68-95 %ile,professional,no,catholic,yes,other
+77,female,White,SomeCollege,central,north central,34-67 %ile,skilled,no,protestant,yes,other
+83,female,White,SomeCollege,central,north central,17-33 %ile,clerical,no,protestant,yes,republican
+81,female,White,HighSchool,suburban,north central,0-16 %ile,homemakers,no,catholic,yes,democrat
+33,male,White,SomeCollege,suburban,north central,68-95 %ile,professional,no,catholic,no,NA
+82,male,White,SomeCollege,rural,west,68-95 %ile,professional,no,other,yes,democrat
+81,female,White,HighSchool,rural,west,0-16 %ile,skilled,no,protestant,yes,democrat
+35,female,White,HighSchool,rural,north central,68-95 %ile,clerical,no,catholic,yes,republican
+67,female,White,GradeSchool,rural,north central,17-33 %ile,homemakers,no,protestant,yes,other
+72,female,White,HighSchool,suburban,north central,34-67 %ile,homemakers,yes,protestant,yes,democrat
+42,female,White,CollegeDegree,suburban,north central,68-95 %ile,homemakers,yes,protestant,yes,republican
+46,female,White,CollegeDegree,suburban,north central,96-100 %ile,homemakers,no,protestant,yes,republican
+61,male,White,HighSchool,suburban,north central,34-67 %ile,skilled,no,protestant,yes,democrat
+48,female,White,CollegeDegree,central,west,68-95 %ile,clerical,no,other,yes,democrat
+49,female,White,HighSchool,rural,north central,34-67 %ile,clerical,no,protestant,yes,other
+26,female,White,HighSchool,suburban,north central,34-67 %ile,skilled,no,catholic,yes,democrat
+50,female,White,HighSchool,suburban,south,68-95 %ile,homemakers,no,protestant,yes,democrat
+58,female,White,HighSchool,rural,south,34-67 %ile,skilled,no,protestant,yes,republican
+82,male,White,GradeSchool,suburban,south,34-67 %ile,clerical,no,protestant,yes,democrat
+68,female,White,SomeCollege,central,south,68-95 %ile,clerical,no,protestant,yes,democrat
+85,female,Black,GradeSchool,rural,south,68-95 %ile,farmers,no,protestant,no,NA
+51,female,White,HighSchool,rural,south,0-16 %ile,skilled,no,protestant,no,NA
+77,male,White,CollegeDegree,rural,west,34-67 %ile,professional,no,jewish,yes,republican
+76,female,White,HighSchool,rural,north central,0-16 %ile,homemakers,no,catholic,yes,democrat
+29,female,White,HighSchool,rural,west,34-67 %ile,homemakers,yes,other,yes,republican
+67,male,White,HighSchool,rural,west,34-67 %ile,skilled,no,protestant,yes,other
+40,male,White,SomeCollege,rural,north central,68-95 %ile,skilled,no,protestant,yes,republican
+21,male,White,HighSchool,suburban,west,34-67 %ile,skilled,no,protestant,yes,democrat
+26,male,White,SomeCollege,rural,south,17-33 %ile,skilled,no,other,no,NA
+35,male,White,SomeCollege,suburban,south,34-67 %ile,skilled,no,protestant,yes,republican
+36,female,White,HighSchool,rural,north central,17-33 %ile,professional,no,protestant,yes,democrat
+50,female,White,HighSchool,rural,south,68-95 %ile,homemakers,yes,protestant,yes,democrat
+57,male,White,SomeCollege,rural,north central,68-95 %ile,skilled,yes,protestant,yes,democrat
+33,female,White,HighSchool,rural,northeast,68-95 %ile,clerical,no,protestant,yes,republican
+25,female,White,SomeCollege,rural,north central,0-16 %ile,clerical,yes,protestant,yes,other
+40,male,White,CollegeDegree,central,northeast,68-95 %ile,clerical,no,catholic,yes,democrat
+24,male,White,HighSchool,central,northeast,68-95 %ile,professional,no,catholic,yes,democrat
+35,female,White,SomeCollege,suburban,south,0-16 %ile,skilled,no,catholic,no,NA
+75,male,White,SomeCollege,central,north central,34-67 %ile,clerical,no,protestant,yes,republican
+74,female,White,SomeCollege,central,west,17-33 %ile,skilled,no,protestant,yes,other
+19,male,NativeAmerican,HighSchool,rural,northeast,34-67 %ile,skilled,no,other,no,NA
+66,female,White,GradeSchool,central,north central,17-33 %ile,clerical,no,catholic,yes,democrat
+29,female,White,SomeCollege,suburban,northeast,68-95 %ile,professional,no,protestant,yes,other
+24,female,White,HighSchool,rural,northeast,0-16 %ile,skilled,no,other,yes,republican
+30,male,White,CollegeDegree,rural,north central,17-33 %ile,professional,no,other,yes,other
+30,male,White,CollegeDegree,suburban,south,34-67 %ile,homemakers,no,protestant,yes,republican
+54,female,White,SomeCollege,suburban,south,34-67 %ile,homemakers,yes,protestant,yes,republican
+50,female,White,HighSchool,suburban,northeast,17-33 %ile,skilled,no,protestant,yes,republican
+46,female,White,CollegeDegree,rural,north central,34-67 %ile,professional,no,protestant,yes,republican
+57,female,Black,CollegeDegree,central,northeast,68-95 %ile,professional,yes,protestant,yes,democrat
+87,female,Black,HighSchool,suburban,north central,0-16 %ile,skilled,no,protestant,yes,democrat
+60,female,White,HighSchool,suburban,west,68-95 %ile,laborer,yes,catholic,yes,other
+49,male,White,HighSchool,rural,north central,34-67 %ile,skilled,no,protestant,yes,republican
+64,male,White,CollegeDegree,rural,northeast,96-100 %ile,professional,no,protestant,yes,other
+66,female,White,CollegeDegree,rural,northeast,68-95 %ile,professional,no,protestant,yes,other
+23,male,White,HighSchool,rural,northeast,17-33 %ile,laborer,no,protestant,no,NA
+26,female,White,SomeCollege,rural,south,0-16 %ile,skilled,no,protestant,yes,democrat
+27,male,White,HighSchool,rural,south,68-95 %ile,skilled,no,protestant,yes,republican
+32,male,White,SomeCollege,suburban,south,34-67 %ile,clerical,no,protestant,yes,republican
+33,female,Black,HighSchool,rural,south,0-16 %ile,homemakers,no,protestant,no,NA
+33,male,White,SomeCollege,rural,northeast,34-67 %ile,clerical,no,other,yes,other
+39,female,White,SomeCollege,rural,south,68-95 %ile,homemakers,no,protestant,yes,democrat
+27,male,White,HighSchool,rural,south,34-67 %ile,professional,no,protestant,yes,republican
+43,female,White,HighSchool,suburban,south,34-67 %ile,professional,no,protestant,yes,democrat
+55,male,White,HighSchool,rural,south,68-95 %ile,skilled,no,protestant,yes,republican
+32,male,White,SomeCollege,rural,north central,68-95 %ile,farmers,no,protestant,yes,republican
+81,female,White,SomeCollege,rural,north central,34-67 %ile,farmers,no,protestant,yes,other
+47,male,White,CollegeDegree,suburban,north central,68-95 %ile,professional,no,catholic,yes,republican
+64,male,White,HighSchool,suburban,northeast,17-33 %ile,professional,no,catholic,yes,republican
+50,male,White,SomeCollege,suburban,north central,34-67 %ile,professional,no,protestant,yes,republican
+37,male,White,CollegeDegree,rural,south,17-33 %ile,skilled,no,other,yes,democrat
+54,female,Black,HighSchool,rural,south,17-33 %ile,skilled,no,protestant,yes,democrat
+79,female,White,HighSchool,rural,south,0-16 %ile,skilled,no,protestant,no,NA
+55,female,Black,HighSchool,suburban,south,17-33 %ile,skilled,no,protestant,yes,other
+40,male,White,HighSchool,rural,north central,34-67 %ile,skilled,no,other,yes,other
+30,female,White,CollegeDegree,suburban,northeast,34-67 %ile,clerical,no,protestant,yes,republican
+53,female,Black,HighSchool,central,south,34-67 %ile,skilled,no,protestant,yes,democrat
+23,female,Black,HighSchool,suburban,west,0-16 %ile,clerical,no,protestant,no,NA
+50,female,NativeAmerican,GradeSchool,rural,south,0-16 %ile,homemakers,no,protestant,no,NA
+35,male,NativeAmerican,SomeCollege,rural,west,68-95 %ile,professional,yes,other,yes,republican
+67,female,NativeAmerican,GradeSchool,rural,west,34-67 %ile,homemakers,yes,protestant,yes,democrat
+26,male,White,HighSchool,rural,northeast,17-33 %ile,skilled,no,other,no,NA
+33,male,White,SomeCollege,rural,north central,68-95 %ile,farmers,no,other,yes,republican
+62,female,Black,HighSchool,rural,south,0-16 %ile,skilled,no,protestant,no,NA
+35,female,Black,SomeCollege,rural,south,17-33 %ile,skilled,yes,protestant,yes,democrat
+73,male,White,HighSchool,rural,west,17-33 %ile,skilled,no,protestant,yes,democrat
+48,female,Asian,CollegeDegree,suburban,north central,96-100 %ile,homemakers,no,protestant,yes,NA
+74,male,White,HighSchool,rural,north central,17-33 %ile,laborer,no,protestant,yes,other
+60,female,White,HighSchool,suburban,south,17-33 %ile,skilled,no,protestant,no,NA
+36,male,Black,SomeCollege,central,south,34-67 %ile,skilled,yes,protestant,yes,democrat
+60,female,White,SomeCollege,suburban,northeast,68-95 %ile,skilled,no,catholic,yes,democrat
+25,female,White,CollegeDegree,central,northeast,34-67 %ile,professional,no,catholic,yes,democrat
+32,male,NativeAmerican,HighSchool,rural,south,68-95 %ile,skilled,no,catholic,yes,republican
+36,male,White,HighSchool,suburban,northeast,34-67 %ile,skilled,no,protestant,yes,democrat
+40,male,White,CollegeDegree,suburban,west,68-95 %ile,professional,no,protestant,yes,republican
+69,female,White,HighSchool,central,north central,0-16 %ile,skilled,no,other,yes,democrat
+24,male,White,HighSchool,suburban,north central,17-33 %ile,skilled,no,protestant,no,NA
+70,female,White,HighSchool,rural,northeast,17-33 %ile,clerical,no,other,yes,democrat
+40,female,White,CollegeDegree,central,northeast,68-95 %ile,clerical,yes,jewish,yes,democrat
+58,female,White,GradeSchool,rural,south,17-33 %ile,skilled,no,protestant,no,NA
+63,female,Hispanic,GradeSchool,central,south,34-67 %ile,homemakers,no,protestant,yes,republican
+66,female,White,CollegeDegree,suburban,west,17-33 %ile,clerical,no,other,yes,republican
+45,male,White,HighSchool,rural,south,68-95 %ile,skilled,no,jewish,yes,democrat
+63,female,White,SomeCollege,suburban,northeast,68-95 %ile,clerical,no,catholic,yes,democrat
+55,female,White,HighSchool,central,northeast,68-95 %ile,laborer,no,catholic,yes,republican
+28,female,White,SomeCollege,suburban,northeast,34-67 %ile,clerical,no,catholic,yes,democrat
+42,female,Black,HighSchool,rural,south,34-67 %ile,clerical,no,protestant,yes,NA
+30,male,White,SomeCollege,central,west,0-16 %ile,skilled,no,catholic,yes,other
+61,male,White,HighSchool,suburban,south,0-16 %ile,skilled,yes,protestant,yes,democrat
+34,female,Black,HighSchool,suburban,south,17-33 %ile,professional,no,protestant,no,NA
+30,male,White,CollegeDegree,suburban,north central,68-95 %ile,clerical,no,catholic,no,NA
+43,male,White,CollegeDegree,rural,south,68-95 %ile,professional,no,protestant,yes,republican
+43,male,White,HighSchool,suburban,northeast,68-95 %ile,skilled,no,protestant,yes,democrat
+42,female,White,HighSchool,rural,northeast,68-95 %ile,clerical,no,catholic,yes,republican
+64,male,White,CollegeDegree,rural,northeast,34-67 %ile,professional,no,protestant,yes,democrat
+57,female,White,HighSchool,rural,northeast,34-67 %ile,clerical,yes,other,yes,other
+43,female,White,HighSchool,rural,south,34-67 %ile,professional,no,protestant,yes,democrat
+49,female,Black,HighSchool,central,south,0-16 %ile,skilled,no,protestant,yes,democrat
+37,female,White,SomeCollege,rural,west,68-95 %ile,professional,no,protestant,yes,other
+46,male,White,SomeCollege,suburban,northeast,68-95 %ile,skilled,yes,catholic,yes,democrat
+47,male,White,CollegeDegree,suburban,south,68-95 %ile,clerical,yes,protestant,yes,republican
+56,male,Black,HighSchool,central,west,34-67 %ile,professional,no,protestant,yes,democrat
+75,female,Black,GradeSchool,suburban,north central,0-16 %ile,homemakers,no,protestant,yes,democrat
+30,male,Hispanic,SomeCollege,central,northeast,0-16 %ile,skilled,no,other,yes,democrat
+35,male,White,CollegeDegree,central,south,68-95 %ile,professional,no,protestant,yes,republican
+42,male,White,SomeCollege,central,northeast,17-33 %ile,skilled,no,protestant,no,NA
+68,male,White,HighSchool,rural,south,34-67 %ile,skilled,no,protestant,yes,democrat
+29,female,White,SomeCollege,suburban,south,17-33 %ile,clerical,no,protestant,yes,republican
+82,female,White,GradeSchool,suburban,north central,0-16 %ile,skilled,no,catholic,yes,republican
+75,female,White,HighSchool,rural,south,68-95 %ile,farmers,no,protestant,yes,republican
+56,female,White,HighSchool,suburban,west,34-67 %ile,skilled,yes,protestant,yes,republican
+36,female,White,HighSchool,suburban,west,68-95 %ile,homemakers,yes,protestant,yes,republican
+40,female,White,CollegeDegree,central,west,34-67 %ile,clerical,no,protestant,yes,NA
+76,female,White,HighSchool,central,west,17-33 %ile,skilled,no,protestant,yes,democrat
+42,male,White,CollegeDegree,central,west,0-16 %ile,skilled,no,protestant,yes,democrat
+26,male,Hispanic,HighSchool,central,west,68-95 %ile,professional,yes,catholic,yes,NA
+36,female,White,SomeCollege,suburban,north central,34-67 %ile,professional,no,protestant,yes,republican
+46,female,White,CollegeDegree,central,west,68-95 %ile,professional,no,other,yes,democrat
+23,male,White,CollegeDegree,suburban,northeast,34-67 %ile,professional,no,protestant,yes,democrat
+44,female,White,HighSchool,suburban,northeast,68-95 %ile,clerical,yes,protestant,yes,democrat
+47,male,White,SomeCollege,rural,north central,68-95 %ile,farmers,no,protestant,yes,republican
+72,female,White,HighSchool,suburban,west,17-33 %ile,clerical,no,catholic,no,NA
+35,female,White,SomeCollege,rural,north central,34-67 %ile,clerical,no,protestant,yes,republican
+40,male,White,CollegeDegree,suburban,west,68-95 %ile,professional,no,jewish,yes,other
+40,female,White,CollegeDegree,suburban,northeast,34-67 %ile,skilled,no,catholic,yes,republican
+37,male,White,CollegeDegree,central,northeast,34-67 %ile,professional,yes,other,yes,democrat
+38,female,White,SomeCollege,suburban,northeast,68-95 %ile,homemakers,no,catholic,yes,democrat
+39,female,White,HighSchool,central,northeast,34-67 %ile,clerical,no,catholic,yes,democrat
+83,male,White,GradeSchool,central,northeast,0-16 %ile,skilled,no,other,no,NA
+45,female,White,SomeCollege,suburban,west,34-67 %ile,professional,yes,protestant,yes,republican
+62,female,White,SomeCollege,central,west,17-33 %ile,professional,no,catholic,yes,other
+65,female,White,HighSchool,rural,south,0-16 %ile,skilled,no,protestant,yes,democrat
+36,male,White,SomeCollege,central,south,34-67 %ile,skilled,no,protestant,yes,republican
+74,male,White,CollegeDegree,suburban,west,34-67 %ile,professional,no,protestant,yes,republican
+29,female,White,HighSchool,suburban,west,68-95 %ile,clerical,no,protestant,yes,other
+31,female,White,HighSchool,rural,south,17-33 %ile,clerical,no,protestant,yes,republican
+64,female,White,HighSchool,suburban,northeast,17-33 %ile,skilled,no,catholic,yes,democrat
+26,male,Black,CollegeDegree,central,northeast,34-67 %ile,clerical,no,protestant,yes,other
+37,female,White,CollegeDegree,suburban,northeast,34-67 %ile,clerical,no,protestant,yes,democrat
+48,female,White,HighSchool,suburban,south,96-100 %ile,skilled,no,protestant,yes,republican
+63,female,White,HighSchool,rural,north central,34-67 %ile,clerical,no,catholic,yes,democrat
+61,female,White,HighSchool,rural,north central,68-95 %ile,clerical,yes,protestant,yes,republican
+47,female,White,SomeCollege,rural,north central,17-33 %ile,skilled,no,protestant,yes,democrat
+62,female,White,SomeCollege,rural,west,34-67 %ile,homemakers,no,protestant,yes,republican
+29,male,White,CollegeDegree,suburban,south,34-67 %ile,clerical,no,protestant,yes,other
+46,male,White,CollegeDegree,suburban,north central,96-100 %ile,professional,yes,catholic,yes,republican
+20,female,Black,HighSchool,suburban,north central,0-16 %ile,professional,no,other,yes,democrat
+28,female,Hispanic,HighSchool,suburban,north central,17-33 %ile,skilled,no,protestant,no,NA
+66,female,White,HighSchool,suburban,north central,34-67 %ile,professional,no,catholic,yes,democrat
+39,male,White,SomeCollege,rural,north central,34-67 %ile,skilled,no,protestant,yes,republican
+30,male,White,SomeCollege,suburban,northeast,34-67 %ile,skilled,no,other,yes,other
+49,female,White,SomeCollege,suburban,north central,68-95 %ile,clerical,no,catholic,yes,republican
+33,male,White,CollegeDegree,suburban,northeast,34-67 %ile,professional,no,catholic,yes,other
+68,female,White,SomeCollege,central,north central,68-95 %ile,homemakers,no,jewish,yes,other
+48,male,Asian,CollegeDegree,suburban,west,96-100 %ile,professional,no,protestant,yes,republican
+44,male,White,SomeCollege,suburban,west,34-67 %ile,clerical,yes,protestant,yes,republican
+39,female,White,SomeCollege,rural,north central,0-16 %ile,professional,no,protestant,no,NA
+47,female,Black,HighSchool,rural,south,34-67 %ile,skilled,no,protestant,yes,democrat
+82,male,White,GradeSchool,rural,south,17-33 %ile,laborer,no,other,yes,republican
+52,female,White,HighSchool,rural,south,34-67 %ile,professional,no,protestant,yes,democrat
+34,female,NativeAmerican,HighSchool,rural,south,17-33 %ile,homemakers,no,protestant,no,NA
+77,female,White,HighSchool,suburban,south,17-33 %ile,skilled,no,protestant,yes,democrat
+58,female,White,GradeSchool,rural,north central,34-67 %ile,skilled,no,protestant,yes,republican
+61,male,White,CollegeDegree,suburban,west,68-95 %ile,professional,no,catholic,yes,republican
+34,female,White,HighSchool,suburban,west,96-100 %ile,homemakers,no,catholic,yes,democrat
+39,male,Hispanic,SomeCollege,suburban,west,34-67 %ile,professional,no,catholic,yes,other
+42,female,Hispanic,HighSchool,suburban,west,17-33 %ile,homemakers,no,catholic,yes,democrat
+33,male,Hispanic,HighSchool,suburban,west,34-67 %ile,farmers,no,catholic,no,NA
+78,male,White,SomeCollege,suburban,west,34-67 %ile,professional,no,protestant,yes,other
+71,female,White,HighSchool,central,west,0-16 %ile,clerical,no,other,yes,democrat
+66,male,White,HighSchool,rural,north central,34-67 %ile,skilled,no,protestant,yes,republican
+42,male,White,CollegeDegree,rural,north central,17-33 %ile,skilled,no,other,yes,democrat
+24,female,White,HighSchool,rural,north central,0-16 %ile,homemakers,no,protestant,yes,republican
+76,female,NativeAmerican,GradeSchool,rural,south,0-16 %ile,professional,no,protestant,yes,republican
+46,male,White,HighSchool,rural,south,0-16 %ile,skilled,no,protestant,yes,democrat
+82,male,White,HighSchool,suburban,northeast,34-67 %ile,clerical,no,catholic,yes,democrat
+57,female,White,GradeSchool,central,south,0-16 %ile,skilled,no,protestant,no,NA
+68,male,White,GradeSchool,rural,north central,17-33 %ile,skilled,no,protestant,yes,democrat
+75,male,White,HighSchool,rural,north central,17-33 %ile,skilled,no,protestant,yes,democrat
+76,male,White,GradeSchool,rural,north central,17-33 %ile,skilled,no,catholic,yes,democrat
+75,male,Hispanic,GradeSchool,suburban,west,17-33 %ile,skilled,yes,other,yes,democrat
+69,male,Hispanic,HighSchool,suburban,west,34-67 %ile,skilled,no,catholic,no,NA
+60,female,White,HighSchool,suburban,south,17-33 %ile,skilled,no,protestant,yes,republican
+49,male,White,SomeCollege,suburban,west,68-95 %ile,laborer,no,catholic,yes,other
+34,male,White,HighSchool,rural,west,96-100 %ile,skilled,no,protestant,yes,republican
+46,male,Hispanic,CollegeDegree,central,south,68-95 %ile,clerical,no,protestant,yes,republican
+31,male,White,CollegeDegree,central,northeast,34-67 %ile,professional,yes,catholic,yes,democrat
+49,female,White,HighSchool,suburban,northeast,34-67 %ile,skilled,yes,catholic,yes,republican
+49,male,White,SomeCollege,rural,west,34-67 %ile,professional,yes,protestant,yes,other
+53,male,White,HighSchool,suburban,south,34-67 %ile,clerical,no,protestant,yes,republican
+56,male,White,HighSchool,suburban,south,68-95 %ile,skilled,yes,protestant,yes,other
+68,female,NativeAmerican,HighSchool,central,west,34-67 %ile,clerical,no,protestant,yes,democrat
+43,female,White,HighSchool,suburban,west,17-33 %ile,professional,no,protestant,yes,republican
+62,male,White,CollegeDegree,suburban,west,68-95 %ile,professional,no,catholic,yes,republican
+51,female,Black,HighSchool,rural,south,68-95 %ile,clerical,no,protestant,yes,democrat
+75,female,White,HighSchool,rural,south,17-33 %ile,homemakers,no,protestant,yes,democrat
+50,male,White,CollegeDegree,central,northeast,68-95 %ile,professional,no,protestant,yes,NA
+53,male,White,CollegeDegree,central,northeast,96-100 %ile,professional,no,jewish,yes,democrat
+22,female,White,HighSchool,suburban,northeast,0-16 %ile,clerical,no,catholic,no,NA
+42,female,White,CollegeDegree,central,northeast,96-100 %ile,clerical,no,jewish,yes,democrat
+61,male,White,CollegeDegree,central,south,68-95 %ile,clerical,no,protestant,yes,republican
+64,male,White,HighSchool,suburban,south,34-67 %ile,skilled,no,protestant,yes,democrat
+70,female,White,HighSchool,rural,north central,34-67 %ile,clerical,no,protestant,yes,republican
+82,female,Black,HighSchool,rural,south,0-16 %ile,professional,no,protestant,yes,democrat
+69,male,White,GradeSchool,rural,north central,17-33 %ile,professional,no,catholic,yes,democrat
+44,male,White,SomeCollege,central,south,68-95 %ile,clerical,no,protestant,yes,democrat
+22,male,White,SomeCollege,suburban,north central,0-16 %ile,clerical,no,other,yes,democrat
+33,male,White,HighSchool,suburban,south,0-16 %ile,laborer,no,protestant,no,NA
+28,female,White,CollegeDegree,suburban,west,96-100 %ile,professional,no,protestant,yes,republican
+32,male,White,CollegeDegree,suburban,north central,68-95 %ile,professional,no,catholic,yes,republican
+63,female,Black,HighSchool,central,west,17-33 %ile,skilled,no,catholic,yes,democrat
+28,male,White,HighSchool,rural,south,0-16 %ile,professional,no,protestant,no,NA
+34,male,Asian,SomeCollege,central,west,68-95 %ile,skilled,yes,protestant,no,NA
+30,female,Black,HighSchool,suburban,north central,0-16 %ile,skilled,no,protestant,no,NA
+21,male,Asian,SomeCollege,suburban,north central,68-95 %ile,skilled,no,catholic,no,NA
+29,male,White,CollegeDegree,suburban,north central,68-95 %ile,clerical,no,protestant,yes,other
+42,female,Black,CollegeDegree,central,south,0-16 %ile,clerical,no,protestant,yes,democrat
+46,female,White,HighSchool,rural,north central,34-67 %ile,clerical,no,protestant,yes,democrat
+39,male,White,CollegeDegree,rural,west,68-95 %ile,professional,yes,protestant,yes,democrat
+70,female,Black,GradeSchool,rural,south,0-16 %ile,skilled,no,protestant,yes,democrat
+56,male,Black,GradeSchool,suburban,south,0-16 %ile,skilled,no,protestant,yes,democrat
+60,male,White,HighSchool,suburban,south,34-67 %ile,farmers,no,protestant,yes,republican
+32,female,White,HighSchool,suburban,south,17-33 %ile,clerical,no,other,yes,democrat
+33,female,Hispanic,HighSchool,suburban,south,0-16 %ile,clerical,no,catholic,no,NA
+37,male,NativeAmerican,HighSchool,suburban,south,34-67 %ile,skilled,yes,catholic,yes,other
+67,female,White,HighSchool,suburban,south,17-33 %ile,homemakers,yes,catholic,yes,other
+68,female,White,HighSchool,rural,northeast,0-16 %ile,clerical,no,protestant,yes,democrat
+60,male,Black,HighSchool,rural,south,0-16 %ile,laborer,no,protestant,yes,NA
+31,female,Hispanic,SomeCollege,rural,south,17-33 %ile,homemakers,no,protestant,yes,republican
+56,male,White,GradeSchool,rural,south,17-33 %ile,farmers,no,catholic,yes,democrat
+32,female,Black,HighSchool,rural,south,17-33 %ile,skilled,no,protestant,no,NA
+46,female,White,CollegeDegree,central,northeast,34-67 %ile,professional,no,other,yes,republican
+37,female,White,CollegeDegree,central,northeast,17-33 %ile,clerical,no,other,yes,democrat
+34,male,White,SomeCollege,suburban,northeast,17-33 %ile,clerical,no,catholic,yes,other
+76,female,White,CollegeDegree,central,northeast,34-67 %ile,clerical,no,catholic,yes,republican
+30,female,White,SomeCollege,suburban,north central,68-95 %ile,professional,no,catholic,yes,other
+48,male,White,CollegeDegree,central,north central,68-95 %ile,professional,no,protestant,yes,democrat
+83,female,White,HighSchool,central,north central,34-67 %ile,clerical,no,protestant,yes,republican
+33,male,White,HighSchool,suburban,south,34-67 %ile,laborer,yes,protestant,yes,democrat
+51,female,White,SomeCollege,suburban,south,68-95 %ile,professional,yes,protestant,yes,democrat
+27,male,White,HighSchool,suburban,south,68-95 %ile,skilled,no,other,no,NA
+70,female,White,GradeSchool,suburban,south,0-16 %ile,skilled,no,protestant,yes,democrat
+77,female,White,GradeSchool,rural,northeast,0-16 %ile,farmers,no,protestant,yes,republican
+74,female,White,SomeCollege,rural,north central,96-100 %ile,professional,no,catholic,yes,NA
+65,female,White,GradeSchool,rural,north central,0-16 %ile,skilled,no,catholic,no,NA
+37,male,White,HighSchool,rural,north central,34-67 %ile,skilled,no,catholic,yes,other
+75,male,White,CollegeDegree,suburban,south,68-95 %ile,professional,no,catholic,yes,democrat
+51,female,White,HighSchool,rural,north central,68-95 %ile,skilled,yes,protestant,yes,democrat
+23,female,White,SomeCollege,rural,north central,17-33 %ile,clerical,no,protestant,yes,democrat
+38,female,Asian,CollegeDegree,suburban,north central,96-100 %ile,professional,no,other,no,NA
+39,female,White,HighSchool,suburban,north central,68-95 %ile,professional,no,protestant,yes,republican
+34,female,White,SomeCollege,central,south,17-33 %ile,skilled,no,other,no,NA
+47,female,White,HighSchool,suburban,south,68-95 %ile,clerical,no,catholic,yes,democrat
+44,female,White,CollegeDegree,suburban,north central,96-100 %ile,professional,no,other,yes,democrat
+60,female,White,HighSchool,suburban,north central,68-95 %ile,clerical,no,protestant,yes,democrat
+41,male,Hispanic,SomeCollege,suburban,north central,68-95 %ile,clerical,yes,catholic,yes,democrat
+42,male,White,CollegeDegree,central,northeast,34-67 %ile,professional,yes,catholic,yes,democrat
+35,female,Black,SomeCollege,suburban,northeast,68-95 %ile,clerical,yes,protestant,yes,democrat
+55,male,White,CollegeDegree,central,northeast,34-67 %ile,professional,no,protestant,yes,democrat
+32,male,White,CollegeDegree,rural,northeast,68-95 %ile,professional,yes,catholic,yes,democrat
+69,male,White,CollegeDegree,rural,northeast,34-67 %ile,professional,no,catholic,yes,republican
+26,female,NativeAmerican,HighSchool,suburban,south,0-16 %ile,farmers,no,protestant,no,NA
+28,male,White,HighSchool,central,west,17-33 %ile,skilled,no,protestant,yes,democrat
+77,male,White,HighSchool,suburban,west,68-95 %ile,clerical,no,protestant,yes,NA
+24,male,White,HighSchool,suburban,west,34-67 %ile,farmers,no,protestant,yes,republican
+43,male,White,SomeCollege,suburban,west,68-95 %ile,professional,no,protestant,yes,republican
+81,female,White,GradeSchool,rural,north central,17-33 %ile,skilled,no,protestant,yes,democrat
+54,female,White,SomeCollege,rural,south,34-67 %ile,skilled,no,protestant,yes,democrat
+22,female,NativeAmerican,SomeCollege,rural,south,0-16 %ile,skilled,no,protestant,yes,democrat
+47,male,NativeAmerican,GradeSchool,rural,south,34-67 %ile,skilled,no,protestant,no,NA
+32,male,White,HighSchool,rural,south,17-33 %ile,laborer,no,protestant,yes,republican
+58,female,Hispanic,HighSchool,rural,west,0-16 %ile,skilled,no,catholic,yes,republican
+41,male,White,CollegeDegree,rural,west,34-67 %ile,professional,no,catholic,yes,other
+64,female,White,GradeSchool,central,northeast,17-33 %ile,skilled,no,catholic,yes,democrat
+82,female,White,GradeSchool,central,north central,34-67 %ile,skilled,no,protestant,yes,democrat
+51,male,White,HighSchool,central,north central,34-67 %ile,skilled,no,protestant,yes,republican
+55,male,White,SomeCollege,suburban,north central,68-95 %ile,skilled,no,protestant,yes,republican
+37,female,White,HighSchool,suburban,north central,34-67 %ile,homemakers,no,protestant,no,NA
+36,male,Hispanic,CollegeDegree,central,south,34-67 %ile,professional,no,protestant,yes,democrat
+49,male,Hispanic,HighSchool,suburban,south,0-16 %ile,skilled,no,protestant,no,NA
+25,male,White,CollegeDegree,suburban,west,68-95 %ile,clerical,no,protestant,yes,republican
+41,female,White,CollegeDegree,central,west,68-95 %ile,professional,no,other,yes,democrat
+35,female,Black,HighSchool,rural,south,17-33 %ile,skilled,no,protestant,yes,democrat
+47,male,Hispanic,HighSchool,rural,south,34-67 %ile,skilled,no,catholic,no,NA
+30,female,White,SomeCollege,rural,west,68-95 %ile,clerical,no,protestant,yes,other
+77,male,White,HighSchool,central,north central,34-67 %ile,professional,no,catholic,yes,democrat
+88,female,White,GradeSchool,central,north central,0-16 %ile,homemakers,no,catholic,no,NA
+33,female,Black,SomeCollege,central,north central,34-67 %ile,homemakers,yes,protestant,yes,democrat
+81,male,White,HighSchool,rural,north central,17-33 %ile,skilled,no,protestant,yes,democrat
+73,female,White,HighSchool,rural,south,17-33 %ile,homemakers,no,protestant,no,NA
+72,female,White,GradeSchool,rural,south,0-16 %ile,skilled,no,protestant,yes,democrat
+64,female,White,HighSchool,suburban,northeast,0-16 %ile,homemakers,no,catholic,yes,democrat
+43,male,White,SomeCollege,suburban,northeast,68-95 %ile,professional,no,other,yes,other
+48,male,White,HighSchool,suburban,northeast,68-95 %ile,skilled,yes,catholic,yes,other
+44,male,White,CollegeDegree,central,south,68-95 %ile,professional,no,jewish,yes,other
+37,female,White,CollegeDegree,central,south,68-95 %ile,professional,no,other,yes,democrat
+82,male,White,GradeSchool,central,northeast,0-16 %ile,skilled,no,catholic,yes,democrat
+53,male,White,HighSchool,suburban,north central,68-95 %ile,skilled,no,protestant,yes,republican
+78,male,Black,HighSchool,rural,south,17-33 %ile,skilled,no,protestant,yes,democrat
+57,male,White,HighSchool,rural,south,17-33 %ile,laborer,no,protestant,yes,republican
+69,male,White,HighSchool,rural,south,34-67 %ile,clerical,no,protestant,yes,democrat
+56,female,Black,HighSchool,rural,south,34-67 %ile,skilled,no,protestant,yes,democrat
+67,male,White,CollegeDegree,rural,west,34-67 %ile,professional,no,other,yes,democrat
+70,female,White,CollegeDegree,rural,west,68-95 %ile,professional,no,protestant,yes,other
+23,male,White,SomeCollege,rural,north central,17-33 %ile,skilled,no,protestant,yes,republican
+75,male,White,CollegeDegree,suburban,west,68-95 %ile,clerical,no,protestant,yes,republican
+70,male,White,HighSchool,suburban,west,34-67 %ile,clerical,yes,protestant,yes,democrat
+50,male,White,CollegeDegree,suburban,west,34-67 %ile,skilled,no,protestant,yes,democrat
+32,male,White,SomeCollege,suburban,west,68-95 %ile,clerical,no,protestant,yes,republican
+40,male,White,SomeCollege,rural,north central,34-67 %ile,skilled,yes,catholic,yes,democrat
+47,male,White,SomeCollege,suburban,south,34-67 %ile,clerical,no,catholic,yes,republican
+33,female,Asian,SomeCollege,central,west,68-95 %ile,clerical,yes,other,yes,republican
+58,female,White,SomeCollege,suburban,north central,17-33 %ile,homemakers,no,protestant,yes,republican
+30,female,Black,SomeCollege,central,south,17-33 %ile,professional,no,protestant,yes,democrat
+22,male,White,SomeCollege,suburban,northeast,68-95 %ile,skilled,yes,catholic,no,NA
+38,male,White,CollegeDegree,suburban,south,68-95 %ile,professional,no,protestant,no,NA
+37,female,White,HighSchool,suburban,northeast,17-33 %ile,clerical,no,catholic,yes,republican
+50,female,White,CollegeDegree,rural,north central,68-95 %ile,skilled,no,protestant,yes,republican
+31,female,White,SomeCollege,rural,north central,68-95 %ile,homemakers,no,protestant,yes,republican
+21,male,White,HighSchool,rural,northeast,68-95 %ile,skilled,no,protestant,yes,other
+45,female,White,CollegeDegree,rural,north central,68-95 %ile,professional,no,protestant,yes,other
+43,female,Black,SomeCollege,central,west,34-67 %ile,clerical,no,protestant,no,NA
+75,male,White,SomeCollege,suburban,northeast,34-67 %ile,clerical,no,protestant,yes,democrat
+31,male,Black,SomeCollege,central,west,68-95 %ile,professional,yes,protestant,yes,democrat
+29,female,White,SomeCollege,central,west,68-95 %ile,professional,yes,catholic,yes,democrat
+53,male,White,HighSchool,suburban,northeast,34-67 %ile,skilled,no,protestant,yes,republican
+37,female,White,HighSchool,suburban,northeast,68-95 %ile,skilled,no,other,yes,republican
+25,male,White,SomeCollege,suburban,west,0-16 %ile,skilled,no,catholic,yes,democrat
+69,female,White,HighSchool,suburban,northeast,17-33 %ile,clerical,no,catholic,yes,democrat
+71,female,White,SomeCollege,rural,north central,17-33 %ile,homemakers,no,protestant,yes,republican
+33,female,White,CollegeDegree,central,west,68-95 %ile,professional,no,protestant,yes,other
+67,female,White,CollegeDegree,central,west,34-67 %ile,professional,no,jewish,yes,democrat
+25,female,White,CollegeDegree,suburban,north central,96-100 %ile,clerical,no,catholic,yes,republican
+20,male,White,HighSchool,suburban,south,0-16 %ile,skilled,no,protestant,no,NA
+69,female,White,HighSchool,suburban,west,0-16 %ile,clerical,no,protestant,yes,other
+74,male,White,HighSchool,central,west,34-67 %ile,skilled,yes,protestant,no,NA
+59,female,White,CollegeDegree,suburban,west,68-95 %ile,professional,yes,protestant,yes,democrat
+63,male,White,HighSchool,suburban,west,34-67 %ile,professional,no,protestant,yes,republican
+42,male,White,CollegeDegree,rural,northeast,17-33 %ile,farmers,no,other,yes,democrat
+64,male,White,GradeSchool,rural,south,0-16 %ile,skilled,no,protestant,no,NA
+64,male,White,GradeSchool,rural,south,17-33 %ile,laborer,no,protestant,yes,democrat
+44,female,Hispanic,GradeSchool,rural,south,34-67 %ile,skilled,yes,other,yes,republican
+37,male,White,SomeCollege,rural,south,34-67 %ile,skilled,no,protestant,yes,republican
+71,female,White,HighSchool,rural,south,0-16 %ile,skilled,no,protestant,yes,democrat
+47,female,White,HighSchool,central,north central,68-95 %ile,professional,no,protestant,yes,democrat
+67,female,White,SomeCollege,suburban,northeast,34-67 %ile,professional,no,catholic,yes,democrat
+59,male,Black,GradeSchool,central,north central,0-16 %ile,professional,no,protestant,yes,democrat
+33,male,White,CollegeDegree,suburban,north central,68-95 %ile,professional,no,protestant,yes,republican
+28,male,White,SomeCollege,central,north central,34-67 %ile,skilled,no,protestant,yes,democrat
+64,female,Black,HighSchool,central,south,17-33 %ile,clerical,no,protestant,yes,democrat
+41,female,White,CollegeDegree,suburban,west,34-67 %ile,professional,no,other,yes,democrat
+71,female,White,HighSchool,suburban,west,34-67 %ile,homemakers,yes,protestant,yes,republican
+58,male,White,CollegeDegree,suburban,northeast,68-95 %ile,skilled,no,catholic,yes,democrat
+58,male,White,CollegeDegree,suburban,northeast,68-95 %ile,professional,no,protestant,yes,other
+61,male,Asian,SomeCollege,suburban,northeast,68-95 %ile,skilled,yes,catholic,yes,democrat
+25,female,White,HighSchool,central,northeast,68-95 %ile,clerical,no,catholic,no,NA
+61,male,White,SomeCollege,suburban,northeast,68-95 %ile,professional,no,catholic,yes,democrat
+34,male,White,HighSchool,suburban,south,34-67 %ile,skilled,yes,protestant,yes,republican
+34,female,NativeAmerican,HighSchool,central,northeast,17-33 %ile,homemakers,no,other,no,NA
+65,male,White,CollegeDegree,rural,northeast,34-67 %ile,professional,yes,protestant,yes,other
+71,male,White,SomeCollege,central,northeast,34-67 %ile,laborer,no,catholic,yes,democrat
+30,female,White,CollegeDegree,rural,northeast,68-95 %ile,professional,no,catholic,yes,democrat
+54,male,White,SomeCollege,suburban,northeast,96-100 %ile,professional,no,protestant,yes,other
+33,female,White,HighSchool,suburban,north central,34-67 %ile,clerical,yes,catholic,yes,democrat
+75,female,White,HighSchool,rural,north central,34-67 %ile,professional,no,protestant,yes,democrat
+49,male,White,HighSchool,suburban,north central,34-67 %ile,clerical,no,protestant,yes,democrat
+52,male,White,CollegeDegree,rural,north central,68-95 %ile,farmers,no,protestant,yes,republican
+50,female,White,HighSchool,rural,north central,96-100 %ile,homemakers,no,protestant,yes,republican
+27,female,White,CollegeDegree,central,northeast,68-95 %ile,professional,no,other,yes,democrat
+45,male,White,CollegeDegree,central,northeast,34-67 %ile,professional,yes,protestant,yes,other
+37,male,White,CollegeDegree,central,northeast,68-95 %ile,professional,no,catholic,yes,democrat
+57,male,Black,GradeSchool,rural,south,34-67 %ile,laborer,no,protestant,yes,democrat
+47,male,White,CollegeDegree,rural,north central,34-67 %ile,professional,no,catholic,yes,democrat
+49,female,White,SomeCollege,rural,north central,17-33 %ile,skilled,no,protestant,yes,republican
+51,male,White,HighSchool,rural,north central,68-95 %ile,skilled,no,protestant,yes,other
+66,male,White,HighSchool,central,south,0-16 %ile,professional,no,catholic,yes,republican
+64,male,White,HighSchool,central,south,68-95 %ile,skilled,no,protestant,no,NA
+21,female,Black,SomeCollege,suburban,south,0-16 %ile,skilled,no,protestant,yes,democrat
+59,male,Hispanic,GradeSchool,central,south,0-16 %ile,skilled,no,protestant,yes,democrat
+72,male,White,CollegeDegree,suburban,west,68-95 %ile,professional,no,catholic,yes,republican
+56,female,White,CollegeDegree,suburban,west,96-100 %ile,homemakers,no,protestant,yes,republican
+24,female,White,HighSchool,rural,south,68-95 %ile,clerical,no,protestant,yes,other
+80,male,White,GradeSchool,rural,south,0-16 %ile,farmers,no,protestant,yes,democrat
+35,female,White,HighSchool,rural,northeast,17-33 %ile,homemakers,no,protestant,no,NA
+32,male,White,CollegeDegree,suburban,northeast,68-95 %ile,professional,no,other,yes,other
+66,female,White,HighSchool,rural,north central,0-16 %ile,skilled,no,protestant,no,NA
+53,female,White,HighSchool,rural,north central,17-33 %ile,skilled,no,protestant,yes,republican
+32,female,Black,HighSchool,suburban,south,0-16 %ile,homemakers,no,protestant,no,NA
+30,female,NativeAmerican,SomeCollege,central,south,17-33 %ile,professional,no,other,yes,democrat
+27,female,White,CollegeDegree,central,northeast,34-67 %ile,professional,no,catholic,yes,democrat
+57,female,White,CollegeDegree,suburban,south,68-95 %ile,clerical,no,protestant,yes,democrat
+46,female,White,HighSchool,suburban,northeast,17-33 %ile,professional,no,catholic,yes,democrat
+46,female,Black,HighSchool,central,south,17-33 %ile,professional,yes,protestant,yes,democrat
+77,female,White,HighSchool,central,south,17-33 %ile,clerical,no,protestant,yes,republican
+58,male,White,HighSchool,suburban,north central,68-95 %ile,professional,no,protestant,yes,democrat
+60,male,White,HighSchool,rural,northeast,34-67 %ile,skilled,no,catholic,yes,democrat
+41,female,White,CollegeDegree,suburban,north central,68-95 %ile,professional,no,catholic,yes,republican
+63,male,White,CollegeDegree,central,south,68-95 %ile,professional,no,protestant,yes,republican
+49,male,White,HighSchool,suburban,south,68-95 %ile,professional,no,catholic,yes,democrat
+37,female,White,SomeCollege,rural,north central,68-95 %ile,professional,no,protestant,yes,other
+34,male,White,HighSchool,central,south,34-67 %ile,skilled,no,protestant,no,NA
+30,female,Black,HighSchool,suburban,south,17-33 %ile,clerical,no,protestant,yes,democrat
+27,female,White,HighSchool,rural,south,17-33 %ile,homemakers,no,protestant,yes,republican
+45,female,NativeAmerican,GradeSchool,rural,south,0-16 %ile,skilled,no,protestant,yes,other
+55,male,White,GradeSchool,suburban,northeast,0-16 %ile,skilled,no,other,no,NA
+45,female,White,CollegeDegree,central,northeast,34-67 %ile,professional,no,other,yes,democrat
+26,female,White,HighSchool,suburban,northeast,0-16 %ile,homemakers,no,protestant,no,NA
+46,male,Black,HighSchool,suburban,northeast,17-33 %ile,skilled,no,catholic,no,NA
+29,male,White,SomeCollege,central,south,34-67 %ile,laborer,no,protestant,yes,republican
+27,male,Hispanic,SomeCollege,central,south,34-67 %ile,skilled,no,protestant,yes,democrat
+81,female,White,HighSchool,central,north central,34-67 %ile,skilled,no,catholic,yes,republican
+70,female,White,HighSchool,central,northeast,34-67 %ile,clerical,no,catholic,yes,democrat
+26,female,White,HighSchool,suburban,northeast,68-95 %ile,professional,no,catholic,yes,republican
+25,male,White,CollegeDegree,central,northeast,34-67 %ile,professional,no,other,yes,democrat
+38,female,White,HighSchool,suburban,northeast,17-33 %ile,clerical,no,protestant,yes,NA
+64,male,White,CollegeDegree,suburban,south,34-67 %ile,clerical,no,protestant,yes,republican
+65,male,White,HighSchool,suburban,northeast,34-67 %ile,clerical,no,other,yes,republican
+66,female,White,HighSchool,suburban,south,0-16 %ile,homemakers,no,catholic,yes,democrat
+45,female,White,CollegeDegree,suburban,north central,34-67 %ile,homemakers,no,catholic,yes,republican
+23,female,Hispanic,HighSchool,suburban,south,0-16 %ile,clerical,no,catholic,yes,democrat
+36,female,White,CollegeDegree,suburban,west,34-67 %ile,professional,no,catholic,yes,other
+45,male,White,SomeCollege,suburban,west,68-95 %ile,clerical,no,other,yes,democrat
+34,female,White,SomeCollege,rural,northeast,17-33 %ile,professional,no,protestant,yes,other
+72,female,White,HighSchool,rural,northeast,0-16 %ile,clerical,no,protestant,yes,democrat
+22,female,White,HighSchool,rural,south,68-95 %ile,skilled,no,protestant,yes,republican
+24,female,White,SomeCollege,rural,west,0-16 %ile,skilled,no,other,yes,democrat
+75,female,White,HighSchool,suburban,north central,0-16 %ile,homemakers,no,jewish,yes,democrat
+33,female,White,CollegeDegree,central,north central,34-67 %ile,professional,no,catholic,yes,republican
+65,female,White,HighSchool,central,north central,34-67 %ile,clerical,no,protestant,yes,republican
+67,male,NativeAmerican,SomeCollege,rural,west,68-95 %ile,skilled,no,protestant,yes,democrat
+30,male,White,SomeCollege,suburban,west,68-95 %ile,professional,yes,catholic,yes,republican
+54,male,White,CollegeDegree,central,west,96-100 %ile,clerical,yes,other,yes,democrat
+32,male,Hispanic,HighSchool,suburban,west,34-67 %ile,skilled,yes,protestant,no,NA
+43,male,White,CollegeDegree,central,west,68-95 %ile,professional,no,other,yes,republican
+67,male,White,CollegeDegree,suburban,west,96-100 %ile,professional,yes,protestant,yes,republican
+20,male,White,HighSchool,rural,north central,34-67 %ile,skilled,no,protestant,yes,other
+75,male,White,GradeSchool,central,south,0-16 %ile,farmers,no,protestant,yes,republican
+20,male,White,HighSchool,central,south,0-16 %ile,laborer,no,protestant,yes,democrat
+31,male,White,CollegeDegree,suburban,west,68-95 %ile,clerical,no,other,yes,democrat
+44,female,White,CollegeDegree,suburban,west,34-67 %ile,professional,no,catholic,yes,democrat
+24,female,White,HighSchool,suburban,west,17-33 %ile,homemakers,no,catholic,yes,other
+64,female,White,HighSchool,rural,south,34-67 %ile,homemakers,no,protestant,yes,republican
+55,female,Hispanic,GradeSchool,rural,south,0-16 %ile,homemakers,no,catholic,yes,democrat
+24,male,Black,HighSchool,rural,south,68-95 %ile,clerical,no,protestant,no,NA
+75,female,White,HighSchool,suburban,northeast,17-33 %ile,clerical,no,protestant,yes,republican
+66,female,Black,HighSchool,central,north central,0-16 %ile,skilled,no,protestant,yes,democrat
+83,male,White,HighSchool,suburban,north central,17-33 %ile,professional,no,catholic,yes,democrat
+40,female,White,HighSchool,suburban,north central,96-100 %ile,clerical,no,protestant,yes,republican
+28,male,White,HighSchool,suburban,north central,34-67 %ile,skilled,no,other,no,NA
+27,male,White,HighSchool,suburban,north central,17-33 %ile,farmers,no,protestant,yes,republican
+43,male,NativeAmerican,HighSchool,suburban,northeast,68-95 %ile,skilled,no,protestant,yes,republican
+37,female,White,HighSchool,suburban,south,68-95 %ile,skilled,no,protestant,yes,democrat
+29,male,Black,CollegeDegree,central,south,17-33 %ile,professional,no,protestant,yes,democrat
+66,male,White,GradeSchool,central,west,17-33 %ile,skilled,no,catholic,yes,democrat
+25,female,White,CollegeDegree,central,west,34-67 %ile,clerical,no,other,yes,democrat
+20,male,White,SomeCollege,suburban,north central,68-95 %ile,professional,no,protestant,yes,democrat
+44,female,Black,SomeCollege,suburban,south,34-67 %ile,clerical,no,catholic,yes,democrat
+29,female,White,CollegeDegree,central,northeast,68-95 %ile,professional,no,other,yes,democrat
+76,female,White,SomeCollege,central,west,17-33 %ile,skilled,no,protestant,no,NA
+33,male,White,SomeCollege,rural,northeast,68-95 %ile,professional,no,protestant,yes,democrat
+82,male,White,HighSchool,suburban,south,17-33 %ile,skilled,no,protestant,yes,democrat
+79,female,White,HighSchool,rural,north central,34-67 %ile,homemakers,no,protestant,yes,republican
+48,female,Black,HighSchool,central,south,17-33 %ile,skilled,yes,protestant,yes,democrat
+76,female,White,HighSchool,suburban,south,17-33 %ile,clerical,no,other,yes,democrat
+53,female,White,SomeCollege,rural,north central,96-100 %ile,professional,no,catholic,yes,democrat
+25,female,White,HighSchool,rural,north central,68-95 %ile,homemakers,no,catholic,no,NA
+59,female,Black,HighSchool,central,south,0-16 %ile,skilled,no,protestant,yes,democrat
+41,female,White,CollegeDegree,central,south,96-100 %ile,clerical,no,jewish,no,NA
+45,female,White,SomeCollege,suburban,northeast,68-95 %ile,professional,no,catholic,yes,republican
+51,female,White,HighSchool,central,northeast,0-16 %ile,clerical,no,catholic,yes,democrat
+38,male,White,CollegeDegree,central,north central,68-95 %ile,professional,no,protestant,yes,republican
+58,female,White,HighSchool,suburban,north central,34-67 %ile,homemakers,no,protestant,yes,democrat
+34,female,Black,HighSchool,suburban,south,17-33 %ile,homemakers,no,protestant,no,NA
+73,female,Black,GradeSchool,central,south,0-16 %ile,skilled,no,protestant,no,NA
+69,male,White,GradeSchool,rural,north central,0-16 %ile,skilled,no,protestant,no,NA
+44,female,White,HighSchool,rural,north central,34-67 %ile,skilled,yes,protestant,yes,republican
+53,female,White,HighSchool,suburban,northeast,34-67 %ile,clerical,yes,catholic,yes,democrat
+25,female,White,CollegeDegree,suburban,northeast,34-67 %ile,professional,no,catholic,yes,democrat
+43,male,White,HighSchool,rural,northeast,34-67 %ile,skilled,no,other,yes,other
+58,male,White,CollegeDegree,suburban,south,68-95 %ile,professional,no,protestant,yes,republican
+21,female,Hispanic,HighSchool,central,south,68-95 %ile,clerical,no,catholic,no,NA
+54,male,White,CollegeDegree,central,south,0-16 %ile,skilled,no,protestant,yes,republican
+44,male,White,CollegeDegree,central,south,68-95 %ile,professional,no,other,yes,democrat
+42,male,Hispanic,CollegeDegree,central,south,68-95 %ile,professional,no,catholic,yes,democrat
+20,male,White,SomeCollege,rural,north central,17-33 %ile,skilled,no,other,yes,democrat
+31,female,White,SomeCollege,rural,north central,17-33 %ile,clerical,no,protestant,yes,other
+20,male,Black,HighSchool,rural,south,0-16 %ile,skilled,no,protestant,no,NA
+75,female,White,GradeSchool,rural,north central,34-67 %ile,homemakers,no,protestant,no,NA
+64,male,White,HighSchool,rural,south,68-95 %ile,farmers,no,protestant,yes,republican
+54,female,White,HighSchool,rural,south,17-33 %ile,skilled,no,protestant,yes,democrat
+74,female,White,GradeSchool,suburban,north central,0-16 %ile,homemakers,no,protestant,yes,democrat
+49,male,White,CollegeDegree,suburban,north central,68-95 %ile,professional,yes,protestant,yes,democrat
+71,female,White,HighSchool,suburban,north central,0-16 %ile,clerical,no,protestant,yes,democrat
+36,male,White,HighSchool,suburban,northeast,68-95 %ile,skilled,no,catholic,yes,other
+29,male,White,HighSchool,suburban,south,0-16 %ile,skilled,no,protestant,yes,republican
+28,male,Black,HighSchool,suburban,south,34-67 %ile,laborer,no,protestant,no,NA
+20,female,White,HighSchool,suburban,west,68-95 %ile,professional,no,catholic,yes,democrat
+62,male,White,CollegeDegree,suburban,west,68-95 %ile,professional,no,other,yes,democrat
+63,female,White,GradeSchool,rural,north central,17-33 %ile,skilled,no,catholic,yes,other
+64,female,White,HighSchool,rural,west,0-16 %ile,skilled,no,protestant,yes,republican
+45,male,White,HighSchool,rural,north central,68-95 %ile,skilled,no,protestant,yes,republican
+55,female,White,SomeCollege,rural,north central,68-95 %ile,homemakers,yes,catholic,yes,other
+46,male,White,HighSchool,rural,north central,68-95 %ile,farmers,no,protestant,yes,republican
+30,male,White,HighSchool,suburban,northeast,34-67 %ile,clerical,no,protestant,yes,republican
+38,female,Hispanic,CollegeDegree,central,west,17-33 %ile,professional,yes,protestant,yes,republican
+49,male,White,CollegeDegree,central,west,68-95 %ile,professional,no,protestant,yes,democrat
+29,male,White,CollegeDegree,rural,northeast,68-95 %ile,professional,no,protestant,yes,democrat
+52,male,White,CollegeDegree,rural,north central,34-67 %ile,farmers,no,protestant,yes,democrat
+70,female,White,GradeSchool,rural,north central,34-67 %ile,homemakers,no,protestant,yes,democrat
+66,male,White,SomeCollege,rural,north central,17-33 %ile,professional,no,protestant,yes,other
+31,female,Black,HighSchool,rural,south,0-16 %ile,skilled,no,protestant,yes,democrat
+34,female,White,SomeCollege,suburban,west,34-67 %ile,professional,no,catholic,yes,democrat
+68,male,Black,GradeSchool,central,south,34-67 %ile,clerical,no,catholic,yes,democrat
+44,male,Black,HighSchool,central,south,34-67 %ile,skilled,no,protestant,yes,democrat
+57,male,Black,HighSchool,central,south,17-33 %ile,skilled,no,protestant,yes,democrat
+30,female,White,SomeCollege,central,northeast,68-95 %ile,professional,no,protestant,yes,NA
+25,male,White,SomeCollege,central,northeast,0-16 %ile,skilled,no,protestant,no,NA
+28,male,White,HighSchool,suburban,north central,68-95 %ile,professional,no,protestant,yes,other
+66,male,White,HighSchool,suburban,north central,34-67 %ile,skilled,no,protestant,yes,NA
+41,male,White,SomeCollege,suburban,west,34-67 %ile,skilled,yes,other,yes,republican
+71,female,White,HighSchool,rural,west,34-67 %ile,clerical,no,protestant,yes,republican
+38,male,White,HighSchool,rural,west,34-67 %ile,professional,yes,other,yes,other
+69,female,White,CollegeDegree,rural,west,34-67 %ile,homemakers,no,protestant,yes,republican
+41,female,White,CollegeDegree,rural,west,68-95 %ile,professional,yes,other,yes,democrat
+70,female,White,HighSchool,rural,south,0-16 %ile,homemakers,no,protestant,yes,republican
+76,female,White,GradeSchool,rural,south,0-16 %ile,skilled,no,protestant,no,NA
+79,female,White,GradeSchool,rural,south,17-33 %ile,skilled,yes,protestant,yes,democrat
+77,female,White,SomeCollege,rural,south,34-67 %ile,professional,no,protestant,yes,democrat
+52,male,White,HighSchool,rural,south,0-16 %ile,skilled,no,other,yes,democrat
+22,male,Black,HighSchool,rural,south,34-67 %ile,skilled,no,protestant,no,NA
+64,female,White,GradeSchool,rural,north central,0-16 %ile,skilled,no,protestant,yes,democrat
+25,male,White,HighSchool,suburban,west,68-95 %ile,skilled,no,other,yes,other
+75,female,White,CollegeDegree,suburban,west,68-95 %ile,homemakers,no,protestant,yes,other
+54,female,Black,HighSchool,suburban,south,17-33 %ile,clerical,no,protestant,yes,democrat
+53,male,Asian,CollegeDegree,suburban,west,68-95 %ile,professional,no,catholic,yes,democrat
+39,female,White,CollegeDegree,central,west,96-100 %ile,homemakers,no,protestant,yes,republican
+45,female,White,HighSchool,suburban,west,34-67 %ile,skilled,yes,protestant,yes,democrat
+38,female,White,HighSchool,rural,south,68-95 %ile,clerical,no,protestant,yes,republican
+35,male,White,SomeCollege,central,north central,34-67 %ile,skilled,no,protestant,yes,democrat
+30,male,Black,SomeCollege,central,north central,68-95 %ile,skilled,yes,protestant,yes,democrat
+20,female,White,HighSchool,suburban,north central,17-33 %ile,skilled,no,catholic,yes,democrat
+36,male,White,HighSchool,suburban,northeast,68-95 %ile,professional,no,protestant,yes,other
+70,female,NativeAmerican,SomeCollege,suburban,south,34-67 %ile,professional,no,protestant,yes,republican
+29,female,White,SomeCollege,suburban,north central,17-33 %ile,farmers,no,catholic,yes,democrat
+36,female,Hispanic,HighSchool,rural,south,34-67 %ile,skilled,no,catholic,no,NA
+34,female,White,HighSchool,rural,west,34-67 %ile,clerical,no,other,yes,democrat
+38,female,White,SomeCollege,rural,west,68-95 %ile,homemakers,no,other,yes,democrat
+45,female,White,SomeCollege,rural,north central,34-67 %ile,homemakers,no,protestant,yes,other
+73,female,White,GradeSchool,rural,north central,0-16 %ile,professional,no,protestant,no,NA
+51,female,White,HighSchool,rural,north central,17-33 %ile,clerical,no,protestant,no,NA
+25,female,White,HighSchool,central,south,0-16 %ile,skilled,no,other,yes,democrat
+47,male,White,HighSchool,suburban,west,96-100 %ile,skilled,no,other,yes,democrat
+72,female,White,GradeSchool,rural,north central,17-33 %ile,skilled,no,protestant,yes,democrat
+20,male,White,HighSchool,rural,north central,68-95 %ile,skilled,yes,protestant,yes,democrat
+59,male,White,CollegeDegree,rural,north central,68-95 %ile,skilled,no,protestant,yes,other
+28,male,White,SomeCollege,suburban,northeast,34-67 %ile,professional,no,protestant,yes,democrat
+88,female,White,HighSchool,rural,northeast,68-95 %ile,professional,no,protestant,no,NA
+25,female,White,HighSchool,suburban,north central,34-67 %ile,skilled,no,protestant,yes,democrat
+69,female,White,HighSchool,central,northeast,34-67 %ile,professional,yes,other,yes,democrat
+39,male,White,CollegeDegree,suburban,northeast,68-95 %ile,laborer,yes,catholic,yes,democrat
+53,female,White,HighSchool,suburban,northeast,34-67 %ile,homemakers,no,catholic,yes,other
+51,male,Black,HighSchool,central,south,34-67 %ile,skilled,no,protestant,yes,democrat
+58,male,Hispanic,HighSchool,suburban,west,17-33 %ile,skilled,no,protestant,yes,democrat
+40,male,White,CollegeDegree,central,north central,96-100 %ile,professional,no,catholic,yes,republican
+36,female,Hispanic,HighSchool,central,north central,68-95 %ile,homemakers,yes,protestant,yes,republican
+65,female,White,SomeCollege,central,north central,34-67 %ile,clerical,no,catholic,yes,republican
+78,female,White,SomeCollege,central,north central,34-67 %ile,clerical,yes,catholic,yes,democrat
+53,male,White,HighSchool,suburban,north central,68-95 %ile,skilled,yes,catholic,yes,other
+78,female,White,CollegeDegree,suburban,north central,96-100 %ile,professional,no,catholic,yes,republican
+91,male,White,SomeCollege,suburban,north central,17-33 %ile,farmers,no,catholic,yes,democrat
+26,female,Black,SomeCollege,central,south,68-95 %ile,clerical,no,protestant,yes,democrat
+81,female,White,HighSchool,suburban,north central,17-33 %ile,clerical,no,protestant,yes,republican
+39,female,White,SomeCollege,suburban,north central,34-67 %ile,professional,no,catholic,yes,other
+72,female,White,SomeCollege,rural,north central,34-67 %ile,professional,no,protestant,yes,democrat
+35,male,White,CollegeDegree,suburban,west,34-67 %ile,professional,no,protestant,yes,republican
+68,male,White,SomeCollege,central,north central,34-67 %ile,skilled,no,catholic,yes,republican
+40,female,White,HighSchool,rural,north central,68-95 %ile,farmers,no,protestant,no,NA
+85,female,White,HighSchool,suburban,north central,68-95 %ile,clerical,no,protestant,yes,republican
+72,female,Black,HighSchool,suburban,south,34-67 %ile,skilled,no,protestant,yes,democrat
+40,female,White,CollegeDegree,suburban,west,34-67 %ile,skilled,no,other,yes,democrat
+52,male,White,HighSchool,rural,northeast,17-33 %ile,skilled,yes,protestant,no,NA
+58,male,White,HighSchool,suburban,north central,17-33 %ile,skilled,no,protestant,yes,republican
+25,male,White,HighSchool,rural,northeast,17-33 %ile,skilled,no,catholic,no,NA
+39,male,Asian,CollegeDegree,central,west,68-95 %ile,professional,no,other,yes,democrat
+63,female,Hispanic,HighSchool,suburban,west,0-16 %ile,skilled,yes,protestant,yes,democrat
+31,male,Black,HighSchool,suburban,west,68-95 %ile,homemakers,no,other,yes,democrat
+62,female,White,CollegeDegree,central,northeast,34-67 %ile,professional,no,catholic,yes,republican
+35,female,White,CollegeDegree,suburban,northeast,68-95 %ile,professional,no,other,yes,democrat
+58,female,White,CollegeDegree,central,north central,34-67 %ile,homemakers,no,protestant,yes,republican
+21,male,White,SomeCollege,central,north central,34-67 %ile,clerical,no,protestant,yes,other
+41,female,NativeAmerican,HighSchool,central,north central,68-95 %ile,professional,no,protestant,yes,democrat
+31,male,Black,HighSchool,central,north central,68-95 %ile,skilled,yes,protestant,yes,democrat
+61,male,White,HighSchool,suburban,south,34-67 %ile,skilled,yes,protestant,yes,democrat
+69,female,White,HighSchool,suburban,south,17-33 %ile,skilled,no,catholic,yes,democrat
+41,female,Hispanic,HighSchool,central,south,17-33 %ile,clerical,no,catholic,no,NA
+26,male,Black,HighSchool,suburban,south,68-95 %ile,skilled,no,protestant,yes,NA
+31,female,White,HighSchool,rural,northeast,34-67 %ile,clerical,yes,protestant,yes,republican
+39,female,White,CollegeDegree,central,west,34-67 %ile,professional,no,protestant,yes,republican
+75,female,White,GradeSchool,suburban,north central,17-33 %ile,homemakers,no,protestant,yes,democrat
+46,female,Black,HighSchool,central,south,0-16 %ile,skilled,no,protestant,no,NA
+31,male,White,HighSchool,rural,northeast,68-95 %ile,skilled,yes,catholic,yes,other
+83,male,White,HighSchool,suburban,south,68-95 %ile,professional,no,other,yes,democrat
+35,male,Hispanic,HighSchool,suburban,south,17-33 %ile,skilled,no,catholic,no,NA
+30,male,White,CollegeDegree,suburban,south,34-67 %ile,professional,no,catholic,yes,republican
+60,male,White,SomeCollege,suburban,south,17-33 %ile,skilled,no,protestant,yes,democrat
+42,male,White,HighSchool,suburban,south,0-16 %ile,skilled,no,other,no,NA
+48,female,White,HighSchool,suburban,south,68-95 %ile,clerical,yes,protestant,yes,democrat
+51,female,White,CollegeDegree,rural,northeast,68-95 %ile,clerical,no,catholic,yes,republican
+29,female,Hispanic,SomeCollege,central,south,34-67 %ile,clerical,no,catholic,yes,democrat
+43,male,White,CollegeDegree,central,south,68-95 %ile,professional,no,protestant,yes,democrat
+44,male,Black,GradeSchool,central,south,34-67 %ile,skilled,no,protestant,no,NA
+32,female,Black,CollegeDegree,suburban,south,34-67 %ile,professional,no,protestant,yes,democrat
+40,male,White,CollegeDegree,suburban,south,34-67 %ile,professional,no,protestant,yes,democrat
+76,female,White,CollegeDegree,central,west,34-67 %ile,professional,no,protestant,yes,democrat
+36,male,Black,SomeCollege,central,south,17-33 %ile,skilled,no,protestant,yes,democrat
+76,female,White,CollegeDegree,rural,south,17-33 %ile,professional,no,protestant,yes,republican
+56,male,White,HighSchool,rural,northeast,34-67 %ile,skilled,yes,catholic,yes,democrat
+76,female,White,CollegeDegree,central,northeast,17-33 %ile,professional,yes,catholic,yes,democrat
+72,female,White,SomeCollege,suburban,north central,34-67 %ile,clerical,no,protestant,yes,other
+26,female,White,SomeCollege,suburban,south,34-67 %ile,clerical,no,protestant,no,NA
+38,female,White,HighSchool,rural,north central,68-95 %ile,clerical,yes,catholic,yes,republican
+22,male,Black,HighSchool,rural,south,0-16 %ile,farmers,no,other,no,NA
+35,male,White,HighSchool,rural,south,34-67 %ile,skilled,no,protestant,no,NA
+34,male,White,CollegeDegree,rural,south,68-95 %ile,farmers,no,protestant,yes,republican
+25,male,Hispanic,HighSchool,rural,south,34-67 %ile,skilled,no,catholic,yes,republican
+29,male,White,HighSchool,suburban,north central,68-95 %ile,skilled,no,protestant,yes,other
+59,female,White,CollegeDegree,central,west,68-95 %ile,professional,no,other,yes,democrat
+35,male,Hispanic,HighSchool,suburban,south,34-67 %ile,skilled,no,catholic,yes,democrat
+34,male,White,SomeCollege,suburban,north central,68-95 %ile,professional,no,protestant,yes,republican
+44,female,White,CollegeDegree,suburban,north central,68-95 %ile,professional,no,protestant,yes,republican
+35,female,White,HighSchool,suburban,north central,68-95 %ile,homemakers,no,protestant,yes,republican
+60,male,White,HighSchool,central,north central,0-16 %ile,clerical,no,protestant,yes,democrat
+43,female,Black,GradeSchool,central,south,17-33 %ile,skilled,no,protestant,no,NA
+80,male,Black,CollegeDegree,central,south,68-95 %ile,professional,no,protestant,yes,democrat
+48,female,White,SomeCollege,suburban,south,0-16 %ile,clerical,no,protestant,yes,republican
+31,male,White,HighSchool,central,south,68-95 %ile,skilled,no,protestant,no,NA
+20,female,Black,HighSchool,central,south,34-67 %ile,skilled,no,protestant,no,NA
+82,female,White,GradeSchool,suburban,south,0-16 %ile,farmers,no,other,yes,democrat
+35,female,Hispanic,HighSchool,suburban,south,0-16 %ile,clerical,no,protestant,no,NA
+27,male,NativeAmerican,HighSchool,suburban,south,17-33 %ile,skilled,no,other,no,NA
+23,male,Black,HighSchool,suburban,south,17-33 %ile,skilled,no,protestant,no,NA
+21,female,White,HighSchool,suburban,west,34-67 %ile,professional,no,protestant,yes,republican
+54,male,White,CollegeDegree,suburban,west,68-95 %ile,clerical,no,protestant,yes,republican
+34,male,White,SomeCollege,rural,north central,34-67 %ile,professional,yes,protestant,yes,republican
+44,female,White,HighSchool,rural,west,68-95 %ile,skilled,no,protestant,yes,NA
+35,male,Hispanic,SomeCollege,rural,south,17-33 %ile,skilled,no,catholic,yes,democrat
+36,female,Black,HighSchool,rural,south,17-33 %ile,skilled,no,protestant,no,NA
+37,male,NativeAmerican,HighSchool,rural,south,34-67 %ile,professional,no,protestant,no,NA
+37,female,Black,SomeCollege,rural,south,17-33 %ile,skilled,no,protestant,yes,democrat
+81,female,Black,HighSchool,rural,south,34-67 %ile,skilled,no,protestant,yes,republican
+62,female,White,CollegeDegree,rural,south,68-95 %ile,professional,no,protestant,yes,republican
+84,female,White,GradeSchool,rural,north central,17-33 %ile,skilled,no,protestant,yes,republican
+55,male,White,HighSchool,rural,north central,68-95 %ile,clerical,no,protestant,yes,democrat
+37,female,White,SomeCollege,rural,north central,34-67 %ile,professional,yes,catholic,yes,democrat
+45,male,White,CollegeDegree,suburban,north central,68-95 %ile,professional,no,protestant,yes,other
+44,male,Black,SomeCollege,central,northeast,96-100 %ile,professional,no,protestant,yes,democrat
+37,male,White,CollegeDegree,suburban,northeast,68-95 %ile,skilled,no,protestant,yes,republican
+42,male,Black,HighSchool,central,south,17-33 %ile,skilled,no,protestant,yes,democrat
+32,male,White,SomeCollege,suburban,west,34-67 %ile,skilled,no,catholic,yes,democrat
+41,female,Black,CollegeDegree,suburban,south,68-95 %ile,homemakers,no,protestant,yes,democrat
+51,female,White,CollegeDegree,suburban,north central,96-100 %ile,professional,no,protestant,yes,democrat
+35,female,Asian,GradeSchool,suburban,north central,34-67 %ile,professional,no,protestant,yes,republican
+53,male,Asian,CollegeDegree,suburban,west,68-95 %ile,professional,no,catholic,yes,republican
+23,male,White,CollegeDegree,central,northeast,68-95 %ile,professional,no,protestant,yes,democrat
+39,male,White,CollegeDegree,central,northeast,34-67 %ile,skilled,yes,protestant,yes,republican
+43,female,Black,HighSchool,central,north central,68-95 %ile,clerical,yes,protestant,yes,democrat
+84,male,White,HighSchool,suburban,northeast,17-33 %ile,skilled,no,catholic,yes,democrat
+45,male,White,CollegeDegree,rural,north central,34-67 %ile,farmers,no,protestant,yes,republican
+34,female,White,CollegeDegree,central,north central,17-33 %ile,professional,no,protestant,yes,democrat
+64,female,White,HighSchool,central,north central,0-16 %ile,clerical,no,catholic,yes,democrat
+27,female,NativeAmerican,HighSchool,rural,south,34-67 %ile,clerical,no,protestant,yes,republican
+20,male,White,HighSchool,rural,north central,68-95 %ile,skilled,yes,protestant,yes,republican
+51,male,White,CollegeDegree,rural,south,68-95 %ile,clerical,no,protestant,yes,republican
+24,male,White,SomeCollege,rural,north central,34-67 %ile,skilled,yes,protestant,no,NA
+23,male,White,SomeCollege,suburban,north central,68-95 %ile,clerical,no,catholic,yes,democrat
+46,male,White,CollegeDegree,rural,south,34-67 %ile,clerical,no,catholic,yes,republican
+50,male,White,HighSchool,rural,south,34-67 %ile,farmers,no,protestant,yes,democrat
+21,female,White,HighSchool,suburban,northeast,34-67 %ile,clerical,no,other,no,NA
+28,female,White,SomeCollege,suburban,north central,68-95 %ile,skilled,no,catholic,yes,republican
+56,female,White,HighSchool,suburban,northeast,34-67 %ile,professional,yes,catholic,yes,other
+76,female,White,HighSchool,suburban,northeast,17-33 %ile,skilled,yes,catholic,yes,democrat
+45,male,White,SomeCollege,rural,south,68-95 %ile,farmers,no,protestant,yes,republican
+43,female,White,SomeCollege,suburban,south,96-100 %ile,homemakers,no,protestant,yes,republican
+36,female,White,HighSchool,suburban,north central,68-95 %ile,skilled,no,protestant,yes,republican
+74,male,White,GradeSchool,suburban,north central,68-95 %ile,skilled,no,catholic,yes,other
+51,female,White,HighSchool,suburban,northeast,34-67 %ile,clerical,yes,protestant,yes,democrat
+57,female,White,SomeCollege,suburban,northeast,34-67 %ile,professional,no,protestant,yes,republican
+38,female,White,SomeCollege,suburban,northeast,68-95 %ile,professional,no,protestant,yes,other
+64,female,White,CollegeDegree,suburban,northeast,68-95 %ile,homemakers,no,protestant,yes,republican
+37,male,White,CollegeDegree,suburban,northeast,34-67 %ile,skilled,no,catholic,yes,democrat
+83,female,White,HighSchool,suburban,north central,0-16 %ile,homemakers,no,catholic,yes,republican
+47,female,White,HighSchool,suburban,north central,68-95 %ile,homemakers,no,protestant,yes,republican
+69,male,White,CollegeDegree,suburban,north central,68-95 %ile,professional,no,protestant,yes,republican
+31,male,White,SomeCollege,suburban,west,34-67 %ile,skilled,yes,protestant,yes,republican
+31,male,White,CollegeDegree,suburban,west,68-95 %ile,professional,no,other,yes,republican
+33,female,Hispanic,SomeCollege,central,west,34-67 %ile,clerical,no,protestant,yes,republican
+67,female,White,HighSchool,suburban,west,17-33 %ile,skilled,no,other,yes,democrat
+28,female,White,SomeCollege,rural,northeast,0-16 %ile,professional,no,protestant,no,NA
+59,female,White,HighSchool,rural,north central,96-100 %ile,farmers,no,protestant,yes,democrat
+28,male,White,HighSchool,rural,north central,34-67 %ile,farmers,no,protestant,yes,other
+21,male,White,SomeCollege,rural,north central,68-95 %ile,skilled,no,protestant,yes,democrat
+41,female,White,HighSchool,rural,north central,68-95 %ile,professional,yes,protestant,yes,republican
+45,female,White,HighSchool,central,northeast,68-95 %ile,clerical,no,jewish,yes,democrat
+35,male,NativeAmerican,HighSchool,suburban,north central,34-67 %ile,professional,yes,protestant,yes,republican
+38,female,White,CollegeDegree,rural,north central,68-95 %ile,professional,no,protestant,yes,democrat
+23,male,White,SomeCollege,suburban,north central,34-67 %ile,clerical,no,protestant,yes,democrat
+33,male,White,HighSchool,rural,south,68-95 %ile,professional,yes,protestant,yes,democrat
+55,female,Black,HighSchool,central,south,17-33 %ile,skilled,no,protestant,yes,democrat
+36,male,White,HighSchool,suburban,south,68-95 %ile,professional,yes,catholic,no,NA
+33,female,White,SomeCollege,suburban,south,34-67 %ile,homemakers,no,catholic,yes,other
+55,female,White,HighSchool,suburban,north central,68-95 %ile,homemakers,yes,other,yes,democrat
+25,male,White,HighSchool,central,west,68-95 %ile,clerical,yes,catholic,yes,other
+40,male,Asian,CollegeDegree,central,west,68-95 %ile,professional,no,other,yes,other
+53,female,White,HighSchool,central,north central,0-16 %ile,skilled,no,catholic,yes,republican
+73,female,White,GradeSchool,suburban,south,68-95 %ile,homemakers,no,protestant,no,NA
+79,female,White,SomeCollege,suburban,south,68-95 %ile,professional,no,protestant,yes,democrat
+32,female,Black,HighSchool,suburban,north central,68-95 %ile,clerical,no,protestant,yes,democrat
+31,female,Black,HighSchool,central,north central,0-16 %ile,skilled,no,protestant,yes,democrat
+37,female,Black,CollegeDegree,suburban,north central,68-95 %ile,professional,no,catholic,yes,democrat
+57,male,NativeAmerican,HighSchool,suburban,north central,68-95 %ile,skilled,no,protestant,yes,democrat
+31,male,White,HighSchool,central,north central,68-95 %ile,professional,no,protestant,yes,democrat
+45,male,White,CollegeDegree,suburban,north central,96-100 %ile,professional,no,protestant,yes,republican
+38,male,Black,HighSchool,suburban,north central,68-95 %ile,skilled,yes,protestant,yes,democrat
+58,male,Black,GradeSchool,suburban,north central,68-95 %ile,skilled,no,protestant,yes,democrat
+40,female,White,SomeCollege,rural,north central,0-16 %ile,clerical,no,protestant,no,NA
+37,male,White,SomeCollege,rural,north central,34-67 %ile,laborer,no,protestant,yes,other
+84,male,White,GradeSchool,rural,south,0-16 %ile,farmers,no,protestant,yes,democrat
+76,male,White,HighSchool,rural,north central,0-16 %ile,skilled,no,protestant,yes,republican
+48,female,White,CollegeDegree,rural,north central,17-33 %ile,homemakers,no,protestant,yes,democrat
+53,female,White,CollegeDegree,rural,north central,68-95 %ile,professional,no,catholic,yes,democrat
+83,female,White,GradeSchool,rural,northeast,17-33 %ile,skilled,no,catholic,no,NA
+40,male,White,CollegeDegree,central,west,68-95 %ile,professional,no,jewish,yes,democrat
+35,female,White,HighSchool,suburban,west,34-67 %ile,farmers,no,catholic,no,NA
+48,male,White,HighSchool,rural,west,68-95 %ile,skilled,no,other,yes,republican
+52,male,White,HighSchool,rural,west,34-67 %ile,professional,no,catholic,no,NA
+49,female,Black,CollegeDegree,rural,south,34-67 %ile,professional,no,protestant,yes,democrat
+56,male,White,CollegeDegree,rural,south,96-100 %ile,professional,no,protestant,yes,republican
+58,male,Asian,SomeCollege,rural,south,34-67 %ile,skilled,no,other,yes,republican
+56,female,NativeAmerican,CollegeDegree,rural,south,68-95 %ile,professional,no,protestant,yes,republican
+76,female,White,CollegeDegree,rural,north central,68-95 %ile,professional,no,protestant,yes,republican
+82,female,Black,GradeSchool,rural,south,0-16 %ile,skilled,no,protestant,no,NA
+71,female,White,HighSchool,suburban,west,0-16 %ile,homemakers,no,protestant,yes,republican
+33,female,Hispanic,SomeCollege,rural,west,34-67 %ile,professional,yes,protestant,no,NA
+32,female,White,HighSchool,rural,west,34-67 %ile,skilled,no,catholic,yes,democrat
+25,male,White,CollegeDegree,suburban,northeast,34-67 %ile,professional,no,catholic,no,NA
+49,male,Black,CollegeDegree,suburban,north central,96-100 %ile,professional,yes,protestant,yes,democrat
+51,female,White,CollegeDegree,suburban,northeast,96-100 %ile,professional,yes,catholic,yes,democrat
+74,female,White,HighSchool,central,northeast,17-33 %ile,skilled,no,catholic,yes,republican
+48,female,Black,SomeCollege,central,south,34-67 %ile,professional,yes,protestant,yes,democrat
+59,female,NativeAmerican,HighSchool,central,west,34-67 %ile,clerical,no,catholic,yes,democrat
+51,male,White,HighSchool,rural,north central,34-67 %ile,laborer,yes,catholic,yes,democrat
+31,female,White,SomeCollege,rural,south,96-100 %ile,clerical,no,protestant,yes,republican
+49,female,White,CollegeDegree,rural,west,34-67 %ile,homemakers,no,protestant,yes,republican
+56,female,White,HighSchool,rural,west,34-67 %ile,professional,no,protestant,yes,republican
+21,female,White,HighSchool,rural,south,17-33 %ile,skilled,no,other,no,NA
+28,male,White,CollegeDegree,suburban,northeast,34-67 %ile,professional,no,other,yes,democrat
+69,female,White,SomeCollege,suburban,west,34-67 %ile,clerical,no,other,yes,democrat
+51,female,NativeAmerican,HighSchool,rural,south,68-95 %ile,professional,no,protestant,yes,democrat
+71,male,White,GradeSchool,rural,south,17-33 %ile,farmers,no,protestant,yes,democrat
+81,male,White,SomeCollege,rural,west,68-95 %ile,skilled,no,protestant,yes,republican
+24,female,White,CollegeDegree,central,north central,17-33 %ile,clerical,no,protestant,yes,republican
+53,male,White,HighSchool,central,northeast,0-16 %ile,skilled,no,catholic,no,NA
+66,male,White,HighSchool,suburban,north central,68-95 %ile,professional,yes,protestant,yes,republican
+40,male,White,CollegeDegree,suburban,north central,96-100 %ile,professional,no,protestant,yes,republican
+35,female,White,CollegeDegree,central,west,68-95 %ile,professional,yes,protestant,yes,democrat
+29,female,White,SomeCollege,central,west,34-67 %ile,farmers,no,protestant,no,NA
+46,male,White,CollegeDegree,suburban,west,96-100 %ile,professional,no,protestant,yes,republican
+59,female,White,HighSchool,suburban,west,96-100 %ile,homemakers,no,other,yes,republican
+37,male,White,CollegeDegree,rural,west,34-67 %ile,skilled,no,protestant,yes,republican
+45,female,White,CollegeDegree,rural,west,96-100 %ile,homemakers,no,protestant,yes,democrat
+63,male,White,HighSchool,rural,west,34-67 %ile,skilled,yes,other,yes,democrat
+62,male,White,HighSchool,rural,north central,68-95 %ile,skilled,yes,protestant,yes,other
+27,male,White,SomeCollege,suburban,south,68-95 %ile,skilled,yes,protestant,no,NA
+37,female,Black,CollegeDegree,central,south,68-95 %ile,professional,no,protestant,yes,democrat
+34,male,White,CollegeDegree,suburban,north central,68-95 %ile,professional,no,catholic,yes,republican
+25,female,White,CollegeDegree,central,south,17-33 %ile,professional,no,other,yes,democrat
+71,male,White,HighSchool,rural,west,34-67 %ile,skilled,no,catholic,yes,democrat
+73,male,White,HighSchool,rural,west,34-67 %ile,professional,no,protestant,yes,republican
+51,female,NativeAmerican,CollegeDegree,rural,south,34-67 %ile,skilled,no,protestant,no,NA
+49,female,White,HighSchool,rural,south,68-95 %ile,clerical,no,protestant,yes,democrat
+57,male,White,GradeSchool,suburban,north central,68-95 %ile,skilled,yes,protestant,yes,other
+43,female,White,CollegeDegree,suburban,west,96-100 %ile,clerical,no,protestant,yes,other
+39,female,Black,HighSchool,rural,south,68-95 %ile,skilled,no,protestant,yes,democrat
+36,male,White,SomeCollege,suburban,west,68-95 %ile,professional,no,jewish,yes,democrat
+31,female,Black,HighSchool,central,south,68-95 %ile,clerical,no,protestant,no,NA
+37,male,White,HighSchool,suburban,north central,17-33 %ile,farmers,no,protestant,yes,republican
+33,female,White,HighSchool,central,west,17-33 %ile,homemakers,no,catholic,yes,democrat
+30,female,White,HighSchool,rural,south,34-67 %ile,clerical,no,protestant,yes,democrat
+23,male,Black,SomeCollege,rural,south,0-16 %ile,professional,no,protestant,yes,democrat
+41,male,White,CollegeDegree,rural,south,34-67 %ile,skilled,no,protestant,yes,republican
+72,female,White,HighSchool,rural,south,17-33 %ile,skilled,no,protestant,yes,democrat
+32,male,White,SomeCollege,suburban,south,34-67 %ile,professional,no,protestant,yes,democrat
+34,male,White,CollegeDegree,rural,south,0-16 %ile,professional,no,protestant,yes,NA
+67,female,White,HighSchool,suburban,northeast,0-16 %ile,clerical,no,protestant,no,NA
+63,female,White,HighSchool,rural,northeast,0-16 %ile,skilled,yes,protestant,yes,republican
+26,male,White,GradeSchool,central,south,17-33 %ile,skilled,no,other,yes,republican
+48,female,Black,HighSchool,suburban,west,34-67 %ile,skilled,no,protestant,yes,democrat
+64,male,Black,HighSchool,central,south,68-95 %ile,skilled,no,protestant,yes,democrat
+31,male,White,SomeCollege,rural,northeast,68-95 %ile,professional,no,catholic,yes,republican
+34,female,Black,CollegeDegree,central,west,68-95 %ile,professional,yes,protestant,yes,democrat
+46,female,Black,CollegeDegree,central,west,68-95 %ile,professional,yes,protestant,yes,democrat
+45,female,White,HighSchool,suburban,northeast,34-67 %ile,professional,no,protestant,yes,other
+36,female,White,CollegeDegree,central,north central,0-16 %ile,clerical,no,catholic,yes,republican
+50,male,White,HighSchool,rural,south,34-67 %ile,skilled,no,protestant,yes,republican
+40,female,Black,SomeCollege,suburban,south,34-67 %ile,clerical,no,catholic,yes,republican
+75,male,Black,HighSchool,central,south,17-33 %ile,skilled,no,protestant,yes,democrat
+20,female,White,SomeCollege,suburban,south,0-16 %ile,clerical,no,catholic,no,NA
+66,male,Black,GradeSchool,central,south,0-16 %ile,skilled,no,protestant,yes,democrat
+68,male,Black,HighSchool,rural,south,17-33 %ile,skilled,no,protestant,yes,democrat
+28,female,White,CollegeDegree,central,west,34-67 %ile,skilled,no,protestant,yes,democrat
+31,female,Black,HighSchool,central,northeast,17-33 %ile,clerical,no,protestant,yes,democrat
+46,female,White,CollegeDegree,suburban,northeast,96-100 %ile,professional,yes,protestant,yes,democrat
+26,male,White,HighSchool,suburban,north central,17-33 %ile,skilled,no,protestant,yes,republican
+49,male,White,CollegeDegree,suburban,south,68-95 %ile,professional,no,protestant,yes,republican
+64,male,White,HighSchool,rural,north central,34-67 %ile,skilled,yes,protestant,yes,other
+60,female,White,HighSchool,rural,northeast,0-16 %ile,skilled,no,protestant,yes,republican
+70,male,Black,HighSchool,suburban,northeast,34-67 %ile,clerical,yes,protestant,yes,republican
+29,female,Hispanic,HighSchool,suburban,west,0-16 %ile,clerical,no,protestant,yes,democrat
+31,male,NativeAmerican,HighSchool,central,northeast,34-67 %ile,clerical,no,catholic,no,NA
+25,female,Black,HighSchool,central,north central,0-16 %ile,skilled,no,protestant,yes,democrat
+30,female,Black,SomeCollege,central,north central,17-33 %ile,skilled,no,protestant,yes,democrat
+35,female,White,CollegeDegree,suburban,north central,96-100 %ile,professional,no,catholic,no,NA
+52,male,White,CollegeDegree,suburban,north central,96-100 %ile,professional,no,protestant,yes,republican
+30,male,White,CollegeDegree,central,north central,34-67 %ile,professional,no,protestant,yes,democrat
+49,male,White,HighSchool,rural,south,0-16 %ile,professional,no,protestant,yes,republican
+46,female,White,HighSchool,rural,north central,68-95 %ile,skilled,yes,protestant,yes,democrat
+43,male,Black,HighSchool,suburban,north central,34-67 %ile,professional,yes,protestant,yes,democrat
+74,female,White,GradeSchool,rural,north central,0-16 %ile,professional,no,protestant,yes,republican
+63,female,Hispanic,HighSchool,central,west,34-67 %ile,professional,no,catholic,yes,democrat
+50,male,Black,SomeCollege,central,south,68-95 %ile,professional,yes,protestant,yes,democrat
+44,male,Hispanic,GradeSchool,suburban,south,17-33 %ile,skilled,no,other,no,NA
+37,male,Black,SomeCollege,central,south,34-67 %ile,skilled,yes,protestant,yes,democrat
+45,male,Hispanic,CollegeDegree,suburban,northeast,68-95 %ile,professional,yes,catholic,no,NA
+39,male,White,GradeSchool,suburban,south,0-16 %ile,laborer,no,catholic,no,NA
+68,male,Black,HighSchool,central,northeast,0-16 %ile,professional,no,other,yes,democrat
+31,female,White,CollegeDegree,central,northeast,17-33 %ile,clerical,no,jewish,yes,other
+44,female,White,HighSchool,suburban,south,17-33 %ile,homemakers,no,protestant,no,NA
+32,male,Hispanic,SomeCollege,suburban,south,34-67 %ile,skilled,yes,protestant,yes,NA
+62,female,White,GradeSchool,suburban,south,0-16 %ile,farmers,no,protestant,yes,republican
+63,male,White,GradeSchool,suburban,south,0-16 %ile,skilled,no,catholic,yes,democrat
+52,female,White,GradeSchool,suburban,south,0-16 %ile,farmers,no,protestant,yes,republican
+74,female,White,SomeCollege,suburban,west,34-67 %ile,clerical,yes,protestant,yes,democrat
+43,male,White,HighSchool,rural,west,68-95 %ile,skilled,yes,protestant,yes,republican
+33,female,Hispanic,CollegeDegree,suburban,south,68-95 %ile,professional,no,protestant,yes,republican
+35,female,White,HighSchool,rural,south,0-16 %ile,clerical,no,protestant,yes,democrat
+27,male,Hispanic,GradeSchool,suburban,south,0-16 %ile,farmers,no,other,no,NA
+20,female,White,HighSchool,central,north central,34-67 %ile,clerical,no,catholic,no,NA
+41,male,Black,CollegeDegree,central,northeast,68-95 %ile,professional,yes,catholic,yes,democrat
+32,male,Hispanic,SomeCollege,suburban,west,17-33 %ile,skilled,yes,protestant,yes,other
+64,female,White,SomeCollege,central,northeast,17-33 %ile,professional,no,other,yes,democrat
+32,female,White,SomeCollege,suburban,northeast,68-95 %ile,homemakers,yes,catholic,yes,republican
+72,female,White,SomeCollege,suburban,northeast,68-95 %ile,clerical,no,catholic,yes,republican
+40,female,White,HighSchool,central,north central,34-67 %ile,professional,yes,other,yes,democrat
+28,female,White,HighSchool,suburban,south,34-67 %ile,skilled,no,other,yes,democrat
+36,female,Black,HighSchool,central,south,34-67 %ile,clerical,yes,protestant,yes,democrat
+65,female,White,HighSchool,suburban,north central,17-33 %ile,clerical,no,protestant,yes,democrat
+51,female,White,HighSchool,suburban,north central,34-67 %ile,skilled,no,protestant,no,NA
+53,female,White,HighSchool,suburban,northeast,68-95 %ile,professional,no,protestant,yes,republican
+39,female,Black,HighSchool,suburban,west,68-95 %ile,clerical,no,catholic,yes,democrat
+59,male,White,SomeCollege,central,north central,68-95 %ile,professional,no,protestant,yes,other
+33,female,Black,SomeCollege,central,north central,34-67 %ile,professional,yes,protestant,yes,democrat
+41,male,White,HighSchool,suburban,northeast,34-67 %ile,skilled,yes,catholic,yes,republican
+79,female,White,GradeSchool,central,northeast,0-16 %ile,clerical,no,catholic,yes,republican
+77,male,White,GradeSchool,suburban,northeast,34-67 %ile,skilled,no,catholic,no,NA
+47,male,White,CollegeDegree,suburban,northeast,68-95 %ile,clerical,no,protestant,yes,democrat
+60,male,White,SomeCollege,rural,north central,17-33 %ile,clerical,yes,protestant,yes,democrat
+70,female,White,HighSchool,central,north central,68-95 %ile,skilled,no,protestant,yes,democrat
+50,male,White,CollegeDegree,suburban,northeast,68-95 %ile,professional,no,catholic,yes,republican
+37,female,White,SomeCollege,suburban,northeast,34-67 %ile,professional,no,protestant,yes,republican
+67,female,White,GradeSchool,suburban,south,0-16 %ile,homemakers,no,catholic,yes,democrat
+66,female,White,HighSchool,central,north central,17-33 %ile,skilled,no,protestant,yes,democrat
+33,male,White,HighSchool,rural,north central,0-16 %ile,skilled,no,other,no,NA
+52,male,Hispanic,GradeSchool,suburban,south,0-16 %ile,skilled,no,other,yes,democrat
+52,male,White,CollegeDegree,suburban,west,34-67 %ile,professional,no,protestant,yes,republican
+46,female,White,CollegeDegree,rural,south,34-67 %ile,professional,yes,protestant,yes,democrat
+72,female,White,HighSchool,rural,south,17-33 %ile,homemakers,no,protestant,yes,democrat
+31,female,White,HighSchool,suburban,northeast,68-95 %ile,professional,yes,catholic,yes,republican
+34,female,Hispanic,CollegeDegree,suburban,northeast,68-95 %ile,professional,no,other,yes,democrat
+58,male,White,HighSchool,suburban,north central,68-95 %ile,skilled,yes,catholic,yes,other
+26,female,White,CollegeDegree,central,south,34-67 %ile,professional,no,catholic,yes,democrat
+29,female,Black,HighSchool,suburban,south,17-33 %ile,clerical,no,protestant,yes,democrat
+73,female,White,HighSchool,suburban,north central,0-16 %ile,homemakers,no,protestant,yes,democrat
+35,male,Black,HighSchool,central,south,17-33 %ile,skilled,no,protestant,no,NA
+51,male,Black,GradeSchool,rural,south,0-16 %ile,skilled,no,protestant,no,NA
+29,female,White,HighSchool,rural,south,68-95 %ile,clerical,no,protestant,yes,republican
+29,male,White,HighSchool,central,south,34-67 %ile,professional,no,protestant,yes,democrat
+79,male,White,GradeSchool,rural,north central,34-67 %ile,skilled,no,catholic,yes,republican
+76,female,White,HighSchool,suburban,south,0-16 %ile,professional,no,protestant,no,NA
