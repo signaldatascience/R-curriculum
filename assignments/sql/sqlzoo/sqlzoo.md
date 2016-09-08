@@ -1,9 +1,11 @@
 ---
-title: "Homework: SQLZoo Tutorials"
+title: SQLZoo Tutorials
 author: Signal Data Science
 ---
 
-Over the weekend, work through the 11 tutorials at [SQLZoo](http://sqlzoo.net/). SQL is *very* useful for interview questions and is relatively straightforward to learn, so we'll be practicing it continuously throughout the course.
+SQL is *very* useful for interview questions and is relatively straightforward to learn, so we'll be practicing it continuously throughout the course.
+
+* Work through the 11 tutorials at [SQLZoo](http://sqlzoo.net/). 
 
 **Read the following important information:**
 

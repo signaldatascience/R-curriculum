@@ -9,6 +9,11 @@ Thursday - Diane, 2 PM; Sean, 4 PM
 Friday - William, 12 PM
 Monday - William, 5 PM
 Tuesday - Rob, 3 PM
+Friday - David, 4 PM
+Tuesday - Andrew, 12 PM; David, 3 PM; Tim, 4 PM
+Wednesday - Andrew, 12 PM (?)
+Wednesday - Michelle, 12 PM
+Thursday - Danfeng, 1 PM; Vanessa, 4 PM; Jeffrey, 5 PM
 
 Industry relevance improvement:
 - Explicit focus on A/B testing and related issues
@@ -71,6 +76,7 @@ http://www.cs.columbia.edu/~blei/fogm/2015F/
 - xgboost <=> gbm hyperparameters in distrib. computing
 - statistical NLP: n-grams, tf-idf
 - usage of qdap for sentiment analysis (polarity?)
+- image processing / audio processing
 
 - resampling: add exposition on why higher/lower n for n-fold cv
 http://stats.stackexchange.com/questions/27730/choice-of-k-in-k-fold-cross-validation

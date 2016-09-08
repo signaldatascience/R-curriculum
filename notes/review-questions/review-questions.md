@@ -484,8 +484,6 @@ Distributions
 -------------
 
 * What is a uniform distribution?
-* You can choose random points on a circle's circumference. How can you use this to draw samples from a uniform distribution?
-* Consider a uniform distribution from $a$ to $b$ from which we sample the points $x_1, x_2, \ldots, x_n$. What are the maximum likelihood estimates of $a$ and $b$?
 * What does the Bernoulli distribution model?
 * What is one real-world example of a quantity modeled by a Bernoulli distribution?
 * What is the probability density function of a Bernoulli distribution with success probability $p$?
