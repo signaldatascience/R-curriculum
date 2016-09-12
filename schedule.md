@@ -121,6 +121,8 @@ Friday
 
 Assignments:
 
+* [Intermediate SQL Practice](assignments/sql/sql-intermediate/sql-intermediate.pdf) ([solutions](assignments/sql/sql-intermediate/sql-intermediate-solutions.sql))
+
 Readings:
 
 Week 3
@@ -161,6 +163,8 @@ Friday
 
 Assignments:
 
+* [Intermediate SQL Practice II](assignments/sql/sql-intermediate-ii/sql-intermediate-ii.pdf) ([solutions](assignments/sql/sql-intermediate-ii/sql-intermediate-ii-solutions.sql))
+
 Readings:
 
 Week 4
@@ -200,6 +204,8 @@ Friday
 ------
 
 Assignments:
+
+* [Advanced SQL Practice](assignments/sql/sql-advanced/sql-advanced.pdf) ([solutions](assignments/sql/sql-advanced/sql-advanced-solutions.sql))
 
 Readings:
 
