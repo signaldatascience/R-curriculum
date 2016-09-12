@@ -347,6 +347,9 @@ Assignments:
 
 Readings:
 
+* [Lecture Notes: Some notes on gradient descent](readings/algorithms/gd-notes.pdf)
+* [Wikipedia: Stochastic gradient descent](readings/algorithms/wp-sgd.pdf)
+
 Thursday
 --------
 
