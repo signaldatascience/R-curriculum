@@ -1,1 +1,1 @@
-Look in `/assignments`.
+The course schedule is located [schedule.md](here).

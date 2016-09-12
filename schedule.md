@@ -9,7 +9,7 @@ Week 1
 Monday
 ------
 
-* [assignments/r-programming/r-intro/r-basics.pdf](test)
+* [test](assignments/r-programming/r-intro/r-basics.pdf)
 
 Tuesday
 -------
