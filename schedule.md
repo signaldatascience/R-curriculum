@@ -95,6 +95,7 @@ Assignments:
 Readings:
 
 * [Homework: Reading from Gelman and Hill, Assignment 2](assignments/homework/gelman/homework-gelman.pdf)
+* [Applied Predictive Modeling: Resampling Techniques](readings/misc/apm-resampling.pdf)
 
 Wednesday
 ---------
@@ -106,6 +107,7 @@ Assignments:
 Readings:
 
 * [Homework: Reading from Gelman and Hill, Assignment 3](assignments/homework/gelman/homework-gelman.pdf)
+* [Bootstrap, Jackknife, and other resampling methods, Part II: Non-Parametric Bootstrap](readings/misc/bootstrap-slides.pdf)
 * [Notes on Regularization and Coefficient Shrinkage](notes/regularization-shrinkage/regularization-shrinkage.pdf)
 
 Thursday

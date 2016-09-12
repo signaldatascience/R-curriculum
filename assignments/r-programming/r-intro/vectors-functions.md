@@ -143,7 +143,7 @@ Now, for practice:
 
 Next, read about how to use [`for` loops in R](http://www.r-bloggers.com/how-to-write-the-first-for-loop-in-r/).
 
-* Use [`paste()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/paste.html) to make a vector of length 30 that looks like `("label 1", "label 2", ..., "label 30")`.
+* Use [`paste()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/paste.html) to make a vector of length 30 that is equivalent to `c("label 1", "label 2", ..., "label 30")`.
 
 * [`rnorm()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Normal.html) is used to sample from a [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution). Write code that generates 10 random samples from the normal distribution, loops through them, and for each value `x` prints `x` if `x` is less than 0.5 or prints `"big"` if not.
 
