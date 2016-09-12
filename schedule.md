@@ -206,6 +206,8 @@ Assignments:
 
 Readings:
 
+* [`FOREIGN KEY` Constraints](readings/sql/foreign-key.pdf)
+* [Ranking Functions: `ROW_NUMBER()`, `RANK()`, and `DENSE_RANK()`](readings/sql/ranking-functions.pdf)
 * [Divided We Stand: The SQL of Relational Division](readings/sql/sql-relational-div.pdf)
 
 Friday
