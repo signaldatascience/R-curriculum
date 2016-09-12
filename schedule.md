@@ -13,6 +13,7 @@ Assignments:
 
 * [R: Basics](assignments/r-programming/r-intro/r-basics.pdf)
 * [R: Atomic Vectors and Functions](assignments/r-programming/r-intro/vectors-functions.pdf)
+* [Introduction to Linear Regression](assignments/supervised-learning/regression-intro/regression-intro.pdf)
 
 Readings:
 
@@ -23,6 +24,9 @@ Tuesday
 -------
 
 Assignments:
+
+* [R: Data Frames](assignments/r-programming/data-frames/data-frames.pdf) ([solutions](assignments/r-programming/data-frames/data-frames-solutions.R))
+* [Simulated Data Regressions](assignments/supervised-learning/simulated-data-regressions/simulated-data-regressions.pdf)
 
 Readings:
 
