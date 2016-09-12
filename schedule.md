@@ -106,6 +106,7 @@ Assignments:
 Readings:
 
 * [Homework: Reading from Gelman and Hill, Assignment 3](assignments/homework/gelman/homework-gelman.pdf)
+* [Notes on Regularization and Coefficient Shrinkage](notes/regularization-shrinkage/regularization-shrinkage.pdf)
 
 Thursday
 --------
@@ -207,6 +208,8 @@ Assignments:
 Readings:
 
 * [The Challenges of Clustering High Dimensional Data, Sections 1--3](readings/misc/high-dim-clustering.pdf)
+* [Wikipedia: Recommender system](readings/misc/wp-recommender.pdf)
+* [Notes on Alternating Least Squares](notes/alternating-least-squares/alternating-least-squares.pdf)
 
 Wednesday
 ---------
@@ -216,6 +219,8 @@ Assignments:
 * [Recommender Systems](assignments/unsupervised-learning/recommender-systems/recommender-systems.pdf) ([solutions](assignments/unsupervised-learning/recommender-systems/recommender-systems-solutions.R))
 
 Readings:
+
+* [Wikipedia: Collaborative filtering](readings/misc/wp-collab-filt.pdf)
 
 Thursday
 --------
@@ -259,6 +264,7 @@ Assignments:
 Readings:
 
 * [Transformations to Resolve Skewness](readings/misc/apm-boxcox.pdf)
+* [Realism and Instrumentalism: Classical Statistics and VC Theory](readings/misc/vapnik-ch1.pdf)
 
 Wednesday
 ---------
@@ -268,6 +274,9 @@ Assignments:
 * [Classification: From Generative to Predictive Models](assignments/supervised-learning/advanced-classification/advanced-classification.pdf) ([solutions](assignments/supervised-learning/advanced-classification/advanced-classification-solutions.R))
 
 Readings:
+
+* [Wikipedia: *Perceptrons* (book)](readings/misc/wp-perceptrons-book.pdf)
+* [Notes on Classification Theory](notes/classification-theory/classification-theory.pdf)
 
 Thursday
 --------
