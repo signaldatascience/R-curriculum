@@ -269,6 +269,8 @@ Assignments:
 
 Readings:
 
+* [Decision Tree: Introduction](readings/misc/decision-tree.pdf)
+* [Wikipedia: Ensemble learning](readings/misc/wp-ensemble.pdf)
 * [Transformations to Resolve Skewness](readings/misc/apm-boxcox.pdf)
 
 Tuesday
@@ -280,6 +282,7 @@ Assignments:
 
 Readings:
 
+* [Support vector machines](readings/misc/hearst-svms.pdf)
 * [Realism and Instrumentalism: Classical Statistics and VC Theory](readings/misc/vapnik-ch1.pdf)
 
 Wednesday
@@ -368,6 +371,9 @@ Assignments:
 * [Distributed Computing](assignments/advanced-topics/distributed-computing/distributed-computing.pdf)
 
 Readings:
+
+* [A Plan for Spam](readings/misc/graham-spam1.pdf)
+* [Better Bayesian Filtering](readings/misc/graham-spam2.pdf)
 
 Wednesday
 ---------
