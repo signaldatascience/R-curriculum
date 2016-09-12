@@ -380,6 +380,8 @@ Assignments:
 
 Readings:
 
+* [Introduction to Parallel Computing: Overview]()
+
 Tuesday
 -------
 
