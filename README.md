@@ -1,1 +1,1 @@
-The course schedule is located [schedule.md](here).
+The course schedule is located [here](schedule.md).
