@@ -17,8 +17,8 @@ Assignments:
 
 Readings:
 
-* [Advanced R: Excerpts, Day 1](readings/r-programming/adv-r-day1.pdf)
-* [Win-Vector: Prefer `=` for assignment in R](readings/r-programming/Win-Vector/Prefer%20%3D%20for%20assignment%20in%20R.pdf)
+* [Advanced R: Excerpts, Day 1](readings/r-programming/adv-r/adv-r-day1.pdf)
+* [Win-Vector: Prefer = for assignment in R](readings/r-programming/winvec-equals.pdf)
 
 Tuesday
 -------
@@ -30,9 +30,9 @@ Assignments:
 
 Readings:
 
-* [Advanced R: Excerpts, Day 2](readings/r-programming/adv-r-day2.pdf)
-* [R Inferno: Circle 1 – Falling into the Floating Point Trap](readings/r-programming/R%20Inferno/Circle%201%20%E2%80%93%20Falling%20into%20the%20Floating%20Point%20Trap.pdf)
-* [R Inferno: Circle 2 – Growing Objects](readings/r-programming/R%20Inferno/Circle%202%20–%20Growing%20Objects.pdf)
+* [Advanced R: Excerpts, Day 2](readings/r-programming/adv-r/adv-r-day2.pdf)
+* [R Inferno: Circle 1 – Falling into the Floating Point Trap](readings/r-programming/r-inferno/inferno-1.pdf)
+* [R Inferno: Circle 2 – Growing Objects](readings/r-programming/r-inferno/inferno-2.pdf)
 
 Wednesday
 ---------
@@ -43,8 +43,8 @@ Assignments:
 
 Readings:
 
-* [Advanced R: Excerpts, Day 3](readings/r-programming/adv-r-day3.pdf)
-* [R Inferno: Circle 3 – Failing to Vectorize](readings/r-programming/R%20Inferno/Circle%203%20–%20Failing%20to%20Vectorize.pdf)
+* [Advanced R: Excerpts, Day 3](readings/r-programming/adv-r/adv-r-day3.pdf)
+* [R Inferno: Circle 3 – Failing to Vectorize](readings/r-programming/r-inferno/inferno-3.pdf)
 
 Thursday
 --------
@@ -55,9 +55,9 @@ Assignments:
 
 Readings:
 
-* [Advanced R: Excerpts, Day 4](readings/r-programming/adv-r-day4.pdf)
-* [R Inferno: Circle 4 – Over-Vectorizing](readings/r-programming/R%20Inferno/Circle%204%20–%20Over-Vectorizing.pdf)
-* [R Inferno: Circle 5 – Not Writing Functions](readings/r-programming/R%20Inferno/Circle%205%20–%20Not%20Writing%20Functions.pdf)
+* [Advanced R: Excerpts, Day 4](readings/r-programming/adv-r/adv-r-day4.pdf)
+* [R Inferno: Circle 4 – Over-Vectorizing](readings/r-programming/r-inferno/inferno-4.pdf)
+* [R Inferno: Circle 5 – Not Writing Functions](readings/r-programming/r-inferno/inferno-5.pdf)
 
 Friday
 ------
@@ -68,8 +68,8 @@ Assignments:
 
 Readings:
 
-* [Advanced R: Excerpts, Day 5](readings/r-programming/adv-r-day5.pdf)
-* [R Inferno: Circle 6 – Doing Global Assignments](readings/r-programming/R%20Inferno/Circle%206%20–%20Doing%20Global%20Assignments.pdf)
+* [Advanced R: Excerpts, Day 5](readings/r-programming/adv-r/adv-r-day5.pdf)
+* [R Inferno: Circle 6 – Doing Global Assignments](readings/r-programming/r-inferno/inferno-6.pdf)
 
 Week 2
 ======
@@ -121,7 +121,7 @@ Assignments:
 Readings:
 
 * [Recent Kaggle Winner Discusses Statistical Machine Learning Methods for his Winning Soil Property Predictions](readings/misc/afsis-winner.pdf)
-* [PostgreSQL: `WITH` Queries (Common Table Expressions)](readings/sql/postgresql-with.pdf)
+* [PostgreSQL: WITH Queries (Common Table Expressions)](readings/sql/postgresql-with.pdf)
 
 Friday
 ------
@@ -196,7 +196,7 @@ Assignments:
 
 Readings:
 
-* [`FOREIGN KEY` Constraints](readings/sql/foreign-key.pdf)
+* [FOREIGN KEY Constraints](readings/sql/foreign-key.pdf)
 * [Wikipedia: Database normalization](readings/sql/wp-normalization.pdf)
 
 Week 4
@@ -247,7 +247,7 @@ Assignments:
 
 Readings:
 
-* [Ranking Functions: `ROW_NUMBER()`, `RANK()`, and `DENSE_RANK()`](readings/sql/ranking-functions.pdf)
+* [Ranking Functions: ROW_NUMBER(), RANK(), and DENSE_RANK()](readings/sql/ranking-functions.pdf)
 * [Divided We Stand: The SQL of Relational Division](readings/sql/sql-relational-div.pdf)
 
 Friday
