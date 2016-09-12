@@ -19,6 +19,7 @@ Readings:
 
 * [Advanced R: Excerpts, Day 1](readings/r-programming/adv-r/adv-r-day1.pdf)
 * [Win-Vector: Prefer = for assignment in R](readings/r-programming/winvec-equals.pdf)
+* [Fast Fibonacci algorithms](readings/algorithms/fast-fib.pdf)
 
 Tuesday
 -------
