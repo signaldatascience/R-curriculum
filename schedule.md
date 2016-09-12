@@ -151,6 +151,7 @@ Assignments:
 
 Readings:
 
+* [An intuitive explanation of PCA (Principal Component Analysis)](readings/misc/pca-intuition.pdf)
 * [A Tutorial on Principal Component Analysis](readings/misc/shlens-pca-tutorial.pdf)
 
 Wednesday
@@ -163,6 +164,7 @@ Assignments:
 Readings:
 
 * [Interpreting principal component analyses of spatial population genetic variation](readings/misc/novembre-2008-pca.pdf)
+* [Principal Component Analysis and Factor Analysis](readings/misc/pca-vs-factanal.pdf)
 
 Thursday
 --------
@@ -197,6 +199,8 @@ Assignments:
 * [Self-Assessment 3](assignments/self-assessments/self-assessment-3/self-assessment-3.pdf) ([solutions](assignments/self-assessments/self-assessment-3/self-assessment-3-solutions.R))
 
 Readings:
+
+* [Cluster Analysis](readings/misc/mlsc-clustering.pdf)
 
 Tuesday
 -------
