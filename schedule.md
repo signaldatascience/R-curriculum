@@ -147,6 +147,7 @@ Assignments:
 
 Readings:
 
+* [“I don’t think that means what you think it means;” Statisticsto English Translation, Part 1: Accuracy Measures](readings/misc/zumel-classification.pdf)
 * [Advanced Data Analysis from an Elementary Point of View: Logistic Regression](readings/misc/shalizi-logistic.pdf)
 
 Tuesday
@@ -196,6 +197,7 @@ Assignments:
 Readings:
 
 * [`FOREIGN KEY` Constraints](readings/sql/foreign-key.pdf)
+* [Wikipedia: Database normalization](readings/sql/wp-normalization.pdf)
 
 Week 4
 ======
@@ -234,6 +236,7 @@ Assignments:
 Readings:
 
 * [Wikipedia: Collaborative filtering](readings/misc/wp-collab-filt.pdf)
+* [Winning the Netflix Prize: A Summary](readings/misc/netflix-prize.pdf)
 
 Thursday
 --------
