@@ -127,6 +127,8 @@ Assignments:
 
 Readings:
 
+* [Stopping stepwise: Why stepwise and similar selection methods are bad, and what you should use](readings/misc/stepwise-bad.pdf)
+
 Week 3
 ======
 
@@ -148,6 +150,8 @@ Assignments:
 
 Readings:
 
+* [A Tutorial on Principal Component Analysis](readings/misc/shlens-pca-tutorial.pdf)
+
 Wednesday
 ---------
 
@@ -156,6 +160,8 @@ Assignments:
 * [Principal Component Analysis](assignments/unsupervised-learning/pca/pca.pdf) ([solutions](assignments/unsupervised-learning/pca/pca-solutions.pdf))
 
 Readings:
+
+* [Interpreting principal component analyses of spatial population genetic variation](readings/misc/novembre-2008-pca.pdf)
 
 Thursday
 --------
@@ -166,7 +172,7 @@ Assignments:
 
 Readings:
 
-* [Probably the Coolest SQL Feature: Window Functions](https://blog.jooq.org/2013/11/03/probably-the-coolest-sql-feature-window-functions/)
+* [Factor Rotations in Factor Analyses.](readings/misc/abdi-factor-rotations.pdf)
 * [Mode Analytics: SQL Window Functions](https://community.modeanalytics.com/sql/tutorial/sql-window-functions/)
 * [PostgreSQL: Window Functions](readings/sql/postgresql-window.pdf)
 
@@ -199,6 +205,8 @@ Assignments:
 * [Clustering](assignments/unsupervised-learning/clustering/clustering.pdf) ([solutions](assignments/unsupervised-learning/clustering/clustering-solutions.R))
 
 Readings:
+
+* [The Challenges of Clustering High Dimensional Data, Sections 1--3](readings/misc/high-dim-clustering.pdf)
 
 Wednesday
 ---------
@@ -250,10 +258,14 @@ Assignments:
 
 Readings:
 
+* [Transformations to Resolve Skewness](readings/misc/apm-boxcox.pdf)
+
 Wednesday
 ---------
 
 Assignments:
+
+* [Classification: From Generative to Predictive Models](assignments/supervised-learning/advanced-classification/advanced-classification.pdf) ([solutions](assignments/supervised-learning/advanced-classification/advanced-classification-solutions.R))
 
 Readings:
 
