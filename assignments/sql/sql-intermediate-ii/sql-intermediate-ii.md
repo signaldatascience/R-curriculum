@@ -135,14 +135,3 @@ Write queries using your newly created SQLite database to solve the following pr
 * Find the average movie rating for users in each of the different age categories. Repeat with users of different genders and or occupations.
 
 * Explore which movies are rated highest for users of different age, sex, or occupation. In the output of your queries, include both average rating and the *number* of ratings to get a sense for the statistical robustness of the calculated average.
-
-Reading about advanced SQL topics
-=================================
-
-Finally, we'll prepare for next week's SQL homework assignment by doing a little bit of reading. Please read through the following:
-
-* [Chapter 3](https://www.postgresql.org/docs/9.1/static/tutorial-advanced.html) of the PostgreSQL documentation
-
-* [SQL Window Functions](https://community.modeanalytics.com/sql/tutorial/sql-window-functions/) by Mode Analytics
-
-* [Probably the Coolest SQL Feature: Window Functions](https://blog.jooq.org/2013/11/03/probably-the-coolest-sql-feature-window-functions/)

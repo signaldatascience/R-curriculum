@@ -205,6 +205,8 @@ Assignments:
 
 Readings:
 
+* [Divided We Stand: The SQL of Relational Division](readings/sql/sql-relational-div.pdf)
+
 Friday
 ------
 
