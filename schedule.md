@@ -77,17 +77,51 @@ Week 2
 Monday
 ------
 
+Assignments:
+
+* [Self-Assessment 1](assignments/self-assessments/self-assessment-1/self-assessment-1.pdf) ([solutions](assignments/self-assessments/self-assessment-1/self-assessment-1-solutions.R), [problem 1 theoretical solution](assignments/self-assessments/self-assessment-1/self-assessment-1-solutions-p1theory.pdf))
+
+Readings:
+
+* [Homework: Reading from Gelman and Hill, Assignment 1](assignments/homework/gelman/homework-gelman.pdf)
+
 Tuesday
 -------
+
+Assignments:
+
+* [Resampling](assignments/supervised-learning/resampling/resampling.pdf) ([solutions](assignments/supervised-learning/resampling/resampling-solutions.R))
+
+Readings:
+
+* [Homework: Reading from Gelman and Hill, Assignment 2](assignments/homework/gelman/homework-gelman.pdf)
 
 Wednesday
 ---------
 
+Assignments:
+
+* [Regularized Linear Regression](assignments/supervised-learning/regularization/regularization.pdf) ([solutions](assignments/supervised-learning/regularization/regularization-solutions.R))
+
+Readings:
+
+* [Homework: Reading from Gelman and Hill, Assignment 3](assignments/homework/gelman/homework-gelman.pdf)
+
 Thursday
 --------
 
+Assignments:
+
+* [Kaggle Africa Soil Challenge](assignments/case-studies/kaggle-africa-soil/kaggle-africa-soil.pdf)
+
+Readings:
+
 Friday
 ------
+
+Assignments:
+
+Readings:
 
 Week 3
 ======
@@ -95,17 +129,39 @@ Week 3
 Monday
 ------
 
+Assignments:
+
+* [Self-Assessment 2](assignments/self-assessments/self-assessment-2/self-assessment-2.pdf) ([solutions](assignments/self-assessments/self-assessment-2/self-assessment-2-solutions.R))
+
+Readings:
+
 Tuesday
 -------
+
+Assignments:
+
+Readings:
 
 Wednesday
 ---------
 
+Assignments:
+
+Readings:
+
 Thursday
 --------
 
+Assignments:
+
+Readings:
+
 Friday
 ------
+
+Assignments:
+
+Readings:
 
 Week 4
 ======
@@ -113,17 +169,39 @@ Week 4
 Monday
 ------
 
+Assignments:
+
+* [Self-Assessment 3](assignments/self-assessments/self-assessment-3/self-assessment-3.pdf) ([solutions](assignments/self-assessments/self-assessment-3/self-assessment-3-solutions.R))
+
+Readings:
+
 Tuesday
 -------
+
+Assignments:
+
+Readings:
 
 Wednesday
 ---------
 
+Assignments:
+
+Readings:
+
 Thursday
 --------
 
+Assignments:
+
+Readings:
+
 Friday
 ------
+
+Assignments:
+
+Readings:
 
 Week 5
 ======

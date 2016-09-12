@@ -1,5 +1,5 @@
 ---
-title: "Homework: Advanced SQL Practice"
+title: "Advanced SQL Practice"
 author: Signal Data Science
 ---
 

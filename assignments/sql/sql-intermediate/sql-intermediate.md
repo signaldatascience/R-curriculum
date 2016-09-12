@@ -1,5 +1,5 @@
 ---
-title: "Homework: Intermediate SQL Practice"
+title: "Intermediate SQL Practice"
 author: Signal Data Science
 ---
 
