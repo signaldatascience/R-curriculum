@@ -325,6 +325,7 @@ Assignments:
 
 Readings:
 
+* [Merge Sort and Lines of Kindergarteners](readings/algorithms/merge-sort-kids.pdf)
 * [Cracking the Oyster](readings/algorithms/ppearls-sort.pdf)
 
 Tuesday
@@ -335,6 +336,9 @@ Assignments:
 * [Basic Algorithms](assignments/algorithms/basic-algorithms/basic-algorithms.pdf) ([Python solutions](assignments/algorithms/basic-algorithms/basic-algorithms-solutions-python), [R solutions](assignments/algorithms/basic-algorithms/basic-algorithms-solutions.R))
 
 Readings:
+
+* [Dynamic Programming (informal)](readings/algorithms/dynamic-prog.pdf)
+* [Dynamic Programming (formal)](readings/algorithms/dynamic-prog-2.pdf)
 
 Wednesday
 ---------

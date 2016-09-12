@@ -180,4 +180,4 @@ Computational techniques are also very useful for studying the properties of [Fi
 
 In general, instead of recalculating the output of the same subroutine repeatedly, you can store the results of computations the first time you do them and then reuse the precomputed results if you need them again. (This is called [memoization](https://en.wikipedia.org/wiki/Memoization), related to the method of [dynamic programming](https://en.wikipedia.org/wiki/Dynamic_programming).)
 
-* Use memoization to speed up some of the code you've just written and quantify the improvements in runtime using the [`tictoc`](http://stackoverflow.com/a/33375008/3721976) package. In particular, improve `fib_test()` and `collatz()`.
+* Use memoization to speed up some of the code you've just written and quantify the improvements in runtime using the [`tictoc`](http://stackoverflow.com/a/33375008/3721976) package. In particular, improve `fib_test()` and `collatz()`. *Hint:* You may want to look up how to use the R global assignment operator, `<<-`, for memoization.
