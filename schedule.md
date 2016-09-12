@@ -84,6 +84,7 @@ Assignments:
 Readings:
 
 * [Homework: Reading from Gelman and Hill, Assignment 1](assignments/homework/gelman/homework-gelman.pdf)
+* [Applied Predictive Modeling: Resampling Techniques](readings/misc/apm-resampling.pdf)
 
 Tuesday
 -------
@@ -95,7 +96,7 @@ Assignments:
 Readings:
 
 * [Homework: Reading from Gelman and Hill, Assignment 2](assignments/homework/gelman/homework-gelman.pdf)
-* [Applied Predictive Modeling: Resampling Techniques](readings/misc/apm-resampling.pdf)
+* [Bootstrap, Jackknife, and other resampling methods, Part II: Non-Parametric Bootstrap](readings/misc/bootstrap-slides.pdf)
 
 Wednesday
 ---------
@@ -106,8 +107,6 @@ Assignments:
 
 Readings:
 
-* [Homework: Reading from Gelman and Hill, Assignment 3](assignments/homework/gelman/homework-gelman.pdf)
-* [Bootstrap, Jackknife, and other resampling methods, Part II: Non-Parametric Bootstrap](readings/misc/bootstrap-slides.pdf)
 * [Notes on Regularization and Coefficient Shrinkage](notes/regularization-shrinkage/regularization-shrinkage.pdf)
 
 Thursday
@@ -130,6 +129,7 @@ Assignments:
 
 Readings:
 
+* [Homework: Reading from Gelman and Hill, Assignment 3](assignments/homework/gelman/homework-gelman.pdf)
 * [Stopping stepwise: Why stepwise and similar selection methods are bad, and what you should use](readings/misc/stepwise-bad.pdf)
 
 Week 3
@@ -313,6 +313,8 @@ Tuesday
 
 Assignments:
 
+* [Basic Algorithms](assignments/algorithms/basic-algorithms/basic-algorithms.pdf) ([Python solutions](assignments/algorithms/basic-algorithms/basic-algorithms-solutions-python), [R solutions](assignments/algorithms/basic-algorithms/basic-algorithms-solutions.R))
+
 Readings:
 
 Wednesday
@@ -326,6 +328,8 @@ Thursday
 --------
 
 Assignments:
+
+* [Numerical Optimization](assignments/algorithms/numerical-optimization/numerical-optimization.pdf) ([solutions](assignments/algorithms/numerical-optimization/numerical-optimization-solutions.R))
 
 Readings:
 
@@ -351,6 +355,8 @@ Tuesday
 
 Assignments:
 
+* [Distributed Computing](assignments/advanced-topics/distributed-computing/distributed-computing.pdf)
+
 Readings:
 
 Wednesday
@@ -358,12 +364,16 @@ Wednesday
 
 Assignments:
 
+* [Natural Language Processing](assignments/advanced-topics/nlp/nlp.pdf)
+
 Readings:
 
 Thursday
 --------
 
 Assignments:
+
+* Continue working on natural language processing
 
 Readings:
 
