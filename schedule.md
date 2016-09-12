@@ -269,6 +269,8 @@ Assignments:
 
 Readings:
 
+* [Transformations to Resolve Skewness](readings/misc/apm-boxcox.pdf)
+
 Tuesday
 -------
 
@@ -278,7 +280,6 @@ Assignments:
 
 Readings:
 
-* [Transformations to Resolve Skewness](readings/misc/apm-boxcox.pdf)
 * [Realism and Instrumentalism: Classical Statistics and VC Theory](readings/misc/vapnik-ch1.pdf)
 
 Wednesday
