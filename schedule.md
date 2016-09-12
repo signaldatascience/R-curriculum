@@ -144,6 +144,8 @@ Tuesday
 
 Assignments:
 
+* [Logistic Regression](assignments/supervised-learning/logistic-regression/logistic-regression.pdf) ([solutions](assignments/supervised-learning/logistic-regression/logistic-regression-solutions.R))
+
 Readings:
 
 Wednesday
@@ -151,12 +153,16 @@ Wednesday
 
 Assignments:
 
+* [Principal Component Analysis](assignments/unsupervised-learning/pca/pca.pdf) ([solutions](assignments/unsupervised-learning/pca/pca-solutions.pdf))
+
 Readings:
 
 Thursday
 --------
 
 Assignments:
+
+* [Factor Analysis](assignments/unsupervised-learning/factor-analysis/factor-analysis.pdf) ([simulation solutions](assignments/unsupervised-learning/factor-analysis/factor-analysis-solutions-sim.R), [data analysis solutions](assignments/unsupervised-learning/factor-analysis/factor-analysis-solutions-data.pdf))
 
 Readings:
 
@@ -225,17 +231,37 @@ Week 5
 Monday
 ------
 
+Assignments:
+
+Readings:
+
 Tuesday
 -------
+
+Assignments:
+
+Readings:
 
 Wednesday
 ---------
 
+Assignments:
+
+Readings:
+
 Thursday
 --------
 
+Assignments:
+
+Readings:
+
 Friday
 ------
+
+Assignments:
+
+Readings:
 
 Week 6
 ======
@@ -243,17 +269,37 @@ Week 6
 Monday
 ------
 
+Assignments:
+
+Readings:
+
 Tuesday
 -------
+
+Assignments:
+
+Readings:
 
 Wednesday
 ---------
 
+Assignments:
+
+Readings:
+
 Thursday
 --------
 
+Assignments:
+
+Readings:
+
 Friday
 ------
+
+Assignments:
+
+Readings:
 
 Week 7
 ======
@@ -261,15 +307,34 @@ Week 7
 Monday
 ------
 
+Assignments:
+
+Readings:
+
 Tuesday
 -------
+
+Assignments:
+
+Readings:
 
 Wednesday
 ---------
 
+Assignments:
+
+Readings:
+
 Thursday
 --------
+
+Assignments:
+
+Readings:
 
 Friday
 ------
 
+Assignments:
+
+Readings:

@@ -1,3 +1,5 @@
+# Very incomplete solutions
+
 setwd('C:/Users/Andrew/Documents/Signal/curriculum/src/week4/day4')
 library(readr)
 df = read_delim('protein.txt', '\t')

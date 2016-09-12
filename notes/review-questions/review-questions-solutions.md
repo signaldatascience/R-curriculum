@@ -37,7 +37,7 @@ Linear regression
 
 * What does $R^2$ represent?
 
-	$ The $R^2$ value of a linear model represents the percentage of variation in the response variable explained by the linear model.
+	* The $R^2$ value of a linear model represents the percentage of variation in the response variable explained by the linear model.
 
 * What is the difference between $R^2$ and adjusted $R^2$?
 
