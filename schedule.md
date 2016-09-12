@@ -13,7 +13,7 @@ Assignments:
 
 * [R: Basics](assignments/r-programming/r-intro/r-basics.pdf)
 * [R: Atomic Vectors and Functions](assignments/r-programming/r-intro/vectors-functions.pdf)
-* [Introduction to Linear Regression](assignments/supervised-learning/regression-intro/regression-intro.pdf)
+* [Introduction to Linear Regression](assignments/supervised-learning/regression-intro/regression-intro.pdf) ([solutions](assignments/supervised-learning/regression-intro/regression-intro-solutions.R))
 
 Readings:
 
@@ -39,6 +39,8 @@ Wednesday
 
 Assignments:
 
+* [R: Attributes, Factors, and Matrices](assignments/r-programming/attributes-factors-matrices/attributes-factors-matrices.pdf) ([solutions](assignments/r-programming/attributes-factors-matrices/attributes-factors-matrices-solutions.R))
+
 Readings:
 
 * [Advanced R: Excerpts, Day 3](readings/r-programming/adv-r-day3.pdf)
@@ -48,6 +50,8 @@ Thursday
 --------
 
 Assignments:
+
+* [R: Functional Programming](assignments/r-programming/functional-programming/functional-programming.pdf) ([solutions](assignments/r-programming/functional-programming/functional-programming-solutions.R))
 
 Readings:
 
@@ -59,6 +63,8 @@ Friday
 ------
 
 Assignments:
+
+* [SQLZoo Tutorials](assignments/sql/sqlzoo/sqlzoo.pdf)
 
 Readings:
 
