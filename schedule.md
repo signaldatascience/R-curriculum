@@ -284,6 +284,7 @@ Readings:
 
 * [Support vector machines](readings/misc/hearst-svms.pdf)
 * [Realism and Instrumentalism: Classical Statistics and VC Theory](readings/misc/vapnik-ch1.pdf)
+* [Notes on Classification Theory](notes/classification-theory/classification-theory.pdf)
 
 Wednesday
 ---------
@@ -295,7 +296,7 @@ Assignments:
 Readings:
 
 * [Wikipedia: *Perceptrons* (book)](readings/misc/wp-perceptrons-book.pdf)
-* [Notes on Classification Theory](notes/classification-theory/classification-theory.pdf)
+* [Does Balancing Classes Improve Classifier Performance?](readings/misc/winvec-balancing.pdf)
 
 Thursday
 --------
@@ -303,6 +304,9 @@ Thursday
 Assignments:
 
 Readings:
+
+* [Multiple Imputation](readings/misc/mult-impute.pdf)
+* [Predictive modeling, data leakage, model evaluation](readings/misc/mathbabe-leakage.pdf)
 
 Friday
 ------
@@ -321,7 +325,6 @@ Assignments:
 
 Readings:
 
-* [How to Ace an Algorithms Interview](readings/algorithms/palantir-ace.pdf)
 * [Cracking the Oyster](readings/algorithms/ppearls-sort.pdf)
 
 Tuesday
@@ -348,6 +351,9 @@ Assignments:
 * [Numerical Optimization](assignments/algorithms/numerical-optimization/numerical-optimization.pdf) ([solutions](assignments/algorithms/numerical-optimization/numerical-optimization-solutions.R))
 
 Readings:
+
+* [Writing Code On Whiteboards Is Hard](readings/algorithms/code-whiteboards.pdf)
+* [How to Ace an Algorithms Interview](readings/algorithms/palantir-ace.pdf)
 
 Friday
 ------
