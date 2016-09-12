@@ -162,6 +162,7 @@ Readings:
 
 * [Probably the Coolest SQL Feature: Window Functions](https://blog.jooq.org/2013/11/03/probably-the-coolest-sql-feature-window-functions/)
 * [Mode Analytics: SQL Window Functions](https://community.modeanalytics.com/sql/tutorial/sql-window-functions/)
+* [PostgreSQL: Window Functions](readings/sql/postgresql-window.pdf)
 
 Friday
 ------
