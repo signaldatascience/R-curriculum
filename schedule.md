@@ -84,6 +84,7 @@ Assignments:
 Readings:
 
 * [Homework: Reading from Gelman and Hill, Assignment 1](assignments/homework/gelman/homework-gelman.pdf)
+* [Cross-Validation](readings/misc/ency-cross-validation.pdf)
 * [Applied Predictive Modeling: Resampling Techniques](readings/misc/apm-resampling.pdf)
 
 Tuesday
@@ -95,7 +96,7 @@ Assignments:
 
 Readings:
 
-* [Homework: Reading from Gelman and Hill, Assignment 2](assignments/homework/gelman/homework-gelman.pdf)
+* [Cross-validation and bootstrap (excerpt)](readings/misc/cv-wrong.pdf)
 * [Bootstrap, Jackknife, and other resampling methods, Part II: Non-Parametric Bootstrap](readings/misc/bootstrap-slides.pdf)
 
 Wednesday
@@ -107,6 +108,7 @@ Assignments:
 
 Readings:
 
+* [Homework: Reading from Gelman and Hill, Assignment 2](assignments/homework/gelman/homework-gelman.pdf)
 * [Notes on Regularization and Coefficient Shrinkage](notes/regularization-shrinkage/regularization-shrinkage.pdf)
 
 Thursday
@@ -118,6 +120,7 @@ Assignments:
 
 Readings:
 
+* [Recent Kaggle Winner Discusses Statistical Machine Learning Methods for his Winning Soil Property Predictions](readings/misc/afsis-winner.pdf)
 * [PostgreSQL: `WITH` Queries (Common Table Expressions)](readings/sql/postgresql-with.pdf)
 
 Friday
@@ -143,6 +146,8 @@ Assignments:
 * [Self-Assessment 2](assignments/self-assessments/self-assessment-2/self-assessment-2.pdf) ([solutions](assignments/self-assessments/self-assessment-2/self-assessment-2-solutions.R))
 
 Readings:
+
+* [Advanced Data Analysis from an Elementary Point of View: Logistic Regression](readings/misc/shalizi-logistic.pdf)
 
 Tuesday
 -------
@@ -190,6 +195,8 @@ Assignments:
 
 Readings:
 
+* [`FOREIGN KEY` Constraints](readings/sql/foreign-key.pdf)
+
 Week 4
 ======
 
@@ -203,6 +210,7 @@ Assignments:
 Readings:
 
 * [Cluster Analysis](readings/misc/mlsc-clustering.pdf)
+* [The Challenges of Clustering High Dimensional Data, Sections 1--3](readings/misc/high-dim-clustering.pdf)
 
 Tuesday
 -------
@@ -213,7 +221,6 @@ Assignments:
 
 Readings:
 
-* [The Challenges of Clustering High Dimensional Data, Sections 1--3](readings/misc/high-dim-clustering.pdf)
 * [Wikipedia: Recommender system](readings/misc/wp-recommender.pdf)
 * [Notes on Alternating Least Squares](notes/alternating-least-squares/alternating-least-squares.pdf)
 
@@ -237,7 +244,6 @@ Assignments:
 
 Readings:
 
-* [`FOREIGN KEY` Constraints](readings/sql/foreign-key.pdf)
 * [Ranking Functions: `ROW_NUMBER()`, `RANK()`, and `DENSE_RANK()`](readings/sql/ranking-functions.pdf)
 * [Divided We Stand: The SQL of Relational Division](readings/sql/sql-relational-div.pdf)
 
