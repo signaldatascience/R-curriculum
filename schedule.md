@@ -321,6 +321,9 @@ Assignments:
 
 Readings:
 
+* [How to Ace an Algorithms Interview](readings/algorithms/palantir-ace.pdf)
+* [Cracking the Oyster](readings/algorithms/ppearls-sort.pdf)
+
 Tuesday
 -------
 
