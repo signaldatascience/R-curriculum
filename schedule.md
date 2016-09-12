@@ -196,6 +196,8 @@ Tuesday
 
 Assignments:
 
+* [Clustering](assignments/unsupervised-learning/clustering/clustering.pdf) ([solutions](assignments/unsupervised-learning/clustering/clustering-solutions.R))
+
 Readings:
 
 Wednesday
@@ -203,12 +205,16 @@ Wednesday
 
 Assignments:
 
+* [Recommender Systems](assignments/unsupervised-learning/recommender-systems/recommender-systems.pdf) ([solutions](assignments/unsupervised-learning/recommender-systems/recommender-systems-solutions.R))
+
 Readings:
 
 Thursday
 --------
 
 Assignments:
+
+* Continue working on recommender systems assignment
 
 Readings:
 
@@ -239,6 +245,8 @@ Tuesday
 -------
 
 Assignments:
+
+* [Nonlinear Regression](assignments/supervised-learning/nonlinear-regression/nonlinear-regression.pdf) ([solutions](assignments/supervised-learning/nonlinear-regression/nonlinear-regression-solutions.R))
 
 Readings:
 
