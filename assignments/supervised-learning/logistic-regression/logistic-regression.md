@@ -1,5 +1,5 @@
 ---
-title: "Logistic Regression: Speed Dating"
+title: "Logistic Regression"
 author: Signal Data Science
 ---
 

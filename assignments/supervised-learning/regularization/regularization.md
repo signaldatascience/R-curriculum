@@ -1,5 +1,5 @@
 ---
-title: "Linear Regresson: Regularization"
+title: "Regularized Linear Regression"
 author: Signal Data Science
 ---
 

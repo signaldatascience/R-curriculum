@@ -1,5 +1,5 @@
 ---
-title: "Linear Regression: Resampling"
+title: "Resampling"
 author: Signal Data Science
 ---
 

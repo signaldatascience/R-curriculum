@@ -1,5 +1,5 @@
 ---
-title: "Linear Regression: Introduction"
+title: "Introduction to Linear Regression"
 author: Signal Data Science
 ---
 
