@@ -9,7 +9,14 @@ Week 1
 Monday
 ------
 
-* [test](assignments/r-programming/r-intro/r-basics.pdf)
+Assignments:
+
+* [R: Basics](assignments/r-programming/r-intro/r-basics.pdf)
+* [R: Atomic Vectors and Functions](assignments/r-programming/r-intro/vectors-functions.pdf)
+
+Readings:
+
+
 
 Tuesday
 -------
