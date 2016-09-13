@@ -317,6 +317,8 @@ Thursday
 
 Assignments:
 
+* [Kaggle Bike Sharing Demand](assignments/case-studies/kaggle-bike-sharing/kaggle-bike-sharing.pdf)
+
 Readings:
 
 * [Mode Analytics: SQL Window Functions](https://community.modeanalytics.com/sql/tutorial/sql-window-functions/)

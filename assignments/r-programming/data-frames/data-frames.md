@@ -266,7 +266,7 @@ In the following, `mtcars` refers to a dataset that's [loaded by default](http:/
 
 * Why does `x = 1:5; x[NA]` yield five missing values? (*Hint:* How is `NA` different from `NA_real_`?)
 
-* Why does `mtcars[1:20]` return an error? How does it differ from the similar `mtcars[1:20, ]`?
+* Examine the output of `mtcars[1:5]`. Why does `mtcars[1:20]` return an error? How does it differ from the similar `mtcars[1:20, ]`?
 
 * What does `df[is.na(df)] = 0` do? How does it work? You can test it on the data frame `df = data.frame(matrix(1:4, nrow=2)); df[2, 2] = NA`.
 
