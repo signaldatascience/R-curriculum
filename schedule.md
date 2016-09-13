@@ -357,6 +357,8 @@ Wednesday
 
 Assignments:
 
+* [Intermediate Algorithms](assignments/algorithms/intermediate-algorithms/intermediate-algorithms.pdf) ([solutions](assignments/algorithms/intermediate-algorithms/intermediate-algorithms-solutions))
+
 Readings:
 
 * [Lecture Notes: Some notes on gradient descent](readings/algorithms/gd-notes.pdf)

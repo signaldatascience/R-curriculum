@@ -1,5 +1,5 @@
 ---
-title: "Basic Algorithms"
+title: Basic Algorithms
 author: Signal Data Science
 ---
 
