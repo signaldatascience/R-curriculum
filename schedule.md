@@ -99,6 +99,7 @@ Readings:
 
 * [Cross-validation and bootstrap (excerpt)](readings/misc/cv-wrong.pdf)
 * [Bootstrap, Jackknife, and other resampling methods, Part II: Non-Parametric Bootstrap](readings/misc/bootstrap-slides.pdf)
+* [Applied Predictive Modeling: Penalized Models](readings/misc/apm-regularization.pdf)
 
 Wednesday
 ---------
@@ -150,6 +151,7 @@ Readings:
 
 * [“I don’t think that means what you think it means;” Statistics to English Translation, Part 1: Accuracy Measures](readings/misc/zumel-classification.pdf)
 * [Advanced Data Analysis from an Elementary Point of View: Logistic Regression](readings/misc/shalizi-logistic.pdf)
+* [Notes on Cross Entropy](notes/cross-entropy/cross-entropy.pdf)
 
 Tuesday
 -------
@@ -276,6 +278,7 @@ Assignments:
 Readings:
 
 * [Decision Tree: Introduction](readings/misc/decision-tree.pdf)
+* [Applied Predictive Modeling: Bagged Trees, Random Forests, Boosting](readings/misc/apm-trees.pdf)
 * [Wikipedia: Ensemble learning](readings/misc/wp-ensemble.pdf)
 
 Tuesday
