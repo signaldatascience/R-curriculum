@@ -130,7 +130,7 @@ Subsetting
 
 Wickham writes:
 
-> Subsetting is a natural complement to [`str()`](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/str.html). [`str()`](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/str.html) shows you the structure of any object, and subsetting allows you to pull out the pieces that you’re interested in.
+> Subsetting is a natural complement to [`str()`](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/str.html). Indeed, [`str()`](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/str.html) shows you the structure of any object, and subsetting allows you to pull out the pieces that you’re interested in.
 
 Keep the [`str()`](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/str.html) function in mind as you work through this lesson.
 
