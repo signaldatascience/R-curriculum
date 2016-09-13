@@ -1,4 +1,4 @@
-# Two different implementations of a nesting depth function
+# Three different implementations of a nesting depth function
 
 # Checks if any of the elements of L are themselves a list
 contains_list = function(L) {
@@ -45,6 +45,17 @@ nesting_depth2 = function(L) {
   return(max(depths))
 }
 
+# Even simpler recursive solution
+nesting_depth3 = function(L, depth=1) {
+  if (!is.list(L)) {
+    return(depth-1)
+  } else if(length(L) == 0) {
+    return(depth)
+  } else {
+    return(max(unlist(sapply(L, nesting_depth3, depth=depth+1))))
+  }
+}
+
 test = list(list()) # depth 2
 test2 = list(list(list(list(1)))) # depth 4
 test3 = list("asdf", list(list(1), 2, list(2, list(3, list())), 4, 5), 6, 7) # depth 5
@@ -56,6 +67,10 @@ nesting_depth(test3)
 nesting_depth2(test)
 nesting_depth2(test2)
 nesting_depth2(test3)
+
+nesting_depth3(test)
+nesting_depth3(test2)
+nesting_depth3(test3)
 
 # Traverses data frame in counterclockwise spiral
 
