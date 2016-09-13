@@ -7,9 +7,44 @@ Some of the following problems are adapted from UC Berkeley curricular material.
 
 [^course]: Specifically from [CS 61A: The Structure and Interpretation of Computer Programs](http://cs61a.org/).
 
-You'll first work through a series of themed problems involving `WITH` statements and various aggregation operators. Afterward, you'll learn how to convert data frames in R into SQLite tables. Finally, you'll finish off with a series of short readings about advanced SQL techniques (foreign keys, window functions, etc.) which you'll be getting more practice with *next* weekend.
+You'll first learn how to convert data frames in R into SQLite tables. Afterward, you'll work through a series of themed problems involving `WITH` statements and various aggregation operators.
 
 Refer to the [official SQLite documentation](https://www.sqlite.org/docs.html) when necessary. As you work, write down your queries in a separate file.
+
+Using SQL queries with MovieLens data
+=====================================
+
+We can also use SQL queries to look at movie ratings.
+
+* Following [R and SQLite: Part 1](https://www.google.com/url?hl=en&q=http://www.r-bloggers.com/r-and-sqlite-part-1/), convert the [MovieLens 1M Dataset](http://grouplens.org/datasets/movielens/1m/) into a single SQLite database with 3 tables (one for each of users, movies, and ratings). Save the database into a `.db` file on your computer.
+
+Write queries using your newly created SQLite database to solve the following problems. You can either continue running SQLite directly from the command line as you've been doing thus far or switch to using a GUI like [SQLite Studio](http://sqlitestudio.pl/) to view tables and enter queries. Depending on how you created your SQLite database, you may find `SUBSTR()`, `ROUND()`, `CAST()`, or the `LIKE` operator useful.
+
+* Determine the number of movies released in each year, omitting those with no date listed.
+
+	Interpret the results. Why are there fewer movies listed as being released in 2000 than in the preceding 7 years? Why are some listed years earlier than the year when movies were invented?
+
+* Determine the percent of movies released each year which are dramas. Order the result by putting more recent years at the top.
+
+	Make an educated guess about why the fraction has been more stable in recent years than it had been been in the 1920’s and 1930’s. You may find the results of the query in (a) useful for this.
+
+* Determine the number of movies with titles beginning with the same first letter for the 5 most frequently occurring first letters in titles.
+
+	Compare with the [most common first letters of the English language](https://en.wikipedia.org/wiki/Letter_frequency#Relative_frequencies_of_the_first_letters_of_a_word_in_the_English_language). How many of the results of the SQL query are in the top 5? In the top 10?
+
+* For each digit (0 to 9), determine the percent of users with a zip code which begins with that digit.
+
+	Compare with the geographic boundaries in the following diagram:[^diag]
+
+	![asdf](zip_code_zones.gif){width=75%}
+
+	Would you expect the percents given by the SQL query to correspond to the percents of the US population in each region depicted?
+
+[^diag]: Image from [ZIP Code FAQs](http://www.zipboundary.com/zipcode_faqs.html).
+
+* Find the average movie rating for users in each of the different age categories. Repeat with users of different genders and or occupations.
+
+* Explore which movies are rated highest for users of different age, sex, or occupation. In the output of your queries, include both average rating and the *number* of ratings to get a sense for the statistical robustness of the calculated average.
 
 Celebrating the winter holidays
 ===============================
@@ -100,38 +135,3 @@ Finally, you'll be shopping online, of course. Bandwidth costs money, so you'd l
 * Write a query to calculate the total amount of bandwidth needed to get everything in your shopping list.
 
 Happy Holidays!
-
-Using SQL queries with MovieLens data
-=====================================
-
-We can also use SQL queries to look at movie ratings.
-
-* Following [R and SQLite: Part 1](https://www.google.com/url?hl=en&q=http://www.r-bloggers.com/r-and-sqlite-part-1/), convert the [MovieLens 1M Dataset](http://grouplens.org/datasets/movielens/1m/) into a single SQLite database with 3 tables (one for each of users, movies, and ratings). Save the database into a `.db` file on your computer.
-
-Write queries using your newly created SQLite database to solve the following problems. You can either continue running SQLite directly from the command line as you've been doing thus far or switch to using a GUI like [SQLite Studio](http://sqlitestudio.pl/) to view tables and enter queries. Depending on how you created your SQLite database, you may find `SUBSTR()`, `ROUND()`, `CAST()`, or the `LIKE` operator useful.
-
-* Determine the number of movies released in each year, omitting those with no date listed.
-
-	Interpret the results. Why are there fewer movies listed as being released in 2000 than in the preceding 7 years? Why are some listed years earlier than the year when movies were invented?
-
-* Determine the percent of movies released each year which are dramas. Order the result by putting more recent years at the top.
-
-	Make an educated guess about why the fraction has been more stable in recent years than it had been been in the 1920’s and 1930’s. You may find the results of the query in (a) useful for this.
-
-* Determine the number of movies with titles beginning with the same first letter for the 5 most frequently occurring first letters in titles.
-
-	Compare with the [most common first letters of the English language](https://en.wikipedia.org/wiki/Letter_frequency#Relative_frequencies_of_the_first_letters_of_a_word_in_the_English_language). How many of the results of the SQL query are in the top 5? In the top 10?
-
-* For each digit (0 to 9), determine the percent of users with a zip code which begins with that digit.
-
-	Compare with the geographic boundaries in the following diagram:[^diag]
-
-	![asdf](zip_code_zones.gif){width=75%}
-
-	Would you expect the percents given by the SQL query to correspond to the percents of the US population in each region depicted?
-
-[^diag]: Image from [ZIP Code FAQs](http://www.zipboundary.com/zipcode_faqs.html).
-
-* Find the average movie rating for users in each of the different age categories. Repeat with users of different genders and or occupations.
-
-* Explore which movies are rated highest for users of different age, sex, or occupation. In the output of your queries, include both average rating and the *number* of ratings to get a sense for the statistical robustness of the calculated average.

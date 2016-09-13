@@ -18,7 +18,7 @@ Assignments:
 Readings:
 
 * [Advanced R: Excerpts, Day 1](readings/r-programming/adv-r/adv-r-day1.pdf)
-* [Win-Vector: Prefer = for assignment in R](readings/r-programming/winvec-equals.pdf)
+* [Prefer = for assignment in R](readings/r-programming/winvec-equals.pdf)
 * [Fast Fibonacci algorithms](readings/algorithms/fast-fib.pdf)
 
 Tuesday
@@ -122,14 +122,13 @@ Assignments:
 Readings:
 
 * [Recent Kaggle Winner Discusses Statistical Machine Learning Methods for his Winning Soil Property Predictions](readings/misc/afsis-winner.pdf)
-* [PostgreSQL: WITH Queries (Common Table Expressions)](readings/sql/postgresql-with.pdf)
 
 Friday
 ------
 
 Assignments:
 
-* [Intermediate SQL Practice](assignments/sql/sql-intermediate/sql-intermediate.pdf) ([solutions](assignments/sql/sql-intermediate/sql-intermediate-solutions.sql))
+* Continue working on [SQLZoo Tutorials](assignments/sql/sqlzoo/sqlzoo.pdf)
 
 Readings:
 
@@ -148,7 +147,7 @@ Assignments:
 
 Readings:
 
-* [“I don’t think that means what you think it means;” Statisticsto English Translation, Part 1: Accuracy Measures](readings/misc/zumel-classification.pdf)
+* [“I don’t think that means what you think it means;” Statistics to English Translation, Part 1: Accuracy Measures](readings/misc/zumel-classification.pdf)
 * [Advanced Data Analysis from an Elementary Point of View: Logistic Regression](readings/misc/shalizi-logistic.pdf)
 
 Tuesday
@@ -185,15 +184,14 @@ Assignments:
 Readings:
 
 * [Factor Rotations in Factor Analyses.](readings/misc/abdi-factor-rotations.pdf)
-* [Mode Analytics: SQL Window Functions](https://community.modeanalytics.com/sql/tutorial/sql-window-functions/)
-* [PostgreSQL: Window Functions](readings/sql/postgresql-window.pdf)
+* [PostgreSQL: WITH Queries (Common Table Expressions)](readings/sql/postgresql-with.pdf)
 
 Friday
 ------
 
 Assignments:
 
-* [Intermediate SQL Practice II](assignments/sql/sql-intermediate-ii/sql-intermediate-ii.pdf) ([solutions](assignments/sql/sql-intermediate-ii/sql-intermediate-ii-solutions.sql))
+* [Intermediate SQL Practice](assignments/sql/sql-intermediate/sql-intermediate.pdf) ([solutions](assignments/sql/sql-intermediate/sql-intermediate-solutions.sql))
 
 Readings:
 
@@ -244,19 +242,16 @@ Thursday
 
 Assignments:
 
-* Continue working on recommender systems assignment
+* Continue working on [Recommender Systems](assignments/unsupervised-learning/recommender-systems/recommender-systems.pdf)
 
 Readings:
-
-* [Ranking Functions: ROW_NUMBER(), RANK(), and DENSE_RANK()](readings/sql/ranking-functions.pdf)
-* [Divided We Stand: The SQL of Relational Division](readings/sql/sql-relational-div.pdf)
 
 Friday
 ------
 
 Assignments:
 
-* [Advanced SQL Practice](assignments/sql/sql-advanced/sql-advanced.pdf) ([solutions](assignments/sql/sql-advanced/sql-advanced-solutions.sql))
+* Continue working on [Intermediate SQL Practice](assignments/sql/sql-intermediate/sql-intermediate.pdf)
 
 Readings:
 
@@ -306,15 +301,20 @@ Assignments:
 
 Readings:
 
-* [Multiple Imputation](readings/misc/mult-impute.pdf)
-* [Predictive modeling, data leakage, model evaluation](readings/misc/mathbabe-leakage.pdf)
+* [Mode Analytics: SQL Window Functions](https://community.modeanalytics.com/sql/tutorial/sql-window-functions/)
+* [PostgreSQL: Window Functions](readings/sql/postgresql-window.pdf)
 
 Friday
 ------
 
 Assignments:
 
+* [Intermediate SQL Practice II](assignments/sql/sql-intermediate-ii/sql-intermediate-ii.pdf) ([solutions](assignments/sql/sql-intermediate-ii/sql-intermediate-ii-solutions.sql))
+
 Readings:
+
+* [Multiple Imputation](readings/misc/mult-impute.pdf)
+* [Predictive modeling, data leakage, model evaluation](readings/misc/mathbabe-leakage.pdf)
 
 Week 6
 ======
@@ -331,8 +331,8 @@ Readings:
 
 Tuesday
 -------
-
-Assignments:
+Assign
+ments:
 
 * [Basic Algorithms](assignments/algorithms/basic-algorithms/basic-algorithms.pdf) ([Python solutions](assignments/algorithms/basic-algorithms/basic-algorithms-solutions-python), [R solutions](assignments/algorithms/basic-algorithms/basic-algorithms-solutions.R))
 
@@ -368,6 +368,8 @@ Friday
 
 Assignments:
 
+* Continue working on [Intermediate SQL Practice II](assignments/sql/sql-intermediate-ii/sql-intermediate-ii.pdf)
+
 Readings:
 
 Week 7
@@ -380,7 +382,7 @@ Assignments:
 
 Readings:
 
-* [Introduction to Parallel Computing: Overview]()
+* [Introduction to Parallel Computing: Overview](readings/algorithms/llnl-parallel.pdf)
 
 Tuesday
 -------
@@ -408,13 +410,18 @@ Thursday
 
 Assignments:
 
-* Continue working on natural language processing
+* Continue working on [Natural Language Processing](assignments/advanced-topics/nlp/nlp.pdf)
 
 Readings:
+
+* [Ranking Functions: ROW_NUMBER(), RANK(), and DENSE_RANK()](readings/sql/ranking-functions.pdf)
+* [Divided We Stand: The SQL of Relational Division](readings/sql/sql-relational-div.pdf)
 
 Friday
 ------
 
 Assignments:
+
+* [Advanced SQL Practice](assignments/sql/sql-advanced/sql-advanced.pdf) ([solutions](assignments/sql/sql-advanced/sql-advanced-solutions.sql))
 
 Readings:
