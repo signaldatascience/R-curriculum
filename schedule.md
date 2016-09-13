@@ -247,6 +247,9 @@ Assignments:
 
 Readings:
 
+* [An Incremental Approach to Developing SQL Queries](readings/sql/incremental-approach.pdf)
+* [Query Optimization Techniques - Tips For Writing Efficient And Faster SQL Queries](readings/sql/query-opt.pdf)
+
 Friday
 ------
 
@@ -317,6 +320,7 @@ Assignments:
 
 Readings:
 
+* [Overview of A Few Useful Things to Know about Machine Learning](readings/misc/domingos-overview.pdf)
 * [A Few Useful Things to Know about Machine Learning](readings/precourse/domingos2012.pdf)
 
 Week 6
