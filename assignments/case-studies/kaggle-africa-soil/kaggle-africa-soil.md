@@ -1,5 +1,5 @@
 ---
-title: "Kaggle Africa Soil Challenge"
+title: Kaggle Africa Soil Challenge
 author: Signal Data Science
 ---
 
