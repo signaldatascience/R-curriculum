@@ -121,6 +121,7 @@ Assignments:
 
 Readings:
 
+* [How can I make complex SQL queries easier to write?](readings/sql/easier-sql.pdf)
 * [Recent Kaggle Winner Discusses Statistical Machine Learning Methods for his Winning Soil Property Predictions](readings/misc/afsis-winner.pdf)
 
 Friday
@@ -223,7 +224,7 @@ Assignments:
 Readings:
 
 * [Wikipedia: Recommender system](readings/misc/wp-recommender.pdf)
-* [Notes on Alternating Least Squares](notes/alternating-least-squares/alternating-least-squares.pdf)
+* [Wikipedia: Collaborative filtering](readings/misc/wp-collab-filt.pdf)
 
 Wednesday
 ---------
@@ -234,7 +235,7 @@ Assignments:
 
 Readings:
 
-* [Wikipedia: Collaborative filtering](readings/misc/wp-collab-filt.pdf)
+* [Notes on Alternating Least Squares](notes/alternating-least-squares/alternating-least-squares.pdf)
 * [Winning the Netflix Prize: A Summary](readings/misc/netflix-prize.pdf)
 
 Thursday
@@ -254,6 +255,9 @@ Assignments:
 * Continue working on [Intermediate SQL Practice](assignments/sql/sql-intermediate/sql-intermediate.pdf)
 
 Readings:
+
+* [Multiple Imputation](readings/misc/mult-impute.pdf)
+* [Predictive modeling, data leakage, model evaluation](readings/misc/mathbabe-leakage.pdf)
 
 Week 5
 ======
@@ -313,8 +317,7 @@ Assignments:
 
 Readings:
 
-* [Multiple Imputation](readings/misc/mult-impute.pdf)
-* [Predictive modeling, data leakage, model evaluation](readings/misc/mathbabe-leakage.pdf)
+* [A Few Useful Things to Know about Machine Learning](readings/precourse/domingos2012.pdf)
 
 Week 6
 ======
@@ -360,9 +363,6 @@ Assignments:
 
 Readings:
 
-* [Writing Code On Whiteboards Is Hard](readings/algorithms/code-whiteboards.pdf)
-* [How to Ace an Algorithms Interview](readings/algorithms/palantir-ace.pdf)
-
 Friday
 ------
 
@@ -371,6 +371,9 @@ Assignments:
 * Continue working on [Intermediate SQL Practice II](assignments/sql/sql-intermediate-ii/sql-intermediate-ii.pdf)
 
 Readings:
+
+* [Writing Code On Whiteboards Is Hard](readings/algorithms/code-whiteboards.pdf)
+* [How to Ace an Algorithms Interview](readings/algorithms/palantir-ace.pdf)
 
 Week 7
 ======
@@ -383,6 +386,7 @@ Assignments:
 Readings:
 
 * [Introduction to Parallel Computing: Overview](readings/algorithms/llnl-parallel.pdf)
+* [What is Amazon EC2?](readings/misc/what-is-ec2.pdf)
 
 Tuesday
 -------
