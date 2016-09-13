@@ -112,6 +112,7 @@ Readings:
 
 * [Homework: Reading from Gelman and Hill, Assignment 2](assignments/homework/gelman/homework-gelman.pdf)
 * [Notes on Regularization and Coefficient Shrinkage](notes/regularization-shrinkage/regularization-shrinkage.pdf)
+* [More on regularization. Bayesian vs maximum likelihood learning](readings/misc/regularization-lecture.pdf)
 
 Thursday
 --------
@@ -225,8 +226,9 @@ Assignments:
 
 Readings:
 
+* [K-means clustering is not a free lunch](readings/misc/k-means-lunch.pdf)
 * [Wikipedia: Recommender system](readings/misc/wp-recommender.pdf)
-* [Wikipedia: Collaborative filtering](readings/misc/wp-collab-filt.pdf)
+* [Introduction to Recommender Systems Handbook](readings/misc/intro-recommender-sys.pdf)
 
 Wednesday
 ---------
@@ -237,6 +239,7 @@ Assignments:
 
 Readings:
 
+* [Wikipedia: Collaborative filtering](readings/misc/wp-collab-filt.pdf)
 * [Notes on Alternating Least Squares](notes/alternating-least-squares/alternating-least-squares.pdf)
 * [Winning the Netflix Prize: A Summary](readings/misc/netflix-prize.pdf)
 
@@ -304,8 +307,9 @@ Assignments:
 
 Readings:
 
-* [Wikipedia: *Perceptrons* (book)](readings/misc/wp-perceptrons-book.pdf)
+* [What are advantages of SVMs over neural networks and k-Nearest Neighbors?](readings/misc/svm-advantages.pdf)
 * [Does Balancing Classes Improve Classifier Performance?](readings/misc/winvec-balancing.pdf)
+* [Wikipedia: *Perceptrons* (book)](readings/misc/wp-perceptrons-book.pdf)
 
 Thursday
 --------

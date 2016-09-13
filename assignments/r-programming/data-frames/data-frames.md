@@ -69,7 +69,7 @@ List elements can also be named, just like with atomic vectors, and can be acces
 
 [^diff]: Suppose that we have `x = list(a = 1, b = 2, c = 3)`. Then accessing `x["a"]` returns a **list** equivalent to `list(a = 1)`, whereas accessing `x$a` accesses the **value within**, equal to `1`. With atomic vectors, this doesn't make a difference, because a single value is *equivalent* to a vector of length 1, but this isn't the case with lists!
 
-* What happens when you try to combine vectors with lists? Lists inside vectors? Vectors inside lists?
+* What happens when you try to combine (using `c()`) vectors with lists? Lists inside vectors? Vectors inside lists?
 
 Subsetting with lists
 ---------------------
