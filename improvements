@@ -24,6 +24,8 @@ TODO:
 - Intermediate Algorithms - dynamic programming, MapReduce
 - Numerical Optimization - gradient descent, sgd, Newton's method
 - Kaggle bike sharing
+- fix NLP
+- restructure Intermediate SQL II
 
 Industry relevance improvement:
 - Explicit focus on A/B testing and related issues

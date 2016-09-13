@@ -107,9 +107,9 @@ Before moving on to another real-world dataset, we'll pause to briefly look at *
 
 * Compute the [correlation](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/cor.html) of each of the four pairs of `x` and `y` columns.
 
-* Compute the parameters of a linear regression of each `y` column against its corresponding `x` column.
+* Compute the parameters of a linear regression of each `y` column against its corresponding `x` column -- `y4 ~ x4`, `y3 ~ x3`, and so on and so forth.
 
-* Use [`plot()`](https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/plot.html) to plot each of the four pairs of `x` and `y` columns. Do the results surprise you?
+* Use [`plot()`](https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/plot.html) to plot each of the four pairs of `x` and `y` columns -- `y4` against `x4`, etc. Do the results surprise you?
 
 Visualization is important! Summary statistics don't tell the whole story.
 

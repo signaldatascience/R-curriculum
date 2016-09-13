@@ -284,6 +284,7 @@ Tuesday
 Assignments:
 
 * [Nonlinear Regression](assignments/supervised-learning/nonlinear-regression/nonlinear-regression.pdf) ([solutions](assignments/supervised-learning/nonlinear-regression/nonlinear-regression-solutions.R))
+* [Kaggle Bike Sharing Demand](assignments/case-studies/kaggle-bike-sharing/kaggle-bike-sharing.pdf)
 
 Readings:
 
@@ -331,9 +332,9 @@ Week 6
 Monday
 ------
 
-* [Self-Assessment 5](assignments/self-assessments/self-assessment-5/self-assessment-5.pdf) ([solutions](assignments/self-assessments/self-assessment-5/self-assessment-5-solutions.R))
-
 Assignments:
+
+* [Self-Assessment 5](assignments/self-assessments/self-assessment-5/self-assessment-5.pdf) ([solutions](assignments/self-assessments/self-assessment-5/self-assessment-5-solutions.R))
 
 Readings:
 
