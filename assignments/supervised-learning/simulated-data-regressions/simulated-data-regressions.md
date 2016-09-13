@@ -14,7 +14,7 @@ Read the indicated answers to these Quora questions:
 
 * [How would you explain the Gaussian distribution in layman's terms?](https://www.quora.com/How-would-you-explain-the-Gaussian-distribution-in-laymans-terms) by Breno Sakaguti.
 
-Then go through [Chapter 3: The Normal Distribution](http://math.arizona.edu/~ghystad/chapter3.pdf) of the book [Tutorial for the integration of the software, R, with introductory statistics](http://math.arizona.edu/~ghystad/tutorial.html).
+Then go through [Chapter 3: The Normal Distribution](http://math.arizona.edu/~ghystad/chapter3.pdf) of the book [Tutorial for the integration of the software, R, with introductory statistics](http://math.arizona.edu/~ghystad/tutorial.html). (*Note:* If these links are broken, skip them and move on.)
 
 Normal distributions and linear regression
 ==========================================
