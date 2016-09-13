@@ -152,7 +152,7 @@ Readings:
 
 * [“I don’t think that means what you think it means;” Statistics to English Translation, Part 1: Accuracy Measures](readings/misc/zumel-classification.pdf)
 * [Advanced Data Analysis from an Elementary Point of View: Logistic Regression](readings/misc/shalizi-logistic.pdf)
-* [Notes on Cross Entropy](notes/cross-entropy/cross-entropy.pdf)
+* [The Simpler Derivation of Logistic Regression](readings/misc/winvec-simpler-logistic.pdf)
 
 Tuesday
 -------
@@ -165,6 +165,7 @@ Readings:
 
 * [An intuitive explanation of PCA (Principal Component Analysis)](readings/misc/pca-intuition.pdf)
 * [A Tutorial on Principal Component Analysis](readings/misc/shlens-pca-tutorial.pdf)
+* [Notes on Cross Entropy](notes/cross-entropy/cross-entropy.pdf)
 
 Wednesday
 ---------
@@ -216,6 +217,7 @@ Readings:
 
 * [Cluster Analysis](readings/misc/mlsc-clustering.pdf)
 * [The Challenges of Clustering High Dimensional Data, Sections 1--3](readings/misc/high-dim-clustering.pdf)
+* [K-means clustering is not a free lunch](readings/misc/k-means-lunch.pdf)
 
 Tuesday
 -------
@@ -226,8 +228,8 @@ Assignments:
 
 Readings:
 
-* [K-means clustering is not a free lunch](readings/misc/k-means-lunch.pdf)
 * [Wikipedia: Recommender system](readings/misc/wp-recommender.pdf)
+* [Wikipedia: Collaborative filtering](readings/misc/wp-collab-filt.pdf)
 * [Introduction to Recommender Systems Handbook](readings/misc/intro-recommender-sys.pdf)
 
 Wednesday
@@ -239,7 +241,6 @@ Assignments:
 
 Readings:
 
-* [Wikipedia: Collaborative filtering](readings/misc/wp-collab-filt.pdf)
 * [Notes on Alternating Least Squares](notes/alternating-least-squares/alternating-least-squares.pdf)
 * [Winning the Netflix Prize: A Summary](readings/misc/netflix-prize.pdf)
 
