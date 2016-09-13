@@ -270,6 +270,8 @@ Monday
 
 Assignments:
 
+* [Self-Assessment 4](assignments/self-assessments/self-assessment-4/self-assessment-4.pdf) ([solutions](assignments/self-assessments/self-assessment-4/self-assessment-4-solutions.R))
+
 Readings:
 
 * [Decision Tree: Introduction](readings/misc/decision-tree.pdf)
@@ -329,6 +331,8 @@ Week 6
 Monday
 ------
 
+* [Self-Assessment 5](assignments/self-assessments/self-assessment-5/self-assessment-5.pdf) ([solutions](assignments/self-assessments/self-assessment-5/self-assessment-5-solutions.R))
+
 Assignments:
 
 Readings:
@@ -338,8 +342,8 @@ Readings:
 
 Tuesday
 -------
-Assign
-ments:
+
+Assignments:
 
 * [Basic Algorithms](assignments/algorithms/basic-algorithms/basic-algorithms.pdf) ([Python solutions](assignments/algorithms/basic-algorithms/basic-algorithms-solutions-python), [R solutions](assignments/algorithms/basic-algorithms/basic-algorithms-solutions.R))
 
@@ -386,6 +390,8 @@ Monday
 ------
 
 Assignments:
+
+* [Self-Assessment 6](assignments/self-assessments/self-assessment-6/self-assessment-6.pdf) ([solutions](assignments/self-assessments/self-assessment-6/self-assessment-2-solutions.py))
 
 Readings:
 
