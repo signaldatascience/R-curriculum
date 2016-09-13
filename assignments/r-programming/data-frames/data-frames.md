@@ -233,7 +233,7 @@ Lists
 
 It is often useful to nest lists within each other repeatedly to store large amounts of heterogenous data in a convenient format. Indeed, the output of many modeling functions is just a named list of many different objects.
 
-* Write a function `nesting_depth(L)` that takes as input a list `L` and returns the nesting depth of `L`. (For example, `nesting_depth(list(1, list(2, 3), list(4, 5)))` would return `2`.)
+* Write a function `nesting_depth(L)` that takes as input a list `L` and returns the nesting depth of `L`. Verify that `nesting_depth(list(1, list(2, 3), list(4, 5)))` and `nesting_depth(list(list())) both return `2`.
 
 In the following problems, let's call an $n$-domino a list with two integers, where both entries are integers from 0 to $n$ inclusive. For example, `list(4,5)` is an $n$-domino (for any $n \ge 4$).
 
