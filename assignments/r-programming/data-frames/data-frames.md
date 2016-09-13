@@ -264,7 +264,7 @@ In the following, `mtcars` refers to a dataset that's [loaded by default](http:/
 
 [^100]: A good way to do this is with `x[x %% 2 == 0] = rep(100, length(x[x %% 2 == 0]))`. We pass in the value of `length(...)` instead of `5` directly to improve the robustness of our code -- our manual calculation of the value `5` could be incorrect.
 
-* Why does `x = 1:5; x[NA]` yield five missing values? (*Hint:* How is it different from `NA_real_`?)
+* Why does `x = 1:5; x[NA]` yield five missing values? (*Hint:* How is `NA` different from `NA_real_`?)
 
 * Why does `mtcars[1:20]` return an error? How does it differ from the similar `mtcars[1:20, ]`?
 
