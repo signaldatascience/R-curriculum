@@ -259,6 +259,7 @@ Assignments:
 
 Readings:
 
+* [Transformations to Resolve Skewness](readings/misc/apm-boxcox.pdf)
 * [Multiple Imputation](readings/misc/mult-impute.pdf)
 * [Predictive modeling, data leakage, model evaluation](readings/misc/mathbabe-leakage.pdf)
 
@@ -276,7 +277,6 @@ Readings:
 
 * [Decision Tree: Introduction](readings/misc/decision-tree.pdf)
 * [Wikipedia: Ensemble learning](readings/misc/wp-ensemble.pdf)
-* [Transformations to Resolve Skewness](readings/misc/apm-boxcox.pdf)
 
 Tuesday
 -------
@@ -374,6 +374,9 @@ Assignments:
 
 Readings:
 
+* [The zen of gradient descent](readings/algorithms/zen-gradient.pdf)
+* [Numerical Optimization: Understanding L-BFGS](readings/algorithms/l-bfgs.pdf)
+
 Friday
 ------
 
@@ -422,6 +425,10 @@ Assignments:
 
 Readings:
 
+* [Topic modeling made just simple enough.](readings/misc/topic-modeling-simple.pdf)
+* [Text analysis of Trump's tweets confirms he writes only the (angrier) Android half](readings/misc/trump-angry-tweets.pdf)
+* [Using phrases in Mallet topic models](readings/misc/phrases-mallet-models.pdf)
+
 Thursday
 --------
 
@@ -442,3 +449,5 @@ Assignments:
 * [Advanced SQL Practice](assignments/sql/sql-advanced/sql-advanced.pdf) ([solutions](assignments/sql/sql-advanced/sql-advanced-solutions.sql))
 
 Readings:
+
+* [50 years of Data Science](readings/misc/donoho-50.pdf)
