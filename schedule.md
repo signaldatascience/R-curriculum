@@ -80,7 +80,7 @@ Monday
 
 Assignments:
 
-* [Self-Assessment 1](assignments/self-assessments/self-assessment-1/self-assessment-1.pdf) ([solutions](assignments/self-assessments/self-assessment-1/self-assessment-1-solutions.R), [problem 1 theoretical solution](assignments/self-assessments/self-assessment-1/self-assessment-1-solutions-p1theory.pdf))
+* [Self-Assessment 1](assignments/self-assessments/self-assessment-1/self-assessment-1.pdf) ([R solutions](assignments/self-assessments/self-assessment-1/self-assessment-1-solutions.R), [problem 1 theoretical solution](assignments/self-assessments/self-assessment-1/self-assessment-1-solutions-p1theory.pdf))
 
 Readings:
 

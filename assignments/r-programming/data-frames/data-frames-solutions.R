@@ -76,10 +76,6 @@ nesting_depth3(test3)
 
 # dir = 1 2 3 or 4 <=> left bottom right or up
 get_slice = function(df, dir, clockwise=FALSE) {
-  if (is.null(df)) {
-    return(NULL)
-  }
-
   if (dir == 1) {
     slice = df[, 1]
     df = df[, -1, drop=FALSE]
@@ -117,11 +113,10 @@ spiral = function(df, clockwise=FALSE) {
       slice = tmp$slice
       df = tmp$df
 
-      if (length(slice) == 0) {
-        stop = TRUE
+      nums = c(nums, slice)
+      stop = 0 %in% dim(df)
+      if (stop) {
         break
-      } else {
-        nums = c(nums, slice)
       }
     }
   }
