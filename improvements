@@ -20,10 +20,10 @@ TODO:
 - Self-Assessment 4 - dimensionality reduction
 - Self-Assessment 5 - nonlinear regression and classification, ensemble methods
 - Self-Assessment 6 - Project Euler questions, sorting, dynamic programming
-- Case study following nonlinear regression and advanced classification
+- Kaggle House Prices https://www.kaggle.com/c/house-prices-advanced-regression-techniques/
 - Intermediate Algorithms - dynamic programming, MapReduce
 - Numerical Optimization - gradient descent, sgd, Newton's method
-- Kaggle bike sharing
+- Kaggle Bike Sharing
 - fix NLP
 - restructure Intermediate SQL II
 - https://www.kaggle.com/c/word2vec-nlp-tutorial/details/part-1-for-beginners-bag-of-words ?

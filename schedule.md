@@ -31,7 +31,7 @@ Assignments:
 
 Readings:
 
-* [Advanced R: Excerpts, Day 2](readings/r-programming/adv-r/adv-r-day2.pdf)
+*  [Advanced R: Excerpts, Day 2](readings/r-programming/adv-r/adv-r-day2.pdf)
 * [R Inferno: Circle 1 – Falling into the Floating Point Trap](readings/r-programming/r-inferno/inferno-1.pdf)
 * [R Inferno: Circle 2 – Growing Objects](readings/r-programming/r-inferno/inferno-2.pdf)
 
@@ -317,7 +317,7 @@ Thursday
 
 Assignments:
 
-* [Kaggle Bike Sharing Demand](assignments/case-studies/kaggle-bike-sharing/kaggle-bike-sharing.pdf)
+* [Kaggle House Prices](assignments/case-studies/kaggle-house-prices/kaggle-house-prices.pdf)
 
 Readings:
 
