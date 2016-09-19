@@ -79,6 +79,33 @@ top_ten(coef(fit_extra))
 ### Part 3 ###
 
 # Question 1
+# The HAVING clause specifies a search condition if we use some grouping or aggregation clause like GROUP BY. 
+# The WHERE clause does not apply to GROUP BY. I.e., 
+# HAVING serves the function of WHERE but for a table that's been grouped by GROUP BY.
+
+# Question 2
+# One way:
+SELECT MAX(Salary)
+FROM Employees
+WHERE Salary < (
+	SELECT MAX(Salary)
+	FROM Employees
+);
+# Another way:
+SELECT Salary
+FROM (
+	SELECT Salary
+	FROM Employees
+	ORDER BY Salary DESC
+	LIMIT 2
+)
+ORDER BY Salary ASC
+LIMIT 1;
+
+# Question 3
+# See http://stackoverflow.com/a/28719292/3721976
+
+# Question 4
 # SELECT faculty_name 
 # FROM COURSES 
 # INNER JOIN COURSE_FACULTY 
@@ -86,11 +113,3 @@ top_ten(coef(fit_extra))
 # INNER JOIN FACULTY 
 # ON faculty_id 
 # WHERE course_name = "whatever"
-
-# Question 2
-# The HAVING clause specifies a search condition if we use some grouping or aggregation clause like GROUP BY. 
-# The WHERE clause does not apply to GROUP BY. I.e., 
-# HAVING serves the function of WHERE but for a table that's been grouped by GROUP BY.
-
-# Question 3
-# See http://stackoverflow.com/a/28719292/3721976
