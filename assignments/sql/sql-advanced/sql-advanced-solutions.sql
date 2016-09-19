@@ -69,7 +69,7 @@ SELECT DISTINCT Salary
 FROM (
     SELECT Salary
          , DENSE_RANK() OVER (ORDER BY Salary DESC) AS srank
-    FROM Employeess
+    FROM Employees
 ) AS x
 WHERE srank = 2;
 

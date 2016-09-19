@@ -84,8 +84,12 @@ Part 3: SQL Queries
 
 Finally, we'll finish with three SQL questions! You can write your answers to these questions as comments in your R script file.
 
-* Given a `COURSES` table with columns `course_id` and `course_name`, a `FACULTY` table with columns `faculty_id` and `faculty_name`, and a `COURSE_FACULTY` table with columns `faculty_id` and `course_id`, how would you return a list of the names of faculty members who teach a course given the name of a course?
-
 * What's the difference between `WHERE` and `HAVING`? (Just write 1-2 sentences.)
 
+* Suppose you are given a table `Employees` with a single column `Salary` of integers. Write **two** different SQL queries to determine the second highest distinct salary.
+
+*If you've gotten to the SQLZoo section about `JOIN` operations:*
+
 * What's the difference between `LEFT JOIN`, `RIGHT JOIN`, and `INNER JOIN`? (Feel free to illustrate the differences with examples if that helps you communicate the differences.)
+
+* Given a `COURSES` table with columns `course_id` and `course_name`, a `FACULTY` table with columns `faculty_id` and `faculty_name`, and a `COURSE_FACULTY` table with columns `faculty_id` and `course_id`, how would you return a list of the names of faculty members who teach a course given the name of a course?
