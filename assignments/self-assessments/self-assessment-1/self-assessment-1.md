@@ -28,11 +28,11 @@ Now, we don't know the answer yet, but maybe we can get some sense of what it mi
 
 * A *single trial* of the process described in the problem will yield a pair of values $(x, y)$, where the probability distribution which $y$ is drawn from depends on the value of $x$. Simulate $k$ trials of this process for $k = 10000$. (You may find [`runif()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Uniform.html) helpful.)
 
-	* Plot the simulated values with [`qplot()`](http://docs.ggplot2.org/current/qplot.html).
+	* Plot the simulated values with [`qplot()`](http://docs.ggplot2.org/current/qplot.html), putting values of $y$ on the vertical axis and values of $x$ on the horizontal axis.
 
 * Since we're interested in the *expected value* of $X$ given some $Y = y$, we can approximate this by separating our values of $Y$ into *bins* (of equal width) and taking the *mean* of $X$ within each bin.
 
-	* Write code that does so for a bin width of $w$, setting $w = 0.01$ (equivalently, setting the number of bins to 1/0.01 = 100).
+	* Write code that does the above for a bin width of $w$, setting $w = 0.01$ (equivalently, setting the number of bins to $1/0.01 = 100$).
 
 	* Use [`qplot()`](http://docs.ggplot2.org/current/qplot.html) to view the results. Do they make sense?
 
@@ -42,9 +42,9 @@ $$\mathbb{E}(X \mid Y = y) = \dfrac{y - 1}{\ln y}.$$
 
 In light of this new knowledge, you want to verify your computational results from earlier. To that end:
 
-* Generate a lot of different values of $Y$ and calculate the corresponding values of $\mathbb{E}(X \mid Y = y)$ according to the equation above.
+* Choose many different values of $y$ in the interval $[0,1]$ and calculate the corresponding values of $\mathbb{E}(X \mid Y = y)$ according to the equation above.
 
-	* Graph them using [`qplot()`](http://docs.ggplot2.org/current/qplot.html). Does this graph match your simulated results?
+	* Graph the results using [`qplot()`](http://docs.ggplot2.org/current/qplot.html), putting $y$ on the horizontal axis and $\mathbb{E}(X \mid Y = y)$ on the vertical axis.. Does this graph match your simulated results?
 
 * Make a *single* dataframe with both your Monte Carlo-simulated results *and* your direct calculation of the theoretical result.
 
@@ -77,7 +77,7 @@ In the next part, we'll be looking at psychological test data.
 
 * Use [`coef()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/coef.html) on each of the two linear models to view the coefficients associated with each linear fit.
 
-	* Print out the top 10 coefficients for each of the two linear fits. They should be ordered by absolute value (largest to smallest).
+	* Print out the top 10 coefficients for each of the two linear fits. They should be ordered by absolute value (largest to smallest). Interpret the results.
 
 Part 3: SQL Queries
 ===================
