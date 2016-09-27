@@ -8,10 +8,10 @@ df = read.csv("~/Desktop/Speed Dating Data.csv")
 df = select(df, gender, iid, pid, wave, dec, attr, race, career_c)
 genders = c("female", "male")
 df$gender = factor(df$gender, labels = genders)
-careers = c("Lawyer", 
-            "Academic", 
-            "Psychologist", 
-            "Doctor", 
+careers = c("Lawyer",
+            "Academic",
+            "Psychologist",
+            "Doctor",
             "Engineer",
             "Creative",
             "Business",
@@ -48,29 +48,29 @@ df = inner_join(df, agged)
 
 #Cross validate regularized logistic regression at the level of waves
 
-crossValidate = function(features, 
-                         target, 
+crossValidate = function(features,
+                         target,
                          waves = df$wave,
-                         lambdas = (1.2)^(10:(-30)), 
+                         lambdas = (1.2)^(10:(-30)),
                          alphas = seq(0, 0.24, 0.03)){
   s = scale(features)
   s = s[,!is.nan(colSums(s))]
   rocs = expand.grid(lambda = lambdas, alpha = alphas)
   rocs$logLoss = 0
-  rocs$ROC = 0 
+  rocs$ROC = 0
   for(alpha in alphas){
     print(alpha)
     l = lapply(1:21, function(wave){
       trainFeatures = s[waves != wave,]
       testFeatures = s[waves == wave,]
-      set.seed(1); m = glmnet(trainFeatures, target[waves != wave], 
-                              alpha = alpha, 
+      set.seed(1); m = glmnet(trainFeatures, target[waves != wave],
+                              alpha = alpha,
                               lambda = lambdas,
                               family = "binomial")
       as.data.frame(predict(m, testFeatures))
     })
     predictions = do.call(rbind, l)
-    predictions = exp(predictions/(1 + predictions))
+    predictions = exp(predictions)/(1 + exp(predictions))
     rocTemp = sapply(predictions, function(cv){
       as.numeric(roc(target,cv)$auc)
     })

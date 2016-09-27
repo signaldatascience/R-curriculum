@@ -1,6 +1,6 @@
 # Very incomplete solutions
 
-setwd('C:/Users/Andrew/Documents/Signal/curriculum/src/week4/day4')
+setwd('C:/Users/Andrew/Documents/Signal/curriculum/datasets/protein-consumption')
 library(readr)
 df = read_delim('protein.txt', '\t')
 s = scale(df[-1])
