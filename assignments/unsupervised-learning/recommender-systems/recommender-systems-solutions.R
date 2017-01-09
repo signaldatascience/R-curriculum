@@ -95,7 +95,7 @@ results$precision = sapply(seq_along(lamseq), function(i) precision(test$rating,
 results$recall = sapply(seq_along(lamseq), function(i) recall(test$rating, impute(fits[[i]], test$uid, test$mid), m))
 
 # Asymmetric cost function
-L = matrix(c(0, 0, 0, 7.5, 10, 0, 0, 0, 4, 6, 0, 0, 0, 1.5, 3, 3, 2, 1, 0, 0, 4, 3, 2, 0, 0), nrow=5)
+L = t(matrix(c(0, 0, 0, 7.5, 10, 0, 0, 0, 4, 6, 0, 0, 0, 1.5, 3, 3, 2, 1, 0, 0, 4, 3, 2, 0, 0), nrow=5))
 round_rating = function(x) min(max(round(x), 1), 5)
 Lcost = function(true, pred) mean(sapply(seq_along(true), function(i) L[true[i], round_rating(pred[i])]))
 results$asym = sapply(seq_along(lamseq), function(i) Lcost(test$rating, impute(fits[[i]], test$uid, test$mid)))
