@@ -2,7 +2,7 @@ library(dplyr)
 library(glmnet)
 library(pROC)
 library(dummies)
-df = read.csv("~/Desktop/Speed Dating Data.csv")
+df = read.csv("~/Desktop/speeddating-full.csv")
 
 #Create data frame with decisions, average decision frequencies, careers and races
 df = select(df, gender, iid, pid, wave, dec, attr, race, career_c)
