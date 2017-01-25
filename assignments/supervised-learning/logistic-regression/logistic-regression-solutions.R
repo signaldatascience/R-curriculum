@@ -26,7 +26,7 @@ fit_career
 probs_career = to_probs(predict(fit_career, df_career))
 roc_career = roc(df_career$career_c, probs_career)
 plot(roc_career)
-
+x
 df_race = filter(df, race %in% c(2, 4))
 df_race$race = factor(df_race$race)
 fit_race = glm(race ~ ., select(df_race, race, sports:yoga), family="binomial")

@@ -1,1 +1,1 @@
-The course schedule is located [here](schedule.md).
+This is the curriculum for Signal Data Science.
