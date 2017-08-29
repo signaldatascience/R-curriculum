@@ -215,7 +215,7 @@ Wickham writes:
 > 
 > Because it can return only a single value, you must use `[[` with either a single positive integer or a string.
 
-This works straightforwardly. Using the same 10-by-10 data frame from earlier, you can grab the contents of the 5th column with `df[[5]]`, `df[["V5"]]`, or `df$V5`. The `$` operator is nearly identical to the `[[` operator.[^pmatch]
+This works straightforwardly. Using the same 10-by-10 data frame from earlier, you can grab the contents of the 5th column with `df[[5]]`, `df[["X5"]]`, or `df$X5`. The `$` operator is nearly identical to the `[[` operator.[^pmatch]
 
 [^pmatch]: There's one minor exception. `x$y` is actually equivalent to `x[["y", exact = FALSE]]`, so `$` can partially match names (starting from the beginning of the string). For example, if `df` has a column named `"column"`, then `df$c` will return the output of `df$column`, assuming that no other columns in `df` have a name beginning with `"c"`.
 
