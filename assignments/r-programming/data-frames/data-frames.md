@@ -235,7 +235,7 @@ It is often useful to nest lists within each other repeatedly to store large amo
 
 * Write a function `nesting_depth(L)` that takes as input a list `L` and returns the nesting depth of `L`. Verify that `nesting_depth(list(1, list(2, 3), list(4, 5)))` and `nesting_depth(list(list())) both return `2`.
 
-In the following problems, let's call an $n$-domino a list with two integers, where both entries are integers from 0 to $n$ inclusive. For example, `list(4,5)` is an $n$-domino (for any $n \ge 4$).
+In the following problems, let's call an $n$-domino a list with two integers, where both entries are integers from 0 to $n$ inclusive. For example, `list(4,5)` is an $n$-domino (for any $n \ge 5$).
 
 * Write a function to return a list of every unique $n$-domino, given $n$. Treat `list(a, b)` as being equivalent to `list(b, a)`. (*Hint:* If you have a list `L`, you can append an item to it by directly assigning something to its `(length(L)+1)`th position.)
 
