@@ -27,9 +27,9 @@ If you run `summary(lm(y ~ x - 1))`, corresponding to a linear model with no con
 * Write a function `cost(x, y, aEst, lambda, p)` which takes 
 
 	* two vectors `x` and `y` of equal length,
-	* a estimate of the value of `a`, `aEst`,
+	* an estimate of the value of `a`, `aEst`,
 	* a regularization parameter `lambda`, and
-	* a number `p = 1` or `2`, indicating whether $L^1$ or $L^2$ regularization is being performed.
+	* a number `p = 1` or `2`, indicating whether [$L^1$ or $L^2$ regularization](http://www.chioka.in/differences-between-l1-and-l2-as-loss-function-and-regularization/) is being performed.
 
 	Your function should return the sum of squared errors for the model `y = aEst*x` plus the $L^p$ regularization term. Check that `cost(1, 2, 3, 4, 2)` returns 37.
 
