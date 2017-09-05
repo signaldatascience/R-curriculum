@@ -138,9 +138,15 @@ The `gender` variable is encoded as a **factor**, which we'll cover in greater d
 Learning to use `dplyr`
 -----------------------
 
-The `dplyr` package is one of the most commonly used R packages and is particularly useful for the straightforward manipulation of data frames.
+The `dplyr` package is one of the most commonly used R packages and is particularly useful for the straightforward manipulation of data frames.  The following tutorials (arranged in descending order of succinctness) should prove helpful: 
 
-* Read through page 43 of Hadley Wickham's [`dplyr` tutorial](https://www.dropbox.com/sh/i8qnluwmuieicxc/AACsepZJvULCKkbIxK9KP-6Ea/dplyr-tutorial.pdf?dl=0). Don't work through all the examples -- just skim and refer back to the tutorial later if you need to.
+* [`tidyverse`'s own `dplyr` introduction](http://dplyr.tidyverse.org).
+
+* [This tutorial](http://genomicsclass.github.io/book/pages/dplyr_tutorial.html), originally written for a biomedical data science class.
+
+* [CRAN's `dplyr` vignette](https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html).
+
+* [Hadley Wickham's `dplyr` tutorial](https://www.dropbox.com/sh/i8qnluwmuieicxc/AACsepZJvULCKkbIxK9KP-6Ea/dplyr-tutorial.pdf?dl=0). If you choose to make use of this tutorial, Pages 1 through 43 are most useful.  Don't work through all the examples -- just skim and refer back to the tutorial later if you need to.
 
 Running linear regressions
 --------------------------
