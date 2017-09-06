@@ -304,10 +304,10 @@ The following problem is a common programming interview question. Remember it we
 
 We can also use these more complex data structures to facilitate our computational exploration of number-theoretic concepts.
 
-* Think back to the exercise yesterday about the divisibility properties of Fibonacci numbers. Let $F_i$ denote the $i$th Fibonacci number, starting with $F_1 = F_2 = 1$.
+* Think back to the exercise in the [Atomic Vectors and Functions assignment](https://github.com/signaldatascience/R-curriculum/blob/master/assignments/r-programming/r-intro/vectors-functions.pdf) about the divisibility properties of Fibonacci numbers. Let $F_i$ denote the $i$th Fibonacci number, starting with $F_1 = F_2 = 1$.
 
 	* Make a data frame where the $n$th column is a logical vector with `TRUE` in position $m$ if $F_m$ divides $F_n$ and `FALSE` otherwise. (The data frame can be as large as you want.)
 
 	* Make another data frame in the same way, except look at whether or not $m$ divides $n$ (instead of $F_m$ and $F_n$).
 
-	* Explain yesterday's computational results using the patterns that you notice today.
+	* Explain the computational results you obtained in the Atomic Vectors and Functions assignment using the patterns that you notice today.
