@@ -62,7 +62,7 @@ Let $\textbf{x} = (x_1, x_2, \ldots, x_n)$ and $\textbf{y} = (y_1, y_2, \ldots, 
 
 * The most commonly used distance is **Euclidean distance**, induced by the $L^2$ norm. It's defined as $d(\textbf{x},\textbf{y}) = \sqrt{(x_1 - y_1)^2 + (x_2 - y_2)^2 + \cdots + (x_n - y_n)^2}$. This is appropriate for continuously varying data, but not appropriate for categorical or binary data.
 
-* When we have binary data (or categorical data, which can be expanded out into binary variables), we can use **Hamming distance**, defined as such: Let $h(a,b)$ be equal to 1 if $a = b$ and 0 otherwise. Then $d(\textbf{x},\textbf{y}) = \sum_i h(x_i,y_i)$.
+* When we have binary data (or categorical data, which can be expanded out into binary variables), we can use **Hamming distance**, defined as such: Let $h(a,b)$ be equal to 1 if $a \neq b$ and 0 otherwise. Then $d(\textbf{x},\textbf{y}) = \sum_i h(x_i,y_i)$.
 
 	* Note that some categorical variables have a natural interpretation as continuous variables -- for instance, you could transform a categorical variable taking on values "short", "medium", and "tall" into the numerical values 1, 2, and 3, in which case you would be able to use a distance function for continuously varying data (such as the Euclidean distance).
 
