@@ -42,7 +42,7 @@ Because there are some movies which are rated by very few people and some people
 
 Next, we need to create a matrix containing rating data for (user, movie) pairs. We can store this as a *sparse* matrix, which is a special data structure designed for handling matrices where only a minority of the entries are filled in (because each user has only rated a small number of movies).
 
-* Use `Incomplete()` to generate a sparse ratings matrix with one row per user ID and one column per movie ID (including the perturbed fake data). The resulting matrix should have **6041 rows** and **3953 columns**. (*Hint:* The arguments of `Incomplete()` should be three vectors of the same length such that the $i$th value of each of the three vectors corresponds to a particular (user ID, movie ID, rating) data point in the training set.)
+* Use `Incomplete()` from the `softImpute` package to generate a sparse ratings matrix with one row per user ID and one column per movie ID (including the perturbed fake data). The resulting matrix should have **6041 rows** and **3953 columns**. (*Hint:* The arguments of `Incomplete()` should be three vectors of the same length such that the $i$th value of each of the three vectors corresponds to a particular (user ID, movie ID, rating) data point in the training set.)
 
 Using collaborative filtering
 =============================
