@@ -42,9 +42,9 @@ $$\mathbb{E}(X \mid Y = y) = \dfrac{y - 1}{\ln y}.$$
 
 In light of this new knowledge, you want to verify your computational results from earlier. To that end:
 
-* Choose many different values of $y$ in the interval $[0,1]$ and calculate the corresponding values of $\mathbb{E}(X \mid Y = y)$ according to the equation above.
+* Choose many different values of $y$ in the interval $[0,1]$ and calculate the corresponding values of $\mathbb{E}(X \mid Y = y)$ according to the equation above. Your choice of $y$ shouldn't matter much, but one common practice is to use the midpoints of the bins in which you computed the mean of $X$, so as to make the comparison between theoretical and simulated values of $\mathbb{E}(X \mid Y = y)$ as fair as possible. 
 
-	* Graph the results using [`qplot()`](http://docs.ggplot2.org/current/qplot.html), putting $y$ on the horizontal axis and $\mathbb{E}(X \mid Y = y)$ on the vertical axis.. Does this graph match your simulated results?
+	* Graph the results using [`qplot()`](http://docs.ggplot2.org/current/qplot.html), putting $y$ on the horizontal axis and $\mathbb{E}(X \mid Y = y)$ on the vertical axis. Does this graph match your simulated results?
 
 * Make a *single* dataframe with both your Monte Carlo-simulated results *and* your direct calculation of the theoretical result.
 
@@ -77,7 +77,7 @@ In the next part, we'll be looking at psychological test data.
 
 * Use [`coef()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/coef.html) on each of the two linear models to view the coefficients associated with each linear fit.
 
-	* Print out the top 10 coefficients for each of the two linear fits. They should be ordered by absolute value (largest to smallest). Interpret the results.
+	* Print out the top 10 coefficients, *not including the intercept*, for each of the two linear fits. They should be ordered by absolute value (largest to smallest). Interpret the results. 
 
 Part 3: SQL Queries
 ===================
