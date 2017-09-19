@@ -53,7 +53,7 @@ Extracting the first principal component
 
 Given $\textbf{X}$, the vector representing the direction of greatest variation is given by the vector $\textbf{w}$ which *maximizes* the expression $\left( \textbf{w}^\intercal \textbf{X}^\intercal \textbf{X} \textbf{w} \right) / \left( \textbf{w}^\intercal \textbf{w} \right)$, where $\textbf{X}^\intercal$ represents the [transpose](https://en.wikipedia.org/wiki/Transpose) operation (calculated in R with [`t()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/t.html)). We call the expression which we wish to maximize our [objective function](https://en.wikipedia.org/wiki/Loss_function).
 
-* Write a function `objective(w, X)` which calculates the value of the objective function for a given matrix `X` and vector `w`. Verify that `objective(1:10, X)` returns 19.023.
+* Write a function `objective(w, X)` which calculates the value of the objective function for a given matrix `X` and vector `w`. Verify that `objective(1:10, X)` returns 6.89004.
 
 Instead of implementing our own numerical optimization algorithm, we will use R's [`optim()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/optim.html), which implements a variety of different optimization techniques.
 
