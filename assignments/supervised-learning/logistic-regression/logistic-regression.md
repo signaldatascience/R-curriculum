@@ -41,7 +41,7 @@ When working through the following questions, examine and interpret the coeffici
 
 * Restrict to the subset of participants who indicated being Caucasian (`race == 2`) or Asian (`race == 4`). Predict membership in either class in terms of the 17 activities.
 
-Regularized linear regression
+Regularized logistic regression
 =============================
 
 We can also use $L^p$ regularization with the logistic regression cost function. In this part of the assignment you'll be predicting decisions (`dec`) of speed dating participants in terms of interactions between partners' attributes.
@@ -54,7 +54,7 @@ We'll be doing our cross validation at the level of speed dating events, so that
 
 * Using `dummy.data.frame()` from the [`dummies`](https://cran.r-project.org/web/packages/dummies/) package, create a data frame `dums1` with dummy variables corresponding to the participant making the decision and another data frame `dums2` with dummy variables corresponding to the partner being decided on. You only need to expand race and career code out into dummy variables.
 
-* Create a data frame `dums` by calling [`cbind()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/cbind.html) on `dums1` and `dums2`. To this data frame, add [interaction terms](https://en.wikipedia.org/wiki/Interaction_(statistics)#Introduction) for
+* Create a data frame `dums` by calling [`cbind()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/cbind.html) on `dums1` and `dums2`. Make sure not to repeat any overlapping columns, nor to include the original race and career columns. To this data frame, add [interaction terms](https://en.wikipedia.org/wiki/Interaction_(statistics)#Introduction) for
 
 	- (race of decider) x (attractiveness of partner),
 	- (career of decider) x ( attractiveness of partner),
@@ -65,7 +65,7 @@ We'll be doing our cross validation at the level of speed dating events, so that
 
 	To save on computational time, remove those columns with 20 or fewer entries, with `dums = dums[,colSums(dums) > 20]`.
 
-* Form a `features` data frame by binding `decAvg`, `decPartnerAvg`, and `attrPartnerAvg` to the data frame `dums`.
+* Form a `features` data frame by extracting `decAvg`, `decPartnerAvg`, `attrPartnerAvg`, and all of the dummy columns from the data frame `dums`.
 
 Keep the following in mind as you work: (1) If your `glmnet()` call returns an error indicating `NA` or `NaN` values in the predictors, use [`is.nan()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/is.finite.html) to check for and filter out columns with `NaN`s. This occurs when [`scale()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/scale.html) is used on constant columns (with standard deviation 0). (2) If your `glmnet()` model with a single $\lambda$ value fails to converge, run `glmnet()` without specifying the `lambda` parameter, and subsequently [pass in the desired $\lambda$ value to `predict()` and `coef()` directly via the `s` parameter](http://stats.stackexchange.com/questions/101101/convergence-for-1st-lambda-value-not-reached-error-using-glmnet-package-and-sp).
 
