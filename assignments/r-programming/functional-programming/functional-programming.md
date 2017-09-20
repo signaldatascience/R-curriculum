@@ -212,7 +212,7 @@ Now that we've covered the basics, we'll start to consider some more complex, le
 `apply()`
 ---------
 
-Calling `apply(mat, dims, func)` will preserve the dimensions specified in `dims` and collapse the rest of the dimensions to single values using `func()` for every combination of the values taken on by the dimensions of `dism`.
+Calling `apply(mat, dims, func)` will preserve the dimensions specified in `dims` and collapse the rest of the dimensions to single values using `func()` for every combination of the values taken on by the dimensions of `dims`.
 
 For example, we can take row means of a matrix like so:
 
