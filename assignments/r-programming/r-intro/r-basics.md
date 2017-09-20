@@ -21,7 +21,7 @@ It's possible to type code directly into the console and to press `Enter` to eva
 
 * Create a new script file called `test.R` in any directory of your choice. Type some arithmetic into it like `1+1` and `2*4^2` on different lines and click the `Run` button in the top right.
 
-You can press `Ctrl+Enter` to run just the line that your cursor is on or the code block that you have selected. When your scripts get large and cumbersome, rerunning just the parts that changed will be much faster than rerunning the entire file (which could take a very long time depending on what computations you're doing).	
+You can press `Ctrl+Enter` (`command+return` on a Mac) to run just the line that your cursor is on or the code block that you have selected. When your scripts get large and cumbersome, rerunning just the parts that changed will be much faster than rerunning the entire file (which could take a very long time depending on what computations you're doing).	
 
 Unless your script is very short, you should *almost never* be rerunning the entire file every time you make a change to your code. If you are, it might be a sign that your code needs to be structured differently.
 
