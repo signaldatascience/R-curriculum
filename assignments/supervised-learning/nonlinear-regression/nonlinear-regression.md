@@ -120,7 +120,7 @@ You will often see regression trees called "CART", which stands for "Classificat
 Random forests
 --------------
 
-In short, a *random forest* trains many different different regression trees and averages their predictions together, with these two conditions on the regression trees:
+In short, a *random forest* trains many different regression trees and averages their predictions together, with these two conditions on the regression trees:
 
 1. Each regression tree is trained on a bootstrapped sample of the original dataset.[^bagging] This technique is known as *bagging* and helps combat overfitting.
 
