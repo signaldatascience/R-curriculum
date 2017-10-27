@@ -162,7 +162,7 @@ Additional pages of the API request can be accessed by appending `?page=2` and s
 
 * Open the downloaded files in a text editor and replace all instances of the *strings* `"\r\n"` or `"\n"` with spaces.
 
-* Use the [`json`](https://docs.python.org/3/library/json.html) module, specifically the `loads()` function, along with the [`csv`](https://docs.python.org/3/library/csv.html) module to create a CSV with columns for the comment poster's username and the comment text. If you use Python 2 rather than Python 3, you'll need the [`unicodecsv`](https://pypi.python.org/pypi/unicodecsv/0.14.1) instead. 
+* Use the [`json`](https://docs.python.org/3/library/json.html) module, specifically the `loads()` function, along with the [`csv`](https://docs.python.org/3/library/csv.html) module to create a CSV with columns for the comment poster's username and the comment text. If you use Python 2 rather than Python 3, you'll need the [`unicodecsv`](https://pypi.python.org/pypi/unicodecsv/0.14.1) module instead. 
 
 Performing sentiment analysis
 -----------------------------
